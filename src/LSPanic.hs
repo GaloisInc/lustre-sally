@@ -11,6 +11,6 @@ panic = Panic.panic LustreToSally
 
 instance PanicComponent LustreToSally where
   panicComponentName _ = "Lustre to Sally translator."
-  panicComponentIssues _ = "(XXX: no issue tracker yet)"
+  panicComponentIssues _ = "https://github.com/GaloisInc/lustre-sally/issues"
   panicComponentRevision = $useGitRevision
 

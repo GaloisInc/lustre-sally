@@ -1,4 +1,5 @@
 {-# Language OverloadedStrings, PatternSynonyms #-}
+-- | Translate Core Lustre to a transtion system.
 module Lustre (transNode) where
 
 import qualified Data.Text as Text
