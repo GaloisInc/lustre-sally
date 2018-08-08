@@ -43,6 +43,7 @@ data Type         = TInteger | TReal | TBool
 data Op           = OpEq | OpLt | OpLeq
                   | OpNot | OpAnd | OpOr
                   | OpAdd | OpSub | OpMul | OpDiv | OpDivInt | OpMod
+                  | OpITE
                   | OpLit !Value
                     deriving Show
 
@@ -55,6 +56,9 @@ infix  4 :==:, :/=:, :<:, :<=:, :>:, :>=:
 infixl 6 :+:, :-:
 infixl 7 :*:, :/:
 infix  9 :::
+
+pattern ITE :: Expr -> Expr -> Expr -> Expr
+pattern ITE x y z = EOp OpITE [x,y,z]
 
 pattern (:==:) :: Expr -> Expr -> Expr
 pattern x :==: y = EOp OpEq [x,y]

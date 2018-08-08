@@ -3,9 +3,9 @@ module Sally
   ( translateTS
   , translateQuery
   , SExpr
-  , showsSExpr
+  , showsSExpr, ppSExpr
   , sally
-  , readSallyResult, SallyResult, Trace(..), VarVals
+  , readSallyResults, readSallyResult, SallyResult, Trace(..), VarVals
   ) where
 
 import Data.List(unfoldr)
@@ -13,7 +13,7 @@ import Data.Char(isSpace)
 import Data.Map (Map)
 import qualified Data.Map as Map
 import qualified Data.Text as Text
-import Control.Monad(zipWithM,unless)
+import Control.Monad(zipWithM)
 import Control.Exception(finally)
 import System.IO(hPutStrLn,hClose,openTempFile)
 import System.Directory(removeFile,getTemporaryDirectory)
@@ -106,6 +106,8 @@ toSallyExpr qs expr =
     x :<:  y  -> lt  (toSallyExpr qs x) (toSallyExpr qs y)
     x :<=: y  -> leq (toSallyExpr qs x) (toSallyExpr qs y)
 
+    ITE x y z -> ite (toSallyExpr qs x) (toSallyExpr qs y) (toSallyExpr qs z)
+
     _ -> panic "toSallyExpr" [ "Unexpected expression", show expr ]
 
   where
@@ -120,9 +122,14 @@ toSallyExpr qs expr =
       _        -> toSallyExpr qs e : more
 
 type VarVals  = Map Name TS.Value
-data Trace    = Trace { traceStart :: !VarVals             -- ^ Initial state
+
+-- | A non-empty trace
+data Trace1   = Trace1 { traceStart :: !VarVals             -- ^ Initial state
                       , traceSteps :: ![(VarVals,VarVals)] -- ^ (Input,NewState)
                       } deriving (Eq,Show)
+
+data Trace    = EmptyTrace | Trace !Trace1
+                deriving (Eq,Show)
 
 
 -- | Result of running sally on a query.
@@ -139,31 +146,48 @@ perhaps x mb = case mb of
                  Nothing -> Left x
                  Just a  -> Right a
 
+
+-- | Parse-out multiple results from Sally.
+-- Assumes that @--show-trace@ was given.
+readSallyResults :: TransSystem -> String -> Perhaps [SallyResult]
+readSallyResults ts inp =
+  case dropWhile isSpace inp of
+    []   -> pure []
+    inp1 ->
+      do (r,inp2) <- readSallyResult ts inp1
+         rs       <- readSallyResults ts inp2
+         return (r:rs)
+
 -- | Parse-out the result from Sally. Assumes that @--show-trace@ was given.
-readSallyResult :: TransSystem -> String -> Perhaps SallyResult
+readSallyResult :: TransSystem -> String -> Perhaps (SallyResult, String)
 readSallyResult ts xs =
   case break (== '\n') xs of
-    ("valid",_)       -> return Valid
-    ("unknown",_)     -> return Sally.Unknown
-    ("invalid",_:ys)  -> Invalid <$> readTrace ts ys
+    ("valid",rest)    -> return (Valid, rest)
+    ("unknown",rest)  -> return (Sally.Unknown, rest)
+    ("invalid",_:ys)  -> do (t,rest) <- readTrace ts ys
+                            pure (Invalid t, rest)
     _                 -> Left ("Unexpected response: " ++ xs)
 
 -- | Parse a trace for the given system.
-readTrace :: TransSystem -> String -> Perhaps Trace
-readTrace ts t =
-  do (s, rest) <- perhaps "Failed to parse S-expression" (readSExpr t)
-     unless (all isSpace rest) (Left "Left-overs at the end.")
-     parseTrace ts s
+readTrace :: TransSystem -> String -> Perhaps (Trace, String)
+readTrace ts inp =
+  do (s, rest) <- perhaps "Failed to parse S-expression" (readSExpr inp)
+     t <- parseTrace ts s
+     return (t, rest)
 
 -- | Parse an entire trace.
 parseTrace :: TransSystem -> SExpr -> Perhaps Trace
 parseTrace ts expr =
   case expr of
+    List [Atom "trace"] -> Right EmptyTrace
     List (Atom "trace" : s0 : steps) ->
         do s  <- parseState ts s0
            ss <- parseSteps ts steps
-           return $! Trace { traceStart = s, traceSteps = ss }
-    _ -> Left "Expected 'trace'"
+           return $! Trace $! Trace1 { traceStart = s, traceSteps = ss }
+    _ -> Left $ unlines [ "Expected 'trace'"
+                        , "Got:"
+                        , SMT.ppSExpr expr ""
+                        ]
 
 -- | Parse some values, either a steate or some inputs.
 parseVals :: TransSystem -> String -> SExpr -> Perhaps VarVals
