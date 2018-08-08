@@ -16,7 +16,7 @@ import Lustre
 import Language.Lustre.Core
 
 main :: IO ()
-main = runTest (sys1, [q2,q1])
+main = runTest (sys1, [q1,q2])
 
 runTest :: (TS.TransSystem,  [TS.Expr]) -> IO ()
 runTest (ts,qs) =
@@ -34,6 +34,7 @@ runTest (ts,qs) =
                       exitFailure
 
 
+
 sys1 :: TS.TransSystem
 sys1 = transNode
   Node { nName = Name "Test1"
@@ -41,7 +42,10 @@ sys1 = transNode
        , nOutputs = [ Ident "x"]
        , nAsserts = []
        , nEqns =
-           [ Ident "x" ::: TInt := Atom (Lit (Int 1))
+           [ Ident "y" ::: TInt := Pre (Var (Ident "x"))
+           , Ident "p" ::: TInt := Call (Name "+")
+                                      [ Lit (Int 1), Var (Ident "y") ]
+           , Ident "x" ::: TInt := Lit (Int 1) :-> Var (Ident "p")
            ]
        }
 

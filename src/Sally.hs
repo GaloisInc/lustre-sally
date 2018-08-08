@@ -18,7 +18,8 @@ import Control.Exception(finally)
 import System.IO(hPutStrLn,hClose,openTempFile)
 import System.Directory(removeFile,getTemporaryDirectory)
 import System.Process(readProcess)
-import SimpleSMT as SMT
+import qualified SimpleSMT as SMT
+import SimpleSMT (SExpr(..), showsSExpr, ppSExpr, sexprToVal, readSExpr)
 
 import TransitionSystem as TS
 import LSPanic(panic)
@@ -37,7 +38,7 @@ translateTS ts
 
 declareTransSys :: TransSystem -> SExpr
 declareTransSys ts =
-  fun "define-transition-system"
+  SMT.fun "define-transition-system"
       [ sysName
       , sysStateType
       , toSallyExpr ImplicitState (tsInit ts)
@@ -51,11 +52,11 @@ translateQuery ts q
 
 
 toSallyQuery :: Expr -> SExpr
-toSallyQuery e = fun "query" [ sysName, toSallyExpr ImplicitState e ]
+toSallyQuery e = SMT.fun "query" [ sysName, toSallyExpr ImplicitState e ]
 
 declareStateType :: TransSystem -> SExpr
 declareStateType ts =
-  fun "define-state-type" [ sysStateType, decls tsVars, decls tsInputs ]
+  SMT.fun "define-state-type" [ sysStateType, decls tsVars, decls tsInputs ]
   where
   decls f    = List (map decl (Map.toList (f ts)))
   decl (x,t) = List [ toSallyName x, toSallyType t ]
@@ -75,9 +76,9 @@ toSallyQualName ns (Name x) =
 toSallyType :: Type -> SExpr
 toSallyType ty =
   case ty of
-    TInteger -> tInt
-    TReal    -> tReal
-    TBool    -> tBool
+    TInteger -> SMT.tInt
+    TReal    -> SMT.tReal
+    TBool    -> SMT.tBool
 
 toSallyExpr :: QualState -> Expr -> SExpr
 toSallyExpr qs expr =
@@ -87,26 +88,27 @@ toSallyExpr qs expr =
         ExplicitState -> toSallyQualName ns x
         ImplicitState -> toSallyName x
 
-    TS.Int x  -> int x
-    TS.Real x -> real x
+    TS.Int x  -> SMT.int x
+    TS.Real x -> SMT.real x
 
-    x :+: y   -> add (toSallyExpr qs x) (toSallyExpr qs y)
-    x :-: y   -> sub (toSallyExpr qs x) (toSallyExpr qs y)
-    x :*: y   -> mul (toSallyExpr qs x) (toSallyExpr qs y)
-    x :/: y   -> realDiv (toSallyExpr qs x) (toSallyExpr qs y)
+    x :+: y   -> SMT.add (toSallyExpr qs x) (toSallyExpr qs y)
+    x :-: y   -> SMT.sub (toSallyExpr qs x) (toSallyExpr qs y)
+    x :*: y   -> SMT.mul (toSallyExpr qs x) (toSallyExpr qs y)
+    x :/: y   -> SMT.realDiv (toSallyExpr qs x) (toSallyExpr qs y)
     Div x y   -> SMT.div (toSallyExpr qs x) (toSallyExpr qs y)
     Mod x y   -> SMT.mod (toSallyExpr qs x) (toSallyExpr qs y)
 
-    TS.Bool x -> bool x
+    TS.Bool x -> SMT.bool x
     Not p     -> SMT.not (toSallyExpr qs p)
     _ :&&: _  -> SMT.andMany (flatAnd expr [])
     _ :||: _  -> SMT.orMany  (flatOr expr [])
 
-    x :==: y  -> eq  (toSallyExpr qs x) (toSallyExpr qs y)
-    x :<:  y  -> lt  (toSallyExpr qs x) (toSallyExpr qs y)
-    x :<=: y  -> leq (toSallyExpr qs x) (toSallyExpr qs y)
+    x :==: y  -> SMT.eq  (toSallyExpr qs x) (toSallyExpr qs y)
+    x :<:  y  -> SMT.lt  (toSallyExpr qs x) (toSallyExpr qs y)
+    x :<=: y  -> SMT.leq (toSallyExpr qs x) (toSallyExpr qs y)
 
-    ITE x y z -> ite (toSallyExpr qs x) (toSallyExpr qs y) (toSallyExpr qs z)
+    ITE x y z -> SMT.ite (toSallyExpr qs x)
+                         (toSallyExpr qs y) (toSallyExpr qs z)
 
     _ -> panic "toSallyExpr" [ "Unexpected expression", show expr ]
 
@@ -200,20 +202,23 @@ parseVals ts what s =
                       "input" -> Just (tsInputs ts)
                       _       -> Nothing
        -> Map.fromList <$> mapM (parseBind tys) binds
-    _  -> Left ("Expected: " ++ show what)
+    _  -> Left $ unlines [ "Expected: " ++ show what
+                         , "Got:"
+                         , ppSExpr s ""
+                         ]
 
 -- | Parse a state definition.
 parseState :: TransSystem -> SExpr -> Perhaps VarVals
 parseState ts = parseVals ts "state"
 
--- | Parse the steps for a trace.
+{- | Parse the steps for a trace.
+Note that we expect that there will be always an `input` entry,
+even if there are no inputs: it would appear that Sally distinguishes
+between systems with an empty slits of inputs, and ones where there
+was no inputs.  Since we always generate a list of inputs, even when
+empty, we always expect an input in the trace. -}
 parseSteps :: TransSystem -> [SExpr] -> Perhaps [(VarVals,VarVals)]
-parseSteps ts steps
-  | Map.null (tsInputs ts) =
-    do vars <- mapM (parseState ts) steps
-       return [ (Map.empty, s) | s <- vars ]
-
-  | otherwise =
+parseSteps ts steps =
     do vars <- zipWithM (parseVals ts) (cycle ["input","state"]) steps
        sequence (unfoldr takeStep vars)
   where
@@ -228,7 +233,11 @@ parseBind :: Map Name Type -> SExpr -> Perhaps (Name,TS.Value)
 parseBind tys s =
   case s of
     List [ Atom x, v ] ->
-      do let nm = Name (Text.pack x)
+      do let nm = Name $ Text.pack
+                       $ case x of
+                           '|' : more | not (null more) && last more == '|' ->
+                                        init more
+                           _ -> x
          ty <- perhaps ("Undefined variable: " ++ show x) (Map.lookup nm tys)
          val <- parseValue ty v
          return (nm, val)
