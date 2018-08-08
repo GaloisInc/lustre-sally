@@ -19,6 +19,36 @@ transNode n = TS.TransSystem
   }
 
 
+{- NOTE:  Translating Variables
+   ============================
+
+Lustre variables can have a few special values:  in particular, they may
+be `nil` or the may be "deleted", which happens when they are skipped by
+a clock.  To modle these features, we translate each Lustre, say X, variable to
+three variable in the model:
+
+  X     : T
+  X_nil : Bool
+  X_del : Int
+
+If `X_nil` is `true`, then this value is nil and the value of `X` is
+irrelevant.
+
+`X_del` is the depth of the clock that disabled this value.
+It is never negative.
+If it is 0, then the value is not disable and so it should be output.
+We need an `Int` rather than just ` Bool`, because the `current` construct
+restores only the values disable by the most recent clock (i.e., where
+`X_del == 1`)
+
+To summarize:
+  * If X_del > 0, then this value is suppressed by a clock, and the other
+                  variables are irrelevant.
+  * if `X_del == 0 && X_nil`, then this value is `nil`
+  * if `X_del == 0 && not X_nil` then the value is `X`
+-}
+
+
 data Val = Val { vVal :: TS.Expr
                  -- ^ type T.  The "normal" value.
 
@@ -129,8 +159,9 @@ initEqn (x ::: _ := expr) =
             , vNil = aNil
             , vDel = TS.ITE -- Not too sure what happens if `b` is nil.
                        (bDel TS.:>: zero)
-                       (bDel TS.:+: one)
+                       (bDel TS.:+: one) -- already delete, increase depth
                        (TS.ITE (TS.Not bNil TS.:&&: bVal) zero one)
+                        -- `nil` treated as `false` for the moment
             }
 
       Val { vVal = aVal, vDel = aDel, vNil = aNil } = atom a
