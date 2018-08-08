@@ -25,7 +25,7 @@ runTest (ts,qs) =
      putStrLn "=== Sally Input: =============="
      putStrLn inp
      putStrLn "==============================="
-     let opts = [ "--engine=pdkind", "--show-trace" ]
+     let opts = [ "--engine=pdkind", "--show-trace", "--output-language=mcmt" ]
      res <- sally "sally" opts inp
      case readSallyResults ts res of
        Right r  -> mapM_ print r
