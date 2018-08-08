@@ -205,5 +205,17 @@ typeOf ts nsOk = check
                return TBool
 
 
+--------------------------------------------------------------------------------
+-- Traces, for processing counter-examples, etc.
+
+-- | A generic trace with state 's' and transitions 'i', which might be empty.
+data Trace s i = EmptyTrace | Trace !s ![(i,s)]
+             deriving (Eq,Show)
+
+-- | A mapping from names to values.
+type VarVals = Map Name Value
+
+-- | A trace in a transition system.
+type TSTrace = Trace VarVals{-state-} VarVals{-inputs-}
 
 

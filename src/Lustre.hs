@@ -1,15 +1,18 @@
 {-# Language OverloadedStrings, PatternSynonyms #-}
 -- | Translate Core Lustre to a transtion system.
-module Lustre (transNode) where
+module Lustre (transNode, importTrace) where
 
 import qualified Data.Text as Text
 import           Data.Map (Map)
 import qualified Data.Map as Map
+import           Data.Set (Set)
+import qualified Data.Set as Set
 
 import qualified TransitionSystem as TS
 
 
 import Language.Lustre.Core
+import qualified Language.Lustre.Semantics.Value as L
 
 transNode :: Node -> TS.TransSystem
 transNode n = TS.TransSystem
@@ -244,4 +247,85 @@ stepEqn (x ::: _ := expr) =
   where
   atom    = valAtom TS.InNextState
   letVars = setVals TS.InNextState x
+
+--------------------------------------------------------------------------------
+
+type ImportError = String
+
+-- | Fail to import something
+importError :: [String] -> Either ImportError a
+importError = Left . unlines
+
+-- | Import a Lustre identifier from the given assignment computed by Sally.
+-- See "Translating Variables" for details of what's going on here.
+importVar :: TS.VarVals -> Ident -> Either ImportError L.Step
+importVar st i =
+  case Map.lookup deName st of
+    Just (TS.VInt n) ->
+      case compare n 0 of
+        GT -> pure (L.Skip n)
+        EQ ->
+          case Map.lookup niName st of
+            Just (TS.VBool b) ->
+              if b then pure (L.Emit L.VNil)
+                   else case Map.lookup vaName st of
+                          Just v -> pure $ L.Emit
+                                         $ case v of
+                                             TS.VInt x  -> L.VInt x
+                                             TS.VBool x -> L.VBool x
+                                             TS.VReal x -> L.VReal x
+                          Nothing -> missing vaName
+            Just v -> bad niName "boolean" v
+            Nothing -> missing niName
+        LT -> bad deName "non-negative integer" (TS.VInt n)
+    Just v  -> bad deName "integer" v
+    Nothing -> missing deName
+
+
+  where
+  vaName = valName i
+  deName = delName i
+  niName = nilName i
+
+  missing x = importError [ "[bug] Missing assignment"
+                          , "*** Variable: " ++ show x
+                          ]
+
+  bad x msg v = importError [ "[bug] Unexpected value."
+                            , "*** Variable: " ++ show x
+                            , "*** Expected: " ++ msg
+                            , "*** Value: " ++ show v
+                            ]
+
+-- | Import a bunch of core Lustre identifiers from a state.
+importVars :: Set Ident -> TS.VarVals -> Either ImportError (Map Ident L.Step)
+importVars vars st =
+  do let is = Set.toList vars
+     steps <- mapM (importVar st) is
+     pure (Map.fromList (zip is steps))
+
+importState :: Node -> TS.VarVals -> Either ImportError (Map Ident L.Step)
+importState n = importVars $ Set.fromList [ x | x ::: _ := _ <- nEqns n ]
+
+importInputs :: Node -> TS.VarVals -> Either ImportError (Map Ident L.Step)
+importInputs n = importVars $ Set.fromList [ x | x ::: _ <- nInputs n ]
+
+type LTrace = TS.Trace (Map Ident L.Step) (Map Ident L.Step)
+
+importTrace :: Node -> TS.TSTrace -> Either ImportError LTrace
+importTrace n tr =
+  case tr of
+    TS.EmptyTrace -> pure TS.EmptyTrace
+    TS.Trace start steps ->
+      do start1 <- importState n start
+         steps1 <- mapM impStep steps
+         pure (TS.Trace start1 steps1)
+  where
+  impStep (i,s) =
+    do i1 <- importInputs n i
+       s1 <- importState n s
+       return (i1,s1)
+
+
+
 

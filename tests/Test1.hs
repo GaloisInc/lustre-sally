@@ -9,6 +9,7 @@ import System.IO
 import System.Exit
 import Control.Exception(finally)
 import Text.PrettyPrint.ANSI.Leijen (vcat)
+import Text.Show.Pretty(pPrint)
 
 import qualified TransitionSystem as TS
 import Sally
@@ -18,9 +19,10 @@ import Language.Lustre.Core
 main :: IO ()
 main = runTest (sys1, [q1,q2])
 
-runTest :: (TS.TransSystem,  [TS.Expr]) -> IO ()
-runTest (ts,qs) =
-  do let inp = foldr (\e es -> ppSExpr e $ showChar '\n' es) "\n"
+runTest :: (Node,  [TS.Expr]) -> IO ()
+runTest (nd,qs) =
+  do let ts = transNode nd
+         inp = foldr (\e es -> ppSExpr e $ showChar '\n' es) "\n"
              $ translateTS ts ++ map (translateQuery ts) qs
      putStrLn "=== Sally Input: =============="
      putStrLn inp
@@ -28,15 +30,22 @@ runTest (ts,qs) =
      let opts = [ "--engine=pdkind", "--show-trace", "--output-language=mcmt" ]
      res <- sally "sally" opts inp
      case readSallyResults ts res of
-       Right r  -> mapM_ print r
-       Left err -> do putStrLn $ "Failed to parse result: " ++ err
-                      putStrLn res
-                      exitFailure
+       Right r  ->
+          case traverse (traverse (importTrace nd)) r of
+            Left err -> bad ("Failed to import trace: " ++ err) res
+            Right as -> mapM_ pPrint as
+       Left err -> bad ("Failed to parse result: " ++ err) res
+  where
+  bad err res =
+    do putStrLn err
+       putStrLn res
+       exitFailure
 
 
 
-sys1 :: TS.TransSystem
-sys1 = transNode
+
+sys1 :: Node
+sys1 =
   Node { nName = Name "Test1"
        , nInputs = []
        , nOutputs = [ Ident "x"]

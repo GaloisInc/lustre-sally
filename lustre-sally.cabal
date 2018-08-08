@@ -41,6 +41,6 @@ test-suite test1
   hs-source-dirs: tests
   main-is: Test1.hs
   build-depends: base, containers, text, directory, process,
-                 language-lustre,
+                 language-lustre, pretty-show,
                  ansi-wl-pprint, lustre-sally
   default-language:   Haskell2010

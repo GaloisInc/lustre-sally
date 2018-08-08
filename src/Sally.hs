@@ -124,23 +124,37 @@ toSallyExpr qs expr =
       p :||: q -> flatOr p (flatOr q more)
       _        -> toSallyExpr qs e : more
 
-type VarVals  = Map Name TS.Value
-
--- | A non-empty trace
-data Trace1   = Trace1 { traceStart :: !VarVals             -- ^ Initial state
-                      , traceSteps :: ![(VarVals,VarVals)] -- ^ (Input,NewState)
-                      } deriving (Eq,Show)
-
-data Trace    = EmptyTrace | Trace !Trace1
-                deriving (Eq,Show)
-
 
 -- | Result of running sally on a query.
 -- To produce traces, we need
-data SallyResult  = Valid
-                  | Unknown
-                  | Invalid !Trace
+data SallyResult t  = Valid
+                    | Unknown
+                    | Invalid !t
                     deriving (Eq,Show)
+
+instance Functor SallyResult where
+  fmap f res =
+    case res of
+      Valid -> Valid
+      Unknown -> Unknown
+      Invalid t -> Invalid (f t)
+
+instance Foldable SallyResult where
+  foldMap f res =
+    case res of
+      Valid -> mempty
+      Unknown -> mempty
+      Invalid t -> f t
+
+instance Traversable SallyResult where
+  traverse f res =
+    case res of
+      Valid -> pure Valid
+      Unknown -> pure Unknown
+      Invalid t -> Invalid <$> f t
+
+
+type TSSallyResult = SallyResult TSTrace
 
 type Perhaps = Either String
 
@@ -152,7 +166,7 @@ perhaps x mb = case mb of
 
 -- | Parse-out multiple results from Sally.
 -- Assumes that @--show-trace@ was given.
-readSallyResults :: TransSystem -> String -> Perhaps [SallyResult]
+readSallyResults :: TransSystem -> String -> Perhaps [TSSallyResult]
 readSallyResults ts inp =
   case dropWhile isSpace inp of
     []   -> pure []
@@ -162,7 +176,7 @@ readSallyResults ts inp =
          return (r:rs)
 
 -- | Parse-out the result from Sally. Assumes that @--show-trace@ was given.
-readSallyResult :: TransSystem -> String -> Perhaps (SallyResult, String)
+readSallyResult :: TransSystem -> String -> Perhaps (TSSallyResult, String)
 readSallyResult ts xs =
   case break (== '\n') xs of
     ("valid",rest)    -> return (Valid, rest)
@@ -172,21 +186,21 @@ readSallyResult ts xs =
     _                 -> Left ("Unexpected response: " ++ xs)
 
 -- | Parse a trace for the given system.
-readTrace :: TransSystem -> String -> Perhaps (Trace, String)
+readTrace :: TransSystem -> String -> Perhaps (TSTrace, String)
 readTrace ts inp =
   do (s, rest) <- perhaps "Failed to parse S-expression" (readSExpr inp)
      t <- parseTrace ts s
      return (t, rest)
 
 -- | Parse an entire trace.
-parseTrace :: TransSystem -> SExpr -> Perhaps Trace
+parseTrace :: TransSystem -> SExpr -> Perhaps TSTrace
 parseTrace ts expr =
   case expr of
     List [Atom "trace"] -> Right EmptyTrace
     List (Atom "trace" : s0 : steps) ->
         do s  <- parseState ts s0
            ss <- parseSteps ts steps
-           return $! Trace $! Trace1 { traceStart = s, traceSteps = ss }
+           return $! Trace s ss
     _ -> Left $ unlines [ "Expected 'trace'"
                         , "Got:"
                         , SMT.ppSExpr expr ""
@@ -268,5 +282,7 @@ sally exe opts inp =
         hClose h
         readProcess exe (opts ++ [path]) ""
        `finally` removeFile path
+
+
 
 
