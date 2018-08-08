@@ -25,7 +25,7 @@ data VarNameSpace = InCurState      -- ^ Variable refers to the current
                   | FromInput       -- ^ Variable refers to an input.
                       deriving (Eq,Ord,Show)
 
--- | The type of vairables, annotated with a namespace.
+-- | The type of variables, annotated with a namespace.
 data Var          = Var { varNS   :: !VarNameSpace    -- ^ Name space
                         , varName :: !Name            -- ^ Name
                         } deriving Show
@@ -145,7 +145,7 @@ validTransPred ts e =
 -- | Check he type of an expression in the given transition system.
 typeOf ::
   TransSystem             {- ^ Context for expression -} ->
-  (VarNameSpace -> Bool)  {- ^ Valid name spaces for vairables -} ->
+  (VarNameSpace -> Bool)  {- ^ Valid name spaces for variables -} ->
   Expr                    {- ^ Expression to check ^-} ->
   Maybe Type              {- ^ Type, if a well-formed expression -}
 

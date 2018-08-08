@@ -1,4 +1,5 @@
 {-# Language OverloadedStrings, PatternSynonyms #-}
+-- | Deals with translation to and from Sally (using its MCMT output).
 module Sally
   ( translateTS
   , translateQuery
