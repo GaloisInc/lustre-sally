@@ -1,6 +1,6 @@
 {-# Language OverloadedStrings, PatternSynonyms #-}
 -- | Translate Core Lustre to a transtion system.
-module Lustre (transNode, importTrace) where
+module Lustre (transNode, transAssert, importTrace) where
 
 import qualified Data.Text as Text
 import           Data.Map (Map)
@@ -14,13 +14,25 @@ import qualified TransitionSystem as TS
 import Language.Lustre.Core
 import qualified Language.Lustre.Semantics.Value as L
 
-transNode :: Node -> TS.TransSystem
-transNode n = TS.TransSystem
-  { TS.tsVars    = Map.unions (map declareEqn (nEqns n))
-  , TS.tsInputs  = Map.unions (map declareVar (nInputs n))
-  , TS.tsInit    = initNode n
-  , TS.tsTrans   = stepNode n
-  }
+transNode :: Node -> (TS.TransSystem, [TS.Expr])
+transNode n = (ts, map transAssert (nAsserts n))
+  where
+  ts = TS.TransSystem
+         { TS.tsVars    = Map.unions (map declareEqn (nEqns n))
+         , TS.tsInputs  = Map.unions (map declareVar (nInputs n))
+         , TS.tsInit    = initNode n
+         , TS.tsTrans   = stepNode n
+         }
+
+
+-- | Assertions get translated into queries. In assertions, we treat
+-- `nil` as `False`.   Assertion values deleted by a clock are considered
+-- to be `True`.
+transAssert :: Ident -> TS.Expr
+transAssert i = (v delName TS.:>: zero) TS.:||:
+               TS.Not (v nilName) TS.:&&: v valName
+  where
+  v f = TS.InCurState TS.::: f i
 
 
 {- NOTE:  Translating Variables
@@ -129,16 +141,13 @@ initNode n = ands (map initInput (nInputs n) ++ map initEqn (nEqns n))
 ands :: [TS.Expr] -> TS.Expr
 ands as =
   case as of
-    [] ->  TS.Bool True
+    [] -> TS.Bool True
     _  -> foldr1 (TS.:&&:) as
 
 
 -- | Constraints on inputs.
 initInput :: Binder -> TS.Expr
-initInput (x ::: _) =
-  (TS.InCurState TS.::: delName x) TS.:>=: zero
-
-
+initInput (x ::: _) = (TS.InCurState TS.::: delName x) TS.:>=: zero
 
 -- | Set the variables associated with a source variable.
 setVals :: TS.VarNameSpace -> Ident -> Val -> TS.Expr
@@ -180,7 +189,10 @@ initEqn (x ::: _ := expr) =
       where Val { vVal = aVal, vDel = aDel, vNil = aNil } = atom a
 
     Call f [a,b]
-      | f == Name "+" -> letVars (initFun2 (TS.:+:) va vb) TS.:&&:
+      | f == Name "+" -> letVars (primFun2 (TS.:+:) va vb) TS.:&&:
+                          vDel va TS.:==: vDel vb
+
+      | f == Name "==" -> letVars (primFun2 (TS.:==:) va vb) TS.:&&:
                           vDel va TS.:==: vDel vb
         where va = atom a
               vb = atom b
@@ -193,8 +205,8 @@ initEqn (x ::: _ := expr) =
 
 
 
-initFun2 :: (TS.Expr -> TS.Expr -> TS.Expr) -> Val -> Val -> Val
-initFun2 f a b = Val { vVal = f (vVal a) (vVal b)
+primFun2 :: (TS.Expr -> TS.Expr -> TS.Expr) -> Val -> Val -> Val
+primFun2 f a b = Val { vVal = f (vVal a) (vVal b)
                      , vNil = vNil a TS.:||: vNil b
                      , vDel = vDel a    -- which should be the same as `vDel b`
                      }
@@ -238,7 +250,10 @@ stepEqn (x ::: _ := expr) =
       Val { vVal = aVal', vDel = _, vNil = aNil' } = valAtom TS.InCurState a
 
     Call f [a,b]
-      | f == Name "+" -> letVars (initFun2 (TS.:+:) va vb) TS.:&&:
+      | f == Name "+" -> letVars (primFun2 (TS.:+:) va vb) TS.:&&:
+                         vDel va TS.:==: vDel vb
+
+      | f == Name "==" -> letVars (primFun2 (TS.:==:) va vb) TS.:&&:
                          vDel va TS.:==: vDel vb
         where va = atom a
               vb = atom b
@@ -248,7 +263,10 @@ stepEqn (x ::: _ := expr) =
   atom    = valAtom TS.InNextState
   letVars = setVals TS.InNextState x
 
+
 --------------------------------------------------------------------------------
+-- Importing of Traces
+
 
 type ImportError = String
 

@@ -17,17 +17,17 @@ import Lustre
 import Language.Lustre.Core
 
 main :: IO ()
-main = runTest (sys1, [q1,q2])
+main = runTest sys1
 
-runTest :: (Node,  [TS.Expr]) -> IO ()
-runTest (nd,qs) =
-  do let ts = transNode nd
+runTest :: Node -> IO ()
+runTest nd =
+  do let (ts,qs) = transNode nd
          inp = foldr (\e es -> ppSExpr e $ showChar '\n' es) "\n"
              $ translateTS ts ++ map (translateQuery ts) qs
      putStrLn "=== Sally Input: =============="
      putStrLn inp
      putStrLn "==============================="
-     let opts = [ "--engine=pdkind", "--show-trace", "--output-language=mcmt" ]
+     let opts = [ "--engine=bmc", "--show-trace", "--output-language=mcmt" ]
      res <- sally "sally" opts inp
      case readSallyResults ts res of
        Right r  ->
@@ -49,24 +49,20 @@ sys1 =
   Node { nName = Name "Test1"
        , nInputs = []
        , nOutputs = [ Ident "x"]
-       , nAsserts = []
+       , nAsserts = [ Ident "a1", Ident "a2" ]
        , nEqns =
            [ Ident "y" ::: TInt := Pre (Var (Ident "x"))
            , Ident "p" ::: TInt := Call (Name "+")
                                       [ Lit (Int 1), Var (Ident "y") ]
            , Ident "x" ::: TInt := Lit (Int 1) :-> Var (Ident "p")
+           , Ident "a1" ::: TBool := Call (Name "==")
+                                    [ Var (Ident "x"), Lit (Int 1) ]
+
+           , Ident "a2" ::: TBool := Call (Name "==")
+                                    [ Var (Ident "x"), Lit (Int 2) ]
            ]
        }
 
-q1 :: TS.Expr
-q1 = x TS.:==: TS.Int 1
-  where
-  x = TS.InCurState TS.::: TS.Name "x"
-
-q2 :: TS.Expr
-q2 = x TS.:==: TS.Int 2
-  where
-  x = TS.InCurState TS.::: TS.Name "x"
 
 
 
