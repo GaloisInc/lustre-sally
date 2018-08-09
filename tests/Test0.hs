@@ -18,8 +18,12 @@ main = runTest (sys1, [q1])
 
 runTest :: (TransSystem,  [Expr]) -> IO ()
 runTest (ts,qs) =
-  do let inp = foldr showsSExpr ""
+  do let inp = foldr (\e es -> ppSExpr e $ showChar '\n' es) "\n"
              $ translateTS ts ++ map (translateQuery ts) qs
+     putStrLn "=== Sally Input: =============="
+     putStrLn inp
+     putStrLn "==============================="
+
      let opts = [ "--engine=pdkind", "--show-trace" ]
      res <- sally "sally" opts inp
      case readSallyResult ts res of
