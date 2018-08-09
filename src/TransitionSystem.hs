@@ -209,7 +209,7 @@ typeOf ts nsOk = check
 -- Traces, for processing counter-examples, etc.
 
 -- | A generic trace with state 's' and transitions 'i', which might be empty.
-data Trace s i = EmptyTrace | Trace !s ![(i,s)]
+data Trace s i = Trace { traceStart :: !s, traceSteps :: ![(i,s)] }
              deriving (Eq,Show)
 
 -- | A mapping from names to values.

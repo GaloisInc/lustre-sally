@@ -315,11 +315,10 @@ type LTrace = TS.Trace (Map Ident L.Step) (Map Ident L.Step)
 importTrace :: Node -> TS.TSTrace -> Either ImportError LTrace
 importTrace n tr =
   case tr of
-    TS.EmptyTrace -> pure TS.EmptyTrace
-    TS.Trace start steps ->
+    TS.Trace { TS.traceStart = start, TS.traceSteps = steps } ->
       do start1 <- importState n start
          steps1 <- mapM impStep steps
-         pure (TS.Trace start1 steps1)
+         pure TS.Trace { TS.traceStart = start1, TS.traceSteps = steps1 }
   where
   impStep (i,s) =
     do i1 <- importInputs n i

@@ -196,11 +196,10 @@ readTrace ts inp =
 parseTrace :: TransSystem -> SExpr -> Perhaps TSTrace
 parseTrace ts expr =
   case expr of
-    List [Atom "trace"] -> Right EmptyTrace
     List (Atom "trace" : s0 : steps) ->
         do s  <- parseState ts s0
            ss <- parseSteps ts steps
-           return $! Trace s ss
+           return $! Trace { traceStart = s, traceSteps = ss }
     _ -> Left $ unlines [ "Expected 'trace'"
                         , "Got:"
                         , SMT.ppSExpr expr ""
