@@ -10,7 +10,7 @@ panic :: String -> [String] -> a
 panic = Panic.panic LustreToSally
 
 instance PanicComponent LustreToSally where
-  panicComponentName _ = "Lustre to Sally translator."
+  panicComponentName _ = "Lully"
   panicComponentIssues _ = "https://github.com/GaloisInc/lustre-sally/issues"
   panicComponentRevision = $useGitRevision
 
