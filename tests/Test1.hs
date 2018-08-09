@@ -46,19 +46,17 @@ runTest nd =
 
 sys1 :: Node
 sys1 =
-  Node { nName = Name "Test1"
-       , nInputs = []
+  Node { nInputs = []
        , nOutputs = [ Ident "x"]
        , nAsserts = [ Ident "a1", Ident "a2" ]
        , nEqns =
            [ Ident "y" ::: TInt := Pre (Var (Ident "x"))
-           , Ident "p" ::: TInt := Call (Name "+")
-                                      [ Lit (Int 1), Var (Ident "y") ]
+           , Ident "p" ::: TInt := Prim Add [ Lit (Int 1), Var (Ident "y") ]
            , Ident "x" ::: TInt := Lit (Int 1) :-> Var (Ident "p")
-           , Ident "a1" ::: TBool := Call (Name "==")
+           , Ident "a1" ::: TBool := Prim Eq
                                     [ Var (Ident "x"), Lit (Int 1) ]
 
-           , Ident "a2" ::: TBool := Call (Name "==")
+           , Ident "a2" ::: TBool := Prim Eq
                                     [ Var (Ident "x"), Lit (Int 2) ]
            ]
        }

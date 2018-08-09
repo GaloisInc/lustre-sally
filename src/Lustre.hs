@@ -188,16 +188,13 @@ initEqn (x ::: _ := expr) =
             }
       where Val { vVal = aVal, vDel = aDel, vNil = aNil } = atom a
 
-    Call f [a,b]
-      | f == Name "+" -> letVars (primFun2 (TS.:+:) va vb) TS.:&&:
-                          vDel va TS.:==: vDel vb
-
-      | f == Name "==" -> letVars (primFun2 (TS.:==:) va vb) TS.:&&:
-                          vDel va TS.:==: vDel vb
-        where va = atom a
-              vb = atom b
-
-    Call _ _ -> error "Unknown call"
+    Prim f as ->
+      case map vDel vs of
+        [] -> base
+        v : more -> foldl (TS.:&&:) base (map (v TS.:==:) more)
+      where
+      vs = map atom as
+      base = letVars (primFun f vs)
 
   where
   atom = valAtom TS.InCurState
@@ -205,11 +202,18 @@ initEqn (x ::: _ := expr) =
 
 
 
-primFun2 :: (TS.Expr -> TS.Expr -> TS.Expr) -> Val -> Val -> Val
-primFun2 f a b = Val { vVal = f (vVal a) (vVal b)
-                     , vNil = vNil a TS.:||: vNil b
-                     , vDel = vDel a    -- which should be the same as `vDel b`
-                     }
+primFun :: Op -> [Val] -> Val
+primFun op as =
+  case (op,as) of
+    (Add, [a,b]) -> op2 (TS.:+:) a b
+    (Eq,  [a,b]) -> op2 (TS.:==:) a b
+    _ -> error ("XXX: " ++ show op)
+
+  where
+  op2 f a b = Val { vVal = f (vVal a) (vVal b)
+                  , vNil = vNil a TS.:||: vNil b
+                  , vDel = vDel a    -- which should be the same as `vDel b`
+                  }
 
 
 stepNode :: Node -> TS.Expr
@@ -249,16 +253,14 @@ stepEqn (x ::: _ := expr) =
       Val { vVal = aVal, vDel = aDel, vNil = aNil } = atom a
       Val { vVal = aVal', vDel = _, vNil = aNil' } = valAtom TS.InCurState a
 
-    Call f [a,b]
-      | f == Name "+" -> letVars (primFun2 (TS.:+:) va vb) TS.:&&:
-                         vDel va TS.:==: vDel vb
+    Prim f as ->
+      case map vDel vs of
+        [] -> base
+        v : more -> foldl (TS.:&&:) base (map (v TS.:==:) more)
+      where
+      vs = map atom as
+      base = letVars (primFun f vs)
 
-      | f == Name "==" -> letVars (primFun2 (TS.:==:) va vb) TS.:&&:
-                         vDel va TS.:==: vDel vb
-        where va = atom a
-              vb = atom b
-
-    Call _ _ -> error "UNsupported call"
   where
   atom    = valAtom TS.InNextState
   letVars = setVals TS.InNextState x
