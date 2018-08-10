@@ -34,6 +34,50 @@ transAssert i = (v delName TS.:>: zero) TS.:||:
   where
   v f = TS.InCurState TS.::: f i
 
+{- POSSIBLE ALTERNATIVE TRANSLATION
+
+It seems that we might be able to translate things without the need
+for the extra clock variable, by using the fact that clocks are quite
+resatricted.  In particular, for every variable we know the variable that
+corresponds to its clock.  Thus, we can represent each variable in the
+same form as when viewed at the base rate (i.e., as if through a number
+of calls to `current`)
+
+Consider the following example:
+
+                                CLOCK
+    a: 1 2 3 4 5 6 7 8 9 10      base
+    b: T F T F T F T F T F       base
+    c: T T F T T F T F F T       base
+
+    x = b when c                 c
+    y = a when x                 x (which itself is on c)
+
+    x: T F - F T - T - - F
+    y: 1 _ _ _ 5 _ 7 _ _ _
+
+in the "current" view the corresponding streams are:
+
+    x': T F F F T T T T T F
+    y': 1 1 1 1 5 5 7 7 7 7
+
+Notise that we can't use `x'` directly when computing `y'`.
+Instead we need consider all clocks involved, and we chnage
+the output only if all of them are active.  Thus, we essentially
+get the following equations:
+
+    x' = current (b when c)
+    y' = current (a when (x' && c))
+
+So, with this translation, there is no need for `current` (i.e., it is
+a no-op) because everything works at the base clock.
+However, the filtering guards become a little more complex because we 
+to consider the conjunction of clocks involved to determine when
+to transition to a new value.
+
+
+-}
+
 
 {- NOTE:  Translating Variables
    ============================
