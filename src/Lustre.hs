@@ -2,7 +2,6 @@
 -- | Translate Core Lustre to a transtion system.
 module Lustre (transNode, transAssert, importTrace) where
 
-import qualified Data.Text as Text
 import           Data.Map (Map)
 import qualified Data.Map as Map
 import           Data.Set (Set)
@@ -249,11 +248,33 @@ initEqn (x ::: _ := expr) =
 primFun :: Op -> [Val] -> Val
 primFun op as =
   case (op,as) of
+    (Not, [a])   -> op1 (TS.Not) a
+
+    (And, [a,b])  -> op2 (TS.:&&:) a b
+    (Or,  [a,b])  -> op2 (TS.:||:) a b
+    (Xor,  [a,b]) -> op2 (TS.:/=:) a b
+
     (Add, [a,b]) -> op2 (TS.:+:) a b
+    (Sub, [a,b]) -> op2 (TS.:-:) a b
+    (Mul, [a,b]) -> op2 (TS.:*:) a b
+    (Mod, [a,b]) -> op2 TS.Mod a b
+    (Div, [a,b]) -> op2 TS.Div a b
+
     (Eq,  [a,b]) -> op2 (TS.:==:) a b
+    (Neq, [a,b]) -> op2 (TS.:/=:) a b
+    (Lt,  [a,b]) -> op2 (TS.:<:) a b
+    (Leq, [a,b]) -> op2 (TS.:<=:) a b
+    (Gt,  [a,b]) -> op2 (TS.:>:) a b
+    (Geq, [a,b]) -> op2 (TS.:>=:) a b
+
     _ -> error ("XXX: " ++ show op)
 
   where
+  op1 f a = Val { vVal = f (vVal a)
+                , vNil = vNil a
+                , vDel = vDel a
+                }
+
   op2 f a b = Val { vVal = f (vVal a) (vVal b)
                   , vNil = vNil a TS.:||: vNil b
                   , vDel = vDel a    -- which should be the same as `vDel b`
