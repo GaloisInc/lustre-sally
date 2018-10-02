@@ -38,7 +38,7 @@ transAssert i = (v delName TS.:>: zero) TS.:||:
 
 It seems that we might be able to translate things without the need
 for the extra clock variable, by using the fact that clocks are quite
-resatricted.  In particular, for every variable we know the variable that
+restricted.  In particular, for every variable we know the variable that
 corresponds to its clock.  Thus, we can represent each variable in the
 same form as when viewed at the base rate (i.e., as if through a number
 of calls to `current`)
@@ -84,7 +84,7 @@ to transition to a new value.
 
 Lustre variables can have a few special values:  in particular, they may
 be `nil` or the may be "deleted", which happens when they are skipped by
-a clock.  To modle these features, we translate each Lustre, say X, variable to
+a clock.  To modle these features, we translate each Lustre variable, say X, to
 three variable in the model:
 
   X     : T
@@ -96,8 +96,8 @@ irrelevant.
 
 `X_del` is the depth of the clock that disabled this value.
 It is never negative.
-If it is 0, then the value is not disable and so it should be output.
-We need an `Int` rather than just ` Bool`, because the `current` construct
+If it is 0, then the value is not disabled and so it should be output.
+We need an `Int` rather than just `Bool`, because the `current` construct
 restores only the values disable by the most recent clock (i.e., where
 `X_del == 1`)
 
