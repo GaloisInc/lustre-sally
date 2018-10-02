@@ -92,6 +92,11 @@ toSallyExpr qs expr =
     TS.Int x  -> SMT.int x
     TS.Real x -> SMT.real x
 
+    ToReal x -> SMT.fun "to_real" [ toSallyExpr qs x ]
+    ToInt x  -> SMT.fun "to_int"  [ toSallyExpr qs x ]
+
+
+    Neg x     -> SMT.neg (toSallyExpr qs x)
     x :+: y   -> SMT.add (toSallyExpr qs x) (toSallyExpr qs y)
     x :-: y   -> SMT.sub (toSallyExpr qs x) (toSallyExpr qs y)
     x :*: y   -> SMT.mul (toSallyExpr qs x) (toSallyExpr qs y)
@@ -103,6 +108,7 @@ toSallyExpr qs expr =
     Not p     -> SMT.not (toSallyExpr qs p)
     _ :&&: _  -> SMT.andMany (flatAnd expr [])
     _ :||: _  -> SMT.orMany  (flatOr expr [])
+    x :=>: y  -> SMT.implies (toSallyExpr qs x) (toSallyExpr qs y)
 
     x :==: y  -> SMT.eq  (toSallyExpr qs x) (toSallyExpr qs y)
     x :<:  y  -> SMT.lt  (toSallyExpr qs x) (toSallyExpr qs y)

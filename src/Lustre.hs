@@ -250,22 +250,37 @@ primFun op as =
   case (op,as) of
     (Not, [a])   -> op1 (TS.Not) a
 
-    (And, [a,b])  -> op2 (TS.:&&:) a b
-    (Or,  [a,b])  -> op2 (TS.:||:) a b
-    (Xor,  [a,b]) -> op2 (TS.:/=:) a b
+    (And, [a,b])      -> op2 (TS.:&&:) a b
+    (Or,  [a,b])      -> op2 (TS.:||:) a b
+    (Xor,  [a,b])     -> op2 (TS.:/=:) a b
+    (Implies, [a,b])  -> op2 (TS.:=>:) a b
 
-    (Add, [a,b]) -> op2 (TS.:+:) a b
-    (Sub, [a,b]) -> op2 (TS.:-:) a b
-    (Mul, [a,b]) -> op2 (TS.:*:) a b
-    (Mod, [a,b]) -> op2 TS.Mod a b
-    (Div, [a,b]) -> op2 TS.Div a b
+    (Add, [a,b])      -> op2 (TS.:+:) a b
+    (Sub, [a,b])      -> op2 (TS.:-:) a b
+    (Mul, [a,b])      -> op2 (TS.:*:) a b
+    (Mod, [a,b])      -> op2 TS.Mod a b
+    (Div, [a,b])      -> op2 TS.Div a b
 
-    (Eq,  [a,b]) -> op2 (TS.:==:) a b
-    (Neq, [a,b]) -> op2 (TS.:/=:) a b
-    (Lt,  [a,b]) -> op2 (TS.:<:) a b
-    (Leq, [a,b]) -> op2 (TS.:<=:) a b
-    (Gt,  [a,b]) -> op2 (TS.:>:) a b
-    (Geq, [a,b]) -> op2 (TS.:>=:) a b
+    (Eq,  [a,b])      -> op2 (TS.:==:) a b
+    (Neq, [a,b])      -> op2 (TS.:/=:) a b
+    (Lt,  [a,b])      -> op2 (TS.:<:) a b
+    (Leq, [a,b])      -> op2 (TS.:<=:) a b
+    (Gt,  [a,b])      -> op2 (TS.:>:) a b
+    (Geq, [a,b])      -> op2 (TS.:>=:) a b
+
+    (IntCast, [a])    -> op1 TS.ToInt a
+    (RealCast, [a])   -> op1 TS.ToReal a
+
+    (AtMostOne, _)    -> mkAtMostOne
+    (Nor, _)          -> case as of
+                           []  -> valLit (Bool True)
+                           _   -> op1 TS.Not (foldr1 (op2 (TS.:||:)) as)
+
+    (ITE, [a,b,c]) -> Val { vVal = TS.ITE (vVal a) (vVal b) (vVal c)
+                          , vNil = vNil a TS.:||:
+                                      TS.ITE (vVal a) (vNil b) (vNil c)
+                          , vDel = vDel a
+                          }
 
     _ -> error ("XXX: " ++ show op)
 
@@ -279,6 +294,25 @@ primFun op as =
                   , vNil = vNil a TS.:||: vNil b
                   , vDel = vDel a    -- which should be the same as `vDel b`
                   }
+
+  mkAtMostOne = case as of
+                  [] -> valLit (Bool True)
+                  _  -> Val { vVal = atMostOneVal (map vVal as)
+                            , vNil = foldr1 (TS.:||:) (map vNil as)
+                            , vDel = vDel (head as)
+                            }
+
+  norVal xs = case xs of
+                [] -> TS.Bool True
+                _  -> TS.Not (foldr1 (TS.:||:) xs)
+
+  atMostOneVal vs =
+    case vs of
+      []     -> TS.Bool True
+      [_]    -> TS.Bool True
+      [a,b]  -> a TS.:=>: TS.Not b
+      a : bs -> TS.ITE a (norVal bs) (atMostOneVal bs)
+
 
 
 stepNode :: Node -> TS.Expr

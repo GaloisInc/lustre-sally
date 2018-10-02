@@ -41,9 +41,11 @@ data Type         = TInteger | TReal | TBool
 
 -- | Constructors for expressions.
 data Op           = OpEq | OpLt | OpLeq
-                  | OpNot | OpAnd | OpOr
+                  | OpNot | OpAnd | OpOr | OpImplies
+                  | OpNeg
                   | OpAdd | OpSub | OpMul | OpDiv | OpDivInt | OpMod
                   | OpITE
+                  | OpToReal | OpToInt
                   | OpLit !Value
                     deriving Show
 
@@ -87,11 +89,17 @@ pattern x :&&: y = EOp OpAnd [x,y]
 pattern (:||:) :: Expr -> Expr -> Expr
 pattern x :||: y = EOp OpOr [x,y]
 
+pattern (:=>:) :: Expr -> Expr -> Expr
+pattern x :=>: y = EOp OpImplies [x,y]
+
 pattern (:+:) :: Expr -> Expr -> Expr
 pattern x :+: y = EOp OpAdd [x,y]
 
 pattern (:-:) :: Expr -> Expr -> Expr
 pattern x :-: y = EOp OpSub [x,y]
+
+pattern Neg :: Expr -> Expr
+pattern Neg x = EOp OpNeg [x]
 
 pattern (:*:) :: Expr -> Expr -> Expr
 pattern x :*: y = EOp OpMul [x,y]
@@ -104,6 +112,12 @@ pattern Div x y = EOp OpDivInt [x,y]
 
 pattern Mod :: Expr -> Expr -> Expr
 pattern Mod x y = EOp OpMod [x,y]
+
+pattern ToReal :: Expr -> Expr
+pattern ToReal x = EOp OpToReal [x]
+
+pattern ToInt :: Expr -> Expr
+pattern ToInt x = EOp OpToInt [x]
 
 pattern Int :: Integer -> Expr
 pattern Int x = EOp (OpLit (VInt x)) []
