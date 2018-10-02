@@ -141,13 +141,13 @@ valLit lit = Val { vVal = case lit of
                  }
 
 valName :: Ident -> TS.Name
-valName (Ident x) = TS.Name x
+valName (Ident x) = TS.Name ("gal_" <> x)
 
 delName :: Ident -> TS.Name
-delName (Ident x) = TS.Name (Text.append x "_del")
+delName (Ident x) = TS.Name ("gal_" <> x <> "_del")
 
 nilName :: Ident -> TS.Name
-nilName (Ident x) = TS.Name (Text.append x "_nil")
+nilName (Ident x) = TS.Name ("gal_" <> x <> "_nil")
 
 valAtom :: TS.VarNameSpace -> Atom -> Val
 valAtom ns atom =
