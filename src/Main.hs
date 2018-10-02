@@ -17,13 +17,14 @@ import Lustre
 import Text.Show.Pretty(pPrint)
 
 data Settings = Settings
-  { file  :: FilePath
-  , node  :: Text
+  { file    :: FilePath
+  , node    :: Text
+  , engine  :: String
   }
 
 options :: OptSpec Settings
 options = OptSpec
-  { progDefaults = Settings { file = "", node = "" }
+  { progDefaults = Settings { file = "", node = "", engine = "bmc" }
   , progOptions =
 
       [ Option ['n'] ["node"]
@@ -39,6 +40,10 @@ options = OptSpec
           if file s == ""
               then Right s { file = a }
               else Left "Multiple files.  For now we support just one Lust file"
+
+      , Option ['e'] ["engine"]
+        "Which model-checking engine to use (see sally for options)."
+        $ ReqArg "ENGINE" $ \a s -> Right s { engine = a }
       ]
 
   , progParamDocs = []
@@ -92,7 +97,11 @@ mainWork settings ds =
      putStrLn "Invoking Sally"
      putStrLn "=============="
      putStrLn ""
-     let opts = [ "--engine=bmc", "--show-trace", "--output-language=mcmt" ]
+     let opts = [ "--engine=" ++ engine settings
+                , "--show-trace"
+                , "--output-language=mcmt" ]
+     putStrLn "Sally options:"
+     print opts
      res <- sally "sally" opts inp
      case readSallyResults ts res of
        Right r  ->

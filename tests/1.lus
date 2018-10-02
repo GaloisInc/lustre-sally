@@ -1,0 +1,6 @@
+
+function f() returns (x : int)
+let
+  assert (x >= 0);
+  x = 0 -> (1 + pre x);
+tel
