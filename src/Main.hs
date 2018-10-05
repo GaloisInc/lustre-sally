@@ -55,8 +55,6 @@ main =
   do settings <- getOpts options
      when (file settings == "") $
        reportUsageError options ["No Lustre file was speicifed."]
-     when (node settings == "") $
-       reportUsageError options ["No node to translate."]
 
      a <- parseProgramFromFileLatin1 (file settings)
      case a of
@@ -81,7 +79,10 @@ mainWork settings ds =
   do putStrLn "Core Lustre"
      putStrLn "==========="
      putStrLn ""
-     let nd = desugarNode ds $ Unqual $ fakeIdent $ node settings
+     let nm = if node settings == ""
+                  then Nothing
+                  else Just (Unqual (fakeIdent (node settings)))
+         nd = desugarNode ds nm
      print (pp nd)
      putStrLn ""
 

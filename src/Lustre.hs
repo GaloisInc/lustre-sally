@@ -1,6 +1,6 @@
 {-# Language OverloadedStrings, PatternSynonyms #-}
 -- | Translate Core Lustre to a transtion system.
-module Lustre (transNode, transAssert, importTrace) where
+module Lustre (transNode, transProp, importTrace) where
 
 import           Data.Map (Map)
 import qualified Data.Map as Map
@@ -14,7 +14,7 @@ import Language.Lustre.Core
 import qualified Language.Lustre.Semantics.Value as L
 
 transNode :: Node -> (TS.TransSystem, [TS.Expr])
-transNode n = (ts, map transAssert (nAsserts n))
+transNode n = (ts, map (transProp TS.InCurState) (nShows n))
   where
   ts = TS.TransSystem
          { TS.tsVars    = Map.unions (inVars : map declareEqn (nEqns n))
@@ -25,14 +25,17 @@ transNode n = (ts, map transAssert (nAsserts n))
 
   inVars = Map.unions (map declareVar (nInputs n))
 
--- | Assertions get translated into queries. In assertions, we treat
--- `nil` as `False`.   Assertion values deleted by a clock are considered
--- to be `True`.
-transAssert :: Ident -> TS.Expr
-transAssert i = (v delName TS.:>: zero) TS.:||:
+
+-- | Properties get translated into queries. `nil` is treated as `False`.
+-- Property values deleted by a clock are considered to be `True`.
+transProp :: TS.VarNameSpace -> Ident -> TS.Expr
+transProp ns i = (v delName TS.:>: zero) TS.:||:
                TS.Not (v nilName) TS.:&&: v valName
   where
-  v f = TS.InCurState TS.::: f i
+  v f = ns TS.::: f i
+
+
+
 
 {- POSSIBLE ALTERNATIVE TRANSLATION
 
@@ -115,6 +118,7 @@ To summarize:
 
 
 {- Note: Handling Inputs
+   =====================
 
 In Sally, inputs live in a separate name space, and are an input to
 the transition relation.  So to translate something like @pre x@ where
@@ -194,7 +198,9 @@ declareEqn (x := _) = declareVar x
 
 -- | Initial state for a node.
 initNode :: Node -> TS.Expr
-initNode n = ands (map initInput (nInputs n) ++ map initEqn (nEqns n))
+initNode n = ands (map initInput (nInputs n) ++
+             map (transProp TS.InCurState) (nAssuming n) ++
+             map initEqn (nEqns n))
 
 -- | And tigether multiple boolean expressions.
 ands :: [TS.Expr] -> TS.Expr
@@ -336,7 +342,9 @@ primFun op as =
 
 
 stepNode :: Node -> TS.Expr
-stepNode n = ands (map stepInput (nInputs n) ++ map stepEqn (nEqns n))
+stepNode n = ands (map stepInput (nInputs n) ++
+                   map (transProp TS.InNextState) (nAssuming n) ++
+                   map stepEqn (nEqns n))
 
 stepInput :: Binder -> TS.Expr
 stepInput (x ::: _) =
