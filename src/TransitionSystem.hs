@@ -4,7 +4,7 @@ module TransitionSystem where
 import Data.Text(Text)
 import Data.Map(Map)
 import qualified Data.Map as Map
-import Control.Monad(guard)
+import Control.Monad(unless)
 
 -- | A transition system.
 data TransSystem = TransSystem
@@ -135,25 +135,32 @@ pattern x ::: y = EVar Var { varNS = x, varName = y }
 --------------------------------------------------------------------------------
 -- Validation
 
+type Errs = [String]
+
 -- | Validate the well-formedness of a transition system.
-validTS :: TransSystem -> Bool
-validTS ts = validStatePred ts (tsInit ts) && validTransPred ts (tsTrans ts)
+validTS :: TransSystem -> Errs
+validTS ts = validStatePred ts (tsInit ts) ++
+             validTransPred ts (tsTrans ts)
 
 -- | Is this a valid state predicate.  These are suitable for the inital
 -- state of a system, or for queries.
-validStatePred :: TransSystem -> Expr -> Bool
+validStatePred :: TransSystem -> Expr -> Errs
 validStatePred ts e =
-  case typeOf ts (== InCurState) e of
-    Just TBool -> True
-    _          -> False
+  case typeOf ts (\x -> x == InCurState || x == FromInput) e of
+    Right TBool -> []
+    Right t     -> [ "Invalid type of state predicate, expected bool, got: "
+                                                            ++ show t]
+    Left err    -> [ "Bad state predicate", "*** Problem: " ++ err ]
 
 -- | Is this a valid transition predicate.  Used to describe the transitions
 -- of the system.
-validTransPred :: TransSystem -> Expr -> Bool
+validTransPred :: TransSystem -> Expr -> Errs
 validTransPred ts e =
   case typeOf ts (const True) e of
-    Just TBool -> True
-    _          -> False
+    Right TBool -> []
+    Right t  -> [ "Invalid type of transitions predicate, expected bool, got: "
+                                                            ++ show t]
+    Left err    -> [ "Bad transiiton predicate", "*** Problem: " ++ err ]
 
 
 -- | Check he type of an expression in the given transition system.
@@ -161,7 +168,7 @@ typeOf ::
   TransSystem             {- ^ Context for expression -} ->
   (VarNameSpace -> Bool)  {- ^ Valid name spaces for variables -} ->
   Expr                    {- ^ Expression to check ^-} ->
-  Maybe Type              {- ^ Type, if a well-formed expression -}
+  Either String Type      {- ^ Type, if a well-formed expression -}
 
 typeOf ts nsOk = check
   where
@@ -170,11 +177,17 @@ typeOf ts nsOk = check
 
       EVar v ->
         do let ns = varNS v
-           guard (nsOk ns)
-           Map.lookup (varName v) $
-             case ns of
-               FromInput -> tsInputs ts
-               _         -> tsVars ts
+           unless (nsOk ns) (Left "Var not OK")
+           let mp = case ns of
+                      FromInput -> tsInputs ts
+                      _         -> tsVars ts
+           case Map.lookup (varName v) mp of
+             Nothing -> Left $ unlines $ [ "Can't find var"
+                                       , "*** Var: " ++ show v
+                                       , "*** Map: " ++ show ns
+                                       , "*** Content: "
+                                       ] ++ map show (Map.toList mp)
+             Just a  -> Right a
 
       EOp op pars ->
         case (op,pars) of
@@ -184,6 +197,7 @@ typeOf ts nsOk = check
                                              VBool {} -> TBool
 
 
+          (OpNeg, [x])        -> num1 x
           (OpAdd, [x,y])      -> num2 x y
           (OpSub, [x,y])      -> num2 x y
           (OpMul, [x,y])      -> num2 x y
@@ -194,28 +208,41 @@ typeOf ts nsOk = check
           (OpNot,[x])         -> expect TBool x
           (OpAnd,[x,y])       -> both TBool x y
           (OpOr,[x,y])        -> both TBool x y
+          (OpImplies,[x,y])   -> both TBool x y
 
           (OpEq,[x,y])        -> rel x y
           (OpLt,[x,y])        -> rel x y
           (OpLeq,[x,y])       -> rel x y
 
-          _                   -> Nothing
+          (OpITE,[x,y,z])     -> do _ <- expect TBool x
+                                    t <- check y
+                                    expect t z
+
+          (OpToReal, [x])     -> expect TInteger x >> pure TReal
+          (OpToInt, [x])      -> expect TReal x >> pure TInteger
+
+          _                   -> Left "BAD OP"
 
   expect t e =
     do t1 <- check e
-       guard (t1 == t)
+       unless (t1 == t) (Left ("Expected: " ++ show t ++ ", got: " ++ show t1))
        return t
 
   both t e1 e2 = expect t e1 >> expect t e2 >> return t
 
+  num1 a =
+    do t1 <- check a
+       unless (t1 /= TBool) (Left "Expected a numeric type")
+       pure t1
+
   num2 a b =
     do t1 <- check a
-       guard (t1 /= TBool)
+       unless (t1 /= TBool) (Left "Expected a numeric type")
        expect t1 b
 
   rel a b = do t1 <- check a
                t2 <- check b
-               guard (t1 == t2)
+               unless (t1 == t2) (Left "Expected the same type")
                return TBool
 
 

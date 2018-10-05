@@ -17,12 +17,13 @@ transNode :: Node -> (TS.TransSystem, [TS.Expr])
 transNode n = (ts, map transAssert (nAsserts n))
   where
   ts = TS.TransSystem
-         { TS.tsVars    = Map.unions (map declareEqn (nEqns n))
-         , TS.tsInputs  = Map.unions (map declareVar (nInputs n))
+         { TS.tsVars    = Map.unions (inVars : map declareEqn (nEqns n))
+         , TS.tsInputs  = inVars
          , TS.tsInit    = initNode n
          , TS.tsTrans   = stepNode n
          }
 
+  inVars = Map.unions (map declareVar (nInputs n))
 
 -- | Assertions get translated into queries. In assertions, we treat
 -- `nil` as `False`.   Assertion values deleted by a clock are considered
@@ -61,19 +62,23 @@ in the "current" view the corresponding streams are:
     y': 1 1 1 1 5 5 7 7 7 7
 
 Notise that we can't use `x'` directly when computing `y'`.
-Instead we need consider all clocks involved, and we chnage
+Instead we need consider all clocks involved, and we change
 the output only if all of them are active.  Thus, we essentially
 get the following equations:
 
-    x' = current (b when c)
-    y' = current (a when (x' && c))
+    c_as_clock = c  -- because running at base 
+    x'         = current (b when c)
+    x_as_clock = x' && c_as_clock
+    y'         = current (a when x_as_clock)
 
 So, with this translation, there is no need for `current` (i.e., it is
 a no-op) because everything works at the base clock.
-However, the filtering guards become a little more complex because we 
-to consider the conjunction of clocks involved to determine when
+However, the filtering guards become a little more complex because we
+have to consider the conjunction of clocks involved to determine when
 to transition to a new value.
 
+
+XXX: HOW TO DEAL WITH PRE?
 
 -}
 
@@ -105,6 +110,18 @@ To summarize:
                   variables are irrelevant.
   * if `X_del == 0 && X_nil`, then this value is `nil`
   * if `X_del == 0 && not X_nil` then the value is `X`
+-}
+
+
+
+{- Note: Handling Inputs
+
+In Sally, inputs live in a separate name space, and are an input to
+the transition relation.  So to translate something like @pre x@ where
+@x@ is an input, we need a new local variable that will store the old
+value for @x@.  To make things uniform, we introduce one local variable
+per input: in this way, accessing variables is always done the same way
+(@pre x@ is @current.x@ and @x@ is @next.x@).
 -}
 
 
@@ -175,7 +192,6 @@ declareVar (x ::: t) =
 declareEqn :: Eqn -> Map TS.Name TS.Type
 declareEqn (x := _) = declareVar x
 
-
 -- | Initial state for a node.
 initNode :: Node -> TS.Expr
 initNode n = ands (map initInput (nInputs n) ++ map initEqn (nEqns n))
@@ -190,7 +206,11 @@ ands as =
 
 -- | Constraints on inputs.
 initInput :: Binder -> TS.Expr
-initInput (x ::: _) = (TS.InCurState TS.::: delName x) TS.:>=: zero
+initInput (x ::: _) =
+  var delName TS.:>=: zero TS.:&&:
+  var nilName TS.:==: true
+  where
+  var f = TS.InCurState TS.::: f x
 
 -- | Set the variables associated with a source variable.
 setVals :: TS.VarNameSpace -> Ident -> Val -> TS.Expr
@@ -316,8 +336,12 @@ primFun op as =
 
 
 stepNode :: Node -> TS.Expr
-stepNode n = ands (map stepEqn (nEqns n))
+stepNode n = ands (map stepInput (nInputs n) ++ map stepEqn (nEqns n))
 
+stepInput :: Binder -> TS.Expr
+stepInput (x ::: _) =
+  (TS.FromInput TS.::: delName x) TS.:>=: zero TS.:&&:
+  setVals TS.InNextState x (valAtom TS.FromInput (Var x))
 
 stepEqn :: Eqn -> TS.Expr
 stepEqn (x ::: _ := expr) =

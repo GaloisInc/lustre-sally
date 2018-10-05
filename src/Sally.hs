@@ -32,10 +32,10 @@ sysName       = SMT.const "TS"
 sysStateType  = SMT.const "S"
 
 translateTS :: TransSystem -> [SExpr]
-translateTS ts
-  | Prelude.not (validTS ts) =
-      panic "translate" [ "Not a valid transition system.", show ts ]
-  | otherwise = [ declareStateType ts, declareTransSys ts ]
+translateTS ts =
+  case validTS ts of
+    [] -> [ declareStateType ts, declareTransSys ts ]
+    errs -> panic "translate" ("Not a valid transition system." : errs)
 
 declareTransSys :: TransSystem -> SExpr
 declareTransSys ts =
@@ -47,9 +47,10 @@ declareTransSys ts =
       ]
 
 translateQuery :: TransSystem -> Expr -> SExpr
-translateQuery ts q
-  | validStatePred ts q = toSallyQuery q
-  | otherwise           = panic "translateQuery" [ "Invalid query", show q ]
+translateQuery ts q =
+  case validTS ts of
+    [] -> toSallyQuery q
+    errs -> panic "translateQuery" ("Invalid query" : errs)
 
 
 toSallyQuery :: Expr -> SExpr
