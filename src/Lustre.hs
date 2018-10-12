@@ -6,6 +6,7 @@ import           Data.Map (Map)
 import qualified Data.Map as Map
 import           Data.Set (Set)
 import qualified Data.Set as Set
+import           Data.Maybe(mapMaybe)
 
 import qualified TransitionSystem as TS
 
@@ -13,107 +14,85 @@ import qualified TransitionSystem as TS
 import Language.Lustre.Core
 import qualified Language.Lustre.Semantics.Value as L
 
+import LSPanic
+
 transNode :: Node -> (TS.TransSystem, [TS.Expr])
 transNode n = (ts, map (transProp TS.InCurState) (nShows n))
   where
   ts = TS.TransSystem
-         { TS.tsVars    = Map.unions (inVars : map declareEqn (nEqns n))
+         { TS.tsVars    = Map.unions (inVars : otherVars :map declareEqn (nEqns n))
          , TS.tsInputs  = inVars
          , TS.tsInit    = initNode n
-         , TS.tsTrans   = stepNode n
+         , TS.tsTrans   = stepNode clocks n
          }
 
-  inVars = Map.unions (map declareVar (nInputs n))
+  inVars    = Map.unions (map declareVar (nInputs n))
+  otherVars = declareVarInitializing
+  clocks    = case computeClocks n of
+                Just cs -> cs
+                Nothing -> panic "transNode" [ "Failed to compute all clocks." ]
 
-
--- | Properties get translated into queries. `nil` is treated as `False`.
--- Property values deleted by a clock are considered to be `True`.
-transProp :: TS.VarNameSpace -> Ident -> TS.Expr
-transProp ns i = (v delName TS.:>: zero) TS.:||:
-               TS.Not (v nilName) TS.:&&: v valName
-  where
-  v f = ns TS.::: f i
-
-
-
-
-{- POSSIBLE ALTERNATIVE TRANSLATION
-
-It seems that we might be able to translate things without the need
-for the extra clock variable, by using the fact that clocks are quite
-restricted.  In particular, for every variable we know the variable that
-corresponds to its clock.  Thus, we can represent each variable in the
-same form as when viewed at the base rate (i.e., as if through a number
-of calls to `current`)
-
-Consider the following example:
-
-                                CLOCK
-    a: 1 2 3 4 5 6 7 8 9 10      base
-    b: T F T F T F T F T F       base
-    c: T T F T T F T F F T       base
-
-    x = b when c                 c
-    y = a when x                 x (which itself is on c)
-
-    x: T F - F T - T - - F
-    y: 1 _ _ _ 5 _ 7 _ _ _
-
-in the "current" view the corresponding streams are:
-
-    x': T F F F T T T T T F
-    y': 1 1 1 1 5 5 7 7 7 7
-
-Notise that we can't use `x'` directly when computing `y'`.
-Instead we need consider all clocks involved, and we change
-the output only if all of them are active.  Thus, we essentially
-get the following equations:
-
-    c_as_clock = c  -- because running at base 
-    x'         = current (b when c)
-    x_as_clock = x' && c_as_clock
-    y'         = current (a when x_as_clock)
-
-So, with this translation, there is no need for `current` (i.e., it is
-a no-op) because everything works at the base clock.
-However, the filtering guards become a little more complex because we
-have to consider the conjunction of clocks involved to determine when
-to transition to a new value.
-
-
-XXX: HOW TO DEAL WITH PRE?
-
--}
 
 
 {- NOTE:  Translating Variables
    ============================
 
-Lustre variables can have a few special values:  in particular, they may
-be `nil` or the may be "deleted", which happens when they are skipped by
-a clock.  To modle these features, we translate each Lustre variable, say X, to
-three variable in the model:
+Uninitialized Lustre varaibles have the value `Nil`.  To keep track of that,
+we use two logical variables for each Lustre variable:
 
   X     : T
   X_nil : Bool
-  X_del : Int
 
 If `X_nil` is `true`, then this value is nil and the value of `X` is
 irrelevant.
-
-`X_del` is the depth of the clock that disabled this value.
-It is never negative.
-If it is 0, then the value is not disabled and so it should be output.
-We need an `Int` rather than just `Bool`, because the `current` construct
-restores only the values disable by the most recent clock (i.e., where
-`X_del == 1`)
-
-To summarize:
-  * If X_del > 0, then this value is suppressed by a clock, and the other
-                  variables are irrelevant.
-  * if `X_del == 0 && X_nil`, then this value is `nil`
-  * if `X_del == 0 && not X_nil` then the value is `X`
 -}
+
+
+data Val = Val { vVal :: TS.Expr
+                 -- ^ type T.  The "normal" value.
+
+               , vNil :: TS.Expr
+                 -- ^ type Bool.
+                 -- Indicates if the value is nil.
+                 -- If so, the "normal" value is ignored.
+               }
+
+-- | Literals are not nil.
+valLit :: Literal -> Val
+valLit lit = Val { vVal = case lit of
+                            Int n  -> TS.Int n
+                            Bool b -> TS.Bool b
+                            Real r -> TS.Real r
+                 , vNil = false
+                 }
+
+-- | The logical variable for the ordinary value.
+valName :: Ident -> TS.Name
+valName (Ident x) = TS.Name ("gal_" <> x)
+
+-- | The logical variable keeping track if a value is nil.
+nilName :: Ident -> TS.Name
+nilName (Ident x) = TS.Name ("gal_" <> x <> "_nil")
+
+-- | For variables defined by @a -> b@, keeps track if we are in the @a@
+-- (value @false@) or in the @b@ part (value @true@).
+initName :: Ident -> TS.Name
+initName (Ident x) = TS.Name ("gal_" <> x <> "_init")
+
+-- | Translate an atom, by using the given name-space for variables.
+valAtom :: TS.VarNameSpace -> Atom -> Val
+valAtom ns atom =
+  case atom of
+    Lit l -> valLit l
+    Var a -> Val { vVal = ns TS.::: valName a
+                 , vNil = ns TS.::: nilName a
+                 }
+
+-- | A boolean variable which is true in the very first state,
+-- beofre we've received any inputs, and false after-wards..
+-- We use it to avoid checking queries in the very first state
+varInitializing :: TS.Name
+varInitializing = TS.Name ("gal_initializing")
 
 
 
@@ -129,78 +108,12 @@ per input: in this way, accessing variables is always done the same way
 -}
 
 
-data Val = Val { vVal :: TS.Expr
-                 -- ^ type T.  The "normal" value.
+--------------------------------------------------------------------------------
+-- Syntactic sugar for making TS expressions.
 
-               , vNil :: TS.Expr
-                 -- ^ type Bool.
-                 -- Indicates if the value is nil.
-                 -- If so, the "normal" value is ignored.
-
-               , vDel :: TS.Expr
-                 -- ^ type Int (Nat, really, we need to assert that non neg.).
-                 -- Indicates if this value is deleted by a clock.
-                 -- 0 means that the value is present.
-                 -- Larger numbers indicate that the value has been deleted
-                 -- by a clock at the given nesting depth.
-               }
-
-zero, one, true, false :: TS.Expr
-zero = TS.Int 0
-one  = TS.Int 1
-true = TS.Bool True
+true, false :: TS.Expr
+true  = TS.Bool True
 false = TS.Bool False
-
-valLit :: Literal -> Val
-valLit lit = Val { vVal = case lit of
-                            Int n  -> TS.Int n
-                            Bool b -> TS.Bool b
-                            Real r -> TS.Real r
-                 , vDel = zero
-                 , vNil = false
-                 }
-
-valName :: Ident -> TS.Name
-valName (Ident x) = TS.Name ("gal_" <> x)
-
-delName :: Ident -> TS.Name
-delName (Ident x) = TS.Name ("gal_" <> x <> "_del")
-
-nilName :: Ident -> TS.Name
-nilName (Ident x) = TS.Name ("gal_" <> x <> "_nil")
-
-valAtom :: TS.VarNameSpace -> Atom -> Val
-valAtom ns atom =
-  case atom of
-    Lit l -> valLit l
-    Var a -> Val { vVal = ns TS.::: valName a
-                 , vDel = ns TS.::: delName a
-                 , vNil = ns TS.::: nilName a
-                 }
-
-
-transType :: Type -> TS.Type
-transType ty =
-  case ty of
-    TInt  -> TS.TInteger
-    TBool -> TS.TBool
-    TReal -> TS.TReal
-
-declareVar :: Binder -> Map TS.Name TS.Type
-declareVar (x ::: t) =
-  Map.fromList [ (valName x, transType t)
-               , (delName x, TS.TInteger)
-               , (nilName x, TS.TBool)
-               ]
-
-declareEqn :: Eqn -> Map TS.Name TS.Type
-declareEqn (x := _) = declareVar x
-
--- | Initial state for a node.
-initNode :: Node -> TS.Expr
-initNode n = ands (map initInput (nInputs n) ++
-             map (transProp TS.InCurState) (nAssuming n) ++
-             map initEqn (nEqns n))
 
 -- | And tigether multiple boolean expressions.
 ands :: [TS.Expr] -> TS.Expr
@@ -210,67 +123,144 @@ ands as =
     _  -> foldr1 (TS.:&&:) as
 
 
--- | Constraints on inputs.
-initInput :: Binder -> TS.Expr
-initInput (x ::: _) =
-  var delName TS.:>=: zero TS.:&&:
-  var nilName TS.:==: true
-  where
-  var f = TS.InCurState TS.::: f x
 
--- | Set the variables associated with a source variable.
+-- | Equations asserting that a varible from some namespace has the given value.
 setVals :: TS.VarNameSpace -> Ident -> Val -> TS.Expr
 setVals ns x v = var valName TS.:==: vVal v TS.:&&:
-                 var delName TS.:==: vDel v TS.:&&:
                  var nilName TS.:==: vNil v
   where
   var f = ns TS.::: f x
 
--- | Initial values for variables
-initEqn :: Eqn -> TS.Expr
-initEqn (x ::: _ := expr) =
+-- | Assert that a specific variable is @nil@.
+setNil :: TS.VarNameSpace -> Ident -> TS.Expr
+setNil ns x = ns TS.::: nilName x TS.:==: true
+
+-- | Properties get translated into queries. @nil@ is treated as @False@.
+-- We are not interested in validating the initial state, which is
+-- full of @nil@.
+transProp :: TS.VarNameSpace -> Ident -> TS.Expr
+transProp ns i = (ns TS.::: varInitializing) TS.:||: transBool ns i
+
+-- | Properties get translated into queries. @nil@ is treated as @False@.
+-- We are not interested in validating the initial state, which is
+-- full of @nil@.
+transBool :: TS.VarNameSpace -> Ident -> TS.Expr
+transBool ns i = TS.Not (v nilName) TS.:&&: v valName
+  where
+  v f = ns TS.::: f i
+
+
+
+
+--------------------------------------------------------------------------------
+
+
+
+--------------------------------------------------------------------------------
+-- Declaring variables
+transType :: Type -> TS.Type
+transType ty =
+  case ty of
+    TInt  -> TS.TInteger
+    TBool -> TS.TBool
+    TReal -> TS.TReal
+
+-- | Declare all parts of a variable.
+-- See "NOTE: Translating Variables"
+declareVar :: Binder -> Map TS.Name TS.Type
+declareVar (x ::: t) =
+  Map.fromList [ (valName x, transType t)
+               , (nilName x, TS.TBool)
+               ]
+
+-- | Local variables.
+declareEqn :: Eqn -> Map TS.Name TS.Type
+declareEqn (x@(v ::: _) := e) = case e of
+                        _ :-> _ -> Map.insert (initName v) TS.TBool mp
+                        _ -> mp
+  where mp = declareVar x
+
+
+-- | Keep track if we are in the initial state.
+declareVarInitializing :: Map TS.Name TS.Type
+declareVarInitializing = Map.singleton varInitializing TS.TBool
+--------------------------------------------------------------------------------
+
+
+
+-- | Initial state for a node. All variable start off as @nil@.
+initNode :: Node -> TS.Expr
+initNode n = ands (setInit : mapMaybe initS (nEqns n) ++ map initB allVars)
+  where
+  allVars         = nInputs n ++ [ b | b := _ <- nEqns n ]
+  initB (x ::: _) = setNil TS.InCurState x
+  initS ((v ::: _) := e) =
+    case e of
+      _ :-> _ -> Just ((TS.InCurState TS.::: initName v) TS.:==: false)
+      _ -> Nothing
+
+  setInit = TS.InCurState TS.::: varInitializing TS.:==: true
+
+stepNode :: Map Ident Clock -> Node -> TS.Expr
+stepNode clocks n =
+  ands $ ((TS.InNextState TS.::: varInitializing) TS.:==: false) :
+         map stepInput (nInputs n) ++
+         map (transBool TS.InNextState) (nAssuming n) ++
+         map (stepEqn clocks) (nEqns n)
+
+stepInput :: Binder -> TS.Expr
+stepInput (x ::: _) = setVals TS.InNextState x (valAtom TS.FromInput (Var x))
+
+stepEqn :: Map Ident Clock -> Eqn -> TS.Expr
+stepEqn clocks (x ::: _ := expr) =
   case expr of
-    Atom a  -> letVars (atom a)
-    a :-> _ -> letVars (atom a)
-    Pre a   -> letVars (atom a) { vNil = true }
+    Atom a      -> new a
+    Current a   -> new a
+    Pre a       -> guarded (old a)
+    a `When` _  -> guarded (new a)
+    Prim f as   -> guarded (letVars (primFun f (map atom as)))
 
-    a `When` b -> letVars newVals TS.:&&: aDel TS.:==: bDel
+    a :-> b     ->
+      case clockOn of
+        Nothing -> clockYes
+        Just g ->
+          TS.ITE g
+            clockYes
+            (old (Var x) TS.:&&: ivar TS.InNextState TS.:==: ivar TS.InCurState)
       where
-      newVals =
-        Val { vVal = aVal
-            , vNil = aNil
-            , vDel = TS.ITE -- Not too sure what happens if `b` is nil.
-                       (bDel TS.:>: zero)
-                       (bDel TS.:+: one) -- already delete, increase depth
-                       (TS.ITE (TS.Not bNil TS.:&&: bVal) zero one)
-                        -- `nil` treated as `false` for the moment
-            }
+      ivar n = n TS.::: initName x
+      clockYes = (TS.ITE (ivar TS.InCurState) (new b) (new a)
+                    TS.:&&: ivar TS.InNextState TS.:==: true)
 
-      Val { vVal = aVal, vDel = aDel, vNil = aNil } = atom a
-      Val { vVal = bVal, vDel = bDel, vNil = bNil } = atom b
+    Merge a ifT ifF -> guarded $
+        TS.ITE (vNil a')
+               (setNil TS.InNextState x)
+               (TS.ITE (vVal a') (new ifT) (new ifF))
+      where a' = atom a
 
-    Current a ->
-      letVars
-        Val { vVal = aVal
-            , vNil = (aDel TS.:==: one)  TS.:||:  aNil
-            , vDel = TS.ITE (aDel TS.:>: one) (aDel TS.:-: one) zero
-            }
-      where Val { vVal = aVal, vDel = aDel, vNil = aNil } = atom a
-
-    Prim f as ->
-      case map vDel vs of
-        [] -> base
-        v : more -> foldl (TS.:&&:) base (map (v TS.:==:) more)
-      where
-      vs = map atom as
-      base = letVars (primFun f vs)
 
   where
-  atom = valAtom TS.InCurState
-  letVars = setVals TS.InCurState x
+  atom    = valAtom TS.InNextState
+  old     = letVars . valAtom TS.InCurState
+  new     = letVars . atom
+  letVars = setVals TS.InNextState x
+
+  guarded e = case clockOn of
+                Nothing -> e
+                Just g  -> TS.ITE g e (old (Var x))
+
+  clockOn = case c of
+              Lit (Bool True) -> Nothing -- base clocks
+              _ -> let c' = atom c
+                   in Just (TS.Not (vNil c') TS.:&&: vVal c')
+
+  c       = case Map.lookup x clocks of
+              Just cl -> cl
+              Nothing -> panic "stepEq" [ "Missing clock for"
+                                        , "*** Varbiale: " ++ show x]
 
 
-
+-- | Translation of primitive functions.
 primFun :: Op -> [Val] -> Val
 primFun op as =
   case (op,as) of
@@ -305,7 +295,6 @@ primFun op as =
     (ITE, [a,b,c]) -> Val { vVal = TS.ITE (vVal a) (vVal b) (vVal c)
                           , vNil = vNil a TS.:||:
                                       TS.ITE (vVal a) (vNil b) (vNil c)
-                          , vDel = vDel a
                           }
 
     _ -> error ("XXX: " ++ show op)
@@ -313,19 +302,16 @@ primFun op as =
   where
   op1 f a = Val { vVal = f (vVal a)
                 , vNil = vNil a
-                , vDel = vDel a
                 }
 
   op2 f a b = Val { vVal = f (vVal a) (vVal b)
                   , vNil = vNil a TS.:||: vNil b
-                  , vDel = vDel a    -- which should be the same as `vDel b`
                   }
 
   mkAtMostOne = case as of
                   [] -> valLit (Bool True)
                   _  -> Val { vVal = atMostOneVal (map vVal as)
                             , vNil = foldr1 (TS.:||:) (map vNil as)
-                            , vDel = vDel (head as)
                             }
 
   norVal xs = case xs of
@@ -341,62 +327,6 @@ primFun op as =
 
 
 
-stepNode :: Node -> TS.Expr
-stepNode n = ands (map stepInput (nInputs n) ++
-                   map (transProp TS.InNextState) (nAssuming n) ++
-                   map stepEqn (nEqns n))
-
-stepInput :: Binder -> TS.Expr
-stepInput (x ::: _) =
-  (TS.FromInput TS.::: delName x) TS.:>=: zero TS.:&&:
-  setVals TS.InNextState x (valAtom TS.FromInput (Var x))
-
-stepEqn :: Eqn -> TS.Expr
-stepEqn (x ::: _ := expr) =
-  case expr of
-    Atom a  -> letVars (atom a)
-    _ :-> b -> letVars (atom b)
-    Pre a   -> letVars (valAtom TS.InCurState a)
-
-    a `When` b -> letVars newVals TS.:&&: aDel TS.:==: bDel
-      where
-      newVals =
-        Val { vVal = aVal
-            , vNil = aNil
-            , vDel = TS.ITE -- Not too sure what happens if `b` is nil.
-                       (bDel TS.:>: zero)
-                       (bDel TS.:+: one)
-                       (TS.ITE (TS.Not bNil TS.:&&: bVal) zero one)
-            }
-
-      Val { vVal = aVal, vDel = aDel, vNil = aNil } = atom a
-      Val { vVal = bVal, vDel = bDel, vNil = bNil } = atom b
-
-    Current a ->
-      letVars
-      Val { vVal = TS.ITE (aDel TS.:==: zero) aVal' aVal
-          , vNil = TS.ITE (aDel TS.:==: zero) aNil' aNil
-          , vDel = TS.ITE (aDel TS.:>: one)
-                          (aDel TS.:-: one)
-                          zero
-          }
-      where
-      Val { vVal = aVal, vDel = aDel, vNil = aNil } = atom a
-      Val { vVal = aVal', vDel = _, vNil = aNil' } = valAtom TS.InCurState a
-
-    Prim f as ->
-      case map vDel vs of
-        [] -> base
-        v : more -> foldl (TS.:&&:) base (map (v TS.:==:) more)
-      where
-      vs = map atom as
-      base = letVars (primFun f vs)
-
-  where
-  atom    = valAtom TS.InNextState
-  letVars = setVals TS.InNextState x
-
-
 --------------------------------------------------------------------------------
 -- Importing of Traces
 
@@ -409,33 +339,21 @@ importError = Left . unlines
 
 -- | Import a Lustre identifier from the given assignment computed by Sally.
 -- See "Translating Variables" for details of what's going on here.
-importVar :: TS.VarVals -> Ident -> Either ImportError L.Step
+importVar :: TS.VarVals -> Ident -> Either ImportError L.Value
 importVar st i =
-  case Map.lookup deName st of
-    Just (TS.VInt n) ->
-      case compare n 0 of
-        GT -> pure (L.Skip n)
-        EQ ->
-          case Map.lookup niName st of
-            Just (TS.VBool b) ->
-              if b then pure (L.Emit L.VNil)
-                   else case Map.lookup vaName st of
-                          Just v -> pure $ L.Emit
-                                         $ case v of
-                                             TS.VInt x  -> L.VInt x
-                                             TS.VBool x -> L.VBool x
-                                             TS.VReal x -> L.VReal x
-                          Nothing -> missing vaName
-            Just v -> bad niName "boolean" v
-            Nothing -> missing niName
-        LT -> bad deName "non-negative integer" (TS.VInt n)
-    Just v  -> bad deName "integer" v
-    Nothing -> missing deName
-
-
+  case Map.lookup niName st of
+    Just (TS.VBool b) ->
+      if b then pure L.VNil
+           else case Map.lookup vaName st of
+                  Just v -> pure $ case v of
+                                     TS.VInt x  -> L.VInt x
+                                     TS.VBool x -> L.VBool x
+                                     TS.VReal x -> L.VReal x
+                  Nothing -> missing vaName
+    Just v  -> bad niName "boolean" v
+    Nothing -> missing niName
   where
   vaName = valName i
-  deName = delName i
   niName = nilName i
 
   missing x = importError [ "[bug] Missing assignment"
@@ -449,19 +367,19 @@ importVar st i =
                             ]
 
 -- | Import a bunch of core Lustre identifiers from a state.
-importVars :: Set Ident -> TS.VarVals -> Either ImportError (Map Ident L.Step)
+importVars :: Set Ident -> TS.VarVals -> Either ImportError (Map Ident L.Value)
 importVars vars st =
   do let is = Set.toList vars
      steps <- mapM (importVar st) is
      pure (Map.fromList (zip is steps))
 
-importState :: Node -> TS.VarVals -> Either ImportError (Map Ident L.Step)
+importState :: Node -> TS.VarVals -> Either ImportError (Map Ident L.Value)
 importState n = importVars $ Set.fromList [ x | x ::: _ := _ <- nEqns n ]
 
-importInputs :: Node -> TS.VarVals -> Either ImportError (Map Ident L.Step)
+importInputs :: Node -> TS.VarVals -> Either ImportError (Map Ident L.Value)
 importInputs n = importVars $ Set.fromList [ x | x ::: _ <- nInputs n ]
 
-type LTrace = TS.Trace (Map Ident L.Step) (Map Ident L.Step)
+type LTrace = TS.Trace (Map Ident L.Value) (Map Ident L.Value)
 
 importTrace :: Node -> TS.TSTrace -> Either ImportError LTrace
 importTrace n tr =
