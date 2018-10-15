@@ -15,8 +15,7 @@ import Language.Lustre.AST
 import Language.Lustre.Pretty
 import Language.Lustre.Transform.Desugar(desugarNode)
 import Sally
-import Lustre
-import Text.Show.Pretty(pPrint)
+import LustreNoNil
 
 data Settings = Settings
   { file    :: FilePath

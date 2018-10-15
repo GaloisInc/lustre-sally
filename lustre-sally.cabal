@@ -17,7 +17,8 @@ executable lustre-sally
 
   other-modules:       TransitionSystem,
                        Sally,
-                       Lustre,
+                       LustreNil,
+                       LustreNoNil,
                        LSPanic
 
   build-depends:       base >=4.11 && <4.13,

@@ -1,6 +1,9 @@
 {-# Language OverloadedStrings, PatternSynonyms #-}
 -- | Translate Core Lustre to a transtion system.
-module Lustre (transNode, transProp, importTrace) where
+-- In this translation there are no explicit `nil` values, instead
+-- such values are modelled as arbitrary unconstrained values of
+-- the appropriate type.
+module LustreNoNil (transNode, transProp, importTrace) where
 
 import           Data.Map (Map)
 import qualified Data.Map as Map
@@ -34,45 +37,18 @@ transNode n = (ts, map (transProp TS.InCurState) (nShows n))
 
 
 
-{- NOTE:  Translating Variables
-   ============================
-
-Uninitialized Lustre varaibles have the value `Nil`.  To keep track of that,
-we use two logical variables for each Lustre variable:
-
-  X     : T
-  X_nil : Bool
-
-If `X_nil` is `true`, then this value is nil and the value of `X` is
-irrelevant.
--}
-
-
-data Val = Val { vVal :: TS.Expr
-                 -- ^ type T.  The "normal" value.
-
-               , vNil :: TS.Expr
-                 -- ^ type Bool.
-                 -- Indicates if the value is nil.
-                 -- If so, the "normal" value is ignored.
-               }
+type Val = TS.Expr
 
 -- | Literals are not nil.
 valLit :: Literal -> Val
-valLit lit = Val { vVal = case lit of
-                            Int n  -> TS.Int n
-                            Bool b -> TS.Bool b
-                            Real r -> TS.Real r
-                 , vNil = false
-                 }
+valLit lit = case lit of
+               Int n  -> TS.Int n
+               Bool b -> TS.Bool b
+               Real r -> TS.Real r
 
 -- | The logical variable for the ordinary value.
 valName :: Ident -> TS.Name
 valName (Ident x) = TS.Name ("gal_" <> x)
-
--- | The logical variable keeping track if a value is nil.
-nilName :: Ident -> TS.Name
-nilName (Ident x) = TS.Name ("gal_" <> x <> "_nil")
 
 -- | For variables defined by @a -> b@, keeps track if we are in the @a@
 -- (value @false@) or in the @b@ part (value @true@).
@@ -84,9 +60,7 @@ valAtom :: TS.VarNameSpace -> Atom -> Val
 valAtom ns atom =
   case atom of
     Lit l -> valLit l
-    Var a -> Val { vVal = ns TS.::: valName a
-                 , vNil = ns TS.::: nilName a
-                 }
+    Var a -> ns TS.::: valName a
 
 -- | A boolean variable which is true in the very first state,
 -- beofre we've received any inputs, and false after-wards..
@@ -119,25 +93,18 @@ false = TS.Bool False
 ands :: [TS.Expr] -> TS.Expr
 ands as =
   case as of
-    [] -> TS.Bool True
+    [] -> true
     _  -> foldr1 (TS.:&&:) as
 
 
 
 -- | Equations asserting that a varible from some namespace has the given value.
 setVals :: TS.VarNameSpace -> Ident -> Val -> TS.Expr
-setVals ns x v = var valName TS.:==: vVal v TS.:&&:
-                 var nilName TS.:==: vNil v
-  where
-  var f = ns TS.::: f x
+setVals ns x v = ns TS.::: (valName x) TS.:==: v
 
--- | Assert that a specific variable is @nil@.
-setNil :: TS.VarNameSpace -> Ident -> TS.Expr
-setNil ns x = ns TS.::: nilName x TS.:==: true
-
--- | Properties get translated into queries. @nil@ is treated as @False@.
+-- | Properties get translated into queries.
 -- We are not interested in validating the initial state, which is
--- full of @nil@.
+-- full of indetermined values.
 transProp :: TS.VarNameSpace -> Ident -> TS.Expr
 transProp ns i = (ns TS.::: varInitializing) TS.:||: transBool ns i
 
@@ -145,10 +112,7 @@ transProp ns i = (ns TS.::: varInitializing) TS.:||: transBool ns i
 -- We are not interested in validating the initial state, which is
 -- full of @nil@.
 transBool :: TS.VarNameSpace -> Ident -> TS.Expr
-transBool ns i = TS.Not (v nilName) TS.:&&: v valName
-  where
-  v f = ns TS.::: f i
-
+transBool ns i = ns TS.::: valName i
 
 
 
@@ -168,10 +132,7 @@ transType ty =
 -- | Declare all parts of a variable.
 -- See "NOTE: Translating Variables"
 declareVar :: Binder -> Map TS.Name TS.Type
-declareVar (x ::: t) =
-  Map.fromList [ (valName x, transType t)
-               , (nilName x, TS.TBool)
-               ]
+declareVar (x ::: t) = Map.singleton (valName x) (transType t)
 
 -- | Local variables.
 declareEqn :: Eqn -> Map TS.Name TS.Type
@@ -188,12 +149,10 @@ declareVarInitializing = Map.singleton varInitializing TS.TBool
 
 
 
--- | Initial state for a node. All variable start off as @nil@.
+-- | Initial state for a node. All variable start off as indeterminate.
 initNode :: Node -> TS.Expr
-initNode n = ands (setInit : mapMaybe initS (nEqns n) ++ map initB allVars)
+initNode n = ands (setInit : mapMaybe initS (nEqns n))
   where
-  allVars         = nInputs n ++ [ b | b := _ <- nEqns n ]
-  initB (x ::: _) = setNil TS.InCurState x
   initS ((v ::: _) := e) =
     case e of
       _ :-> _ -> Just ((TS.InCurState TS.::: initName v) TS.:==: false)
@@ -232,10 +191,7 @@ stepEqn clocks (x ::: _ := expr) =
       clockYes = (TS.ITE (ivar TS.InCurState) (new b) (new a)
                     TS.:&&: ivar TS.InNextState TS.:==: true)
 
-    Merge a ifT ifF -> guarded $
-        TS.ITE (vNil a')
-               (setNil TS.InNextState x)
-               (TS.ITE (vVal a') (new ifT) (new ifF))
+    Merge a ifT ifF -> guarded (TS.ITE a' (new ifT) (new ifF))
       where a' = atom a
 
 
@@ -251,8 +207,7 @@ stepEqn clocks (x ::: _ := expr) =
 
   clockOn = case c of
               Lit (Bool True) -> Nothing -- base clocks
-              _ -> let c' = atom c
-                   in Just (TS.Not (vNil c') TS.:&&: vVal c')
+              _ -> Just (atom c)
 
   c       = case Map.lookup x clocks of
               Just cl -> cl
@@ -264,64 +219,51 @@ stepEqn clocks (x ::: _ := expr) =
 primFun :: Op -> [Val] -> Val
 primFun op as =
   case (op,as) of
-    (Not, [a])   -> op1 (TS.Not) a
+    (Not, [a])        -> TS.Not a
 
-    (And, [a,b])      -> op2 (TS.:&&:) a b
-    (Or,  [a,b])      -> op2 (TS.:||:) a b
-    (Xor,  [a,b])     -> op2 (TS.:/=:) a b
-    (Implies, [a,b])  -> op2 (TS.:=>:) a b
+    (And, [a,b])      -> a TS.:&&: b
+    (Or,  [a,b])      -> a TS.:||: b
+    (Xor,  [a,b])     -> a TS.:/=: b
+    (Implies, [a,b])  -> a TS.:=>: b
 
-    (Add, [a,b])      -> op2 (TS.:+:) a b
-    (Sub, [a,b])      -> op2 (TS.:-:) a b
-    (Mul, [a,b])      -> op2 (TS.:*:) a b
-    (Mod, [a,b])      -> op2 TS.Mod a b
-    (Div, [a,b])      -> op2 TS.Div a b
+    (Add, [a,b])      -> a TS.:+: b
+    (Sub, [a,b])      -> a TS.:-: b
+    (Mul, [a,b])      -> a TS.:*: b
+    (Mod, [a,b])      -> TS.Mod a b
+    (Div, [a,b])      -> TS.Div a b
 
-    (Eq,  [a,b])      -> op2 (TS.:==:) a b
-    (Neq, [a,b])      -> op2 (TS.:/=:) a b
-    (Lt,  [a,b])      -> op2 (TS.:<:) a b
-    (Leq, [a,b])      -> op2 (TS.:<=:) a b
-    (Gt,  [a,b])      -> op2 (TS.:>:) a b
-    (Geq, [a,b])      -> op2 (TS.:>=:) a b
+    (Eq,  [a,b])      -> a TS.:==: b
+    (Neq, [a,b])      -> a TS.:/=: b
+    (Lt,  [a,b])      -> a TS.:<:  b
+    (Leq, [a,b])      -> a TS.:<=: b
+    (Gt,  [a,b])      -> a TS.:>:  b
+    (Geq, [a,b])      -> a TS.:>=: b
 
-    (IntCast, [a])    -> op1 TS.ToInt a
-    (RealCast, [a])   -> op1 TS.ToReal a
+    (IntCast, [a])    -> TS.ToInt a
+    (RealCast, [a])   -> TS.ToReal a
 
     (AtMostOne, _)    -> mkAtMostOne
     (Nor, _)          -> case as of
-                           []  -> valLit (Bool True)
-                           _   -> op1 TS.Not (foldr1 (op2 (TS.:||:)) as)
+                           []  -> true
+                           _   -> TS.Not (foldr1 (TS.:||:) as)
 
-    (ITE, [a,b,c]) -> Val { vVal = TS.ITE (vVal a) (vVal b) (vVal c)
-                          , vNil = vNil a TS.:||:
-                                      TS.ITE (vVal a) (vNil b) (vNil c)
-                          }
+    (ITE, [a,b,c])    -> TS.ITE a b c
 
     _ -> error ("XXX: " ++ show op)
 
   where
-  op1 f a = Val { vVal = f (vVal a)
-                , vNil = vNil a
-                }
-
-  op2 f a b = Val { vVal = f (vVal a) (vVal b)
-                  , vNil = vNil a TS.:||: vNil b
-                  }
-
   mkAtMostOne = case as of
-                  [] -> valLit (Bool True)
-                  _  -> Val { vVal = atMostOneVal (map vVal as)
-                            , vNil = foldr1 (TS.:||:) (map vNil as)
-                            }
+                  [] -> true
+                  _  -> atMostOneVal as
 
   norVal xs = case xs of
-                [] -> TS.Bool True
+                [] -> true
                 _  -> TS.Not (foldr1 (TS.:||:) xs)
 
   atMostOneVal vs =
     case vs of
-      []     -> TS.Bool True
-      [_]    -> TS.Bool True
+      []     -> true
+      [_]    -> true
       [a,b]  -> a TS.:=>: TS.Not b
       a : bs -> TS.ITE a (norVal bs) (atMostOneVal bs)
 
@@ -341,30 +283,18 @@ importError = Left . unlines
 -- See "Translating Variables" for details of what's going on here.
 importVar :: TS.VarVals -> Ident -> Either ImportError L.Value
 importVar st i =
-  case Map.lookup niName st of
-    Just (TS.VBool b) ->
-      if b then pure L.VNil
-           else case Map.lookup vaName st of
-                  Just v -> pure $ case v of
-                                     TS.VInt x  -> L.VInt x
-                                     TS.VBool x -> L.VBool x
-                                     TS.VReal x -> L.VReal x
-                  Nothing -> missing vaName
-    Just v  -> bad niName "boolean" v
-    Nothing -> missing niName
+  case Map.lookup vaName st of
+    Just v -> pure $ case v of
+                       TS.VInt x  -> L.VInt x
+                       TS.VBool x -> L.VBool x
+                       TS.VReal x -> L.VReal x
+    Nothing -> missing vaName
   where
   vaName = valName i
-  niName = nilName i
 
   missing x = importError [ "[bug] Missing assignment"
                           , "*** Variable: " ++ show x
                           ]
-
-  bad x msg v = importError [ "[bug] Unexpected value."
-                            , "*** Variable: " ++ show x
-                            , "*** Expected: " ++ msg
-                            , "*** Value: " ++ show v
-                            ]
 
 -- | Import a bunch of core Lustre identifiers from a state.
 importVars :: Set Ident -> TS.VarVals -> Either ImportError (Map Ident L.Value)
