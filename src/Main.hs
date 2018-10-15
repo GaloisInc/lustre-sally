@@ -2,11 +2,13 @@
 module Main(main) where
 
 import System.Exit(exitFailure)
-import Control.Monad(when)
+import Control.Monad(when,zipWithM_)
 import Control.Exception(catch, SomeException(..), displayException)
 import Data.Text(Text)
 import qualified Data.Text as Text
+import qualified Data.Map as Map
 import SimpleGetOpt
+import Text.PrettyPrint as P ((<>), (<+>),nest,colon,integer,($$),vcat)
 
 import Language.Lustre.Parser
 import Language.Lustre.AST
@@ -108,13 +110,26 @@ mainWork settings ds =
        Right r  ->
           case traverse (traverse (importTrace nd)) r of
             Left err -> bad ("Failed to import trace: " ++ err) res
-            Right as -> mapM_ pPrint as
+            Right as -> mapM_ printResult as
        Left err -> bad ("Failed to parse result: " ++ err) res
   where
   bad err res =
     do putStrLn err
        putStrLn res
        exitFailure
+
+  printResult r = case r of
+                    Valid     -> putStrLn "valid"
+                    Unknown   -> putStrLn "unknown"
+                    Invalid t ->
+                      do putStrLn "invalid:"
+                         zipWithM_ printInputs [1..] (map fst (traceSteps t))
+
+  printInputs n m = print ( ("Step" <+> integer n P.<> colon)
+                            $$ nest 2 (ppIns m))
+
+  ppIns = vcat . map ppIn . Map.toList
+  ppIn (x,y) = pp x <+> "=" <+> pp y
 
 
 

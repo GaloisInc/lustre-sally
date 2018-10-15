@@ -6,7 +6,8 @@ module Sally
   , SExpr
   , showsSExpr, ppSExpr
   , sally
-  , readSallyResults, readSallyResult, SallyResult, Trace(..), VarVals
+  , readSallyResults, readSallyResult, SallyResult(..), Trace(..), VarVals
+  , ppVarVals, ppValue, ppName
   ) where
 
 import Data.List(unfoldr)

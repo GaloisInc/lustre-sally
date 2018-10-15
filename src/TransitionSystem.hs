@@ -1,10 +1,13 @@
-{-# Language PatternSynonyms #-}
+{-# Language PatternSynonyms, OverloadedStrings #-}
 module TransitionSystem where
 
 import Data.Text(Text)
+import qualified Data.Text as Text
 import Data.Map(Map)
 import qualified Data.Map as Map
 import Control.Monad(unless)
+import Text.PrettyPrint as P (text,integer,double,Doc,(<>),(<+>),vcat)
+import Data.Ratio(numerator,denominator)
 
 -- | A transition system.
 data TransSystem = TransSystem
@@ -259,4 +262,22 @@ type VarVals = Map Name Value
 -- | A trace in a transition system.
 type TSTrace = Trace VarVals{-state-} VarVals{-inputs-}
 
+--------------------------------------------------------------------------------
+
+ppName :: Name -> Doc
+ppName (Name x) = text (Text.unpack x)
+
+ppValue :: Value -> Doc
+ppValue val =
+  case val of
+    VBool b     -> text (show b)
+    VInt i      -> integer i
+    VReal n
+      | toRational n1 == n -> double n1
+      | otherwise -> integer (numerator n) P.<> "/" P.<> integer (denominator n)
+      where n1 = fromRational n
+
+ppVarVals :: VarVals -> Doc
+ppVarVals = vcat . map ppDef . Map.toList
+  where ppDef (x,y) = ppName x <+> "=" <+> ppValue y
 
