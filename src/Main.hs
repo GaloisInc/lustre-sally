@@ -12,6 +12,7 @@ import Text.PrettyPrint as P ((<>), (<+>),nest,colon,integer,($$),vcat)
 
 import Language.Lustre.Parser
 import Language.Lustre.AST
+import Language.Lustre.Core(nShows)
 import Language.Lustre.Pretty
 import Language.Lustre.Transform.Desugar(desugarNode)
 import Sally
@@ -109,7 +110,7 @@ mainWork settings ds =
        Right r  ->
           case traverse (traverse (importTrace nd)) r of
             Left err -> bad ("Failed to import trace: " ++ err) res
-            Right as -> mapM_ printResult as
+            Right as -> zipWithM_ printResult (nShows nd) as
        Left err -> bad ("Failed to parse result: " ++ err) res
   where
   bad err res =
@@ -117,15 +118,17 @@ mainWork settings ds =
        putStrLn res
        exitFailure
 
-  printResult r = case r of
-                    Valid     -> putStrLn "valid"
-                    Unknown   -> putStrLn "unknown"
-                    Invalid t ->
-                      do putStrLn "invalid:"
-                         putStrLn "Initial state:"
-                         print (ppState (traceStart t))
-                         putStrLn "Inputs:"
-                         zipWithM_ printInputs [1..] (map fst (traceSteps t))
+  printResult q r =
+    do putStr (showPP q ++ ": ")
+       case r of
+         Valid     -> putStrLn "valid"
+         Unknown   -> putStrLn "unknown"
+         Invalid t ->
+           do putStrLn "invalid:"
+              putStrLn "Initial state:"
+              print (ppState (traceStart t))
+              putStrLn "Inputs:"
+              zipWithM_ printInputs [1..] (map fst (traceSteps t))
 
   ppState = ppIns
 
