@@ -23,14 +23,11 @@ transNode n = (ts, map (transProp TS.InCurState) (nShows n))
          { TS.tsVars    = Map.unions (inVars : otherVars :map declareEqn (nEqns n))
          , TS.tsInputs  = inVars
          , TS.tsInit    = initNode n
-         , TS.tsTrans   = stepNode clocks n
+         , TS.tsTrans   = stepNode n
          }
 
   inVars    = Map.unions (map declareVar (nInputs n))
   otherVars = declareVarInitializing
-  clocks    = case computeClocks n of
-                Just cs -> cs
-                Nothing -> panic "transNode" [ "Failed to compute all clocks." ]
 
 
 
@@ -168,7 +165,7 @@ transType ty =
 -- | Declare all parts of a variable.
 -- See "NOTE: Translating Variables"
 declareVar :: Binder -> Map TS.Name TS.Type
-declareVar (x ::: t) =
+declareVar (x ::: t `On` _) =
   Map.fromList [ (valName x, transType t)
                , (nilName x, TS.TBool)
                ]
@@ -201,18 +198,18 @@ initNode n = ands (setInit : mapMaybe initS (nEqns n) ++ map initB allVars)
 
   setInit = TS.InCurState TS.::: varInitializing TS.:==: true
 
-stepNode :: Map Ident Clock -> Node -> TS.Expr
-stepNode clocks n =
+stepNode :: Node -> TS.Expr
+stepNode n =
   ands $ ((TS.InNextState TS.::: varInitializing) TS.:==: false) :
          map stepInput (nInputs n) ++
          map (transBool TS.InNextState) (nAssuming n) ++
-         map (stepEqn clocks) (nEqns n)
+         map stepEqn (nEqns n)
 
 stepInput :: Binder -> TS.Expr
 stepInput (x ::: _) = setVals TS.InNextState x (valAtom TS.FromInput (Var x))
 
-stepEqn :: Map Ident Clock -> Eqn -> TS.Expr
-stepEqn clocks (x ::: _ := expr) =
+stepEqn :: Eqn -> TS.Expr
+stepEqn (x ::: _ `On` c := expr) =
   case expr of
     Atom a      -> new a
     Current a   -> new a
@@ -254,10 +251,6 @@ stepEqn clocks (x ::: _ := expr) =
               _ -> let c' = atom c
                    in Just (TS.Not (vNil c') TS.:&&: vVal c')
 
-  c       = case Map.lookup x clocks of
-              Just cl -> cl
-              Nothing -> panic "stepEq" [ "Missing clock for"
-                                        , "*** Varbiale: " ++ show x]
 
 
 -- | Translation of primitive functions.

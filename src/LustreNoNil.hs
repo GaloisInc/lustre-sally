@@ -17,8 +17,6 @@ import qualified TransitionSystem as TS
 import Language.Lustre.Core
 import qualified Language.Lustre.Semantics.Value as L
 
-import LSPanic
-
 transNode :: Node -> (TS.TransSystem, [TS.Expr])
 transNode n = (ts, map (transProp TS.InCurState) (nShows n))
   where
@@ -26,14 +24,11 @@ transNode n = (ts, map (transProp TS.InCurState) (nShows n))
          { TS.tsVars    = Map.unions (inVars : otherVars :map declareEqn (nEqns n))
          , TS.tsInputs  = inVars
          , TS.tsInit    = initNode n
-         , TS.tsTrans   = stepNode clocks n
+         , TS.tsTrans   = stepNode n
          }
 
   inVars    = Map.unions (map declareVar (nInputs n))
   otherVars = declareVarInitializing
-  clocks    = case computeClocks n of
-                Just cs -> cs
-                Nothing -> panic "transNode" [ "Failed to compute all clocks." ]
 
 
 
@@ -132,7 +127,7 @@ transType ty =
 -- | Declare all parts of a variable.
 -- See "NOTE: Translating Variables"
 declareVar :: Binder -> Map TS.Name TS.Type
-declareVar (x ::: t) = Map.singleton (valName x) (transType t)
+declareVar (x ::: t `On` _) = Map.singleton (valName x) (transType t)
 
 -- | Local variables.
 declareEqn :: Eqn -> Map TS.Name TS.Type
@@ -160,18 +155,19 @@ initNode n = ands (setInit : mapMaybe initS (nEqns n))
 
   setInit = TS.InCurState TS.::: varInitializing TS.:==: true
 
-stepNode :: Map Ident Clock -> Node -> TS.Expr
-stepNode clocks n =
+stepNode :: Node -> TS.Expr
+stepNode n =
   ands $ ((TS.InNextState TS.::: varInitializing) TS.:==: false) :
          map stepInput (nInputs n) ++
          map (transBool TS.InNextState) (nAssuming n) ++
-         map (stepEqn clocks) (nEqns n)
+         map stepEqn (nEqns n)
 
+-- XXX: clocks?
 stepInput :: Binder -> TS.Expr
 stepInput (x ::: _) = setVals TS.InNextState x (valAtom TS.FromInput (Var x))
 
-stepEqn :: Map Ident Clock -> Eqn -> TS.Expr
-stepEqn clocks (x ::: _ := expr) =
+stepEqn :: Eqn -> TS.Expr
+stepEqn (x ::: _ `On` c := expr) =
   case expr of
     Atom a      -> new a
     Current a   -> new a
@@ -209,10 +205,6 @@ stepEqn clocks (x ::: _ := expr) =
               Lit (Bool True) -> Nothing -- base clocks
               _ -> Just (atom c)
 
-  c       = case Map.lookup x clocks of
-              Just cl -> cl
-              Nothing -> panic "stepEq" [ "Missing clock for"
-                                        , "*** Varbiale: " ++ show x]
 
 
 -- | Translation of primitive functions.
