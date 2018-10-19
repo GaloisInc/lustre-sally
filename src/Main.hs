@@ -122,7 +122,12 @@ mainWork settings ds =
                     Unknown   -> putStrLn "unknown"
                     Invalid t ->
                       do putStrLn "invalid:"
+                         putStrLn "Initial state:"
+                         print (ppState (traceStart t))
+                         putStrLn "Inputs:"
                          zipWithM_ printInputs [1..] (map fst (traceSteps t))
+
+  ppState = ppIns
 
   printInputs n m = print ( ("Step" <+> integer n P.<> colon)
                             $$ nest 2 (ppIns m))
