@@ -19,14 +19,14 @@ import Sally
 import LustreNoNil
 
 data Settings = Settings
-  { file    :: FilePath
-  , node    :: Text
-  , engine  :: String
+  { file      :: FilePath
+  , node      :: Text
+  , sallyOpts :: [String]
   }
 
 options :: OptSpec Settings
 options = OptSpec
-  { progDefaults = Settings { file = "", node = "", engine = "bmc" }
+  { progDefaults = Settings { file = "", node = "", sallyOpts = [] }
   , progOptions =
 
       [ Option ['n'] ["node"]
@@ -43,9 +43,9 @@ options = OptSpec
               then Right s { file = a }
               else Left "Multiple files.  For now we support just one Lust file"
 
-      , Option ['e'] ["engine"]
-        "Which model-checking engine to use (see sally for options)."
-        $ ReqArg "ENGINE" $ \a s -> Right s { engine = a }
+      , Option ['s'] ["sally"]
+        "The value of this flag is a flag to sally"
+        $ ReqArg "FLAG" $ \a s -> Right s { sallyOpts = a : sallyOpts s }
       ]
 
   , progParamDocs = []
@@ -100,9 +100,8 @@ mainWork settings ds =
      putStrLn "Invoking Sally"
      putStrLn "=============="
      putStrLn ""
-     let opts = [ "--engine=" ++ engine settings
-                , "--show-trace"
-                , "--output-language=mcmt" ]
+     let opts = [ "--show-trace"
+                , "--output-language=mcmt" ] ++ sallyOpts settings
      putStrLn "Sally options:"
      print opts
      res <- sally "sally" opts inp
