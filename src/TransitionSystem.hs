@@ -163,7 +163,7 @@ validTransPred ts e =
     Right TBool -> []
     Right t  -> [ "Invalid type of transitions predicate, expected bool, got: "
                                                             ++ show t]
-    Left err    -> [ "Bad transiiton predicate", "*** Problem: " ++ err ]
+    Left err    -> [ "Bad transiton predicate", "*** Problem: " ++ err ]
 
 
 -- | Check he type of an expression in the given transition system.
@@ -193,6 +193,11 @@ typeOf ts nsOk = check
              Just a  -> Right a
 
       EOp op pars ->
+        let wrap x = case x of
+                       Left err -> Left $ "When checking: " ++ show op ++
+                                          "\n" ++ err
+                       Right a -> Right a
+        in wrap $
         case (op,pars) of
           (OpLit l, [])       -> return $! case l of
                                              VInt {}  -> TInteger
@@ -217,18 +222,27 @@ typeOf ts nsOk = check
           (OpLt,[x,y])        -> rel x y
           (OpLeq,[x,y])       -> rel x y
 
-          (OpITE,[x,y,z])     -> do _ <- expect TBool x
-                                    t <- check y
-                                    expect t z
+          (OpITE,[x,y,z])     ->
+             do _ <- expect TBool x
+                t1 <- check y
+                t2 <- check z
+                unless (t1 == t2)
+                  $ Left $ unlines [ "Arms of ITE have different types:"
+                                   , "then: " ++ show t1
+                                   , "else: " ++ show t2 ]
+                Right t1
 
           (OpToReal, [x])     -> expect TInteger x >> pure TReal
           (OpToInt, [x])      -> expect TReal x >> pure TInteger
 
           _                   -> Left "BAD OP"
 
+
   expect t e =
     do t1 <- check e
-       unless (t1 == t) (Left ("Expected: " ++ show t ++ ", got: " ++ show t1))
+       unless (t1 == t) $ Left $ unlines
+                          [ "Expected: " ++ show t ++ ", got: " ++ show t1
+                          , "Expr: " ++ show e ]
        return t
 
   both t e1 e2 = expect t e1 >> expect t e2 >> return t
