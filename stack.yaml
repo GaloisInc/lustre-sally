@@ -6,9 +6,8 @@ extra-deps:
   - monadLib-3.7.3
   - panic-0.4.0.1
   - simple-get-opt-0.1.0.0
+  - simple-smt-0.9.3
   - git: https://github.com/GaloisInc/lustre
-    commit: dc8c93ccf310607e127b03dc18365c68a05d694b
-  - git: https://github.com/yav/simple-smt
-    commit: 9d4071a3d16132b2ea9e6df3b5f7fcb4d22b6f37
+    commit: 28c4cdddc46ee989f5075bd00efc89515f18eba3
 resolver: lts-12.13
 allow-newer: true
