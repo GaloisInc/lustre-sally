@@ -21,12 +21,14 @@ import LustreNoNil
 data Settings = Settings
   { file      :: FilePath
   , node      :: Text
+  , saveSally :: [FilePath]
   , sallyOpts :: [String]
   }
 
 options :: OptSpec Settings
 options = OptSpec
-  { progDefaults = Settings { file = "", node = "", sallyOpts = [] }
+  { progDefaults = Settings { file = "", node = "", sallyOpts = []
+                            , saveSally = [] }
   , progOptions =
 
       [ Option ['n'] ["node"]
@@ -46,6 +48,10 @@ options = OptSpec
       , Option ['s'] ["sally"]
         "The value of this flag is a flag to sally"
         $ ReqArg "FLAG" $ \a s -> Right s { sallyOpts = a : sallyOpts s }
+
+      , Option ['o'] ["output"]
+        "Save Sally output in this file"
+        $ ReqArg "FILE" $ \a s -> Right s { saveSally = a : saveSally s }
       ]
 
   , progParamDocs = []
@@ -95,6 +101,7 @@ mainWork settings ds =
          inp = foldr (\e es -> ppSExpr e $ showChar '\n' es) "\n"
              $ translateTS ts ++ map (translateQuery ts) qs
      putStrLn inp
+     mapM_ (\f -> writeFile f inp) (saveSally settings)
      putStrLn ""
 
      putStrLn "Invoking Sally"
