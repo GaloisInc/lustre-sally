@@ -14,7 +14,6 @@ import qualified TransitionSystem as TS
 import Language.Lustre.Core
 import qualified Language.Lustre.Semantics.Value as L
 
-import LSPanic
 
 transNode :: Node -> (TS.TransSystem, [TS.Expr])
 transNode n = (ts, map (transProp TS.InCurState) (nShows n))
@@ -326,22 +325,24 @@ primFun op as =
 
 type ImportError = String
 
+type NilValue = Maybe L.Value
+
 -- | Fail to import something
 importError :: [String] -> Either ImportError a
 importError = Left . unlines
 
 -- | Import a Lustre identifier from the given assignment computed by Sally.
 -- See "Translating Variables" for details of what's going on here.
-importVar :: TS.VarVals -> Ident -> Either ImportError L.Value
+importVar :: TS.VarVals -> Ident -> Either ImportError NilValue
 importVar st i =
   case Map.lookup niName st of
     Just (TS.VBool b) ->
-      if b then pure L.VNil
+      if b then pure Nothing
            else case Map.lookup vaName st of
-                  Just v -> pure $ case v of
-                                     TS.VInt x  -> L.VInt x
-                                     TS.VBool x -> L.VBool x
-                                     TS.VReal x -> L.VReal x
+                  Just v -> pure $ Just $ case v of
+                                            TS.VInt x  -> L.VInt x
+                                            TS.VBool x -> L.VBool x
+                                            TS.VReal x -> L.VReal x
                   Nothing -> missing vaName
     Just v  -> bad niName "boolean" v
     Nothing -> missing niName
@@ -360,19 +361,19 @@ importVar st i =
                             ]
 
 -- | Import a bunch of core Lustre identifiers from a state.
-importVars :: Set Ident -> TS.VarVals -> Either ImportError (Map Ident L.Value)
+importVars :: Set Ident -> TS.VarVals -> Either ImportError (Map Ident NilValue)
 importVars vars st =
   do let is = Set.toList vars
      steps <- mapM (importVar st) is
      pure (Map.fromList (zip is steps))
 
-importState :: Node -> TS.VarVals -> Either ImportError (Map Ident L.Value)
+importState :: Node -> TS.VarVals -> Either ImportError (Map Ident NilValue)
 importState n = importVars $ Set.fromList [ x | x ::: _ := _ <- nEqns n ]
 
-importInputs :: Node -> TS.VarVals -> Either ImportError (Map Ident L.Value)
+importInputs :: Node -> TS.VarVals -> Either ImportError (Map Ident NilValue)
 importInputs n = importVars $ Set.fromList [ x | x ::: _ <- nInputs n ]
 
-type LTrace = TS.Trace (Map Ident L.Value) (Map Ident L.Value)
+type LTrace = TS.Trace (Map Ident NilValue) (Map Ident NilValue)
 
 importTrace :: Node -> TS.TSTrace -> Either ImportError LTrace
 importTrace n tr =
