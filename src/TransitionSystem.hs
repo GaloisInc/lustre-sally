@@ -111,7 +111,7 @@ pattern (:/:) :: Expr -> Expr -> Expr
 pattern x :/: y = EOp OpDiv [x,y]
 
 pattern Div :: Expr -> Expr -> Expr
-pattern Div x y = EOp OpDivInt [x,y]
+pattern Div x y = EOp OpDiv [x,y]
 
 pattern Mod :: Expr -> Expr -> Expr
 pattern Mod x y = EOp OpMod [x,y]
