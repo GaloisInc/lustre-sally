@@ -211,6 +211,7 @@ stepEqn (x ::: _ `On` c := expr) =
 primFun :: Op -> [Val] -> Val
 primFun op as =
   case (op,as) of
+    (Neg, [a])        -> TS.Neg a
     (Not, [a])        -> TS.Not a
 
     (And, [a,b])      -> a TS.:&&: b
