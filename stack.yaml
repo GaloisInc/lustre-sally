@@ -8,6 +8,6 @@ extra-deps:
   - simple-get-opt-0.1.0.0
   - simple-smt-0.9.3
   - git: https://github.com/GaloisInc/lustre
-    commit: 28c4cdddc46ee989f5075bd00efc89515f18eba3
+    commit: 55eab39a00660ce04711e6d245dcf2bd9338940e
 resolver: lts-12.13
 allow-newer: true
