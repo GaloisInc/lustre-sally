@@ -15,6 +15,7 @@ import Language.Lustre.AST
 import Language.Lustre.Core(nShows)
 import Language.Lustre.Pretty
 import Language.Lustre.Transform.Desugar(desugarNode)
+import Language.Lustre.TypeCheck(quickCheckDecls)
 import Sally
 import LustreNoNil
 
@@ -66,7 +67,9 @@ main =
 
      a <- parseProgramFromFileLatin1 (file settings)
      case a of
-       ProgramDecls ds -> mainWork settings ds
+       ProgramDecls ds ->
+           do ds1 <- doTC settings ds
+              mainWork settings ds1
        _ -> fail "XXX: We don't support modules/packages for the moment."
 
   `catch` \(SomeException e) ->
@@ -81,6 +84,13 @@ fakeIdent x = Ident { identText    = x
   where
   fakePos   = SourcePos 0 0 0 ""
   fakeRange = SourceRange fakePos fakePos
+
+
+doTC :: Settings -> [TopDecl] -> IO [TopDecl]
+doTC _settings ds =
+  case quickCheckDecls ds of
+    Left err -> print err >> exitFailure
+    Right _  -> pure ds
 
 mainWork :: Settings -> [TopDecl] -> IO ()
 mainWork settings ds =
