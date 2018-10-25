@@ -24,12 +24,13 @@ data Settings = Settings
   , node      :: Text
   , saveSally :: [FilePath]
   , sallyOpts :: [String]
+  , optTC     :: Bool
   }
 
 options :: OptSpec Settings
 options = OptSpec
   { progDefaults = Settings { file = "", node = "", sallyOpts = []
-                            , saveSally = [] }
+                            , saveSally = [], optTC = True }
   , progOptions =
 
       [ Option ['n'] ["node"]
@@ -53,6 +54,10 @@ options = OptSpec
       , Option ['o'] ["output"]
         "Save Sally output in this file"
         $ ReqArg "FILE" $ \a s -> Right s { saveSally = a : saveSally s }
+
+      , Option [] ["no-tc"]
+        "Disable type-checker"
+        $ NoArg $ \s -> Right s { optTC = False }
       ]
 
   , progParamDocs = []
@@ -87,10 +92,12 @@ fakeIdent x = Ident { identText    = x
 
 
 doTC :: Settings -> [TopDecl] -> IO [TopDecl]
-doTC _settings ds =
-  case quickCheckDecls ds of
-    Left err -> print err >> exitFailure
-    Right _  -> pure ds
+doTC settings ds
+  | not (optTC settings) = pure ds
+  | otherwise =
+    case quickCheckDecls ds of
+      Left err -> print err >> exitFailure
+      Right _  -> pure ds
 
 mainWork :: Settings -> [TopDecl] -> IO ()
 mainWork settings ds =
