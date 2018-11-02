@@ -1,7 +1,8 @@
 {-# Language OverloadedStrings, PatternSynonyms #-}
 -- | Translate Core Lustre to a transtion system.
-module LustreNil (transNode, transProp, importTrace) where
+module LustreNil (transNode, transProp, importTrace, LTrace) where
 
+import           Data.Text(Text)
 import           Data.Map (Map)
 import qualified Data.Map as Map
 import           Data.Set (Set)
@@ -15,8 +16,8 @@ import Language.Lustre.Core
 import qualified Language.Lustre.Semantics.Value as L
 
 
-transNode :: Node -> (TS.TransSystem, [TS.Expr])
-transNode n = (ts, map (transProp TS.InCurState) (nShows n))
+transNode :: Node -> (TS.TransSystem, [(Text,TS.Expr)])
+transNode n = (ts, [(x,transProp TS.InCurState p) | (x,p) <- nShows n])
   where
   ts = TS.TransSystem
          { TS.tsVars    = Map.unions (inVars : otherVars :map declareEqn (nEqns n))
@@ -201,7 +202,7 @@ stepNode :: Node -> TS.Expr
 stepNode n =
   ands $ ((TS.InNextState TS.::: varInitializing) TS.:==: false) :
          map stepInput (nInputs n) ++
-         map (transBool TS.InNextState) (nAssuming n) ++
+         map (transBool TS.InNextState . snd) (nAssuming n) ++
          map stepEqn (nEqns n)
 
 stepInput :: Binder -> TS.Expr

@@ -17,6 +17,7 @@ executable lustre-sally
 
   other-modules:       TransitionSystem,
                        Sally,
+                       Log,
                        LustreNil,
                        LustreNoNil,
                        LSPanic
@@ -24,7 +25,7 @@ executable lustre-sally
   build-depends:       base >=4.11 && <4.13,
                        containers,
                        text,
-                       ansi-wl-pprint,
+                       ansi-terminal,
                        panic,
                        process,
                        directory,
@@ -32,6 +33,7 @@ executable lustre-sally
                        simple-get-opt,
                        pretty-show,
                        pretty,
+                       ansi-wl-pprint,
                        language-lustre
 
 

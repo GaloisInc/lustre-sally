@@ -2,35 +2,44 @@
 module Main(main) where
 
 import System.Exit(exitFailure)
-import Control.Monad(when,zipWithM_)
+import Control.Monad(when,unless,zipWithM_)
 import Control.Exception(catch, SomeException(..), displayException)
+import Data.Char(isSpace)
 import Data.Text(Text)
 import qualified Data.Text as Text
 import qualified Data.Map as Map
 import SimpleGetOpt
 import Text.PrettyPrint as P ((<>), (<+>),nest,colon,integer,($$),vcat)
+import System.IO(hFlush,stdout)
 
 import Language.Lustre.Parser
 import Language.Lustre.AST
-import Language.Lustre.Core(nShows)
+import Language.Lustre.Core(Node)
 import Language.Lustre.Pretty
 import Language.Lustre.Transform.Desugar(desugarNode)
 import Language.Lustre.TypeCheck(quickCheckDecls)
+import TransitionSystem(TransSystem)
 import Sally
+import Log
 import LustreNoNil
 
 data Settings = Settings
   { file      :: FilePath
   , node      :: Text
+  , saveCore  :: [FilePath]
   , saveSally :: [FilePath]
   , sallyOpts :: [String]
   , optTC     :: Bool
+  , bmcLimit  :: Int
+  , kindLimit :: Int
   }
 
 options :: OptSpec Settings
 options = OptSpec
   { progDefaults = Settings { file = "", node = "", sallyOpts = []
-                            , saveSally = [], optTC = True }
+                            , saveSally = [], saveCore = [], optTC = True
+                            , bmcLimit = 10, kindLimit = 10
+                            }
   , progOptions =
 
       [ Option ['n'] ["node"]
@@ -51,7 +60,11 @@ options = OptSpec
         "The value of this flag is a flag to sally"
         $ ReqArg "FLAG" $ \a s -> Right s { sallyOpts = a : sallyOpts s }
 
-      , Option ['o'] ["output"]
+      , Option [] ["save-core"]
+        "Save Core lustre output in this file"
+        $ ReqArg "FILE" $ \a s -> Right s { saveCore = a : saveSally s }
+
+      , Option [] ["save-sally"]
         "Save Sally output in this file"
         $ ReqArg "FILE" $ \a s -> Right s { saveSally = a : saveSally s }
 
@@ -101,58 +114,64 @@ doTC settings ds
 
 mainWork :: Settings -> [TopDecl] -> IO ()
 mainWork settings ds =
-  do putStrLn "Core Lustre"
-     putStrLn "==========="
-     putStrLn ""
-     let nm = if node settings == ""
+  do let nm = if node settings == ""
                   then Nothing
                   else Just (Unqual (fakeIdent (node settings)))
          nd = desugarNode ds nm
-     print (pp nd)
-     putStrLn ""
+     mapM_ (\f -> writeFile f (show (pp nd))) (saveCore settings)
 
-     putStrLn "Sally Model"
-     putStrLn "==========="
-     putStrLn ""
-     let (ts,qs) = transNode nd   -- transition system and queries
-         inp = foldr (\e es -> ppSExpr e $ showChar '\n' es) "\n"
-             $ translateTS ts ++ map (translateQuery ts) qs
-     putStrLn inp
-     mapM_ (\f -> writeFile f inp) (saveSally settings)
-     putStrLn ""
+     let (ts,qs)  = transNode nd   -- transition system and queries
 
-     putStrLn "Invoking Sally"
-     putStrLn "=============="
-     putStrLn ""
-     let opts = [ "--show-trace"
-                , "--output-language=mcmt" ] ++ sallyOpts settings
-     putStrLn "Sally options:"
-     print opts
-     res <- sally "sally" opts inp
-     case readSallyResults ts res of
-       Right r  ->
-          case traverse (traverse (importTrace nd)) r of
-            Left err -> bad ("Failed to import trace: " ++ err) res
-            Right as -> zipWithM_ printResult (nShows nd) as
-       Left err -> bad ("Failed to parse result: " ++ err) res
+         -- S-expressions for the system and queries.
+         ts_sexp  = unlines $ map (\e -> ppSExpr e "") $ translateTS ts
+         qs_sexps = [ (x,ppSExpr (translateQuery ts q) "") | (x,q) <- qs ]
+
+     -- Put all queries in a single file, if saving.
+     unless (null (saveSally settings)) $
+        do let inp = unlines (ts_sexp : map snd qs_sexps)
+           mapM_ (\f -> writeFile f inp) (saveSally settings)
+
+     putStrLn "Validating properties:"
+     mapM_ (checkQuery settings nd ts ts_sexp) qs_sexps
+
+
+checkQuery :: Settings -> Node -> TransSystem ->
+                String -> (Text,String) -> IO ()
+checkQuery settings nd ts_ast ts (l,q) =
+  do putStr ("Property " ++ Text.unpack l ++ "... ")
+     hFlush stdout
+     attempt (sallyKind (kindLimit settings)) $
+       attempt (sallyBMC (bmcLimit settings)) $
+       sayWarn "Unknown" ("Valid up to depth " ++ show (bmcLimit settings))
   where
-  bad err res =
-    do putStrLn err
-       putStrLn res
-       exitFailure
+  attempt x orElse =
+    do res <- runSally x
+       case res of
+         Valid     -> sayOK "Ok" ""
+         Invalid r -> do sayFail "Failed" ""
+                         printTrace r
+         Unknown   -> orElse
 
-  printResult q r =
-    do putStr (showPP q ++ ": ")
-       case r of
-         Valid     -> putStrLn "valid"
-         Unknown   -> putStrLn "unknown"
-         Invalid t ->
-           do putStrLn "invalid:"
-              putStrLn "Initial state:"
-              print (ppState (traceStart t))
-              putStrLn "Inputs:"
-              zipWithM_ printInputs [1..] (map fst (traceSteps t))
+  runSally opts =
+    do res <- sally "sally" opts (ts ++ q)
+       case readSallyResult ts_ast res of
+         Right (r,xs)
+           | all isSpace xs  ->
+              case traverse (importTrace nd) r of
+                Right a -> pure a
+                Left err -> bad "Failed to import trace" err
+           | otherwise -> bad "Leftover stuff after answer" xs
+         Left err -> bad ("Failed to parse result: " ++ err) res
 
+
+printTrace :: LTrace -> IO ()
+printTrace t =
+  do putStrLn "Initial state:"
+     print (ppState (traceStart t))
+     putStrLn "Inputs:"
+     zipWithM_ printInputs [1..] (map fst (traceSteps t))
+
+  where
   ppState = ppIns
 
   printInputs n m = print ( ("Step" <+> integer n P.<> colon)
@@ -162,7 +181,27 @@ mainWork settings ds =
   ppIn (x,y) = pp x <+> "=" <+> pp y
 
 
+sallyRequiredOpts :: [String]
+sallyRequiredOpts = [ "--show-trace"
+                    , "--no-lets"
+                    , "--output-language=mcmt"
+                    ]
+
+sallyKind :: Int -> [String]
+sallyKind lim = "--engine=kind"
+              : ("--kind-max=" ++ show lim)
+              : sallyRequiredOpts
+
+sallyBMC :: Int -> [String]
+sallyBMC lim = "--engine=bmc"
+             : ("--bmc-max=" ++ show lim)
+             : sallyRequiredOpts
 
 
+bad :: String -> String -> IO a
+bad err res =
+  do sayFail "Error" err
+     putStrLn res
+     exitFailure
 
 

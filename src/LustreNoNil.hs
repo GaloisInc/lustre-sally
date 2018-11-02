@@ -3,8 +3,9 @@
 -- In this translation there are no explicit `nil` values, instead
 -- such values are modelled as arbitrary unconstrained values of
 -- the appropriate type.
-module LustreNoNil (transNode, transProp, importTrace) where
+module LustreNoNil (transNode, transProp, importTrace, LTrace) where
 
+import           Data.Text(Text)
 import           Data.Map (Map)
 import qualified Data.Map as Map
 import           Data.Set (Set)
@@ -17,8 +18,8 @@ import qualified TransitionSystem as TS
 import Language.Lustre.Core
 import qualified Language.Lustre.Semantics.Value as L
 
-transNode :: Node -> (TS.TransSystem, [TS.Expr])
-transNode n = (ts, map (transProp TS.InCurState) (nShows n))
+transNode :: Node -> (TS.TransSystem, [(Text,TS.Expr)])
+transNode n = (ts, [(x, transProp TS.InCurState p) | (x,p) <- nShows n])
   where
   ts = TS.TransSystem
          { TS.tsVars    = Map.unions (inVars : otherVars :map declareEqn (nEqns n))
@@ -159,7 +160,7 @@ stepNode :: Node -> TS.Expr
 stepNode n =
   ands $ ((TS.InNextState TS.::: varInitializing) TS.:==: false) :
          map stepInput (nInputs n) ++
-         map (transBool TS.InNextState) (nAssuming n) ++
+         map (transBool TS.InNextState . snd) (nAssuming n) ++
          map stepEqn (nEqns n)
 
 -- XXX: clocks?
