@@ -18,7 +18,7 @@ import qualified TransitionSystem as TS
 
 
 import Language.Lustre.Core
-import qualified Language.Lustre.Semantics.Value as L
+import qualified Language.Lustre.Semantics.Core as L
 
 transNode :: Node -> (TS.TransSystem, [(Text,TS.Expr)])
 transNode n = (ts, [(x, transProp TS.InCurState p) | (x,p) <- nShows n])
