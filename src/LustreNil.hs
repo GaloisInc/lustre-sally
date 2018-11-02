@@ -84,6 +84,7 @@ valAtom ns atom =
     Var a -> Val { vVal = ns TS.::: valName a
                  , vNil = ns TS.::: nilName a
                  }
+    Prim f as   -> primFun f (map (valAtom ns) as)
 
 -- | A boolean variable which is true in the very first state,
 -- beofre we've received any inputs, and false after-wards..
@@ -215,7 +216,6 @@ stepEqn (x ::: _ `On` c := expr) =
     Current a   -> new a
     Pre a       -> guarded (old a)
     a `When` _  -> guarded (new a)
-    Prim f as   -> guarded (letVars (primFun f (map atom as)))
 
     a :-> b     ->
       case clockOn of

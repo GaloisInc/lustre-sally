@@ -54,20 +54,21 @@ valName (Ident x)
 -- | For variables defined by @a -> b@, keeps track if we are in the @a@
 -- (value @true@) or in the @b@ part (value @false@).
 initName :: Ident -> TS.Name
-initName (Ident x) = TS.Name ("|" <> x <> " init|")
+initName (Ident x) = TS.Name ("|" <> x <> "-init|")
 
 -- | Translate an atom, by using the given name-space for variables.
 valAtom :: TS.VarNameSpace -> Atom -> Val
 valAtom ns atom =
   case atom of
-    Lit l -> valLit l
-    Var a -> ns TS.::: valName a
+    Lit l     -> valLit l
+    Var a     -> ns TS.::: valName a
+    Prim f as -> primFun f (map (valAtom ns) as)
 
 -- | A boolean variable which is true in the very first state,
 -- beofre we've received any inputs, and false after-wards..
 -- We use it to avoid checking queries in the very first state
 varInitializing :: TS.Name
-varInitializing = TS.Name "|gal initializing|"
+varInitializing = TS.Name "|gal-initializing|"
 
 
 
@@ -179,7 +180,6 @@ stepEqn (x ::: _ `On` c := expr) =
     Current a   -> new a
     Pre a       -> guarded (old a)
     a `When` _  -> guarded (new a)
-    Prim f as   -> guarded (letVars (primFun f (map atom as)))
 
     a :-> b     ->
       case clockOn of
