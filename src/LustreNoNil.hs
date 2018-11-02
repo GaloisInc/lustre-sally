@@ -6,11 +6,13 @@
 module LustreNoNil (transNode, transProp, importTrace, LTrace) where
 
 import           Data.Text(Text)
+import qualified Data.Text as Text
 import           Data.Map (Map)
 import qualified Data.Map as Map
 import           Data.Set (Set)
 import qualified Data.Set as Set
 import           Data.Maybe(mapMaybe)
+import           Data.Char(isAscii,isAlpha,isDigit)
 
 import qualified TransitionSystem as TS
 
@@ -44,12 +46,15 @@ valLit lit = case lit of
 
 -- | The logical variable for the ordinary value.
 valName :: Ident -> TS.Name
-valName (Ident x) = TS.Name ("gal_" <> x)
+valName (Ident x)
+  | Text.all simp x = TS.Name x
+  | otherwise       = TS.Name ("|" <> x <> "|")
+  where simp a = isAscii a && (isAlpha a || isDigit a)
 
 -- | For variables defined by @a -> b@, keeps track if we are in the @a@
--- (value @false@) or in the @b@ part (value @true@).
+-- (value @true@) or in the @b@ part (value @false@).
 initName :: Ident -> TS.Name
-initName (Ident x) = TS.Name ("gal_" <> x <> "_init")
+initName (Ident x) = TS.Name ("|" <> x <> " init|")
 
 -- | Translate an atom, by using the given name-space for variables.
 valAtom :: TS.VarNameSpace -> Atom -> Val
@@ -62,7 +67,7 @@ valAtom ns atom =
 -- beofre we've received any inputs, and false after-wards..
 -- We use it to avoid checking queries in the very first state
 varInitializing :: TS.Name
-varInitializing = TS.Name ("gal_initializing")
+varInitializing = TS.Name "|gal initializing|"
 
 
 
@@ -151,7 +156,7 @@ initNode n = ands (setInit : mapMaybe initS (nEqns n))
   where
   initS ((v ::: _) := e) =
     case e of
-      _ :-> _ -> Just ((TS.InCurState TS.::: initName v) TS.:==: false)
+      _ :-> _ -> Just ((TS.InCurState TS.::: initName v) TS.:==: true)
       _ -> Nothing
 
   setInit = TS.InCurState TS.::: varInitializing TS.:==: true
@@ -185,8 +190,8 @@ stepEqn (x ::: _ `On` c := expr) =
             (old (Var x) TS.:&&: ivar TS.InNextState TS.:==: ivar TS.InCurState)
       where
       ivar n = n TS.::: initName x
-      clockYes = (TS.ITE (ivar TS.InCurState) (new b) (new a)
-                    TS.:&&: ivar TS.InNextState TS.:==: true)
+      clockYes = (TS.ITE (ivar TS.InCurState) (new a) (new b)
+                    TS.:&&: ivar TS.InNextState TS.:==: false)
 
     Merge a ifT ifF -> guarded (TS.ITE a' (new ifT) (new ifF))
       where a' = atom a
