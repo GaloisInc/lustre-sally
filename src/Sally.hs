@@ -255,12 +255,13 @@ parseBind :: Map Name Type -> SExpr -> Perhaps (Name,TS.Value)
 parseBind tys s =
   case s of
     List [ Atom x, v ] ->
-      do let nm = Name $ Text.pack
-                       $ case x of
-                           '|' : more | not (null more) && last more == '|' ->
-                                        init more
-                           _ -> x
-         ty <- perhaps ("Undefined variable: " ++ show x) (Map.lookup nm tys)
+      do let nm = Name (Text.pack x)
+         ty <- case Map.lookup nm tys of
+                 Just a -> pure a
+                 Nothing ->
+                   Left $ unlines $ ("Undefined variable: " ++ show x)
+                                  : "I know about:"
+                                  : map show (Map.keys tys)
          val <- parseValue ty v
          return (nm, val)
     _ -> Left "Invalid binding"
