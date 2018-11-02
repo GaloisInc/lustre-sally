@@ -21,7 +21,7 @@ import Language.Lustre.TypeCheck(quickCheckDecls)
 import TransitionSystem(TransSystem)
 import Sally
 import Log
-import LustreNoNil
+import Lustre
 
 data Settings = Settings
   { file      :: FilePath
