@@ -6,6 +6,7 @@ module Sally
   , SExpr
   , showsSExpr, ppSExpr
   , sally
+  , sallyInteract
   , readSallyResults, readSallyResult, SallyResult(..), Trace(..), VarVals
   , ppVarVals, ppValue, ppName
   ) where
@@ -15,16 +16,22 @@ import Data.Char(isSpace)
 import Data.Map (Map)
 import qualified Data.Map as Map
 import qualified Data.Text as Text
+import Data.Time(LocalTime)
+import Data.IORef(newIORef,modifyIORef,readIORef)
 import Control.Monad(zipWithM)
-import Control.Exception(finally)
-import System.IO(hPutStrLn,hClose,openTempFile)
+import Control.Exception(finally,try,SomeException(..))
+import Control.Concurrent(forkIO)
+import System.IO(hPutStrLn,hClose,openTempFile,hGetContents,hGetLine)
 import System.Directory(removeFile,getTemporaryDirectory)
-import System.Process(readProcess)
+import System.Process(readProcess,runInteractiveProcess,waitForProcess)
+import System.Exit
 import qualified SimpleSMT as SMT
 import SimpleSMT (SExpr(..), showsSExpr, ppSExpr, sexprToVal, readSExpr)
 
+
 import TransitionSystem as TS
 import LSPanic(panic)
+import SallyProgress
 
 data QualState = ImplicitState | ExplicitState
 
@@ -280,7 +287,7 @@ parseValue ty s =
                                               ]
 
 
--- | Run sally with the given options, on the given output.
+-- | Run sally with the given options, on the given input.
 -- This creates a temporary file, saves the input, and runs sally on it.
 sally :: FilePath -> [String] -> String -> IO String
 sally exe opts inp =
@@ -290,6 +297,37 @@ sally exe opts inp =
         hClose h
         readProcess exe (opts ++ [path]) ""
        `finally` removeFile path
+
+-- | Run sally with the given options, on the given input.
+-- This creates a temporary file, saves the input, and runs sally on it.
+sallyInteract :: FilePath -> [String] ->
+                 (LocalTime -> Int -> IO ()) ->
+                 String -> IO (Either String String)
+sallyInteract exe opts callback inp =
+  do tmp <- getTemporaryDirectory
+     (path,h) <- openTempFile tmp "sallyXXX.mcmt"
+     do hPutStrLn h inp
+        hClose h
+        (_hIn,hOut,hErr,proc) <- runInteractiveProcess exe (opts ++ [path])
+                                          Nothing Nothing
+        errRef <- newIORef []
+        _ <- forkIO (drain errRef hErr)
+        txt <- hGetContents hOut
+        let (msgs,out) = getNotes txt
+        mapM_ (uncurry callback) msgs
+        r <- waitForProcess proc
+        case r of
+          ExitFailure _ ->
+            do errs <- readIORef errRef
+               return (Left (unlines (reverse errs)))
+          ExitSuccess -> return (Right out)
+       `finally` removeFile path
+  where
+  drain r h = do mb <- try (hGetLine h)
+                 case mb of
+                   Left SomeException{} -> pure ()
+                   Right txt -> do modifyIORef r (txt:)
+                                   drain r h
 
 
 

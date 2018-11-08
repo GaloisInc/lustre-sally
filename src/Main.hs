@@ -11,6 +11,7 @@ import qualified Data.Map as Map
 import SimpleGetOpt
 import Text.PrettyPrint as P ((<>), (<+>),nest,colon,integer,($$),vcat)
 import System.IO(hFlush,stdout)
+import Data.IORef(newIORef,writeIORef,readIORef)
 
 import Language.Lustre.Parser
 import Language.Lustre.AST
@@ -140,25 +141,36 @@ checkQuery :: Settings -> Node -> TransSystem ->
 checkQuery settings nd ts_ast ts (l,q) =
   do putStr ("Property " ++ Text.unpack l ++ "... ")
      hFlush stdout
-     attempt (sallyKind (kindLimit settings)) $
-       attempt (sallyBMC (bmcLimit settings)) $
+     attempt "inductive depth" (sallyKind (kindLimit settings)) $
+       attempt "concrete depth" (sallyBMC (bmcLimit settings)) $
        sayWarn "Unknown" ("Valid up to depth " ++ show (bmcLimit settings))
   where
-  attempt x orElse =
-    do res <- runSally x
+  attempt lab x orElse =
+    do (maxD,res) <- runSally lab x
        case res of
-         Valid     -> sayOK "Ok" ""
+         Valid     -> sayOK "Ok" (lab ++ " " ++ show maxD)
          Invalid r -> do sayFail "Failed" ""
                          printTrace r
          Unknown   -> orElse
 
-  runSally opts =
-    do res <- sally "sally" opts (ts ++ q)
+  runSally lab opts =
+    do prog <- newProgress
+       maxVal <- newIORef 0
+       let callback _ n = do progSay prog (lab ++ " " ++ show n)
+                             writeIORef maxVal n -- assumes monotonic increase
+       mbres <- sallyInteract "sally" opts callback (ts ++ q)
+       -- res <- sally "sally" opts (ts ++ q)
+       progClear prog
+       v <- readIORef maxVal
+
+       res <- case mbres of
+                Left err -> bad "Sally error:" err
+                Right res -> pure res
        case readSallyResult ts_ast res of
          Right (r,xs)
            | all isSpace xs  ->
               case traverse (importTrace nd) r of
-                Right a -> pure a
+                Right a -> pure (v,a)
                 Left err -> bad "Failed to import trace" err
            | otherwise -> bad "Leftover stuff after answer" xs
          Left err -> bad ("Failed to parse result: " ++ err) res
@@ -185,6 +197,7 @@ sallyRequiredOpts :: [String]
 sallyRequiredOpts = [ "--show-trace"
                     , "--no-lets"
                     , "--output-language=mcmt"
+                    , "--verbosity=1"
                     ]
 
 sallyKind :: Int -> [String]

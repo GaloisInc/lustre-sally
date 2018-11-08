@@ -17,6 +17,7 @@ executable lustre-sally
 
   other-modules:       TransitionSystem,
                        Sally,
+                       SallyProgress,
                        Log,
                        Lustre,
                        LSPanic
@@ -32,6 +33,7 @@ executable lustre-sally
                        simple-get-opt,
                        pretty-show,
                        pretty,
+                       time,
                        ansi-wl-pprint,
                        language-lustre
 
