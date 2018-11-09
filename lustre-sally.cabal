@@ -34,7 +34,6 @@ executable lustre-sally
                        pretty-show,
                        pretty,
                        time,
-                       ansi-wl-pprint,
                        language-lustre
 
 
