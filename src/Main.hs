@@ -118,7 +118,7 @@ mainWork settings ds =
   do let nm = if node settings == ""
                   then Nothing
                   else Just (Unqual (fakeIdent (node settings)))
-         nd = desugarNode ds nm
+         (info,nd) = desugarNode ds nm
      mapM_ (\f -> writeFile f (show (pp nd))) (saveCore settings)
 
      let (ts,qs)  = transNode nd   -- transition system and queries
@@ -197,6 +197,7 @@ sallyRequiredOpts :: [String]
 sallyRequiredOpts = [ "--show-trace"
                     , "--no-lets"
                     , "--output-language=mcmt"
+                    , "--yices2-mcsat"
                     , "--verbosity=1"
                     ]
 
