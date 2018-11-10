@@ -308,7 +308,8 @@ importState n = importVars $ Set.fromList [ x | x ::: _ := _ <- nEqns n ]
 importInputs :: Node -> TS.VarVals -> Either ImportError (Map Ident L.Value)
 importInputs n = importVars $ Set.fromList [ x | x ::: _ <- nInputs n ]
 
-type LTrace = TS.Trace (Map Ident L.Value) (Map Ident L.Value)
+type LTrace = TS.Trace {-state-} (Map Ident L.Value)
+                       {-inputs-}(Map Ident L.Value)
 
 importTrace :: Node -> TS.TSTrace -> Either ImportError LTrace
 importTrace n tr =
