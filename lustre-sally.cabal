@@ -20,8 +20,7 @@ executable lustre-sally
                        SallyProgress,
                        Log,
                        Lustre,
-                       LSPanic,
-                       ModelState
+                       LSPanic
 
   build-depends:       base >=4.11 && <4.13,
                        containers,
