@@ -21,7 +21,7 @@ executable lustre-sally
                        Log,
                        Lustre,
                        LSPanic,
-                       Report
+                       ModelState
 
   build-depends:       base >=4.11 && <4.13,
                        containers,
