@@ -2,8 +2,6 @@ module ModelState where
 
 import Data.Map (Map)
 import qualified Data.Map as Map
-import Data.Tree (Tree)
-import qualified Data.Tree as T
 import Data.Maybe(catMaybes)
 
 import qualified Language.Lustre.AST  as P
@@ -42,6 +40,10 @@ data Loc = Loc
   , lVars      :: Vars P.Ident
     -- ^ These are the variables we are observing.  The names are in their
     -- original form.
+
+  , lAbove     :: Maybe Loc
+    -- ^ Locations on the current call path.  This is for navigation,
+    -- so we can go back to our parent.
   }
 
 -- | The location corresponding to the main function being verified.
@@ -54,6 +56,7 @@ atTop mi =
               , lFunInfo = fi
               , lSubst = Map.empty
               , lVars = nodeVars nd
+              , lAbove = Nothing
               }
 
 -- | Given a location and a call site in it, get the location corresponding
@@ -74,18 +77,17 @@ enterCall l cs =
      pure l { lFunInfo = fi
             , lSubst = su1
             , lVars = vars
+            , lAbove = Just l
             }
 
 -- | What are the callsites avaialable at a location.
 locSubs :: Loc -> [CallSiteId]
 locSubs = Map.keys . mfiCallSites . lFunInfo
 
--- | Compute all locations.
-callTree :: ModelInfo -> Maybe (Tree Loc)
-callTree mi = from <$> atTop mi
-  where
-  from l = T.Node l $ catMaybes $ map (go l) $ locSubs l
-  go l c = from <$> enterCall l c
+-- | Got back to the parent of a location.
+exitCall :: Loc -> Maybe Loc
+exitCall = lAbove
+
 
 --------------------------------------------------------------------------------
 
