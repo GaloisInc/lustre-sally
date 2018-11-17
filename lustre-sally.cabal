@@ -20,6 +20,7 @@ executable lustre-sally
                        SallyProgress,
                        Log,
                        Lustre,
+                       Report,
                        LSPanic
 
   build-depends:       base >=4.11 && <4.13,

@@ -19,10 +19,12 @@ import Language.Lustre.Core(Node)
 import Language.Lustre.Pretty
 import Language.Lustre.Transform.Desugar(desugarNode)
 import Language.Lustre.TypeCheck(quickCheckDecls)
+import Language.Lustre.ModelState(ModelInfo)
 import TransitionSystem(TransSystem)
 import Sally
 import Log
 import Lustre
+import Report(declareSource, declareTrace)
 
 data Settings = Settings
   { file      :: FilePath
@@ -133,12 +135,12 @@ mainWork settings ds =
            mapM_ (\f -> writeFile f inp) (saveSally settings)
 
      putStrLn "Validating properties:"
-     mapM_ (checkQuery settings nd ts ts_sexp) qs_sexps
+     mapM_ (checkQuery settings info nd ts ts_sexp) qs_sexps
 
 
-checkQuery :: Settings -> Node -> TransSystem ->
+checkQuery :: Settings -> ModelInfo -> Node -> TransSystem ->
                 String -> (Text,String) -> IO ()
-checkQuery settings nd ts_ast ts (l,q) =
+checkQuery settings mi nd ts_ast ts (l,q) =
   do putStr ("Property " ++ Text.unpack l ++ "... ")
      hFlush stdout
      attempt "inductive depth" (sallyKind (kindLimit settings)) $
@@ -150,7 +152,10 @@ checkQuery settings nd ts_ast ts (l,q) =
        case res of
          Valid     -> sayOK "Ok" (lab ++ " " ++ show maxD)
          Invalid r -> do sayFail "Failed" ""
-                         printTrace r
+                         src <- readFile (file settings)
+                         writeFile "lu-source.js" (declareSource src)
+                         writeFile "lu-trace.js"  (declareTrace mi r)
+                         -- printTrace r
          Unknown   -> orElse
 
   runSally lab opts =
