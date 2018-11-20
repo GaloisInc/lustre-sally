@@ -3,7 +3,8 @@ module Main(main) where
 
 import System.Exit(exitFailure)
 import Control.Monad(when,unless,zipWithM_)
-import Control.Exception(catch, SomeException(..), displayException)
+import Control.Exception(catches, Handler(..)
+                        , SomeException(..), displayException)
 import Data.Char(isSpace)
 import Data.Text(Text)
 import qualified Data.Text as Text
@@ -93,9 +94,15 @@ main =
               mainWork settings ds1
        _ -> fail "XXX: We don't support modules/packages for the moment."
 
-  `catch` \(SomeException e) ->
-            do putStrLn ("[FAIL] " ++ displayException e)
-               exitFailure
+  `catches`
+      [ Handler $ \(ParseError mb) ->
+          case mb of
+            Nothing -> bad "Parse error at the end of the file." ""
+            Just p  -> bad ("Parse error at " ++ prettySourcePos p) ""
+
+      , Handler $ \(SomeException e) -> bad (displayException e) ""
+     ]
+
 
 fakeIdent :: Text -> Ident
 fakeIdent x = Ident { identText    = x
