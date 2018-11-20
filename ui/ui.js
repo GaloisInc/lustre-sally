@@ -16,8 +16,8 @@ function moduleViewTrace () {
     if (s > maxStep) return
     if (s < 0) return
 
-    $('.' + stepName(curStep)).removeClass('vis-step')
-    $('.' + stepName(s)).addClass('vis-step')
+    $('.value-box.' + stepName(curStep)).removeClass('vis-step')
+    $('.value-box.' + stepName(s)).addClass('vis-step')
     $('#' + stepDisplayId).text(s)
     curStep = s
     displayCurStep()
@@ -27,7 +27,9 @@ function moduleViewTrace () {
   function prevStep() { showStep(curStep-1) }
 
   function displayCurStep() {
-    $('#' + stepDisplayId).text(curStep === 0 ? 'initializing' : curStep)
+    var msg = curStep === 0 ? 'initialization' : curStep
+    msg += (' / ' + maxStep)
+    $('#' + stepDisplayId).text(msg)
   }
 
   function stepButtons() {
