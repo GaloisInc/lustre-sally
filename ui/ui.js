@@ -2,12 +2,13 @@ function moduleViewTrace () {
 
   // The state
   var curStep = 0
-  var callStack = [ "cs_top" ]
+  var visCS = {}
   var maxStep = 0
 
   // Names
   function stepName(i) { return 'step-' + i }
   var stepDisplayId = 'step-display'
+  function lineName(i) { return 'line-' + i }
 
 
   // Show steps
@@ -15,8 +16,8 @@ function moduleViewTrace () {
     if (s > maxStep) return
     if (s < 0) return
 
-    $('.' + stepName(curStep)).hide()
-    $('.' + stepName(s)).show()
+    $('.' + stepName(curStep)).removeClass('vis-step')
+    $('.' + stepName(s)).addClass('vis-step')
     $('#' + stepDisplayId).text(s)
     curStep = s
     displayCurStep()
@@ -43,6 +44,40 @@ function moduleViewTrace () {
     return [prev,label,display,next]
   }
 
+  // Toggle call sites
+  function toggleCallsite(cid) {
+    var cs = $('.call-site.' + cid)
+    var things = $('.value-box.' + cid)
+    if (visCS[cid]) {
+        things.removeClass('vis-cs')
+        cs.removeClass('active')
+        visCS[cid] = false
+    }
+    else {
+      things.addClass('vis-cs')
+      cs.addClass('active')
+      visCS[cid] = true
+    }
+  }
+
+  // Hilighting things
+  function markLines(a,b) {
+    for (var i = a; i <= b; ++i) {
+      $('#' + lineName(i)).addClass('marked')
+    }
+  }
+
+  function unmarkLines() {
+    $('.line').removeClass('marked')
+  }
+
+  function markCallsite(cid) {
+    $('.call-site.' + cid).addClass('marked')
+  }
+
+  function unmarkCallsite() {
+    $('.call-site').removeClass('marked')
+  }
 
 
   // Drawing
@@ -63,9 +98,11 @@ function moduleViewTrace () {
     // Render the lines
     var lines = source.split('\n')
     jQuery.each(lines,function(lineNoPrev,txt) {
-      var ln = $('<div/>').addClass('line')
+      var lineNo = lineNoPrev + 1   // lines start at 1
+      var ln = $('<div/>').addClass('line').attr('id',lineName(lineNo))
+      ln.append($('<div/>').addClass('line-no').text(lineNo))
       var start = 0
-      jQuery.each(getAnn(lineNoPrev+1),function(ix,ann) {
+      jQuery.each(getAnn(lineNo),function(ix,ann) {
         var from = ann.from - 1   // columns start at 1
         if (from > start) {
           ln.append($('<span/>').text(txt.substring(start,from)))
@@ -78,20 +115,27 @@ function moduleViewTrace () {
 
         jQuery.each(ann.attr,function(ix,attr) {
           if (attr.value === undefined) {
+            annDom.addClass('call-site')
+                  .addClass(attr.cid)
+            var src = attr.source
+            annDom.hover( function() { markLines(src.from,src.to)}
+                        , unmarkLines
+                        )
+                  .click( function() { toggleCallsite(attr.cid) })
           } else {
-             var val = $('<span/>')
-                     .addClass('value')
+             var val = $('<div/>')
+                     .addClass('value-box')
                      .addClass(attr.cid)
                      .addClass(stepName(attr.step))
-                     .text(attr.value)
-                     .hide()
+                     .append($('<span/>').text('=')
+                            ,$('<span/>')
+                             .addClass('value')
+                             .text(attr.value))
+             if (attr.cid === 'cs_top') val.addClass('vis-cs')
+             val.hover( function() { markCallsite(attr.cid) }
+                      , unmarkCallsite )
              if (attr.step > maxStep) maxStep = attr.step
-             var eq = $('<span/>')
-                    .text('=')
-                    .addClass(attr.cid)
-                    .addClass(stepName(attr.step))
-                    .hide()
-             ln.append(eq,val)
+             ln.append(val)
           }
         })
 

@@ -1,9 +1,15 @@
-.annot:hover {
-  background-color: yellow;
-}
 
 .annot {
-  color: red;
+  font-weight: bold;
+}
+
+.value-box {
+  display: none;
+  margin: 2px;
+}
+
+.vis-step.vis-cs {
+  display: inline-block
 }
 
 .value {
@@ -24,12 +30,45 @@
   font-family: monospace;
 }
 
+.line-no {
+  display: inline-block;
+  width: 2em;
+  text-align: right;
+  font-size: 10px;
+  color: #999;
+  margin-right: 1em;
+}
+
+.line {
+  margin-bottom: 2px;
+}
+
 .line:hover {
   background-color: #ccc;
+}
+
+.marked.line {
+  background-color: #ccc;
+}
+
+
+.call-site {
+  cursor: pointer;
+}
+
+.marked.call-site {
+  background-color: #fc6;
+}
+
+.active.call-site {
+  box-shadow: 1px 1px 5px 1px #999;
+  padding: 2px;
 }
 
 .step-button {
   background-color: orange;
   margin: 2px;
+  cursor: pointer;
+  border: 1px solid 0;
 }
 
