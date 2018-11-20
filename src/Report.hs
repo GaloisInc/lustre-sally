@@ -72,6 +72,7 @@ renderCS step cid l s = renderLoc (step,nm) l s . addJS cid this
   this = obj [ "cid"    ~> text nm
              , "source" ~> obj [ "from" ~> int (sourceLine (sourceFrom src))
                                , "to"   ~> int (sourceLine (sourceTo src))
+                               , "step" ~> int step
                                ]
              ]
   nm   = callSiteName cid
