@@ -302,8 +302,12 @@ importVars vars st =
      steps <- mapM (importVar st) is
      pure (Map.fromList (zip is steps))
 
+
 importState :: Node -> TS.VarVals -> Either ImportError (Map Ident L.Value)
-importState n = importVars $ Set.fromList [ x | x ::: _ := _ <- nEqns n ]
+importState n = importVars $ Set.fromList
+                           $ [ x | x ::: _ <- nInputs n ] ++
+                             {- Inputs are shadowed in the state -}
+                             [ x | x ::: _ := _ <- nEqns n ]
 
 importInputs :: Node -> TS.VarVals -> Either ImportError (Map Ident L.Value)
 importInputs n = importVars $ Set.fromList [ x | x ::: _ <- nInputs n ]
