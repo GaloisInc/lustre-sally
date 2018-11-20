@@ -27,3 +27,9 @@
 .line:hover {
   background-color: #ccc;
 }
+
+.step-button {
+  background-color: orange;
+  margin: 2px;
+}
+

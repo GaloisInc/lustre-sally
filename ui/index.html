@@ -8,8 +8,12 @@
 <script src="lu-trace.js"></script>
 <script>
 $(document).ready(function() {
+  var view = moduleViewTrace()
+  var body = $('body')
 
-  $('body').append(drawSource(source,trace))
+  body.append(view.drawSource(source,trace))
+  body.append(view.stepButtons)
+  view.showStep(0)
 })
 </script>
 </head>
