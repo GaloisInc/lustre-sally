@@ -2,21 +2,19 @@
 module Main(main) where
 
 import System.Exit(exitFailure)
-import Control.Monad(when,unless,zipWithM_)
+import Control.Monad(when,unless)
 import Control.Exception(catches, Handler(..)
                         , SomeException(..), displayException)
 import Data.Char(isSpace)
 import Data.Text(Text)
 import qualified Data.Text as Text
-import qualified Data.Map as Map
 import SimpleGetOpt
-import Text.PrettyPrint as P ((<>), (<+>),nest,colon,integer,($$),vcat)
 import System.IO(hFlush,stdout)
 import Data.IORef(newIORef,writeIORef,readIORef)
 
 import Language.Lustre.Parser
 import Language.Lustre.AST
-import Language.Lustre.Core(Node)
+import Language.Lustre.Core(Node,nEqns)
 import Language.Lustre.Pretty
 import Language.Lustre.Transform.Desugar(desugarNode)
 import Language.Lustre.TypeCheck(quickCheckDecls)
@@ -53,13 +51,6 @@ options = OptSpec
                 then Right s { node = Text.pack a }
                 else Left "Multiple nodes.  For the moment we support only one."
 
-      , Option ['f'] ["file"]
-        "Lustre file."
-        $ ReqArg "FILE" $ \a s ->
-          if file s == ""
-              then Right s { file = a }
-              else Left "Multiple files.  For now we support just one Lust file"
-
       , Option ['s'] ["sally"]
         "The value of this flag is a flag to sally"
         $ ReqArg "FLAG" $ \a s -> Right s { sallyOpts = a : sallyOpts s }
@@ -77,8 +68,10 @@ options = OptSpec
         $ NoArg $ \s -> Right s { optTC = False }
       ]
 
-  , progParamDocs = []
-  , progParams    = \a _ -> Left ("Unexpected parameter: " ++ show a)
+  , progParamDocs = [("FILE", "Lustre file containing model.")]
+  , progParams    = \a s -> case file s of
+                             "" -> Right s { file = a }
+                             _  -> Left "We only support a single file for now."
   }
 
 main :: IO ()
@@ -128,6 +121,8 @@ mainWork settings ds =
                   then Nothing
                   else Just (Unqual (fakeIdent (node settings)))
          (info,nd) = desugarNode ds nm
+     say "Lustre" ("State has " ++ show (length (nEqns nd)) ++ " variables.")
+
      mapM_ (\f -> writeFile f (show (pp nd))) (saveCore settings)
 
      let (ts,qs)  = transNode nd   -- transition system and queries
@@ -141,14 +136,14 @@ mainWork settings ds =
         do let inp = unlines (ts_sexp : map snd qs_sexps)
            mapM_ (\f -> writeFile f inp) (saveSally settings)
 
-     putStrLn "Validating properties:"
+     say "Lustre" "Validating properties:"
      mapM_ (checkQuery settings info nd ts ts_sexp) qs_sexps
 
 
 checkQuery :: Settings -> ModelInfo -> Node -> TransSystem ->
                 String -> (Text,String) -> IO ()
 checkQuery settings mi nd ts_ast ts (l,q) =
-  do putStr ("Property " ++ Text.unpack l ++ "... ")
+  do say_ "Lustre" ("Property " ++ Text.unpack l ++ "... ")
      hFlush stdout
      attempt "inductive depth" (sallyKind (kindLimit settings)) $
        attempt "concrete depth" (sallyBMC (bmcLimit settings)) $
@@ -162,7 +157,6 @@ checkQuery settings mi nd ts_ast ts (l,q) =
                          src <- readFile (file settings)
                          writeFile "lu-source.js" (declareSource src)
                          writeFile "lu-trace.js"  (declareTrace mi r)
-                         -- printTrace r
          Unknown   -> orElse
 
   runSally lab opts =
@@ -186,23 +180,6 @@ checkQuery settings mi nd ts_ast ts (l,q) =
                 Left err -> bad "Failed to import trace" err
            | otherwise -> bad "Leftover stuff after answer" xs
          Left err -> bad ("Failed to parse result: " ++ err) res
-
-
-printTrace :: LTrace -> IO ()
-printTrace t =
-  do putStrLn "Initial state:"
-     print (ppState (traceStart t))
-     putStrLn "Inputs:"
-     zipWithM_ printInputs [1..] (map fst (traceSteps t))
-
-  where
-  ppState = ppIns
-
-  printInputs n m = print ( ("Step" <+> integer n P.<> colon)
-                            $$ nest 2 (ppIns m))
-
-  ppIns = vcat . map ppIn . Map.toList
-  ppIn (x,y) = pp x <+> "=" <+> pp y
 
 
 sallyRequiredOpts :: [String]

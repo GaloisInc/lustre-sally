@@ -18,6 +18,9 @@ sayWarn = sayCol Yellow
 say :: String -> String -> IO ()
 say x y = putStrLn ("[" ++ x ++ "] " ++ y)
 
+say_ :: String -> String -> IO ()
+say_ x y = putStr ("[" ++ x ++ "] " ++ y)
+
 sayCol :: Color -> String -> String -> IO ()
 sayCol col x y =
   do putStr "["
