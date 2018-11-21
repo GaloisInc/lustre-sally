@@ -3,7 +3,7 @@ module Main(main) where
 
 import System.Exit(exitFailure)
 import Control.Monad(when,unless)
-import Control.Exception(catches, Handler(..)
+import Control.Exception(catches, Handler(..), throwIO
                         , SomeException(..), displayException)
 import Data.Char(isSpace)
 import Data.Text(Text)
@@ -30,7 +30,6 @@ data Settings = Settings
   , node      :: Text
   , saveCore  :: [FilePath]
   , saveSally :: [FilePath]
-  , sallyOpts :: [String]
   , optTC     :: Bool
   , bmcLimit  :: Int
   , kindLimit :: Int
@@ -38,7 +37,7 @@ data Settings = Settings
 
 options :: OptSpec Settings
 options = OptSpec
-  { progDefaults = Settings { file = "", node = "", sallyOpts = []
+  { progDefaults = Settings { file = "", node = ""
                             , saveSally = [], saveCore = [], optTC = True
                             , bmcLimit = 10, kindLimit = 10
                             }
@@ -50,10 +49,6 @@ options = OptSpec
               if node s == ""
                 then Right s { node = Text.pack a }
                 else Left "Multiple nodes.  For the moment we support only one."
-
-      , Option ['s'] ["sally"]
-        "The value of this flag is a flag to sally"
-        $ ReqArg "FLAG" $ \a s -> Right s { sallyOpts = a : sallyOpts s }
 
       , Option [] ["save-core"]
         "Save Core lustre output in this file"
@@ -68,7 +63,7 @@ options = OptSpec
         $ NoArg $ \s -> Right s { optTC = False }
       ]
 
-  , progParamDocs = [("FILE", "Lustre file containing model.")]
+  , progParamDocs = [("FILE", "Lustre file containing model (required).")]
   , progParams    = \a s -> case file s of
                              "" -> Right s { file = a }
                              _  -> Left "We only support a single file for now."
@@ -76,26 +71,31 @@ options = OptSpec
 
 main :: IO ()
 main =
-  do settings <- getOpts options
+  do settings <- getOptsX options
      when (file settings == "") $
-       reportUsageError options ["No Lustre file was speicifed."]
+       throwIO (GetOptException ["No Lustre file was speicifed."])
 
      a <- parseProgramFromFileLatin1 (file settings)
      case a of
        ProgramDecls ds ->
            do ds1 <- doTC settings ds
               mainWork settings ds1
-       _ -> fail "XXX: We don't support modules/packages for the moment."
+       _ -> bad "We don't support modules/packages for the moment." ""
 
   `catches`
-      [ Handler $ \(ParseError mb) ->
+      [ Handler $ \(GetOptException errs) ->
+          do mapM_ (sayFail "Error") errs
+             putStrLn ""
+             putStrLn (usageString options)
+             exitFailure
+
+      , Handler $ \(ParseError mb) ->
           case mb of
             Nothing -> bad "Parse error at the end of the file." ""
             Just p  -> bad ("Parse error at " ++ prettySourcePos p) ""
 
       , Handler $ \(SomeException e) -> bad (displayException e) ""
      ]
-
 
 fakeIdent :: Text -> Ident
 fakeIdent x = Ident { identText    = x

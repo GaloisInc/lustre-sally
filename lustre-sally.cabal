@@ -31,7 +31,7 @@ executable lustre-sally
                        process,
                        directory,
                        simple-smt >= 0.9.3,
-                       simple-get-opt,
+                       simple-get-opt >= 0.2,
                        pretty-show,
                        pretty,
                        time,

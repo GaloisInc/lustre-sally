@@ -15,6 +15,9 @@ sayFail = sayCol Red
 sayWarn :: String -> String -> IO ()
 sayWarn = sayCol Yellow
 
+sayEM :: String -> String -> IO ()
+sayEM = sayCol White
+
 say :: String -> String -> IO ()
 say x y = putStrLn ("[" ++ x ++ "] " ++ y)
 
