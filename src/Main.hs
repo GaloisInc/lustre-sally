@@ -2,7 +2,7 @@
 module Main(main) where
 
 import System.Exit(exitFailure)
-import Control.Monad(when,unless)
+import Control.Monad(when)
 import Control.Exception(catches, Handler(..), throwIO
                         , SomeException(..), displayException)
 import Data.Char(isSpace)
@@ -10,6 +10,8 @@ import Data.Text(Text)
 import qualified Data.Text as Text
 import SimpleGetOpt
 import System.IO(hFlush,stdout)
+import System.FilePath(takeFileName,dropFileName,dropExtension,(</>))
+import System.Directory(createDirectoryIfMissing)
 import Data.IORef(newIORef,writeIORef,readIORef)
 
 import Language.Lustre.Parser
@@ -24,39 +26,46 @@ import Sally
 import Log
 import Lustre
 import Report(declareSource, declareTrace)
+import SaveUI(saveUI)
 
 data Settings = Settings
   { file      :: FilePath
   , node      :: Text
-  , saveCore  :: [FilePath]
-  , saveSally :: [FilePath]
+  , saveCore  :: Bool
+  , saveSally :: Bool
   , optTC     :: Bool
   , bmcLimit  :: Int
   , kindLimit :: Int
+  , outDir    :: FilePath
   }
 
 options :: OptSpec Settings
 options = OptSpec
   { progDefaults = Settings { file = "", node = ""
-                            , saveSally = [], saveCore = [], optTC = True
+                            , saveSally = False, saveCore = False, optTC = True
                             , bmcLimit = 10, kindLimit = 10
+                            , outDir = "output"
                             }
   , progOptions =
 
       [ Option ['n'] ["node"]
-          "Translate this node."
-          $ ReqArg "IDENT" $ \a s ->
-              if node s == ""
-                then Right s { node = Text.pack a }
-                else Left "Multiple nodes.  For the moment we support only one."
+        "Translate this node."
+        $ ReqArg "IDENT" $ \a s ->
+            if node s == ""
+              then Right s { node = Text.pack a }
+              else Left "Multiple nodes.  For the moment we support only one."
+
+      , Option ['d'] ["out-dir"]
+        "Save output in this directory."
+        $ ReqArg "DIR" $ \a s -> Right s { outDir = a }
 
       , Option [] ["save-core"]
         "Save Core lustre output in this file"
-        $ ReqArg "FILE" $ \a s -> Right s { saveCore = a : saveSally s }
+        $ NoArg $ \s -> Right s { saveCore = True }
 
       , Option [] ["save-sally"]
         "Save Sally output in this file"
-        $ ReqArg "FILE" $ \a s -> Right s { saveSally = a : saveSally s }
+        $ NoArg $ \s -> Right s { saveSally = True }
 
       , Option [] ["no-tc"]
         "Disable type-checker"
@@ -72,6 +81,7 @@ options = OptSpec
 main :: IO ()
 main =
   do settings <- getOptsX options
+
      when (file settings == "") $
        throwIO (GetOptException ["No Lustre file was speicifed."])
 
@@ -97,6 +107,15 @@ main =
       , Handler $ \(SomeException e) -> bad (displayException e) ""
      ]
 
+
+bad :: String -> String -> IO a
+bad err res =
+  do sayFail "Error" err
+     putStrLn res
+     exitFailure
+
+
+
 fakeIdent :: Text -> Ident
 fakeIdent x = Ident { identText    = x
                     , identPragmas = []
@@ -115,15 +134,23 @@ doTC settings ds
       Left err -> print err >> exitFailure
       Right _  -> pure ds
 
+
 mainWork :: Settings -> [TopDecl] -> IO ()
 mainWork settings ds =
   do let nm = if node settings == ""
                   then Nothing
                   else Just (Unqual (fakeIdent (node settings)))
          (info,nd) = desugarNode ds nm
-     say "Lustre" ("State has " ++ show (length (nEqns nd)) ++ " variables.")
 
-     mapM_ (\f -> writeFile f (show (pp nd))) (saveCore settings)
+     -- Save JS version of source model
+     do txt <- readFile (file settings)
+        saveOutput (outSourceFile settings) (declareSource txt)
+
+    -- Save Core version of model, if needed
+     when (saveCore settings) $
+       saveOutput (outCoreFile settings) (show (pp nd))
+
+     say "Lustre" ("State has " ++ show (length (nEqns nd)) ++ " variables.")
 
      let (ts,qs)  = transNode nd   -- transition system and queries
 
@@ -132,9 +159,8 @@ mainWork settings ds =
          qs_sexps = [ (x,ppSExpr (translateQuery ts q) "") | (x,q) <- qs ]
 
      -- Put all queries in a single file, if saving.
-     unless (null (saveSally settings)) $
-        do let inp = unlines (ts_sexp : map snd qs_sexps)
-           mapM_ (\f -> writeFile f inp) (saveSally settings)
+     when (saveSally settings) $
+       saveOutput (outSallyFile settings) (unlines (ts_sexp : map snd qs_sexps))
 
      say "Lustre" "Validating properties:"
      mapM_ (checkQuery settings info nd ts ts_sexp) qs_sexps
@@ -142,21 +168,24 @@ mainWork settings ds =
 
 checkQuery :: Settings -> ModelInfo -> Node -> TransSystem ->
                 String -> (Text,String) -> IO ()
-checkQuery settings mi nd ts_ast ts (l,q) =
-  do say_ "Lustre" ("Property " ++ Text.unpack l ++ "... ")
+checkQuery settings mi nd ts_ast ts (l',q) =
+  do say_ "Lustre" ("Property " ++ l ++ "... ")
      hFlush stdout
      attempt "inductive depth" (sallyKind (kindLimit settings)) $
        attempt "concrete depth" (sallyBMC (bmcLimit settings)) $
        sayWarn "Unknown" ("Valid up to depth " ++ show (bmcLimit settings))
   where
+  l = Text.unpack l'
+
   attempt lab x orElse =
     do (maxD,res) <- runSally lab x
        case res of
          Valid     -> sayOK "Ok" (lab ++ " " ++ show maxD)
-         Invalid r -> do sayFail "Failed" ""
-                         src <- readFile (file settings)
-                         writeFile "lu-source.js" (declareSource src)
-                         writeFile "lu-trace.js"  (declareTrace mi r)
+         Invalid r -> do let propDir = outPropDir settings l
+                         sayFail "Failed" ("See " ++ (propDir </> "index.html"))
+                         saveUI propDir
+                         saveOutput (outTraceFile settings l)
+                                    (declareTrace mi r)
          Unknown   -> orElse
 
   runSally lab opts =
@@ -165,12 +194,11 @@ checkQuery settings mi nd ts_ast ts (l,q) =
        let callback _ n = do progSay prog (lab ++ " " ++ show n)
                              writeIORef maxVal n -- assumes monotonic increase
        mbres <- sallyInteract "sally" opts callback (ts ++ q)
-       -- res <- sally "sally" opts (ts ++ q)
        progClear prog
        v <- readIORef maxVal
 
        res <- case mbres of
-                Left err -> bad "Sally error:" err
+                Left err  -> bad "Sally error:" err
                 Right res -> pure res
        case readSallyResult ts_ast res of
          Right (r,xs)
@@ -182,6 +210,8 @@ checkQuery settings mi nd ts_ast ts (l,q) =
          Left err -> bad ("Failed to parse result: " ++ err) res
 
 
+--------------------------------------------------------------------------------
+-- Sally flags
 sallyRequiredOpts :: [String]
 sallyRequiredOpts = [ "--show-trace"
                     , "--no-lets"
@@ -201,10 +231,34 @@ sallyBMC lim = "--engine=bmc"
              : sallyRequiredOpts
 
 
-bad :: String -> String -> IO a
-bad err res =
-  do sayFail "Error" err
-     putStrLn res
-     exitFailure
+--------------------------------------------------------------------------------
+-- Output directory structure
+
+outFileDir :: Settings -> FilePath
+outFileDir settings = outDir settings </>
+                      dropExtension (takeFileName (file settings))
+-- XXX: clashes if inputs in different directories?
+
+outPropDir :: Settings -> String -> FilePath
+outPropDir settings prop = outFileDir settings </> prop
+-- XXX: escape, maybe
+
+outSallyFile :: Settings -> FilePath
+outSallyFile settings = outFileDir settings </> "problem.sally"
+
+outSourceFile :: Settings -> FilePath
+outSourceFile settings = outFileDir settings </> "source.js"
+
+outCoreFile :: Settings -> FilePath
+outCoreFile settings = outFileDir settings </> "model.core-lus"
+
+outTraceFile :: Settings -> String -> FilePath
+outTraceFile settigs prop = outPropDir settigs prop </> "trace.js"
+
+saveOutput :: FilePath -> String -> IO ()
+saveOutput fi out =
+  do let dir = dropFileName fi
+     createDirectoryIfMissing True dir
+     writeFile fi out
 
 

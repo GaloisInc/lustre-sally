@@ -21,10 +21,16 @@ executable lustre-sally
                        Log,
                        Lustre,
                        Report,
-                       LSPanic
+                       LSPanic,
+                       SaveUI,
+                       UI.Index,
+                       UI.Ui,
+                       UI.Style,
+                       UI.Jquery
 
   build-depends:       base >=4.11 && <4.13,
                        containers,
+                       bytestring,
                        text,
                        ansi-terminal,
                        panic,
@@ -35,6 +41,13 @@ executable lustre-sally
                        pretty-show,
                        pretty,
                        time,
+                       filepath,
+                       raw-strings-qq,
                        language-lustre
 
-
+executable generate-ui
+  hs-source-dirs:     build-utils
+  main-is:            generate-ui.hs
+  default-language:   Haskell2010
+  ghc-options:        -Wall
+  build-depends:      base, filepath, directory

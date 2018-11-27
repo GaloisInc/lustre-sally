@@ -1,3 +1,15 @@
+-- WARNING: Automatically generated from "ui/index.html"
+-- See executable `generate-ui`
+{-# Language QuasiQuotes #-}
+module UI.Index where
+
+import Text.RawString.QQ
+
+source :: String
+source = "index.html"
+
+content :: String
+content = [r|
 <!doctype html>
 <html>
 <head>
@@ -18,3 +30,5 @@ $(document).ready(function() {
 </script>
 </head>
 <body><body></html>
+
+|]
