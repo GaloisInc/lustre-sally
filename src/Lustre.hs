@@ -5,7 +5,6 @@
 -- the appropriate type.
 module Lustre (transNode, transProp, importTrace, LTrace) where
 
-import           Data.Text(Text)
 import qualified Data.Text as Text
 import           Data.Map (Map)
 import qualified Data.Map as Map
@@ -17,12 +16,15 @@ import           Data.Char(isAscii,isAlpha,isDigit)
 import qualified TransitionSystem as TS
 
 
+import Language.Lustre.AST(PropName)
 import Language.Lustre.Core
 import qualified Language.Lustre.Semantics.Core as L
 
-transNode :: Node -> (TS.TransSystem, [(Text,TS.Expr)])
-transNode n = (ts, [(x, transProp TS.InCurState p) | (x,p) <- nShows n])
+transNode :: Node -> (TS.TransSystem, [(PropName,TS.Expr)])
+transNode n = (ts, map mkProp (nShows n))
   where
+  mkProp (x,p) = (x, transProp TS.InCurState p)
+
   ts = TS.TransSystem
          { TS.tsVars    = Map.unions (inVars : otherVars :map declareEqn (nEqns n))
          , TS.tsInputs  = inVars

@@ -4,6 +4,7 @@ module Report where
 import Data.Map(Map)
 import qualified Data.Map as Map
 import qualified Text.PrettyPrint as PP
+import qualified Data.Text as Text
 
 import Language.Lustre.AST
 import Language.Lustre.ModelState
@@ -19,12 +20,17 @@ declareSource :: String -> String
 declareSource s = show ("var source =" PP.$$ PP.nest 2 js)
   where JS js = text (untab s)
 
-declareTrace :: ModelInfo -> LTrace -> String
-declareTrace mi tr = show ("var trace =" PP.$$ PP.nest 2 js)
-  where JS js = case computeCallTree mi of
-                  Just ct -> renderTrace ct tr
-                  Nothing -> panic "declareTrace"
-                                [ "Failed to construct call tree." ]
+declareTrace :: ModelInfo -> PropName -> LTrace -> String
+declareTrace mi pn tr = show ("var trace =" PP.$$ PP.nest 2 js)
+  where
+  JS js = case computeCallTree mi of
+            Just ct ->
+              obj [ "name" ~> text (Text.unpack (pName pn))
+                  , "line" ~> int (sourceLine (sourceFrom (pRange pn)))
+                  , "trace" ~> renderTrace ct tr
+                  ]
+            Nothing ->
+              panic "declareTrace" [ "Failed to construct call tree." ]
 
 untab :: String -> String
 untab = go 0

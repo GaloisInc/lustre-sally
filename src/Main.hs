@@ -182,7 +182,7 @@ mainWork settings ds =
 
 
 checkQuery :: Settings -> ModelInfo -> Node -> TransSystem ->
-                String -> (Text,String) -> IO (SallyResult ())
+                String -> (PropName,String) -> IO (SallyResult ())
 checkQuery settings mi nd ts_ast ts (l',q) =
   do say_ "Lustre" ("Property " ++ l ++ "... ")
      hFlush stdout
@@ -191,7 +191,7 @@ checkQuery settings mi nd ts_ast ts (l',q) =
        do sayWarn "Unknown" ("Valid up to depth " ++ show (bmcLimit settings))
           pure Unknown
   where
-  l = Text.unpack l'
+  l = Text.unpack (pName l')
 
   attempt lab x orElse =
     do (maxD,res) <- runSally lab x
@@ -203,7 +203,7 @@ checkQuery settings mi nd ts_ast ts (l',q) =
             do let propDir = outPropDir settings l
                sayFail "Invalid" ("See " ++ (propDir </> "index.html"))
                saveUI propDir
-               saveOutput (outTraceFile settings l) (declareTrace mi r)
+               saveOutput (outTraceFile settings l) (declareTrace mi l' r)
                pure (Invalid ())
 
          Unknown   -> orElse

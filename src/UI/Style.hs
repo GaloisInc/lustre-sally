@@ -55,6 +55,11 @@ content = [r|
   margin-bottom: 2px;
 }
 
+.prop.line {
+  background-color: #fc6;
+  font-weight: bold;
+}
+
 .line:hover {
   background-color: #ccc;
 }

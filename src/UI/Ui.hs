@@ -96,11 +96,15 @@ function moduleViewTrace () {
 
   // Drawing
 
-  function drawSource(source, attrs) {
+  function drawSource(source, trace) {
     // source : String
-    // attrs : { Line ~> [ {from,to: Int, attr: [Attr]} ] }
+    // trace: { name: String
+    //        , line: Int
+    //        , trace: Line ~> [ {from,to: Int, attr: [Attr]} ] }
     // Line = String
     // Attr = { step: Int, cid: String, value: String }
+
+    var attrs = trace.trace
 
     var dom = $('<div/>').addClass('code')
 
@@ -114,6 +118,9 @@ function moduleViewTrace () {
     jQuery.each(lines,function(lineNoPrev,txt) {
       var lineNo = lineNoPrev + 1   // lines start at 1
       var ln = $('<div/>').addClass('line').attr('id',lineName(lineNo))
+      if (lineNo === trace.line) ln.addClass('prop')
+
+
       ln.append($('<div/>').addClass('line-no').text(lineNo))
       var start = 0
       jQuery.each(getAnn(lineNo),function(ix,ann) {
