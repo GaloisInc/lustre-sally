@@ -163,29 +163,49 @@ mainWork settings ds =
        saveOutput (outSallyFile settings) (unlines (ts_sexp : map snd qs_sexps))
 
      say "Lustre" "Validating properties:"
-     mapM_ (checkQuery settings info nd ts ts_sexp) qs_sexps
+     outs <- mapM (checkQuery settings info nd ts ts_sexp) qs_sexps
+     let summary = foldr status Valid outs
+     say_ "Lustre" "Model status: "
+     case summary of
+       Valid     -> sayOK   "Valid" ""
+       Unknown   -> sayWarn "Unknown" ""
+       Invalid _ -> sayFail "Invalid" ""
+
+
+  where
+  status a s = case a of
+                 Invalid _ -> Invalid ()
+                 Unknown   -> case s of
+                                Invalid _ -> s
+                                _         -> Unknown
+                 Valid     -> s
 
 
 checkQuery :: Settings -> ModelInfo -> Node -> TransSystem ->
-                String -> (Text,String) -> IO ()
+                String -> (Text,String) -> IO (SallyResult ())
 checkQuery settings mi nd ts_ast ts (l',q) =
   do say_ "Lustre" ("Property " ++ l ++ "... ")
      hFlush stdout
      attempt "inductive depth" (sallyKind (kindLimit settings)) $
        attempt "concrete depth" (sallyBMC (bmcLimit settings)) $
-       sayWarn "Unknown" ("Valid up to depth " ++ show (bmcLimit settings))
+       do sayWarn "Unknown" ("Valid up to depth " ++ show (bmcLimit settings))
+          pure Unknown
   where
   l = Text.unpack l'
 
   attempt lab x orElse =
     do (maxD,res) <- runSally lab x
        case res of
-         Valid     -> sayOK "Ok" (lab ++ " " ++ show maxD)
-         Invalid r -> do let propDir = outPropDir settings l
-                         sayFail "Failed" ("See " ++ (propDir </> "index.html"))
-                         saveUI propDir
-                         saveOutput (outTraceFile settings l)
-                                    (declareTrace mi r)
+         Valid ->
+            do sayOK "Valid" (lab ++ " " ++ show maxD)
+               pure Valid
+         Invalid r ->
+            do let propDir = outPropDir settings l
+               sayFail "Invalid" ("See " ++ (propDir </> "index.html"))
+               saveUI propDir
+               saveOutput (outTraceFile settings l) (declareTrace mi r)
+               pure (Invalid ())
+
          Unknown   -> orElse
 
   runSally lab opts =
