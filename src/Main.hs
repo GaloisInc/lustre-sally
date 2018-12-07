@@ -44,7 +44,7 @@ options = OptSpec
   { progDefaults = Settings { file = "", node = ""
                             , saveSally = False, saveCore = False, optTC = True
                             , bmcLimit = 10, kindLimit = 10
-                            , outDir = "output"
+                            , outDir = "results"
                             }
   , progOptions =
 
