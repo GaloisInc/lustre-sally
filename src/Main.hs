@@ -150,7 +150,7 @@ mainWork settings ds =
      when (saveCore settings) $
        saveOutput (outCoreFile settings) (show (pp nd))
 
-     say "Lustre" ("State has " ++ show (length (nEqns nd)) ++ " variables.")
+     -- say "Lustre" ("State has " ++ show (length (nEqns nd)) ++ " variables.")
 
      let (ts,qs)  = transNode nd   -- transition system and queries
 
