@@ -186,8 +186,8 @@ checkQuery :: Settings -> ModelInfo -> Node -> TransSystem ->
 checkQuery settings mi nd ts_ast ts (l',q) =
   do say_ "Lustre" ("Property " ++ l ++ "... ")
      hFlush stdout
-     attempt "inductive depth" (sallyKind (kindLimit settings)) $
-       attempt "concrete depth" (sallyBMC (bmcLimit settings)) $
+     attempt "considering simultaneous states to depth" (sallyKind (kindLimit settings)) $
+       attempt "counter-example search depth" (sallyBMC (bmcLimit settings)) $
        do sayWarn "Unknown" ("Valid up to depth " ++ show (bmcLimit settings))
           pure Unknown
   where
