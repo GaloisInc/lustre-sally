@@ -16,10 +16,10 @@ import Data.IORef(newIORef,writeIORef,readIORef)
 
 import Language.Lustre.Parser
 import Language.Lustre.AST
-import Language.Lustre.Core(Node,nEqns)
+import Language.Lustre.Core(Node)
 import Language.Lustre.Pretty
-import Language.Lustre.Transform.Desugar(desugarNode)
-import Language.Lustre.TypeCheck(quickCheckDecls)
+import Language.Lustre.Monad(runLustre,LustreConf(..))
+import Language.Lustre.Driver(quickNodeToCore)
 import Language.Lustre.ModelState(ModelInfo)
 import TransitionSystem(TransSystem)
 import Sally
@@ -30,7 +30,7 @@ import SaveUI(saveUI)
 
 data Settings = Settings
   { file      :: FilePath
-  , node      :: Text
+  , node      :: Maybe Text
   , saveCore  :: Bool
   , saveSally :: Bool
   , optTC     :: Bool
@@ -41,7 +41,7 @@ data Settings = Settings
 
 options :: OptSpec Settings
 options = OptSpec
-  { progDefaults = Settings { file = "", node = ""
+  { progDefaults = Settings { file = "", node = Nothing
                             , saveSally = False, saveCore = False, optTC = True
                             , bmcLimit = 10, kindLimit = 10
                             , outDir = "results"
@@ -51,9 +51,10 @@ options = OptSpec
       [ Option ['n'] ["node"]
         "Translate this node."
         $ ReqArg "IDENT" $ \a s ->
-            if node s == ""
-              then Right s { node = Text.pack a }
-              else Left "Multiple nodes.  For the moment we support only one."
+            case node s of
+              Nothing -> Right s { node = Just (Text.pack a) }
+              Just _  ->
+                Left "Multiple nodes.  For the moment we support only one."
 
       , Option ['d'] ["out-dir"]
         "Save output in this directory."
@@ -87,9 +88,7 @@ main =
 
      a <- parseProgramFromFileLatin1 (file settings)
      case a of
-       ProgramDecls ds ->
-           do ds1 <- doTC settings ds
-              mainWork settings ds1
+       ProgramDecls ds -> mainWork settings ds
        _ -> bad "We don't support modules/packages for the moment." ""
 
   `catches`
@@ -116,31 +115,12 @@ bad err res =
 
 
 
-fakeIdent :: Text -> Ident
-fakeIdent x = Ident { identText    = x
-                    , identPragmas = []
-                    , identRange   = fakeRange
-                    }
-  where
-  fakePos   = SourcePos 0 0 0 ""
-  fakeRange = SourceRange fakePos fakePos
-
-
-doTC :: Settings -> [TopDecl] -> IO [TopDecl]
-doTC settings ds
-  | not (optTC settings) = pure ds
-  | otherwise =
-    case quickCheckDecls ds of
-      Left err -> print err >> exitFailure
-      Right _  -> pure ds
-
-
 mainWork :: Settings -> [TopDecl] -> IO ()
 mainWork settings ds =
-  do let nm = if node settings == ""
-                  then Nothing
-                  else Just (Unqual (fakeIdent (node settings)))
-         (info,nd) = desugarNode ds nm
+  do let luConf = LustreConf { lustreInitialNameSeed = Nothing
+                             , lustreLogHandle = stdout
+                             }
+     (info,nd) <- runLustre luConf (quickNodeToCore (node settings) ds)
 
      -- Save JS version of source model
      do txt <- readFile (file settings)
