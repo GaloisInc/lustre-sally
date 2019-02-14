@@ -19,25 +19,30 @@ import qualified TransitionSystem as TS
 import Language.Lustre.AST(PropName)
 import Language.Lustre.Core
 import qualified Language.Lustre.Semantics.Core as L
+import Language.Lustre.Pretty(showPP)
+import LSPanic
 
 transNode :: Node -> (TS.TransSystem, [(PropName,TS.Expr)])
 transNode n = (ts, map mkProp (nShows n))
   where
   mkProp (x,p) = (x, transProp TS.InCurState p)
 
+  env = nodeEnv n
+
   ts = TS.TransSystem
          { TS.tsVars    = Map.unions (inVars : otherVars :map declareEqn (nEqns n))
          , TS.tsInputs  = inVars
          , TS.tsInit    = initNode n
-         , TS.tsTrans   = stepNode n
+         , TS.tsTrans   = stepNode env n
          }
 
   inVars    = Map.unions (map declareVar (nInputs n))
   otherVars = declareVarInitializing
 
 
-
+type Env = Map Ident CType
 type Val = TS.Expr
+type TVal = (Val,Type)
 
 -- | Literals are not nil.
 valLit :: Literal -> Val
@@ -59,12 +64,13 @@ initName :: Ident -> TS.Name
 initName (Ident x) = TS.Name ("|" <> x <> "-init|")
 
 -- | Translate an atom, by using the given name-space for variables.
-valAtom :: TS.VarNameSpace -> Atom -> Val
-valAtom ns atom =
+valAtom :: Env -> TS.VarNameSpace -> Atom -> Val
+valAtom env ns atom =
   case atom of
     Lit l     -> valLit l
     Var a     -> ns TS.::: valName a
-    Prim f as -> primFun f (map (valAtom ns) as)
+    Prim f as -> primFun f (map evT as)
+      where evT a = (valAtom env ns a, typeOfCType (typeOf env a))
 
 -- | A boolean variable which is true in the very first state,
 -- beofre we've received any inputs, and false after-wards..
@@ -164,19 +170,20 @@ initNode n = ands (setInit : mapMaybe initS (nEqns n))
 
   setInit = TS.InCurState TS.::: varInitializing TS.:==: true
 
-stepNode :: Node -> TS.Expr
-stepNode n =
+stepNode :: Env -> Node -> TS.Expr
+stepNode env n =
   ands $ ((TS.InNextState TS.::: varInitializing) TS.:==: false) :
-         map stepInput (nInputs n) ++
+         map (stepInput env) (nInputs n) ++
          map (transBool TS.InNextState . snd) (nAssuming n) ++
-         map stepEqn (nEqns n)
+         map (stepEqn env) (nEqns n)
 
 -- XXX: clocks?
-stepInput :: Binder -> TS.Expr
-stepInput (x ::: _) = setVals TS.InNextState x (valAtom TS.FromInput (Var x))
+stepInput :: Env -> Binder -> TS.Expr
+stepInput env (x ::: _) = setVals TS.InNextState x a
+  where a = valAtom env TS.FromInput (Var x)
 
-stepEqn :: Eqn -> TS.Expr
-stepEqn (x ::: _ `On` c := expr) =
+stepEqn :: Env -> Eqn -> TS.Expr
+stepEqn env (x ::: _ `On` c := expr) =
   case expr of
     Atom a      -> new a
     Current a   -> new a
@@ -200,8 +207,8 @@ stepEqn (x ::: _ `On` c := expr) =
 
 
   where
-  atom    = valAtom TS.InNextState
-  old     = letVars . valAtom TS.InCurState
+  atom    = valAtom env TS.InNextState
+  old     = letVars . valAtom env TS.InCurState
   new     = letVars . atom
   letVars = setVals TS.InNextState x
 
@@ -216,57 +223,70 @@ stepEqn (x ::: _ `On` c := expr) =
 
 
 -- | Translation of primitive functions.
-primFun :: Op -> [Val] -> Val
+primFun :: Op -> [TVal] -> Val
 primFun op as =
   case (op,as) of
-    (Neg, [a])        -> TS.Neg a
-    (Not, [a])        -> TS.Not a
+    (Neg, [(a,_)])    -> TS.Neg a
+    (Not, [(a,_)])    -> TS.Not a
 
-    (And, [a,b])      -> a TS.:&&: b
-    (Or,  [a,b])      -> a TS.:||: b
-    (Xor,  [a,b])     -> a TS.:/=: b
-    (Implies, [a,b])  -> a TS.:=>: b
+    (And, _)          -> bool2 (TS.:&&:)
+    (Or,  _)          -> bool2 (TS.:||:)
+    (Xor, _)          -> bool2 (TS.:/=:)
+    (Implies, _)      -> bool2 (TS.:=>:)
 
-    (Add, [a,b])      -> a TS.:+: b
-    (Sub, [a,b])      -> a TS.:-: b
-    (Mul, [a,b])      -> a TS.:*: b
-    (Mod, [a,b])      -> TS.Mod a b
-    (Div, [a,b])      -> TS.Div a b
+    (Add, [(a,_),(b,_)])      -> a TS.:+: b
+    (Sub, [(a,_),(b,_)])      -> a TS.:-: b
+    (Mul, [(a,_),(b,_)])      -> a TS.:*: b
+    (Mod, [(a,_),(b,_)])      -> TS.Mod a b
+    (Div, [(a,ta),(b,tb)])    ->
+      case (ta, tb) of
+        (TInt,TInt)           -> TS.Div a b
+        (TReal,TReal)         -> a TS.:/: b
+        _ -> panic "primFun(Div)" ["Don't know how to divide"
+                                  , showPP ta, showPP tb ]
 
-    (Eq,  [a,b])      -> a TS.:==: b
-    (Neq, [a,b])      -> a TS.:/=: b
-    (Lt,  [a,b])      -> a TS.:<:  b
-    (Leq, [a,b])      -> a TS.:<=: b
-    (Gt,  [a,b])      -> a TS.:>:  b
-    (Geq, [a,b])      -> a TS.:>=: b
+    (Eq,  _)          -> rel (TS.:==:)
+    (Neq, _)          -> rel (TS.:/=:)
+    (Lt,  _)          -> rel (TS.:<:)
+    (Leq, _)          -> rel (TS.:<=:)
+    (Gt,  _)          -> rel (TS.:>:)
+    (Geq, _)          -> rel (TS.:>=:)
 
-    (IntCast, [a])    -> TS.ToInt a
-    (RealCast, [a])   -> TS.ToReal a
+    (IntCast, [(a,_)]) -> TS.ToInt a
+    (RealCast, [(a,_)])-> TS.ToReal a
 
     (AtMostOne, _)    -> mkAtMostOne
     (Nor, _)          -> case as of
                            []  -> true
-                           _   -> TS.Not (foldr1 (TS.:||:) as)
+                           _   -> TS.Not (foldr1 (TS.:||:) (map fst as))
 
-    (ITE, [a,b,c])    -> TS.ITE a b c
+    (ITE, [(a,_),(b,_),(c,_)])    -> TS.ITE a b c
 
     _ -> error ("XXX: " ++ show op)
 
   where
+  bool2 f = case as of
+              [(a,_),(b,_)] -> f a b
+              _ -> panic "primFun" ["Invalid bool2"]
+
+  rel f = case as of
+            [(a,_),(b,_)] -> f a b
+            _ -> panic "primFun" ["Invalid rel"]
+
   mkAtMostOne = case as of
                   [] -> true
                   _  -> atMostOneVal as
 
   norVal xs = case xs of
                 [] -> true
-                _  -> TS.Not (foldr1 (TS.:||:) xs)
+                _  -> TS.Not (foldr1 (TS.:||:) (map fst xs))
 
   atMostOneVal vs =
     case vs of
       []     -> true
       [_]    -> true
-      [a,b]  -> a TS.:=>: TS.Not b
-      a : bs -> TS.ITE a (norVal bs) (atMostOneVal bs)
+      [(a,_),(b,_)]  -> a TS.:=>: TS.Not b
+      (a,_) : bs -> TS.ITE a (norVal bs) (atMostOneVal bs)
 
 
 
