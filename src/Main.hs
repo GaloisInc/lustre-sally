@@ -16,7 +16,7 @@ import Data.IORef(newIORef,writeIORef,readIORef)
 
 import Language.Lustre.Parser
 import Language.Lustre.AST
-import Language.Lustre.Core(Node,nEqns)
+import Language.Lustre.Core(Node)
 import Language.Lustre.Pretty
 import Language.Lustre.Transform.Desugar(desugarNode)
 import Language.Lustre.TypeCheck(quickCheckDecls)

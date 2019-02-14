@@ -104,14 +104,17 @@ pattern x :-: y = EOp OpSub [x,y]
 pattern Neg :: Expr -> Expr
 pattern Neg x = EOp OpNeg [x]
 
+-- | Both integer and real division.
 pattern (:*:) :: Expr -> Expr -> Expr
 pattern x :*: y = EOp OpMul [x,y]
 
+-- | Real division.
 pattern (:/:) :: Expr -> Expr -> Expr
 pattern x :/: y = EOp OpDiv [x,y]
 
+-- | Integral division.
 pattern Div :: Expr -> Expr -> Expr
-pattern Div x y = EOp OpDiv [x,y]
+pattern Div x y = EOp OpDivInt [x,y]
 
 pattern Mod :: Expr -> Expr -> Expr
 pattern Mod x y = EOp OpMod [x,y]
