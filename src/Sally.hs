@@ -110,7 +110,11 @@ toSallyExpr qs expr =
     x :-: y   -> SMT.sub (toSallyExpr qs x) (toSallyExpr qs y)
     x :*: y   -> SMT.mul (toSallyExpr qs x) (toSallyExpr qs y)
     x :/: y   -> SMT.realDiv (toSallyExpr qs x) (toSallyExpr qs y)
-    Div x y   -> SMT.div (toSallyExpr qs x) (toSallyExpr qs y)
+    Div x y   -> SMT.fun "/" [ toSallyExpr qs x, toSallyExpr qs y ]
+        -- NOTE:  in SMT we should be using `div` here, but it would appear
+        -- that sally uses `/` for integer division as well.
+
+
     Mod x y   -> SMT.mod (toSallyExpr qs x) (toSallyExpr qs y)
 
     TS.Bool x -> SMT.bool x
