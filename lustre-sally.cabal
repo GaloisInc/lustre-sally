@@ -36,7 +36,7 @@ executable lustre-sally
                        panic,
                        process,
                        directory,
-                       simple-smt >= 0.9.3,
+                       simple-smt >= 0.9.4,
                        simple-get-opt >= 0.2,
                        pretty-show,
                        pretty,
