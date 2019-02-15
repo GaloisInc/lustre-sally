@@ -101,8 +101,12 @@ toSallyExpr qs expr =
     TS.Int x  -> SMT.int x
     TS.Real x -> SMT.real x
 
-    ToReal x -> SMT.fun "to_real" [ toSallyExpr qs x ]
-    ToInt x  -> SMT.fun "to_int"  [ toSallyExpr qs x ]
+    ToReal x      -> SMT.toReal (toSallyExpr qs x)
+    ToIntTrunc x  -> SMT.ite (SMT.lt x' (SMT.int 0))
+                             (SMT.neg (SMT.toInt (SMT.neg x')))
+                             (SMT.toInt x')
+      where x' = toSallyExpr qs x
+    ToIntFloor x  -> SMT.toInt (toSallyExpr qs x)
 
 
     Neg x     -> SMT.neg (toSallyExpr qs x)
@@ -110,9 +114,16 @@ toSallyExpr qs expr =
     x :-: y   -> SMT.sub (toSallyExpr qs x) (toSallyExpr qs y)
     x :*: y   -> SMT.mul (toSallyExpr qs x) (toSallyExpr qs y)
     x :/: y   -> SMT.realDiv (toSallyExpr qs x) (toSallyExpr qs y)
-    Div x y   -> SMT.fun "/" [ toSallyExpr qs x, toSallyExpr qs y ]
-        -- NOTE:  in SMT we should be using `div` here, but it would appear
-        -- that sally uses `/` for integer division as well.
+    Div x y   -> SMT.ite
+                   (SMT.lt y' (SMT.int 0))
+                   (SMT.neg (SMT.toInt (
+                               SMT.realDiv x'
+                               (SMT.toReal (SMT.neg y'))
+                             )))
+                   (SMT.toInt (SMT.realDiv x' (SMT.toReal y')))
+      where
+      x' = SMT.toReal (toSallyExpr qs x)
+      y' = toSallyExpr qs y
 
 
     Mod x y   -> SMT.mod (toSallyExpr qs x) (toSallyExpr qs y)
