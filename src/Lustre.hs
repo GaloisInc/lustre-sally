@@ -252,7 +252,8 @@ primFun op as =
     (Gt,  _)          -> rel (TS.:>:)
     (Geq, _)          -> rel (TS.:>=:)
 
-    (IntCast, [(a,_)]) -> TS.ToInt a
+    (IntCast, [(a,_)]) -> TS.ToIntTrunc a
+    (FloorCast, [(a,_)]) -> TS.ToIntFloor a
     (RealCast, [(a,_)])-> TS.ToReal a
 
     (AtMostOne, _)    -> mkAtMostOne

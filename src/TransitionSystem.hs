@@ -48,7 +48,9 @@ data Op           = OpEq | OpLt | OpLeq
                   | OpNeg
                   | OpAdd | OpSub | OpMul | OpDiv | OpDivInt | OpMod
                   | OpITE
-                  | OpToReal | OpToInt
+                  | OpToReal
+                  | OpToIntTrunc    -- ^ towards 0
+                  | OpToIntFloor    -- ^ towards -inf
                   | OpLit !Value
                     deriving Show
 
@@ -122,8 +124,11 @@ pattern Mod x y = EOp OpMod [x,y]
 pattern ToReal :: Expr -> Expr
 pattern ToReal x = EOp OpToReal [x]
 
-pattern ToInt :: Expr -> Expr
-pattern ToInt x = EOp OpToInt [x]
+pattern ToIntTrunc :: Expr -> Expr
+pattern ToIntTrunc x = EOp OpToIntTrunc [x]
+
+pattern ToIntFloor :: Expr -> Expr
+pattern ToIntFloor x = EOp OpToIntFloor [x]
 
 pattern Int :: Integer -> Expr
 pattern Int x = EOp (OpLit (VInt x)) []
@@ -236,7 +241,8 @@ typeOf ts nsOk = check
                 Right t1
 
           (OpToReal, [x])     -> expect TInteger x >> pure TReal
-          (OpToInt, [x])      -> expect TReal x >> pure TInteger
+          (OpToIntTrunc, [x]) -> expect TReal x >> pure TInteger
+          (OpToIntFloor, [x]) -> expect TReal x >> pure TInteger
 
           _                   -> Left "BAD OP"
 

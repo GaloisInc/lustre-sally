@@ -101,8 +101,9 @@ toSallyExpr qs expr =
     TS.Int x  -> SMT.int x
     TS.Real x -> SMT.real x
 
-    ToReal x -> SMT.fun "to_real" [ toSallyExpr qs x ]
-    ToInt x  -> SMT.fun "to_int"  [ toSallyExpr qs x ]
+    ToReal x      -> SMT.fun "to_real" [ toSallyExpr qs x ]
+    ToIntTrunc x  -> error "XXX: encode truncation in some way."
+    ToIntFloor x  -> SMT.fun "to_int"  [ toSallyExpr qs x ]
 
 
     Neg x     -> SMT.neg (toSallyExpr qs x)
@@ -110,9 +111,8 @@ toSallyExpr qs expr =
     x :-: y   -> SMT.sub (toSallyExpr qs x) (toSallyExpr qs y)
     x :*: y   -> SMT.mul (toSallyExpr qs x) (toSallyExpr qs y)
     x :/: y   -> SMT.realDiv (toSallyExpr qs x) (toSallyExpr qs y)
-    Div x y   -> SMT.fun "/" [ toSallyExpr qs x, toSallyExpr qs y ]
-        -- NOTE:  in SMT we should be using `div` here, but it would appear
-        -- that sally uses `/` for integer division as well.
+    Div x y   -> error "XXX: encode integer division somehow"
+        -- XXX: Sally does not seem to have this operator.
 
 
     Mod x y   -> SMT.mod (toSallyExpr qs x) (toSallyExpr qs y)
