@@ -1,0 +1,3 @@
+[submodule "dependencies/lustre"]
+	path = dependencies/lustre
+	url = https://github.com/GaloisInc/lustre.git
