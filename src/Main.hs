@@ -13,6 +13,7 @@ import System.IO(hFlush,stdout)
 import System.FilePath(takeFileName,dropFileName,dropExtension,(</>))
 import System.Directory(createDirectoryIfMissing)
 import Data.IORef(newIORef,writeIORef,readIORef)
+import Text.Read(readMaybe)
 
 import Language.Lustre.Parser
 import Language.Lustre.AST
@@ -36,16 +37,13 @@ data Settings = Settings
   , optTC     :: Bool
   , bmcLimit  :: Int
   , kindLimit :: Int
+  , useMCSat  :: Bool
   , outDir    :: FilePath
   }
 
 options :: OptSpec Settings
 options = OptSpec
-  { progDefaults = Settings { file = "", node = ""
-                            , saveSally = False, saveCore = False, optTC = True
-                            , bmcLimit = 10, kindLimit = 10
-                            , outDir = "results"
-                            }
+  { progDefaults = defaults
   , progOptions =
 
       [ Option ['n'] ["node"]
@@ -70,6 +68,24 @@ options = OptSpec
       , Option [] ["no-tc"]
         "Disable type-checker"
         $ NoArg $ \s -> Right s { optTC = False }
+
+      , Option [] ["no-mcsat"]
+        "Do not use MCSAT based solver."
+        $ NoArg $ \s -> Right s { useMCSat = False }
+
+      , Option [] ["counter-example-limit"]
+        ("How big of a counter example to look for" ++
+         " (default: " ++ show (bmcLimit defaults) ++ ")")
+        $ ReqArg "NUM" $ \a s -> case readMaybe a of
+                                   Just n | n >= 0 -> Right s { bmcLimit = n }
+                                   _ -> Left "Invalid counter example limit."
+
+      , Option [] ["proof-depth"]
+        ("Limit to number of previous states to consider" ++
+         " (default: " ++ show (kindLimit defaults) ++ ")")
+        $ ReqArg "NUM" $ \a s -> case readMaybe a of
+                                   Just n | n >= 0 -> Right s { kindLimit = n }
+                                   _ -> Left "Invalid proof depth."
       ]
 
   , progParamDocs = [("FILE", "Lustre file containing model (required).")]
@@ -78,10 +94,18 @@ options = OptSpec
                              _  -> Left "We only support a single file for now."
   }
 
+  where
+  defaults = Settings { file = "", node = ""
+         , saveSally = False, saveCore = False, optTC = True
+         , bmcLimit = 10, kindLimit = 10
+         , useMCSat = True
+         , outDir = "results"
+         }
+
+
 main :: IO ()
 main =
   do settings <- getOptsX options
-
      when (file settings == "") $
        throwIO (GetOptException ["No Lustre file was speicifed."])
 
@@ -186,8 +210,8 @@ checkQuery :: Settings -> ModelInfo -> Node -> TransSystem ->
 checkQuery settings mi nd ts_ast ts (l',q) =
   do say_ "Lustre" ("Property " ++ l ++ "... ")
      hFlush stdout
-     attempt "considering simultaneous states to depth" (sallyKind (kindLimit settings)) $
-       attempt "counter-example search depth" (sallyBMC (bmcLimit settings)) $
+     attempt "considering simultaneous states to depth" (sallyKind settings) $
+       attempt "counter-example search depth" (sallyBMC settings) $
        do sayWarn "Unknown" ("Valid up to depth " ++ show (bmcLimit settings))
           pure Unknown
   where
@@ -232,23 +256,26 @@ checkQuery settings mi nd ts_ast ts (l',q) =
 
 --------------------------------------------------------------------------------
 -- Sally flags
-sallyRequiredOpts :: [String]
-sallyRequiredOpts = [ "--show-trace"
-                    , "--no-lets"
-                    , "--output-language=mcmt"
-                    , "--yices2-mcsat"
-                    , "--verbosity=1"
-                    ]
+sallyRequiredOpts :: Settings -> [String]
+sallyRequiredOpts s = ps ++
+  [ "--show-trace"
+  , "--no-lets"
+  , "--output-language=mcmt"
+  , "--verbosity=1"
+  ]
+  where ps = if useMCSat s then ["--yices2-mcsat"] else []
 
-sallyKind :: Int -> [String]
-sallyKind lim = "--engine=kind"
-              : ("--kind-max=" ++ show lim)
-              : sallyRequiredOpts
+sallyKind :: Settings -> [String]
+sallyKind s = "--engine=kind"
+            : ("--kind-max=" ++ show lim)
+            : sallyRequiredOpts s
+  where lim = kindLimit s
 
-sallyBMC :: Int -> [String]
-sallyBMC lim = "--engine=bmc"
-             : ("--bmc-max=" ++ show lim)
-             : sallyRequiredOpts
+sallyBMC :: Settings -> [String]
+sallyBMC s = "--engine=bmc"
+           : ("--bmc-max=" ++ show lim)
+           : sallyRequiredOpts s
+  where lim = bmcLimit s
 
 
 --------------------------------------------------------------------------------
