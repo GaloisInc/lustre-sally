@@ -119,6 +119,7 @@ mainWork :: Settings -> [TopDecl] -> IO ()
 mainWork settings ds =
   do let luConf = LustreConf { lustreInitialNameSeed = Nothing
                              , lustreLogHandle = stdout
+                             , lustreNoTC = not (optTC settings)
                              }
      (info,nd) <- runLustre luConf (quickNodeToCore (node settings) ds)
 
