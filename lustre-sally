@@ -1,0 +1,68 @@
+#!/bin/bash
+
+BIN=bin
+
+function setup_external_tools {
+  if [ ! -f "$BIN/test-runner" ]
+  then
+    mkdir -p "$BIN"
+    cabal v2-install --symlink-bindir="$BIN" test-lib
+  fi
+}
+
+function show_usage {
+cat <<EOM
+Usage: $0 COMMAND COMANND_OPTIONS
+Available commands:
+  build     Build project
+  test      Run some tests
+  run       Run lustre-sally
+EOM
+}
+
+
+
+
+if [ "$#" == "0" ]
+then
+  show_usage
+  exit 1
+fi
+
+COMMAND=$1
+shift
+
+case $COMMAND in
+  build)
+    echo Building project
+    cabal v2-build exe:lustre-sally;;
+
+  test)
+    echo Running tests
+    setup_external_tools
+    if [ "$#" == "0" ]
+      then TESTS=tests
+      else TESTS=$*
+    fi
+    $BIN/test-runner --ext=.lus \
+                     --exe=./run-one-test \
+                     $TESTS
+    ;;
+
+  run)
+    cabal v2-run exe:lustre-sally -- $@
+    ;;
+
+  help)
+    show_usage
+    exit 0;;
+
+  *)
+    echo Unrecognized command: $COMMAND
+    show_usage
+    exit 1;;
+
+esac
+
+
+
