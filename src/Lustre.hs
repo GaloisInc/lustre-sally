@@ -30,7 +30,7 @@ transNode n = (ts, map mkProp (nShows n))
   mkProp (x,p) = (x, transProp qns TS.InCurState p)
 
   env = nodeEnv n
-  qns = qualIdents n
+  qns = unqualIdents n
 
   ts = TS.TransSystem
          { TS.tsVars    = Map.unions (inVars : otherVars
@@ -59,8 +59,9 @@ valLit lit = case lit of
 
 idText :: QNames -> Ident -> Text
 idText qs i
-  | i `Set.member` qs = identText i <> ":" <> Text.pack (show (identUID i))
-  | otherwise         = identText i
+  | not (i `Set.member` qs) = txt <> ":" <> Text.pack (show (identUID i))
+  | otherwise               = txt
+    where txt = identText i
 
 -- | The logical variable for the ordinary value.
 valName :: QNames -> Ident -> TS.Name
@@ -364,7 +365,7 @@ importTrace n tr =
          steps1 <- mapM impStep steps
          pure TS.Trace { TS.traceStart = start1, TS.traceSteps = steps1 }
   where
-  qns = qualIdents n
+  qns = unqualIdents n
   impStep (i,s) =
     do i1 <- importInputs qns n i
        s1 <- importState qns n s

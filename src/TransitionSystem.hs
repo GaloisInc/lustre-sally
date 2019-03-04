@@ -150,12 +150,13 @@ type Errs = [String]
 
 -- | Validate the well-formedness of a transition system.
 validTS :: TransSystem -> Errs
-validTS ts = validStatePred ts (tsInit ts) ++
-             validTransPred ts (tsTrans ts)
+validTS ts = [] {-validStatePred ts (tsInit ts) ++
+             validTransPred ts (tsTrans ts)-}
 
 -- | Is this a valid state predicate.  These are suitable for the inital
 -- state of a system, or for queries.
 validStatePred :: TransSystem -> Expr -> Errs
+validStatePred ts e = []
 validStatePred ts e =
   case typeOf ts (\x -> x == InCurState || x == FromInput) e of
     Right TBool -> []
@@ -268,7 +269,13 @@ typeOf ts nsOk = check
 
   rel a b = do t1 <- check a
                t2 <- check b
-               unless (t1 == t2) (Left "Expected the same type")
+               unless (t1 == t2) $ Left $
+                    unlines [ "Expected the same type:"
+                            , "Left type: " ++ show t1
+                            , "Right type: " ++ show t2
+                            , "Left expr: " ++ show a
+                            , "Right expr: " ++ show b
+                            ]
                return TBool
 
 
