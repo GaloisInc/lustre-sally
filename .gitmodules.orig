@@ -1,0 +1,7 @@
+[submodule "dependencies/lustre"]
+	path = dependencies/lustre
+<<<<<<< HEAD
+	url = git@github.com:GaloisInc/lustre.git
+=======
+	url = https://github.com/GaloisInc/lustre.git
+>>>>>>> master

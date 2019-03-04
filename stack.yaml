@@ -1,13 +1,12 @@
 packages:
   - '.'
+  - dependencies/lustre
 extra-deps:
   - GraphSCC-1.0.4
   - alex-tools-0.4
   - monadLib-3.9
   - panic-0.4.0.1
   - simple-get-opt-0.2.0
-  - simple-smt-0.9.3
-  - git: https://github.com/GaloisInc/lustre
-    commit: 6153f6599cc7e7ffe40d8b3f6c4e1adac6a767d4
+  - simple-smt-0.9.4
 resolver: lts-12.26
 allow-newer: true
