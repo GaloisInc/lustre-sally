@@ -5,6 +5,7 @@
 -- the appropriate type.
 module Lustre (transNode, transProp, importTrace, LTrace) where
 
+import           Data.Text (Text)
 import qualified Data.Text as Text
 import           Data.Map (Map)
 import qualified Data.Map as Map
@@ -16,6 +17,7 @@ import           Data.Char(isAscii,isAlpha,isDigit)
 import qualified TransitionSystem as TS
 
 
+import Language.Lustre.Name
 import Language.Lustre.AST(PropName)
 import Language.Lustre.Core
 import qualified Language.Lustre.Semantics.Core as L
@@ -25,24 +27,27 @@ import LSPanic
 transNode :: Node -> (TS.TransSystem, [(PropName,TS.Expr)])
 transNode n = (ts, map mkProp (nShows n))
   where
-  mkProp (x,p) = (x, transProp TS.InCurState p)
+  mkProp (x,p) = (x, transProp qns TS.InCurState p)
 
   env = nodeEnv n
+  qns = qualIdents n
 
   ts = TS.TransSystem
-         { TS.tsVars    = Map.unions (inVars : otherVars :map declareEqn (nEqns n))
+         { TS.tsVars    = Map.unions (inVars : otherVars
+                                              : map (declareEqn qns) (nEqns n))
          , TS.tsInputs  = inVars
-         , TS.tsInit    = initNode n
-         , TS.tsTrans   = stepNode env n
+         , TS.tsInit    = initNode qns n
+         , TS.tsTrans   = stepNode qns env n
          }
 
-  inVars    = Map.unions (map declareVar (nInputs n))
+  inVars    = Map.unions (map (declareVar qns) (nInputs n))
   otherVars = declareVarInitializing
 
 
 type Env = Map Ident CType
 type Val = TS.Expr
 type TVal = (Val,Type)
+type QNames = Set Ident
 
 -- | Literals are not nil.
 valLit :: Literal -> Val
@@ -51,26 +56,34 @@ valLit lit = case lit of
                Bool b -> TS.Bool b
                Real r -> TS.Real r
 
+
+idText :: QNames -> Ident -> Text
+idText qs i
+  | i `Set.member` qs = identText i <> ":" <> Text.pack (show (identUID i))
+  | otherwise         = identText i
+
 -- | The logical variable for the ordinary value.
-valName :: Ident -> TS.Name
-valName (Ident x)
+valName :: QNames -> Ident -> TS.Name
+valName qns i
   | Text.all simp x = TS.Name x
   | otherwise       = TS.Name ("|" <> x <> "|")
-  where simp a = isAscii a && (isAlpha a || isDigit a)
+  where
+  simp a = isAscii a && (isAlpha a || isDigit a)
+  x      = idText qns i
 
 -- | For variables defined by @a -> b@, keeps track if we are in the @a@
 -- (value @true@) or in the @b@ part (value @false@).
-initName :: Ident -> TS.Name
-initName (Ident x) = TS.Name ("|" <> x <> "-init|")
+initName :: QNames -> Ident -> TS.Name
+initName qs i = TS.Name ("|" <> idText qs i <> ":init|")
 
 -- | Translate an atom, by using the given name-space for variables.
-valAtom :: Env -> TS.VarNameSpace -> Atom -> Val
-valAtom env ns atom =
+valAtom :: QNames -> Env -> TS.VarNameSpace -> Atom -> Val
+valAtom qs env ns atom =
   case atom of
     Lit l     -> valLit l
-    Var a     -> ns TS.::: valName a
+    Var a     -> ns TS.::: valName qs a
     Prim f as -> primFun f (map evT as)
-      where evT a = (valAtom env ns a, typeOfCType (typeOf env a))
+      where evT a = (valAtom qs env ns a, typeOfCType (typeOf env a))
 
 -- | A boolean variable which is true in the very first state,
 -- beofre we've received any inputs, and false after-wards..
@@ -109,20 +122,20 @@ ands as =
 
 
 -- | Equations asserting that a varible from some namespace has the given value.
-setVals :: TS.VarNameSpace -> Ident -> Val -> TS.Expr
-setVals ns x v = ns TS.::: (valName x) TS.:==: v
+setVals :: QNames -> TS.VarNameSpace -> Ident -> Val -> TS.Expr
+setVals qns ns x v = ns TS.::: (valName qns x) TS.:==: v
 
 -- | Properties get translated into queries.
 -- We are not interested in validating the initial state, which is
 -- full of indetermined values.
-transProp :: TS.VarNameSpace -> Ident -> TS.Expr
-transProp ns i = (ns TS.::: varInitializing) TS.:||: transBool ns i
+transProp :: QNames -> TS.VarNameSpace -> Ident -> TS.Expr
+transProp qns ns i = (ns TS.::: varInitializing) TS.:||: transBool qns ns i
 
 -- | Properties get translated into queries. @nil@ is treated as @False@.
 -- We are not interested in validating the initial state, which is
 -- full of @nil@.
-transBool :: TS.VarNameSpace -> Ident -> TS.Expr
-transBool ns i = ns TS.::: valName i
+transBool :: QNames -> TS.VarNameSpace -> Ident -> TS.Expr
+transBool qns ns i = ns TS.::: valName qns i
 
 
 
@@ -141,15 +154,16 @@ transType ty =
 
 -- | Declare all parts of a variable.
 -- See "NOTE: Translating Variables"
-declareVar :: Binder -> Map TS.Name TS.Type
-declareVar (x ::: t `On` _) = Map.singleton (valName x) (transType t)
+declareVar :: QNames -> Binder -> Map TS.Name TS.Type
+declareVar qns (x ::: t `On` _) = Map.singleton (valName qns x) (transType t)
 
 -- | Local variables.
-declareEqn :: Eqn -> Map TS.Name TS.Type
-declareEqn (x@(v ::: _) := e) = case e of
-                        _ :-> _ -> Map.insert (initName v) TS.TBool mp
-                        _ -> mp
-  where mp = declareVar x
+declareEqn :: QNames -> Eqn -> Map TS.Name TS.Type
+declareEqn qns (x@(v ::: _) := e) =
+  case e of
+    _ :-> _ -> Map.insert (initName qns v) TS.TBool mp
+    _ -> mp
+  where mp = declareVar qns x
 
 
 -- | Keep track if we are in the initial state.
@@ -160,30 +174,30 @@ declareVarInitializing = Map.singleton varInitializing TS.TBool
 
 
 -- | Initial state for a node. All variable start off as indeterminate.
-initNode :: Node -> TS.Expr
-initNode n = ands (setInit : mapMaybe initS (nEqns n))
+initNode :: QNames -> Node -> TS.Expr
+initNode qns n = ands (setInit : mapMaybe initS (nEqns n))
   where
   initS ((v ::: _) := e) =
     case e of
-      _ :-> _ -> Just ((TS.InCurState TS.::: initName v) TS.:==: true)
+      _ :-> _ -> Just ((TS.InCurState TS.::: initName qns v) TS.:==: true)
       _ -> Nothing
 
   setInit = TS.InCurState TS.::: varInitializing TS.:==: true
 
-stepNode :: Env -> Node -> TS.Expr
-stepNode env n =
+stepNode :: QNames -> Env -> Node -> TS.Expr
+stepNode qns env n =
   ands $ ((TS.InNextState TS.::: varInitializing) TS.:==: false) :
-         map (stepInput env) (nInputs n) ++
-         map (transBool TS.InNextState . snd) (nAssuming n) ++
-         map (stepEqn env) (nEqns n)
+         map (stepInput qns env) (nInputs n) ++
+         map (transBool qns TS.InNextState . snd) (nAssuming n) ++
+         map (stepEqn qns env) (nEqns n)
 
 -- XXX: clocks?
-stepInput :: Env -> Binder -> TS.Expr
-stepInput env (x ::: _) = setVals TS.InNextState x a
-  where a = valAtom env TS.FromInput (Var x)
+stepInput :: QNames -> Env -> Binder -> TS.Expr
+stepInput qns env (x ::: _) = setVals qns TS.InNextState x a
+  where a = valAtom qns env TS.FromInput (Var x)
 
-stepEqn :: Env -> Eqn -> TS.Expr
-stepEqn env (x ::: _ `On` c := expr) =
+stepEqn :: QNames -> Env -> Eqn -> TS.Expr
+stepEqn qns env (x ::: _ `On` c := expr) =
   case expr of
     Atom a      -> new a
     Current a   -> new a
@@ -198,7 +212,7 @@ stepEqn env (x ::: _ `On` c := expr) =
             clockYes
             (old (Var x) TS.:&&: ivar TS.InNextState TS.:==: ivar TS.InCurState)
       where
-      ivar n = n TS.::: initName x
+      ivar n = n TS.::: initName qns x
       clockYes = (TS.ITE (ivar TS.InCurState) (new a) (new b)
                     TS.:&&: ivar TS.InNextState TS.:==: false)
 
@@ -207,10 +221,10 @@ stepEqn env (x ::: _ `On` c := expr) =
 
 
   where
-  atom    = valAtom env TS.InNextState
-  old     = letVars . valAtom env TS.InCurState
+  atom    = valAtom qns env TS.InNextState
+  old     = letVars . valAtom qns env TS.InCurState
   new     = letVars . atom
-  letVars = setVals TS.InNextState x
+  letVars = setVals qns TS.InNextState x
 
   guarded e = case clockOn of
                 Nothing -> e
@@ -303,8 +317,8 @@ importError = Left . unlines
 
 -- | Import a Lustre identifier from the given assignment computed by Sally.
 -- See "Translating Variables" for details of what's going on here.
-importVar :: TS.VarVals -> Ident -> Either ImportError L.Value
-importVar st i =
+importVar :: QNames -> TS.VarVals -> Ident -> Either ImportError L.Value
+importVar qns st i =
   case Map.lookup vaName st of
     Just v -> pure $ case v of
                        TS.VInt x  -> L.VInt x
@@ -312,28 +326,32 @@ importVar st i =
                        TS.VReal x -> L.VReal x
     Nothing -> missing vaName
   where
-  vaName = valName i
+  vaName = valName qns i
 
   missing x = importError [ "[bug] Missing assignment"
                           , "*** Variable: " ++ show x
                           ]
 
 -- | Import a bunch of core Lustre identifiers from a state.
-importVars :: Set Ident -> TS.VarVals -> Either ImportError (Map Ident L.Value)
-importVars vars st =
+importVars :: QNames -> Set Ident -> TS.VarVals ->
+                                          Either ImportError (Map Ident L.Value)
+importVars qns vars st =
   do let is = Set.toList vars
-     steps <- mapM (importVar st) is
+     steps <- mapM (importVar qns st) is
      pure (Map.fromList (zip is steps))
 
 
-importState :: Node -> TS.VarVals -> Either ImportError (Map Ident L.Value)
-importState n = importVars $ Set.fromList
-                           $ [ x | x ::: _ <- nInputs n ] ++
-                             {- Inputs are shadowed in the state -}
-                             [ x | x ::: _ := _ <- nEqns n ]
+importState ::
+  QNames -> Node -> TS.VarVals -> Either ImportError (Map Ident L.Value)
+importState qns n =
+  importVars qns $ Set.fromList
+                 $ [ x | x ::: _ <- nInputs n ] ++
+                   {- Inputs are shadowed in the state -}
+                   [ x | x ::: _ := _ <- nEqns n ]
 
-importInputs :: Node -> TS.VarVals -> Either ImportError (Map Ident L.Value)
-importInputs n = importVars $ Set.fromList [ x | x ::: _ <- nInputs n ]
+importInputs ::
+  QNames -> Node -> TS.VarVals -> Either ImportError (Map Ident L.Value)
+importInputs qns n = importVars qns $ Set.fromList [ x | x ::: _ <- nInputs n ]
 
 type LTrace = TS.Trace {-state-} (Map Ident L.Value)
                        {-inputs-}(Map Ident L.Value)
@@ -342,13 +360,14 @@ importTrace :: Node -> TS.TSTrace -> Either ImportError LTrace
 importTrace n tr =
   case tr of
     TS.Trace { TS.traceStart = start, TS.traceSteps = steps } ->
-      do start1 <- importState n start
+      do start1 <- importState qns n start
          steps1 <- mapM impStep steps
          pure TS.Trace { TS.traceStart = start1, TS.traceSteps = steps1 }
   where
+  qns = qualIdents n
   impStep (i,s) =
-    do i1 <- importInputs n i
-       s1 <- importState n s
+    do i1 <- importInputs qns n i
+       s1 <- importState qns n s
        return (i1,s1)
 
 
