@@ -1,4 +1,9 @@
 #!/bin/bash
 
-cabal v2-run --verbose=0 exe:lustre-sally $1 $1.stdin
+if [ -e $1.settings ]; then
+  OPTS=--config=$1.settings
+fi
+
+
+cabal v2-run --verbose=0 exe:lustre-sally -- $OPTS $1
 
