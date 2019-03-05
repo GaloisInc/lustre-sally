@@ -6,7 +6,9 @@ extra-deps:
   - alex-tools-0.4
   - monadLib-3.9
   - panic-0.4.0.1
-  - simple-get-opt-0.2.0
+  - simple-get-opt-0.3
   - simple-smt-0.9.4
+  - config-value-0.6.3.1
+  - config-value-getopt-0.1.1.0
 resolver: lts-12.26
 allow-newer: true
