@@ -37,11 +37,13 @@ executable lustre-sally
                        process,
                        directory,
                        simple-smt >= 0.9.4,
-                       simple-get-opt >= 0.2,
+                       simple-get-opt >= 0.3,
                        pretty-show,
                        pretty,
                        time,
                        filepath,
+                       config-value,
+                       config-value-getopt,
                        raw-strings-qq,
                        language-lustre
 

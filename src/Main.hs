@@ -2,18 +2,22 @@
 module Main(main) where
 
 import System.Exit(exitFailure)
-import Control.Monad(when)
+import Control.Monad(when,foldM)
 import Control.Exception(catches, Handler(..), throwIO
                         , SomeException(..), displayException)
 import Data.Char(isSpace)
 import Data.Text(Text)
 import qualified Data.Text as Text
+import qualified Data.Text.IO as TextIO
 import SimpleGetOpt
 import System.IO(hFlush,stdout)
 import System.FilePath(takeFileName,dropFileName,dropExtension,(</>))
 import System.Directory(createDirectoryIfMissing)
 import Data.IORef(newIORef,writeIORef,readIORef)
 import Text.Read(readMaybe)
+
+import qualified Config
+import Config.GetOpt (configValueGetOpt)
 
 import Language.Lustre.Parser
 import Language.Lustre.AST
@@ -39,6 +43,7 @@ data Settings = Settings
   , kindLimit :: Int
   , useMCSat  :: Bool
   , outDir    :: FilePath
+  , useConfig :: FilePath
   }
 
 options :: OptSpec Settings
@@ -87,6 +92,10 @@ options = OptSpec
         $ ReqArg "NUM" $ \a s -> case readMaybe a of
                                    Just n | n >= 0 -> Right s { kindLimit = n }
                                    _ -> Left "Invalid proof depth."
+
+      , Option ['c'] ["config"]
+        "Load additional settings from the given file"
+        $ ReqArg "FILE" $ \a s -> Right s { useConfig = a }
       ]
 
   , progParamDocs = [("FILE", "Lustre file containing model (required).")]
@@ -106,12 +115,38 @@ options = OptSpec
     , kindLimit = 10
     , useMCSat = True
     , outDir = "results"
+    , useConfig = ""
     }
+
+
+-- | Parse some settings from a file and add them to the given settings.
+settingsFromFile :: FilePath -> Settings -> IO Settings
+settingsFromFile f start =
+  do say "Lustre" ("Loading settings from: " ++ show f)
+     txt <- TextIO.readFile f
+     case Config.parse txt of
+       Left (Config.ParseError loc msg) ->
+         throwIO $ GetOptException [ "At " ++ l ++ ": " ++ msg ]
+            where l = show (Config.posLine loc) ++ ":" ++
+                      show (Config.posColumn loc)
+       Right v ->
+         case configValueGetOpt (specToGetOpt options) v of
+           (setters,[]) -> foldM appSetter start setters
+           (_,errs) -> throwIO (GetOptException errs)
+  where
+  appSetter s val = case val s of
+                      Left err -> throwIO (GetOptException [err])
+                      Right s1 -> pure s1
+
 
 
 main :: IO ()
 main =
-  do settings <- getOptsX options
+  do settings0 <- getOptsX options
+     settings  <- case useConfig settings0 of
+                    "" -> pure settings0
+                    f  -> settingsFromFile f settings0
+
      when (file settings == "") $
        throwIO (GetOptException ["No Lustre file was speicifed."])
 
