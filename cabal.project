@@ -1,4 +1,3 @@
 packages:
   dependencies/lustre/
   ./
-  ../simple-get-opt
