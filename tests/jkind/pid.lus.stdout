@@ -1,0 +1,640 @@
+[Lustre] Loading settings from: "pid.lus.settings"
+Core Lustre
+===========
+
+node (AXL__Speed__val : real, Target_Speed__val : real, AXL__Actual_Tire_Direction__val : real, CNTRL__Actuator_Input__val : real, THROT__Actual__val : real, Target_Tire_Pitch__val : real)
+  returns ()
+  assumes ()
+  shows (_SYS_GUARANTEE_1)
+let
+  THROT__Actuator_Input__val = CNTRL__Actuator_Input__val
+  CNTRL__Actual__val = THROT__Actual__val
+  CNTRL__Target__val = Target_Speed__val
+  CNTRL__e = Sub(CNTRL__Target__val, CNTRL__Actual__val)
+  valof_pre_CNTRL__e_130 = pre CNTRL__e
+  valof_arr_131 = 0.0 -> valof_pre_CNTRL__e_130
+  CNTRL__e_dot = Sub(valof_arr_131, CNTRL__e)
+  valof_pre_CNTRL__e_128 = pre CNTRL__e
+  valof_arr_129 = 0.0 -> valof_pre_CNTRL__e_128
+  CNTRL__e_int = Add(valof_arr_129, CNTRL__e)
+  CNTRL__u = Add(Add(Mul((1.0 / 5.0), CNTRL__e), Mul((1.0 / 10.0), CNTRL__e_dot)), Mul((1.0 / 10.0), CNTRL__e_int))
+  max_accel = 10.0
+  AXL__Target_Tire_Direction__val = Target_Tire_Pitch__val
+  Actual_Speed__val = THROT__Actual__val
+  AXL__inp_115 = AXL__Target_Tire_Direction__val
+  __no_static_102 = ITE(Lt(AXL__inp_115, 0.0), Neg(AXL__inp_115), AXL__inp_115)
+  AXL__inp_116 = AXL__Target_Tire_Direction__val
+  __no_static_103 = ITE(Lt(AXL__inp_116, 0.0), Neg(AXL__inp_116), AXL__inp_116)
+  AXL__inp_117 = AXL__Target_Tire_Direction__val
+  __no_static_104 = ITE(Lt(AXL__inp_117, 0.0), Neg(AXL__inp_117), AXL__inp_117)
+  AXL__inp_118 = AXL__Target_Tire_Direction__val
+  __no_static_105 = ITE(Lt(AXL__inp_118, 0.0), Neg(AXL__inp_118), AXL__inp_118)
+  AXL__inp_119 = AXL__Target_Tire_Direction__val
+  __no_static_106 = ITE(Lt(AXL__inp_119, 0.0), Neg(AXL__inp_119), AXL__inp_119)
+  AXL__inp_120 = AXL__Target_Tire_Direction__val
+  __no_static_107 = ITE(Lt(AXL__inp_120, 0.0), Neg(AXL__inp_120), AXL__inp_120)
+  valof_pre_THROT__Actual__val_132 = pre THROT__Actual__val
+  valof_arr_133 = 0.0 -> valof_pre_THROT__Actual__val_132
+  valof_pre_THROT__Actual__val_134 = pre THROT__Actual__val
+  valof_arr_135 = 0.0 -> valof_pre_THROT__Actual__val_134
+  valof_pre_THROT__Actual__val_136 = pre THROT__Actual__val
+  valof_arr_137 = 0.0 -> valof_pre_THROT__Actual__val_136
+  valof_pre_THROT__Actual__val_138 = pre THROT__Actual__val
+  valof_arr_139 = 0.0 -> valof_pre_THROT__Actual__val_138
+  valof_pre__TOTAL_COMP_HIST = pre _TOTAL_COMP_HIST
+  _TOTAL_COMP_HIST = And(And(And(true, And(And(Leq(__no_static_102, (9.0 / 20.0)), ITE(And(Gt(__no_static_103, (1.0 / 5.0)), Gt(AXL__Speed__val, 45.0)), Eq(AXL__Actual_Tire_Direction__val, (1.0 / 5.0)), Eq(AXL__Actual_Tire_Direction__val, AXL__Target_Tire_Direction__val))), ITE(And(Gt(__no_static_104, (1.0 / 5.0)), Gt(AXL__Speed__val, 45.0)), Eq(AXL__Actual_Tire_Direction__val, (1.0 / 5.0)), Eq(AXL__Actual_Tire_Direction__val, AXL__Target_Tire_Direction__val)))), And(And(true, Eq(CNTRL__Actuator_Input__val, CNTRL__u)), Eq(CNTRL__Actuator_Input__val, CNTRL__u))), And(And(true, Eq(THROT__Actual__val, Add(valof_arr_133, Mul((1.0 / 10.0), THROT__Actuator_Input__val)))), Eq(THROT__Actual__val, Add(valof_arr_135, Mul((1.0 / 10.0), THROT__Actuator_Input__val))))) -> And(And(And(And(true, And(And(Leq(__no_static_105, (9.0 / 20.0)), ITE(And(Gt(__no_static_106, (1.0 / 5.0)), Gt(AXL__Speed__val, 45.0)), Eq(AXL__Actual_Tire_Direction__val, (1.0 / 5.0)), Eq(AXL__Actual_Tire_Direction__val, AXL__Target_Tire_Direction__val))), ITE(And(Gt(__no_static_107, (1.0 / 5.0)), Gt(AXL__Speed__val, 45.0)), Eq(AXL__Actual_Tire_Direction__val, (1.0 / 5.0)), Eq(AXL__Actual_Tire_Direction__val, AXL__Target_Tire_Direction__val)))), And(And(true, Eq(CNTRL__Actuator_Input__val, CNTRL__u)), Eq(CNTRL__Actuator_Input__val, CNTRL__u))), And(And(true, Eq(THROT__Actual__val, Add(valof_arr_137, Mul((1.0 / 10.0), THROT__Actuator_Input__val)))), Eq(THROT__Actual__val, Add(valof_arr_139, Mul((1.0 / 10.0), THROT__Actuator_Input__val))))), valof_pre__TOTAL_COMP_HIST)
+  valof_pre__SYSTEM_ASSUMP_HIST = pre _SYSTEM_ASSUMP_HIST
+  _SYSTEM_ASSUMP_HIST = And(And(Geq(Target_Speed__val, 0.0), Lt(Target_Speed__val, 150.0)), true) -> And(And(And(Geq(Target_Speed__val, 0.0), Lt(Target_Speed__val, 150.0)), true), valof_pre__SYSTEM_ASSUMP_HIST)
+  AXL__inp_121 = AXL__Target_Tire_Direction__val
+  __no_static_108 = ITE(Lt(AXL__inp_121, 0.0), Neg(AXL__inp_121), AXL__inp_121)
+  AXL__inp_122 = AXL__Target_Tire_Direction__val
+  __no_static_109 = ITE(Lt(AXL__inp_122, 0.0), Neg(AXL__inp_122), AXL__inp_122)
+  AXL__inp_123 = AXL__Target_Tire_Direction__val
+  __no_static_110 = ITE(Lt(AXL__inp_123, 0.0), Neg(AXL__inp_123), AXL__inp_123)
+  AXL__inp_124 = AXL__Target_Tire_Direction__val
+  __no_static_111 = ITE(Lt(AXL__inp_124, 0.0), Neg(AXL__inp_124), AXL__inp_124)
+  AXL__inp_125 = AXL__Target_Tire_Direction__val
+  __no_static_112 = ITE(Lt(AXL__inp_125, 0.0), Neg(AXL__inp_125), AXL__inp_125)
+  AXL__inp_126 = AXL__Target_Tire_Direction__val
+  __no_static_113 = ITE(Lt(AXL__inp_126, 0.0), Neg(AXL__inp_126), AXL__inp_126)
+  valof_pre__CONTR_HIST_AXL = pre _CONTR_HIST_AXL
+  _CONTR_HIST_AXL = And(And(Leq(__no_static_108, (9.0 / 20.0)), ITE(And(Gt(__no_static_109, (1.0 / 5.0)), Gt(AXL__Speed__val, 45.0)), Eq(AXL__Actual_Tire_Direction__val, (1.0 / 5.0)), Eq(AXL__Actual_Tire_Direction__val, AXL__Target_Tire_Direction__val))), ITE(And(Gt(__no_static_110, (1.0 / 5.0)), Gt(AXL__Speed__val, 45.0)), Eq(AXL__Actual_Tire_Direction__val, (1.0 / 5.0)), Eq(AXL__Actual_Tire_Direction__val, AXL__Target_Tire_Direction__val))) -> And(And(And(Leq(__no_static_111, (9.0 / 20.0)), ITE(And(Gt(__no_static_112, (1.0 / 5.0)), Gt(AXL__Speed__val, 45.0)), Eq(AXL__Actual_Tire_Direction__val, (1.0 / 5.0)), Eq(AXL__Actual_Tire_Direction__val, AXL__Target_Tire_Direction__val))), ITE(And(Gt(__no_static_113, (1.0 / 5.0)), Gt(AXL__Speed__val, 45.0)), Eq(AXL__Actual_Tire_Direction__val, (1.0 / 5.0)), Eq(AXL__Actual_Tire_Direction__val, AXL__Target_Tire_Direction__val))), valof_pre__CONTR_HIST_AXL)
+  valof_pre__CONTR_HIST_CNTRL = pre _CONTR_HIST_CNTRL
+  _CONTR_HIST_CNTRL = And(And(true, Eq(CNTRL__Actuator_Input__val, CNTRL__u)), Eq(CNTRL__Actuator_Input__val, CNTRL__u)) -> And(And(And(true, Eq(CNTRL__Actuator_Input__val, CNTRL__u)), Eq(CNTRL__Actuator_Input__val, CNTRL__u)), valof_pre__CONTR_HIST_CNTRL)
+  valof_pre_THROT__Actual__val_144 = pre THROT__Actual__val
+  valof_arr_145 = 0.0 -> valof_pre_THROT__Actual__val_144
+  valof_pre_THROT__Actual__val_146 = pre THROT__Actual__val
+  valof_arr_147 = 0.0 -> valof_pre_THROT__Actual__val_146
+  valof_pre_THROT__Actual__val_148 = pre THROT__Actual__val
+  valof_arr_149 = 0.0 -> valof_pre_THROT__Actual__val_148
+  valof_pre_THROT__Actual__val_150 = pre THROT__Actual__val
+  valof_arr_151 = 0.0 -> valof_pre_THROT__Actual__val_150
+  valof_pre__CONTR_HIST_THROT = pre _CONTR_HIST_THROT
+  _CONTR_HIST_THROT = And(And(true, Eq(THROT__Actual__val, Add(valof_arr_145, Mul((1.0 / 10.0), THROT__Actuator_Input__val)))), Eq(THROT__Actual__val, Add(valof_arr_147, Mul((1.0 / 10.0), THROT__Actuator_Input__val)))) -> And(And(And(true, Eq(THROT__Actual__val, Add(valof_arr_149, Mul((1.0 / 10.0), THROT__Actuator_Input__val)))), Eq(THROT__Actual__val, Add(valof_arr_151, Mul((1.0 / 10.0), THROT__Actuator_Input__val)))), valof_pre__CONTR_HIST_THROT)
+  valof_pre_Actual_Speed__val = pre Actual_Speed__val
+  valof_arr_154 = 0.0 -> valof_pre_Actual_Speed__val
+  inp = Sub(Actual_Speed__val, valof_arr_154)
+  __no_static_114 = ITE(Lt(inp, 0.0), Neg(inp), inp)
+  _SYS_GUARANTEE_1 = Implies(And(_SYSTEM_ASSUMP_HIST, _TOTAL_COMP_HIST), Lt(__no_static_114, max_accel))
+tel
+Sally Model
+===========
+
+(define-state-type
+   S
+   (
+     (inp Real)
+     (|AXL__Actual_Tire_Direction__val| Real)
+     (|AXL__Speed__val| Real)
+     (|AXL__Target_Tire_Direction__val| Real)
+     (|AXL__inp:115| Real)
+     (|AXL__inp:116| Real)
+     (|AXL__inp:117| Real)
+     (|AXL__inp:118| Real)
+     (|AXL__inp:119| Real)
+     (|AXL__inp:120| Real)
+     (|AXL__inp:121| Real)
+     (|AXL__inp:122| Real)
+     (|AXL__inp:123| Real)
+     (|AXL__inp:124| Real)
+     (|AXL__inp:125| Real)
+     (|AXL__inp:126| Real)
+     (|Actual_Speed__val| Real)
+     (|CNTRL__Actual__val| Real)
+     (|CNTRL__Actuator_Input__val| Real)
+     (|CNTRL__Target__val| Real)
+     (|CNTRL__e_dot| Real)
+     (|CNTRL__e_int| Real)
+     (|CNTRL__e| Real)
+     (|CNTRL__u| Real)
+     (|THROT__Actual__val| Real)
+     (|THROT__Actuator_Input__val| Real)
+     (|Target_Speed__val| Real)
+     (|Target_Tire_Pitch__val| Real)
+     (|_CONTR_HIST_AXL:init| Bool)
+     (|_CONTR_HIST_AXL| Bool)
+     (|_CONTR_HIST_CNTRL:init| Bool)
+     (|_CONTR_HIST_CNTRL| Bool)
+     (|_CONTR_HIST_THROT:init| Bool)
+     (|_CONTR_HIST_THROT| Bool)
+     (|_SYSTEM_ASSUMP_HIST:init| Bool)
+     (|_SYSTEM_ASSUMP_HIST| Bool)
+     (|_SYS_GUARANTEE_1| Bool)
+     (|_TOTAL_COMP_HIST:init| Bool)
+     (|_TOTAL_COMP_HIST| Bool)
+     (|__no_static:102| Real)
+     (|__no_static:103| Real)
+     (|__no_static:104| Real)
+     (|__no_static:105| Real)
+     (|__no_static:106| Real)
+     (|__no_static:107| Real)
+     (|__no_static:108| Real)
+     (|__no_static:109| Real)
+     (|__no_static:110| Real)
+     (|__no_static:111| Real)
+     (|__no_static:112| Real)
+     (|__no_static:113| Real)
+     (|__no_static:114| Real)
+     (|gal-initializing| Bool)
+     (|max_accel| Real)
+     (|valof_arr:129:init| Bool)
+     (|valof_arr:129| Real)
+     (|valof_arr:131:init| Bool)
+     (|valof_arr:131| Real)
+     (|valof_arr:133:init| Bool)
+     (|valof_arr:133| Real)
+     (|valof_arr:135:init| Bool)
+     (|valof_arr:135| Real)
+     (|valof_arr:137:init| Bool)
+     (|valof_arr:137| Real)
+     (|valof_arr:139:init| Bool)
+     (|valof_arr:139| Real)
+     (|valof_arr:145:init| Bool)
+     (|valof_arr:145| Real)
+     (|valof_arr:147:init| Bool)
+     (|valof_arr:147| Real)
+     (|valof_arr:149:init| Bool)
+     (|valof_arr:149| Real)
+     (|valof_arr:151:init| Bool)
+     (|valof_arr:151| Real)
+     (|valof_arr:154:init| Bool)
+     (|valof_arr:154| Real)
+     (|valof_pre_Actual_Speed__val| Real)
+     (|valof_pre_CNTRL__e:128| Real)
+     (|valof_pre_CNTRL__e:130| Real)
+     (|valof_pre_THROT__Actual__val:132| Real)
+     (|valof_pre_THROT__Actual__val:134| Real)
+     (|valof_pre_THROT__Actual__val:136| Real)
+     (|valof_pre_THROT__Actual__val:138| Real)
+     (|valof_pre_THROT__Actual__val:144| Real)
+     (|valof_pre_THROT__Actual__val:146| Real)
+     (|valof_pre_THROT__Actual__val:148| Real)
+     (|valof_pre_THROT__Actual__val:150| Real)
+     (|valof_pre__CONTR_HIST_AXL| Bool)
+     (|valof_pre__CONTR_HIST_CNTRL| Bool)
+     (|valof_pre__CONTR_HIST_THROT| Bool)
+     (|valof_pre__SYSTEM_ASSUMP_HIST| Bool)
+     (|valof_pre__TOTAL_COMP_HIST| Bool))
+   (
+     (|AXL__Actual_Tire_Direction__val| Real)
+     (|AXL__Speed__val| Real)
+     (|CNTRL__Actuator_Input__val| Real)
+     (|THROT__Actual__val| Real)
+     (|Target_Speed__val| Real)
+     (|Target_Tire_Pitch__val| Real)))
+(define-transition-system
+   TS
+   S
+   (and
+      (= |gal-initializing| true)
+      (= |valof_arr:131:init| true)
+      (= |valof_arr:129:init| true)
+      (= |valof_arr:133:init| true)
+      (= |valof_arr:135:init| true)
+      (= |valof_arr:137:init| true)
+      (= |valof_arr:139:init| true)
+      (= |_TOTAL_COMP_HIST:init| true)
+      (= |_SYSTEM_ASSUMP_HIST:init| true)
+      (= |_CONTR_HIST_AXL:init| true)
+      (= |_CONTR_HIST_CNTRL:init| true)
+      (= |valof_arr:145:init| true)
+      (= |valof_arr:147:init| true)
+      (= |valof_arr:149:init| true)
+      (= |valof_arr:151:init| true)
+      (= |_CONTR_HIST_THROT:init| true)
+      (= |valof_arr:154:init| true))
+   (and
+      (= next.|gal-initializing| false)
+      (= next.|AXL__Speed__val| input.|AXL__Speed__val|)
+      (= next.|Target_Speed__val| input.|Target_Speed__val|)
+      (= next.|AXL__Actual_Tire_Direction__val| input.|AXL__Actual_Tire_Direction__val|)
+      (= next.|CNTRL__Actuator_Input__val| input.|CNTRL__Actuator_Input__val|)
+      (= next.|THROT__Actual__val| input.|THROT__Actual__val|)
+      (= next.|Target_Tire_Pitch__val| input.|Target_Tire_Pitch__val|)
+      (= next.|THROT__Actuator_Input__val| next.|CNTRL__Actuator_Input__val|)
+      (= next.|CNTRL__Actual__val| next.|THROT__Actual__val|)
+      (= next.|CNTRL__Target__val| next.|Target_Speed__val|)
+      (=
+         next.|CNTRL__e|
+         (- next.|CNTRL__Target__val| next.|CNTRL__Actual__val|))
+      (= next.|valof_pre_CNTRL__e:130| state.|CNTRL__e|)
+      (ite
+         state.|valof_arr:131:init|
+         (= next.|valof_arr:131| 0.0)
+         (= next.|valof_arr:131| next.|valof_pre_CNTRL__e:130|))
+      (= next.|valof_arr:131:init| false)
+      (=
+         next.|CNTRL__e_dot|
+         (- next.|valof_arr:131| next.|CNTRL__e|))
+      (= next.|valof_pre_CNTRL__e:128| state.|CNTRL__e|)
+      (ite
+         state.|valof_arr:129:init|
+         (= next.|valof_arr:129| 0.0)
+         (= next.|valof_arr:129| next.|valof_pre_CNTRL__e:128|))
+      (= next.|valof_arr:129:init| false)
+      (=
+         next.|CNTRL__e_int|
+         (+ next.|valof_arr:129| next.|CNTRL__e|))
+      (=
+         next.|CNTRL__u|
+         (+
+            (+
+               (*
+                  (/ 1 5)
+                  next.|CNTRL__e|)
+               (*
+                  (/ 1 10)
+                  next.|CNTRL__e_dot|))
+            (*
+               (/ 1 10)
+               next.|CNTRL__e_int|)))
+      (= next.|max_accel| 10.0)
+      (= next.|AXL__Target_Tire_Direction__val| next.|Target_Tire_Pitch__val|)
+      (= next.|Actual_Speed__val| next.|THROT__Actual__val|)
+      (= next.|AXL__inp:115| next.|AXL__Target_Tire_Direction__val|)
+      (=
+         next.|__no_static:102|
+         (ite
+            (< next.|AXL__inp:115| 0.0)
+            (- next.|AXL__inp:115|)
+            next.|AXL__inp:115|))
+      (= next.|AXL__inp:116| next.|AXL__Target_Tire_Direction__val|)
+      (=
+         next.|__no_static:103|
+         (ite
+            (< next.|AXL__inp:116| 0.0)
+            (- next.|AXL__inp:116|)
+            next.|AXL__inp:116|))
+      (= next.|AXL__inp:117| next.|AXL__Target_Tire_Direction__val|)
+      (=
+         next.|__no_static:104|
+         (ite
+            (< next.|AXL__inp:117| 0.0)
+            (- next.|AXL__inp:117|)
+            next.|AXL__inp:117|))
+      (= next.|AXL__inp:118| next.|AXL__Target_Tire_Direction__val|)
+      (=
+         next.|__no_static:105|
+         (ite
+            (< next.|AXL__inp:118| 0.0)
+            (- next.|AXL__inp:118|)
+            next.|AXL__inp:118|))
+      (= next.|AXL__inp:119| next.|AXL__Target_Tire_Direction__val|)
+      (=
+         next.|__no_static:106|
+         (ite
+            (< next.|AXL__inp:119| 0.0)
+            (- next.|AXL__inp:119|)
+            next.|AXL__inp:119|))
+      (= next.|AXL__inp:120| next.|AXL__Target_Tire_Direction__val|)
+      (=
+         next.|__no_static:107|
+         (ite
+            (< next.|AXL__inp:120| 0.0)
+            (- next.|AXL__inp:120|)
+            next.|AXL__inp:120|))
+      (= next.|valof_pre_THROT__Actual__val:132| state.|THROT__Actual__val|)
+      (ite
+         state.|valof_arr:133:init|
+         (= next.|valof_arr:133| 0.0)
+         (= next.|valof_arr:133| next.|valof_pre_THROT__Actual__val:132|))
+      (= next.|valof_arr:133:init| false)
+      (= next.|valof_pre_THROT__Actual__val:134| state.|THROT__Actual__val|)
+      (ite
+         state.|valof_arr:135:init|
+         (= next.|valof_arr:135| 0.0)
+         (= next.|valof_arr:135| next.|valof_pre_THROT__Actual__val:134|))
+      (= next.|valof_arr:135:init| false)
+      (= next.|valof_pre_THROT__Actual__val:136| state.|THROT__Actual__val|)
+      (ite
+         state.|valof_arr:137:init|
+         (= next.|valof_arr:137| 0.0)
+         (= next.|valof_arr:137| next.|valof_pre_THROT__Actual__val:136|))
+      (= next.|valof_arr:137:init| false)
+      (= next.|valof_pre_THROT__Actual__val:138| state.|THROT__Actual__val|)
+      (ite
+         state.|valof_arr:139:init|
+         (= next.|valof_arr:139| 0.0)
+         (= next.|valof_arr:139| next.|valof_pre_THROT__Actual__val:138|))
+      (= next.|valof_arr:139:init| false)
+      (= next.|valof_pre__TOTAL_COMP_HIST| state.|_TOTAL_COMP_HIST|)
+      (ite
+         state.|_TOTAL_COMP_HIST:init|
+         (=
+            next.|_TOTAL_COMP_HIST|
+            (and
+               true
+               (<=
+                  next.|__no_static:102|
+                  (/ 9 20))
+               (ite
+                  (and
+                     (<
+                        (/ 1 5)
+                        next.|__no_static:103|)
+                     (< 45.0 next.|AXL__Speed__val|))
+                  (=
+                     next.|AXL__Actual_Tire_Direction__val|
+                     (/ 1 5))
+                  (= next.|AXL__Actual_Tire_Direction__val| next.|AXL__Target_Tire_Direction__val|))
+               (ite
+                  (and
+                     (<
+                        (/ 1 5)
+                        next.|__no_static:104|)
+                     (< 45.0 next.|AXL__Speed__val|))
+                  (=
+                     next.|AXL__Actual_Tire_Direction__val|
+                     (/ 1 5))
+                  (= next.|AXL__Actual_Tire_Direction__val| next.|AXL__Target_Tire_Direction__val|))
+               true
+               (= next.|CNTRL__Actuator_Input__val| next.|CNTRL__u|)
+               (= next.|CNTRL__Actuator_Input__val| next.|CNTRL__u|)
+               true
+               (=
+                  next.|THROT__Actual__val|
+                  (+
+                     next.|valof_arr:133|
+                     (*
+                        (/ 1 10)
+                        next.|THROT__Actuator_Input__val|)))
+               (=
+                  next.|THROT__Actual__val|
+                  (+
+                     next.|valof_arr:135|
+                     (*
+                        (/ 1 10)
+                        next.|THROT__Actuator_Input__val|)))))
+         (=
+            next.|_TOTAL_COMP_HIST|
+            (and
+               true
+               (<=
+                  next.|__no_static:105|
+                  (/ 9 20))
+               (ite
+                  (and
+                     (<
+                        (/ 1 5)
+                        next.|__no_static:106|)
+                     (< 45.0 next.|AXL__Speed__val|))
+                  (=
+                     next.|AXL__Actual_Tire_Direction__val|
+                     (/ 1 5))
+                  (= next.|AXL__Actual_Tire_Direction__val| next.|AXL__Target_Tire_Direction__val|))
+               (ite
+                  (and
+                     (<
+                        (/ 1 5)
+                        next.|__no_static:107|)
+                     (< 45.0 next.|AXL__Speed__val|))
+                  (=
+                     next.|AXL__Actual_Tire_Direction__val|
+                     (/ 1 5))
+                  (= next.|AXL__Actual_Tire_Direction__val| next.|AXL__Target_Tire_Direction__val|))
+               true
+               (= next.|CNTRL__Actuator_Input__val| next.|CNTRL__u|)
+               (= next.|CNTRL__Actuator_Input__val| next.|CNTRL__u|)
+               true
+               (=
+                  next.|THROT__Actual__val|
+                  (+
+                     next.|valof_arr:137|
+                     (*
+                        (/ 1 10)
+                        next.|THROT__Actuator_Input__val|)))
+               (=
+                  next.|THROT__Actual__val|
+                  (+
+                     next.|valof_arr:139|
+                     (*
+                        (/ 1 10)
+                        next.|THROT__Actuator_Input__val|)))
+               next.|valof_pre__TOTAL_COMP_HIST|)))
+      (= next.|_TOTAL_COMP_HIST:init| false)
+      (= next.|valof_pre__SYSTEM_ASSUMP_HIST| state.|_SYSTEM_ASSUMP_HIST|)
+      (ite
+         state.|_SYSTEM_ASSUMP_HIST:init|
+         (=
+            next.|_SYSTEM_ASSUMP_HIST|
+            (and
+               (<= 0.0 next.|Target_Speed__val|)
+               (< next.|Target_Speed__val| 150.0)
+               true))
+         (=
+            next.|_SYSTEM_ASSUMP_HIST|
+            (and
+               (<= 0.0 next.|Target_Speed__val|)
+               (< next.|Target_Speed__val| 150.0)
+               true
+               next.|valof_pre__SYSTEM_ASSUMP_HIST|)))
+      (= next.|_SYSTEM_ASSUMP_HIST:init| false)
+      (= next.|AXL__inp:121| next.|AXL__Target_Tire_Direction__val|)
+      (=
+         next.|__no_static:108|
+         (ite
+            (< next.|AXL__inp:121| 0.0)
+            (- next.|AXL__inp:121|)
+            next.|AXL__inp:121|))
+      (= next.|AXL__inp:122| next.|AXL__Target_Tire_Direction__val|)
+      (=
+         next.|__no_static:109|
+         (ite
+            (< next.|AXL__inp:122| 0.0)
+            (- next.|AXL__inp:122|)
+            next.|AXL__inp:122|))
+      (= next.|AXL__inp:123| next.|AXL__Target_Tire_Direction__val|)
+      (=
+         next.|__no_static:110|
+         (ite
+            (< next.|AXL__inp:123| 0.0)
+            (- next.|AXL__inp:123|)
+            next.|AXL__inp:123|))
+      (= next.|AXL__inp:124| next.|AXL__Target_Tire_Direction__val|)
+      (=
+         next.|__no_static:111|
+         (ite
+            (< next.|AXL__inp:124| 0.0)
+            (- next.|AXL__inp:124|)
+            next.|AXL__inp:124|))
+      (= next.|AXL__inp:125| next.|AXL__Target_Tire_Direction__val|)
+      (=
+         next.|__no_static:112|
+         (ite
+            (< next.|AXL__inp:125| 0.0)
+            (- next.|AXL__inp:125|)
+            next.|AXL__inp:125|))
+      (= next.|AXL__inp:126| next.|AXL__Target_Tire_Direction__val|)
+      (=
+         next.|__no_static:113|
+         (ite
+            (< next.|AXL__inp:126| 0.0)
+            (- next.|AXL__inp:126|)
+            next.|AXL__inp:126|))
+      (= next.|valof_pre__CONTR_HIST_AXL| state.|_CONTR_HIST_AXL|)
+      (ite
+         state.|_CONTR_HIST_AXL:init|
+         (=
+            next.|_CONTR_HIST_AXL|
+            (and
+               (<=
+                  next.|__no_static:108|
+                  (/ 9 20))
+               (ite
+                  (and
+                     (<
+                        (/ 1 5)
+                        next.|__no_static:109|)
+                     (< 45.0 next.|AXL__Speed__val|))
+                  (=
+                     next.|AXL__Actual_Tire_Direction__val|
+                     (/ 1 5))
+                  (= next.|AXL__Actual_Tire_Direction__val| next.|AXL__Target_Tire_Direction__val|))
+               (ite
+                  (and
+                     (<
+                        (/ 1 5)
+                        next.|__no_static:110|)
+                     (< 45.0 next.|AXL__Speed__val|))
+                  (=
+                     next.|AXL__Actual_Tire_Direction__val|
+                     (/ 1 5))
+                  (= next.|AXL__Actual_Tire_Direction__val| next.|AXL__Target_Tire_Direction__val|))))
+         (=
+            next.|_CONTR_HIST_AXL|
+            (and
+               (<=
+                  next.|__no_static:111|
+                  (/ 9 20))
+               (ite
+                  (and
+                     (<
+                        (/ 1 5)
+                        next.|__no_static:112|)
+                     (< 45.0 next.|AXL__Speed__val|))
+                  (=
+                     next.|AXL__Actual_Tire_Direction__val|
+                     (/ 1 5))
+                  (= next.|AXL__Actual_Tire_Direction__val| next.|AXL__Target_Tire_Direction__val|))
+               (ite
+                  (and
+                     (<
+                        (/ 1 5)
+                        next.|__no_static:113|)
+                     (< 45.0 next.|AXL__Speed__val|))
+                  (=
+                     next.|AXL__Actual_Tire_Direction__val|
+                     (/ 1 5))
+                  (= next.|AXL__Actual_Tire_Direction__val| next.|AXL__Target_Tire_Direction__val|))
+               next.|valof_pre__CONTR_HIST_AXL|)))
+      (= next.|_CONTR_HIST_AXL:init| false)
+      (= next.|valof_pre__CONTR_HIST_CNTRL| state.|_CONTR_HIST_CNTRL|)
+      (ite
+         state.|_CONTR_HIST_CNTRL:init|
+         (=
+            next.|_CONTR_HIST_CNTRL|
+            (and
+               true
+               (= next.|CNTRL__Actuator_Input__val| next.|CNTRL__u|)
+               (= next.|CNTRL__Actuator_Input__val| next.|CNTRL__u|)))
+         (=
+            next.|_CONTR_HIST_CNTRL|
+            (and
+               true
+               (= next.|CNTRL__Actuator_Input__val| next.|CNTRL__u|)
+               (= next.|CNTRL__Actuator_Input__val| next.|CNTRL__u|)
+               next.|valof_pre__CONTR_HIST_CNTRL|)))
+      (= next.|_CONTR_HIST_CNTRL:init| false)
+      (= next.|valof_pre_THROT__Actual__val:144| state.|THROT__Actual__val|)
+      (ite
+         state.|valof_arr:145:init|
+         (= next.|valof_arr:145| 0.0)
+         (= next.|valof_arr:145| next.|valof_pre_THROT__Actual__val:144|))
+      (= next.|valof_arr:145:init| false)
+      (= next.|valof_pre_THROT__Actual__val:146| state.|THROT__Actual__val|)
+      (ite
+         state.|valof_arr:147:init|
+         (= next.|valof_arr:147| 0.0)
+         (= next.|valof_arr:147| next.|valof_pre_THROT__Actual__val:146|))
+      (= next.|valof_arr:147:init| false)
+      (= next.|valof_pre_THROT__Actual__val:148| state.|THROT__Actual__val|)
+      (ite
+         state.|valof_arr:149:init|
+         (= next.|valof_arr:149| 0.0)
+         (= next.|valof_arr:149| next.|valof_pre_THROT__Actual__val:148|))
+      (= next.|valof_arr:149:init| false)
+      (= next.|valof_pre_THROT__Actual__val:150| state.|THROT__Actual__val|)
+      (ite
+         state.|valof_arr:151:init|
+         (= next.|valof_arr:151| 0.0)
+         (= next.|valof_arr:151| next.|valof_pre_THROT__Actual__val:150|))
+      (= next.|valof_arr:151:init| false)
+      (= next.|valof_pre__CONTR_HIST_THROT| state.|_CONTR_HIST_THROT|)
+      (ite
+         state.|_CONTR_HIST_THROT:init|
+         (=
+            next.|_CONTR_HIST_THROT|
+            (and
+               true
+               (=
+                  next.|THROT__Actual__val|
+                  (+
+                     next.|valof_arr:145|
+                     (*
+                        (/ 1 10)
+                        next.|THROT__Actuator_Input__val|)))
+               (=
+                  next.|THROT__Actual__val|
+                  (+
+                     next.|valof_arr:147|
+                     (*
+                        (/ 1 10)
+                        next.|THROT__Actuator_Input__val|)))))
+         (=
+            next.|_CONTR_HIST_THROT|
+            (and
+               true
+               (=
+                  next.|THROT__Actual__val|
+                  (+
+                     next.|valof_arr:149|
+                     (*
+                        (/ 1 10)
+                        next.|THROT__Actuator_Input__val|)))
+               (=
+                  next.|THROT__Actual__val|
+                  (+
+                     next.|valof_arr:151|
+                     (*
+                        (/ 1 10)
+                        next.|THROT__Actuator_Input__val|)))
+               next.|valof_pre__CONTR_HIST_THROT|)))
+      (= next.|_CONTR_HIST_THROT:init| false)
+      (= next.|valof_pre_Actual_Speed__val| state.|Actual_Speed__val|)
+      (ite
+         state.|valof_arr:154:init|
+         (= next.|valof_arr:154| 0.0)
+         (= next.|valof_arr:154| next.|valof_pre_Actual_Speed__val|))
+      (= next.|valof_arr:154:init| false)
+      (=
+         next.inp
+         (- next.|Actual_Speed__val| next.|valof_arr:154|))
+      (=
+         next.|__no_static:114|
+         (ite
+            (< next.inp 0.0)
+            (- next.inp)
+            next.inp))
+      (=
+         next.|_SYS_GUARANTEE_1|
+         (=>
+            (and next.|_SYSTEM_ASSUMP_HIST| next.|_TOTAL_COMP_HIST|)
+            (< next.|__no_static:114| next.|max_accel|)))))
+
+(query
+   TS
+   (or |gal-initializing| |_SYS_GUARANTEE_1|))
+
+[Lustre] Validating properties:
+[Lustre] Property _SYS_GUARANTEE_1... considering simultaneous states to depth 0[42Dconsidering simultaneous states to depth 0[42Dconsidering simultaneous states to depth 1[42Dconsidering simultaneous states to depth 1[42Dconsidering simultaneous states to depth 2[42Dconsidering simultaneous states to depth 2[42Dconsidering simultaneous states to depth 3[42Dconsidering simultaneous states to depth 3[42Dconsidering simultaneous states to depth 4[42Dconsidering simultaneous states to depth 4[42Dconsidering simultaneous states to depth 5[42Dconsidering simultaneous states to depth 5[42Dconsidering simultaneous states to depth 6[42Dconsidering simultaneous states to depth 6[42Dconsidering simultaneous states to depth 7[42Dconsidering simultaneous states to depth 7[42Dconsidering simultaneous states to depth 8[42Dconsidering simultaneous states to depth 8[42Dconsidering simultaneous states to depth 9[42Dconsidering simultaneous states to depth 9[42Dconsidering simultaneous states to depth 10[43Dconsidering simultaneous states to depth 10[43Dconsidering simultaneous states to depth 11[43Dconsidering simultaneous states to depth 11[43Dconsidering simultaneous states to depth 12[43Dconsidering simultaneous states to depth 12[43Dconsidering simultaneous states to depth 13[43Dconsidering simultaneous states to depth 13[43Dconsidering simultaneous states to depth 14[43Dconsidering simultaneous states to depth 14[43Dconsidering simultaneous states to depth 15[43Dconsidering simultaneous states to depth 15[43Dconsidering simultaneous states to depth 16[43Dconsidering simultaneous states to depth 16[43Dconsidering simultaneous states to depth 17[43Dconsidering simultaneous states to depth 17[43Dconsidering simultaneous states to depth 18[43Dconsidering simultaneous states to depth 18[43Dconsidering simultaneous states to depth 19[43Dconsidering simultaneous states to depth 19[43Dconsidering simultaneous states to depth 20[43Dconsidering simultaneous states to depth 20[43Dconsidering simultaneous states to depth 21[43Dconsidering simultaneous states to depth 21[43Dconsidering simultaneous states to depth 22[43Dconsidering simultaneous states to depth 22[43Dconsidering simultaneous states to depth 23[43Dconsidering simultaneous states to depth 23[43D                                           [43D[[1;92mValid[0m] considering simultaneous states to depth 23
+[Lustre] Model status: [[1;92mValid[0m] 
