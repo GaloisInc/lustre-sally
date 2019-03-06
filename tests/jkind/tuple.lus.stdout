@@ -233,9 +233,112 @@ Sally Model
    (or |gal-initializing| ok1))
 
 [Lustre] Validating properties:
-[Lustre] Property ok3... considering simultaneous states to depth 0[42Dconsidering simultaneous states to depth 0[42D                                          [42D[[1;92mValid[0m] considering simultaneous states to depth 0
-[Lustre] Property cex2... considering simultaneous states to depth 0[42Dconsidering simultaneous states to depth 0[42Dconsidering simultaneous states to depth 1[42Dconsidering simultaneous states to depth 1[42Dconsidering simultaneous states to depth 2[42Dconsidering simultaneous states to depth 2[42Dconsidering simultaneous states to depth 3[42Dconsidering simultaneous states to depth 3[42Dconsidering simultaneous states to depth 4[42Dconsidering simultaneous states to depth 4[42Dconsidering simultaneous states to depth 5[42Dconsidering simultaneous states to depth 5[42Dconsidering simultaneous states to depth 6[42Dconsidering simultaneous states to depth 6[42Dconsidering simultaneous states to depth 7[42Dconsidering simultaneous states to depth 7[42Dconsidering simultaneous states to depth 8[42Dconsidering simultaneous states to depth 8[42Dconsidering simultaneous states to depth 9[42Dconsidering simultaneous states to depth 9[42D                                          [42Dcounter-example search depth 0[30Dcounter-example search depth 1[30Dcounter-example search depth 2[30Dcounter-example search depth 3[30Dcounter-example search depth 4[30Dcounter-example search depth 5[30Dcounter-example search depth 6[30Dcounter-example search depth 7[30Dcounter-example search depth 8[30Dcounter-example search depth 9[30Dcounter-example search depth 10[31D                               [31D[[1;93mUnknown[0m] Valid up to depth 10
-[Lustre] Property ok2... considering simultaneous states to depth 0[42Dconsidering simultaneous states to depth 0[42Dconsidering simultaneous states to depth 1[42Dconsidering simultaneous states to depth 1[42Dconsidering simultaneous states to depth 2[42Dconsidering simultaneous states to depth 2[42Dconsidering simultaneous states to depth 3[42Dconsidering simultaneous states to depth 3[42Dconsidering simultaneous states to depth 4[42Dconsidering simultaneous states to depth 4[42Dconsidering simultaneous states to depth 5[42Dconsidering simultaneous states to depth 5[42Dconsidering simultaneous states to depth 6[42Dconsidering simultaneous states to depth 6[42Dconsidering simultaneous states to depth 7[42Dconsidering simultaneous states to depth 7[42Dconsidering simultaneous states to depth 8[42Dconsidering simultaneous states to depth 8[42Dconsidering simultaneous states to depth 9[42Dconsidering simultaneous states to depth 9[42D                                          [42Dcounter-example search depth 0[30Dcounter-example search depth 1[30Dcounter-example search depth 2[30Dcounter-example search depth 3[30Dcounter-example search depth 4[30Dcounter-example search depth 5[30Dcounter-example search depth 6[30Dcounter-example search depth 7[30Dcounter-example search depth 8[30Dcounter-example search depth 9[30Dcounter-example search depth 10[31D                               [31D[[1;93mUnknown[0m] Valid up to depth 10
-[Lustre] Property cex1... considering simultaneous states to depth 0[42Dconsidering simultaneous states to depth 0[42Dconsidering simultaneous states to depth 1[42Dconsidering simultaneous states to depth 1[42Dconsidering simultaneous states to depth 2[42Dconsidering simultaneous states to depth 2[42Dconsidering simultaneous states to depth 3[42Dconsidering simultaneous states to depth 3[42Dconsidering simultaneous states to depth 4[42Dconsidering simultaneous states to depth 4[42Dconsidering simultaneous states to depth 5[42Dconsidering simultaneous states to depth 5[42Dconsidering simultaneous states to depth 6[42Dconsidering simultaneous states to depth 6[42Dconsidering simultaneous states to depth 7[42Dconsidering simultaneous states to depth 7[42Dconsidering simultaneous states to depth 8[42Dconsidering simultaneous states to depth 8[42Dconsidering simultaneous states to depth 9[42Dconsidering simultaneous states to depth 9[42D                                          [42Dcounter-example search depth 0[30Dcounter-example search depth 1[30Dcounter-example search depth 2[30Dcounter-example search depth 3[30Dcounter-example search depth 4[30Dcounter-example search depth 5[30Dcounter-example search depth 6[30Dcounter-example search depth 7[30Dcounter-example search depth 8[30Dcounter-example search depth 9[30Dcounter-example search depth 10[31D                               [31D[[1;93mUnknown[0m] Valid up to depth 10
-[Lustre] Property ok1... considering simultaneous states to depth 0[42Dconsidering simultaneous states to depth 0[42D                                          [42D[[1;92mValid[0m] considering simultaneous states to depth 0
+[Lustre] Property ok3... considering simultaneous states to depth 0
+considering simultaneous states to depth 0
+[[1;92mValid[0m] considering simultaneous states to depth 0
+[Lustre] Property cex2... considering simultaneous states to depth 0
+considering simultaneous states to depth 0
+considering simultaneous states to depth 1
+considering simultaneous states to depth 1
+considering simultaneous states to depth 2
+considering simultaneous states to depth 2
+considering simultaneous states to depth 3
+considering simultaneous states to depth 3
+considering simultaneous states to depth 4
+considering simultaneous states to depth 4
+considering simultaneous states to depth 5
+considering simultaneous states to depth 5
+considering simultaneous states to depth 6
+considering simultaneous states to depth 6
+considering simultaneous states to depth 7
+considering simultaneous states to depth 7
+considering simultaneous states to depth 8
+considering simultaneous states to depth 8
+considering simultaneous states to depth 9
+considering simultaneous states to depth 9
+considering simultaneous states to depth 10
+considering simultaneous states to depth 10
+counter-example search depth 0
+counter-example search depth 1
+counter-example search depth 2
+counter-example search depth 3
+counter-example search depth 4
+counter-example search depth 5
+counter-example search depth 6
+counter-example search depth 7
+counter-example search depth 8
+counter-example search depth 9
+counter-example search depth 10
+[[1;93mUnknown[0m] Valid up to depth 10
+[Lustre] Property ok2... considering simultaneous states to depth 0
+considering simultaneous states to depth 0
+considering simultaneous states to depth 1
+considering simultaneous states to depth 1
+considering simultaneous states to depth 2
+considering simultaneous states to depth 2
+considering simultaneous states to depth 3
+considering simultaneous states to depth 3
+considering simultaneous states to depth 4
+considering simultaneous states to depth 4
+considering simultaneous states to depth 5
+considering simultaneous states to depth 5
+considering simultaneous states to depth 6
+considering simultaneous states to depth 6
+considering simultaneous states to depth 7
+considering simultaneous states to depth 7
+considering simultaneous states to depth 8
+considering simultaneous states to depth 8
+considering simultaneous states to depth 9
+considering simultaneous states to depth 9
+considering simultaneous states to depth 10
+considering simultaneous states to depth 10
+counter-example search depth 0
+counter-example search depth 1
+counter-example search depth 2
+counter-example search depth 3
+counter-example search depth 4
+counter-example search depth 5
+counter-example search depth 6
+counter-example search depth 7
+counter-example search depth 8
+counter-example search depth 9
+counter-example search depth 10
+[[1;93mUnknown[0m] Valid up to depth 10
+[Lustre] Property cex1... considering simultaneous states to depth 0
+considering simultaneous states to depth 0
+considering simultaneous states to depth 1
+considering simultaneous states to depth 1
+considering simultaneous states to depth 2
+considering simultaneous states to depth 2
+considering simultaneous states to depth 3
+considering simultaneous states to depth 3
+considering simultaneous states to depth 4
+considering simultaneous states to depth 4
+considering simultaneous states to depth 5
+considering simultaneous states to depth 5
+considering simultaneous states to depth 6
+considering simultaneous states to depth 6
+considering simultaneous states to depth 7
+considering simultaneous states to depth 7
+considering simultaneous states to depth 8
+considering simultaneous states to depth 8
+considering simultaneous states to depth 9
+considering simultaneous states to depth 9
+considering simultaneous states to depth 10
+considering simultaneous states to depth 10
+counter-example search depth 0
+counter-example search depth 1
+counter-example search depth 2
+counter-example search depth 3
+counter-example search depth 4
+counter-example search depth 5
+counter-example search depth 6
+counter-example search depth 7
+counter-example search depth 8
+counter-example search depth 9
+counter-example search depth 10
+[[1;93mUnknown[0m] Valid up to depth 10
+[Lustre] Property ok1... considering simultaneous states to depth 0
+considering simultaneous states to depth 0
+[[1;92mValid[0m] considering simultaneous states to depth 0
 [Lustre] Model status: [[1;93mUnknown[0m] 
