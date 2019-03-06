@@ -2,7 +2,7 @@
 module Main(main) where
 
 import System.Exit(exitFailure)
-import Control.Monad(when,foldM)
+import Control.Monad(when,unless,foldM)
 import Control.Exception(catches, Handler(..), throwIO
                         , SomeException(..), displayException)
 import Data.Char(isSpace)
@@ -44,6 +44,7 @@ data Settings = Settings
   , useMCSat  :: Bool
   , outDir    :: FilePath
   , useConfig :: FilePath
+  , testMode  :: Bool
   }
 
 options :: OptSpec Settings
@@ -96,6 +97,10 @@ options = OptSpec
       , Option ['c'] ["config"]
         "Load additional settings from the given file"
         $ ReqArg "FILE" $ \a s -> Right s { useConfig = a }
+
+      , Option [] ["test-mode"]
+        "Run in testing-mode (prints more things on stdout)"
+        $ NoArg $ \s -> Right s { testMode = True }
       ]
 
   , progParamDocs = [("FILE", "Lustre file containing model (required).")]
@@ -116,6 +121,7 @@ options = OptSpec
     , useMCSat = True
     , outDir = "results"
     , useConfig = ""
+    , testMode = False
     }
 
 
@@ -188,14 +194,16 @@ mainWork settings ds =
      (info,nd) <- runLustre luConf (quickNodeToCore (node settings) ds)
 
      -- Save JS version of source model
-     do txt <- readFile (file settings)
-        saveOutput (outSourceFile settings) (declareSource txt)
+     unless (testMode settings) $
+       do txt <- readFile (file settings)
+          saveOutput (outSourceFile settings) (declareSource txt)
 
-    -- Save Core version of model, if needed
+     -- Save Core version of model, if needed
+     let prettyCore = show (pp nd)
      when (saveCore settings) $
-       saveOutput (outCoreFile settings) (show (pp nd))
-
-     -- say "Lustre" ("State has " ++ show (length (nEqns nd)) ++ " variables.")
+       saveOutput (outCoreFile settings) prettyCore
+     when (testMode settings) $
+       saveOutputTesting "Core Lustre" prettyCore
 
      let (ts,qs)  = transNode nd   -- transition system and queries
 
@@ -204,8 +212,11 @@ mainWork settings ds =
          qs_sexps = [ (x,ppSExpr (translateQuery ts q) "") | (x,q) <- qs ]
 
      -- Put all queries in a single file, if saving.
+     let sallyTxt = unlines (ts_sexp : map snd qs_sexps)
      when (saveSally settings) $
-       saveOutput (outSallyFile settings) (unlines (ts_sexp : map snd qs_sexps))
+       saveOutput (outSallyFile settings) sallyTxt
+     when (testMode settings) $
+       saveOutputTesting "Sally Model" sallyTxt
 
      say "Lustre" "Validating properties:"
      outs <- mapM (checkQuery settings info nd ts ts_sexp) qs_sexps
@@ -248,7 +259,10 @@ checkQuery settings mi nd ts_ast ts (l',q) =
             do let propDir = outPropDir settings l
                sayFail "Invalid" ("See " ++ (propDir </> "index.html"))
                saveUI propDir
-               saveOutput (outTraceFile settings l) (declareTrace mi l' r)
+               let tr = declareTrace mi l' r
+               if testMode settings
+                  then saveOutputTesting "Trace" tr
+                  else saveOutput (outTraceFile settings l) tr
                pure (Invalid ())
 
          Unknown   -> orElse
@@ -329,4 +343,10 @@ saveOutput fi out =
      createDirectoryIfMissing True dir
      writeFile fi out
 
+saveOutputTesting :: String -> String -> IO ()
+saveOutputTesting lab val =
+  do putStrLn lab
+     putStrLn (replicate (length lab) '=')
+     putStrLn ""
+     putStrLn val
 
