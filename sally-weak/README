@@ -1,0 +1,5 @@
+This directory contains links to tests that we can encode successfully,
+and yet Sally cannot prove.  These are interesting because:
+
+  1. They might indicate a problem with our Lustre translation scheme
+  2. They might point to places where Sally can be improved.
