@@ -1,0 +1,60 @@
+Core Lustre
+===========
+
+node (a1 : int, a2 : int)
+  returns ()
+  assumes (x)
+  shows (ok)
+let
+  y = Gt(a1, 0)
+  z = Gt(a2, 10)
+  x = And(y, z)
+  ok = Gt(a1, 0)
+tel
+Sally Model
+===========
+
+(define-state-type
+   S
+   (
+     (a1 Int)
+     (a2 Int)
+     (ok Bool)
+     (x Bool)
+     (y Bool)
+     (z Bool)
+     (|gal-initializing| Bool))
+   (
+     (a1 Int)
+     (a2 Int)))
+(define-transition-system
+   TS
+   S
+   (= |gal-initializing| true)
+   (and
+      (= next.|gal-initializing| false)
+      (= next.a1 input.a1)
+      (= next.a2 input.a2)
+      next.x
+      (=
+         next.y
+         (< 0 next.a1))
+      (=
+         next.z
+         (< 10 next.a2))
+      (=
+         next.x
+         (and next.y next.z))
+      (=
+         next.ok
+         (< 0 next.a1))))
+
+(query
+   TS
+   (or |gal-initializing| ok))
+
+[Lustre] Validating properties:
+[Lustre] Property ok... considering simultaneous states to depth 0
+considering simultaneous states to depth 0
+[[1;92mValid[0m] considering simultaneous states to depth 0
+[Lustre] Model status: [[1;92mValid[0m] 

@@ -1,0 +1,344 @@
+[Lustre] Loading settings from: "tuple.lus.settings"
+Core Lustre
+===========
+
+node (a : int, b : int, x : int, y : int)
+  returns ()
+  assumes (And)
+  shows (ok3, cex2, ok2, cex1, ok1)
+let
+  min = ITE(Lt(a, b), a, b)
+  max = ITE(Lt(a, b), b, a)
+  valof_pre_fib2 = pre fib2
+  fib1 = 0 -> valof_pre_fib2
+  valof_pre = pre Add(fib1, fib2)
+  fib2 = 1 -> valof_pre
+  valof_pre_toggle = pre toggle
+  toggle = true -> Not(valof_pre_toggle)
+  diff_25 = 1
+  valof_pre___no_static_30 = pre __no_static_21
+  __no_static_21 = 0 -> Sub(valof_pre___no_static_30, diff_25)
+  diff_26 = 2
+  valof_pre___no_static_32 = pre __no_static_23
+  __no_static_23 = 0 -> Sub(valof_pre___no_static_32, diff_26)
+  down = ITE(toggle, __no_static_21, __no_static_23)
+  valof_pre___no_static_31 = pre __no_static_22
+  __no_static_22 = 0 -> Add(valof_pre___no_static_31, diff_25)
+  valof_pre___no_static_33 = pre __no_static_24
+  __no_static_24 = 0 -> Add(valof_pre___no_static_33, diff_26)
+  up = ITE(toggle, __no_static_22, __no_static_24)
+  ok1 = And(And(Leq(min, max), Or(Eq(a, min), Eq(a, max))), Or(Eq(b, min), Eq(b, max)))
+  ok2 = Neq(fib2, 10947)
+  ok3 = Or(And(Eq(x, 1), Eq(y, 2)), And(Eq(x, 3), Eq(y, 4)))
+  cex1 = Neq(fib2, 10946)
+  cex2 = Lt(up, 100)
+  And = And(Eq(x, ITE(toggle, 1, 3)), Eq(y, ITE(toggle, 2, 4)))
+tel
+Sally Model
+===========
+
+(define-state-type
+   S
+   (
+     (And Bool)
+     (a Int)
+     (b Int)
+     (cex1 Bool)
+     (cex2 Bool)
+     (down Int)
+     (fib1 Int)
+     (fib2 Int)
+     (max Int)
+     (min Int)
+     (ok1 Bool)
+     (ok2 Bool)
+     (ok3 Bool)
+     (toggle Bool)
+     (up Int)
+     (x Int)
+     (y Int)
+     (|__no_static:21:init| Bool)
+     (|__no_static:21| Int)
+     (|__no_static:22:init| Bool)
+     (|__no_static:22| Int)
+     (|__no_static:23:init| Bool)
+     (|__no_static:23| Int)
+     (|__no_static:24:init| Bool)
+     (|__no_static:24| Int)
+     (|diff:25| Int)
+     (|diff:26| Int)
+     (|fib1:init| Bool)
+     (|fib2:init| Bool)
+     (|gal-initializing| Bool)
+     (|toggle:init| Bool)
+     (|valof_pre___no_static:30| Int)
+     (|valof_pre___no_static:31| Int)
+     (|valof_pre___no_static:32| Int)
+     (|valof_pre___no_static:33| Int)
+     (|valof_pre_fib2| Int)
+     (|valof_pre_toggle| Bool)
+     (|valof_pre| Int))
+   (
+     (a Int)
+     (b Int)
+     (x Int)
+     (y Int)))
+(define-transition-system
+   TS
+   S
+   (and
+      (= |gal-initializing| true)
+      (= |fib1:init| true)
+      (= |fib2:init| true)
+      (= |toggle:init| true)
+      (= |__no_static:21:init| true)
+      (= |__no_static:23:init| true)
+      (= |__no_static:22:init| true)
+      (= |__no_static:24:init| true))
+   (and
+      (= next.|gal-initializing| false)
+      (= next.a input.a)
+      (= next.b input.b)
+      (= next.x input.x)
+      (= next.y input.y)
+      next.And
+      (=
+         next.min
+         (ite
+            (< next.a next.b)
+            next.a
+            next.b))
+      (=
+         next.max
+         (ite
+            (< next.a next.b)
+            next.b
+            next.a))
+      (= next.|valof_pre_fib2| state.fib2)
+      (ite
+         state.|fib1:init|
+         (= next.fib1 0)
+         (= next.fib1 next.|valof_pre_fib2|))
+      (= next.|fib1:init| false)
+      (=
+         next.|valof_pre|
+         (+ state.fib1 state.fib2))
+      (ite
+         state.|fib2:init|
+         (= next.fib2 1)
+         (= next.fib2 next.|valof_pre|))
+      (= next.|fib2:init| false)
+      (= next.|valof_pre_toggle| state.toggle)
+      (ite
+         state.|toggle:init|
+         (= next.toggle true)
+         (=
+            next.toggle
+            (not next.|valof_pre_toggle|)))
+      (= next.|toggle:init| false)
+      (= next.|diff:25| 1)
+      (= next.|valof_pre___no_static:30| state.|__no_static:21|)
+      (ite
+         state.|__no_static:21:init|
+         (= next.|__no_static:21| 0)
+         (=
+            next.|__no_static:21|
+            (- next.|valof_pre___no_static:30| next.|diff:25|)))
+      (= next.|__no_static:21:init| false)
+      (= next.|diff:26| 2)
+      (= next.|valof_pre___no_static:32| state.|__no_static:23|)
+      (ite
+         state.|__no_static:23:init|
+         (= next.|__no_static:23| 0)
+         (=
+            next.|__no_static:23|
+            (- next.|valof_pre___no_static:32| next.|diff:26|)))
+      (= next.|__no_static:23:init| false)
+      (=
+         next.down
+         (ite next.toggle next.|__no_static:21| next.|__no_static:23|))
+      (= next.|valof_pre___no_static:31| state.|__no_static:22|)
+      (ite
+         state.|__no_static:22:init|
+         (= next.|__no_static:22| 0)
+         (=
+            next.|__no_static:22|
+            (+ next.|valof_pre___no_static:31| next.|diff:25|)))
+      (= next.|__no_static:22:init| false)
+      (= next.|valof_pre___no_static:33| state.|__no_static:24|)
+      (ite
+         state.|__no_static:24:init|
+         (= next.|__no_static:24| 0)
+         (=
+            next.|__no_static:24|
+            (+ next.|valof_pre___no_static:33| next.|diff:26|)))
+      (= next.|__no_static:24:init| false)
+      (=
+         next.up
+         (ite next.toggle next.|__no_static:22| next.|__no_static:24|))
+      (=
+         next.ok1
+         (and
+            (<= next.min next.max)
+            (or
+               (= next.a next.min)
+               (= next.a next.max))
+            (or
+               (= next.b next.min)
+               (= next.b next.max))))
+      (=
+         next.ok2
+         (not
+            (= next.fib2 10947)))
+      (=
+         next.ok3
+         (or
+            (and
+               (= next.x 1)
+               (= next.y 2))
+            (and
+               (= next.x 3)
+               (= next.y 4))))
+      (=
+         next.cex1
+         (not
+            (= next.fib2 10946)))
+      (=
+         next.cex2
+         (< next.up 100))
+      (=
+         next.And
+         (and
+            (=
+               next.x
+               (ite next.toggle 1 3))
+            (=
+               next.y
+               (ite next.toggle 2 4))))))
+
+(query
+   TS
+   (or |gal-initializing| ok3))
+(query
+   TS
+   (or |gal-initializing| cex2))
+(query
+   TS
+   (or |gal-initializing| ok2))
+(query
+   TS
+   (or |gal-initializing| cex1))
+(query
+   TS
+   (or |gal-initializing| ok1))
+
+[Lustre] Validating properties:
+[Lustre] Property ok3... considering simultaneous states to depth 0
+considering simultaneous states to depth 0
+[[1;92mValid[0m] considering simultaneous states to depth 0
+[Lustre] Property cex2... considering simultaneous states to depth 0
+considering simultaneous states to depth 0
+considering simultaneous states to depth 1
+considering simultaneous states to depth 1
+considering simultaneous states to depth 2
+considering simultaneous states to depth 2
+considering simultaneous states to depth 3
+considering simultaneous states to depth 3
+considering simultaneous states to depth 4
+considering simultaneous states to depth 4
+considering simultaneous states to depth 5
+considering simultaneous states to depth 5
+considering simultaneous states to depth 6
+considering simultaneous states to depth 6
+considering simultaneous states to depth 7
+considering simultaneous states to depth 7
+considering simultaneous states to depth 8
+considering simultaneous states to depth 8
+considering simultaneous states to depth 9
+considering simultaneous states to depth 9
+considering simultaneous states to depth 10
+considering simultaneous states to depth 10
+counter-example search depth 0
+counter-example search depth 1
+counter-example search depth 2
+counter-example search depth 3
+counter-example search depth 4
+counter-example search depth 5
+counter-example search depth 6
+counter-example search depth 7
+counter-example search depth 8
+counter-example search depth 9
+counter-example search depth 10
+[[1;93mUnknown[0m] Valid up to depth 10
+[Lustre] Property ok2... considering simultaneous states to depth 0
+considering simultaneous states to depth 0
+considering simultaneous states to depth 1
+considering simultaneous states to depth 1
+considering simultaneous states to depth 2
+considering simultaneous states to depth 2
+considering simultaneous states to depth 3
+considering simultaneous states to depth 3
+considering simultaneous states to depth 4
+considering simultaneous states to depth 4
+considering simultaneous states to depth 5
+considering simultaneous states to depth 5
+considering simultaneous states to depth 6
+considering simultaneous states to depth 6
+considering simultaneous states to depth 7
+considering simultaneous states to depth 7
+considering simultaneous states to depth 8
+considering simultaneous states to depth 8
+considering simultaneous states to depth 9
+considering simultaneous states to depth 9
+considering simultaneous states to depth 10
+considering simultaneous states to depth 10
+counter-example search depth 0
+counter-example search depth 1
+counter-example search depth 2
+counter-example search depth 3
+counter-example search depth 4
+counter-example search depth 5
+counter-example search depth 6
+counter-example search depth 7
+counter-example search depth 8
+counter-example search depth 9
+counter-example search depth 10
+[[1;93mUnknown[0m] Valid up to depth 10
+[Lustre] Property cex1... considering simultaneous states to depth 0
+considering simultaneous states to depth 0
+considering simultaneous states to depth 1
+considering simultaneous states to depth 1
+considering simultaneous states to depth 2
+considering simultaneous states to depth 2
+considering simultaneous states to depth 3
+considering simultaneous states to depth 3
+considering simultaneous states to depth 4
+considering simultaneous states to depth 4
+considering simultaneous states to depth 5
+considering simultaneous states to depth 5
+considering simultaneous states to depth 6
+considering simultaneous states to depth 6
+considering simultaneous states to depth 7
+considering simultaneous states to depth 7
+considering simultaneous states to depth 8
+considering simultaneous states to depth 8
+considering simultaneous states to depth 9
+considering simultaneous states to depth 9
+considering simultaneous states to depth 10
+considering simultaneous states to depth 10
+counter-example search depth 0
+counter-example search depth 1
+counter-example search depth 2
+counter-example search depth 3
+counter-example search depth 4
+counter-example search depth 5
+counter-example search depth 6
+counter-example search depth 7
+counter-example search depth 8
+counter-example search depth 9
+counter-example search depth 10
+[[1;93mUnknown[0m] Valid up to depth 10
+[Lustre] Property ok1... considering simultaneous states to depth 0
+considering simultaneous states to depth 0
+[[1;92mValid[0m] considering simultaneous states to depth 0
+[Lustre] Model status: [[1;93mUnknown[0m] 

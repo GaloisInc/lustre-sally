@@ -1,0 +1,3 @@
+no-tc: yes
+counter-example-limit: 30
+proof-depth: 1

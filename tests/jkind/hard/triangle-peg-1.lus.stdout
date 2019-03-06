@@ -1,0 +1,1413 @@
+Core Lustre
+===========
+
+node (a_86 : int, b_87 : int, p1_88 : bool, p2_89 : bool, p3_90 : bool, p4_91 : bool, p5_92 : bool, p6_93 : bool, p7_94 : bool, p8_95 : bool, p9_96 : bool, p10_97 : bool, p11_98 : bool, p12_99 : bool, p13_100 : bool, p14_101 : bool, p15_102 : bool)
+  returns ()
+  assumes ()
+  shows (prop)
+let
+  p1_147 = p1_88
+  p2_148 = p2_89
+  p3_149 = p3_90
+  p4_150 = p4_91
+  p5_151 = p5_92
+  p6_152 = p6_93
+  p7_153 = p7_94
+  p8_154 = p8_95
+  p9_155 = p9_96
+  p10_156 = p10_97
+  p11_157 = p11_98
+  p12_158 = p12_99
+  p13_159 = p13_100
+  p14_160 = p14_101
+  p15_161 = p15_102
+  initial = And(And(And(And(And(And(And(And(And(And(And(And(And(And(Not(p1_147), p2_148), p3_149), p4_150), p5_151), p6_152), p7_153), p8_154), p9_155), p10_156), p11_157), p12_158), p13_159), p14_160), p15_161)
+  loc_209 = a_86
+  p1_210 = pre p1_88
+  p2_211 = pre p2_89
+  p3_212 = pre p3_90
+  p4_213 = pre p4_91
+  p5_214 = pre p5_92
+  p6_215 = pre p6_93
+  p7_216 = pre p7_94
+  p8_217 = pre p8_95
+  p9_218 = pre p9_96
+  p10_219 = pre p10_97
+  p11_220 = pre p11_98
+  p12_221 = pre p12_99
+  p13_222 = pre p13_100
+  p14_223 = pre p14_101
+  p15_224 = pre p15_102
+  __no_static_123 = ITE(Eq(loc_209, 1), p1_210, ITE(Eq(loc_209, 2), p2_211, ITE(Eq(loc_209, 3), p3_212, ITE(Eq(loc_209, 4), p4_213, ITE(Eq(loc_209, 5), p5_214, ITE(Eq(loc_209, 6), p6_215, ITE(Eq(loc_209, 7), p7_216, ITE(Eq(loc_209, 8), p8_217, ITE(Eq(loc_209, 9), p9_218, ITE(Eq(loc_209, 10), p10_219, ITE(Eq(loc_209, 11), p11_220, ITE(Eq(loc_209, 12), p12_221, ITE(Eq(loc_209, 13), p13_222, ITE(Eq(loc_209, 14), p14_223, ITE(Eq(loc_209, 15), p15_224, false)))))))))))))))
+  a_207 = a_86
+  b_208 = b_87
+  mid = ITE(And(Eq(a_207, 1), Eq(b_208, 4)), 2, ITE(And(Eq(a_207, 1), Eq(b_208, 6)), 3, ITE(And(Eq(a_207, 2), Eq(b_208, 7)), 4, ITE(And(Eq(a_207, 2), Eq(b_208, 9)), 5, ITE(And(Eq(a_207, 3), Eq(b_208, 8)), 5, ITE(And(Eq(a_207, 3), Eq(b_208, 10)), 6, ITE(And(Eq(a_207, 4), Eq(b_208, 1)), 2, ITE(And(Eq(a_207, 4), Eq(b_208, 6)), 5, ITE(And(Eq(a_207, 4), Eq(b_208, 11)), 7, ITE(And(Eq(a_207, 4), Eq(b_208, 13)), 8, ITE(And(Eq(a_207, 5), Eq(b_208, 12)), 8, ITE(And(Eq(a_207, 5), Eq(b_208, 14)), 9, ITE(And(Eq(a_207, 6), Eq(b_208, 1)), 3, ITE(And(Eq(a_207, 6), Eq(b_208, 4)), 5, ITE(And(Eq(a_207, 6), Eq(b_208, 13)), 9, ITE(And(Eq(a_207, 6), Eq(b_208, 15)), 10, ITE(And(Eq(a_207, 7), Eq(b_208, 2)), 4, ITE(And(Eq(a_207, 7), Eq(b_208, 9)), 8, ITE(And(Eq(a_207, 8), Eq(b_208, 3)), 5, ITE(And(Eq(a_207, 8), Eq(b_208, 10)), 9, ITE(And(Eq(a_207, 9), Eq(b_208, 2)), 5, ITE(And(Eq(a_207, 9), Eq(b_208, 7)), 8, ITE(And(Eq(a_207, 10), Eq(b_208, 3)), 6, ITE(And(Eq(a_207, 10), Eq(b_208, 8)), 9, ITE(And(Eq(a_207, 11), Eq(b_208, 4)), 7, ITE(And(Eq(a_207, 11), Eq(b_208, 13)), 12, ITE(And(Eq(a_207, 12), Eq(b_208, 5)), 8, ITE(And(Eq(a_207, 12), Eq(b_208, 14)), 13, ITE(And(Eq(a_207, 13), Eq(b_208, 4)), 8, ITE(And(Eq(a_207, 13), Eq(b_208, 6)), 9, ITE(And(Eq(a_207, 13), Eq(b_208, 11)), 12, ITE(And(Eq(a_207, 13), Eq(b_208, 15)), 14, ITE(And(Eq(a_207, 14), Eq(b_208, 5)), 9, ITE(And(Eq(a_207, 14), Eq(b_208, 12)), 13, ITE(And(Eq(a_207, 15), Eq(b_208, 6)), 10, ITE(And(Eq(a_207, 15), Eq(b_208, 13)), 14, 0))))))))))))))))))))))))))))))))))))
+  loc_225 = mid
+  p1_226 = pre p1_88
+  p2_227 = pre p2_89
+  p3_228 = pre p3_90
+  p4_229 = pre p4_91
+  p5_230 = pre p5_92
+  p6_231 = pre p6_93
+  p7_232 = pre p7_94
+  p8_233 = pre p8_95
+  p9_234 = pre p9_96
+  p10_235 = pre p10_97
+  p11_236 = pre p11_98
+  p12_237 = pre p12_99
+  p13_238 = pre p13_100
+  p14_239 = pre p14_101
+  p15_240 = pre p15_102
+  __no_static_124 = ITE(Eq(loc_225, 1), p1_226, ITE(Eq(loc_225, 2), p2_227, ITE(Eq(loc_225, 3), p3_228, ITE(Eq(loc_225, 4), p4_229, ITE(Eq(loc_225, 5), p5_230, ITE(Eq(loc_225, 6), p6_231, ITE(Eq(loc_225, 7), p7_232, ITE(Eq(loc_225, 8), p8_233, ITE(Eq(loc_225, 9), p9_234, ITE(Eq(loc_225, 10), p10_235, ITE(Eq(loc_225, 11), p11_236, ITE(Eq(loc_225, 12), p12_237, ITE(Eq(loc_225, 13), p13_238, ITE(Eq(loc_225, 14), p14_239, ITE(Eq(loc_225, 15), p15_240, false)))))))))))))))
+  loc_241 = b_87
+  p1_242 = pre p1_88
+  p2_243 = pre p2_89
+  p3_244 = pre p3_90
+  p4_245 = pre p4_91
+  p5_246 = pre p5_92
+  p6_247 = pre p6_93
+  p7_248 = pre p7_94
+  p8_249 = pre p8_95
+  p9_250 = pre p9_96
+  p10_251 = pre p10_97
+  p11_252 = pre p11_98
+  p12_253 = pre p12_99
+  p13_254 = pre p13_100
+  p14_255 = pre p14_101
+  p15_256 = pre p15_102
+  __no_static_125 = ITE(Eq(loc_241, 1), p1_242, ITE(Eq(loc_241, 2), p2_243, ITE(Eq(loc_241, 3), p3_244, ITE(Eq(loc_241, 4), p4_245, ITE(Eq(loc_241, 5), p5_246, ITE(Eq(loc_241, 6), p6_247, ITE(Eq(loc_241, 7), p7_248, ITE(Eq(loc_241, 8), p8_249, ITE(Eq(loc_241, 9), p9_250, ITE(Eq(loc_241, 10), p10_251, ITE(Eq(loc_241, 11), p11_252, ITE(Eq(loc_241, 12), p12_253, ITE(Eq(loc_241, 13), p13_254, ITE(Eq(loc_241, 14), p14_255, ITE(Eq(loc_241, 15), p15_256, false)))))))))))))))
+  loc_257 = a_86
+  p1_258 = p1_88
+  p2_259 = p2_89
+  p3_260 = p3_90
+  p4_261 = p4_91
+  p5_262 = p5_92
+  p6_263 = p6_93
+  p7_264 = p7_94
+  p8_265 = p8_95
+  p9_266 = p9_96
+  p10_267 = p10_97
+  p11_268 = p11_98
+  p12_269 = p12_99
+  p13_270 = p13_100
+  p14_271 = p14_101
+  p15_272 = p15_102
+  __no_static_126 = ITE(Eq(loc_257, 1), p1_258, ITE(Eq(loc_257, 2), p2_259, ITE(Eq(loc_257, 3), p3_260, ITE(Eq(loc_257, 4), p4_261, ITE(Eq(loc_257, 5), p5_262, ITE(Eq(loc_257, 6), p6_263, ITE(Eq(loc_257, 7), p7_264, ITE(Eq(loc_257, 8), p8_265, ITE(Eq(loc_257, 9), p9_266, ITE(Eq(loc_257, 10), p10_267, ITE(Eq(loc_257, 11), p11_268, ITE(Eq(loc_257, 12), p12_269, ITE(Eq(loc_257, 13), p13_270, ITE(Eq(loc_257, 14), p14_271, ITE(Eq(loc_257, 15), p15_272, false)))))))))))))))
+  loc_273 = mid
+  p1_274 = p1_88
+  p2_275 = p2_89
+  p3_276 = p3_90
+  p4_277 = p4_91
+  p5_278 = p5_92
+  p6_279 = p6_93
+  p7_280 = p7_94
+  p8_281 = p8_95
+  p9_282 = p9_96
+  p10_283 = p10_97
+  p11_284 = p11_98
+  p12_285 = p12_99
+  p13_286 = p13_100
+  p14_287 = p14_101
+  p15_288 = p15_102
+  __no_static_127 = ITE(Eq(loc_273, 1), p1_274, ITE(Eq(loc_273, 2), p2_275, ITE(Eq(loc_273, 3), p3_276, ITE(Eq(loc_273, 4), p4_277, ITE(Eq(loc_273, 5), p5_278, ITE(Eq(loc_273, 6), p6_279, ITE(Eq(loc_273, 7), p7_280, ITE(Eq(loc_273, 8), p8_281, ITE(Eq(loc_273, 9), p9_282, ITE(Eq(loc_273, 10), p10_283, ITE(Eq(loc_273, 11), p11_284, ITE(Eq(loc_273, 12), p12_285, ITE(Eq(loc_273, 13), p13_286, ITE(Eq(loc_273, 14), p14_287, ITE(Eq(loc_273, 15), p15_288, false)))))))))))))))
+  loc_289 = b_87
+  p1_290 = p1_88
+  p2_291 = p2_89
+  p3_292 = p3_90
+  p4_293 = p4_91
+  p5_294 = p5_92
+  p6_295 = p6_93
+  p7_296 = p7_94
+  p8_297 = p8_95
+  p9_298 = p9_96
+  p10_299 = p10_97
+  p11_300 = p11_98
+  p12_301 = p12_99
+  p13_302 = p13_100
+  p14_303 = p14_101
+  p15_304 = p15_102
+  __no_static_128 = ITE(Eq(loc_289, 1), p1_290, ITE(Eq(loc_289, 2), p2_291, ITE(Eq(loc_289, 3), p3_292, ITE(Eq(loc_289, 4), p4_293, ITE(Eq(loc_289, 5), p5_294, ITE(Eq(loc_289, 6), p6_295, ITE(Eq(loc_289, 7), p7_296, ITE(Eq(loc_289, 8), p8_297, ITE(Eq(loc_289, 9), p9_298, ITE(Eq(loc_289, 10), p10_299, ITE(Eq(loc_289, 11), p11_300, ITE(Eq(loc_289, 12), p12_301, ITE(Eq(loc_289, 13), p13_302, ITE(Eq(loc_289, 14), p14_303, ITE(Eq(loc_289, 15), p15_304, false)))))))))))))))
+  a_305 = a_86
+  b_306 = b_87
+  c = mid
+  p1_308 = p1_88
+  p2_309 = p2_89
+  p3_310 = p3_90
+  p4_311 = p4_91
+  p5_312 = p5_92
+  p6_313 = p6_93
+  p7_314 = p7_94
+  p8_315 = p8_95
+  p9_316 = p9_96
+  p10_317 = p10_97
+  p11_318 = p11_98
+  p12_319 = p12_99
+  p13_320 = p13_100
+  p14_321 = p14_101
+  p15_322 = p15_102
+  valof_pre_p1 = pre p1_308
+  valof_pre_p2 = pre p2_309
+  valof_pre_p3 = pre p3_310
+  valof_pre_p4 = pre p4_311
+  valof_pre_p5 = pre p5_312
+  valof_pre_p6 = pre p6_313
+  valof_pre_p7 = pre p7_314
+  valof_pre_p8 = pre p8_315
+  valof_pre_p9 = pre p9_316
+  valof_pre_p10 = pre p10_317
+  valof_pre_p11 = pre p11_318
+  valof_pre_p12 = pre p12_319
+  valof_pre_p13 = pre p13_320
+  valof_pre_p14 = pre p14_321
+  valof_pre_p15 = pre p15_322
+  __no_static_129 = true -> And(And(And(And(And(And(And(And(And(And(And(And(And(And(Or(Or(Or(Eq(a_305, 1), Eq(b_306, 1)), Eq(c, 1)), Eq(p1_308, valof_pre_p1)), Or(Or(Or(Eq(a_305, 2), Eq(b_306, 2)), Eq(c, 2)), Eq(p2_309, valof_pre_p2))), Or(Or(Or(Eq(a_305, 3), Eq(b_306, 3)), Eq(c, 3)), Eq(p3_310, valof_pre_p3))), Or(Or(Or(Eq(a_305, 4), Eq(b_306, 4)), Eq(c, 4)), Eq(p4_311, valof_pre_p4))), Or(Or(Or(Eq(a_305, 5), Eq(b_306, 5)), Eq(c, 5)), Eq(p5_312, valof_pre_p5))), Or(Or(Or(Eq(a_305, 6), Eq(b_306, 6)), Eq(c, 6)), Eq(p6_313, valof_pre_p6))), Or(Or(Or(Eq(a_305, 7), Eq(b_306, 7)), Eq(c, 7)), Eq(p7_314, valof_pre_p7))), Or(Or(Or(Eq(a_305, 8), Eq(b_306, 8)), Eq(c, 8)), Eq(p8_315, valof_pre_p8))), Or(Or(Or(Eq(a_305, 9), Eq(b_306, 9)), Eq(c, 9)), Eq(p9_316, valof_pre_p9))), Or(Or(Or(Eq(a_305, 10), Eq(b_306, 10)), Eq(c, 10)), Eq(p10_317, valof_pre_p10))), Or(Or(Or(Eq(a_305, 11), Eq(b_306, 11)), Eq(c, 11)), Eq(p11_318, valof_pre_p11))), Or(Or(Or(Eq(a_305, 12), Eq(b_306, 12)), Eq(c, 12)), Eq(p12_319, valof_pre_p12))), Or(Or(Or(Eq(a_305, 13), Eq(b_306, 13)), Eq(c, 13)), Eq(p13_320, valof_pre_p13))), Or(Or(Or(Eq(a_305, 14), Eq(b_306, 14)), Eq(c, 14)), Eq(p14_321, valof_pre_p14))), Or(Or(Or(Eq(a_305, 15), Eq(b_306, 15)), Eq(c, 15)), Eq(p15_322, valof_pre_p15)))
+  valid_move = true -> And(And(And(And(And(And(__no_static_123, __no_static_124), Not(__no_static_125)), Not(__no_static_126)), Not(__no_static_127)), __no_static_128), __no_static_129)
+  p15_176 = p15_102
+  x_191 = p15_176
+  __no_static_192 = ITE(x_191, 1, 0)
+  p14_175 = p14_101
+  x_190 = p14_175
+  __no_static_193 = ITE(x_190, 1, 0)
+  p13_174 = p13_100
+  x_189 = p13_174
+  __no_static_194 = ITE(x_189, 1, 0)
+  p12_173 = p12_99
+  x_188 = p12_173
+  __no_static_195 = ITE(x_188, 1, 0)
+  p11_172 = p11_98
+  x_187 = p11_172
+  __no_static_196 = ITE(x_187, 1, 0)
+  p10_171 = p10_97
+  x_186 = p10_171
+  __no_static_197 = ITE(x_186, 1, 0)
+  p9_170 = p9_96
+  x_185 = p9_170
+  __no_static_198 = ITE(x_185, 1, 0)
+  p8_169 = p8_95
+  x_184 = p8_169
+  __no_static_199 = ITE(x_184, 1, 0)
+  p7_168 = p7_94
+  x_183 = p7_168
+  __no_static_200 = ITE(x_183, 1, 0)
+  p6_167 = p6_93
+  x_182 = p6_167
+  __no_static_201 = ITE(x_182, 1, 0)
+  p5_166 = p5_92
+  x_181 = p5_166
+  __no_static_202 = ITE(x_181, 1, 0)
+  p4_165 = p4_91
+  x_180 = p4_165
+  __no_static_203 = ITE(x_180, 1, 0)
+  p3_164 = p3_90
+  x_179 = p3_164
+  __no_static_204 = ITE(x_179, 1, 0)
+  p2_163 = p2_89
+  x_178 = p2_163
+  __no_static_205 = ITE(x_178, 1, 0)
+  p1_162 = p1_88
+  x_177 = p1_162
+  __no_static_206 = ITE(x_177, 1, 0)
+  solved = Eq(Add(Add(Add(Add(Add(Add(Add(Add(Add(Add(Add(Add(Add(Add(__no_static_206, __no_static_205), __no_static_204), __no_static_203), __no_static_202), __no_static_201), __no_static_200), __no_static_199), __no_static_198), __no_static_197), __no_static_196), __no_static_195), __no_static_194), __no_static_193), __no_static_192), 1)
+  x_323 = initial -> true
+  valof_pre___no_static_340 = pre __no_static_130
+  valof_arr_341 = true -> valof_pre___no_static_340
+  __no_static_130 = And(x_323, valof_arr_341)
+  x_324 = valid_move
+  valof_pre___no_static_342 = pre __no_static_131
+  valof_arr_343 = true -> valof_pre___no_static_342
+  __no_static_131 = And(x_324, valof_arr_343)
+  prop = Not(And(And(__no_static_130, __no_static_131), solved))
+tel
+Sally Model
+===========
+
+(define-state-type
+   S
+   (
+     (c Int)
+     (initial Bool)
+     (mid Int)
+     (prop Bool)
+     (solved Bool)
+     (|__no_static:123| Bool)
+     (|__no_static:124| Bool)
+     (|__no_static:125| Bool)
+     (|__no_static:126| Bool)
+     (|__no_static:127| Bool)
+     (|__no_static:128| Bool)
+     (|__no_static:129:init| Bool)
+     (|__no_static:129| Bool)
+     (|__no_static:130| Bool)
+     (|__no_static:131| Bool)
+     (|__no_static:192| Int)
+     (|__no_static:193| Int)
+     (|__no_static:194| Int)
+     (|__no_static:195| Int)
+     (|__no_static:196| Int)
+     (|__no_static:197| Int)
+     (|__no_static:198| Int)
+     (|__no_static:199| Int)
+     (|__no_static:200| Int)
+     (|__no_static:201| Int)
+     (|__no_static:202| Int)
+     (|__no_static:203| Int)
+     (|__no_static:204| Int)
+     (|__no_static:205| Int)
+     (|__no_static:206| Int)
+     (|a:207| Int)
+     (|a:305| Int)
+     (|a:86| Int)
+     (|b:208| Int)
+     (|b:306| Int)
+     (|b:87| Int)
+     (|gal-initializing| Bool)
+     (|loc:209| Int)
+     (|loc:225| Int)
+     (|loc:241| Int)
+     (|loc:257| Int)
+     (|loc:273| Int)
+     (|loc:289| Int)
+     (|p10:156| Bool)
+     (|p10:171| Bool)
+     (|p10:219| Bool)
+     (|p10:235| Bool)
+     (|p10:251| Bool)
+     (|p10:267| Bool)
+     (|p10:283| Bool)
+     (|p10:299| Bool)
+     (|p10:317| Bool)
+     (|p10:97| Bool)
+     (|p11:157| Bool)
+     (|p11:172| Bool)
+     (|p11:220| Bool)
+     (|p11:236| Bool)
+     (|p11:252| Bool)
+     (|p11:268| Bool)
+     (|p11:284| Bool)
+     (|p11:300| Bool)
+     (|p11:318| Bool)
+     (|p11:98| Bool)
+     (|p12:158| Bool)
+     (|p12:173| Bool)
+     (|p12:221| Bool)
+     (|p12:237| Bool)
+     (|p12:253| Bool)
+     (|p12:269| Bool)
+     (|p12:285| Bool)
+     (|p12:301| Bool)
+     (|p12:319| Bool)
+     (|p12:99| Bool)
+     (|p13:100| Bool)
+     (|p13:159| Bool)
+     (|p13:174| Bool)
+     (|p13:222| Bool)
+     (|p13:238| Bool)
+     (|p13:254| Bool)
+     (|p13:270| Bool)
+     (|p13:286| Bool)
+     (|p13:302| Bool)
+     (|p13:320| Bool)
+     (|p14:101| Bool)
+     (|p14:160| Bool)
+     (|p14:175| Bool)
+     (|p14:223| Bool)
+     (|p14:239| Bool)
+     (|p14:255| Bool)
+     (|p14:271| Bool)
+     (|p14:287| Bool)
+     (|p14:303| Bool)
+     (|p14:321| Bool)
+     (|p15:102| Bool)
+     (|p15:161| Bool)
+     (|p15:176| Bool)
+     (|p15:224| Bool)
+     (|p15:240| Bool)
+     (|p15:256| Bool)
+     (|p15:272| Bool)
+     (|p15:288| Bool)
+     (|p15:304| Bool)
+     (|p15:322| Bool)
+     (|p1:147| Bool)
+     (|p1:162| Bool)
+     (|p1:210| Bool)
+     (|p1:226| Bool)
+     (|p1:242| Bool)
+     (|p1:258| Bool)
+     (|p1:274| Bool)
+     (|p1:290| Bool)
+     (|p1:308| Bool)
+     (|p1:88| Bool)
+     (|p2:148| Bool)
+     (|p2:163| Bool)
+     (|p2:211| Bool)
+     (|p2:227| Bool)
+     (|p2:243| Bool)
+     (|p2:259| Bool)
+     (|p2:275| Bool)
+     (|p2:291| Bool)
+     (|p2:309| Bool)
+     (|p2:89| Bool)
+     (|p3:149| Bool)
+     (|p3:164| Bool)
+     (|p3:212| Bool)
+     (|p3:228| Bool)
+     (|p3:244| Bool)
+     (|p3:260| Bool)
+     (|p3:276| Bool)
+     (|p3:292| Bool)
+     (|p3:310| Bool)
+     (|p3:90| Bool)
+     (|p4:150| Bool)
+     (|p4:165| Bool)
+     (|p4:213| Bool)
+     (|p4:229| Bool)
+     (|p4:245| Bool)
+     (|p4:261| Bool)
+     (|p4:277| Bool)
+     (|p4:293| Bool)
+     (|p4:311| Bool)
+     (|p4:91| Bool)
+     (|p5:151| Bool)
+     (|p5:166| Bool)
+     (|p5:214| Bool)
+     (|p5:230| Bool)
+     (|p5:246| Bool)
+     (|p5:262| Bool)
+     (|p5:278| Bool)
+     (|p5:294| Bool)
+     (|p5:312| Bool)
+     (|p5:92| Bool)
+     (|p6:152| Bool)
+     (|p6:167| Bool)
+     (|p6:215| Bool)
+     (|p6:231| Bool)
+     (|p6:247| Bool)
+     (|p6:263| Bool)
+     (|p6:279| Bool)
+     (|p6:295| Bool)
+     (|p6:313| Bool)
+     (|p6:93| Bool)
+     (|p7:153| Bool)
+     (|p7:168| Bool)
+     (|p7:216| Bool)
+     (|p7:232| Bool)
+     (|p7:248| Bool)
+     (|p7:264| Bool)
+     (|p7:280| Bool)
+     (|p7:296| Bool)
+     (|p7:314| Bool)
+     (|p7:94| Bool)
+     (|p8:154| Bool)
+     (|p8:169| Bool)
+     (|p8:217| Bool)
+     (|p8:233| Bool)
+     (|p8:249| Bool)
+     (|p8:265| Bool)
+     (|p8:281| Bool)
+     (|p8:297| Bool)
+     (|p8:315| Bool)
+     (|p8:95| Bool)
+     (|p9:155| Bool)
+     (|p9:170| Bool)
+     (|p9:218| Bool)
+     (|p9:234| Bool)
+     (|p9:250| Bool)
+     (|p9:266| Bool)
+     (|p9:282| Bool)
+     (|p9:298| Bool)
+     (|p9:316| Bool)
+     (|p9:96| Bool)
+     (|valid_move:init| Bool)
+     (|valid_move| Bool)
+     (|valof_arr:341:init| Bool)
+     (|valof_arr:341| Bool)
+     (|valof_arr:343:init| Bool)
+     (|valof_arr:343| Bool)
+     (|valof_pre___no_static:340| Bool)
+     (|valof_pre___no_static:342| Bool)
+     (|valof_pre_p10| Bool)
+     (|valof_pre_p11| Bool)
+     (|valof_pre_p12| Bool)
+     (|valof_pre_p13| Bool)
+     (|valof_pre_p14| Bool)
+     (|valof_pre_p15| Bool)
+     (|valof_pre_p1| Bool)
+     (|valof_pre_p2| Bool)
+     (|valof_pre_p3| Bool)
+     (|valof_pre_p4| Bool)
+     (|valof_pre_p5| Bool)
+     (|valof_pre_p6| Bool)
+     (|valof_pre_p7| Bool)
+     (|valof_pre_p8| Bool)
+     (|valof_pre_p9| Bool)
+     (|x:177| Bool)
+     (|x:178| Bool)
+     (|x:179| Bool)
+     (|x:180| Bool)
+     (|x:181| Bool)
+     (|x:182| Bool)
+     (|x:183| Bool)
+     (|x:184| Bool)
+     (|x:185| Bool)
+     (|x:186| Bool)
+     (|x:187| Bool)
+     (|x:188| Bool)
+     (|x:189| Bool)
+     (|x:190| Bool)
+     (|x:191| Bool)
+     (|x:323:init| Bool)
+     (|x:323| Bool)
+     (|x:324| Bool))
+   (
+     (|a:86| Int)
+     (|b:87| Int)
+     (|p10:97| Bool)
+     (|p11:98| Bool)
+     (|p12:99| Bool)
+     (|p13:100| Bool)
+     (|p14:101| Bool)
+     (|p15:102| Bool)
+     (|p1:88| Bool)
+     (|p2:89| Bool)
+     (|p3:90| Bool)
+     (|p4:91| Bool)
+     (|p5:92| Bool)
+     (|p6:93| Bool)
+     (|p7:94| Bool)
+     (|p8:95| Bool)
+     (|p9:96| Bool)))
+(define-transition-system
+   TS
+   S
+   (and
+      (= |gal-initializing| true)
+      (= |__no_static:129:init| true)
+      (= |valid_move:init| true)
+      (= |x:323:init| true)
+      (= |valof_arr:341:init| true)
+      (= |valof_arr:343:init| true))
+   (and
+      (= next.|gal-initializing| false)
+      (= next.|a:86| input.|a:86|)
+      (= next.|b:87| input.|b:87|)
+      (= next.|p1:88| input.|p1:88|)
+      (= next.|p2:89| input.|p2:89|)
+      (= next.|p3:90| input.|p3:90|)
+      (= next.|p4:91| input.|p4:91|)
+      (= next.|p5:92| input.|p5:92|)
+      (= next.|p6:93| input.|p6:93|)
+      (= next.|p7:94| input.|p7:94|)
+      (= next.|p8:95| input.|p8:95|)
+      (= next.|p9:96| input.|p9:96|)
+      (= next.|p10:97| input.|p10:97|)
+      (= next.|p11:98| input.|p11:98|)
+      (= next.|p12:99| input.|p12:99|)
+      (= next.|p13:100| input.|p13:100|)
+      (= next.|p14:101| input.|p14:101|)
+      (= next.|p15:102| input.|p15:102|)
+      (= next.|p1:147| next.|p1:88|)
+      (= next.|p2:148| next.|p2:89|)
+      (= next.|p3:149| next.|p3:90|)
+      (= next.|p4:150| next.|p4:91|)
+      (= next.|p5:151| next.|p5:92|)
+      (= next.|p6:152| next.|p6:93|)
+      (= next.|p7:153| next.|p7:94|)
+      (= next.|p8:154| next.|p8:95|)
+      (= next.|p9:155| next.|p9:96|)
+      (= next.|p10:156| next.|p10:97|)
+      (= next.|p11:157| next.|p11:98|)
+      (= next.|p12:158| next.|p12:99|)
+      (= next.|p13:159| next.|p13:100|)
+      (= next.|p14:160| next.|p14:101|)
+      (= next.|p15:161| next.|p15:102|)
+      (=
+         next.initial
+         (and
+            (not next.|p1:147|)
+            next.|p2:148|
+            next.|p3:149|
+            next.|p4:150|
+            next.|p5:151|
+            next.|p6:152|
+            next.|p7:153|
+            next.|p8:154|
+            next.|p9:155|
+            next.|p10:156|
+            next.|p11:157|
+            next.|p12:158|
+            next.|p13:159|
+            next.|p14:160|
+            next.|p15:161|))
+      (= next.|loc:209| next.|a:86|)
+      (= next.|p1:210| state.|p1:88|)
+      (= next.|p2:211| state.|p2:89|)
+      (= next.|p3:212| state.|p3:90|)
+      (= next.|p4:213| state.|p4:91|)
+      (= next.|p5:214| state.|p5:92|)
+      (= next.|p6:215| state.|p6:93|)
+      (= next.|p7:216| state.|p7:94|)
+      (= next.|p8:217| state.|p8:95|)
+      (= next.|p9:218| state.|p9:96|)
+      (= next.|p10:219| state.|p10:97|)
+      (= next.|p11:220| state.|p11:98|)
+      (= next.|p12:221| state.|p12:99|)
+      (= next.|p13:222| state.|p13:100|)
+      (= next.|p14:223| state.|p14:101|)
+      (= next.|p15:224| state.|p15:102|)
+      (=
+         next.|__no_static:123|
+         (ite
+            (= next.|loc:209| 1)
+            next.|p1:210|
+            (ite
+               (= next.|loc:209| 2)
+               next.|p2:211|
+               (ite
+                  (= next.|loc:209| 3)
+                  next.|p3:212|
+                  (ite
+                     (= next.|loc:209| 4)
+                     next.|p4:213|
+                     (ite
+                        (= next.|loc:209| 5)
+                        next.|p5:214|
+                        (ite
+                           (= next.|loc:209| 6)
+                           next.|p6:215|
+                           (ite
+                              (= next.|loc:209| 7)
+                              next.|p7:216|
+                              (ite
+                                 (= next.|loc:209| 8)
+                                 next.|p8:217|
+                                 (ite
+                                    (= next.|loc:209| 9)
+                                    next.|p9:218|
+                                    (ite
+                                       (= next.|loc:209| 10)
+                                       next.|p10:219|
+                                       (ite
+                                          (= next.|loc:209| 11)
+                                          next.|p11:220|
+                                          (ite
+                                             (= next.|loc:209| 12)
+                                             next.|p12:221|
+                                             (ite
+                                                (= next.|loc:209| 13)
+                                                next.|p13:222|
+                                                (ite
+                                                   (= next.|loc:209| 14)
+                                                   next.|p14:223|
+                                                   (ite
+                                                      (= next.|loc:209| 15)
+                                                      next.|p15:224|
+                                                      false))))))))))))))))
+      (= next.|a:207| next.|a:86|)
+      (= next.|b:208| next.|b:87|)
+      (=
+         next.mid
+         (ite
+            (and
+               (= next.|a:207| 1)
+               (= next.|b:208| 4))
+            2
+            (ite
+               (and
+                  (= next.|a:207| 1)
+                  (= next.|b:208| 6))
+               3
+               (ite
+                  (and
+                     (= next.|a:207| 2)
+                     (= next.|b:208| 7))
+                  4
+                  (ite
+                     (and
+                        (= next.|a:207| 2)
+                        (= next.|b:208| 9))
+                     5
+                     (ite
+                        (and
+                           (= next.|a:207| 3)
+                           (= next.|b:208| 8))
+                        5
+                        (ite
+                           (and
+                              (= next.|a:207| 3)
+                              (= next.|b:208| 10))
+                           6
+                           (ite
+                              (and
+                                 (= next.|a:207| 4)
+                                 (= next.|b:208| 1))
+                              2
+                              (ite
+                                 (and
+                                    (= next.|a:207| 4)
+                                    (= next.|b:208| 6))
+                                 5
+                                 (ite
+                                    (and
+                                       (= next.|a:207| 4)
+                                       (= next.|b:208| 11))
+                                    7
+                                    (ite
+                                       (and
+                                          (= next.|a:207| 4)
+                                          (= next.|b:208| 13))
+                                       8
+                                       (ite
+                                          (and
+                                             (= next.|a:207| 5)
+                                             (= next.|b:208| 12))
+                                          8
+                                          (ite
+                                             (and
+                                                (= next.|a:207| 5)
+                                                (= next.|b:208| 14))
+                                             9
+                                             (ite
+                                                (and
+                                                   (= next.|a:207| 6)
+                                                   (= next.|b:208| 1))
+                                                3
+                                                (ite
+                                                   (and
+                                                      (= next.|a:207| 6)
+                                                      (= next.|b:208| 4))
+                                                   5
+                                                   (ite
+                                                      (and
+                                                         (= next.|a:207| 6)
+                                                         (= next.|b:208| 13))
+                                                      9
+                                                      (ite
+                                                         (and
+                                                            (= next.|a:207| 6)
+                                                            (= next.|b:208| 15))
+                                                         10
+                                                         (ite
+                                                            (and
+                                                               (= next.|a:207| 7)
+                                                               (= next.|b:208| 2))
+                                                            4
+                                                            (ite
+                                                               (and
+                                                                  (= next.|a:207| 7)
+                                                                  (= next.|b:208| 9))
+                                                               8
+                                                               (ite
+                                                                  (and
+                                                                     (= next.|a:207| 8)
+                                                                     (= next.|b:208| 3))
+                                                                  5
+                                                                  (ite
+                                                                     (and
+                                                                        (= next.|a:207| 8)
+                                                                        (= next.|b:208| 10))
+                                                                     9
+                                                                     (ite
+                                                                        (and
+                                                                           (= next.|a:207| 9)
+                                                                           (= next.|b:208| 2))
+                                                                        5
+                                                                        (ite
+                                                                           (and
+                                                                              (= next.|a:207| 9)
+                                                                              (= next.|b:208| 7))
+                                                                           8
+                                                                           (ite
+                                                                              (and
+                                                                                 (= next.|a:207| 10)
+                                                                                 (= next.|b:208| 3))
+                                                                              6
+                                                                              (ite
+                                                                                 (and
+                                                                                    (= next.|a:207| 10)
+                                                                                    (= next.|b:208| 8))
+                                                                                 9
+                                                                                 (ite
+                                                                                    (and
+                                                                                       (= next.|a:207| 11)
+                                                                                       (= next.|b:208| 4))
+                                                                                    7
+                                                                                    (ite
+                                                                                       (and
+                                                                                          (= next.|a:207| 11)
+                                                                                          (= next.|b:208| 13))
+                                                                                       12
+                                                                                       (ite
+                                                                                          (and
+                                                                                             (= next.|a:207| 12)
+                                                                                             (= next.|b:208| 5))
+                                                                                          8
+                                                                                          (ite
+                                                                                             (and
+                                                                                                (= next.|a:207| 12)
+                                                                                                (= next.|b:208| 14))
+                                                                                             13
+                                                                                             (ite
+                                                                                                (and
+                                                                                                   (= next.|a:207| 13)
+                                                                                                   (= next.|b:208| 4))
+                                                                                                8
+                                                                                                (ite
+                                                                                                   (and
+                                                                                                      (= next.|a:207| 13)
+                                                                                                      (= next.|b:208| 6))
+                                                                                                   9
+                                                                                                   (ite
+                                                                                                      (and
+                                                                                                         (= next.|a:207| 13)
+                                                                                                         (= next.|b:208| 11))
+                                                                                                      12
+                                                                                                      (ite
+                                                                                                         (and
+                                                                                                            (= next.|a:207| 13)
+                                                                                                            (= next.|b:208| 15))
+                                                                                                         14
+                                                                                                         (ite
+                                                                                                            (and
+                                                                                                               (= next.|a:207| 14)
+                                                                                                               (= next.|b:208| 5))
+                                                                                                            9
+                                                                                                            (ite
+                                                                                                               (and
+                                                                                                                  (= next.|a:207| 14)
+                                                                                                                  (= next.|b:208| 12))
+                                                                                                               13
+                                                                                                               (ite
+                                                                                                                  (and
+                                                                                                                     (= next.|a:207| 15)
+                                                                                                                     (= next.|b:208| 6))
+                                                                                                                  10
+                                                                                                                  (ite
+                                                                                                                     (and
+                                                                                                                        (= next.|a:207| 15)
+                                                                                                                        (= next.|b:208| 13))
+                                                                                                                     14
+                                                                                                                     0)))))))))))))))))))))))))))))))))))))
+      (= next.|loc:225| next.mid)
+      (= next.|p1:226| state.|p1:88|)
+      (= next.|p2:227| state.|p2:89|)
+      (= next.|p3:228| state.|p3:90|)
+      (= next.|p4:229| state.|p4:91|)
+      (= next.|p5:230| state.|p5:92|)
+      (= next.|p6:231| state.|p6:93|)
+      (= next.|p7:232| state.|p7:94|)
+      (= next.|p8:233| state.|p8:95|)
+      (= next.|p9:234| state.|p9:96|)
+      (= next.|p10:235| state.|p10:97|)
+      (= next.|p11:236| state.|p11:98|)
+      (= next.|p12:237| state.|p12:99|)
+      (= next.|p13:238| state.|p13:100|)
+      (= next.|p14:239| state.|p14:101|)
+      (= next.|p15:240| state.|p15:102|)
+      (=
+         next.|__no_static:124|
+         (ite
+            (= next.|loc:225| 1)
+            next.|p1:226|
+            (ite
+               (= next.|loc:225| 2)
+               next.|p2:227|
+               (ite
+                  (= next.|loc:225| 3)
+                  next.|p3:228|
+                  (ite
+                     (= next.|loc:225| 4)
+                     next.|p4:229|
+                     (ite
+                        (= next.|loc:225| 5)
+                        next.|p5:230|
+                        (ite
+                           (= next.|loc:225| 6)
+                           next.|p6:231|
+                           (ite
+                              (= next.|loc:225| 7)
+                              next.|p7:232|
+                              (ite
+                                 (= next.|loc:225| 8)
+                                 next.|p8:233|
+                                 (ite
+                                    (= next.|loc:225| 9)
+                                    next.|p9:234|
+                                    (ite
+                                       (= next.|loc:225| 10)
+                                       next.|p10:235|
+                                       (ite
+                                          (= next.|loc:225| 11)
+                                          next.|p11:236|
+                                          (ite
+                                             (= next.|loc:225| 12)
+                                             next.|p12:237|
+                                             (ite
+                                                (= next.|loc:225| 13)
+                                                next.|p13:238|
+                                                (ite
+                                                   (= next.|loc:225| 14)
+                                                   next.|p14:239|
+                                                   (ite
+                                                      (= next.|loc:225| 15)
+                                                      next.|p15:240|
+                                                      false))))))))))))))))
+      (= next.|loc:241| next.|b:87|)
+      (= next.|p1:242| state.|p1:88|)
+      (= next.|p2:243| state.|p2:89|)
+      (= next.|p3:244| state.|p3:90|)
+      (= next.|p4:245| state.|p4:91|)
+      (= next.|p5:246| state.|p5:92|)
+      (= next.|p6:247| state.|p6:93|)
+      (= next.|p7:248| state.|p7:94|)
+      (= next.|p8:249| state.|p8:95|)
+      (= next.|p9:250| state.|p9:96|)
+      (= next.|p10:251| state.|p10:97|)
+      (= next.|p11:252| state.|p11:98|)
+      (= next.|p12:253| state.|p12:99|)
+      (= next.|p13:254| state.|p13:100|)
+      (= next.|p14:255| state.|p14:101|)
+      (= next.|p15:256| state.|p15:102|)
+      (=
+         next.|__no_static:125|
+         (ite
+            (= next.|loc:241| 1)
+            next.|p1:242|
+            (ite
+               (= next.|loc:241| 2)
+               next.|p2:243|
+               (ite
+                  (= next.|loc:241| 3)
+                  next.|p3:244|
+                  (ite
+                     (= next.|loc:241| 4)
+                     next.|p4:245|
+                     (ite
+                        (= next.|loc:241| 5)
+                        next.|p5:246|
+                        (ite
+                           (= next.|loc:241| 6)
+                           next.|p6:247|
+                           (ite
+                              (= next.|loc:241| 7)
+                              next.|p7:248|
+                              (ite
+                                 (= next.|loc:241| 8)
+                                 next.|p8:249|
+                                 (ite
+                                    (= next.|loc:241| 9)
+                                    next.|p9:250|
+                                    (ite
+                                       (= next.|loc:241| 10)
+                                       next.|p10:251|
+                                       (ite
+                                          (= next.|loc:241| 11)
+                                          next.|p11:252|
+                                          (ite
+                                             (= next.|loc:241| 12)
+                                             next.|p12:253|
+                                             (ite
+                                                (= next.|loc:241| 13)
+                                                next.|p13:254|
+                                                (ite
+                                                   (= next.|loc:241| 14)
+                                                   next.|p14:255|
+                                                   (ite
+                                                      (= next.|loc:241| 15)
+                                                      next.|p15:256|
+                                                      false))))))))))))))))
+      (= next.|loc:257| next.|a:86|)
+      (= next.|p1:258| next.|p1:88|)
+      (= next.|p2:259| next.|p2:89|)
+      (= next.|p3:260| next.|p3:90|)
+      (= next.|p4:261| next.|p4:91|)
+      (= next.|p5:262| next.|p5:92|)
+      (= next.|p6:263| next.|p6:93|)
+      (= next.|p7:264| next.|p7:94|)
+      (= next.|p8:265| next.|p8:95|)
+      (= next.|p9:266| next.|p9:96|)
+      (= next.|p10:267| next.|p10:97|)
+      (= next.|p11:268| next.|p11:98|)
+      (= next.|p12:269| next.|p12:99|)
+      (= next.|p13:270| next.|p13:100|)
+      (= next.|p14:271| next.|p14:101|)
+      (= next.|p15:272| next.|p15:102|)
+      (=
+         next.|__no_static:126|
+         (ite
+            (= next.|loc:257| 1)
+            next.|p1:258|
+            (ite
+               (= next.|loc:257| 2)
+               next.|p2:259|
+               (ite
+                  (= next.|loc:257| 3)
+                  next.|p3:260|
+                  (ite
+                     (= next.|loc:257| 4)
+                     next.|p4:261|
+                     (ite
+                        (= next.|loc:257| 5)
+                        next.|p5:262|
+                        (ite
+                           (= next.|loc:257| 6)
+                           next.|p6:263|
+                           (ite
+                              (= next.|loc:257| 7)
+                              next.|p7:264|
+                              (ite
+                                 (= next.|loc:257| 8)
+                                 next.|p8:265|
+                                 (ite
+                                    (= next.|loc:257| 9)
+                                    next.|p9:266|
+                                    (ite
+                                       (= next.|loc:257| 10)
+                                       next.|p10:267|
+                                       (ite
+                                          (= next.|loc:257| 11)
+                                          next.|p11:268|
+                                          (ite
+                                             (= next.|loc:257| 12)
+                                             next.|p12:269|
+                                             (ite
+                                                (= next.|loc:257| 13)
+                                                next.|p13:270|
+                                                (ite
+                                                   (= next.|loc:257| 14)
+                                                   next.|p14:271|
+                                                   (ite
+                                                      (= next.|loc:257| 15)
+                                                      next.|p15:272|
+                                                      false))))))))))))))))
+      (= next.|loc:273| next.mid)
+      (= next.|p1:274| next.|p1:88|)
+      (= next.|p2:275| next.|p2:89|)
+      (= next.|p3:276| next.|p3:90|)
+      (= next.|p4:277| next.|p4:91|)
+      (= next.|p5:278| next.|p5:92|)
+      (= next.|p6:279| next.|p6:93|)
+      (= next.|p7:280| next.|p7:94|)
+      (= next.|p8:281| next.|p8:95|)
+      (= next.|p9:282| next.|p9:96|)
+      (= next.|p10:283| next.|p10:97|)
+      (= next.|p11:284| next.|p11:98|)
+      (= next.|p12:285| next.|p12:99|)
+      (= next.|p13:286| next.|p13:100|)
+      (= next.|p14:287| next.|p14:101|)
+      (= next.|p15:288| next.|p15:102|)
+      (=
+         next.|__no_static:127|
+         (ite
+            (= next.|loc:273| 1)
+            next.|p1:274|
+            (ite
+               (= next.|loc:273| 2)
+               next.|p2:275|
+               (ite
+                  (= next.|loc:273| 3)
+                  next.|p3:276|
+                  (ite
+                     (= next.|loc:273| 4)
+                     next.|p4:277|
+                     (ite
+                        (= next.|loc:273| 5)
+                        next.|p5:278|
+                        (ite
+                           (= next.|loc:273| 6)
+                           next.|p6:279|
+                           (ite
+                              (= next.|loc:273| 7)
+                              next.|p7:280|
+                              (ite
+                                 (= next.|loc:273| 8)
+                                 next.|p8:281|
+                                 (ite
+                                    (= next.|loc:273| 9)
+                                    next.|p9:282|
+                                    (ite
+                                       (= next.|loc:273| 10)
+                                       next.|p10:283|
+                                       (ite
+                                          (= next.|loc:273| 11)
+                                          next.|p11:284|
+                                          (ite
+                                             (= next.|loc:273| 12)
+                                             next.|p12:285|
+                                             (ite
+                                                (= next.|loc:273| 13)
+                                                next.|p13:286|
+                                                (ite
+                                                   (= next.|loc:273| 14)
+                                                   next.|p14:287|
+                                                   (ite
+                                                      (= next.|loc:273| 15)
+                                                      next.|p15:288|
+                                                      false))))))))))))))))
+      (= next.|loc:289| next.|b:87|)
+      (= next.|p1:290| next.|p1:88|)
+      (= next.|p2:291| next.|p2:89|)
+      (= next.|p3:292| next.|p3:90|)
+      (= next.|p4:293| next.|p4:91|)
+      (= next.|p5:294| next.|p5:92|)
+      (= next.|p6:295| next.|p6:93|)
+      (= next.|p7:296| next.|p7:94|)
+      (= next.|p8:297| next.|p8:95|)
+      (= next.|p9:298| next.|p9:96|)
+      (= next.|p10:299| next.|p10:97|)
+      (= next.|p11:300| next.|p11:98|)
+      (= next.|p12:301| next.|p12:99|)
+      (= next.|p13:302| next.|p13:100|)
+      (= next.|p14:303| next.|p14:101|)
+      (= next.|p15:304| next.|p15:102|)
+      (=
+         next.|__no_static:128|
+         (ite
+            (= next.|loc:289| 1)
+            next.|p1:290|
+            (ite
+               (= next.|loc:289| 2)
+               next.|p2:291|
+               (ite
+                  (= next.|loc:289| 3)
+                  next.|p3:292|
+                  (ite
+                     (= next.|loc:289| 4)
+                     next.|p4:293|
+                     (ite
+                        (= next.|loc:289| 5)
+                        next.|p5:294|
+                        (ite
+                           (= next.|loc:289| 6)
+                           next.|p6:295|
+                           (ite
+                              (= next.|loc:289| 7)
+                              next.|p7:296|
+                              (ite
+                                 (= next.|loc:289| 8)
+                                 next.|p8:297|
+                                 (ite
+                                    (= next.|loc:289| 9)
+                                    next.|p9:298|
+                                    (ite
+                                       (= next.|loc:289| 10)
+                                       next.|p10:299|
+                                       (ite
+                                          (= next.|loc:289| 11)
+                                          next.|p11:300|
+                                          (ite
+                                             (= next.|loc:289| 12)
+                                             next.|p12:301|
+                                             (ite
+                                                (= next.|loc:289| 13)
+                                                next.|p13:302|
+                                                (ite
+                                                   (= next.|loc:289| 14)
+                                                   next.|p14:303|
+                                                   (ite
+                                                      (= next.|loc:289| 15)
+                                                      next.|p15:304|
+                                                      false))))))))))))))))
+      (= next.|a:305| next.|a:86|)
+      (= next.|b:306| next.|b:87|)
+      (= next.c next.mid)
+      (= next.|p1:308| next.|p1:88|)
+      (= next.|p2:309| next.|p2:89|)
+      (= next.|p3:310| next.|p3:90|)
+      (= next.|p4:311| next.|p4:91|)
+      (= next.|p5:312| next.|p5:92|)
+      (= next.|p6:313| next.|p6:93|)
+      (= next.|p7:314| next.|p7:94|)
+      (= next.|p8:315| next.|p8:95|)
+      (= next.|p9:316| next.|p9:96|)
+      (= next.|p10:317| next.|p10:97|)
+      (= next.|p11:318| next.|p11:98|)
+      (= next.|p12:319| next.|p12:99|)
+      (= next.|p13:320| next.|p13:100|)
+      (= next.|p14:321| next.|p14:101|)
+      (= next.|p15:322| next.|p15:102|)
+      (= next.|valof_pre_p1| state.|p1:308|)
+      (= next.|valof_pre_p2| state.|p2:309|)
+      (= next.|valof_pre_p3| state.|p3:310|)
+      (= next.|valof_pre_p4| state.|p4:311|)
+      (= next.|valof_pre_p5| state.|p5:312|)
+      (= next.|valof_pre_p6| state.|p6:313|)
+      (= next.|valof_pre_p7| state.|p7:314|)
+      (= next.|valof_pre_p8| state.|p8:315|)
+      (= next.|valof_pre_p9| state.|p9:316|)
+      (= next.|valof_pre_p10| state.|p10:317|)
+      (= next.|valof_pre_p11| state.|p11:318|)
+      (= next.|valof_pre_p12| state.|p12:319|)
+      (= next.|valof_pre_p13| state.|p13:320|)
+      (= next.|valof_pre_p14| state.|p14:321|)
+      (= next.|valof_pre_p15| state.|p15:322|)
+      (ite
+         state.|__no_static:129:init|
+         (= next.|__no_static:129| true)
+         (=
+            next.|__no_static:129|
+            (and
+               (or
+                  (= next.|a:305| 1)
+                  (= next.|b:306| 1)
+                  (= next.c 1)
+                  (= next.|p1:308| next.|valof_pre_p1|))
+               (or
+                  (= next.|a:305| 2)
+                  (= next.|b:306| 2)
+                  (= next.c 2)
+                  (= next.|p2:309| next.|valof_pre_p2|))
+               (or
+                  (= next.|a:305| 3)
+                  (= next.|b:306| 3)
+                  (= next.c 3)
+                  (= next.|p3:310| next.|valof_pre_p3|))
+               (or
+                  (= next.|a:305| 4)
+                  (= next.|b:306| 4)
+                  (= next.c 4)
+                  (= next.|p4:311| next.|valof_pre_p4|))
+               (or
+                  (= next.|a:305| 5)
+                  (= next.|b:306| 5)
+                  (= next.c 5)
+                  (= next.|p5:312| next.|valof_pre_p5|))
+               (or
+                  (= next.|a:305| 6)
+                  (= next.|b:306| 6)
+                  (= next.c 6)
+                  (= next.|p6:313| next.|valof_pre_p6|))
+               (or
+                  (= next.|a:305| 7)
+                  (= next.|b:306| 7)
+                  (= next.c 7)
+                  (= next.|p7:314| next.|valof_pre_p7|))
+               (or
+                  (= next.|a:305| 8)
+                  (= next.|b:306| 8)
+                  (= next.c 8)
+                  (= next.|p8:315| next.|valof_pre_p8|))
+               (or
+                  (= next.|a:305| 9)
+                  (= next.|b:306| 9)
+                  (= next.c 9)
+                  (= next.|p9:316| next.|valof_pre_p9|))
+               (or
+                  (= next.|a:305| 10)
+                  (= next.|b:306| 10)
+                  (= next.c 10)
+                  (= next.|p10:317| next.|valof_pre_p10|))
+               (or
+                  (= next.|a:305| 11)
+                  (= next.|b:306| 11)
+                  (= next.c 11)
+                  (= next.|p11:318| next.|valof_pre_p11|))
+               (or
+                  (= next.|a:305| 12)
+                  (= next.|b:306| 12)
+                  (= next.c 12)
+                  (= next.|p12:319| next.|valof_pre_p12|))
+               (or
+                  (= next.|a:305| 13)
+                  (= next.|b:306| 13)
+                  (= next.c 13)
+                  (= next.|p13:320| next.|valof_pre_p13|))
+               (or
+                  (= next.|a:305| 14)
+                  (= next.|b:306| 14)
+                  (= next.c 14)
+                  (= next.|p14:321| next.|valof_pre_p14|))
+               (or
+                  (= next.|a:305| 15)
+                  (= next.|b:306| 15)
+                  (= next.c 15)
+                  (= next.|p15:322| next.|valof_pre_p15|)))))
+      (= next.|__no_static:129:init| false)
+      (ite
+         state.|valid_move:init|
+         (= next.|valid_move| true)
+         (=
+            next.|valid_move|
+            (and
+               next.|__no_static:123|
+               next.|__no_static:124|
+               (not next.|__no_static:125|)
+               (not next.|__no_static:126|)
+               (not next.|__no_static:127|)
+               next.|__no_static:128|
+               next.|__no_static:129|)))
+      (= next.|valid_move:init| false)
+      (= next.|p15:176| next.|p15:102|)
+      (= next.|x:191| next.|p15:176|)
+      (=
+         next.|__no_static:192|
+         (ite next.|x:191| 1 0))
+      (= next.|p14:175| next.|p14:101|)
+      (= next.|x:190| next.|p14:175|)
+      (=
+         next.|__no_static:193|
+         (ite next.|x:190| 1 0))
+      (= next.|p13:174| next.|p13:100|)
+      (= next.|x:189| next.|p13:174|)
+      (=
+         next.|__no_static:194|
+         (ite next.|x:189| 1 0))
+      (= next.|p12:173| next.|p12:99|)
+      (= next.|x:188| next.|p12:173|)
+      (=
+         next.|__no_static:195|
+         (ite next.|x:188| 1 0))
+      (= next.|p11:172| next.|p11:98|)
+      (= next.|x:187| next.|p11:172|)
+      (=
+         next.|__no_static:196|
+         (ite next.|x:187| 1 0))
+      (= next.|p10:171| next.|p10:97|)
+      (= next.|x:186| next.|p10:171|)
+      (=
+         next.|__no_static:197|
+         (ite next.|x:186| 1 0))
+      (= next.|p9:170| next.|p9:96|)
+      (= next.|x:185| next.|p9:170|)
+      (=
+         next.|__no_static:198|
+         (ite next.|x:185| 1 0))
+      (= next.|p8:169| next.|p8:95|)
+      (= next.|x:184| next.|p8:169|)
+      (=
+         next.|__no_static:199|
+         (ite next.|x:184| 1 0))
+      (= next.|p7:168| next.|p7:94|)
+      (= next.|x:183| next.|p7:168|)
+      (=
+         next.|__no_static:200|
+         (ite next.|x:183| 1 0))
+      (= next.|p6:167| next.|p6:93|)
+      (= next.|x:182| next.|p6:167|)
+      (=
+         next.|__no_static:201|
+         (ite next.|x:182| 1 0))
+      (= next.|p5:166| next.|p5:92|)
+      (= next.|x:181| next.|p5:166|)
+      (=
+         next.|__no_static:202|
+         (ite next.|x:181| 1 0))
+      (= next.|p4:165| next.|p4:91|)
+      (= next.|x:180| next.|p4:165|)
+      (=
+         next.|__no_static:203|
+         (ite next.|x:180| 1 0))
+      (= next.|p3:164| next.|p3:90|)
+      (= next.|x:179| next.|p3:164|)
+      (=
+         next.|__no_static:204|
+         (ite next.|x:179| 1 0))
+      (= next.|p2:163| next.|p2:89|)
+      (= next.|x:178| next.|p2:163|)
+      (=
+         next.|__no_static:205|
+         (ite next.|x:178| 1 0))
+      (= next.|p1:162| next.|p1:88|)
+      (= next.|x:177| next.|p1:162|)
+      (=
+         next.|__no_static:206|
+         (ite next.|x:177| 1 0))
+      (=
+         next.solved
+         (=
+            (+
+               (+
+                  (+
+                     (+
+                        (+
+                           (+
+                              (+
+                                 (+
+                                    (+
+                                       (+
+                                          (+
+                                             (+
+                                                (+
+                                                   (+ next.|__no_static:206| next.|__no_static:205|)
+                                                   next.|__no_static:204|)
+                                                next.|__no_static:203|)
+                                             next.|__no_static:202|)
+                                          next.|__no_static:201|)
+                                       next.|__no_static:200|)
+                                    next.|__no_static:199|)
+                                 next.|__no_static:198|)
+                              next.|__no_static:197|)
+                           next.|__no_static:196|)
+                        next.|__no_static:195|)
+                     next.|__no_static:194|)
+                  next.|__no_static:193|)
+               next.|__no_static:192|)
+            1))
+      (ite
+         state.|x:323:init|
+         (= next.|x:323| next.initial)
+         (= next.|x:323| true))
+      (= next.|x:323:init| false)
+      (= next.|valof_pre___no_static:340| state.|__no_static:130|)
+      (ite
+         state.|valof_arr:341:init|
+         (= next.|valof_arr:341| true)
+         (= next.|valof_arr:341| next.|valof_pre___no_static:340|))
+      (= next.|valof_arr:341:init| false)
+      (=
+         next.|__no_static:130|
+         (and next.|x:323| next.|valof_arr:341|))
+      (= next.|x:324| next.|valid_move|)
+      (= next.|valof_pre___no_static:342| state.|__no_static:131|)
+      (ite
+         state.|valof_arr:343:init|
+         (= next.|valof_arr:343| true)
+         (= next.|valof_arr:343| next.|valof_pre___no_static:342|))
+      (= next.|valof_arr:343:init| false)
+      (=
+         next.|__no_static:131|
+         (and next.|x:324| next.|valof_arr:343|))
+      (=
+         next.prop
+         (not
+            (and next.|__no_static:130| next.|__no_static:131| next.solved)))))
+
+(query
+   TS
+   (or |gal-initializing| prop))
+
+[Lustre] Validating properties:
+[Lustre] Property prop... considering simultaneous states to depth 0
+considering simultaneous states to depth 0
+considering simultaneous states to depth 1
+considering simultaneous states to depth 1
+considering simultaneous states to depth 2
+considering simultaneous states to depth 2
+considering simultaneous states to depth 3
+considering simultaneous states to depth 3
+considering simultaneous states to depth 4
+considering simultaneous states to depth 4
+considering simultaneous states to depth 5
+considering simultaneous states to depth 5
+considering simultaneous states to depth 6
+considering simultaneous states to depth 6
+considering simultaneous states to depth 7
+considering simultaneous states to depth 7
+considering simultaneous states to depth 8
+considering simultaneous states to depth 8
+considering simultaneous states to depth 9
+considering simultaneous states to depth 9
+considering simultaneous states to depth 10
+considering simultaneous states to depth 10
+counter-example search depth 0
+counter-example search depth 1
+counter-example search depth 2
+counter-example search depth 3
+counter-example search depth 4
+counter-example search depth 5
+counter-example search depth 6
+counter-example search depth 7
+counter-example search depth 8
+counter-example search depth 9
+counter-example search depth 10
+[[1;93mUnknown[0m] Valid up to depth 10
+[Lustre] Model status: [[1;93mUnknown[0m] 

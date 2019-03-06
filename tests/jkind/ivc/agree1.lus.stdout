@@ -1,0 +1,2 @@
+[[1;91mError[0m] ResolverError (UndefinedName (Unqual (Ident {identText = "condact", identRange = SourceRange {sourceFrom = SourcePos {sourceIndex = 1630, sourceLine = 87, sourceColumn = 10, sourceFile = "agree1.lus"}, sourceTo = SourcePos {sourceIndex = 1636, sourceLine = 87, sourceColumn = 16, sourceFile = "agree1.lus"}}, identPragmas = [], identResolved = Nothing})))
+

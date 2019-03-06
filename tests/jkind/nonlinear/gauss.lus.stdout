@@ -1,0 +1,92 @@
+Core Lustre
+===========
+
+node ()
+  returns (ok)
+  assumes ()
+  shows (ok)
+let
+  valof_pre_i = pre i
+  i = 0 -> Add(1, valof_pre_i)
+  valof_pre_sum = pre sum
+  valof_arr = 0 -> valof_pre_sum
+  sum = Add(i, valof_arr)
+  ok = Eq(sum, Div(Mul(i, Add(i, 1)), 2))
+tel
+Sally Model
+===========
+
+(define-state-type
+   S
+   (
+     (i Int)
+     (ok Bool)
+     (sum Int)
+     (|gal-initializing| Bool)
+     (|i:init| Bool)
+     (|valof_arr:init| Bool)
+     (|valof_arr| Int)
+     (|valof_pre_i| Int)
+     (|valof_pre_sum| Int))
+   ())
+(define-transition-system
+   TS
+   S
+   (and
+      (= |gal-initializing| true)
+      (= |i:init| true)
+      (= |valof_arr:init| true))
+   (and
+      (= next.|gal-initializing| false)
+      (= next.|valof_pre_i| state.i)
+      (ite
+         state.|i:init|
+         (= next.i 0)
+         (=
+            next.i
+            (+ 1 next.|valof_pre_i|)))
+      (= next.|i:init| false)
+      (= next.|valof_pre_sum| state.sum)
+      (ite
+         state.|valof_arr:init|
+         (= next.|valof_arr| 0)
+         (= next.|valof_arr| next.|valof_pre_sum|))
+      (= next.|valof_arr:init| false)
+      (=
+         next.sum
+         (+ next.i next.|valof_arr|))
+      (=
+         next.ok
+         (=
+            next.sum
+            (ite
+               (< 2 0)
+               (-
+                  (to_int
+                     (/
+                        (to_real
+                           (*
+                              next.i
+                              (+ next.i 1)))
+                        (to_real
+                           (- 2)))))
+               (to_int
+                  (/
+                     (to_real
+                        (*
+                           next.i
+                           (+ next.i 1)))
+                     (to_real 2))))))))
+
+(query
+   TS
+   (or |gal-initializing| ok))
+
+[Lustre] Validating properties:
+[Lustre] Property ok... considering simultaneous states to depth 0
+considering simultaneous states to depth 0
+[[1;91mError[0m] Sally error:
+Yices error (add): the context does not support non-linear arithmetic
+
+[[1;91mError[0m] ExitFailure 1
+

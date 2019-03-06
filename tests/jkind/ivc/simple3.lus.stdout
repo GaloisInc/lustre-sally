@@ -1,0 +1,85 @@
+Core Lustre
+===========
+
+node (x_12 : int)
+  returns (y)
+  assumes (assum)
+  shows (ok)
+let
+  x_19 = x_12
+  x_20 = x_19
+  valof_pre_y = pre y
+  valof_arr = 0 -> valof_pre_y
+  y = Add(x_20, valof_arr)
+  a = Geq(x_20, Neg(1))
+  b = Geq(x_20, 0)
+  assum = And(a, b)
+  ok = Geq(y, 0)
+tel
+Sally Model
+===========
+
+(define-state-type
+   S
+   (
+     (a Bool)
+     (assum Bool)
+     (b Bool)
+     (ok Bool)
+     (y Int)
+     (|gal-initializing| Bool)
+     (|valof_arr:init| Bool)
+     (|valof_arr| Int)
+     (|valof_pre_y| Int)
+     (|x:12| Int)
+     (|x:19| Int)
+     (|x:20| Int))
+   (
+     (|x:12| Int)))
+(define-transition-system
+   TS
+   S
+   (and
+      (= |gal-initializing| true)
+      (= |valof_arr:init| true))
+   (and
+      (= next.|gal-initializing| false)
+      (= next.|x:12| input.|x:12|)
+      next.assum
+      (= next.|x:19| next.|x:12|)
+      (= next.|x:20| next.|x:19|)
+      (= next.|valof_pre_y| state.y)
+      (ite
+         state.|valof_arr:init|
+         (= next.|valof_arr| 0)
+         (= next.|valof_arr| next.|valof_pre_y|))
+      (= next.|valof_arr:init| false)
+      (=
+         next.y
+         (+ next.|x:20| next.|valof_arr|))
+      (=
+         next.a
+         (<=
+            (- 1)
+            next.|x:20|))
+      (=
+         next.b
+         (<= 0 next.|x:20|))
+      (=
+         next.assum
+         (and next.a next.b))
+      (=
+         next.ok
+         (<= 0 next.y))))
+
+(query
+   TS
+   (or |gal-initializing| ok))
+
+[Lustre] Validating properties:
+[Lustre] Property ok... considering simultaneous states to depth 0
+considering simultaneous states to depth 0
+considering simultaneous states to depth 1
+considering simultaneous states to depth 1
+[[1;92mValid[0m] considering simultaneous states to depth 1
+[Lustre] Model status: [[1;92mValid[0m] 
