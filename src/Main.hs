@@ -279,7 +279,7 @@ checkQuery settings mi nd ts_ast ts (l',q) =
          Unknown   -> orElse
 
   runSally lab opts =
-    do prog <- newProgress
+    do prog <- if testMode settings then newTestProgress else newProgress
        maxVal <- newIORef 0
        let callback _ n = do progSay prog (lab ++ " " ++ show n)
                              writeIORef maxVal n -- assumes monotonic increase
@@ -343,7 +343,7 @@ sallyBMC :: Settings -> [String]
 sallyBMC s = "--engine=bmc"
            : ("--bmc-max=" ++ show lim)
            : sallyRequiredOpts s
-  where lim = bmcLimit s + 1
+  where lim = bmcLimit s
 
 
 --------------------------------------------------------------------------------

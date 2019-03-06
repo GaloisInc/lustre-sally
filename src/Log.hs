@@ -43,6 +43,13 @@ data Progress = Progress
   , progClear :: IO ()
   }
 
+newTestProgress :: IO Progress
+newTestProgress = pure Progress
+  { progSay = \x -> do putStrLn x
+                       hFlush stdout
+  , progClear = pure ()
+  }
+
 newProgress :: IO Progress
 newProgress =
   do r <- newIORef 0
