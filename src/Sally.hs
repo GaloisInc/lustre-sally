@@ -5,7 +5,6 @@ module Sally
   , translateQuery
   , SExpr
   , showsSExpr, ppSExpr
-  , sally
   , sallyInteract
   , readSallyResults, readSallyResult, SallyResult(..), Trace(..), VarVals
   , ppVarVals, ppValue, ppName
@@ -23,7 +22,10 @@ import Control.Exception(finally,try,SomeException(..))
 import Control.Concurrent(forkIO)
 import System.IO(hPutStrLn,hClose,openTempFile,hGetContents,hGetLine)
 import System.Directory(removeFile,getTemporaryDirectory)
-import System.Process(readProcess,runInteractiveProcess,waitForProcess)
+import System.Process( withCreateProcess
+                     , proc, CreateProcess(..), StdStream(..)
+                     , waitForProcess
+                     )
 import System.Exit
 import qualified SimpleSMT as SMT
 import SimpleSMT (SExpr(..), showsSExpr, ppSExpr, sexprToVal, readSExpr)
@@ -301,41 +303,38 @@ parseValue ty s =
                                               , "*** Expr: " ++ showsSExpr s ""
                                               ]
 
-
 -- | Run sally with the given options, on the given input.
 -- This creates a temporary file, saves the input, and runs sally on it.
-sally :: FilePath -> [String] -> String -> IO String
-sally exe opts inp =
-  do tmp <- getTemporaryDirectory
-     (path,h) <- openTempFile tmp "sallyXXX.mcmt"
-     do hPutStrLn h inp
-        hClose h
-        readProcess exe (opts ++ [path]) ""
-       `finally` removeFile path
-
--- | Run sally with the given options, on the given input.
--- This creates a temporary file, saves the input, and runs sally on it.
-sallyInteract :: FilePath -> [String] ->
-                 (LocalTime -> Int -> IO ()) ->
-                 String -> IO (Either String String)
+sallyInteract ::
+  FilePath    {- ^ Path to Sally -} ->
+  [String]    {- ^ Comman line options -} ->
+  (LocalTime -> Int -> IO ()) {- ^ Callback for progress reporting -} ->
+  String      {- ^ Input for Sally -} ->
+  IO (Either String String) -- ^ Either an error on the left, or the answer.
 sallyInteract exe opts callback inp =
   do tmp <- getTemporaryDirectory
      (path,h) <- openTempFile tmp "sallyXXX.mcmt"
      do hPutStrLn h inp
         hClose h
-        (_hIn,hOut,hErr,proc) <- runInteractiveProcess exe (opts ++ [path])
-                                          Nothing Nothing
-        errRef <- newIORef []
-        _ <- forkIO (drain errRef hErr)
-        txt <- hGetContents hOut
-        let (msgs,out) = getNotes txt
-        mapM_ (uncurry callback) msgs
-        r <- waitForProcess proc
-        case r of
-          ExitFailure _ ->
-            do errs <- readIORef errRef
-               return (Left (unlines (reverse errs)))
-          ExitSuccess -> return (Right out)
+        let cp = (proc exe (opts ++ [path]))
+                    { std_in = CreatePipe
+                    , std_out = CreatePipe
+                    , std_err = CreatePipe
+                    }
+
+        withCreateProcess cp $ \_hIn ~(Just hOut) ~(Just hErr) pid ->
+         do errRef <- newIORef []
+            _   <- forkIO (drain errRef hErr)
+            txt <- hGetContents hOut
+            let (msgs,out) = getNotes txt
+            mapM_ (uncurry callback) msgs
+            () <- seq (length out) (pure ())
+            r <- waitForProcess pid
+            case r of
+              ExitFailure _ ->
+                do errs <- readIORef errRef
+                   return (Left (unlines (reverse errs)))
+              ExitSuccess -> return (Right out)
        `finally` removeFile path
   where
   drain r h = do mb <- try (hGetLine h)
@@ -343,7 +342,4 @@ sallyInteract exe opts callback inp =
                    Left SomeException{} -> pure ()
                    Right txt -> do modifyIORef r (txt:)
                                    drain r h
-
-
-
 

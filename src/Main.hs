@@ -5,6 +5,8 @@ import System.Exit(exitFailure)
 import Control.Monad(when,unless,foldM)
 import Control.Exception(catches, Handler(..), throwIO
                         , SomeException(..), displayException)
+import Control.Concurrent
+          (newEmptyMVar,takeMVar,putMVar, forkIO, threadDelay, killThread)
 import Data.Char(isSpace)
 import Data.Text(Text)
 import qualified Data.Text as Text
@@ -45,6 +47,7 @@ data Settings = Settings
   , outDir    :: FilePath
   , useConfig :: FilePath
   , testMode  :: Bool
+  , timeout   :: Maybe Int
   }
 
 options :: OptSpec Settings
@@ -94,6 +97,13 @@ options = OptSpec
                                    Just n | n >= 0 -> Right s { kindLimit = n }
                                    _ -> Left "Invalid proof depth."
 
+      , Option [] ["timeout"]
+        "Terminate `sally` invocations after this many seconds"
+        $ ReqArg "SECONDS" $ \a s ->
+            case readMaybe a of
+              Just n | n >= 0 -> Right s { timeout = Just n }
+              _ -> Left ("Invalid timeout: " ++ a)
+
       , Option ['c'] ["config"]
         "Load additional settings from the given file"
         $ ReqArg "FILE" $ \a s -> Right s { useConfig = a }
@@ -122,6 +132,7 @@ options = OptSpec
     , outDir = "results"
     , useConfig = ""
     , testMode = False
+    , timeout = Nothing
     }
 
 
@@ -272,7 +283,11 @@ checkQuery settings mi nd ts_ast ts (l',q) =
        maxVal <- newIORef 0
        let callback _ n = do progSay prog (lab ++ " " ++ show n)
                              writeIORef maxVal n -- assumes monotonic increase
-       mbres <- sallyInteract "sally" opts callback (ts ++ q)
+           doSally = sallyInteract "sally" opts callback (ts ++ q)
+       mbres <- case timeout settings of
+                  Nothing -> doSally
+                  Just t  -> withTimeout t doSally
+
        progClear prog
        v <- readIORef maxVal
 
@@ -287,6 +302,23 @@ checkQuery settings mi nd ts_ast ts (l',q) =
                 Left err -> bad "Failed to import trace" err
            | otherwise -> bad "Leftover stuff after answer" xs
          Left err -> bad ("Failed to parse result: " ++ err) res
+
+
+withTimeout :: Int -> IO (Either String b) -> IO (Either String b)
+withTimeout t act =
+  do v <- newEmptyMVar
+     tidSally <- forkIO $ do r <- act
+                             putMVar v (Just r)
+     tidTimer <- forkIO $ do threadDelay (t * 1000 * 1000)
+                             killThread tidSally
+                             putMVar v Nothing
+     res <- takeMVar v
+     case res of
+       Nothing -> pure (Left "Timeout")
+       Just r  -> do killThread tidTimer
+                     pure r
+
+
 
 
 --------------------------------------------------------------------------------

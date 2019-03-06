@@ -1,11 +1,11 @@
 #!/bin/bash
 
-OPTS=--test-mode
+OPTS="--test-mode --timeout=3"
 
 if [ -e $1.settings ]; then
   OPTS="--config=$1.settings $OPTS"
 fi
 
 
-timeout 10s cabal v2-run --verbose=0 exe:lustre-sally -- $OPTS $1
+cabal v2-run --verbose=0 exe:lustre-sally -- $OPTS $1
 
