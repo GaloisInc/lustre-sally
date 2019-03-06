@@ -45,7 +45,7 @@ case $COMMAND in
       else TESTS=$*
     fi
     $BIN/test-runner --ext=.lus \
-                     --exe=./run-one-test \
+                     --exe=./build-utils/run-one-test \
                      $TESTS
     ;;
 
