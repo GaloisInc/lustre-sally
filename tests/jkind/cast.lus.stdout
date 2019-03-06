@@ -1,1 +1,136 @@
-(not run)
+Core Lustre
+===========
+
+node (x_4 : real, y : int)
+  returns ()
+  assumes ()
+  shows (ok4, ok3, ok2, ok1)
+let
+  ok1 = And(Leq(RealCast(FloorCast(x_4)), x_4), Lt(x_4, Add(RealCast(FloorCast(x_4)), 1.0)))
+  x_35 = x_4
+  __no_static = Eq(x_35, RealCast(FloorCast(x_35)))
+  ok2 = Eq(Eq(FloorCast(Neg(x_4)), Neg(FloorCast(x_4))), __no_static)
+  ok3 = Eq(Div(y, 5), FloorCast(Div(RealCast(y), 5.0)))
+  ok4 = Eq(Div(FloorCast(x_4), 5), FloorCast(Div(x_4, 5.0)))
+tel
+Sally Model
+===========
+
+(define-state-type
+   S
+   (
+     (ok1 Bool)
+     (ok2 Bool)
+     (ok3 Bool)
+     (ok4 Bool)
+     (y Int)
+     (|__no_static| Bool)
+     (|gal-initializing| Bool)
+     (|x:35| Real)
+     (|x:4| Real))
+   (
+     (y Int)
+     (|x:4| Real)))
+(define-transition-system
+   TS
+   S
+   (= |gal-initializing| true)
+   (and
+      (= next.|gal-initializing| false)
+      (= next.|x:4| input.|x:4|)
+      (= next.y input.y)
+      (=
+         next.ok1
+         (and
+            (<=
+               (to_real
+                  (to_int next.|x:4|))
+               next.|x:4|)
+            (<
+               next.|x:4|
+               (+
+                  (to_real
+                     (to_int next.|x:4|))
+                  1.0))))
+      (= next.|x:35| next.|x:4|)
+      (=
+         next.|__no_static|
+         (=
+            next.|x:35|
+            (to_real
+               (to_int next.|x:35|))))
+      (=
+         next.ok2
+         (=
+            (=
+               (to_int
+                  (- next.|x:4|))
+               (-
+                  (to_int next.|x:4|)))
+            next.|__no_static|))
+      (=
+         next.ok3
+         (=
+            (ite
+               (< 5 0)
+               (-
+                  (to_int
+                     (/
+                        (to_real next.y)
+                        (to_real
+                           (- 5)))))
+               (to_int
+                  (/
+                     (to_real next.y)
+                     (to_real 5))))
+            (to_int
+               (/
+                  (to_real next.y)
+                  5.0))))
+      (=
+         next.ok4
+         (=
+            (ite
+               (< 5 0)
+               (-
+                  (to_int
+                     (/
+                        (to_real
+                           (to_int next.|x:4|))
+                        (to_real
+                           (- 5)))))
+               (to_int
+                  (/
+                     (to_real
+                        (to_int next.|x:4|))
+                     (to_real 5))))
+            (to_int
+               (/ next.|x:4| 5.0))))))
+
+(query
+   TS
+   (or |gal-initializing| ok4))
+(query
+   TS
+   (or |gal-initializing| ok3))
+(query
+   TS
+   (or |gal-initializing| ok2))
+(query
+   TS
+   (or |gal-initializing| ok1))
+
+[Lustre] Validating properties:
+[Lustre] Property ok4... considering simultaneous states to depth 0
+considering simultaneous states to depth 0
+[[1;92mValid[0m] considering simultaneous states to depth 0
+[Lustre] Property ok3... considering simultaneous states to depth 0
+considering simultaneous states to depth 0
+[[1;92mValid[0m] considering simultaneous states to depth 0
+[Lustre] Property ok2... considering simultaneous states to depth 0
+considering simultaneous states to depth 0
+[[1;92mValid[0m] considering simultaneous states to depth 0
+[Lustre] Property ok1... considering simultaneous states to depth 0
+considering simultaneous states to depth 0
+[[1;92mValid[0m] considering simultaneous states to depth 0
+[Lustre] Model status: [[1;92mValid[0m] 
