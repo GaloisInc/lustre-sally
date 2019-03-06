@@ -336,13 +336,14 @@ sallyKind :: Settings -> [String]
 sallyKind s = "--engine=kind"
             : ("--kind-max=" ++ show lim)
             : sallyRequiredOpts s
-  where lim = kindLimit s
+  where lim = kindLimit s + 1
+                -- it would appear Sally does not consider the last value
 
 sallyBMC :: Settings -> [String]
 sallyBMC s = "--engine=bmc"
            : ("--bmc-max=" ++ show lim)
            : sallyRequiredOpts s
-  where lim = bmcLimit s
+  where lim = bmcLimit s + 1
 
 
 --------------------------------------------------------------------------------
