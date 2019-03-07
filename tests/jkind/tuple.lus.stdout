@@ -1,4 +1,3 @@
-[Lustre] Loading settings from: "tuple.lus.settings"
 Core Lustre
 ===========
 
@@ -15,18 +14,18 @@ let
   fib2 = 1 -> valof_pre
   valof_pre_toggle = pre toggle
   toggle = true -> Not(valof_pre_toggle)
-  diff_25 = 1
-  valof_pre___no_static_30 = pre __no_static_21
-  __no_static_21 = 0 -> Sub(valof_pre___no_static_30, diff_25)
-  diff_26 = 2
-  valof_pre___no_static_32 = pre __no_static_23
-  __no_static_23 = 0 -> Sub(valof_pre___no_static_32, diff_26)
-  down = ITE(toggle, __no_static_21, __no_static_23)
-  valof_pre___no_static_31 = pre __no_static_22
-  __no_static_22 = 0 -> Add(valof_pre___no_static_31, diff_25)
-  valof_pre___no_static_33 = pre __no_static_24
-  __no_static_24 = 0 -> Add(valof_pre___no_static_33, diff_26)
-  up = ITE(toggle, __no_static_22, __no_static_24)
+  diff_61 = 1
+  valof_pre___no_static_66 = pre __no_static_57
+  __no_static_57 = 0 -> Sub(valof_pre___no_static_66, diff_61)
+  diff_62 = 2
+  valof_pre___no_static_68 = pre __no_static_59
+  __no_static_59 = 0 -> Sub(valof_pre___no_static_68, diff_62)
+  down = ITE(toggle, __no_static_57, __no_static_59)
+  valof_pre___no_static_67 = pre __no_static_58
+  __no_static_58 = 0 -> Add(valof_pre___no_static_67, diff_61)
+  valof_pre___no_static_69 = pre __no_static_60
+  __no_static_60 = 0 -> Add(valof_pre___no_static_69, diff_62)
+  up = ITE(toggle, __no_static_58, __no_static_60)
   ok1 = And(And(Leq(min, max), Or(Eq(a, min), Eq(a, max))), Or(Eq(b, min), Eq(b, max)))
   ok2 = Neq(fib2, 10947)
   ok3 = Or(And(Eq(x, 1), Eq(y, 2)), And(Eq(x, 3), Eq(y, 4)))
@@ -57,24 +56,24 @@ Sally Model
      (up Int)
      (x Int)
      (y Int)
-     (|__no_static:21:init| Bool)
-     (|__no_static:21| Int)
-     (|__no_static:22:init| Bool)
-     (|__no_static:22| Int)
-     (|__no_static:23:init| Bool)
-     (|__no_static:23| Int)
-     (|__no_static:24:init| Bool)
-     (|__no_static:24| Int)
-     (|diff:25| Int)
-     (|diff:26| Int)
+     (|__no_static:57:init| Bool)
+     (|__no_static:57| Int)
+     (|__no_static:58:init| Bool)
+     (|__no_static:58| Int)
+     (|__no_static:59:init| Bool)
+     (|__no_static:59| Int)
+     (|__no_static:60:init| Bool)
+     (|__no_static:60| Int)
+     (|diff:61| Int)
+     (|diff:62| Int)
      (|fib1:init| Bool)
      (|fib2:init| Bool)
      (|gal-initializing| Bool)
      (|toggle:init| Bool)
-     (|valof_pre___no_static:30| Int)
-     (|valof_pre___no_static:31| Int)
-     (|valof_pre___no_static:32| Int)
-     (|valof_pre___no_static:33| Int)
+     (|valof_pre___no_static:66| Int)
+     (|valof_pre___no_static:67| Int)
+     (|valof_pre___no_static:68| Int)
+     (|valof_pre___no_static:69| Int)
      (|valof_pre_fib2| Int)
      (|valof_pre_toggle| Bool)
      (|valof_pre| Int))
@@ -91,10 +90,10 @@ Sally Model
       (= |fib1:init| true)
       (= |fib2:init| true)
       (= |toggle:init| true)
-      (= |__no_static:21:init| true)
-      (= |__no_static:23:init| true)
-      (= |__no_static:22:init| true)
-      (= |__no_static:24:init| true))
+      (= |__no_static:57:init| true)
+      (= |__no_static:59:init| true)
+      (= |__no_static:58:init| true)
+      (= |__no_static:60:init| true))
    (and
       (= next.|gal-initializing| false)
       (= next.a input.a)
@@ -136,46 +135,46 @@ Sally Model
             next.toggle
             (not next.|valof_pre_toggle|)))
       (= next.|toggle:init| false)
-      (= next.|diff:25| 1)
-      (= next.|valof_pre___no_static:30| state.|__no_static:21|)
+      (= next.|diff:61| 1)
+      (= next.|valof_pre___no_static:66| state.|__no_static:57|)
       (ite
-         state.|__no_static:21:init|
-         (= next.|__no_static:21| 0)
+         state.|__no_static:57:init|
+         (= next.|__no_static:57| 0)
          (=
-            next.|__no_static:21|
-            (- next.|valof_pre___no_static:30| next.|diff:25|)))
-      (= next.|__no_static:21:init| false)
-      (= next.|diff:26| 2)
-      (= next.|valof_pre___no_static:32| state.|__no_static:23|)
+            next.|__no_static:57|
+            (- next.|valof_pre___no_static:66| next.|diff:61|)))
+      (= next.|__no_static:57:init| false)
+      (= next.|diff:62| 2)
+      (= next.|valof_pre___no_static:68| state.|__no_static:59|)
       (ite
-         state.|__no_static:23:init|
-         (= next.|__no_static:23| 0)
+         state.|__no_static:59:init|
+         (= next.|__no_static:59| 0)
          (=
-            next.|__no_static:23|
-            (- next.|valof_pre___no_static:32| next.|diff:26|)))
-      (= next.|__no_static:23:init| false)
+            next.|__no_static:59|
+            (- next.|valof_pre___no_static:68| next.|diff:62|)))
+      (= next.|__no_static:59:init| false)
       (=
          next.down
-         (ite next.toggle next.|__no_static:21| next.|__no_static:23|))
-      (= next.|valof_pre___no_static:31| state.|__no_static:22|)
+         (ite next.toggle next.|__no_static:57| next.|__no_static:59|))
+      (= next.|valof_pre___no_static:67| state.|__no_static:58|)
       (ite
-         state.|__no_static:22:init|
-         (= next.|__no_static:22| 0)
+         state.|__no_static:58:init|
+         (= next.|__no_static:58| 0)
          (=
-            next.|__no_static:22|
-            (+ next.|valof_pre___no_static:31| next.|diff:25|)))
-      (= next.|__no_static:22:init| false)
-      (= next.|valof_pre___no_static:33| state.|__no_static:24|)
+            next.|__no_static:58|
+            (+ next.|valof_pre___no_static:67| next.|diff:61|)))
+      (= next.|__no_static:58:init| false)
+      (= next.|valof_pre___no_static:69| state.|__no_static:60|)
       (ite
-         state.|__no_static:24:init|
-         (= next.|__no_static:24| 0)
+         state.|__no_static:60:init|
+         (= next.|__no_static:60| 0)
          (=
-            next.|__no_static:24|
-            (+ next.|valof_pre___no_static:33| next.|diff:26|)))
-      (= next.|__no_static:24:init| false)
+            next.|__no_static:60|
+            (+ next.|valof_pre___no_static:69| next.|diff:62|)))
+      (= next.|__no_static:60:init| false)
       (=
          next.up
-         (ite next.toggle next.|__no_static:22| next.|__no_static:24|))
+         (ite next.toggle next.|__no_static:58| next.|__no_static:60|))
       (=
          next.ok1
          (and
