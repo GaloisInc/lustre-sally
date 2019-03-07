@@ -4,91 +4,91 @@ Core Lustre
 
 node (a : bool, b : bool, c : bool, d : bool)
   returns (cost)
-  assumes (no_more_than_two_travelers, at_least_one_travelers, __no_static_41, __no_static_40, __no_static_39, __no_static_38)
+  assumes (no_more_than_two_travelers, at_least_one_travelers, __no_static, __no_static$1, __no_static$2, __no_static$3)
   shows (prop2, prop1)
 let
-  state_77 = a
-  value_78 = 1
-  valof_pre_state_114 = pre state_77
-  __no_static_50 = 0 -> ITE(Neq(state_77, valof_pre_state_114), value_78, 0)
-  x_85 = __no_static_50
-  x_93 = x_85
-  state_79 = b
-  value_80 = 2
-  valof_pre_state_115 = pre state_79
-  __no_static_51 = 0 -> ITE(Neq(state_79, valof_pre_state_115), value_80, 0)
-  y_86 = __no_static_51
-  x_91 = y_86
-  state_81 = c
-  value_82 = 5
-  valof_pre_state_116 = pre state_81
-  __no_static_52 = 0 -> ITE(Neq(state_81, valof_pre_state_116), value_82, 0)
-  z = __no_static_52
-  x_89 = z
-  state_83 = d
-  value_84 = 8
-  valof_pre_state_117 = pre state_83
-  __no_static_53 = 0 -> ITE(Neq(state_83, valof_pre_state_117), value_84, 0)
-  w = __no_static_53
-  y_90 = w
-  __no_static_96 = ITE(Geq(x_89, y_90), x_89, y_90)
-  y_92 = __no_static_96
-  __no_static_95 = ITE(Geq(x_91, y_92), x_91, y_92)
-  y_94 = __no_static_95
-  __no_static_54 = ITE(Geq(x_93, y_94), x_93, y_94)
+  state$7 = a
+  value$3 = 1
+  valof_pre_state$11 = pre state$7
+  __no_static$18 = 0 -> ITE(Neq(state$7, valof_pre_state$11), value$3, 0)
+  x$11 = __no_static$18
+  x$10 = x$11
+  state$6 = b
+  value$2 = 2
+  valof_pre_state$10 = pre state$6
+  __no_static$17 = 0 -> ITE(Neq(state$6, valof_pre_state$10), value$2, 0)
+  y$3 = __no_static$17
+  x$9 = y$3
+  state$5 = c
+  value$1 = 5
+  valof_pre_state$9 = pre state$5
+  __no_static$16 = 0 -> ITE(Neq(state$5, valof_pre_state$9), value$1, 0)
+  z = __no_static$16
+  x$8 = z
+  state$4 = d
+  value = 8
+  valof_pre_state$8 = pre state$4
+  __no_static$15 = 0 -> ITE(Neq(state$4, valof_pre_state$8), value, 0)
+  w = __no_static$15
+  y$2 = w
+  __no_static$14 = ITE(Geq(x$8, y$2), x$8, y$2)
+  y$1 = __no_static$14
+  __no_static$13 = ITE(Geq(x$9, y$1), x$9, y$1)
+  y = __no_static$13
+  __no_static$12 = ITE(Geq(x$10, y), x$10, y)
   valof_pre_cost = pre cost
-  cost = 0 -> Add(valof_pre_cost, __no_static_54)
-  valof_pre_torch = pre torch_12
-  torch_12 = true -> Not(valof_pre_torch)
+  cost = 0 -> Add(valof_pre_cost, __no_static$12)
+  valof_pre_torch = pre torch$4
+  torch$4 = true -> Not(valof_pre_torch)
   valof_pre_a = pre a
   valof_pre_b = pre b
   valof_pre_c = pre c
   valof_pre_d = pre d
   at_least_one_travelers = true -> Or(Or(Or(Neq(a, valof_pre_a), Neq(b, valof_pre_b)), Neq(c, valof_pre_c)), Neq(d, valof_pre_d))
-  x_69 = a
-  valof_pre_x_110 = pre x_69
-  __no_static_42 = false -> Neq(x_69, valof_pre_x_110)
-  x_70 = __no_static_42
-  __no_static_43 = ITE(x_70, 1, 0)
-  x_71 = b
-  valof_pre_x_111 = pre x_71
-  __no_static_44 = false -> Neq(x_71, valof_pre_x_111)
-  x_72 = __no_static_44
-  __no_static_45 = ITE(x_72, 1, 0)
-  x_73 = c
-  valof_pre_x_112 = pre x_73
-  __no_static_46 = false -> Neq(x_73, valof_pre_x_112)
-  x_74 = __no_static_46
-  __no_static_47 = ITE(x_74, 1, 0)
-  x_75 = d
-  valof_pre_x_113 = pre x_75
-  __no_static_48 = false -> Neq(x_75, valof_pre_x_113)
-  x_76 = __no_static_48
-  __no_static_49 = ITE(x_76, 1, 0)
-  no_more_than_two_travelers = Leq(Add(Add(Add(__no_static_43, __no_static_45), __no_static_47), __no_static_49), 2)
+  x$7 = a
+  valof_pre_x$3 = pre x$7
+  __no_static$11 = false -> Neq(x$7, valof_pre_x$3)
+  x$6 = __no_static$11
+  __no_static$10 = ITE(x$6, 1, 0)
+  x$5 = b
+  valof_pre_x$2 = pre x$5
+  __no_static$9 = false -> Neq(x$5, valof_pre_x$2)
+  x$4 = __no_static$9
+  __no_static$8 = ITE(x$4, 1, 0)
+  x$3 = c
+  valof_pre_x$1 = pre x$3
+  __no_static$7 = false -> Neq(x$3, valof_pre_x$1)
+  x$2 = __no_static$7
+  __no_static$6 = ITE(x$2, 1, 0)
+  x$1 = d
+  valof_pre_x = pre x$1
+  __no_static$5 = false -> Neq(x$1, valof_pre_x)
+  x = __no_static$5
+  __no_static$4 = ITE(x, 1, 0)
+  no_more_than_two_travelers = Leq(Add(Add(Add(__no_static$10, __no_static$8), __no_static$6), __no_static$4), 2)
   solved = And(And(And(a, b), c), d)
   prop1 = Not(And(solved, Lt(cost, 15)))
   prop2 = Not(And(solved, Eq(cost, 15)))
-  state_61 = a
-  torch_62 = torch_12
-  valof_pre_state_98 = pre state_61
-  valof_pre_state_99 = pre state_61
-  __no_static_38 = Eq(state_61, false) -> Implies(Neq(state_61, valof_pre_state_98), Eq(valof_pre_state_99, torch_62))
-  state_63 = b
-  torch_64 = torch_12
-  valof_pre_state_100 = pre state_63
-  valof_pre_state_101 = pre state_63
-  __no_static_39 = Eq(state_63, false) -> Implies(Neq(state_63, valof_pre_state_100), Eq(valof_pre_state_101, torch_64))
-  state_65 = c
-  torch_66 = torch_12
-  valof_pre_state_102 = pre state_65
-  valof_pre_state_103 = pre state_65
-  __no_static_40 = Eq(state_65, false) -> Implies(Neq(state_65, valof_pre_state_102), Eq(valof_pre_state_103, torch_66))
-  state_67 = d
-  torch_68 = torch_12
-  valof_pre_state_104 = pre state_67
-  valof_pre_state_105 = pre state_67
-  __no_static_41 = Eq(state_67, false) -> Implies(Neq(state_67, valof_pre_state_104), Eq(valof_pre_state_105, torch_68))
+  state$3 = a
+  torch$3 = torch$4
+  valof_pre_state$7 = pre state$3
+  valof_pre_state$6 = pre state$3
+  __no_static$3 = Eq(state$3, false) -> Implies(Neq(state$3, valof_pre_state$7), Eq(valof_pre_state$6, torch$3))
+  state$2 = b
+  torch$2 = torch$4
+  valof_pre_state$5 = pre state$2
+  valof_pre_state$4 = pre state$2
+  __no_static$2 = Eq(state$2, false) -> Implies(Neq(state$2, valof_pre_state$5), Eq(valof_pre_state$4, torch$2))
+  state$1 = c
+  torch$1 = torch$4
+  valof_pre_state$3 = pre state$1
+  valof_pre_state$2 = pre state$1
+  __no_static$1 = Eq(state$1, false) -> Implies(Neq(state$1, valof_pre_state$3), Eq(valof_pre_state$2, torch$1))
+  state = d
+  torch = torch$4
+  valof_pre_state$1 = pre state
+  valof_pre_state = pre state
+  __no_static = Eq(state, false) -> Implies(Neq(state, valof_pre_state$1), Eq(valof_pre_state, torch))
 tel
 Sally Model
 ===========
@@ -104,100 +104,100 @@ Sally Model
      (prop1 Bool)
      (prop2 Bool)
      (solved Bool)
+     (state Bool)
+     (torch Bool)
+     (value Int)
      (w Int)
+     (x Bool)
+     (y Int)
      (z Int)
-     (|__no_static:38:init| Bool)
-     (|__no_static:38| Bool)
-     (|__no_static:39:init| Bool)
-     (|__no_static:39| Bool)
-     (|__no_static:40:init| Bool)
-     (|__no_static:40| Bool)
-     (|__no_static:41:init| Bool)
-     (|__no_static:41| Bool)
-     (|__no_static:42:init| Bool)
-     (|__no_static:42| Bool)
-     (|__no_static:43| Int)
-     (|__no_static:44:init| Bool)
-     (|__no_static:44| Bool)
-     (|__no_static:45| Int)
-     (|__no_static:46:init| Bool)
-     (|__no_static:46| Bool)
-     (|__no_static:47| Int)
-     (|__no_static:48:init| Bool)
-     (|__no_static:48| Bool)
-     (|__no_static:49| Int)
-     (|__no_static:50:init| Bool)
-     (|__no_static:50| Int)
-     (|__no_static:51:init| Bool)
-     (|__no_static:51| Int)
-     (|__no_static:52:init| Bool)
-     (|__no_static:52| Int)
-     (|__no_static:53:init| Bool)
-     (|__no_static:53| Int)
-     (|__no_static:54| Int)
-     (|__no_static:95| Int)
-     (|__no_static:96| Int)
+     (|__no_static:10| Int)
+     (|__no_static:11:init| Bool)
+     (|__no_static:11| Bool)
+     (|__no_static:12| Int)
+     (|__no_static:13| Int)
+     (|__no_static:14| Int)
+     (|__no_static:15:init| Bool)
+     (|__no_static:15| Int)
+     (|__no_static:16:init| Bool)
+     (|__no_static:16| Int)
+     (|__no_static:17:init| Bool)
+     (|__no_static:17| Int)
+     (|__no_static:18:init| Bool)
+     (|__no_static:18| Int)
+     (|__no_static:1:init| Bool)
+     (|__no_static:1| Bool)
+     (|__no_static:2:init| Bool)
+     (|__no_static:2| Bool)
+     (|__no_static:3:init| Bool)
+     (|__no_static:3| Bool)
+     (|__no_static:4| Int)
+     (|__no_static:5:init| Bool)
+     (|__no_static:5| Bool)
+     (|__no_static:6| Int)
+     (|__no_static:7:init| Bool)
+     (|__no_static:7| Bool)
+     (|__no_static:8| Int)
+     (|__no_static:9:init| Bool)
+     (|__no_static:9| Bool)
+     (|__no_static:init| Bool)
+     (|__no_static| Bool)
      (|at_least_one_travelers:init| Bool)
      (|at_least_one_travelers| Bool)
      (|cost:init| Bool)
      (|gal-initializing| Bool)
      (|no_more_than_two_travelers| Bool)
-     (|state:61| Bool)
-     (|state:63| Bool)
-     (|state:65| Bool)
-     (|state:67| Bool)
-     (|state:77| Bool)
-     (|state:79| Bool)
-     (|state:81| Bool)
-     (|state:83| Bool)
-     (|torch:12:init| Bool)
-     (|torch:12| Bool)
-     (|torch:62| Bool)
-     (|torch:64| Bool)
-     (|torch:66| Bool)
-     (|torch:68| Bool)
+     (|state:1| Bool)
+     (|state:2| Bool)
+     (|state:3| Bool)
+     (|state:4| Bool)
+     (|state:5| Bool)
+     (|state:6| Bool)
+     (|state:7| Bool)
+     (|torch:1| Bool)
+     (|torch:2| Bool)
+     (|torch:3| Bool)
+     (|torch:4:init| Bool)
+     (|torch:4| Bool)
      (|valof_pre_a| Bool)
      (|valof_pre_b| Bool)
      (|valof_pre_cost| Int)
      (|valof_pre_c| Bool)
      (|valof_pre_d| Bool)
-     (|valof_pre_state:100| Bool)
-     (|valof_pre_state:101| Bool)
-     (|valof_pre_state:102| Bool)
-     (|valof_pre_state:103| Bool)
-     (|valof_pre_state:104| Bool)
-     (|valof_pre_state:105| Bool)
-     (|valof_pre_state:114| Bool)
-     (|valof_pre_state:115| Bool)
-     (|valof_pre_state:116| Bool)
-     (|valof_pre_state:117| Bool)
-     (|valof_pre_state:98| Bool)
-     (|valof_pre_state:99| Bool)
+     (|valof_pre_state:10| Bool)
+     (|valof_pre_state:11| Bool)
+     (|valof_pre_state:1| Bool)
+     (|valof_pre_state:2| Bool)
+     (|valof_pre_state:3| Bool)
+     (|valof_pre_state:4| Bool)
+     (|valof_pre_state:5| Bool)
+     (|valof_pre_state:6| Bool)
+     (|valof_pre_state:7| Bool)
+     (|valof_pre_state:8| Bool)
+     (|valof_pre_state:9| Bool)
+     (|valof_pre_state| Bool)
      (|valof_pre_torch| Bool)
-     (|valof_pre_x:110| Bool)
-     (|valof_pre_x:111| Bool)
-     (|valof_pre_x:112| Bool)
-     (|valof_pre_x:113| Bool)
-     (|value:78| Int)
-     (|value:80| Int)
-     (|value:82| Int)
-     (|value:84| Int)
-     (|x:69| Bool)
-     (|x:70| Bool)
-     (|x:71| Bool)
-     (|x:72| Bool)
-     (|x:73| Bool)
-     (|x:74| Bool)
-     (|x:75| Bool)
-     (|x:76| Bool)
-     (|x:85| Int)
-     (|x:89| Int)
-     (|x:91| Int)
-     (|x:93| Int)
-     (|y:86| Int)
-     (|y:90| Int)
-     (|y:92| Int)
-     (|y:94| Int))
+     (|valof_pre_x:1| Bool)
+     (|valof_pre_x:2| Bool)
+     (|valof_pre_x:3| Bool)
+     (|valof_pre_x| Bool)
+     (|value:1| Int)
+     (|value:2| Int)
+     (|value:3| Int)
+     (|x:10| Int)
+     (|x:11| Int)
+     (|x:1| Bool)
+     (|x:2| Bool)
+     (|x:3| Bool)
+     (|x:4| Bool)
+     (|x:5| Bool)
+     (|x:6| Bool)
+     (|x:7| Bool)
+     (|x:8| Int)
+     (|x:9| Int)
+     (|y:1| Int)
+     (|y:2| Int)
+     (|y:3| Int))
    (
      (a Bool)
      (b Bool)
@@ -208,21 +208,21 @@ Sally Model
    S
    (and
       (= |gal-initializing| true)
-      (= |__no_static:50:init| true)
-      (= |__no_static:51:init| true)
-      (= |__no_static:52:init| true)
-      (= |__no_static:53:init| true)
+      (= |__no_static:18:init| true)
+      (= |__no_static:17:init| true)
+      (= |__no_static:16:init| true)
+      (= |__no_static:15:init| true)
       (= |cost:init| true)
-      (= |torch:12:init| true)
+      (= |torch:4:init| true)
       (= |at_least_one_travelers:init| true)
-      (= |__no_static:42:init| true)
-      (= |__no_static:44:init| true)
-      (= |__no_static:46:init| true)
-      (= |__no_static:48:init| true)
-      (= |__no_static:38:init| true)
-      (= |__no_static:39:init| true)
-      (= |__no_static:40:init| true)
-      (= |__no_static:41:init| true))
+      (= |__no_static:11:init| true)
+      (= |__no_static:9:init| true)
+      (= |__no_static:7:init| true)
+      (= |__no_static:5:init| true)
+      (= |__no_static:3:init| true)
+      (= |__no_static:2:init| true)
+      (= |__no_static:1:init| true)
+      (= |__no_static:init| true))
    (and
       (= next.|gal-initializing| false)
       (= next.a input.a)
@@ -231,110 +231,110 @@ Sally Model
       (= next.d input.d)
       next.|no_more_than_two_travelers|
       next.|at_least_one_travelers|
-      next.|__no_static:41|
-      next.|__no_static:40|
-      next.|__no_static:39|
-      next.|__no_static:38|
-      (= next.|state:77| next.a)
-      (= next.|value:78| 1)
-      (= next.|valof_pre_state:114| state.|state:77|)
+      next.|__no_static|
+      next.|__no_static:1|
+      next.|__no_static:2|
+      next.|__no_static:3|
+      (= next.|state:7| next.a)
+      (= next.|value:3| 1)
+      (= next.|valof_pre_state:11| state.|state:7|)
       (ite
-         state.|__no_static:50:init|
-         (= next.|__no_static:50| 0)
+         state.|__no_static:18:init|
+         (= next.|__no_static:18| 0)
          (=
-            next.|__no_static:50|
+            next.|__no_static:18|
             (ite
                (not
-                  (= next.|state:77| next.|valof_pre_state:114|))
-               next.|value:78|
+                  (= next.|state:7| next.|valof_pre_state:11|))
+               next.|value:3|
                0)))
-      (= next.|__no_static:50:init| false)
-      (= next.|x:85| next.|__no_static:50|)
-      (= next.|x:93| next.|x:85|)
-      (= next.|state:79| next.b)
-      (= next.|value:80| 2)
-      (= next.|valof_pre_state:115| state.|state:79|)
+      (= next.|__no_static:18:init| false)
+      (= next.|x:11| next.|__no_static:18|)
+      (= next.|x:10| next.|x:11|)
+      (= next.|state:6| next.b)
+      (= next.|value:2| 2)
+      (= next.|valof_pre_state:10| state.|state:6|)
       (ite
-         state.|__no_static:51:init|
-         (= next.|__no_static:51| 0)
+         state.|__no_static:17:init|
+         (= next.|__no_static:17| 0)
          (=
-            next.|__no_static:51|
+            next.|__no_static:17|
             (ite
                (not
-                  (= next.|state:79| next.|valof_pre_state:115|))
-               next.|value:80|
+                  (= next.|state:6| next.|valof_pre_state:10|))
+               next.|value:2|
                0)))
-      (= next.|__no_static:51:init| false)
-      (= next.|y:86| next.|__no_static:51|)
-      (= next.|x:91| next.|y:86|)
-      (= next.|state:81| next.c)
-      (= next.|value:82| 5)
-      (= next.|valof_pre_state:116| state.|state:81|)
+      (= next.|__no_static:17:init| false)
+      (= next.|y:3| next.|__no_static:17|)
+      (= next.|x:9| next.|y:3|)
+      (= next.|state:5| next.c)
+      (= next.|value:1| 5)
+      (= next.|valof_pre_state:9| state.|state:5|)
       (ite
-         state.|__no_static:52:init|
-         (= next.|__no_static:52| 0)
+         state.|__no_static:16:init|
+         (= next.|__no_static:16| 0)
          (=
-            next.|__no_static:52|
+            next.|__no_static:16|
             (ite
                (not
-                  (= next.|state:81| next.|valof_pre_state:116|))
-               next.|value:82|
+                  (= next.|state:5| next.|valof_pre_state:9|))
+               next.|value:1|
                0)))
-      (= next.|__no_static:52:init| false)
-      (= next.z next.|__no_static:52|)
-      (= next.|x:89| next.z)
-      (= next.|state:83| next.d)
-      (= next.|value:84| 8)
-      (= next.|valof_pre_state:117| state.|state:83|)
+      (= next.|__no_static:16:init| false)
+      (= next.z next.|__no_static:16|)
+      (= next.|x:8| next.z)
+      (= next.|state:4| next.d)
+      (= next.value 8)
+      (= next.|valof_pre_state:8| state.|state:4|)
       (ite
-         state.|__no_static:53:init|
-         (= next.|__no_static:53| 0)
+         state.|__no_static:15:init|
+         (= next.|__no_static:15| 0)
          (=
-            next.|__no_static:53|
+            next.|__no_static:15|
             (ite
                (not
-                  (= next.|state:83| next.|valof_pre_state:117|))
-               next.|value:84|
+                  (= next.|state:4| next.|valof_pre_state:8|))
+               next.value
                0)))
-      (= next.|__no_static:53:init| false)
-      (= next.w next.|__no_static:53|)
-      (= next.|y:90| next.w)
+      (= next.|__no_static:15:init| false)
+      (= next.w next.|__no_static:15|)
+      (= next.|y:2| next.w)
       (=
-         next.|__no_static:96|
+         next.|__no_static:14|
          (ite
-            (<= next.|y:90| next.|x:89|)
-            next.|x:89|
-            next.|y:90|))
-      (= next.|y:92| next.|__no_static:96|)
+            (<= next.|y:2| next.|x:8|)
+            next.|x:8|
+            next.|y:2|))
+      (= next.|y:1| next.|__no_static:14|)
       (=
-         next.|__no_static:95|
+         next.|__no_static:13|
          (ite
-            (<= next.|y:92| next.|x:91|)
-            next.|x:91|
-            next.|y:92|))
-      (= next.|y:94| next.|__no_static:95|)
+            (<= next.|y:1| next.|x:9|)
+            next.|x:9|
+            next.|y:1|))
+      (= next.y next.|__no_static:13|)
       (=
-         next.|__no_static:54|
+         next.|__no_static:12|
          (ite
-            (<= next.|y:94| next.|x:93|)
-            next.|x:93|
-            next.|y:94|))
+            (<= next.y next.|x:10|)
+            next.|x:10|
+            next.y))
       (= next.|valof_pre_cost| state.cost)
       (ite
          state.|cost:init|
          (= next.cost 0)
          (=
             next.cost
-            (+ next.|valof_pre_cost| next.|__no_static:54|)))
+            (+ next.|valof_pre_cost| next.|__no_static:12|)))
       (= next.|cost:init| false)
-      (= next.|valof_pre_torch| state.|torch:12|)
+      (= next.|valof_pre_torch| state.|torch:4|)
       (ite
-         state.|torch:12:init|
-         (= next.|torch:12| true)
+         state.|torch:4:init|
+         (= next.|torch:4| true)
          (=
-            next.|torch:12|
+            next.|torch:4|
             (not next.|valof_pre_torch|)))
-      (= next.|torch:12:init| false)
+      (= next.|torch:4:init| false)
       (= next.|valof_pre_a| state.a)
       (= next.|valof_pre_b| state.b)
       (= next.|valof_pre_c| state.c)
@@ -354,70 +354,70 @@ Sally Model
                (not
                   (= next.d next.|valof_pre_d|)))))
       (= next.|at_least_one_travelers:init| false)
-      (= next.|x:69| next.a)
-      (= next.|valof_pre_x:110| state.|x:69|)
+      (= next.|x:7| next.a)
+      (= next.|valof_pre_x:3| state.|x:7|)
       (ite
-         state.|__no_static:42:init|
-         (= next.|__no_static:42| false)
+         state.|__no_static:11:init|
+         (= next.|__no_static:11| false)
          (=
-            next.|__no_static:42|
+            next.|__no_static:11|
             (not
-               (= next.|x:69| next.|valof_pre_x:110|))))
-      (= next.|__no_static:42:init| false)
-      (= next.|x:70| next.|__no_static:42|)
+               (= next.|x:7| next.|valof_pre_x:3|))))
+      (= next.|__no_static:11:init| false)
+      (= next.|x:6| next.|__no_static:11|)
       (=
-         next.|__no_static:43|
-         (ite next.|x:70| 1 0))
-      (= next.|x:71| next.b)
-      (= next.|valof_pre_x:111| state.|x:71|)
+         next.|__no_static:10|
+         (ite next.|x:6| 1 0))
+      (= next.|x:5| next.b)
+      (= next.|valof_pre_x:2| state.|x:5|)
       (ite
-         state.|__no_static:44:init|
-         (= next.|__no_static:44| false)
+         state.|__no_static:9:init|
+         (= next.|__no_static:9| false)
          (=
-            next.|__no_static:44|
+            next.|__no_static:9|
             (not
-               (= next.|x:71| next.|valof_pre_x:111|))))
-      (= next.|__no_static:44:init| false)
-      (= next.|x:72| next.|__no_static:44|)
+               (= next.|x:5| next.|valof_pre_x:2|))))
+      (= next.|__no_static:9:init| false)
+      (= next.|x:4| next.|__no_static:9|)
       (=
-         next.|__no_static:45|
-         (ite next.|x:72| 1 0))
-      (= next.|x:73| next.c)
-      (= next.|valof_pre_x:112| state.|x:73|)
+         next.|__no_static:8|
+         (ite next.|x:4| 1 0))
+      (= next.|x:3| next.c)
+      (= next.|valof_pre_x:1| state.|x:3|)
       (ite
-         state.|__no_static:46:init|
-         (= next.|__no_static:46| false)
+         state.|__no_static:7:init|
+         (= next.|__no_static:7| false)
          (=
-            next.|__no_static:46|
+            next.|__no_static:7|
             (not
-               (= next.|x:73| next.|valof_pre_x:112|))))
-      (= next.|__no_static:46:init| false)
-      (= next.|x:74| next.|__no_static:46|)
+               (= next.|x:3| next.|valof_pre_x:1|))))
+      (= next.|__no_static:7:init| false)
+      (= next.|x:2| next.|__no_static:7|)
       (=
-         next.|__no_static:47|
-         (ite next.|x:74| 1 0))
-      (= next.|x:75| next.d)
-      (= next.|valof_pre_x:113| state.|x:75|)
+         next.|__no_static:6|
+         (ite next.|x:2| 1 0))
+      (= next.|x:1| next.d)
+      (= next.|valof_pre_x| state.|x:1|)
       (ite
-         state.|__no_static:48:init|
-         (= next.|__no_static:48| false)
+         state.|__no_static:5:init|
+         (= next.|__no_static:5| false)
          (=
-            next.|__no_static:48|
+            next.|__no_static:5|
             (not
-               (= next.|x:75| next.|valof_pre_x:113|))))
-      (= next.|__no_static:48:init| false)
-      (= next.|x:76| next.|__no_static:48|)
+               (= next.|x:1| next.|valof_pre_x|))))
+      (= next.|__no_static:5:init| false)
+      (= next.x next.|__no_static:5|)
       (=
-         next.|__no_static:49|
-         (ite next.|x:76| 1 0))
+         next.|__no_static:4|
+         (ite next.x 1 0))
       (=
          next.|no_more_than_two_travelers|
          (<=
             (+
                (+
-                  (+ next.|__no_static:43| next.|__no_static:45|)
-                  next.|__no_static:47|)
-               next.|__no_static:49|)
+                  (+ next.|__no_static:10| next.|__no_static:8|)
+                  next.|__no_static:6|)
+               next.|__no_static:4|)
             2))
       (=
          next.solved
@@ -434,70 +434,70 @@ Sally Model
             (and
                next.solved
                (= next.cost 15))))
-      (= next.|state:61| next.a)
-      (= next.|torch:62| next.|torch:12|)
-      (= next.|valof_pre_state:98| state.|state:61|)
-      (= next.|valof_pre_state:99| state.|state:61|)
+      (= next.|state:3| next.a)
+      (= next.|torch:3| next.|torch:4|)
+      (= next.|valof_pre_state:7| state.|state:3|)
+      (= next.|valof_pre_state:6| state.|state:3|)
       (ite
-         state.|__no_static:38:init|
+         state.|__no_static:3:init|
          (=
-            next.|__no_static:38|
-            (= next.|state:61| false))
+            next.|__no_static:3|
+            (= next.|state:3| false))
          (=
-            next.|__no_static:38|
+            next.|__no_static:3|
             (=>
                (not
-                  (= next.|state:61| next.|valof_pre_state:98|))
-               (= next.|valof_pre_state:99| next.|torch:62|))))
-      (= next.|__no_static:38:init| false)
-      (= next.|state:63| next.b)
-      (= next.|torch:64| next.|torch:12|)
-      (= next.|valof_pre_state:100| state.|state:63|)
-      (= next.|valof_pre_state:101| state.|state:63|)
+                  (= next.|state:3| next.|valof_pre_state:7|))
+               (= next.|valof_pre_state:6| next.|torch:3|))))
+      (= next.|__no_static:3:init| false)
+      (= next.|state:2| next.b)
+      (= next.|torch:2| next.|torch:4|)
+      (= next.|valof_pre_state:5| state.|state:2|)
+      (= next.|valof_pre_state:4| state.|state:2|)
       (ite
-         state.|__no_static:39:init|
+         state.|__no_static:2:init|
          (=
-            next.|__no_static:39|
-            (= next.|state:63| false))
+            next.|__no_static:2|
+            (= next.|state:2| false))
          (=
-            next.|__no_static:39|
+            next.|__no_static:2|
             (=>
                (not
-                  (= next.|state:63| next.|valof_pre_state:100|))
-               (= next.|valof_pre_state:101| next.|torch:64|))))
-      (= next.|__no_static:39:init| false)
-      (= next.|state:65| next.c)
-      (= next.|torch:66| next.|torch:12|)
-      (= next.|valof_pre_state:102| state.|state:65|)
-      (= next.|valof_pre_state:103| state.|state:65|)
+                  (= next.|state:2| next.|valof_pre_state:5|))
+               (= next.|valof_pre_state:4| next.|torch:2|))))
+      (= next.|__no_static:2:init| false)
+      (= next.|state:1| next.c)
+      (= next.|torch:1| next.|torch:4|)
+      (= next.|valof_pre_state:3| state.|state:1|)
+      (= next.|valof_pre_state:2| state.|state:1|)
       (ite
-         state.|__no_static:40:init|
+         state.|__no_static:1:init|
          (=
-            next.|__no_static:40|
-            (= next.|state:65| false))
+            next.|__no_static:1|
+            (= next.|state:1| false))
          (=
-            next.|__no_static:40|
+            next.|__no_static:1|
             (=>
                (not
-                  (= next.|state:65| next.|valof_pre_state:102|))
-               (= next.|valof_pre_state:103| next.|torch:66|))))
-      (= next.|__no_static:40:init| false)
-      (= next.|state:67| next.d)
-      (= next.|torch:68| next.|torch:12|)
-      (= next.|valof_pre_state:104| state.|state:67|)
-      (= next.|valof_pre_state:105| state.|state:67|)
+                  (= next.|state:1| next.|valof_pre_state:3|))
+               (= next.|valof_pre_state:2| next.|torch:1|))))
+      (= next.|__no_static:1:init| false)
+      (= next.state next.d)
+      (= next.torch next.|torch:4|)
+      (= next.|valof_pre_state:1| state.state)
+      (= next.|valof_pre_state| state.state)
       (ite
-         state.|__no_static:41:init|
+         state.|__no_static:init|
          (=
-            next.|__no_static:41|
-            (= next.|state:67| false))
+            next.|__no_static|
+            (= next.state false))
          (=
-            next.|__no_static:41|
+            next.|__no_static|
             (=>
                (not
-                  (= next.|state:67| next.|valof_pre_state:104|))
-               (= next.|valof_pre_state:105| next.|torch:68|))))
-      (= next.|__no_static:41:init| false)))
+                  (= next.state next.|valof_pre_state:1|))
+               (= next.|valof_pre_state| next.torch))))
+      (= next.|__no_static:init| false)))
 
 (query
    TS
@@ -541,11 +541,11 @@ var trace =
                                    , "cid": "cs_top"
                                    , "step": 2
                                    }
-                                 , { "value": "True"
+                                 , { "value": "False"
                                    , "cid": "cs_top"
                                    , "step": 3
                                    }
-                                 , { "value": "True"
+                                 , { "value": "False"
                                    , "cid": "cs_top"
                                    , "step": 4
                                    }
@@ -573,11 +573,11 @@ var trace =
                                    , "cid": "cs_top"
                                    , "step": 2
                                    }
-                                 , { "value": "False"
+                                 , { "value": "True"
                                    , "cid": "cs_top"
                                    , "step": 3
                                    }
-                                 , { "value": "False"
+                                 , { "value": "True"
                                    , "cid": "cs_top"
                                    , "step": 4
                                    }
@@ -669,11 +669,11 @@ var trace =
                                    , "cid": "cs_top"
                                    , "step": 2
                                    }
-                                 , { "value": "4"
+                                 , { "value": "3"
                                    , "cid": "cs_top"
                                    , "step": 3
                                    }
-                                 , { "value": "12"
+                                 , { "value": "11"
                                    , "cid": "cs_top"
                                    , "step": 4
                                    }
@@ -1093,11 +1093,11 @@ var trace =
                                    , "cid": "cs_600_607"
                                    , "step": 2
                                    }
-                                 , { "value": "True"
+                                 , { "value": "False"
                                    , "cid": "cs_513_520"
                                    , "step": 3
                                    }
-                                 , { "value": "False"
+                                 , { "value": "True"
                                    , "cid": "cs_542_549"
                                    , "step": 3
                                    }
@@ -1109,11 +1109,11 @@ var trace =
                                    , "cid": "cs_600_607"
                                    , "step": 3
                                    }
-                                 , { "value": "True"
+                                 , { "value": "False"
                                    , "cid": "cs_513_520"
                                    , "step": 4
                                    }
-                                 , { "value": "False"
+                                 , { "value": "True"
                                    , "cid": "cs_542_549"
                                    , "step": 4
                                    }
@@ -1443,11 +1443,11 @@ var trace =
                                    , "cid": "cs_980_983"
                                    , "step": 2
                                    }
-                                 , { "value": "True"
+                                 , { "value": "False"
                                    , "cid": "cs_944_947"
                                    , "step": 3
                                    }
-                                 , { "value": "False"
+                                 , { "value": "True"
                                    , "cid": "cs_956_959"
                                    , "step": 3
                                    }
@@ -1459,11 +1459,11 @@ var trace =
                                    , "cid": "cs_980_983"
                                    , "step": 3
                                    }
-                                 , { "value": "True"
+                                 , { "value": "False"
                                    , "cid": "cs_944_947"
                                    , "step": 4
                                    }
-                                 , { "value": "False"
+                                 , { "value": "True"
                                    , "cid": "cs_956_959"
                                    , "step": 4
                                    }
@@ -1675,11 +1675,11 @@ var trace =
                                    , "cid": "cs_980_983"
                                    , "step": 2
                                    }
-                                 , { "value": "0"
+                                 , { "value": "1"
                                    , "cid": "cs_944_947"
                                    , "step": 3
                                    }
-                                 , { "value": "2"
+                                 , { "value": "0"
                                    , "cid": "cs_956_959"
                                    , "step": 3
                                    }
@@ -1707,11 +1707,11 @@ var trace =
                                    , "cid": "cs_980_983"
                                    , "step": 4
                                    }
-                                 , { "value": "1"
+                                 , { "value": "0"
                                    , "cid": "cs_944_947"
                                    , "step": 5
                                    }
-                                 , { "value": "0"
+                                 , { "value": "2"
                                    , "cid": "cs_956_959"
                                    , "step": 5
                                    }
@@ -1756,7 +1756,7 @@ var trace =
                                    , "cid": "cs_940_942"
                                    , "step": 2
                                    }
-                                 , { "value": "0"
+                                 , { "value": "1"
                                    , "cid": "cs_940_942"
                                    , "step": 3
                                    }
@@ -1764,7 +1764,7 @@ var trace =
                                    , "cid": "cs_940_942"
                                    , "step": 4
                                    }
-                                 , { "value": "1"
+                                 , { "value": "0"
                                    , "cid": "cs_940_942"
                                    , "step": 5
                                    }
@@ -1788,7 +1788,7 @@ var trace =
                                    , "cid": "cs_940_942"
                                    , "step": 2
                                    }
-                                 , { "value": "2"
+                                 , { "value": "0"
                                    , "cid": "cs_940_942"
                                    , "step": 3
                                    }
@@ -1796,7 +1796,7 @@ var trace =
                                    , "cid": "cs_940_942"
                                    , "step": 4
                                    }
-                                 , { "value": "0"
+                                 , { "value": "2"
                                    , "cid": "cs_940_942"
                                    , "step": 5
                                    }
@@ -1884,7 +1884,7 @@ var trace =
                                    , "cid": "cs_940_942"
                                    , "step": 2
                                    }
-                                 , { "value": "2"
+                                 , { "value": "1"
                                    , "cid": "cs_940_942"
                                    , "step": 3
                                    }
@@ -1892,7 +1892,7 @@ var trace =
                                    , "cid": "cs_940_942"
                                    , "step": 4
                                    }
-                                 , { "value": "1"
+                                 , { "value": "2"
                                    , "cid": "cs_940_942"
                                    , "step": 5
                                    }
@@ -1969,11 +1969,11 @@ var trace =
                                    , "cid": "cs_1560_1563"
                                    , "step": 2
                                    }
-                                 , { "value": "0"
+                                 , { "value": "1"
                                    , "cid": "cs_1544_1547"
                                    , "step": 3
                                    }
-                                 , { "value": "2"
+                                 , { "value": "0"
                                    , "cid": "cs_1552_1555"
                                    , "step": 3
                                    }
@@ -1993,11 +1993,11 @@ var trace =
                                    , "cid": "cs_1560_1563"
                                    , "step": 4
                                    }
-                                 , { "value": "1"
+                                 , { "value": "0"
                                    , "cid": "cs_1544_1547"
                                    , "step": 5
                                    }
-                                 , { "value": "0"
+                                 , { "value": "2"
                                    , "cid": "cs_1552_1555"
                                    , "step": 5
                                    }
@@ -2057,31 +2057,31 @@ var trace =
                                    , "cid": "cs_1560_1563"
                                    , "step": 2
                                    }
+                                 , { "value": "0"
+                                   , "cid": "cs_1544_1547"
+                                   , "step": 3
+                                   }
+                                 , { "value": "0"
+                                   , "cid": "cs_1552_1555"
+                                   , "step": 3
+                                   }
+                                 , { "value": "0"
+                                   , "cid": "cs_1560_1563"
+                                   , "step": 3
+                                   }
+                                 , { "value": "8"
+                                   , "cid": "cs_1544_1547"
+                                   , "step": 4
+                                   }
+                                 , { "value": "8"
+                                   , "cid": "cs_1552_1555"
+                                   , "step": 4
+                                   }
+                                 , { "value": "8"
+                                   , "cid": "cs_1560_1563"
+                                   , "step": 4
+                                   }
                                  , { "value": "2"
-                                   , "cid": "cs_1544_1547"
-                                   , "step": 3
-                                   }
-                                 , { "value": "0"
-                                   , "cid": "cs_1552_1555"
-                                   , "step": 3
-                                   }
-                                 , { "value": "0"
-                                   , "cid": "cs_1560_1563"
-                                   , "step": 3
-                                   }
-                                 , { "value": "8"
-                                   , "cid": "cs_1544_1547"
-                                   , "step": 4
-                                   }
-                                 , { "value": "8"
-                                   , "cid": "cs_1552_1555"
-                                   , "step": 4
-                                   }
-                                 , { "value": "8"
-                                   , "cid": "cs_1560_1563"
-                                   , "step": 4
-                                   }
-                                 , { "value": "0"
                                    , "cid": "cs_1544_1547"
                                    , "step": 5
                                    }
@@ -2145,11 +2145,11 @@ var trace =
                                    , "cid": "cs_1560_1563"
                                    , "step": 2
                                    }
-                                 , { "value": "2"
+                                 , { "value": "1"
                                    , "cid": "cs_1544_1547"
                                    , "step": 3
                                    }
-                                 , { "value": "2"
+                                 , { "value": "0"
                                    , "cid": "cs_1552_1555"
                                    , "step": 3
                                    }
@@ -2169,11 +2169,11 @@ var trace =
                                    , "cid": "cs_1560_1563"
                                    , "step": 4
                                    }
-                                 , { "value": "1"
+                                 , { "value": "2"
                                    , "cid": "cs_1544_1547"
                                    , "step": 5
                                    }
-                                 , { "value": "0"
+                                 , { "value": "2"
                                    , "cid": "cs_1552_1555"
                                    , "step": 5
                                    }
@@ -2246,11 +2246,11 @@ var trace =
                                    , "cid": "cs_821_823"
                                    , "step": 2
                                    }
-                                 , { "value": "False"
+                                 , { "value": "True"
                                    , "cid": "cs_760_762"
                                    , "step": 3
                                    }
-                                 , { "value": "True"
+                                 , { "value": "False"
                                    , "cid": "cs_778_780"
                                    , "step": 3
                                    }
@@ -2278,11 +2278,11 @@ var trace =
                                    , "cid": "cs_821_823"
                                    , "step": 4
                                    }
-                                 , { "value": "True"
+                                 , { "value": "False"
                                    , "cid": "cs_760_762"
                                    , "step": 5
                                    }
-                                 , { "value": "False"
+                                 , { "value": "True"
                                    , "cid": "cs_778_780"
                                    , "step": 5
                                    }
@@ -2362,11 +2362,11 @@ var trace =
                                    , "cid": "cs_821_823"
                                    , "step": 2
                                    }
-                                 , { "value": "0"
+                                 , { "value": "1"
                                    , "cid": "cs_760_762"
                                    , "step": 3
                                    }
-                                 , { "value": "1"
+                                 , { "value": "0"
                                    , "cid": "cs_778_780"
                                    , "step": 3
                                    }
@@ -2394,11 +2394,11 @@ var trace =
                                    , "cid": "cs_821_823"
                                    , "step": 4
                                    }
-                                 , { "value": "1"
+                                 , { "value": "0"
                                    , "cid": "cs_760_762"
                                    , "step": 5
                                    }
-                                 , { "value": "0"
+                                 , { "value": "1"
                                    , "cid": "cs_778_780"
                                    , "step": 5
                                    }
@@ -2479,11 +2479,11 @@ var trace =
                                    , "cid": "cs_825_831"
                                    , "step": 2
                                    }
-                                 , { "value": "True"
+                                 , { "value": "False"
                                    , "cid": "cs_764_770"
                                    , "step": 3
                                    }
-                                 , { "value": "False"
+                                 , { "value": "True"
                                    , "cid": "cs_782_788"
                                    , "step": 3
                                    }
@@ -2495,11 +2495,11 @@ var trace =
                                    , "cid": "cs_825_831"
                                    , "step": 3
                                    }
-                                 , { "value": "True"
+                                 , { "value": "False"
                                    , "cid": "cs_764_770"
                                    , "step": 4
                                    }
-                                 , { "value": "False"
+                                 , { "value": "True"
                                    , "cid": "cs_782_788"
                                    , "step": 4
                                    }
@@ -2595,11 +2595,11 @@ var trace =
                                    , "cid": "cs_825_831"
                                    , "step": 2
                                    }
-                                 , { "value": "False"
+                                 , { "value": "True"
                                    , "cid": "cs_764_770"
                                    , "step": 3
                                    }
-                                 , { "value": "True"
+                                 , { "value": "False"
                                    , "cid": "cs_782_788"
                                    , "step": 3
                                    }
@@ -2627,11 +2627,11 @@ var trace =
                                    , "cid": "cs_825_831"
                                    , "step": 4
                                    }
-                                 , { "value": "True"
+                                 , { "value": "False"
                                    , "cid": "cs_764_770"
                                    , "step": 5
                                    }
-                                 , { "value": "False"
+                                 , { "value": "True"
                                    , "cid": "cs_782_788"
                                    , "step": 5
                                    }
