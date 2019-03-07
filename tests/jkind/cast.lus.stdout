@@ -1,17 +1,17 @@
 Core Lustre
 ===========
 
-node (x_4 : real, y : int)
+node (x$1 : real, y : int)
   returns ()
   assumes ()
   shows (ok4, ok3, ok2, ok1)
 let
-  ok1 = And(Leq(RealCast(FloorCast(x_4)), x_4), Lt(x_4, Add(RealCast(FloorCast(x_4)), 1.0)))
-  x_11 = x_4
-  __no_static = Eq(x_11, RealCast(FloorCast(x_11)))
-  ok2 = Eq(Eq(FloorCast(Neg(x_4)), Neg(FloorCast(x_4))), __no_static)
+  ok1 = And(Leq(RealCast(FloorCast(x$1)), x$1), Lt(x$1, Add(RealCast(FloorCast(x$1)), 1.0)))
+  x = x$1
+  __no_static = Eq(x, RealCast(FloorCast(x)))
+  ok2 = Eq(Eq(FloorCast(Neg(x$1)), Neg(FloorCast(x$1))), __no_static)
   ok3 = Eq(Div(y, 5), FloorCast(Div(RealCast(y), 5.0)))
-  ok4 = Eq(Div(FloorCast(x_4), 5), FloorCast(Div(x_4, 5.0)))
+  ok4 = Eq(Div(FloorCast(x$1), 5), FloorCast(Div(x$1, 5.0)))
 tel
 Sally Model
 ===========
@@ -23,50 +23,50 @@ Sally Model
      (ok2 Bool)
      (ok3 Bool)
      (ok4 Bool)
+     (x Real)
      (y Int)
      (|__no_static| Bool)
      (|gal-initializing| Bool)
-     (|x:11| Real)
-     (|x:4| Real))
+     (|x:1| Real))
    (
      (y Int)
-     (|x:4| Real)))
+     (|x:1| Real)))
 (define-transition-system
    TS
    S
    (= |gal-initializing| true)
    (and
       (= next.|gal-initializing| false)
-      (= next.|x:4| input.|x:4|)
+      (= next.|x:1| input.|x:1|)
       (= next.y input.y)
       (=
          next.ok1
          (and
             (<=
                (to_real
-                  (to_int next.|x:4|))
-               next.|x:4|)
+                  (to_int next.|x:1|))
+               next.|x:1|)
             (<
-               next.|x:4|
+               next.|x:1|
                (+
                   (to_real
-                     (to_int next.|x:4|))
+                     (to_int next.|x:1|))
                   1.0))))
-      (= next.|x:11| next.|x:4|)
+      (= next.x next.|x:1|)
       (=
          next.|__no_static|
          (=
-            next.|x:11|
+            next.x
             (to_real
-               (to_int next.|x:11|))))
+               (to_int next.x))))
       (=
          next.ok2
          (=
             (=
                (to_int
-                  (- next.|x:4|))
+                  (- next.|x:1|))
                (-
-                  (to_int next.|x:4|)))
+                  (to_int next.|x:1|)))
             next.|__no_static|))
       (=
          next.ok3
@@ -96,16 +96,16 @@ Sally Model
                   (to_int
                      (/
                         (to_real
-                           (to_int next.|x:4|))
+                           (to_int next.|x:1|))
                         (to_real
                            (- 5)))))
                (to_int
                   (/
                      (to_real
-                        (to_int next.|x:4|))
+                        (to_int next.|x:1|))
                      (to_real 5))))
             (to_int
-               (/ next.|x:4| 5.0))))))
+               (/ next.|x:1| 5.0))))))
 
 (query
    TS
