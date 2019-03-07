@@ -30,7 +30,7 @@ transNode n = (ts, map mkProp (nShows n))
   mkProp (x,p) = (x, transProp qns TS.InCurState p)
 
   env = nodeEnv n
-  qns = unqualIdents n
+  qns = identVariants n
 
   ts = TS.TransSystem
          { TS.tsVars    = Map.unions (inVars : otherVars
@@ -47,7 +47,7 @@ transNode n = (ts, map mkProp (nShows n))
 type Env = Map Ident CType
 type Val = TS.Expr
 type TVal = (Val,Type)
-type QNames = Set Ident
+type QNames = Map Ident Int
 
 -- | Literals are not nil.
 valLit :: Literal -> Val
@@ -58,9 +58,12 @@ valLit lit = case lit of
 
 
 idText :: QNames -> Ident -> Text
-idText qs i
-  | not (i `Set.member` qs) = txt <> ":" <> Text.pack (show (identUID i))
-  | otherwise               = txt
+idText qs i =
+  case Map.lookup i qs of
+    Just 0 -> txt
+    Just n -> txt <> ":" <> Text.pack (show n)
+    Nothing -> panic "idText" ["Missing entry for identifier:"
+                              , "*** Identifer: " ++ show i ]
     where txt = identText i
 
 -- | The logical variable for the ordinary value.
@@ -365,7 +368,7 @@ importTrace n tr =
          steps1 <- mapM impStep steps
          pure TS.Trace { TS.traceStart = start1, TS.traceSteps = steps1 }
   where
-  qns = unqualIdents n
+  qns = identVariants n
   impStep (i,s) =
     do i1 <- importInputs qns n i
        s1 <- importState qns n s
