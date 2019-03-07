@@ -1,32 +1,32 @@
 Core Lustre
 ===========
 
-node (x_4 : int, y : int)
+node (x$4 : int, y : int)
   returns (z)
   assumes ()
   shows (prop2, prop1)
 let
-  x_13 = x_4
+  x$3 = x$4
   valof_pre_z = pre z
-  valof_arr_18 = 0 -> valof_pre_z
-  z = Add(x_13, valof_arr_18)
+  valof_arr$4 = 0 -> valof_pre_z
+  z = Add(x$3, valof_arr$4)
   valof_pre_history = pre history
-  valof_arr_20 = true -> valof_pre_history
-  history = And(Gt(x_4, 0), valof_arr_20)
+  valof_arr$3 = true -> valof_pre_history
+  history = And(Gt(x$4, 0), valof_arr$3)
   prop1 = Implies(history, Gt(z, 0))
-  x_14 = x_4
-  valof_pre___no_static_21 = pre __no_static_10
-  valof_arr_22 = 0 -> valof_pre___no_static_21
-  __no_static_10 = Add(x_14, valof_arr_22)
-  x_15 = y
-  valof_pre___no_static_23 = pre __no_static_11
-  valof_arr_24 = 0 -> valof_pre___no_static_23
-  __no_static_11 = Add(x_15, valof_arr_24)
-  x_16 = Add(x_4, y)
-  valof_pre___no_static_25 = pre __no_static_12
-  valof_arr_26 = 0 -> valof_pre___no_static_25
-  __no_static_12 = Add(x_16, valof_arr_26)
-  prop2 = Eq(Add(__no_static_10, __no_static_11), __no_static_12)
+  x$2 = x$4
+  valof_pre___no_static$2 = pre __no_static$2
+  valof_arr$2 = 0 -> valof_pre___no_static$2
+  __no_static$2 = Add(x$2, valof_arr$2)
+  x$1 = y
+  valof_pre___no_static$1 = pre __no_static$1
+  valof_arr$1 = 0 -> valof_pre___no_static$1
+  __no_static$1 = Add(x$1, valof_arr$1)
+  x = Add(x$4, y)
+  valof_pre___no_static = pre __no_static
+  valof_arr = 0 -> valof_pre___no_static
+  __no_static = Add(x, valof_arr)
+  prop2 = Eq(Add(__no_static$2, __no_static$1), __no_static)
 tel
 Sally Model
 ===========
@@ -37,31 +37,31 @@ Sally Model
      (history Bool)
      (prop1 Bool)
      (prop2 Bool)
+     (x Int)
      (y Int)
      (z Int)
-     (|__no_static:10| Int)
-     (|__no_static:11| Int)
-     (|__no_static:12| Int)
+     (|__no_static:1| Int)
+     (|__no_static:2| Int)
+     (|__no_static| Int)
      (|gal-initializing| Bool)
-     (|valof_arr:18:init| Bool)
-     (|valof_arr:18| Int)
-     (|valof_arr:20:init| Bool)
-     (|valof_arr:20| Bool)
-     (|valof_arr:22:init| Bool)
-     (|valof_arr:22| Int)
-     (|valof_arr:24:init| Bool)
-     (|valof_arr:24| Int)
-     (|valof_arr:26:init| Bool)
-     (|valof_arr:26| Int)
-     (|valof_pre___no_static:21| Int)
-     (|valof_pre___no_static:23| Int)
-     (|valof_pre___no_static:25| Int)
+     (|valof_arr:1:init| Bool)
+     (|valof_arr:1| Int)
+     (|valof_arr:2:init| Bool)
+     (|valof_arr:2| Int)
+     (|valof_arr:3:init| Bool)
+     (|valof_arr:3| Bool)
+     (|valof_arr:4:init| Bool)
+     (|valof_arr:4| Int)
+     (|valof_arr:init| Bool)
+     (|valof_arr| Int)
+     (|valof_pre___no_static:1| Int)
+     (|valof_pre___no_static:2| Int)
+     (|valof_pre___no_static| Int)
      (|valof_pre_history| Bool)
      (|valof_pre_z| Int)
-     (|x:13| Int)
-     (|x:14| Int)
-     (|x:15| Int)
-     (|x:16| Int)
+     (|x:1| Int)
+     (|x:2| Int)
+     (|x:3| Int)
      (|x:4| Int))
    (
      (y Int)
@@ -71,78 +71,78 @@ Sally Model
    S
    (and
       (= |gal-initializing| true)
-      (= |valof_arr:18:init| true)
-      (= |valof_arr:20:init| true)
-      (= |valof_arr:22:init| true)
-      (= |valof_arr:24:init| true)
-      (= |valof_arr:26:init| true))
+      (= |valof_arr:4:init| true)
+      (= |valof_arr:3:init| true)
+      (= |valof_arr:2:init| true)
+      (= |valof_arr:1:init| true)
+      (= |valof_arr:init| true))
    (and
       (= next.|gal-initializing| false)
       (= next.|x:4| input.|x:4|)
       (= next.y input.y)
-      (= next.|x:13| next.|x:4|)
+      (= next.|x:3| next.|x:4|)
       (= next.|valof_pre_z| state.z)
       (ite
-         state.|valof_arr:18:init|
-         (= next.|valof_arr:18| 0)
-         (= next.|valof_arr:18| next.|valof_pre_z|))
-      (= next.|valof_arr:18:init| false)
+         state.|valof_arr:4:init|
+         (= next.|valof_arr:4| 0)
+         (= next.|valof_arr:4| next.|valof_pre_z|))
+      (= next.|valof_arr:4:init| false)
       (=
          next.z
-         (+ next.|x:13| next.|valof_arr:18|))
+         (+ next.|x:3| next.|valof_arr:4|))
       (= next.|valof_pre_history| state.history)
       (ite
-         state.|valof_arr:20:init|
-         (= next.|valof_arr:20| true)
-         (= next.|valof_arr:20| next.|valof_pre_history|))
-      (= next.|valof_arr:20:init| false)
+         state.|valof_arr:3:init|
+         (= next.|valof_arr:3| true)
+         (= next.|valof_arr:3| next.|valof_pre_history|))
+      (= next.|valof_arr:3:init| false)
       (=
          next.history
          (and
             (< 0 next.|x:4|)
-            next.|valof_arr:20|))
+            next.|valof_arr:3|))
       (=
          next.prop1
          (=>
             next.history
             (< 0 next.z)))
-      (= next.|x:14| next.|x:4|)
-      (= next.|valof_pre___no_static:21| state.|__no_static:10|)
+      (= next.|x:2| next.|x:4|)
+      (= next.|valof_pre___no_static:2| state.|__no_static:2|)
       (ite
-         state.|valof_arr:22:init|
-         (= next.|valof_arr:22| 0)
-         (= next.|valof_arr:22| next.|valof_pre___no_static:21|))
-      (= next.|valof_arr:22:init| false)
+         state.|valof_arr:2:init|
+         (= next.|valof_arr:2| 0)
+         (= next.|valof_arr:2| next.|valof_pre___no_static:2|))
+      (= next.|valof_arr:2:init| false)
       (=
-         next.|__no_static:10|
-         (+ next.|x:14| next.|valof_arr:22|))
-      (= next.|x:15| next.y)
-      (= next.|valof_pre___no_static:23| state.|__no_static:11|)
+         next.|__no_static:2|
+         (+ next.|x:2| next.|valof_arr:2|))
+      (= next.|x:1| next.y)
+      (= next.|valof_pre___no_static:1| state.|__no_static:1|)
       (ite
-         state.|valof_arr:24:init|
-         (= next.|valof_arr:24| 0)
-         (= next.|valof_arr:24| next.|valof_pre___no_static:23|))
-      (= next.|valof_arr:24:init| false)
+         state.|valof_arr:1:init|
+         (= next.|valof_arr:1| 0)
+         (= next.|valof_arr:1| next.|valof_pre___no_static:1|))
+      (= next.|valof_arr:1:init| false)
       (=
-         next.|__no_static:11|
-         (+ next.|x:15| next.|valof_arr:24|))
+         next.|__no_static:1|
+         (+ next.|x:1| next.|valof_arr:1|))
       (=
-         next.|x:16|
+         next.x
          (+ next.|x:4| next.y))
-      (= next.|valof_pre___no_static:25| state.|__no_static:12|)
+      (= next.|valof_pre___no_static| state.|__no_static|)
       (ite
-         state.|valof_arr:26:init|
-         (= next.|valof_arr:26| 0)
-         (= next.|valof_arr:26| next.|valof_pre___no_static:25|))
-      (= next.|valof_arr:26:init| false)
+         state.|valof_arr:init|
+         (= next.|valof_arr| 0)
+         (= next.|valof_arr| next.|valof_pre___no_static|))
+      (= next.|valof_arr:init| false)
       (=
-         next.|__no_static:12|
-         (+ next.|x:16| next.|valof_arr:26|))
+         next.|__no_static|
+         (+ next.x next.|valof_arr|))
       (=
          next.prop2
          (=
-            (+ next.|__no_static:10| next.|__no_static:11|)
-            next.|__no_static:12|))))
+            (+ next.|__no_static:2| next.|__no_static:1|)
+            next.|__no_static|))))
 
 (query
    TS

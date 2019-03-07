@@ -6,72 +6,72 @@ node ()
   assumes ()
   shows (cex)
 let
-  valof_pre_state_30 = pre state
-  valof_pre_head_31 = pre head
-  valof_pre_state_32 = pre state
-  valof_pre_head_33 = pre head
-  valof_pre_state_34 = pre state
-  valof_pre_head_35 = pre head
-  valof_pre_state_36 = pre state
-  valof_pre_head_37 = pre head
-  valof_pre_state_38 = pre state
-  valof_pre_head_39 = pre head
-  valof_pre_state_40 = pre state
-  valof_pre_head_41 = pre head
-  valof_pre_state_42 = pre state
-  valof_pre_head_43 = pre head
-  valof_pre_state_44 = pre state
-  valof_pre_head_45 = pre head
-  write = 0 -> ITE(And(Eq(valof_pre_state_30, 1), Eq(valof_pre_head_31, 0)), 1, ITE(And(Eq(valof_pre_state_32, 1), Eq(valof_pre_head_33, 1)), 1, ITE(And(Eq(valof_pre_state_34, 2), Eq(valof_pre_head_35, 0)), 1, ITE(And(Eq(valof_pre_state_36, 2), Eq(valof_pre_head_37, 1)), 0, ITE(And(Eq(valof_pre_state_38, 3), Eq(valof_pre_head_39, 0)), 1, ITE(And(Eq(valof_pre_state_40, 3), Eq(valof_pre_head_41, 1)), 1, ITE(And(Eq(valof_pre_state_42, 4), Eq(valof_pre_head_43, 0)), 1, ITE(And(Eq(valof_pre_state_44, 4), Eq(valof_pre_head_45, 1)), 0, 0))))))))
-  valof_pre_state_46 = pre state
-  valof_pre_head_47 = pre head
-  valof_pre_state_48 = pre state
-  valof_pre_head_49 = pre head
-  valof_pre_state_50 = pre state
-  valof_pre_head_51 = pre head
-  valof_pre_state_52 = pre state
-  valof_pre_head_53 = pre head
-  valof_pre_state_54 = pre state
-  valof_pre_head_55 = pre head
-  valof_pre_state_56 = pre state
-  valof_pre_head_57 = pre head
-  valof_pre_state_58 = pre state
-  valof_pre_head_59 = pre head
-  valof_pre_state_60 = pre state
-  valof_pre_head_61 = pre head
-  move = 0 -> ITE(And(Eq(valof_pre_state_46, 1), Eq(valof_pre_head_47, 0)), 1, ITE(And(Eq(valof_pre_state_48, 1), Eq(valof_pre_head_49, 1)), 0, ITE(And(Eq(valof_pre_state_50, 2), Eq(valof_pre_head_51, 0)), 0, ITE(And(Eq(valof_pre_state_52, 2), Eq(valof_pre_head_53, 1)), 0, ITE(And(Eq(valof_pre_state_54, 3), Eq(valof_pre_head_55, 0)), 1, ITE(And(Eq(valof_pre_state_56, 3), Eq(valof_pre_head_57, 1)), 0, ITE(And(Eq(valof_pre_state_58, 4), Eq(valof_pre_head_59, 0)), 1, ITE(And(Eq(valof_pre_state_60, 4), Eq(valof_pre_head_61, 1)), 1, 0))))))))
-  valof_pre_state_18 = pre state
-  valof_pre_left_19 = pre left
-  valof_pre_left_20 = pre left
-  valof_pre_left_21 = pre left
-  left = 0 -> ITE(Eq(valof_pre_state_18, 0), valof_pre_left_19, ITE(Eq(move, 0), Div(valof_pre_left_20, 10), Add(Mul(10, valof_pre_left_21), write)))
-  valof_pre_state_26 = pre state
-  valof_pre_right_27 = pre right
-  valof_pre_right_28 = pre right
-  valof_pre_right_29 = pre right
-  right = 0 -> ITE(Eq(valof_pre_state_26, 0), valof_pre_right_27, ITE(Eq(move, 0), Add(Mul(10, valof_pre_right_28), write), Div(valof_pre_right_29, 10)))
-  valof_pre_state_22 = pre state
-  valof_pre_head_23 = pre head
-  valof_pre_left_24 = pre left
-  valof_pre_right_25 = pre right
-  head = 0 -> ITE(Eq(valof_pre_state_22, 0), valof_pre_head_23, ITE(Eq(move, 0), Mod(valof_pre_left_24, 10), Mod(valof_pre_right_25, 10)))
-  valof_pre_state_62 = pre state
-  valof_pre_head_63 = pre head
-  valof_pre_state_64 = pre state
-  valof_pre_head_65 = pre head
-  valof_pre_state_66 = pre state
-  valof_pre_head_67 = pre head
-  valof_pre_state_68 = pre state
-  valof_pre_head_69 = pre head
-  valof_pre_state_70 = pre state
-  valof_pre_head_71 = pre head
-  valof_pre_state_72 = pre state
-  valof_pre_head_73 = pre head
-  valof_pre_state_74 = pre state
-  valof_pre_head_75 = pre head
-  valof_pre_state_76 = pre state
-  valof_pre_head_77 = pre head
-  state = 1 -> ITE(And(Eq(valof_pre_state_62, 1), Eq(valof_pre_head_63, 0)), 2, ITE(And(Eq(valof_pre_state_64, 1), Eq(valof_pre_head_65, 1)), 2, ITE(And(Eq(valof_pre_state_66, 2), Eq(valof_pre_head_67, 0)), 1, ITE(And(Eq(valof_pre_state_68, 2), Eq(valof_pre_head_69, 1)), 3, ITE(And(Eq(valof_pre_state_70, 3), Eq(valof_pre_head_71, 0)), 0, ITE(And(Eq(valof_pre_state_72, 3), Eq(valof_pre_head_73, 1)), 4, ITE(And(Eq(valof_pre_state_74, 4), Eq(valof_pre_head_75, 0)), 4, ITE(And(Eq(valof_pre_state_76, 4), Eq(valof_pre_head_77, 1)), 1, 0))))))))
+  valof_pre_state$26 = pre state
+  valof_pre_head$24 = pre head
+  valof_pre_state$25 = pre state
+  valof_pre_head$23 = pre head
+  valof_pre_state$24 = pre state
+  valof_pre_head$22 = pre head
+  valof_pre_state$23 = pre state
+  valof_pre_head$21 = pre head
+  valof_pre_state$22 = pre state
+  valof_pre_head$20 = pre head
+  valof_pre_state$21 = pre state
+  valof_pre_head$19 = pre head
+  valof_pre_state$20 = pre state
+  valof_pre_head$18 = pre head
+  valof_pre_state$19 = pre state
+  valof_pre_head$17 = pre head
+  write = 0 -> ITE(And(Eq(valof_pre_state$26, 1), Eq(valof_pre_head$24, 0)), 1, ITE(And(Eq(valof_pre_state$25, 1), Eq(valof_pre_head$23, 1)), 1, ITE(And(Eq(valof_pre_state$24, 2), Eq(valof_pre_head$22, 0)), 1, ITE(And(Eq(valof_pre_state$23, 2), Eq(valof_pre_head$21, 1)), 0, ITE(And(Eq(valof_pre_state$22, 3), Eq(valof_pre_head$20, 0)), 1, ITE(And(Eq(valof_pre_state$21, 3), Eq(valof_pre_head$19, 1)), 1, ITE(And(Eq(valof_pre_state$20, 4), Eq(valof_pre_head$18, 0)), 1, ITE(And(Eq(valof_pre_state$19, 4), Eq(valof_pre_head$17, 1)), 0, 0))))))))
+  valof_pre_state$18 = pre state
+  valof_pre_head$16 = pre head
+  valof_pre_state$17 = pre state
+  valof_pre_head$15 = pre head
+  valof_pre_state$16 = pre state
+  valof_pre_head$14 = pre head
+  valof_pre_state$15 = pre state
+  valof_pre_head$13 = pre head
+  valof_pre_state$14 = pre state
+  valof_pre_head$12 = pre head
+  valof_pre_state$13 = pre state
+  valof_pre_head$11 = pre head
+  valof_pre_state$12 = pre state
+  valof_pre_head$10 = pre head
+  valof_pre_state$11 = pre state
+  valof_pre_head$9 = pre head
+  move = 0 -> ITE(And(Eq(valof_pre_state$18, 1), Eq(valof_pre_head$16, 0)), 1, ITE(And(Eq(valof_pre_state$17, 1), Eq(valof_pre_head$15, 1)), 0, ITE(And(Eq(valof_pre_state$16, 2), Eq(valof_pre_head$14, 0)), 0, ITE(And(Eq(valof_pre_state$15, 2), Eq(valof_pre_head$13, 1)), 0, ITE(And(Eq(valof_pre_state$14, 3), Eq(valof_pre_head$12, 0)), 1, ITE(And(Eq(valof_pre_state$13, 3), Eq(valof_pre_head$11, 1)), 0, ITE(And(Eq(valof_pre_state$12, 4), Eq(valof_pre_head$10, 0)), 1, ITE(And(Eq(valof_pre_state$11, 4), Eq(valof_pre_head$9, 1)), 1, 0))))))))
+  valof_pre_state$10 = pre state
+  valof_pre_left$3 = pre left
+  valof_pre_left$2 = pre left
+  valof_pre_left$1 = pre left
+  left = 0 -> ITE(Eq(valof_pre_state$10, 0), valof_pre_left$3, ITE(Eq(move, 0), Div(valof_pre_left$2, 10), Add(Mul(10, valof_pre_left$1), write)))
+  valof_pre_state$9 = pre state
+  valof_pre_right$3 = pre right
+  valof_pre_right$2 = pre right
+  valof_pre_right$1 = pre right
+  right = 0 -> ITE(Eq(valof_pre_state$9, 0), valof_pre_right$3, ITE(Eq(move, 0), Add(Mul(10, valof_pre_right$2), write), Div(valof_pre_right$1, 10)))
+  valof_pre_state$8 = pre state
+  valof_pre_head$8 = pre head
+  valof_pre_left = pre left
+  valof_pre_right = pre right
+  head = 0 -> ITE(Eq(valof_pre_state$8, 0), valof_pre_head$8, ITE(Eq(move, 0), Mod(valof_pre_left, 10), Mod(valof_pre_right, 10)))
+  valof_pre_state$7 = pre state
+  valof_pre_head$7 = pre head
+  valof_pre_state$6 = pre state
+  valof_pre_head$6 = pre head
+  valof_pre_state$5 = pre state
+  valof_pre_head$5 = pre head
+  valof_pre_state$4 = pre state
+  valof_pre_head$4 = pre head
+  valof_pre_state$3 = pre state
+  valof_pre_head$3 = pre head
+  valof_pre_state$2 = pre state
+  valof_pre_head$2 = pre head
+  valof_pre_state$1 = pre state
+  valof_pre_head$1 = pre head
+  valof_pre_state = pre state
+  valof_pre_head = pre head
+  state = 1 -> ITE(And(Eq(valof_pre_state$7, 1), Eq(valof_pre_head$7, 0)), 2, ITE(And(Eq(valof_pre_state$6, 1), Eq(valof_pre_head$6, 1)), 2, ITE(And(Eq(valof_pre_state$5, 2), Eq(valof_pre_head$5, 0)), 1, ITE(And(Eq(valof_pre_state$4, 2), Eq(valof_pre_head$4, 1)), 3, ITE(And(Eq(valof_pre_state$3, 3), Eq(valof_pre_head$3, 0)), 0, ITE(And(Eq(valof_pre_state$2, 3), Eq(valof_pre_head$2, 1)), 4, ITE(And(Eq(valof_pre_state$1, 4), Eq(valof_pre_head$1, 0)), 4, ITE(And(Eq(valof_pre_state, 4), Eq(valof_pre_head, 1)), 1, 0))))))))
   cex = Neq(state, 0)
 tel
 Sally Model
@@ -93,66 +93,66 @@ Sally Model
      (|move:init| Bool)
      (|right:init| Bool)
      (|state:init| Bool)
+     (|valof_pre_head:10| Int)
+     (|valof_pre_head:11| Int)
+     (|valof_pre_head:12| Int)
+     (|valof_pre_head:13| Int)
+     (|valof_pre_head:14| Int)
+     (|valof_pre_head:15| Int)
+     (|valof_pre_head:16| Int)
+     (|valof_pre_head:17| Int)
+     (|valof_pre_head:18| Int)
+     (|valof_pre_head:19| Int)
+     (|valof_pre_head:1| Int)
+     (|valof_pre_head:20| Int)
+     (|valof_pre_head:21| Int)
+     (|valof_pre_head:22| Int)
      (|valof_pre_head:23| Int)
-     (|valof_pre_head:31| Int)
-     (|valof_pre_head:33| Int)
-     (|valof_pre_head:35| Int)
-     (|valof_pre_head:37| Int)
-     (|valof_pre_head:39| Int)
-     (|valof_pre_head:41| Int)
-     (|valof_pre_head:43| Int)
-     (|valof_pre_head:45| Int)
-     (|valof_pre_head:47| Int)
-     (|valof_pre_head:49| Int)
-     (|valof_pre_head:51| Int)
-     (|valof_pre_head:53| Int)
-     (|valof_pre_head:55| Int)
-     (|valof_pre_head:57| Int)
-     (|valof_pre_head:59| Int)
-     (|valof_pre_head:61| Int)
-     (|valof_pre_head:63| Int)
-     (|valof_pre_head:65| Int)
-     (|valof_pre_head:67| Int)
-     (|valof_pre_head:69| Int)
-     (|valof_pre_head:71| Int)
-     (|valof_pre_head:73| Int)
-     (|valof_pre_head:75| Int)
-     (|valof_pre_head:77| Int)
-     (|valof_pre_left:19| Int)
-     (|valof_pre_left:20| Int)
-     (|valof_pre_left:21| Int)
-     (|valof_pre_left:24| Int)
-     (|valof_pre_right:25| Int)
-     (|valof_pre_right:27| Int)
-     (|valof_pre_right:28| Int)
-     (|valof_pre_right:29| Int)
+     (|valof_pre_head:24| Int)
+     (|valof_pre_head:2| Int)
+     (|valof_pre_head:3| Int)
+     (|valof_pre_head:4| Int)
+     (|valof_pre_head:5| Int)
+     (|valof_pre_head:6| Int)
+     (|valof_pre_head:7| Int)
+     (|valof_pre_head:8| Int)
+     (|valof_pre_head:9| Int)
+     (|valof_pre_head| Int)
+     (|valof_pre_left:1| Int)
+     (|valof_pre_left:2| Int)
+     (|valof_pre_left:3| Int)
+     (|valof_pre_left| Int)
+     (|valof_pre_right:1| Int)
+     (|valof_pre_right:2| Int)
+     (|valof_pre_right:3| Int)
+     (|valof_pre_right| Int)
+     (|valof_pre_state:10| Int)
+     (|valof_pre_state:11| Int)
+     (|valof_pre_state:12| Int)
+     (|valof_pre_state:13| Int)
+     (|valof_pre_state:14| Int)
+     (|valof_pre_state:15| Int)
+     (|valof_pre_state:16| Int)
+     (|valof_pre_state:17| Int)
      (|valof_pre_state:18| Int)
+     (|valof_pre_state:19| Int)
+     (|valof_pre_state:1| Int)
+     (|valof_pre_state:20| Int)
+     (|valof_pre_state:21| Int)
      (|valof_pre_state:22| Int)
+     (|valof_pre_state:23| Int)
+     (|valof_pre_state:24| Int)
+     (|valof_pre_state:25| Int)
      (|valof_pre_state:26| Int)
-     (|valof_pre_state:30| Int)
-     (|valof_pre_state:32| Int)
-     (|valof_pre_state:34| Int)
-     (|valof_pre_state:36| Int)
-     (|valof_pre_state:38| Int)
-     (|valof_pre_state:40| Int)
-     (|valof_pre_state:42| Int)
-     (|valof_pre_state:44| Int)
-     (|valof_pre_state:46| Int)
-     (|valof_pre_state:48| Int)
-     (|valof_pre_state:50| Int)
-     (|valof_pre_state:52| Int)
-     (|valof_pre_state:54| Int)
-     (|valof_pre_state:56| Int)
-     (|valof_pre_state:58| Int)
-     (|valof_pre_state:60| Int)
-     (|valof_pre_state:62| Int)
-     (|valof_pre_state:64| Int)
-     (|valof_pre_state:66| Int)
-     (|valof_pre_state:68| Int)
-     (|valof_pre_state:70| Int)
-     (|valof_pre_state:72| Int)
-     (|valof_pre_state:74| Int)
-     (|valof_pre_state:76| Int)
+     (|valof_pre_state:2| Int)
+     (|valof_pre_state:3| Int)
+     (|valof_pre_state:4| Int)
+     (|valof_pre_state:5| Int)
+     (|valof_pre_state:6| Int)
+     (|valof_pre_state:7| Int)
+     (|valof_pre_state:8| Int)
+     (|valof_pre_state:9| Int)
+     (|valof_pre_state| Int)
      (|write:init| Bool))
    ())
 (define-transition-system
@@ -168,22 +168,22 @@ Sally Model
       (= |state:init| true))
    (and
       (= next.|gal-initializing| false)
-      (= next.|valof_pre_state:30| state.state)
-      (= next.|valof_pre_head:31| state.head)
-      (= next.|valof_pre_state:32| state.state)
-      (= next.|valof_pre_head:33| state.head)
-      (= next.|valof_pre_state:34| state.state)
-      (= next.|valof_pre_head:35| state.head)
-      (= next.|valof_pre_state:36| state.state)
-      (= next.|valof_pre_head:37| state.head)
-      (= next.|valof_pre_state:38| state.state)
-      (= next.|valof_pre_head:39| state.head)
-      (= next.|valof_pre_state:40| state.state)
-      (= next.|valof_pre_head:41| state.head)
-      (= next.|valof_pre_state:42| state.state)
-      (= next.|valof_pre_head:43| state.head)
-      (= next.|valof_pre_state:44| state.state)
-      (= next.|valof_pre_head:45| state.head)
+      (= next.|valof_pre_state:26| state.state)
+      (= next.|valof_pre_head:24| state.head)
+      (= next.|valof_pre_state:25| state.state)
+      (= next.|valof_pre_head:23| state.head)
+      (= next.|valof_pre_state:24| state.state)
+      (= next.|valof_pre_head:22| state.head)
+      (= next.|valof_pre_state:23| state.state)
+      (= next.|valof_pre_head:21| state.head)
+      (= next.|valof_pre_state:22| state.state)
+      (= next.|valof_pre_head:20| state.head)
+      (= next.|valof_pre_state:21| state.state)
+      (= next.|valof_pre_head:19| state.head)
+      (= next.|valof_pre_state:20| state.state)
+      (= next.|valof_pre_head:18| state.head)
+      (= next.|valof_pre_state:19| state.state)
+      (= next.|valof_pre_head:17| state.head)
       (ite
          state.|write:init|
          (= next.write 0)
@@ -191,62 +191,62 @@ Sally Model
             next.write
             (ite
                (and
-                  (= next.|valof_pre_state:30| 1)
-                  (= next.|valof_pre_head:31| 0))
+                  (= next.|valof_pre_state:26| 1)
+                  (= next.|valof_pre_head:24| 0))
                1
                (ite
                   (and
-                     (= next.|valof_pre_state:32| 1)
-                     (= next.|valof_pre_head:33| 1))
+                     (= next.|valof_pre_state:25| 1)
+                     (= next.|valof_pre_head:23| 1))
                   1
                   (ite
                      (and
-                        (= next.|valof_pre_state:34| 2)
-                        (= next.|valof_pre_head:35| 0))
+                        (= next.|valof_pre_state:24| 2)
+                        (= next.|valof_pre_head:22| 0))
                      1
                      (ite
                         (and
-                           (= next.|valof_pre_state:36| 2)
-                           (= next.|valof_pre_head:37| 1))
+                           (= next.|valof_pre_state:23| 2)
+                           (= next.|valof_pre_head:21| 1))
                         0
                         (ite
                            (and
-                              (= next.|valof_pre_state:38| 3)
-                              (= next.|valof_pre_head:39| 0))
+                              (= next.|valof_pre_state:22| 3)
+                              (= next.|valof_pre_head:20| 0))
                            1
                            (ite
                               (and
-                                 (= next.|valof_pre_state:40| 3)
-                                 (= next.|valof_pre_head:41| 1))
+                                 (= next.|valof_pre_state:21| 3)
+                                 (= next.|valof_pre_head:19| 1))
                               1
                               (ite
                                  (and
-                                    (= next.|valof_pre_state:42| 4)
-                                    (= next.|valof_pre_head:43| 0))
+                                    (= next.|valof_pre_state:20| 4)
+                                    (= next.|valof_pre_head:18| 0))
                                  1
                                  (ite
                                     (and
-                                       (= next.|valof_pre_state:44| 4)
-                                       (= next.|valof_pre_head:45| 1))
+                                       (= next.|valof_pre_state:19| 4)
+                                       (= next.|valof_pre_head:17| 1))
                                     0
                                     0))))))))))
       (= next.|write:init| false)
-      (= next.|valof_pre_state:46| state.state)
-      (= next.|valof_pre_head:47| state.head)
-      (= next.|valof_pre_state:48| state.state)
-      (= next.|valof_pre_head:49| state.head)
-      (= next.|valof_pre_state:50| state.state)
-      (= next.|valof_pre_head:51| state.head)
-      (= next.|valof_pre_state:52| state.state)
-      (= next.|valof_pre_head:53| state.head)
-      (= next.|valof_pre_state:54| state.state)
-      (= next.|valof_pre_head:55| state.head)
-      (= next.|valof_pre_state:56| state.state)
-      (= next.|valof_pre_head:57| state.head)
-      (= next.|valof_pre_state:58| state.state)
-      (= next.|valof_pre_head:59| state.head)
-      (= next.|valof_pre_state:60| state.state)
-      (= next.|valof_pre_head:61| state.head)
+      (= next.|valof_pre_state:18| state.state)
+      (= next.|valof_pre_head:16| state.head)
+      (= next.|valof_pre_state:17| state.state)
+      (= next.|valof_pre_head:15| state.head)
+      (= next.|valof_pre_state:16| state.state)
+      (= next.|valof_pre_head:14| state.head)
+      (= next.|valof_pre_state:15| state.state)
+      (= next.|valof_pre_head:13| state.head)
+      (= next.|valof_pre_state:14| state.state)
+      (= next.|valof_pre_head:12| state.head)
+      (= next.|valof_pre_state:13| state.state)
+      (= next.|valof_pre_head:11| state.head)
+      (= next.|valof_pre_state:12| state.state)
+      (= next.|valof_pre_head:10| state.head)
+      (= next.|valof_pre_state:11| state.state)
+      (= next.|valof_pre_head:9| state.head)
       (ite
          state.|move:init|
          (= next.move 0)
@@ -254,58 +254,58 @@ Sally Model
             next.move
             (ite
                (and
-                  (= next.|valof_pre_state:46| 1)
-                  (= next.|valof_pre_head:47| 0))
+                  (= next.|valof_pre_state:18| 1)
+                  (= next.|valof_pre_head:16| 0))
                1
                (ite
                   (and
-                     (= next.|valof_pre_state:48| 1)
-                     (= next.|valof_pre_head:49| 1))
+                     (= next.|valof_pre_state:17| 1)
+                     (= next.|valof_pre_head:15| 1))
                   0
                   (ite
                      (and
-                        (= next.|valof_pre_state:50| 2)
-                        (= next.|valof_pre_head:51| 0))
+                        (= next.|valof_pre_state:16| 2)
+                        (= next.|valof_pre_head:14| 0))
                      0
                      (ite
                         (and
-                           (= next.|valof_pre_state:52| 2)
-                           (= next.|valof_pre_head:53| 1))
+                           (= next.|valof_pre_state:15| 2)
+                           (= next.|valof_pre_head:13| 1))
                         0
                         (ite
                            (and
-                              (= next.|valof_pre_state:54| 3)
-                              (= next.|valof_pre_head:55| 0))
+                              (= next.|valof_pre_state:14| 3)
+                              (= next.|valof_pre_head:12| 0))
                            1
                            (ite
                               (and
-                                 (= next.|valof_pre_state:56| 3)
-                                 (= next.|valof_pre_head:57| 1))
+                                 (= next.|valof_pre_state:13| 3)
+                                 (= next.|valof_pre_head:11| 1))
                               0
                               (ite
                                  (and
-                                    (= next.|valof_pre_state:58| 4)
-                                    (= next.|valof_pre_head:59| 0))
+                                    (= next.|valof_pre_state:12| 4)
+                                    (= next.|valof_pre_head:10| 0))
                                  1
                                  (ite
                                     (and
-                                       (= next.|valof_pre_state:60| 4)
-                                       (= next.|valof_pre_head:61| 1))
+                                       (= next.|valof_pre_state:11| 4)
+                                       (= next.|valof_pre_head:9| 1))
                                     1
                                     0))))))))))
       (= next.|move:init| false)
-      (= next.|valof_pre_state:18| state.state)
-      (= next.|valof_pre_left:19| state.left)
-      (= next.|valof_pre_left:20| state.left)
-      (= next.|valof_pre_left:21| state.left)
+      (= next.|valof_pre_state:10| state.state)
+      (= next.|valof_pre_left:3| state.left)
+      (= next.|valof_pre_left:2| state.left)
+      (= next.|valof_pre_left:1| state.left)
       (ite
          state.|left:init|
          (= next.left 0)
          (=
             next.left
             (ite
-               (= next.|valof_pre_state:18| 0)
-               next.|valof_pre_left:19|
+               (= next.|valof_pre_state:10| 0)
+               next.|valof_pre_left:3|
                (ite
                   (= next.move 0)
                   (ite
@@ -313,80 +313,80 @@ Sally Model
                      (-
                         (to_int
                            (/
-                              (to_real next.|valof_pre_left:20|)
+                              (to_real next.|valof_pre_left:2|)
                               (to_real
                                  (- 10)))))
                      (to_int
                         (/
-                           (to_real next.|valof_pre_left:20|)
+                           (to_real next.|valof_pre_left:2|)
                            (to_real 10))))
                   (+
-                     (* 10 next.|valof_pre_left:21|)
+                     (* 10 next.|valof_pre_left:1|)
                      next.write)))))
       (= next.|left:init| false)
-      (= next.|valof_pre_state:26| state.state)
-      (= next.|valof_pre_right:27| state.right)
-      (= next.|valof_pre_right:28| state.right)
-      (= next.|valof_pre_right:29| state.right)
+      (= next.|valof_pre_state:9| state.state)
+      (= next.|valof_pre_right:3| state.right)
+      (= next.|valof_pre_right:2| state.right)
+      (= next.|valof_pre_right:1| state.right)
       (ite
          state.|right:init|
          (= next.right 0)
          (=
             next.right
             (ite
-               (= next.|valof_pre_state:26| 0)
-               next.|valof_pre_right:27|
+               (= next.|valof_pre_state:9| 0)
+               next.|valof_pre_right:3|
                (ite
                   (= next.move 0)
                   (+
-                     (* 10 next.|valof_pre_right:28|)
+                     (* 10 next.|valof_pre_right:2|)
                      next.write)
                   (ite
                      (< 10 0)
                      (-
                         (to_int
                            (/
-                              (to_real next.|valof_pre_right:29|)
+                              (to_real next.|valof_pre_right:1|)
                               (to_real
                                  (- 10)))))
                      (to_int
                         (/
-                           (to_real next.|valof_pre_right:29|)
+                           (to_real next.|valof_pre_right:1|)
                            (to_real 10))))))))
       (= next.|right:init| false)
-      (= next.|valof_pre_state:22| state.state)
-      (= next.|valof_pre_head:23| state.head)
-      (= next.|valof_pre_left:24| state.left)
-      (= next.|valof_pre_right:25| state.right)
+      (= next.|valof_pre_state:8| state.state)
+      (= next.|valof_pre_head:8| state.head)
+      (= next.|valof_pre_left| state.left)
+      (= next.|valof_pre_right| state.right)
       (ite
          state.|head:init|
          (= next.head 0)
          (=
             next.head
             (ite
-               (= next.|valof_pre_state:22| 0)
-               next.|valof_pre_head:23|
+               (= next.|valof_pre_state:8| 0)
+               next.|valof_pre_head:8|
                (ite
                   (= next.move 0)
-                  (mod next.|valof_pre_left:24| 10)
-                  (mod next.|valof_pre_right:25| 10)))))
+                  (mod next.|valof_pre_left| 10)
+                  (mod next.|valof_pre_right| 10)))))
       (= next.|head:init| false)
-      (= next.|valof_pre_state:62| state.state)
-      (= next.|valof_pre_head:63| state.head)
-      (= next.|valof_pre_state:64| state.state)
-      (= next.|valof_pre_head:65| state.head)
-      (= next.|valof_pre_state:66| state.state)
-      (= next.|valof_pre_head:67| state.head)
-      (= next.|valof_pre_state:68| state.state)
-      (= next.|valof_pre_head:69| state.head)
-      (= next.|valof_pre_state:70| state.state)
-      (= next.|valof_pre_head:71| state.head)
-      (= next.|valof_pre_state:72| state.state)
-      (= next.|valof_pre_head:73| state.head)
-      (= next.|valof_pre_state:74| state.state)
-      (= next.|valof_pre_head:75| state.head)
-      (= next.|valof_pre_state:76| state.state)
-      (= next.|valof_pre_head:77| state.head)
+      (= next.|valof_pre_state:7| state.state)
+      (= next.|valof_pre_head:7| state.head)
+      (= next.|valof_pre_state:6| state.state)
+      (= next.|valof_pre_head:6| state.head)
+      (= next.|valof_pre_state:5| state.state)
+      (= next.|valof_pre_head:5| state.head)
+      (= next.|valof_pre_state:4| state.state)
+      (= next.|valof_pre_head:4| state.head)
+      (= next.|valof_pre_state:3| state.state)
+      (= next.|valof_pre_head:3| state.head)
+      (= next.|valof_pre_state:2| state.state)
+      (= next.|valof_pre_head:2| state.head)
+      (= next.|valof_pre_state:1| state.state)
+      (= next.|valof_pre_head:1| state.head)
+      (= next.|valof_pre_state| state.state)
+      (= next.|valof_pre_head| state.head)
       (ite
          state.|state:init|
          (= next.state 1)
@@ -394,43 +394,43 @@ Sally Model
             next.state
             (ite
                (and
-                  (= next.|valof_pre_state:62| 1)
-                  (= next.|valof_pre_head:63| 0))
+                  (= next.|valof_pre_state:7| 1)
+                  (= next.|valof_pre_head:7| 0))
                2
                (ite
                   (and
-                     (= next.|valof_pre_state:64| 1)
-                     (= next.|valof_pre_head:65| 1))
+                     (= next.|valof_pre_state:6| 1)
+                     (= next.|valof_pre_head:6| 1))
                   2
                   (ite
                      (and
-                        (= next.|valof_pre_state:66| 2)
-                        (= next.|valof_pre_head:67| 0))
+                        (= next.|valof_pre_state:5| 2)
+                        (= next.|valof_pre_head:5| 0))
                      1
                      (ite
                         (and
-                           (= next.|valof_pre_state:68| 2)
-                           (= next.|valof_pre_head:69| 1))
+                           (= next.|valof_pre_state:4| 2)
+                           (= next.|valof_pre_head:4| 1))
                         3
                         (ite
                            (and
-                              (= next.|valof_pre_state:70| 3)
-                              (= next.|valof_pre_head:71| 0))
+                              (= next.|valof_pre_state:3| 3)
+                              (= next.|valof_pre_head:3| 0))
                            0
                            (ite
                               (and
-                                 (= next.|valof_pre_state:72| 3)
-                                 (= next.|valof_pre_head:73| 1))
+                                 (= next.|valof_pre_state:2| 3)
+                                 (= next.|valof_pre_head:2| 1))
                               4
                               (ite
                                  (and
-                                    (= next.|valof_pre_state:74| 4)
-                                    (= next.|valof_pre_head:75| 0))
+                                    (= next.|valof_pre_state:1| 4)
+                                    (= next.|valof_pre_head:1| 0))
                                  4
                                  (ite
                                     (and
-                                       (= next.|valof_pre_state:76| 4)
-                                       (= next.|valof_pre_head:77| 1))
+                                       (= next.|valof_pre_state| 4)
+                                       (= next.|valof_pre_head| 1))
                                     1
                                     0))))))))))
       (= next.|state:init| false)
@@ -445,10 +445,10 @@ Sally Model
 
 [Lustre] Validating properties:
 [Lustre] Property cex... [[1;91mError[0m] Sally error:
-/tmp/sallyXXX30965-0.mcmt(292)  : error 3 : , at offset 18
-    near [Index: 1081 (Start: -1138256065-Stop: -1138256065) ='(', type<14> Line: 292 LinePos:18]
+/tmp/sallyXXX10130-0.mcmt(292)  : error 3 : , at offset 18
+    near [Index: 1081 (Start: -1338730753-Stop: -1338730753) ='(', type<14> Line: 292 LinePos:18]
      : cannot match to any predicted input...
-Parse error: /tmp/sallyXXX30965-0.mcmt:292:18: Parse error: /tmp/sallyXXX30965-0.mcmt:292:18: Parse error.
+Parse error: /tmp/sallyXXX10130-0.mcmt:292:18: Parse error: /tmp/sallyXXX10130-0.mcmt:292:18: Parse error.
 
 [[1;91mError[0m] ExitFailure 1
 

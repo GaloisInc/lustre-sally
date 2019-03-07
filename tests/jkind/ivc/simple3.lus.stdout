@@ -1,18 +1,18 @@
 Core Lustre
 ===========
 
-node (x_12 : int)
+node (x$2 : int)
   returns (y)
   assumes (assum)
   shows (ok)
 let
-  x_19 = x_12
-  x_20 = x_19
+  x$1 = x$2
+  x = x$1
   valof_pre_y = pre y
   valof_arr = 0 -> valof_pre_y
-  y = Add(x_20, valof_arr)
-  a = Geq(x_20, Neg(1))
-  b = Geq(x_20, 0)
+  y = Add(x, valof_arr)
+  a = Geq(x, Neg(1))
+  b = Geq(x, 0)
   assum = And(a, b)
   ok = Geq(y, 0)
 tel
@@ -26,16 +26,16 @@ Sally Model
      (assum Bool)
      (b Bool)
      (ok Bool)
+     (x Int)
      (y Int)
      (|gal-initializing| Bool)
      (|valof_arr:init| Bool)
      (|valof_arr| Int)
      (|valof_pre_y| Int)
-     (|x:12| Int)
-     (|x:19| Int)
-     (|x:20| Int))
+     (|x:1| Int)
+     (|x:2| Int))
    (
-     (|x:12| Int)))
+     (|x:2| Int)))
 (define-transition-system
    TS
    S
@@ -44,10 +44,10 @@ Sally Model
       (= |valof_arr:init| true))
    (and
       (= next.|gal-initializing| false)
-      (= next.|x:12| input.|x:12|)
+      (= next.|x:2| input.|x:2|)
       next.assum
-      (= next.|x:19| next.|x:12|)
-      (= next.|x:20| next.|x:19|)
+      (= next.|x:1| next.|x:2|)
+      (= next.x next.|x:1|)
       (= next.|valof_pre_y| state.y)
       (ite
          state.|valof_arr:init|
@@ -56,15 +56,15 @@ Sally Model
       (= next.|valof_arr:init| false)
       (=
          next.y
-         (+ next.|x:20| next.|valof_arr|))
+         (+ next.x next.|valof_arr|))
       (=
          next.a
          (<=
             (- 1)
-            next.|x:20|))
+            next.x))
       (=
          next.b
-         (<= 0 next.|x:20|))
+         (<= 0 next.x))
       (=
          next.assum
          (and next.a next.b))

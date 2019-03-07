@@ -1,127 +1,127 @@
 Core Lustre
 ===========
 
-node (signal_31 : real, errorA : real, errorB : real, errorC : real)
+node (signal$6 : real, errorA : real, errorB : real, errorC : real)
   returns (output, difference)
-  assumes (Leq_156, Leq_155, Leq_154)
+  assumes (Leq, Leq$1, Leq$2)
   shows (ok5, ok4, ok3, ok2, ok1, lemmaC, lemmaB, lemmaA)
 let
-  sensedA = Add(signal_31, errorA)
-  lower_limit_88 = Neg(0.5)
-  upper_limit_89 = 0.5
+  sensedA = Add(signal$6, errorA)
+  lower_limit$5 = Neg(0.5)
+  upper_limit$5 = 0.5
   valof_pre_equalizedA = pre equalizedA
   pre_equalizedA = 0.0 -> valof_pre_equalizedA
-  equalized_value_86 = pre_equalizedA
+  equalized_value$2 = pre_equalizedA
   valof_pre_output = pre output
   pre_output = 0.0 -> valof_pre_output
-  output_value_87 = pre_output
-  sum1_94 = Sub(equalized_value_86, output_value_87)
-  signal_90 = sum1_94
-  sat1_96 = ITE(Lt(signal_90, lower_limit_88), lower_limit_88, ITE(Gt(signal_90, upper_limit_89), upper_limit_89, signal_90))
-  lower_limit_91 = Neg(0.25)
-  upper_limit_92 = 0.25
-  valof_pre___no_static = pre __no_static_59
+  output_value$2 = pre_output
+  sum1$2 = Sub(equalized_value$2, output_value$2)
+  signal$5 = sum1$2
+  sat1$2 = ITE(Lt(signal$5, lower_limit$5), lower_limit$5, ITE(Gt(signal$5, upper_limit$5), upper_limit$5, signal$5))
+  lower_limit$4 = Neg(0.25)
+  upper_limit$4 = 0.25
+  valof_pre___no_static = pre __no_static$3
   centering = 0.0 -> valof_pre___no_static
-  centering_value_85 = centering
-  signal_93 = centering_value_85
-  sat2_97 = ITE(Lt(signal_93, lower_limit_91), lower_limit_91, ITE(Gt(signal_93, upper_limit_92), upper_limit_92, signal_93))
-  sum2_95 = Sub(sat1_96, sat2_97)
+  centering_value$2 = centering
+  signal$4 = centering_value$2
+  sat2$2 = ITE(Lt(signal$4, lower_limit$4), lower_limit$4, ITE(Gt(signal$4, upper_limit$4), upper_limit$4, signal$4))
+  sum2$2 = Sub(sat1$2, sat2$2)
   valof_pre_equalizationA = pre equalizationA
-  valof_arr_149 = 0.0 -> valof_pre_equalizationA
-  equalizationA = Add(Mul(sum2_95, (1.0 / 5.0)), valof_arr_149)
+  valof_arr$2 = 0.0 -> valof_pre_equalizationA
+  equalizationA = Add(Mul(sum2$2, (1.0 / 5.0)), valof_arr$2)
   equalizedA = Sub(sensedA, equalizationA)
-  a_124 = equalizedA
-  sensedB = Add(signal_31, errorB)
-  lower_limit_101 = Neg(0.5)
-  upper_limit_102 = 0.5
+  a$17 = equalizedA
+  sensedB = Add(signal$6, errorB)
+  lower_limit$3 = Neg(0.5)
+  upper_limit$3 = 0.5
   valof_pre_equalizedB = pre equalizedB
   pre_equalizedB = 0.0 -> valof_pre_equalizedB
-  equalized_value_99 = pre_equalizedB
-  output_value_100 = pre_output
-  sum1_107 = Sub(equalized_value_99, output_value_100)
-  signal_103 = sum1_107
-  sat1_109 = ITE(Lt(signal_103, lower_limit_101), lower_limit_101, ITE(Gt(signal_103, upper_limit_102), upper_limit_102, signal_103))
-  lower_limit_104 = Neg(0.25)
-  upper_limit_105 = 0.25
-  centering_value_98 = centering
-  signal_106 = centering_value_98
-  sat2_110 = ITE(Lt(signal_106, lower_limit_104), lower_limit_104, ITE(Gt(signal_106, upper_limit_105), upper_limit_105, signal_106))
-  sum2_108 = Sub(sat1_109, sat2_110)
+  equalized_value$1 = pre_equalizedB
+  output_value$1 = pre_output
+  sum1$1 = Sub(equalized_value$1, output_value$1)
+  signal$3 = sum1$1
+  sat1$1 = ITE(Lt(signal$3, lower_limit$3), lower_limit$3, ITE(Gt(signal$3, upper_limit$3), upper_limit$3, signal$3))
+  lower_limit$2 = Neg(0.25)
+  upper_limit$2 = 0.25
+  centering_value$1 = centering
+  signal$2 = centering_value$1
+  sat2$1 = ITE(Lt(signal$2, lower_limit$2), lower_limit$2, ITE(Gt(signal$2, upper_limit$2), upper_limit$2, signal$2))
+  sum2$1 = Sub(sat1$1, sat2$1)
   valof_pre_equalizationB = pre equalizationB
-  valof_arr_151 = 0.0 -> valof_pre_equalizationB
-  equalizationB = Add(Mul(sum2_108, (1.0 / 5.0)), valof_arr_151)
+  valof_arr$1 = 0.0 -> valof_pre_equalizationB
+  equalizationB = Add(Mul(sum2$1, (1.0 / 5.0)), valof_arr$1)
   equalizedB = Sub(sensedB, equalizationB)
-  b_125 = equalizedB
-  sensedC = Add(signal_31, errorC)
-  lower_limit_114 = Neg(0.5)
-  upper_limit_115 = 0.5
+  b$1 = equalizedB
+  sensedC = Add(signal$6, errorC)
+  lower_limit$1 = Neg(0.5)
+  upper_limit$1 = 0.5
   valof_pre_equalizedC = pre equalizedC
   pre_equalizedC = 0.0 -> valof_pre_equalizedC
-  equalized_value_112 = pre_equalizedC
-  output_value_113 = pre_output
-  sum1_120 = Sub(equalized_value_112, output_value_113)
-  signal_116 = sum1_120
-  sat1_122 = ITE(Lt(signal_116, lower_limit_114), lower_limit_114, ITE(Gt(signal_116, upper_limit_115), upper_limit_115, signal_116))
-  lower_limit_117 = Neg(0.25)
-  upper_limit_118 = 0.25
-  centering_value_111 = centering
-  signal_119 = centering_value_111
-  sat2_123 = ITE(Lt(signal_119, lower_limit_117), lower_limit_117, ITE(Gt(signal_119, upper_limit_118), upper_limit_118, signal_119))
-  sum2_121 = Sub(sat1_122, sat2_123)
+  equalized_value = pre_equalizedC
+  output_value = pre_output
+  sum1 = Sub(equalized_value, output_value)
+  signal$1 = sum1
+  sat1 = ITE(Lt(signal$1, lower_limit$1), lower_limit$1, ITE(Gt(signal$1, upper_limit$1), upper_limit$1, signal$1))
+  lower_limit = Neg(0.25)
+  upper_limit = 0.25
+  centering_value = centering
+  signal = centering_value
+  sat2 = ITE(Lt(signal, lower_limit), lower_limit, ITE(Gt(signal, upper_limit), upper_limit, signal))
+  sum2 = Sub(sat1, sat2)
   valof_pre_equalizationC = pre equalizationC
-  valof_arr_153 = 0.0 -> valof_pre_equalizationC
-  equalizationC = Add(Mul(sum2_121, (1.0 / 5.0)), valof_arr_153)
+  valof_arr = 0.0 -> valof_pre_equalizationC
+  equalizationC = Add(Mul(sum2, (1.0 / 5.0)), valof_arr)
   equalizedC = Sub(sensedC, equalizationC)
-  c_126 = equalizedC
-  output = ITE(Lt(a_124, b_125), ITE(Lt(b_125, c_126), b_125, ITE(Lt(c_126, a_124), a_124, c_126)), ITE(Lt(a_124, c_126), a_124, ITE(Lt(c_126, b_125), b_125, c_126)))
-  difference = Sub(output, signal_31)
-  a_130 = Sub(equalizedA, sensedA)
-  __no_static_63 = ITE(Geq(a_130, 0.0), a_130, Neg(a_130))
-  lemmaA = Lt(__no_static_63, Mul(2.0, (3.0 / 20.0)))
-  a_131 = Sub(equalizedB, sensedB)
-  __no_static_64 = ITE(Geq(a_131, 0.0), a_131, Neg(a_131))
-  lemmaB = Lt(__no_static_64, Mul(2.0, (3.0 / 20.0)))
-  a_132 = Sub(equalizedC, sensedC)
-  __no_static_65 = ITE(Geq(a_132, 0.0), a_132, Neg(a_132))
-  lemmaC = Lt(__no_static_65, Mul(2.0, (3.0 / 20.0)))
-  a_133 = difference
-  __no_static_66 = ITE(Geq(a_133, 0.0), a_133, Neg(a_133))
-  a_134 = Mul((3.0 / 20.0), 3.0)
-  __no_static_67 = ITE(Geq(a_134, 0.0), a_134, Neg(a_134))
-  ok1 = Lt(__no_static_66, __no_static_67)
-  a_135 = difference
-  __no_static_68 = ITE(Geq(a_135, 0.0), a_135, Neg(a_135))
-  a_136 = Mul((3.0 / 20.0), (13.0 / 5.0))
-  __no_static_69 = ITE(Geq(a_136, 0.0), a_136, Neg(a_136))
-  ok2 = Lt(__no_static_68, __no_static_69)
-  a_137 = difference
-  __no_static_70 = ITE(Geq(a_137, 0.0), a_137, Neg(a_137))
-  a_138 = Mul((3.0 / 20.0), (49.0 / 20.0))
-  __no_static_71 = ITE(Geq(a_138, 0.0), a_138, Neg(a_138))
-  ok3 = Lt(__no_static_70, __no_static_71)
-  a_139 = difference
-  __no_static_72 = ITE(Geq(a_139, 0.0), a_139, Neg(a_139))
-  a_140 = Mul((3.0 / 20.0), (47.0 / 20.0))
-  __no_static_73 = ITE(Geq(a_140, 0.0), a_140, Neg(a_140))
-  ok4 = Lt(__no_static_72, __no_static_73)
-  a_141 = difference
-  __no_static_74 = ITE(Geq(a_141, 0.0), a_141, Neg(a_141))
-  a_142 = Mul((3.0 / 20.0), (23.0 / 10.0))
-  __no_static_75 = ITE(Geq(a_142, 0.0), a_142, Neg(a_142))
-  ok5 = Lt(__no_static_74, __no_static_75)
-  a_82 = equalizationA
-  b_83 = equalizationB
-  c_84 = equalizationC
-  __no_static_59 = ITE(Lt(a_82, b_83), ITE(Lt(b_83, c_84), b_83, ITE(Lt(c_84, a_82), a_82, c_84)), ITE(Lt(a_82, c_84), a_82, ITE(Lt(c_84, b_83), b_83, c_84)))
-  a_127 = errorA
-  __no_static_60 = ITE(Geq(a_127, 0.0), a_127, Neg(a_127))
-  a_128 = errorB
-  __no_static_61 = ITE(Geq(a_128, 0.0), a_128, Neg(a_128))
-  a_129 = errorC
-  __no_static_62 = ITE(Geq(a_129, 0.0), a_129, Neg(a_129))
-  Leq_154 = Leq(__no_static_60, (3.0 / 20.0))
-  Leq_155 = Leq(__no_static_61, (3.0 / 20.0))
-  Leq_156 = Leq(__no_static_62, (3.0 / 20.0))
+  c$1 = equalizedC
+  output = ITE(Lt(a$17, b$1), ITE(Lt(b$1, c$1), b$1, ITE(Lt(c$1, a$17), a$17, c$1)), ITE(Lt(a$17, c$1), a$17, ITE(Lt(c$1, b$1), b$1, c$1)))
+  difference = Sub(output, signal$6)
+  a$16 = Sub(equalizedA, sensedA)
+  __no_static$16 = ITE(Geq(a$16, 0.0), a$16, Neg(a$16))
+  lemmaA = Lt(__no_static$16, Mul(2.0, (3.0 / 20.0)))
+  a$15 = Sub(equalizedB, sensedB)
+  __no_static$15 = ITE(Geq(a$15, 0.0), a$15, Neg(a$15))
+  lemmaB = Lt(__no_static$15, Mul(2.0, (3.0 / 20.0)))
+  a$14 = Sub(equalizedC, sensedC)
+  __no_static$14 = ITE(Geq(a$14, 0.0), a$14, Neg(a$14))
+  lemmaC = Lt(__no_static$14, Mul(2.0, (3.0 / 20.0)))
+  a$13 = difference
+  __no_static$13 = ITE(Geq(a$13, 0.0), a$13, Neg(a$13))
+  a$12 = Mul((3.0 / 20.0), 3.0)
+  __no_static$12 = ITE(Geq(a$12, 0.0), a$12, Neg(a$12))
+  ok1 = Lt(__no_static$13, __no_static$12)
+  a$11 = difference
+  __no_static$11 = ITE(Geq(a$11, 0.0), a$11, Neg(a$11))
+  a$10 = Mul((3.0 / 20.0), (13.0 / 5.0))
+  __no_static$10 = ITE(Geq(a$10, 0.0), a$10, Neg(a$10))
+  ok2 = Lt(__no_static$11, __no_static$10)
+  a$9 = difference
+  __no_static$9 = ITE(Geq(a$9, 0.0), a$9, Neg(a$9))
+  a$8 = Mul((3.0 / 20.0), (49.0 / 20.0))
+  __no_static$8 = ITE(Geq(a$8, 0.0), a$8, Neg(a$8))
+  ok3 = Lt(__no_static$9, __no_static$8)
+  a$7 = difference
+  __no_static$7 = ITE(Geq(a$7, 0.0), a$7, Neg(a$7))
+  a$6 = Mul((3.0 / 20.0), (47.0 / 20.0))
+  __no_static$6 = ITE(Geq(a$6, 0.0), a$6, Neg(a$6))
+  ok4 = Lt(__no_static$7, __no_static$6)
+  a$5 = difference
+  __no_static$5 = ITE(Geq(a$5, 0.0), a$5, Neg(a$5))
+  a$4 = Mul((3.0 / 20.0), (23.0 / 10.0))
+  __no_static$4 = ITE(Geq(a$4, 0.0), a$4, Neg(a$4))
+  ok5 = Lt(__no_static$5, __no_static$4)
+  a$3 = equalizationA
+  b = equalizationB
+  c = equalizationC
+  __no_static$3 = ITE(Lt(a$3, b), ITE(Lt(b, c), b, ITE(Lt(c, a$3), a$3, c)), ITE(Lt(a$3, c), a$3, ITE(Lt(c, b), b, c)))
+  a$2 = errorA
+  __no_static$2 = ITE(Geq(a$2, 0.0), a$2, Neg(a$2))
+  a$1 = errorB
+  __no_static$1 = ITE(Geq(a$1, 0.0), a$1, Neg(a$1))
+  a = errorC
+  __no_static = ITE(Geq(a, 0.0), a, Neg(a))
+  Leq$2 = Leq(__no_static$2, (3.0 / 20.0))
+  Leq$1 = Leq(__no_static$1, (3.0 / 20.0))
+  Leq = Leq(__no_static, (3.0 / 20.0))
 tel
 Sally Model
 ===========
@@ -129,6 +129,10 @@ Sally Model
 (define-state-type
    S
    (
+     (Leq Bool)
+     (a Real)
+     (b Real)
+     (c Real)
      (centering Real)
      (difference Real)
      (equalizationA Real)
@@ -149,68 +153,69 @@ Sally Model
      (ok4 Bool)
      (ok5 Bool)
      (output Real)
+     (sat1 Real)
+     (sat2 Real)
      (sensedA Real)
      (sensedB Real)
      (sensedC Real)
-     (|Leq:154| Bool)
-     (|Leq:155| Bool)
-     (|Leq:156| Bool)
-     (|__no_static:59| Real)
-     (|__no_static:60| Real)
-     (|__no_static:61| Real)
-     (|__no_static:62| Real)
-     (|__no_static:63| Real)
-     (|__no_static:64| Real)
-     (|__no_static:65| Real)
-     (|__no_static:66| Real)
-     (|__no_static:67| Real)
-     (|__no_static:68| Real)
-     (|__no_static:69| Real)
-     (|__no_static:70| Real)
-     (|__no_static:71| Real)
-     (|__no_static:72| Real)
-     (|__no_static:73| Real)
-     (|__no_static:74| Real)
-     (|__no_static:75| Real)
-     (|a:124| Real)
-     (|a:127| Real)
-     (|a:128| Real)
-     (|a:129| Real)
-     (|a:130| Real)
-     (|a:131| Real)
-     (|a:132| Real)
-     (|a:133| Real)
-     (|a:134| Real)
-     (|a:135| Real)
-     (|a:136| Real)
-     (|a:137| Real)
-     (|a:138| Real)
-     (|a:139| Real)
-     (|a:140| Real)
-     (|a:141| Real)
-     (|a:142| Real)
-     (|a:82| Real)
-     (|b:125| Real)
-     (|b:83| Real)
-     (|c:126| Real)
-     (|c:84| Real)
+     (signal Real)
+     (sum1 Real)
+     (sum2 Real)
+     (|Leq:1| Bool)
+     (|Leq:2| Bool)
+     (|__no_static:10| Real)
+     (|__no_static:11| Real)
+     (|__no_static:12| Real)
+     (|__no_static:13| Real)
+     (|__no_static:14| Real)
+     (|__no_static:15| Real)
+     (|__no_static:16| Real)
+     (|__no_static:1| Real)
+     (|__no_static:2| Real)
+     (|__no_static:3| Real)
+     (|__no_static:4| Real)
+     (|__no_static:5| Real)
+     (|__no_static:6| Real)
+     (|__no_static:7| Real)
+     (|__no_static:8| Real)
+     (|__no_static:9| Real)
+     (|__no_static| Real)
+     (|a:10| Real)
+     (|a:11| Real)
+     (|a:12| Real)
+     (|a:13| Real)
+     (|a:14| Real)
+     (|a:15| Real)
+     (|a:16| Real)
+     (|a:17| Real)
+     (|a:1| Real)
+     (|a:2| Real)
+     (|a:3| Real)
+     (|a:4| Real)
+     (|a:5| Real)
+     (|a:6| Real)
+     (|a:7| Real)
+     (|a:8| Real)
+     (|a:9| Real)
+     (|b:1| Real)
+     (|c:1| Real)
      (|centering:init| Bool)
-     (|centering_value:111| Real)
-     (|centering_value:85| Real)
-     (|centering_value:98| Real)
-     (|equalized_value:112| Real)
-     (|equalized_value:86| Real)
-     (|equalized_value:99| Real)
+     (|centering_value:1| Real)
+     (|centering_value:2| Real)
+     (|centering_value| Real)
+     (|equalized_value:1| Real)
+     (|equalized_value:2| Real)
+     (|equalized_value| Real)
      (|gal-initializing| Bool)
-     (|lower_limit:101| Real)
-     (|lower_limit:104| Real)
-     (|lower_limit:114| Real)
-     (|lower_limit:117| Real)
-     (|lower_limit:88| Real)
-     (|lower_limit:91| Real)
-     (|output_value:100| Real)
-     (|output_value:113| Real)
-     (|output_value:87| Real)
+     (|lower_limit:1| Real)
+     (|lower_limit:2| Real)
+     (|lower_limit:3| Real)
+     (|lower_limit:4| Real)
+     (|lower_limit:5| Real)
+     (|lower_limit| Real)
+     (|output_value:1| Real)
+     (|output_value:2| Real)
+     (|output_value| Real)
      (|pre_equalizedA:init| Bool)
      (|pre_equalizedA| Real)
      (|pre_equalizedB:init| Bool)
@@ -219,37 +224,32 @@ Sally Model
      (|pre_equalizedC| Real)
      (|pre_output:init| Bool)
      (|pre_output| Real)
-     (|sat1:109| Real)
-     (|sat1:122| Real)
-     (|sat1:96| Real)
-     (|sat2:110| Real)
-     (|sat2:123| Real)
-     (|sat2:97| Real)
-     (|signal:103| Real)
-     (|signal:106| Real)
-     (|signal:116| Real)
-     (|signal:119| Real)
-     (|signal:31| Real)
-     (|signal:90| Real)
-     (|signal:93| Real)
-     (|sum1:107| Real)
-     (|sum1:120| Real)
-     (|sum1:94| Real)
-     (|sum2:108| Real)
-     (|sum2:121| Real)
-     (|sum2:95| Real)
-     (|upper_limit:102| Real)
-     (|upper_limit:105| Real)
-     (|upper_limit:115| Real)
-     (|upper_limit:118| Real)
-     (|upper_limit:89| Real)
-     (|upper_limit:92| Real)
-     (|valof_arr:149:init| Bool)
-     (|valof_arr:149| Real)
-     (|valof_arr:151:init| Bool)
-     (|valof_arr:151| Real)
-     (|valof_arr:153:init| Bool)
-     (|valof_arr:153| Real)
+     (|sat1:1| Real)
+     (|sat1:2| Real)
+     (|sat2:1| Real)
+     (|sat2:2| Real)
+     (|signal:1| Real)
+     (|signal:2| Real)
+     (|signal:3| Real)
+     (|signal:4| Real)
+     (|signal:5| Real)
+     (|signal:6| Real)
+     (|sum1:1| Real)
+     (|sum1:2| Real)
+     (|sum2:1| Real)
+     (|sum2:2| Real)
+     (|upper_limit:1| Real)
+     (|upper_limit:2| Real)
+     (|upper_limit:3| Real)
+     (|upper_limit:4| Real)
+     (|upper_limit:5| Real)
+     (|upper_limit| Real)
+     (|valof_arr:1:init| Bool)
+     (|valof_arr:1| Real)
+     (|valof_arr:2:init| Bool)
+     (|valof_arr:2| Real)
+     (|valof_arr:init| Bool)
+     (|valof_arr| Real)
      (|valof_pre___no_static| Real)
      (|valof_pre_equalizationA| Real)
      (|valof_pre_equalizationB| Real)
@@ -262,7 +262,7 @@ Sally Model
      (errorA Real)
      (errorB Real)
      (errorC Real)
-     (|signal:31| Real)))
+     (|signal:6| Real)))
 (define-transition-system
    TS
    S
@@ -271,451 +271,451 @@ Sally Model
       (= |pre_equalizedA:init| true)
       (= |pre_output:init| true)
       (= |centering:init| true)
-      (= |valof_arr:149:init| true)
+      (= |valof_arr:2:init| true)
       (= |pre_equalizedB:init| true)
-      (= |valof_arr:151:init| true)
+      (= |valof_arr:1:init| true)
       (= |pre_equalizedC:init| true)
-      (= |valof_arr:153:init| true))
+      (= |valof_arr:init| true))
    (and
       (= next.|gal-initializing| false)
-      (= next.|signal:31| input.|signal:31|)
+      (= next.|signal:6| input.|signal:6|)
       (= next.errorA input.errorA)
       (= next.errorB input.errorB)
       (= next.errorC input.errorC)
-      next.|Leq:156|
-      next.|Leq:155|
-      next.|Leq:154|
+      next.Leq
+      next.|Leq:1|
+      next.|Leq:2|
       (=
          next.sensedA
-         (+ next.|signal:31| next.errorA))
+         (+ next.|signal:6| next.errorA))
       (=
-         next.|lower_limit:88|
+         next.|lower_limit:5|
          (- 0.5))
-      (= next.|upper_limit:89| 0.5)
+      (= next.|upper_limit:5| 0.5)
       (= next.|valof_pre_equalizedA| state.equalizedA)
       (ite
          state.|pre_equalizedA:init|
          (= next.|pre_equalizedA| 0.0)
          (= next.|pre_equalizedA| next.|valof_pre_equalizedA|))
       (= next.|pre_equalizedA:init| false)
-      (= next.|equalized_value:86| next.|pre_equalizedA|)
+      (= next.|equalized_value:2| next.|pre_equalizedA|)
       (= next.|valof_pre_output| state.output)
       (ite
          state.|pre_output:init|
          (= next.|pre_output| 0.0)
          (= next.|pre_output| next.|valof_pre_output|))
       (= next.|pre_output:init| false)
-      (= next.|output_value:87| next.|pre_output|)
+      (= next.|output_value:2| next.|pre_output|)
       (=
-         next.|sum1:94|
-         (- next.|equalized_value:86| next.|output_value:87|))
-      (= next.|signal:90| next.|sum1:94|)
+         next.|sum1:2|
+         (- next.|equalized_value:2| next.|output_value:2|))
+      (= next.|signal:5| next.|sum1:2|)
       (=
-         next.|sat1:96|
+         next.|sat1:2|
          (ite
-            (< next.|signal:90| next.|lower_limit:88|)
-            next.|lower_limit:88|
+            (< next.|signal:5| next.|lower_limit:5|)
+            next.|lower_limit:5|
             (ite
-               (< next.|upper_limit:89| next.|signal:90|)
-               next.|upper_limit:89|
-               next.|signal:90|)))
+               (< next.|upper_limit:5| next.|signal:5|)
+               next.|upper_limit:5|
+               next.|signal:5|)))
       (=
-         next.|lower_limit:91|
+         next.|lower_limit:4|
          (- 0.25))
-      (= next.|upper_limit:92| 0.25)
-      (= next.|valof_pre___no_static| state.|__no_static:59|)
+      (= next.|upper_limit:4| 0.25)
+      (= next.|valof_pre___no_static| state.|__no_static:3|)
       (ite
          state.|centering:init|
          (= next.centering 0.0)
          (= next.centering next.|valof_pre___no_static|))
       (= next.|centering:init| false)
-      (= next.|centering_value:85| next.centering)
-      (= next.|signal:93| next.|centering_value:85|)
+      (= next.|centering_value:2| next.centering)
+      (= next.|signal:4| next.|centering_value:2|)
       (=
-         next.|sat2:97|
+         next.|sat2:2|
          (ite
-            (< next.|signal:93| next.|lower_limit:91|)
-            next.|lower_limit:91|
+            (< next.|signal:4| next.|lower_limit:4|)
+            next.|lower_limit:4|
             (ite
-               (< next.|upper_limit:92| next.|signal:93|)
-               next.|upper_limit:92|
-               next.|signal:93|)))
+               (< next.|upper_limit:4| next.|signal:4|)
+               next.|upper_limit:4|
+               next.|signal:4|)))
       (=
-         next.|sum2:95|
-         (- next.|sat1:96| next.|sat2:97|))
+         next.|sum2:2|
+         (- next.|sat1:2| next.|sat2:2|))
       (= next.|valof_pre_equalizationA| state.equalizationA)
       (ite
-         state.|valof_arr:149:init|
-         (= next.|valof_arr:149| 0.0)
-         (= next.|valof_arr:149| next.|valof_pre_equalizationA|))
-      (= next.|valof_arr:149:init| false)
+         state.|valof_arr:2:init|
+         (= next.|valof_arr:2| 0.0)
+         (= next.|valof_arr:2| next.|valof_pre_equalizationA|))
+      (= next.|valof_arr:2:init| false)
       (=
          next.equalizationA
          (+
             (*
-               next.|sum2:95|
+               next.|sum2:2|
                (/ 1 5))
-            next.|valof_arr:149|))
+            next.|valof_arr:2|))
       (=
          next.equalizedA
          (- next.sensedA next.equalizationA))
-      (= next.|a:124| next.equalizedA)
+      (= next.|a:17| next.equalizedA)
       (=
          next.sensedB
-         (+ next.|signal:31| next.errorB))
+         (+ next.|signal:6| next.errorB))
       (=
-         next.|lower_limit:101|
+         next.|lower_limit:3|
          (- 0.5))
-      (= next.|upper_limit:102| 0.5)
+      (= next.|upper_limit:3| 0.5)
       (= next.|valof_pre_equalizedB| state.equalizedB)
       (ite
          state.|pre_equalizedB:init|
          (= next.|pre_equalizedB| 0.0)
          (= next.|pre_equalizedB| next.|valof_pre_equalizedB|))
       (= next.|pre_equalizedB:init| false)
-      (= next.|equalized_value:99| next.|pre_equalizedB|)
-      (= next.|output_value:100| next.|pre_output|)
+      (= next.|equalized_value:1| next.|pre_equalizedB|)
+      (= next.|output_value:1| next.|pre_output|)
       (=
-         next.|sum1:107|
-         (- next.|equalized_value:99| next.|output_value:100|))
-      (= next.|signal:103| next.|sum1:107|)
+         next.|sum1:1|
+         (- next.|equalized_value:1| next.|output_value:1|))
+      (= next.|signal:3| next.|sum1:1|)
       (=
-         next.|sat1:109|
+         next.|sat1:1|
          (ite
-            (< next.|signal:103| next.|lower_limit:101|)
-            next.|lower_limit:101|
+            (< next.|signal:3| next.|lower_limit:3|)
+            next.|lower_limit:3|
             (ite
-               (< next.|upper_limit:102| next.|signal:103|)
-               next.|upper_limit:102|
-               next.|signal:103|)))
+               (< next.|upper_limit:3| next.|signal:3|)
+               next.|upper_limit:3|
+               next.|signal:3|)))
       (=
-         next.|lower_limit:104|
+         next.|lower_limit:2|
          (- 0.25))
-      (= next.|upper_limit:105| 0.25)
-      (= next.|centering_value:98| next.centering)
-      (= next.|signal:106| next.|centering_value:98|)
+      (= next.|upper_limit:2| 0.25)
+      (= next.|centering_value:1| next.centering)
+      (= next.|signal:2| next.|centering_value:1|)
       (=
-         next.|sat2:110|
+         next.|sat2:1|
          (ite
-            (< next.|signal:106| next.|lower_limit:104|)
-            next.|lower_limit:104|
+            (< next.|signal:2| next.|lower_limit:2|)
+            next.|lower_limit:2|
             (ite
-               (< next.|upper_limit:105| next.|signal:106|)
-               next.|upper_limit:105|
-               next.|signal:106|)))
+               (< next.|upper_limit:2| next.|signal:2|)
+               next.|upper_limit:2|
+               next.|signal:2|)))
       (=
-         next.|sum2:108|
-         (- next.|sat1:109| next.|sat2:110|))
+         next.|sum2:1|
+         (- next.|sat1:1| next.|sat2:1|))
       (= next.|valof_pre_equalizationB| state.equalizationB)
       (ite
-         state.|valof_arr:151:init|
-         (= next.|valof_arr:151| 0.0)
-         (= next.|valof_arr:151| next.|valof_pre_equalizationB|))
-      (= next.|valof_arr:151:init| false)
+         state.|valof_arr:1:init|
+         (= next.|valof_arr:1| 0.0)
+         (= next.|valof_arr:1| next.|valof_pre_equalizationB|))
+      (= next.|valof_arr:1:init| false)
       (=
          next.equalizationB
          (+
             (*
-               next.|sum2:108|
+               next.|sum2:1|
                (/ 1 5))
-            next.|valof_arr:151|))
+            next.|valof_arr:1|))
       (=
          next.equalizedB
          (- next.sensedB next.equalizationB))
-      (= next.|b:125| next.equalizedB)
+      (= next.|b:1| next.equalizedB)
       (=
          next.sensedC
-         (+ next.|signal:31| next.errorC))
+         (+ next.|signal:6| next.errorC))
       (=
-         next.|lower_limit:114|
+         next.|lower_limit:1|
          (- 0.5))
-      (= next.|upper_limit:115| 0.5)
+      (= next.|upper_limit:1| 0.5)
       (= next.|valof_pre_equalizedC| state.equalizedC)
       (ite
          state.|pre_equalizedC:init|
          (= next.|pre_equalizedC| 0.0)
          (= next.|pre_equalizedC| next.|valof_pre_equalizedC|))
       (= next.|pre_equalizedC:init| false)
-      (= next.|equalized_value:112| next.|pre_equalizedC|)
-      (= next.|output_value:113| next.|pre_output|)
+      (= next.|equalized_value| next.|pre_equalizedC|)
+      (= next.|output_value| next.|pre_output|)
       (=
-         next.|sum1:120|
-         (- next.|equalized_value:112| next.|output_value:113|))
-      (= next.|signal:116| next.|sum1:120|)
+         next.sum1
+         (- next.|equalized_value| next.|output_value|))
+      (= next.|signal:1| next.sum1)
       (=
-         next.|sat1:122|
+         next.sat1
          (ite
-            (< next.|signal:116| next.|lower_limit:114|)
-            next.|lower_limit:114|
+            (< next.|signal:1| next.|lower_limit:1|)
+            next.|lower_limit:1|
             (ite
-               (< next.|upper_limit:115| next.|signal:116|)
-               next.|upper_limit:115|
-               next.|signal:116|)))
+               (< next.|upper_limit:1| next.|signal:1|)
+               next.|upper_limit:1|
+               next.|signal:1|)))
       (=
-         next.|lower_limit:117|
+         next.|lower_limit|
          (- 0.25))
-      (= next.|upper_limit:118| 0.25)
-      (= next.|centering_value:111| next.centering)
-      (= next.|signal:119| next.|centering_value:111|)
+      (= next.|upper_limit| 0.25)
+      (= next.|centering_value| next.centering)
+      (= next.signal next.|centering_value|)
       (=
-         next.|sat2:123|
+         next.sat2
          (ite
-            (< next.|signal:119| next.|lower_limit:117|)
-            next.|lower_limit:117|
+            (< next.signal next.|lower_limit|)
+            next.|lower_limit|
             (ite
-               (< next.|upper_limit:118| next.|signal:119|)
-               next.|upper_limit:118|
-               next.|signal:119|)))
+               (< next.|upper_limit| next.signal)
+               next.|upper_limit|
+               next.signal)))
       (=
-         next.|sum2:121|
-         (- next.|sat1:122| next.|sat2:123|))
+         next.sum2
+         (- next.sat1 next.sat2))
       (= next.|valof_pre_equalizationC| state.equalizationC)
       (ite
-         state.|valof_arr:153:init|
-         (= next.|valof_arr:153| 0.0)
-         (= next.|valof_arr:153| next.|valof_pre_equalizationC|))
-      (= next.|valof_arr:153:init| false)
+         state.|valof_arr:init|
+         (= next.|valof_arr| 0.0)
+         (= next.|valof_arr| next.|valof_pre_equalizationC|))
+      (= next.|valof_arr:init| false)
       (=
          next.equalizationC
          (+
             (*
-               next.|sum2:121|
+               next.sum2
                (/ 1 5))
-            next.|valof_arr:153|))
+            next.|valof_arr|))
       (=
          next.equalizedC
          (- next.sensedC next.equalizationC))
-      (= next.|c:126| next.equalizedC)
+      (= next.|c:1| next.equalizedC)
       (=
          next.output
          (ite
-            (< next.|a:124| next.|b:125|)
+            (< next.|a:17| next.|b:1|)
             (ite
-               (< next.|b:125| next.|c:126|)
-               next.|b:125|
+               (< next.|b:1| next.|c:1|)
+               next.|b:1|
                (ite
-                  (< next.|c:126| next.|a:124|)
-                  next.|a:124|
-                  next.|c:126|))
+                  (< next.|c:1| next.|a:17|)
+                  next.|a:17|
+                  next.|c:1|))
             (ite
-               (< next.|a:124| next.|c:126|)
-               next.|a:124|
+               (< next.|a:17| next.|c:1|)
+               next.|a:17|
                (ite
-                  (< next.|c:126| next.|b:125|)
-                  next.|b:125|
-                  next.|c:126|))))
+                  (< next.|c:1| next.|b:1|)
+                  next.|b:1|
+                  next.|c:1|))))
       (=
          next.difference
-         (- next.output next.|signal:31|))
+         (- next.output next.|signal:6|))
       (=
-         next.|a:130|
+         next.|a:16|
          (- next.equalizedA next.sensedA))
       (=
-         next.|__no_static:63|
+         next.|__no_static:16|
          (ite
-            (<= 0.0 next.|a:130|)
-            next.|a:130|
-            (- next.|a:130|)))
+            (<= 0.0 next.|a:16|)
+            next.|a:16|
+            (- next.|a:16|)))
       (=
          next.lemmaA
          (<
-            next.|__no_static:63|
+            next.|__no_static:16|
             (*
                2.0
                (/ 3 20))))
       (=
-         next.|a:131|
+         next.|a:15|
          (- next.equalizedB next.sensedB))
       (=
-         next.|__no_static:64|
+         next.|__no_static:15|
          (ite
-            (<= 0.0 next.|a:131|)
-            next.|a:131|
-            (- next.|a:131|)))
+            (<= 0.0 next.|a:15|)
+            next.|a:15|
+            (- next.|a:15|)))
       (=
          next.lemmaB
          (<
-            next.|__no_static:64|
+            next.|__no_static:15|
             (*
                2.0
                (/ 3 20))))
       (=
-         next.|a:132|
+         next.|a:14|
          (- next.equalizedC next.sensedC))
       (=
-         next.|__no_static:65|
+         next.|__no_static:14|
          (ite
-            (<= 0.0 next.|a:132|)
-            next.|a:132|
-            (- next.|a:132|)))
+            (<= 0.0 next.|a:14|)
+            next.|a:14|
+            (- next.|a:14|)))
       (=
          next.lemmaC
          (<
-            next.|__no_static:65|
+            next.|__no_static:14|
             (*
                2.0
                (/ 3 20))))
-      (= next.|a:133| next.difference)
+      (= next.|a:13| next.difference)
       (=
-         next.|__no_static:66|
+         next.|__no_static:13|
          (ite
-            (<= 0.0 next.|a:133|)
-            next.|a:133|
-            (- next.|a:133|)))
+            (<= 0.0 next.|a:13|)
+            next.|a:13|
+            (- next.|a:13|)))
       (=
-         next.|a:134|
+         next.|a:12|
          (*
             (/ 3 20)
             3.0))
       (=
-         next.|__no_static:67|
+         next.|__no_static:12|
          (ite
-            (<= 0.0 next.|a:134|)
-            next.|a:134|
-            (- next.|a:134|)))
+            (<= 0.0 next.|a:12|)
+            next.|a:12|
+            (- next.|a:12|)))
       (=
          next.ok1
-         (< next.|__no_static:66| next.|__no_static:67|))
-      (= next.|a:135| next.difference)
+         (< next.|__no_static:13| next.|__no_static:12|))
+      (= next.|a:11| next.difference)
       (=
-         next.|__no_static:68|
+         next.|__no_static:11|
          (ite
-            (<= 0.0 next.|a:135|)
-            next.|a:135|
-            (- next.|a:135|)))
+            (<= 0.0 next.|a:11|)
+            next.|a:11|
+            (- next.|a:11|)))
       (=
-         next.|a:136|
+         next.|a:10|
          (*
             (/ 3 20)
             (/ 13 5)))
       (=
-         next.|__no_static:69|
+         next.|__no_static:10|
          (ite
-            (<= 0.0 next.|a:136|)
-            next.|a:136|
-            (- next.|a:136|)))
+            (<= 0.0 next.|a:10|)
+            next.|a:10|
+            (- next.|a:10|)))
       (=
          next.ok2
-         (< next.|__no_static:68| next.|__no_static:69|))
-      (= next.|a:137| next.difference)
+         (< next.|__no_static:11| next.|__no_static:10|))
+      (= next.|a:9| next.difference)
       (=
-         next.|__no_static:70|
+         next.|__no_static:9|
          (ite
-            (<= 0.0 next.|a:137|)
-            next.|a:137|
-            (- next.|a:137|)))
+            (<= 0.0 next.|a:9|)
+            next.|a:9|
+            (- next.|a:9|)))
       (=
-         next.|a:138|
+         next.|a:8|
          (*
             (/ 3 20)
             (/ 49 20)))
       (=
-         next.|__no_static:71|
+         next.|__no_static:8|
          (ite
-            (<= 0.0 next.|a:138|)
-            next.|a:138|
-            (- next.|a:138|)))
+            (<= 0.0 next.|a:8|)
+            next.|a:8|
+            (- next.|a:8|)))
       (=
          next.ok3
-         (< next.|__no_static:70| next.|__no_static:71|))
-      (= next.|a:139| next.difference)
+         (< next.|__no_static:9| next.|__no_static:8|))
+      (= next.|a:7| next.difference)
       (=
-         next.|__no_static:72|
+         next.|__no_static:7|
          (ite
-            (<= 0.0 next.|a:139|)
-            next.|a:139|
-            (- next.|a:139|)))
+            (<= 0.0 next.|a:7|)
+            next.|a:7|
+            (- next.|a:7|)))
       (=
-         next.|a:140|
+         next.|a:6|
          (*
             (/ 3 20)
             (/ 47 20)))
       (=
-         next.|__no_static:73|
+         next.|__no_static:6|
          (ite
-            (<= 0.0 next.|a:140|)
-            next.|a:140|
-            (- next.|a:140|)))
+            (<= 0.0 next.|a:6|)
+            next.|a:6|
+            (- next.|a:6|)))
       (=
          next.ok4
-         (< next.|__no_static:72| next.|__no_static:73|))
-      (= next.|a:141| next.difference)
+         (< next.|__no_static:7| next.|__no_static:6|))
+      (= next.|a:5| next.difference)
       (=
-         next.|__no_static:74|
+         next.|__no_static:5|
          (ite
-            (<= 0.0 next.|a:141|)
-            next.|a:141|
-            (- next.|a:141|)))
+            (<= 0.0 next.|a:5|)
+            next.|a:5|
+            (- next.|a:5|)))
       (=
-         next.|a:142|
+         next.|a:4|
          (*
             (/ 3 20)
             (/ 23 10)))
       (=
-         next.|__no_static:75|
+         next.|__no_static:4|
          (ite
-            (<= 0.0 next.|a:142|)
-            next.|a:142|
-            (- next.|a:142|)))
+            (<= 0.0 next.|a:4|)
+            next.|a:4|
+            (- next.|a:4|)))
       (=
          next.ok5
-         (< next.|__no_static:74| next.|__no_static:75|))
-      (= next.|a:82| next.equalizationA)
-      (= next.|b:83| next.equalizationB)
-      (= next.|c:84| next.equalizationC)
+         (< next.|__no_static:5| next.|__no_static:4|))
+      (= next.|a:3| next.equalizationA)
+      (= next.b next.equalizationB)
+      (= next.c next.equalizationC)
       (=
-         next.|__no_static:59|
+         next.|__no_static:3|
          (ite
-            (< next.|a:82| next.|b:83|)
+            (< next.|a:3| next.b)
             (ite
-               (< next.|b:83| next.|c:84|)
-               next.|b:83|
+               (< next.b next.c)
+               next.b
                (ite
-                  (< next.|c:84| next.|a:82|)
-                  next.|a:82|
-                  next.|c:84|))
+                  (< next.c next.|a:3|)
+                  next.|a:3|
+                  next.c))
             (ite
-               (< next.|a:82| next.|c:84|)
-               next.|a:82|
+               (< next.|a:3| next.c)
+               next.|a:3|
                (ite
-                  (< next.|c:84| next.|b:83|)
-                  next.|b:83|
-                  next.|c:84|))))
-      (= next.|a:127| next.errorA)
+                  (< next.c next.b)
+                  next.b
+                  next.c))))
+      (= next.|a:2| next.errorA)
       (=
-         next.|__no_static:60|
+         next.|__no_static:2|
          (ite
-            (<= 0.0 next.|a:127|)
-            next.|a:127|
-            (- next.|a:127|)))
-      (= next.|a:128| next.errorB)
+            (<= 0.0 next.|a:2|)
+            next.|a:2|
+            (- next.|a:2|)))
+      (= next.|a:1| next.errorB)
       (=
-         next.|__no_static:61|
+         next.|__no_static:1|
          (ite
-            (<= 0.0 next.|a:128|)
-            next.|a:128|
-            (- next.|a:128|)))
-      (= next.|a:129| next.errorC)
+            (<= 0.0 next.|a:1|)
+            next.|a:1|
+            (- next.|a:1|)))
+      (= next.a next.errorC)
       (=
-         next.|__no_static:62|
+         next.|__no_static|
          (ite
-            (<= 0.0 next.|a:129|)
-            next.|a:129|
-            (- next.|a:129|)))
+            (<= 0.0 next.a)
+            next.a
+            (- next.a)))
       (=
-         next.|Leq:154|
+         next.|Leq:2|
          (<=
-            next.|__no_static:60|
+            next.|__no_static:2|
             (/ 3 20)))
       (=
-         next.|Leq:155|
+         next.|Leq:1|
          (<=
-            next.|__no_static:61|
+            next.|__no_static:1|
             (/ 3 20)))
       (=
-         next.|Leq:156|
+         next.Leq
          (<=
-            next.|__no_static:62|
+            next.|__no_static|
             (/ 3 20)))))
 
 (query

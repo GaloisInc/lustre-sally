@@ -1,22 +1,22 @@
 Core Lustre
 ===========
 
-node (rand_12 : bool)
+node (rand$3 : bool)
   returns (prop)
   assumes ()
-  shows (prop, lemma_23, lemma_20)
+  shows (prop, lemma, lemma$1)
 let
-  rand_19 = rand_12
-  valof_pre___no_static_25 = pre __no_static_15
-  __no_static_15 = ITE(rand_19, Neg(1), Neg(1)) -> Add(1, valof_pre___no_static_25)
-  rand_21 = rand_12
-  rand_22 = rand_21
-  valof_pre___no_static_26 = pre __no_static_24
-  __no_static_24 = ITE(rand_22, Neg(1), Neg(1)) -> Add(1, valof_pre___no_static_26)
-  __no_static_16 = Geq(__no_static_24, 10)
-  prop = Or(Lt(__no_static_15, 10), __no_static_16)
-  lemma_20 = Geq(__no_static_15, Neg(1))
-  lemma_23 = Geq(__no_static_24, Neg(1))
+  rand$2 = rand$3
+  valof_pre___no_static$1 = pre __no_static$2
+  __no_static$2 = ITE(rand$2, Neg(1), Neg(1)) -> Add(1, valof_pre___no_static$1)
+  rand$1 = rand$3
+  rand = rand$1
+  valof_pre___no_static = pre __no_static$1
+  __no_static$1 = ITE(rand, Neg(1), Neg(1)) -> Add(1, valof_pre___no_static)
+  __no_static = Geq(__no_static$1, 10)
+  prop = Or(Lt(__no_static$2, 10), __no_static)
+  lemma$1 = Geq(__no_static$2, Neg(1))
+  lemma = Geq(__no_static$1, Neg(1))
 tel
 Sally Model
 ===========
@@ -24,90 +24,90 @@ Sally Model
 (define-state-type
    S
    (
+     (lemma Bool)
      (prop Bool)
-     (|__no_static:15:init| Bool)
-     (|__no_static:15| Int)
-     (|__no_static:16| Bool)
-     (|__no_static:24:init| Bool)
-     (|__no_static:24| Int)
+     (rand Bool)
+     (|__no_static:1:init| Bool)
+     (|__no_static:1| Int)
+     (|__no_static:2:init| Bool)
+     (|__no_static:2| Int)
+     (|__no_static| Bool)
      (|gal-initializing| Bool)
-     (|lemma:20| Bool)
-     (|lemma:23| Bool)
-     (|rand:12| Bool)
-     (|rand:19| Bool)
-     (|rand:21| Bool)
-     (|rand:22| Bool)
-     (|valof_pre___no_static:25| Int)
-     (|valof_pre___no_static:26| Int))
+     (|lemma:1| Bool)
+     (|rand:1| Bool)
+     (|rand:2| Bool)
+     (|rand:3| Bool)
+     (|valof_pre___no_static:1| Int)
+     (|valof_pre___no_static| Int))
    (
-     (|rand:12| Bool)))
+     (|rand:3| Bool)))
 (define-transition-system
    TS
    S
    (and
       (= |gal-initializing| true)
-      (= |__no_static:15:init| true)
-      (= |__no_static:24:init| true))
+      (= |__no_static:2:init| true)
+      (= |__no_static:1:init| true))
    (and
       (= next.|gal-initializing| false)
-      (= next.|rand:12| input.|rand:12|)
-      (= next.|rand:19| next.|rand:12|)
-      (= next.|valof_pre___no_static:25| state.|__no_static:15|)
+      (= next.|rand:3| input.|rand:3|)
+      (= next.|rand:2| next.|rand:3|)
+      (= next.|valof_pre___no_static:1| state.|__no_static:2|)
       (ite
-         state.|__no_static:15:init|
+         state.|__no_static:2:init|
          (=
-            next.|__no_static:15|
+            next.|__no_static:2|
             (ite
-               next.|rand:19|
+               next.|rand:2|
                (- 1)
                (- 1)))
          (=
-            next.|__no_static:15|
-            (+ 1 next.|valof_pre___no_static:25|)))
-      (= next.|__no_static:15:init| false)
-      (= next.|rand:21| next.|rand:12|)
-      (= next.|rand:22| next.|rand:21|)
-      (= next.|valof_pre___no_static:26| state.|__no_static:24|)
+            next.|__no_static:2|
+            (+ 1 next.|valof_pre___no_static:1|)))
+      (= next.|__no_static:2:init| false)
+      (= next.|rand:1| next.|rand:3|)
+      (= next.rand next.|rand:1|)
+      (= next.|valof_pre___no_static| state.|__no_static:1|)
       (ite
-         state.|__no_static:24:init|
+         state.|__no_static:1:init|
          (=
-            next.|__no_static:24|
+            next.|__no_static:1|
             (ite
-               next.|rand:22|
+               next.rand
                (- 1)
                (- 1)))
          (=
-            next.|__no_static:24|
-            (+ 1 next.|valof_pre___no_static:26|)))
-      (= next.|__no_static:24:init| false)
+            next.|__no_static:1|
+            (+ 1 next.|valof_pre___no_static|)))
+      (= next.|__no_static:1:init| false)
       (=
-         next.|__no_static:16|
-         (<= 10 next.|__no_static:24|))
+         next.|__no_static|
+         (<= 10 next.|__no_static:1|))
       (=
          next.prop
          (or
-            (< next.|__no_static:15| 10)
-            next.|__no_static:16|))
+            (< next.|__no_static:2| 10)
+            next.|__no_static|))
       (=
-         next.|lemma:20|
+         next.|lemma:1|
          (<=
             (- 1)
-            next.|__no_static:15|))
+            next.|__no_static:2|))
       (=
-         next.|lemma:23|
+         next.lemma
          (<=
             (- 1)
-            next.|__no_static:24|))))
+            next.|__no_static:1|))))
 
 (query
    TS
    (or |gal-initializing| prop))
 (query
    TS
-   (or |gal-initializing| |lemma:23|))
+   (or |gal-initializing| lemma))
 (query
    TS
-   (or |gal-initializing| |lemma:20|))
+   (or |gal-initializing| |lemma:1|))
 
 [Lustre] Validating properties:
 [Lustre] Property prop... considering simultaneous states to depth 0

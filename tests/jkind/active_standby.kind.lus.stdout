@@ -146,12 +146,12 @@ let
   chart_System_Side1_Side1ActiveSideLogic_Side1Running_Side2Running_eval_rlt_state_6_states___root = ITE(chart_System_Side1_Side1ActiveSideLogic_Side1Running_Side2Running_eval_rlt_fired_2, chart_System_Side1_Side1ActiveSideLogic_Side1Running_Side2Running_Side2Active_enter_rlt_state_1_states___root, chart_System_Side1_Side1ActiveSideLogic_Side1Running_Side2Running_eval_rlt_state_5_states___root)
   chart_System_Side1_Side1ActiveSideLogic_Side1Running_Side2Running_Side2Active_exit_rlt_state_1_states___root = ITE(Eq(chart_System_Side1_Side1ActiveSideLogic_Side1Running_Side2Running_eval_rlt_state_6_states___root, 6), 4, chart_System_Side1_Side1ActiveSideLogic_Side1Running_Side2Running_eval_rlt_state_6_states___root)
   chart_System_Side1_Side1ActiveSideLogic_Side1Running_Side2Running_eval_rlt_complete_2 = Or(chart_System_Side1_Side1ActiveSideLogic_Side1Running_Side2Running_eval_rlt_fired_2, chart_System_Side1_Side1ActiveSideLogic_Side1Running_Side2Running_eval_rlt_complete_1)
-  valof_pre_rlt_condact_ActiveStandby_System_Side1_rlt_clocked_inp_ManualSelection_412 = pre rlt_condact_ActiveStandby_System_Side1_rlt_clocked_inp_ManualSelection
+  valof_pre_rlt_condact_ActiveStandby_System_Side1_rlt_clocked_inp_ManualSelection$1 = pre rlt_condact_ActiveStandby_System_Side1_rlt_clocked_inp_ManualSelection
   valof_pre_ActiveStandby_System_Side1_ManualSelectionOccurs_Unit_Delay = pre ActiveStandby_System_Side1_ManualSelectionOccurs_Unit_Delay
-  ActiveStandby_System_Side1_ManualSelectionOccurs_Unit_Delay = true -> ITE(ActiveStandby_System_Calendar_Side1_Calendar_Relational_Operator, Or(rlt_condact_ActiveStandby_System_Side1_rlt_init_step, valof_pre_rlt_condact_ActiveStandby_System_Side1_rlt_clocked_inp_ManualSelection_412), valof_pre_ActiveStandby_System_Side1_ManualSelectionOccurs_Unit_Delay)
+  ActiveStandby_System_Side1_ManualSelectionOccurs_Unit_Delay = true -> ITE(ActiveStandby_System_Calendar_Side1_Calendar_Relational_Operator, Or(rlt_condact_ActiveStandby_System_Side1_rlt_init_step, valof_pre_rlt_condact_ActiveStandby_System_Side1_rlt_clocked_inp_ManualSelection$1), valof_pre_ActiveStandby_System_Side1_ManualSelectionOccurs_Unit_Delay)
   ActiveStandby_System_Side1_ManualSelectionOccurs_Logical_Operator2 = Not(ActiveStandby_System_Side1_ManualSelectionOccurs_Unit_Delay)
-  valof_pre_rlt_condact_ActiveStandby_System_Side1_rlt_clocked_inp_ManualSelection_419 = pre rlt_condact_ActiveStandby_System_Side1_rlt_clocked_inp_ManualSelection
-  rlt_condact_ActiveStandby_System_Side1_rlt_clocked_inp_ManualSelection = ManualSelection -> ITE(ActiveStandby_System_Calendar_Side1_Calendar_Relational_Operator, ManualSelection, valof_pre_rlt_condact_ActiveStandby_System_Side1_rlt_clocked_inp_ManualSelection_419)
+  valof_pre_rlt_condact_ActiveStandby_System_Side1_rlt_clocked_inp_ManualSelection = pre rlt_condact_ActiveStandby_System_Side1_rlt_clocked_inp_ManualSelection
+  rlt_condact_ActiveStandby_System_Side1_rlt_clocked_inp_ManualSelection = ManualSelection -> ITE(ActiveStandby_System_Calendar_Side1_Calendar_Relational_Operator, ManualSelection, valof_pre_rlt_condact_ActiveStandby_System_Side1_rlt_clocked_inp_ManualSelection)
   ActiveStandby_System_Side1_ManualSelectionOccurs_Logical_Operator1 = And(ActiveStandby_System_Side1_ManualSelectionOccurs_Logical_Operator2, rlt_condact_ActiveStandby_System_Side1_rlt_clocked_inp_ManualSelection)
   chart_System_Side1_Side1ActiveSideLogic_Side1Running_Side2Running_eval_rlt_fired_3 = And(Eq(chart_System_Side1_Side1ActiveSideLogic_Side1Running_Side2Running_eval_rlt_state_6_states___root, 6), And(ActiveStandby_System_Side1_ManualSelectionOccurs_Logical_Operator1, Not(chart_System_Side1_Side1ActiveSideLogic_Side1Running_Side2Running_eval_rlt_complete_2)))
   chart_System_Side1_Side1ActiveSideLogic_Side1Running_Side2Running_eval_rlt_state_7_states___root = ITE(chart_System_Side1_Side1ActiveSideLogic_Side1Running_Side2Running_eval_rlt_fired_3, chart_System_Side1_Side1ActiveSideLogic_Side1Running_Side2Running_Side2Active_exit_rlt_state_1_states___root, chart_System_Side1_Side1ActiveSideLogic_Side1Running_Side2Running_eval_rlt_state_6_states___root)
@@ -327,12 +327,12 @@ let
   chart_System_Side2_Side2ActiveSideLogic_Side2Running_Side1Running_eval_rlt_state_6_states___root = ITE(chart_System_Side2_Side2ActiveSideLogic_Side2Running_Side1Running_eval_rlt_fired_2, chart_System_Side2_Side2ActiveSideLogic_Side2Running_Side1Running_Side1Active_enter_rlt_state_1_states___root, chart_System_Side2_Side2ActiveSideLogic_Side2Running_Side1Running_eval_rlt_state_5_states___root)
   chart_System_Side2_Side2ActiveSideLogic_Side2Running_Side1Running_Side1Active_exit_rlt_state_1_states___root = ITE(Eq(chart_System_Side2_Side2ActiveSideLogic_Side2Running_Side1Running_eval_rlt_state_6_states___root, 5), 4, chart_System_Side2_Side2ActiveSideLogic_Side2Running_Side1Running_eval_rlt_state_6_states___root)
   chart_System_Side2_Side2ActiveSideLogic_Side2Running_Side1Running_eval_rlt_complete_2 = Or(chart_System_Side2_Side2ActiveSideLogic_Side2Running_Side1Running_eval_rlt_fired_2, chart_System_Side2_Side2ActiveSideLogic_Side2Running_Side1Running_eval_rlt_complete_1)
-  valof_pre_rlt_condact_ActiveStandby_System_Side2_rlt_clocked_inp_ManualSelection_394 = pre rlt_condact_ActiveStandby_System_Side2_rlt_clocked_inp_ManualSelection
+  valof_pre_rlt_condact_ActiveStandby_System_Side2_rlt_clocked_inp_ManualSelection$1 = pre rlt_condact_ActiveStandby_System_Side2_rlt_clocked_inp_ManualSelection
   valof_pre_ActiveStandby_System_Side2_ManualSelectionOccurs_Unit_Delay = pre ActiveStandby_System_Side2_ManualSelectionOccurs_Unit_Delay
-  ActiveStandby_System_Side2_ManualSelectionOccurs_Unit_Delay = true -> ITE(ActiveStandby_System_Calendar_Side2_Calendar_Relational_Operator, Or(rlt_condact_ActiveStandby_System_Side2_rlt_init_step, valof_pre_rlt_condact_ActiveStandby_System_Side2_rlt_clocked_inp_ManualSelection_394), valof_pre_ActiveStandby_System_Side2_ManualSelectionOccurs_Unit_Delay)
+  ActiveStandby_System_Side2_ManualSelectionOccurs_Unit_Delay = true -> ITE(ActiveStandby_System_Calendar_Side2_Calendar_Relational_Operator, Or(rlt_condact_ActiveStandby_System_Side2_rlt_init_step, valof_pre_rlt_condact_ActiveStandby_System_Side2_rlt_clocked_inp_ManualSelection$1), valof_pre_ActiveStandby_System_Side2_ManualSelectionOccurs_Unit_Delay)
   ActiveStandby_System_Side2_ManualSelectionOccurs_Logical_Operator2 = Not(ActiveStandby_System_Side2_ManualSelectionOccurs_Unit_Delay)
-  valof_pre_rlt_condact_ActiveStandby_System_Side2_rlt_clocked_inp_ManualSelection_401 = pre rlt_condact_ActiveStandby_System_Side2_rlt_clocked_inp_ManualSelection
-  rlt_condact_ActiveStandby_System_Side2_rlt_clocked_inp_ManualSelection = ManualSelection -> ITE(ActiveStandby_System_Calendar_Side2_Calendar_Relational_Operator, ManualSelection, valof_pre_rlt_condact_ActiveStandby_System_Side2_rlt_clocked_inp_ManualSelection_401)
+  valof_pre_rlt_condact_ActiveStandby_System_Side2_rlt_clocked_inp_ManualSelection = pre rlt_condact_ActiveStandby_System_Side2_rlt_clocked_inp_ManualSelection
+  rlt_condact_ActiveStandby_System_Side2_rlt_clocked_inp_ManualSelection = ManualSelection -> ITE(ActiveStandby_System_Calendar_Side2_Calendar_Relational_Operator, ManualSelection, valof_pre_rlt_condact_ActiveStandby_System_Side2_rlt_clocked_inp_ManualSelection)
   ActiveStandby_System_Side2_ManualSelectionOccurs_Logical_Operator1 = And(ActiveStandby_System_Side2_ManualSelectionOccurs_Logical_Operator2, rlt_condact_ActiveStandby_System_Side2_rlt_clocked_inp_ManualSelection)
   chart_System_Side2_Side2ActiveSideLogic_Side2Running_Side1Running_eval_rlt_fired_3 = And(Eq(chart_System_Side2_Side2ActiveSideLogic_Side2Running_Side1Running_eval_rlt_state_6_states___root, 5), And(ActiveStandby_System_Side2_ManualSelectionOccurs_Logical_Operator1, Not(chart_System_Side2_Side2ActiveSideLogic_Side2Running_Side1Running_eval_rlt_complete_2)))
   chart_System_Side2_Side2ActiveSideLogic_Side2Running_Side1Running_eval_rlt_state_7_states___root = ITE(chart_System_Side2_Side2ActiveSideLogic_Side2Running_Side1Running_eval_rlt_fired_3, chart_System_Side2_Side2ActiveSideLogic_Side2Running_Side1Running_Side1Active_exit_rlt_state_1_states___root, chart_System_Side2_Side2ActiveSideLogic_Side2Running_Side1Running_eval_rlt_state_6_states___root)
@@ -909,8 +909,8 @@ Sally Model
      (|valof_pre_rlt_condact_ActiveStandby_System_Side1_Mon1Side1FullyAvail| Bool)
      (|valof_pre_rlt_condact_ActiveStandby_System_Side1_Mon1Side2FullyAvail| Bool)
      (|valof_pre_rlt_condact_ActiveStandby_System_Side1_Side1ActiveSide| Int)
-     (|valof_pre_rlt_condact_ActiveStandby_System_Side1_rlt_clocked_inp_ManualSelection:412| Bool)
-     (|valof_pre_rlt_condact_ActiveStandby_System_Side1_rlt_clocked_inp_ManualSelection:419| Bool)
+     (|valof_pre_rlt_condact_ActiveStandby_System_Side1_rlt_clocked_inp_ManualSelection:1| Bool)
+     (|valof_pre_rlt_condact_ActiveStandby_System_Side1_rlt_clocked_inp_ManualSelection| Bool)
      (|valof_pre_rlt_condact_ActiveStandby_System_Side1_rlt_clocked_inp_Mon2Side1FullyAvail| Bool)
      (|valof_pre_rlt_condact_ActiveStandby_System_Side1_rlt_clocked_inp_Mon2Side2FullyAvail| Bool)
      (|valof_pre_rlt_condact_ActiveStandby_System_Side1_rlt_clocked_inp_Side1Failed| Bool)
@@ -921,8 +921,8 @@ Sally Model
      (|valof_pre_rlt_condact_ActiveStandby_System_Side2_Mon2Side1FullyAvail| Bool)
      (|valof_pre_rlt_condact_ActiveStandby_System_Side2_Mon2Side2FullyAvail| Bool)
      (|valof_pre_rlt_condact_ActiveStandby_System_Side2_Side2ActiveSide| Int)
-     (|valof_pre_rlt_condact_ActiveStandby_System_Side2_rlt_clocked_inp_ManualSelection:394| Bool)
-     (|valof_pre_rlt_condact_ActiveStandby_System_Side2_rlt_clocked_inp_ManualSelection:401| Bool)
+     (|valof_pre_rlt_condact_ActiveStandby_System_Side2_rlt_clocked_inp_ManualSelection:1| Bool)
+     (|valof_pre_rlt_condact_ActiveStandby_System_Side2_rlt_clocked_inp_ManualSelection| Bool)
      (|valof_pre_rlt_condact_ActiveStandby_System_Side2_rlt_clocked_inp_Mon1Side1FullyAvail| Bool)
      (|valof_pre_rlt_condact_ActiveStandby_System_Side2_rlt_clocked_inp_Mon1Side2FullyAvail| Bool)
      (|valof_pre_rlt_condact_ActiveStandby_System_Side2_rlt_clocked_inp_Side1ActiveSide| Int)
@@ -1692,7 +1692,7 @@ Sally Model
       (=
          next.|chart_System_Side1_Side1ActiveSideLogic_Side1Running_Side2Running_eval_rlt_complete_2|
          (or next.|chart_System_Side1_Side1ActiveSideLogic_Side1Running_Side2Running_eval_rlt_fired_2| next.|chart_System_Side1_Side1ActiveSideLogic_Side1Running_Side2Running_eval_rlt_complete_1|))
-      (= next.|valof_pre_rlt_condact_ActiveStandby_System_Side1_rlt_clocked_inp_ManualSelection:412| state.|rlt_condact_ActiveStandby_System_Side1_rlt_clocked_inp_ManualSelection|)
+      (= next.|valof_pre_rlt_condact_ActiveStandby_System_Side1_rlt_clocked_inp_ManualSelection:1| state.|rlt_condact_ActiveStandby_System_Side1_rlt_clocked_inp_ManualSelection|)
       (= next.|valof_pre_ActiveStandby_System_Side1_ManualSelectionOccurs_Unit_Delay| state.|ActiveStandby_System_Side1_ManualSelectionOccurs_Unit_Delay|)
       (ite
          state.|ActiveStandby_System_Side1_ManualSelectionOccurs_Unit_Delay:init|
@@ -1701,19 +1701,19 @@ Sally Model
             next.|ActiveStandby_System_Side1_ManualSelectionOccurs_Unit_Delay|
             (ite
                next.|ActiveStandby_System_Calendar_Side1_Calendar_Relational_Operator|
-               (or next.|rlt_condact_ActiveStandby_System_Side1_rlt_init_step| next.|valof_pre_rlt_condact_ActiveStandby_System_Side1_rlt_clocked_inp_ManualSelection:412|)
+               (or next.|rlt_condact_ActiveStandby_System_Side1_rlt_init_step| next.|valof_pre_rlt_condact_ActiveStandby_System_Side1_rlt_clocked_inp_ManualSelection:1|)
                next.|valof_pre_ActiveStandby_System_Side1_ManualSelectionOccurs_Unit_Delay|)))
       (= next.|ActiveStandby_System_Side1_ManualSelectionOccurs_Unit_Delay:init| false)
       (=
          next.|ActiveStandby_System_Side1_ManualSelectionOccurs_Logical_Operator2|
          (not next.|ActiveStandby_System_Side1_ManualSelectionOccurs_Unit_Delay|))
-      (= next.|valof_pre_rlt_condact_ActiveStandby_System_Side1_rlt_clocked_inp_ManualSelection:419| state.|rlt_condact_ActiveStandby_System_Side1_rlt_clocked_inp_ManualSelection|)
+      (= next.|valof_pre_rlt_condact_ActiveStandby_System_Side1_rlt_clocked_inp_ManualSelection| state.|rlt_condact_ActiveStandby_System_Side1_rlt_clocked_inp_ManualSelection|)
       (ite
          state.|rlt_condact_ActiveStandby_System_Side1_rlt_clocked_inp_ManualSelection:init|
          (= next.|rlt_condact_ActiveStandby_System_Side1_rlt_clocked_inp_ManualSelection| next.ManualSelection)
          (=
             next.|rlt_condact_ActiveStandby_System_Side1_rlt_clocked_inp_ManualSelection|
-            (ite next.|ActiveStandby_System_Calendar_Side1_Calendar_Relational_Operator| next.ManualSelection next.|valof_pre_rlt_condact_ActiveStandby_System_Side1_rlt_clocked_inp_ManualSelection:419|)))
+            (ite next.|ActiveStandby_System_Calendar_Side1_Calendar_Relational_Operator| next.ManualSelection next.|valof_pre_rlt_condact_ActiveStandby_System_Side1_rlt_clocked_inp_ManualSelection|)))
       (= next.|rlt_condact_ActiveStandby_System_Side1_rlt_clocked_inp_ManualSelection:init| false)
       (=
          next.|ActiveStandby_System_Side1_ManualSelectionOccurs_Logical_Operator1|
@@ -2590,7 +2590,7 @@ Sally Model
       (=
          next.|chart_System_Side2_Side2ActiveSideLogic_Side2Running_Side1Running_eval_rlt_complete_2|
          (or next.|chart_System_Side2_Side2ActiveSideLogic_Side2Running_Side1Running_eval_rlt_fired_2| next.|chart_System_Side2_Side2ActiveSideLogic_Side2Running_Side1Running_eval_rlt_complete_1|))
-      (= next.|valof_pre_rlt_condact_ActiveStandby_System_Side2_rlt_clocked_inp_ManualSelection:394| state.|rlt_condact_ActiveStandby_System_Side2_rlt_clocked_inp_ManualSelection|)
+      (= next.|valof_pre_rlt_condact_ActiveStandby_System_Side2_rlt_clocked_inp_ManualSelection:1| state.|rlt_condact_ActiveStandby_System_Side2_rlt_clocked_inp_ManualSelection|)
       (= next.|valof_pre_ActiveStandby_System_Side2_ManualSelectionOccurs_Unit_Delay| state.|ActiveStandby_System_Side2_ManualSelectionOccurs_Unit_Delay|)
       (ite
          state.|ActiveStandby_System_Side2_ManualSelectionOccurs_Unit_Delay:init|
@@ -2599,19 +2599,19 @@ Sally Model
             next.|ActiveStandby_System_Side2_ManualSelectionOccurs_Unit_Delay|
             (ite
                next.|ActiveStandby_System_Calendar_Side2_Calendar_Relational_Operator|
-               (or next.|rlt_condact_ActiveStandby_System_Side2_rlt_init_step| next.|valof_pre_rlt_condact_ActiveStandby_System_Side2_rlt_clocked_inp_ManualSelection:394|)
+               (or next.|rlt_condact_ActiveStandby_System_Side2_rlt_init_step| next.|valof_pre_rlt_condact_ActiveStandby_System_Side2_rlt_clocked_inp_ManualSelection:1|)
                next.|valof_pre_ActiveStandby_System_Side2_ManualSelectionOccurs_Unit_Delay|)))
       (= next.|ActiveStandby_System_Side2_ManualSelectionOccurs_Unit_Delay:init| false)
       (=
          next.|ActiveStandby_System_Side2_ManualSelectionOccurs_Logical_Operator2|
          (not next.|ActiveStandby_System_Side2_ManualSelectionOccurs_Unit_Delay|))
-      (= next.|valof_pre_rlt_condact_ActiveStandby_System_Side2_rlt_clocked_inp_ManualSelection:401| state.|rlt_condact_ActiveStandby_System_Side2_rlt_clocked_inp_ManualSelection|)
+      (= next.|valof_pre_rlt_condact_ActiveStandby_System_Side2_rlt_clocked_inp_ManualSelection| state.|rlt_condact_ActiveStandby_System_Side2_rlt_clocked_inp_ManualSelection|)
       (ite
          state.|rlt_condact_ActiveStandby_System_Side2_rlt_clocked_inp_ManualSelection:init|
          (= next.|rlt_condact_ActiveStandby_System_Side2_rlt_clocked_inp_ManualSelection| next.ManualSelection)
          (=
             next.|rlt_condact_ActiveStandby_System_Side2_rlt_clocked_inp_ManualSelection|
-            (ite next.|ActiveStandby_System_Calendar_Side2_Calendar_Relational_Operator| next.ManualSelection next.|valof_pre_rlt_condact_ActiveStandby_System_Side2_rlt_clocked_inp_ManualSelection:401|)))
+            (ite next.|ActiveStandby_System_Calendar_Side2_Calendar_Relational_Operator| next.ManualSelection next.|valof_pre_rlt_condact_ActiveStandby_System_Side2_rlt_clocked_inp_ManualSelection|)))
       (= next.|rlt_condact_ActiveStandby_System_Side2_rlt_clocked_inp_ManualSelection:init| false)
       (=
          next.|ActiveStandby_System_Side2_ManualSelectionOccurs_Logical_Operator1|
