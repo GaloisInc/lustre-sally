@@ -32,7 +32,7 @@ import TransitionSystem(TransSystem)
 import Sally
 import Log
 import Lustre
-import Report(declareSource, declareTrace)
+import Report(declareSource, simpleTrace, declareTrace)
 import SaveUI(saveUI)
 
 data Settings = Settings
@@ -266,14 +266,20 @@ checkQuery settings mi nd ts_ast ts (l',q) =
          Valid ->
             do sayOK "Valid" (lab ++ " " ++ show maxD)
                pure Valid
-         Invalid r ->
+
+         Invalid r
+          | testMode settings ->
+            do sayFail "Invalid" ""
+               let siTr = simpleTrace  mi l' r
+               saveOutputTesting "Trace" siTr
+               pure (Invalid ())
+
+          | otherwise ->
             do let propDir = outPropDir settings l
                sayFail "Invalid" ("See " ++ (propDir </> "index.html"))
                saveUI propDir
-               let tr = declareTrace mi l' r
-               if testMode settings
-                  then saveOutputTesting "Trace" tr
-                  else saveOutput (outTraceFile settings l) tr
+               let jsTr = declareTrace mi l' r
+               saveOutput (outTraceFile settings l) jsTr
                pure (Invalid ())
 
          Unknown   -> orElse
