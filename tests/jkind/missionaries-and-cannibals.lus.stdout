@@ -1,1 +1,382 @@
-Github #1
+[Lustre] Loading settings from: "missionaries-and-cannibals.lus.settings"
+Core Lustre
+===========
+
+node (m$4 : int, c$4 : int)
+  returns ()
+  assumes (ITE)
+  shows (cex, safety_missionaries, conservation_cannibals, conservation_missionaries)
+let
+  valof_pre_boat_on_left_bank$4 = pre boat_on_left_bank
+  boat_on_left_bank = true -> Not(valof_pre_boat_on_left_bank$4)
+  s.left.m$2 = pre s.left.m
+  m$3 = pre m$4
+  __no_static.left.m$1 = Add(s.left.m$2, m$3)
+  s.left.m$1 = pre s.left.m
+  m$2 = pre m$4
+  __no_static.left.m = Sub(s.left.m$1, m$2)
+  valof_pre_boat_on_left_bank$3 = pre boat_on_left_bank
+  s.left.m = 3 -> ITE(valof_pre_boat_on_left_bank$3, __no_static.left.m, __no_static.left.m$1)
+  s.right.m$2 = pre s.right.m
+  __no_static.right.m$1 = Sub(s.right.m$2, m$3)
+  s.right.m$1 = pre s.right.m
+  __no_static.right.m = Add(s.right.m$1, m$2)
+  valof_pre_boat_on_left_bank$2 = pre boat_on_left_bank
+  s.right.m = 0 -> ITE(valof_pre_boat_on_left_bank$2, __no_static.right.m, __no_static.right.m$1)
+  conservation_missionaries = Eq(Add(s.left.m, s.right.m), 3)
+  s.left.c$2 = pre s.left.c
+  c$3 = pre c$4
+  __no_static.left.c$1 = Add(s.left.c$2, c$3)
+  s.left.c$1 = pre s.left.c
+  c$2 = pre c$4
+  __no_static.left.c = Sub(s.left.c$1, c$2)
+  valof_pre_boat_on_left_bank$1 = pre boat_on_left_bank
+  s.left.c = 3 -> ITE(valof_pre_boat_on_left_bank$1, __no_static.left.c, __no_static.left.c$1)
+  s.right.c$2 = pre s.right.c
+  __no_static.right.c$1 = Sub(s.right.c$2, c$3)
+  s.right.c$1 = pre s.right.c
+  __no_static.right.c = Add(s.right.c$1, c$2)
+  valof_pre_boat_on_left_bank = pre boat_on_left_bank
+  s.right.c = 0 -> ITE(valof_pre_boat_on_left_bank, __no_static.right.c, __no_static.right.c$1)
+  conservation_cannibals = Eq(Add(s.left.c, s.right.c), 3)
+  safety_missionaries = And(Or(Geq(s.left.m, s.left.c), Eq(s.left.m, 0)), Or(Geq(s.right.m, s.right.c), Eq(s.right.m, 0)))
+  cex = Not(And(Eq(s.right.m, 3), Eq(s.right.c, 3)))
+  src.m$1 = s.left.m
+  src.c$1 = s.left.c
+  dst.m$1 = s.right.m
+  dst.c$1 = s.right.c
+  m$1 = m$4
+  c$1 = c$4
+  __no_static$1 = And(And(And(And(And(And(And(Geq(m$1, 0), Geq(c$1, 0)), Geq(Add(m$1, c$1), 1)), Leq(Add(m$1, c$1), 2)), Leq(m$1, src.m$1)), Leq(c$1, src.c$1)), Or(Geq(Sub(src.m$1, m$1), Sub(src.c$1, c$1)), Eq(src.m$1, m$1))), Or(Geq(Add(dst.m$1, m$1), Add(dst.c$1, c$1)), Eq(Add(dst.m$1, m$1), 0)))
+  src.m = s.right.m
+  src.c = s.right.c
+  dst.m = s.left.m
+  dst.c = s.left.c
+  m = m$4
+  c = c$4
+  __no_static = And(And(And(And(And(And(And(Geq(m, 0), Geq(c, 0)), Geq(Add(m, c), 1)), Leq(Add(m, c), 2)), Leq(m, src.m)), Leq(c, src.c)), Or(Geq(Sub(src.m, m), Sub(src.c, c)), Eq(src.m, m))), Or(Geq(Add(dst.m, m), Add(dst.c, c)), Eq(Add(dst.m, m), 0)))
+  ITE = ITE(boat_on_left_bank, __no_static$1, __no_static)
+tel
+Sally Model
+===========
+
+(define-state-type
+   S
+   (
+     (ITE Bool)
+     (c Int)
+     (cex Bool)
+     (m Int)
+     (|__no_static.left.c:1| Int)
+     (|__no_static.left.c| Int)
+     (|__no_static.left.m:1| Int)
+     (|__no_static.left.m| Int)
+     (|__no_static.right.c:1| Int)
+     (|__no_static.right.c| Int)
+     (|__no_static.right.m:1| Int)
+     (|__no_static.right.m| Int)
+     (|__no_static:1| Bool)
+     (|__no_static| Bool)
+     (|boat_on_left_bank:init| Bool)
+     (|boat_on_left_bank| Bool)
+     (|c:1| Int)
+     (|c:2| Int)
+     (|c:3| Int)
+     (|c:4| Int)
+     (|conservation_cannibals| Bool)
+     (|conservation_missionaries| Bool)
+     (|dst.c:1| Int)
+     (|dst.c| Int)
+     (|dst.m:1| Int)
+     (|dst.m| Int)
+     (|gal-initializing| Bool)
+     (|m:1| Int)
+     (|m:2| Int)
+     (|m:3| Int)
+     (|m:4| Int)
+     (|s.left.c:1| Int)
+     (|s.left.c:2| Int)
+     (|s.left.c:init| Bool)
+     (|s.left.c| Int)
+     (|s.left.m:1| Int)
+     (|s.left.m:2| Int)
+     (|s.left.m:init| Bool)
+     (|s.left.m| Int)
+     (|s.right.c:1| Int)
+     (|s.right.c:2| Int)
+     (|s.right.c:init| Bool)
+     (|s.right.c| Int)
+     (|s.right.m:1| Int)
+     (|s.right.m:2| Int)
+     (|s.right.m:init| Bool)
+     (|s.right.m| Int)
+     (|safety_missionaries| Bool)
+     (|src.c:1| Int)
+     (|src.c| Int)
+     (|src.m:1| Int)
+     (|src.m| Int)
+     (|valof_pre_boat_on_left_bank:1| Bool)
+     (|valof_pre_boat_on_left_bank:2| Bool)
+     (|valof_pre_boat_on_left_bank:3| Bool)
+     (|valof_pre_boat_on_left_bank:4| Bool)
+     (|valof_pre_boat_on_left_bank| Bool))
+   (
+     (|c:4| Int)
+     (|m:4| Int)))
+(define-transition-system
+   TS
+   S
+   (and
+      (= |gal-initializing| true)
+      (= |boat_on_left_bank:init| true)
+      (= |s.left.m:init| true)
+      (= |s.right.m:init| true)
+      (= |s.left.c:init| true)
+      (= |s.right.c:init| true))
+   (and
+      (= next.|gal-initializing| false)
+      (= next.|m:4| input.|m:4|)
+      (= next.|c:4| input.|c:4|)
+      next.ITE
+      (= next.|valof_pre_boat_on_left_bank:4| state.|boat_on_left_bank|)
+      (ite
+         state.|boat_on_left_bank:init|
+         (= next.|boat_on_left_bank| true)
+         (=
+            next.|boat_on_left_bank|
+            (not next.|valof_pre_boat_on_left_bank:4|)))
+      (= next.|boat_on_left_bank:init| false)
+      (= next.|s.left.m:2| state.|s.left.m|)
+      (= next.|m:3| state.|m:4|)
+      (=
+         next.|__no_static.left.m:1|
+         (+ next.|s.left.m:2| next.|m:3|))
+      (= next.|s.left.m:1| state.|s.left.m|)
+      (= next.|m:2| state.|m:4|)
+      (=
+         next.|__no_static.left.m|
+         (- next.|s.left.m:1| next.|m:2|))
+      (= next.|valof_pre_boat_on_left_bank:3| state.|boat_on_left_bank|)
+      (ite
+         state.|s.left.m:init|
+         (= next.|s.left.m| 3)
+         (=
+            next.|s.left.m|
+            (ite next.|valof_pre_boat_on_left_bank:3| next.|__no_static.left.m| next.|__no_static.left.m:1|)))
+      (= next.|s.left.m:init| false)
+      (= next.|s.right.m:2| state.|s.right.m|)
+      (=
+         next.|__no_static.right.m:1|
+         (- next.|s.right.m:2| next.|m:3|))
+      (= next.|s.right.m:1| state.|s.right.m|)
+      (=
+         next.|__no_static.right.m|
+         (+ next.|s.right.m:1| next.|m:2|))
+      (= next.|valof_pre_boat_on_left_bank:2| state.|boat_on_left_bank|)
+      (ite
+         state.|s.right.m:init|
+         (= next.|s.right.m| 0)
+         (=
+            next.|s.right.m|
+            (ite next.|valof_pre_boat_on_left_bank:2| next.|__no_static.right.m| next.|__no_static.right.m:1|)))
+      (= next.|s.right.m:init| false)
+      (=
+         next.|conservation_missionaries|
+         (=
+            (+ next.|s.left.m| next.|s.right.m|)
+            3))
+      (= next.|s.left.c:2| state.|s.left.c|)
+      (= next.|c:3| state.|c:4|)
+      (=
+         next.|__no_static.left.c:1|
+         (+ next.|s.left.c:2| next.|c:3|))
+      (= next.|s.left.c:1| state.|s.left.c|)
+      (= next.|c:2| state.|c:4|)
+      (=
+         next.|__no_static.left.c|
+         (- next.|s.left.c:1| next.|c:2|))
+      (= next.|valof_pre_boat_on_left_bank:1| state.|boat_on_left_bank|)
+      (ite
+         state.|s.left.c:init|
+         (= next.|s.left.c| 3)
+         (=
+            next.|s.left.c|
+            (ite next.|valof_pre_boat_on_left_bank:1| next.|__no_static.left.c| next.|__no_static.left.c:1|)))
+      (= next.|s.left.c:init| false)
+      (= next.|s.right.c:2| state.|s.right.c|)
+      (=
+         next.|__no_static.right.c:1|
+         (- next.|s.right.c:2| next.|c:3|))
+      (= next.|s.right.c:1| state.|s.right.c|)
+      (=
+         next.|__no_static.right.c|
+         (+ next.|s.right.c:1| next.|c:2|))
+      (= next.|valof_pre_boat_on_left_bank| state.|boat_on_left_bank|)
+      (ite
+         state.|s.right.c:init|
+         (= next.|s.right.c| 0)
+         (=
+            next.|s.right.c|
+            (ite next.|valof_pre_boat_on_left_bank| next.|__no_static.right.c| next.|__no_static.right.c:1|)))
+      (= next.|s.right.c:init| false)
+      (=
+         next.|conservation_cannibals|
+         (=
+            (+ next.|s.left.c| next.|s.right.c|)
+            3))
+      (=
+         next.|safety_missionaries|
+         (and
+            (or
+               (<= next.|s.left.c| next.|s.left.m|)
+               (= next.|s.left.m| 0))
+            (or
+               (<= next.|s.right.c| next.|s.right.m|)
+               (= next.|s.right.m| 0))))
+      (=
+         next.cex
+         (not
+            (and
+               (= next.|s.right.m| 3)
+               (= next.|s.right.c| 3))))
+      (= next.|src.m:1| next.|s.left.m|)
+      (= next.|src.c:1| next.|s.left.c|)
+      (= next.|dst.m:1| next.|s.right.m|)
+      (= next.|dst.c:1| next.|s.right.c|)
+      (= next.|m:1| next.|m:4|)
+      (= next.|c:1| next.|c:4|)
+      (=
+         next.|__no_static:1|
+         (and
+            (<= 0 next.|m:1|)
+            (<= 0 next.|c:1|)
+            (<=
+               1
+               (+ next.|m:1| next.|c:1|))
+            (<=
+               (+ next.|m:1| next.|c:1|)
+               2)
+            (<= next.|m:1| next.|src.m:1|)
+            (<= next.|c:1| next.|src.c:1|)
+            (or
+               (<=
+                  (- next.|src.c:1| next.|c:1|)
+                  (- next.|src.m:1| next.|m:1|))
+               (= next.|src.m:1| next.|m:1|))
+            (or
+               (<=
+                  (+ next.|dst.c:1| next.|c:1|)
+                  (+ next.|dst.m:1| next.|m:1|))
+               (=
+                  (+ next.|dst.m:1| next.|m:1|)
+                  0))))
+      (= next.|src.m| next.|s.right.m|)
+      (= next.|src.c| next.|s.right.c|)
+      (= next.|dst.m| next.|s.left.m|)
+      (= next.|dst.c| next.|s.left.c|)
+      (= next.m next.|m:4|)
+      (= next.c next.|c:4|)
+      (=
+         next.|__no_static|
+         (and
+            (<= 0 next.m)
+            (<= 0 next.c)
+            (<=
+               1
+               (+ next.m next.c))
+            (<=
+               (+ next.m next.c)
+               2)
+            (<= next.m next.|src.m|)
+            (<= next.c next.|src.c|)
+            (or
+               (<=
+                  (- next.|src.c| next.c)
+                  (- next.|src.m| next.m))
+               (= next.|src.m| next.m))
+            (or
+               (<=
+                  (+ next.|dst.c| next.c)
+                  (+ next.|dst.m| next.m))
+               (=
+                  (+ next.|dst.m| next.m)
+                  0))))
+      (=
+         next.ITE
+         (ite next.|boat_on_left_bank| next.|__no_static:1| next.|__no_static|))))
+
+(query
+   TS
+   (or |gal-initializing| cex))
+(query
+   TS
+   (or |gal-initializing| |safety_missionaries|))
+(query
+   TS
+   (or |gal-initializing| |conservation_cannibals|))
+(query
+   TS
+   (or |gal-initializing| |conservation_missionaries|))
+
+[Lustre] Validating properties:
+[Lustre] Property cex... considering simultaneous states to depth 0
+considering simultaneous states to depth 0
+considering simultaneous states to depth 1
+considering simultaneous states to depth 1
+considering simultaneous states to depth 2
+considering simultaneous states to depth 2
+considering simultaneous states to depth 3
+considering simultaneous states to depth 3
+considering simultaneous states to depth 4
+considering simultaneous states to depth 4
+considering simultaneous states to depth 5
+considering simultaneous states to depth 5
+considering simultaneous states to depth 6
+considering simultaneous states to depth 6
+considering simultaneous states to depth 7
+considering simultaneous states to depth 7
+considering simultaneous states to depth 8
+considering simultaneous states to depth 8
+considering simultaneous states to depth 9
+considering simultaneous states to depth 9
+considering simultaneous states to depth 10
+considering simultaneous states to depth 10
+considering simultaneous states to depth 11
+considering simultaneous states to depth 11
+considering simultaneous states to depth 12
+[[1;91mInvalid[0m] 
+Trace
+=====
+
+cex:
+ Step | m | c | |-> 
+------+---+---+-----
+ 1    | 0 | 2 |     
+ 2    | 0 | 1 |     
+ 3    | 0 | 2 |     
+ 4    | 0 | 1 |     
+ 5    | 2 | 0 |     
+ 6    | 1 | 1 |     
+ 7    | 2 | 0 |     
+ 8    | 0 | 1 |     
+ 9    | 0 | 2 |     
+ 10   | 0 | 1 |     
+ 11   | 0 | 2 |     
+ 12   | 0 | 1 |     
+
+[Lustre] Property safety_missionaries... considering simultaneous states to depth 0
+considering simultaneous states to depth 0
+considering simultaneous states to depth 1
+considering simultaneous states to depth 1
+[[1;92mValid[0m] considering simultaneous states to depth 1
+[Lustre] Property conservation_cannibals... considering simultaneous states to depth 0
+considering simultaneous states to depth 0
+considering simultaneous states to depth 1
+considering simultaneous states to depth 1
+[[1;92mValid[0m] considering simultaneous states to depth 1
+[Lustre] Property conservation_missionaries... considering simultaneous states to depth 0
+considering simultaneous states to depth 0
+considering simultaneous states to depth 1
+considering simultaneous states to depth 1
+[[1;92mValid[0m] considering simultaneous states to depth 1
+[Lustre] Model status: [[1;91mInvalid[0m] 
