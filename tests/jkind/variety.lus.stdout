@@ -1,4 +1,220 @@
-[[1;91mError[0m] TCError Type error at: 8:16--8:35
-XXX: Feature not yet implemented:
-*** Feature: structs
+Core Lustre
+===========
 
+node (delta_x : int, delta_y : int)
+  returns ()
+  assumes (Leq, Leq$1)
+  shows (cex1, ok1)
+let
+  valof_pre_p1.x = pre p1.x
+  valof_arr$1 = 0 -> valof_pre_p1.x
+  p1.x = Add(valof_arr$1, delta_x)
+  valof_pre_p1.y = pre p1.y
+  valof_arr = 0 -> valof_pre_p1.y
+  p1.y = Add(valof_arr, delta_y)
+  valof_pre_p2.x = pre p2.x
+  p.x = 0 -> valof_pre_p2.x
+  delta.x = delta_x
+  q.x = delta.x
+  x_coord = Add(p.x, q.x)
+  p2.x = x_coord
+  valof_pre_p2.y = pre p2.y
+  p.y = 0 -> valof_pre_p2.y
+  delta.y = delta_y
+  q.y = delta.y
+  y_coord = Add(p.y, q.y)
+  p2.y = y_coord
+  ok1 = And(Eq(p1.x, p2.x), Eq(p1.y, p2.y))
+  cex1 = Or(Neq(p1.x, 20), Neq(p1.y, 13))
+  z$1 = delta_x
+  __no_static$1 = ITE(Geq(z$1, 0), z$1, Neg(z$1))
+  z = delta_y
+  __no_static = ITE(Geq(z, 0), z, Neg(z))
+  Leq$1 = Leq(__no_static$1, 2)
+  Leq = Leq(__no_static, 2)
+tel
+Sally Model
+===========
+
+(define-state-type
+   S
+   (
+     (Leq Bool)
+     (cex1 Bool)
+     (ok1 Bool)
+     (z Int)
+     (|Leq:1| Bool)
+     (|__no_static:1| Int)
+     (|__no_static| Int)
+     (|delta.x| Int)
+     (|delta.y| Int)
+     (|delta_x| Int)
+     (|delta_y| Int)
+     (|gal-initializing| Bool)
+     (|p.x:init| Bool)
+     (|p.x| Int)
+     (|p.y:init| Bool)
+     (|p.y| Int)
+     (|p1.x| Int)
+     (|p1.y| Int)
+     (|p2.x| Int)
+     (|p2.y| Int)
+     (|q.x| Int)
+     (|q.y| Int)
+     (|valof_arr:1:init| Bool)
+     (|valof_arr:1| Int)
+     (|valof_arr:init| Bool)
+     (|valof_arr| Int)
+     (|valof_pre_p1.x| Int)
+     (|valof_pre_p1.y| Int)
+     (|valof_pre_p2.x| Int)
+     (|valof_pre_p2.y| Int)
+     (|x_coord| Int)
+     (|y_coord| Int)
+     (|z:1| Int))
+   (
+     (|delta_x| Int)
+     (|delta_y| Int)))
+(define-transition-system
+   TS
+   S
+   (and
+      (= |gal-initializing| true)
+      (= |valof_arr:1:init| true)
+      (= |valof_arr:init| true)
+      (= |p.x:init| true)
+      (= |p.y:init| true))
+   (and
+      (= next.|gal-initializing| false)
+      (= next.|delta_x| input.|delta_x|)
+      (= next.|delta_y| input.|delta_y|)
+      next.Leq
+      next.|Leq:1|
+      (= next.|valof_pre_p1.x| state.|p1.x|)
+      (ite
+         state.|valof_arr:1:init|
+         (= next.|valof_arr:1| 0)
+         (= next.|valof_arr:1| next.|valof_pre_p1.x|))
+      (= next.|valof_arr:1:init| false)
+      (=
+         next.|p1.x|
+         (+ next.|valof_arr:1| next.|delta_x|))
+      (= next.|valof_pre_p1.y| state.|p1.y|)
+      (ite
+         state.|valof_arr:init|
+         (= next.|valof_arr| 0)
+         (= next.|valof_arr| next.|valof_pre_p1.y|))
+      (= next.|valof_arr:init| false)
+      (=
+         next.|p1.y|
+         (+ next.|valof_arr| next.|delta_y|))
+      (= next.|valof_pre_p2.x| state.|p2.x|)
+      (ite
+         state.|p.x:init|
+         (= next.|p.x| 0)
+         (= next.|p.x| next.|valof_pre_p2.x|))
+      (= next.|p.x:init| false)
+      (= next.|delta.x| next.|delta_x|)
+      (= next.|q.x| next.|delta.x|)
+      (=
+         next.|x_coord|
+         (+ next.|p.x| next.|q.x|))
+      (= next.|p2.x| next.|x_coord|)
+      (= next.|valof_pre_p2.y| state.|p2.y|)
+      (ite
+         state.|p.y:init|
+         (= next.|p.y| 0)
+         (= next.|p.y| next.|valof_pre_p2.y|))
+      (= next.|p.y:init| false)
+      (= next.|delta.y| next.|delta_y|)
+      (= next.|q.y| next.|delta.y|)
+      (=
+         next.|y_coord|
+         (+ next.|p.y| next.|q.y|))
+      (= next.|p2.y| next.|y_coord|)
+      (=
+         next.ok1
+         (and
+            (= next.|p1.x| next.|p2.x|)
+            (= next.|p1.y| next.|p2.y|)))
+      (=
+         next.cex1
+         (or
+            (not
+               (= next.|p1.x| 20))
+            (not
+               (= next.|p1.y| 13))))
+      (= next.|z:1| next.|delta_x|)
+      (=
+         next.|__no_static:1|
+         (ite
+            (<= 0 next.|z:1|)
+            next.|z:1|
+            (- next.|z:1|)))
+      (= next.z next.|delta_y|)
+      (=
+         next.|__no_static|
+         (ite
+            (<= 0 next.z)
+            next.z
+            (- next.z)))
+      (=
+         next.|Leq:1|
+         (<= next.|__no_static:1| 2))
+      (=
+         next.Leq
+         (<= next.|__no_static| 2))))
+
+(query
+   TS
+   (or |gal-initializing| cex1))
+(query
+   TS
+   (or |gal-initializing| ok1))
+
+[Lustre] Validating properties:
+[Lustre] Property cex1... considering simultaneous states to depth 0
+considering simultaneous states to depth 0
+considering simultaneous states to depth 1
+considering simultaneous states to depth 1
+considering simultaneous states to depth 2
+considering simultaneous states to depth 2
+considering simultaneous states to depth 3
+considering simultaneous states to depth 3
+considering simultaneous states to depth 4
+considering simultaneous states to depth 4
+considering simultaneous states to depth 5
+considering simultaneous states to depth 5
+considering simultaneous states to depth 6
+considering simultaneous states to depth 6
+considering simultaneous states to depth 7
+considering simultaneous states to depth 7
+considering simultaneous states to depth 8
+considering simultaneous states to depth 8
+considering simultaneous states to depth 9
+considering simultaneous states to depth 9
+considering simultaneous states to depth 10
+[[1;91mInvalid[0m] 
+Trace
+=====
+
+cex1:
+ Step | delta_x | delta_y | |-> 
+------+---------+---------+-----
+ 1    | 2       | 2       |     
+ 2    | 2       | 2       |     
+ 3    | 2       | 2       |     
+ 4    | 2       | 2       |     
+ 5    | 2       | 2       |     
+ 6    | 2       | 2       |     
+ 7    | 2       | 2       |     
+ 8    | 2       | -1      |     
+ 9    | 2       | 0       |     
+ 10   | 2       | 0       |     
+
+[Lustre] Property ok1... considering simultaneous states to depth 0
+considering simultaneous states to depth 0
+considering simultaneous states to depth 1
+considering simultaneous states to depth 1
+[[1;92mValid[0m] considering simultaneous states to depth 1
+[Lustre] Model status: [[1;91mInvalid[0m] 
