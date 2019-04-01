@@ -203,22 +203,21 @@ stepInput qns env (x ::: _) = setVals qns TS.InNextState x a
 stepEqn :: QNames -> Env -> Eqn -> TS.Expr
 stepEqn qns env (x ::: _ `On` c := expr) =
   case expr of
-    Atom a      -> new a
+    Atom a      -> guarded (new a)
     Current a   -> new a
     Pre a       -> guarded (old a)
     a `When` _  -> guarded (new a)
 
     a :-> b     ->
-      case clockOn of
-        Nothing -> clockYes
-        Just g ->
-          TS.ITE g
-            clockYes
-            (old (Var x) TS.:&&: ivar TS.InNextState TS.:==: ivar TS.InCurState)
+      case clockTowerOf c of
+        Nothing -> hold
+        Just [] -> clockYes
+        Just g  -> TS.ITE (ands g) clockYes hold
       where
+      hold = old (Var x) TS.:&&: ivar TS.InNextState TS.:==: ivar TS.InCurState
       ivar n = n TS.::: initName qns x
-      clockYes = (TS.ITE (ivar TS.InCurState) (new a) (new b)
-                    TS.:&&: ivar TS.InNextState TS.:==: false)
+      clockYes = TS.ITE (ivar TS.InCurState) (new a) (new b) TS.:&&:
+                 ivar TS.InNextState TS.:==: false
 
     Merge a ifT ifF -> guarded (TS.ITE a' (new ifT) (new ifF))
       where a' = atom a
@@ -230,14 +229,21 @@ stepEqn qns env (x ::: _ `On` c := expr) =
   new     = letVars . atom
   letVars = setVals qns TS.InNextState x
 
-  guarded e = case clockOn of
-                Nothing -> e
-                Just g  -> TS.ITE g e (old (Var x))
+  clockTowerOf cl =
+    case cl of
+      Lit b ->
+        case b of
+          Bool True  -> Just []   -- base
+          Bool False -> Nothing   -- never clock
+          _ -> panic "guardedOn" [ "Non-boolean clock" ]
+      _ -> do cs <- clockTowerOf (clockOfCType (typeOf env cl))
+              pure (atom c : cs)
 
-  clockOn = case c of
-              Lit (Bool True) -> Nothing -- base clocks
-              _ -> Just (atom c)
 
+  guarded e = case clockTowerOf c of
+                Nothing -> old (Var x)    -- always false clock?
+                Just [] -> e              -- base clock
+                Just g  -> TS.ITE (ands g) e (old (Var x))
 
 
 -- | Translation of primitive functions.
