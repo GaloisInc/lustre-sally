@@ -28,6 +28,7 @@ import Language.Lustre.Pretty
 import Language.Lustre.Monad(runLustre,LustreConf(..))
 import Language.Lustre.Driver(quickNodeToCore)
 import Language.Lustre.ModelState(ModelInfo)
+import Language.Lustre.Phase(noPhases)
 import TransitionSystem(TransSystem)
 import Sally
 import Log
@@ -201,6 +202,7 @@ mainWork settings ds =
   do let luConf = LustreConf { lustreInitialNameSeed = Nothing
                              , lustreLogHandle = stdout
                              , lustreNoTC = not (optTC settings)
+                             , lustreDumpAfter = noPhases
                              }
      (info,nd) <- runLustre luConf (quickNodeToCore (node settings) ds)
 
@@ -279,7 +281,9 @@ checkQuery settings mi nd ts_ast ts (l',q) =
                sayFail "Invalid" ("See " ++ (propDir </> "index.html"))
                saveUI propDir
                let jsTr = declareTrace mi l' r
+               let siTr = simpleTrace  mi l' r
                saveOutput (outTraceFile settings l) jsTr
+               sayFail "Trace" ('\n' : siTr)
                pure (Invalid ())
 
          Unknown   -> orElse
