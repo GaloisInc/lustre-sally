@@ -6,32 +6,83 @@ node (a : int, b : int, x : int, y : int)
   assumes (And)
   shows (ok3, cex2, ok2, cex1, ok1)
 let
-  min = ITE(Lt(a, b), a, b)
-  max = ITE(Lt(a, b), b, a)
-  valof_pre_fib2 = pre fib2
-  fib1 = 0 -> valof_pre_fib2
-  valof_pre = pre Add(fib1, fib2)
-  fib2 = 1 -> valof_pre
-  valof_pre_toggle = pre toggle
-  toggle = true -> Not(valof_pre_toggle)
-  diff$1 = 1
-  valof_pre___no_static$3 = pre __no_static$3
-  __no_static$3 = 0 -> Sub(valof_pre___no_static$3, diff$1)
-  diff = 2
-  valof_pre___no_static$2 = pre __no_static$2
-  __no_static$2 = 0 -> Sub(valof_pre___no_static$2, diff)
-  down = ITE(toggle, __no_static$3, __no_static$2)
-  valof_pre___no_static$1 = pre __no_static$1
-  __no_static$1 = 0 -> Add(valof_pre___no_static$1, diff$1)
-  valof_pre___no_static = pre __no_static
-  __no_static = 0 -> Add(valof_pre___no_static, diff)
-  up = ITE(toggle, __no_static$1, __no_static)
-  ok1 = And(And(Leq(min, max), Or(Eq(a, min), Eq(a, max))), Or(Eq(b, min), Eq(b, max)))
-  ok2 = Neq(fib2, 10947)
-  ok3 = Or(And(Eq(x, 1), Eq(y, 2)), And(Eq(x, 3), Eq(y, 4)))
-  cex1 = Neq(fib2, 10946)
-  cex2 = Lt(up, 100)
-  And = And(Eq(x, ITE(toggle, 1, 3)), Eq(y, ITE(toggle, 2, 4)))
+  min : int
+    = ITE(Lt(a, b), a, b)
+   
+  max : int
+    = ITE(Lt(a, b), b, a)
+   
+  pre_fib2 : int
+    = pre fib2
+   
+  fib1 : int
+    = 0 -> pre_fib2
+   
+  $pre : int
+    = pre Add(fib1, fib2)
+   
+  fib2 : int
+    = 1 -> $pre
+   
+  pre_toggle : bool
+    = pre toggle
+   
+  toggle : bool
+    = true -> Not(pre_toggle)
+   
+  diff$1 : int
+    = 1
+   
+  pre_count_by_down$1 : int
+    = pre count_by_down$1
+   
+  count_by_down$1 : int
+    = 0 -> Sub(pre_count_by_down$1, diff$1)
+   
+  diff : int
+    = 2
+   
+  pre_count_by_down : int
+    = pre count_by_down
+   
+  count_by_down : int
+    = 0 -> Sub(pre_count_by_down, diff)
+   
+  down : int
+    = ITE(toggle, count_by_down$1, count_by_down)
+   
+  pre_count_by_up$1 : int
+    = pre count_by_up$1
+   
+  count_by_up$1 : int
+    = 0 -> Add(pre_count_by_up$1, diff$1)
+   
+  pre_count_by_up : int
+    = pre count_by_up
+   
+  count_by_up : int
+    = 0 -> Add(pre_count_by_up, diff)
+   
+  up : int
+    = ITE(toggle, count_by_up$1, count_by_up)
+   
+  ok1 : bool
+    = And(And(Leq(min, max), Or(Eq(a, min), Eq(a, max))), Or(Eq(b, min), Eq(b, max)))
+   
+  ok2 : bool
+    = Neq(fib2, 10947)
+   
+  ok3 : bool
+    = Or(And(Eq(x, 1), Eq(y, 2)), And(Eq(x, 3), Eq(y, 4)))
+   
+  cex1 : bool
+    = Neq(fib2, 10946)
+   
+  cex2 : bool
+    = Lt(up, 100)
+   
+  And : bool
+    = And(Eq(x, ITE(toggle, 1, 3)), Eq(y, ITE(toggle, 2, 4)))
 tel
 Sally Model
 ===========
@@ -57,26 +108,26 @@ Sally Model
      (up Int)
      (x Int)
      (y Int)
-     (|__no_static:1:init| Bool)
-     (|__no_static:1| Int)
-     (|__no_static:2:init| Bool)
-     (|__no_static:2| Int)
-     (|__no_static:3:init| Bool)
-     (|__no_static:3| Int)
-     (|__no_static:init| Bool)
-     (|__no_static| Int)
+     (|$pre| Int)
+     (|count_by_down:1:init| Bool)
+     (|count_by_down:1| Int)
+     (|count_by_down:init| Bool)
+     (|count_by_down| Int)
+     (|count_by_up:1:init| Bool)
+     (|count_by_up:1| Int)
+     (|count_by_up:init| Bool)
+     (|count_by_up| Int)
      (|diff:1| Int)
      (|fib1:init| Bool)
      (|fib2:init| Bool)
      (|gal-initializing| Bool)
-     (|toggle:init| Bool)
-     (|valof_pre___no_static:1| Int)
-     (|valof_pre___no_static:2| Int)
-     (|valof_pre___no_static:3| Int)
-     (|valof_pre___no_static| Int)
-     (|valof_pre_fib2| Int)
-     (|valof_pre_toggle| Bool)
-     (|valof_pre| Int))
+     (|pre_count_by_down:1| Int)
+     (|pre_count_by_down| Int)
+     (|pre_count_by_up:1| Int)
+     (|pre_count_by_up| Int)
+     (|pre_fib2| Int)
+     (|pre_toggle| Bool)
+     (|toggle:init| Bool))
    (
      (a Int)
      (b Int)
@@ -90,10 +141,10 @@ Sally Model
       (= |fib1:init| true)
       (= |fib2:init| true)
       (= |toggle:init| true)
-      (= |__no_static:3:init| true)
-      (= |__no_static:2:init| true)
-      (= |__no_static:1:init| true)
-      (= |__no_static:init| true))
+      (= |count_by_down:1:init| true)
+      (= |count_by_down:init| true)
+      (= |count_by_up:1:init| true)
+      (= |count_by_up:init| true))
    (and
       (= next.|gal-initializing| false)
       (= next.a input.a)
@@ -113,68 +164,68 @@ Sally Model
             (< next.a next.b)
             next.b
             next.a))
-      (= next.|valof_pre_fib2| state.fib2)
+      (= next.|pre_fib2| state.fib2)
       (ite
          state.|fib1:init|
          (= next.fib1 0)
-         (= next.fib1 next.|valof_pre_fib2|))
+         (= next.fib1 next.|pre_fib2|))
       (= next.|fib1:init| false)
       (=
-         next.|valof_pre|
+         next.|$pre|
          (+ state.fib1 state.fib2))
       (ite
          state.|fib2:init|
          (= next.fib2 1)
-         (= next.fib2 next.|valof_pre|))
+         (= next.fib2 next.|$pre|))
       (= next.|fib2:init| false)
-      (= next.|valof_pre_toggle| state.toggle)
+      (= next.|pre_toggle| state.toggle)
       (ite
          state.|toggle:init|
          (= next.toggle true)
          (=
             next.toggle
-            (not next.|valof_pre_toggle|)))
+            (not next.|pre_toggle|)))
       (= next.|toggle:init| false)
       (= next.|diff:1| 1)
-      (= next.|valof_pre___no_static:3| state.|__no_static:3|)
+      (= next.|pre_count_by_down:1| state.|count_by_down:1|)
       (ite
-         state.|__no_static:3:init|
-         (= next.|__no_static:3| 0)
+         state.|count_by_down:1:init|
+         (= next.|count_by_down:1| 0)
          (=
-            next.|__no_static:3|
-            (- next.|valof_pre___no_static:3| next.|diff:1|)))
-      (= next.|__no_static:3:init| false)
+            next.|count_by_down:1|
+            (- next.|pre_count_by_down:1| next.|diff:1|)))
+      (= next.|count_by_down:1:init| false)
       (= next.diff 2)
-      (= next.|valof_pre___no_static:2| state.|__no_static:2|)
+      (= next.|pre_count_by_down| state.|count_by_down|)
       (ite
-         state.|__no_static:2:init|
-         (= next.|__no_static:2| 0)
+         state.|count_by_down:init|
+         (= next.|count_by_down| 0)
          (=
-            next.|__no_static:2|
-            (- next.|valof_pre___no_static:2| next.diff)))
-      (= next.|__no_static:2:init| false)
+            next.|count_by_down|
+            (- next.|pre_count_by_down| next.diff)))
+      (= next.|count_by_down:init| false)
       (=
          next.down
-         (ite next.toggle next.|__no_static:3| next.|__no_static:2|))
-      (= next.|valof_pre___no_static:1| state.|__no_static:1|)
+         (ite next.toggle next.|count_by_down:1| next.|count_by_down|))
+      (= next.|pre_count_by_up:1| state.|count_by_up:1|)
       (ite
-         state.|__no_static:1:init|
-         (= next.|__no_static:1| 0)
+         state.|count_by_up:1:init|
+         (= next.|count_by_up:1| 0)
          (=
-            next.|__no_static:1|
-            (+ next.|valof_pre___no_static:1| next.|diff:1|)))
-      (= next.|__no_static:1:init| false)
-      (= next.|valof_pre___no_static| state.|__no_static|)
+            next.|count_by_up:1|
+            (+ next.|pre_count_by_up:1| next.|diff:1|)))
+      (= next.|count_by_up:1:init| false)
+      (= next.|pre_count_by_up| state.|count_by_up|)
       (ite
-         state.|__no_static:init|
-         (= next.|__no_static| 0)
+         state.|count_by_up:init|
+         (= next.|count_by_up| 0)
          (=
-            next.|__no_static|
-            (+ next.|valof_pre___no_static| next.diff)))
-      (= next.|__no_static:init| false)
+            next.|count_by_up|
+            (+ next.|pre_count_by_up| next.diff)))
+      (= next.|count_by_up:init| false)
       (=
          next.up
-         (ite next.toggle next.|__no_static:1| next.|__no_static|))
+         (ite next.toggle next.|count_by_up:1| next.|count_by_up|))
       (=
          next.ok1
          (and

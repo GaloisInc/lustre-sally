@@ -7,75 +7,212 @@ node (AXL__Speed__val : real, Target_Speed__val : real, AXL__Actual_Tire_Directi
   assumes ()
   shows (_SYS_GUARANTEE_1)
 let
-  THROT__Actuator_Input__val = CNTRL__Actuator_Input__val
-  CNTRL__Actual__val = THROT__Actual__val
-  CNTRL__Target__val = Target_Speed__val
-  CNTRL__e = Sub(CNTRL__Target__val, CNTRL__Actual__val)
-  valof_pre_CNTRL__e$1 = pre CNTRL__e
-  valof_arr$10 = 0.0 -> valof_pre_CNTRL__e$1
-  CNTRL__e_dot = Sub(valof_arr$10, CNTRL__e)
-  valof_pre_CNTRL__e = pre CNTRL__e
-  valof_arr$9 = 0.0 -> valof_pre_CNTRL__e
-  CNTRL__e_int = Add(valof_arr$9, CNTRL__e)
-  CNTRL__u = Add(Add(Mul((1.0 / 5.0), CNTRL__e), Mul((1.0 / 10.0), CNTRL__e_dot)), Mul((1.0 / 10.0), CNTRL__e_int))
-  max_accel = 10.0
-  AXL__Target_Tire_Direction__val = Target_Tire_Pitch__val
-  Actual_Speed__val = THROT__Actual__val
-  AXL__inp$11 = AXL__Target_Tire_Direction__val
-  __no_static$12 = ITE(Lt(AXL__inp$11, 0.0), Neg(AXL__inp$11), AXL__inp$11)
-  AXL__inp$10 = AXL__Target_Tire_Direction__val
-  __no_static$11 = ITE(Lt(AXL__inp$10, 0.0), Neg(AXL__inp$10), AXL__inp$10)
-  AXL__inp$9 = AXL__Target_Tire_Direction__val
-  __no_static$10 = ITE(Lt(AXL__inp$9, 0.0), Neg(AXL__inp$9), AXL__inp$9)
-  AXL__inp$8 = AXL__Target_Tire_Direction__val
-  __no_static$9 = ITE(Lt(AXL__inp$8, 0.0), Neg(AXL__inp$8), AXL__inp$8)
-  AXL__inp$7 = AXL__Target_Tire_Direction__val
-  __no_static$8 = ITE(Lt(AXL__inp$7, 0.0), Neg(AXL__inp$7), AXL__inp$7)
-  AXL__inp$6 = AXL__Target_Tire_Direction__val
-  __no_static$7 = ITE(Lt(AXL__inp$6, 0.0), Neg(AXL__inp$6), AXL__inp$6)
-  valof_pre_THROT__Actual__val$7 = pre THROT__Actual__val
-  valof_arr$8 = 0.0 -> valof_pre_THROT__Actual__val$7
-  valof_pre_THROT__Actual__val$6 = pre THROT__Actual__val
-  valof_arr$7 = 0.0 -> valof_pre_THROT__Actual__val$6
-  valof_pre_THROT__Actual__val$5 = pre THROT__Actual__val
-  valof_arr$6 = 0.0 -> valof_pre_THROT__Actual__val$5
-  valof_pre_THROT__Actual__val$4 = pre THROT__Actual__val
-  valof_arr$5 = 0.0 -> valof_pre_THROT__Actual__val$4
-  valof_pre__TOTAL_COMP_HIST = pre _TOTAL_COMP_HIST
-  _TOTAL_COMP_HIST = And(And(And(true, And(And(Leq(__no_static$12, (9.0 / 20.0)), ITE(And(Gt(__no_static$11, (1.0 / 5.0)), Gt(AXL__Speed__val, 45.0)), Eq(AXL__Actual_Tire_Direction__val, (1.0 / 5.0)), Eq(AXL__Actual_Tire_Direction__val, AXL__Target_Tire_Direction__val))), ITE(And(Gt(__no_static$10, (1.0 / 5.0)), Gt(AXL__Speed__val, 45.0)), Eq(AXL__Actual_Tire_Direction__val, (1.0 / 5.0)), Eq(AXL__Actual_Tire_Direction__val, AXL__Target_Tire_Direction__val)))), And(And(true, Eq(CNTRL__Actuator_Input__val, CNTRL__u)), Eq(CNTRL__Actuator_Input__val, CNTRL__u))), And(And(true, Eq(THROT__Actual__val, Add(valof_arr$8, Mul((1.0 / 10.0), THROT__Actuator_Input__val)))), Eq(THROT__Actual__val, Add(valof_arr$7, Mul((1.0 / 10.0), THROT__Actuator_Input__val))))) -> And(And(And(And(true, And(And(Leq(__no_static$9, (9.0 / 20.0)), ITE(And(Gt(__no_static$8, (1.0 / 5.0)), Gt(AXL__Speed__val, 45.0)), Eq(AXL__Actual_Tire_Direction__val, (1.0 / 5.0)), Eq(AXL__Actual_Tire_Direction__val, AXL__Target_Tire_Direction__val))), ITE(And(Gt(__no_static$7, (1.0 / 5.0)), Gt(AXL__Speed__val, 45.0)), Eq(AXL__Actual_Tire_Direction__val, (1.0 / 5.0)), Eq(AXL__Actual_Tire_Direction__val, AXL__Target_Tire_Direction__val)))), And(And(true, Eq(CNTRL__Actuator_Input__val, CNTRL__u)), Eq(CNTRL__Actuator_Input__val, CNTRL__u))), And(And(true, Eq(THROT__Actual__val, Add(valof_arr$6, Mul((1.0 / 10.0), THROT__Actuator_Input__val)))), Eq(THROT__Actual__val, Add(valof_arr$5, Mul((1.0 / 10.0), THROT__Actuator_Input__val))))), valof_pre__TOTAL_COMP_HIST)
-  valof_pre__SYSTEM_ASSUMP_HIST = pre _SYSTEM_ASSUMP_HIST
-  _SYSTEM_ASSUMP_HIST = And(And(Geq(Target_Speed__val, 0.0), Lt(Target_Speed__val, 150.0)), true) -> And(And(And(Geq(Target_Speed__val, 0.0), Lt(Target_Speed__val, 150.0)), true), valof_pre__SYSTEM_ASSUMP_HIST)
-  AXL__inp$5 = AXL__Target_Tire_Direction__val
-  __no_static$6 = ITE(Lt(AXL__inp$5, 0.0), Neg(AXL__inp$5), AXL__inp$5)
-  AXL__inp$4 = AXL__Target_Tire_Direction__val
-  __no_static$5 = ITE(Lt(AXL__inp$4, 0.0), Neg(AXL__inp$4), AXL__inp$4)
-  AXL__inp$3 = AXL__Target_Tire_Direction__val
-  __no_static$4 = ITE(Lt(AXL__inp$3, 0.0), Neg(AXL__inp$3), AXL__inp$3)
-  AXL__inp$2 = AXL__Target_Tire_Direction__val
-  __no_static$3 = ITE(Lt(AXL__inp$2, 0.0), Neg(AXL__inp$2), AXL__inp$2)
-  AXL__inp$1 = AXL__Target_Tire_Direction__val
-  __no_static$2 = ITE(Lt(AXL__inp$1, 0.0), Neg(AXL__inp$1), AXL__inp$1)
-  AXL__inp = AXL__Target_Tire_Direction__val
-  __no_static$1 = ITE(Lt(AXL__inp, 0.0), Neg(AXL__inp), AXL__inp)
-  valof_pre__CONTR_HIST_AXL = pre _CONTR_HIST_AXL
-  _CONTR_HIST_AXL = And(And(Leq(__no_static$6, (9.0 / 20.0)), ITE(And(Gt(__no_static$5, (1.0 / 5.0)), Gt(AXL__Speed__val, 45.0)), Eq(AXL__Actual_Tire_Direction__val, (1.0 / 5.0)), Eq(AXL__Actual_Tire_Direction__val, AXL__Target_Tire_Direction__val))), ITE(And(Gt(__no_static$4, (1.0 / 5.0)), Gt(AXL__Speed__val, 45.0)), Eq(AXL__Actual_Tire_Direction__val, (1.0 / 5.0)), Eq(AXL__Actual_Tire_Direction__val, AXL__Target_Tire_Direction__val))) -> And(And(And(Leq(__no_static$3, (9.0 / 20.0)), ITE(And(Gt(__no_static$2, (1.0 / 5.0)), Gt(AXL__Speed__val, 45.0)), Eq(AXL__Actual_Tire_Direction__val, (1.0 / 5.0)), Eq(AXL__Actual_Tire_Direction__val, AXL__Target_Tire_Direction__val))), ITE(And(Gt(__no_static$1, (1.0 / 5.0)), Gt(AXL__Speed__val, 45.0)), Eq(AXL__Actual_Tire_Direction__val, (1.0 / 5.0)), Eq(AXL__Actual_Tire_Direction__val, AXL__Target_Tire_Direction__val))), valof_pre__CONTR_HIST_AXL)
-  valof_pre__CONTR_HIST_CNTRL = pre _CONTR_HIST_CNTRL
-  _CONTR_HIST_CNTRL = And(And(true, Eq(CNTRL__Actuator_Input__val, CNTRL__u)), Eq(CNTRL__Actuator_Input__val, CNTRL__u)) -> And(And(And(true, Eq(CNTRL__Actuator_Input__val, CNTRL__u)), Eq(CNTRL__Actuator_Input__val, CNTRL__u)), valof_pre__CONTR_HIST_CNTRL)
-  valof_pre_THROT__Actual__val$3 = pre THROT__Actual__val
-  valof_arr$4 = 0.0 -> valof_pre_THROT__Actual__val$3
-  valof_pre_THROT__Actual__val$2 = pre THROT__Actual__val
-  valof_arr$3 = 0.0 -> valof_pre_THROT__Actual__val$2
-  valof_pre_THROT__Actual__val$1 = pre THROT__Actual__val
-  valof_arr$2 = 0.0 -> valof_pre_THROT__Actual__val$1
-  valof_pre_THROT__Actual__val = pre THROT__Actual__val
-  valof_arr$1 = 0.0 -> valof_pre_THROT__Actual__val
-  valof_pre__CONTR_HIST_THROT = pre _CONTR_HIST_THROT
-  _CONTR_HIST_THROT = And(And(true, Eq(THROT__Actual__val, Add(valof_arr$4, Mul((1.0 / 10.0), THROT__Actuator_Input__val)))), Eq(THROT__Actual__val, Add(valof_arr$3, Mul((1.0 / 10.0), THROT__Actuator_Input__val)))) -> And(And(And(true, Eq(THROT__Actual__val, Add(valof_arr$2, Mul((1.0 / 10.0), THROT__Actuator_Input__val)))), Eq(THROT__Actual__val, Add(valof_arr$1, Mul((1.0 / 10.0), THROT__Actuator_Input__val)))), valof_pre__CONTR_HIST_THROT)
-  valof_pre_Actual_Speed__val = pre Actual_Speed__val
-  valof_arr = 0.0 -> valof_pre_Actual_Speed__val
-  inp = Sub(Actual_Speed__val, valof_arr)
-  __no_static = ITE(Lt(inp, 0.0), Neg(inp), inp)
-  _SYS_GUARANTEE_1 = Implies(And(_SYSTEM_ASSUMP_HIST, _TOTAL_COMP_HIST), Lt(__no_static, max_accel))
+  THROT__Actuator_Input__val : real
+    = CNTRL__Actuator_Input__val
+   
+  CNTRL__Actual__val : real
+    = THROT__Actual__val
+   
+  CNTRL__Target__val : real
+    = Target_Speed__val
+   
+  CNTRL__e : real
+    = Sub(CNTRL__Target__val, CNTRL__Actual__val)
+   
+  pre_CNTRL__e$1 : real
+    = pre CNTRL__e
+   
+  init_pre_CNTRL__e$1 : real
+    = 0.0 -> pre_CNTRL__e$1
+   
+  CNTRL__e_dot : real
+    = Sub(init_pre_CNTRL__e$1, CNTRL__e)
+   
+  pre_CNTRL__e : real
+    = pre CNTRL__e
+   
+  init_pre_CNTRL__e : real
+    = 0.0 -> pre_CNTRL__e
+   
+  CNTRL__e_int : real
+    = Add(init_pre_CNTRL__e, CNTRL__e)
+   
+  CNTRL__u : real
+    = Add(Add(Mul((1.0 / 5.0), CNTRL__e), Mul((1.0 / 10.0), CNTRL__e_dot)), Mul((1.0 / 10.0), CNTRL__e_int))
+   
+  max_accel : real
+    = 10.0
+   
+  AXL__Target_Tire_Direction__val : real
+    = Target_Tire_Pitch__val
+   
+  Actual_Speed__val : real
+    = THROT__Actual__val
+   
+  AXL__inp$11 : real
+    = AXL__Target_Tire_Direction__val
+   
+  AXL__abs$11 : real
+    = ITE(Lt(AXL__inp$11, 0.0), Neg(AXL__inp$11), AXL__inp$11)
+   
+  AXL__inp$10 : real
+    = AXL__Target_Tire_Direction__val
+   
+  AXL__abs$10 : real
+    = ITE(Lt(AXL__inp$10, 0.0), Neg(AXL__inp$10), AXL__inp$10)
+   
+  AXL__inp$9 : real
+    = AXL__Target_Tire_Direction__val
+   
+  AXL__abs$9 : real
+    = ITE(Lt(AXL__inp$9, 0.0), Neg(AXL__inp$9), AXL__inp$9)
+   
+  AXL__inp$8 : real
+    = AXL__Target_Tire_Direction__val
+   
+  AXL__abs$8 : real
+    = ITE(Lt(AXL__inp$8, 0.0), Neg(AXL__inp$8), AXL__inp$8)
+   
+  AXL__inp$7 : real
+    = AXL__Target_Tire_Direction__val
+   
+  AXL__abs$7 : real
+    = ITE(Lt(AXL__inp$7, 0.0), Neg(AXL__inp$7), AXL__inp$7)
+   
+  AXL__inp$6 : real
+    = AXL__Target_Tire_Direction__val
+   
+  AXL__abs$6 : real
+    = ITE(Lt(AXL__inp$6, 0.0), Neg(AXL__inp$6), AXL__inp$6)
+   
+  pre_THROT__Actual__val$7 : real
+    = pre THROT__Actual__val
+   
+  init_pre_THROT__Actual__val$7 : real
+    = 0.0 -> pre_THROT__Actual__val$7
+   
+  pre_THROT__Actual__val$6 : real
+    = pre THROT__Actual__val
+   
+  init_pre_THROT__Actual__val$6 : real
+    = 0.0 -> pre_THROT__Actual__val$6
+   
+  pre_THROT__Actual__val$5 : real
+    = pre THROT__Actual__val
+   
+  init_pre_THROT__Actual__val$5 : real
+    = 0.0 -> pre_THROT__Actual__val$5
+   
+  pre_THROT__Actual__val$4 : real
+    = pre THROT__Actual__val
+   
+  init_pre_THROT__Actual__val$4 : real
+    = 0.0 -> pre_THROT__Actual__val$4
+   
+  pre__TOTAL_COMP_HIST : bool
+    = pre _TOTAL_COMP_HIST
+   
+  _TOTAL_COMP_HIST : bool
+    = And(And(And(true, And(And(Leq(AXL__abs$11, (9.0 / 20.0)), ITE(And(Gt(AXL__abs$10, (1.0 / 5.0)), Gt(AXL__Speed__val, 45.0)), Eq(AXL__Actual_Tire_Direction__val, (1.0 / 5.0)), Eq(AXL__Actual_Tire_Direction__val, AXL__Target_Tire_Direction__val))), ITE(And(Gt(AXL__abs$9, (1.0 / 5.0)), Gt(AXL__Speed__val, 45.0)), Eq(AXL__Actual_Tire_Direction__val, (1.0 / 5.0)), Eq(AXL__Actual_Tire_Direction__val, AXL__Target_Tire_Direction__val)))), And(And(true, Eq(CNTRL__Actuator_Input__val, CNTRL__u)), Eq(CNTRL__Actuator_Input__val, CNTRL__u))), And(And(true, Eq(THROT__Actual__val, Add(init_pre_THROT__Actual__val$7, Mul((1.0 / 10.0), THROT__Actuator_Input__val)))), Eq(THROT__Actual__val, Add(init_pre_THROT__Actual__val$6, Mul((1.0 / 10.0), THROT__Actuator_Input__val))))) -> And(And(And(And(true, And(And(Leq(AXL__abs$8, (9.0 / 20.0)), ITE(And(Gt(AXL__abs$7, (1.0 / 5.0)), Gt(AXL__Speed__val, 45.0)), Eq(AXL__Actual_Tire_Direction__val, (1.0 / 5.0)), Eq(AXL__Actual_Tire_Direction__val, AXL__Target_Tire_Direction__val))), ITE(And(Gt(AXL__abs$6, (1.0 / 5.0)), Gt(AXL__Speed__val, 45.0)), Eq(AXL__Actual_Tire_Direction__val, (1.0 / 5.0)), Eq(AXL__Actual_Tire_Direction__val, AXL__Target_Tire_Direction__val)))), And(And(true, Eq(CNTRL__Actuator_Input__val, CNTRL__u)), Eq(CNTRL__Actuator_Input__val, CNTRL__u))), And(And(true, Eq(THROT__Actual__val, Add(init_pre_THROT__Actual__val$5, Mul((1.0 / 10.0), THROT__Actuator_Input__val)))), Eq(THROT__Actual__val, Add(init_pre_THROT__Actual__val$4, Mul((1.0 / 10.0), THROT__Actuator_Input__val))))), pre__TOTAL_COMP_HIST)
+   
+  pre__SYSTEM_ASSUMP_HIST : bool
+    = pre _SYSTEM_ASSUMP_HIST
+   
+  _SYSTEM_ASSUMP_HIST : bool
+    = And(And(Geq(Target_Speed__val, 0.0), Lt(Target_Speed__val, 150.0)), true) -> And(And(And(Geq(Target_Speed__val, 0.0), Lt(Target_Speed__val, 150.0)), true), pre__SYSTEM_ASSUMP_HIST)
+   
+  AXL__inp$5 : real
+    = AXL__Target_Tire_Direction__val
+   
+  AXL__abs$5 : real
+    = ITE(Lt(AXL__inp$5, 0.0), Neg(AXL__inp$5), AXL__inp$5)
+   
+  AXL__inp$4 : real
+    = AXL__Target_Tire_Direction__val
+   
+  AXL__abs$4 : real
+    = ITE(Lt(AXL__inp$4, 0.0), Neg(AXL__inp$4), AXL__inp$4)
+   
+  AXL__inp$3 : real
+    = AXL__Target_Tire_Direction__val
+   
+  AXL__abs$3 : real
+    = ITE(Lt(AXL__inp$3, 0.0), Neg(AXL__inp$3), AXL__inp$3)
+   
+  AXL__inp$2 : real
+    = AXL__Target_Tire_Direction__val
+   
+  AXL__abs$2 : real
+    = ITE(Lt(AXL__inp$2, 0.0), Neg(AXL__inp$2), AXL__inp$2)
+   
+  AXL__inp$1 : real
+    = AXL__Target_Tire_Direction__val
+   
+  AXL__abs$1 : real
+    = ITE(Lt(AXL__inp$1, 0.0), Neg(AXL__inp$1), AXL__inp$1)
+   
+  AXL__inp : real
+    = AXL__Target_Tire_Direction__val
+   
+  AXL__abs : real
+    = ITE(Lt(AXL__inp, 0.0), Neg(AXL__inp), AXL__inp)
+   
+  pre__CONTR_HIST_AXL : bool
+    = pre _CONTR_HIST_AXL
+   
+  _CONTR_HIST_AXL : bool
+    = And(And(Leq(AXL__abs$5, (9.0 / 20.0)), ITE(And(Gt(AXL__abs$4, (1.0 / 5.0)), Gt(AXL__Speed__val, 45.0)), Eq(AXL__Actual_Tire_Direction__val, (1.0 / 5.0)), Eq(AXL__Actual_Tire_Direction__val, AXL__Target_Tire_Direction__val))), ITE(And(Gt(AXL__abs$3, (1.0 / 5.0)), Gt(AXL__Speed__val, 45.0)), Eq(AXL__Actual_Tire_Direction__val, (1.0 / 5.0)), Eq(AXL__Actual_Tire_Direction__val, AXL__Target_Tire_Direction__val))) -> And(And(And(Leq(AXL__abs$2, (9.0 / 20.0)), ITE(And(Gt(AXL__abs$1, (1.0 / 5.0)), Gt(AXL__Speed__val, 45.0)), Eq(AXL__Actual_Tire_Direction__val, (1.0 / 5.0)), Eq(AXL__Actual_Tire_Direction__val, AXL__Target_Tire_Direction__val))), ITE(And(Gt(AXL__abs, (1.0 / 5.0)), Gt(AXL__Speed__val, 45.0)), Eq(AXL__Actual_Tire_Direction__val, (1.0 / 5.0)), Eq(AXL__Actual_Tire_Direction__val, AXL__Target_Tire_Direction__val))), pre__CONTR_HIST_AXL)
+   
+  pre__CONTR_HIST_CNTRL : bool
+    = pre _CONTR_HIST_CNTRL
+   
+  _CONTR_HIST_CNTRL : bool
+    = And(And(true, Eq(CNTRL__Actuator_Input__val, CNTRL__u)), Eq(CNTRL__Actuator_Input__val, CNTRL__u)) -> And(And(And(true, Eq(CNTRL__Actuator_Input__val, CNTRL__u)), Eq(CNTRL__Actuator_Input__val, CNTRL__u)), pre__CONTR_HIST_CNTRL)
+   
+  pre_THROT__Actual__val$3 : real
+    = pre THROT__Actual__val
+   
+  init_pre_THROT__Actual__val$3 : real
+    = 0.0 -> pre_THROT__Actual__val$3
+   
+  pre_THROT__Actual__val$2 : real
+    = pre THROT__Actual__val
+   
+  init_pre_THROT__Actual__val$2 : real
+    = 0.0 -> pre_THROT__Actual__val$2
+   
+  pre_THROT__Actual__val$1 : real
+    = pre THROT__Actual__val
+   
+  init_pre_THROT__Actual__val$1 : real
+    = 0.0 -> pre_THROT__Actual__val$1
+   
+  pre_THROT__Actual__val : real
+    = pre THROT__Actual__val
+   
+  init_pre_THROT__Actual__val : real
+    = 0.0 -> pre_THROT__Actual__val
+   
+  pre__CONTR_HIST_THROT : bool
+    = pre _CONTR_HIST_THROT
+   
+  _CONTR_HIST_THROT : bool
+    = And(And(true, Eq(THROT__Actual__val, Add(init_pre_THROT__Actual__val$3, Mul((1.0 / 10.0), THROT__Actuator_Input__val)))), Eq(THROT__Actual__val, Add(init_pre_THROT__Actual__val$2, Mul((1.0 / 10.0), THROT__Actuator_Input__val)))) -> And(And(And(true, Eq(THROT__Actual__val, Add(init_pre_THROT__Actual__val$1, Mul((1.0 / 10.0), THROT__Actuator_Input__val)))), Eq(THROT__Actual__val, Add(init_pre_THROT__Actual__val, Mul((1.0 / 10.0), THROT__Actuator_Input__val)))), pre__CONTR_HIST_THROT)
+   
+  pre_Actual_Speed__val : real
+    = pre Actual_Speed__val
+   
+  init_pre_Actual_Speed__val : real
+    = 0.0 -> pre_Actual_Speed__val
+   
+  inp : real
+    = Sub(Actual_Speed__val, init_pre_Actual_Speed__val)
+   
+  abs : real
+    = ITE(Lt(inp, 0.0), Neg(inp), inp)
+   
+  _SYS_GUARANTEE_1 : bool
+    = Implies(And(_SYSTEM_ASSUMP_HIST, _TOTAL_COMP_HIST), Lt(abs, max_accel))
 tel
 Sally Model
 ===========
@@ -83,10 +220,23 @@ Sally Model
 (define-state-type
    S
    (
+     (abs Real)
      (inp Real)
      (|AXL__Actual_Tire_Direction__val| Real)
      (|AXL__Speed__val| Real)
      (|AXL__Target_Tire_Direction__val| Real)
+     (|AXL__abs:10| Real)
+     (|AXL__abs:11| Real)
+     (|AXL__abs:1| Real)
+     (|AXL__abs:2| Real)
+     (|AXL__abs:3| Real)
+     (|AXL__abs:4| Real)
+     (|AXL__abs:5| Real)
+     (|AXL__abs:6| Real)
+     (|AXL__abs:7| Real)
+     (|AXL__abs:8| Real)
+     (|AXL__abs:9| Real)
+     (|AXL__abs| Real)
      (|AXL__inp:10| Real)
      (|AXL__inp:11| Real)
      (|AXL__inp:1| Real)
@@ -122,59 +272,46 @@ Sally Model
      (|_SYS_GUARANTEE_1| Bool)
      (|_TOTAL_COMP_HIST:init| Bool)
      (|_TOTAL_COMP_HIST| Bool)
-     (|__no_static:10| Real)
-     (|__no_static:11| Real)
-     (|__no_static:12| Real)
-     (|__no_static:1| Real)
-     (|__no_static:2| Real)
-     (|__no_static:3| Real)
-     (|__no_static:4| Real)
-     (|__no_static:5| Real)
-     (|__no_static:6| Real)
-     (|__no_static:7| Real)
-     (|__no_static:8| Real)
-     (|__no_static:9| Real)
-     (|__no_static| Real)
      (|gal-initializing| Bool)
+     (|init_pre_Actual_Speed__val:init| Bool)
+     (|init_pre_Actual_Speed__val| Real)
+     (|init_pre_CNTRL__e:1:init| Bool)
+     (|init_pre_CNTRL__e:1| Real)
+     (|init_pre_CNTRL__e:init| Bool)
+     (|init_pre_CNTRL__e| Real)
+     (|init_pre_THROT__Actual__val:1:init| Bool)
+     (|init_pre_THROT__Actual__val:1| Real)
+     (|init_pre_THROT__Actual__val:2:init| Bool)
+     (|init_pre_THROT__Actual__val:2| Real)
+     (|init_pre_THROT__Actual__val:3:init| Bool)
+     (|init_pre_THROT__Actual__val:3| Real)
+     (|init_pre_THROT__Actual__val:4:init| Bool)
+     (|init_pre_THROT__Actual__val:4| Real)
+     (|init_pre_THROT__Actual__val:5:init| Bool)
+     (|init_pre_THROT__Actual__val:5| Real)
+     (|init_pre_THROT__Actual__val:6:init| Bool)
+     (|init_pre_THROT__Actual__val:6| Real)
+     (|init_pre_THROT__Actual__val:7:init| Bool)
+     (|init_pre_THROT__Actual__val:7| Real)
+     (|init_pre_THROT__Actual__val:init| Bool)
+     (|init_pre_THROT__Actual__val| Real)
      (|max_accel| Real)
-     (|valof_arr:10:init| Bool)
-     (|valof_arr:10| Real)
-     (|valof_arr:1:init| Bool)
-     (|valof_arr:1| Real)
-     (|valof_arr:2:init| Bool)
-     (|valof_arr:2| Real)
-     (|valof_arr:3:init| Bool)
-     (|valof_arr:3| Real)
-     (|valof_arr:4:init| Bool)
-     (|valof_arr:4| Real)
-     (|valof_arr:5:init| Bool)
-     (|valof_arr:5| Real)
-     (|valof_arr:6:init| Bool)
-     (|valof_arr:6| Real)
-     (|valof_arr:7:init| Bool)
-     (|valof_arr:7| Real)
-     (|valof_arr:8:init| Bool)
-     (|valof_arr:8| Real)
-     (|valof_arr:9:init| Bool)
-     (|valof_arr:9| Real)
-     (|valof_arr:init| Bool)
-     (|valof_arr| Real)
-     (|valof_pre_Actual_Speed__val| Real)
-     (|valof_pre_CNTRL__e:1| Real)
-     (|valof_pre_CNTRL__e| Real)
-     (|valof_pre_THROT__Actual__val:1| Real)
-     (|valof_pre_THROT__Actual__val:2| Real)
-     (|valof_pre_THROT__Actual__val:3| Real)
-     (|valof_pre_THROT__Actual__val:4| Real)
-     (|valof_pre_THROT__Actual__val:5| Real)
-     (|valof_pre_THROT__Actual__val:6| Real)
-     (|valof_pre_THROT__Actual__val:7| Real)
-     (|valof_pre_THROT__Actual__val| Real)
-     (|valof_pre__CONTR_HIST_AXL| Bool)
-     (|valof_pre__CONTR_HIST_CNTRL| Bool)
-     (|valof_pre__CONTR_HIST_THROT| Bool)
-     (|valof_pre__SYSTEM_ASSUMP_HIST| Bool)
-     (|valof_pre__TOTAL_COMP_HIST| Bool))
+     (|pre_Actual_Speed__val| Real)
+     (|pre_CNTRL__e:1| Real)
+     (|pre_CNTRL__e| Real)
+     (|pre_THROT__Actual__val:1| Real)
+     (|pre_THROT__Actual__val:2| Real)
+     (|pre_THROT__Actual__val:3| Real)
+     (|pre_THROT__Actual__val:4| Real)
+     (|pre_THROT__Actual__val:5| Real)
+     (|pre_THROT__Actual__val:6| Real)
+     (|pre_THROT__Actual__val:7| Real)
+     (|pre_THROT__Actual__val| Real)
+     (|pre__CONTR_HIST_AXL| Bool)
+     (|pre__CONTR_HIST_CNTRL| Bool)
+     (|pre__CONTR_HIST_THROT| Bool)
+     (|pre__SYSTEM_ASSUMP_HIST| Bool)
+     (|pre__TOTAL_COMP_HIST| Bool))
    (
      (|AXL__Actual_Tire_Direction__val| Real)
      (|AXL__Speed__val| Real)
@@ -187,22 +324,22 @@ Sally Model
    S
    (and
       (= |gal-initializing| true)
-      (= |valof_arr:10:init| true)
-      (= |valof_arr:9:init| true)
-      (= |valof_arr:8:init| true)
-      (= |valof_arr:7:init| true)
-      (= |valof_arr:6:init| true)
-      (= |valof_arr:5:init| true)
+      (= |init_pre_CNTRL__e:1:init| true)
+      (= |init_pre_CNTRL__e:init| true)
+      (= |init_pre_THROT__Actual__val:7:init| true)
+      (= |init_pre_THROT__Actual__val:6:init| true)
+      (= |init_pre_THROT__Actual__val:5:init| true)
+      (= |init_pre_THROT__Actual__val:4:init| true)
       (= |_TOTAL_COMP_HIST:init| true)
       (= |_SYSTEM_ASSUMP_HIST:init| true)
       (= |_CONTR_HIST_AXL:init| true)
       (= |_CONTR_HIST_CNTRL:init| true)
-      (= |valof_arr:4:init| true)
-      (= |valof_arr:3:init| true)
-      (= |valof_arr:2:init| true)
-      (= |valof_arr:1:init| true)
+      (= |init_pre_THROT__Actual__val:3:init| true)
+      (= |init_pre_THROT__Actual__val:2:init| true)
+      (= |init_pre_THROT__Actual__val:1:init| true)
+      (= |init_pre_THROT__Actual__val:init| true)
       (= |_CONTR_HIST_THROT:init| true)
-      (= |valof_arr:init| true))
+      (= |init_pre_Actual_Speed__val:init| true))
    (and
       (= next.|gal-initializing| false)
       (= next.|AXL__Speed__val| input.|AXL__Speed__val|)
@@ -217,24 +354,24 @@ Sally Model
       (=
          next.|CNTRL__e|
          (- next.|CNTRL__Target__val| next.|CNTRL__Actual__val|))
-      (= next.|valof_pre_CNTRL__e:1| state.|CNTRL__e|)
+      (= next.|pre_CNTRL__e:1| state.|CNTRL__e|)
       (ite
-         state.|valof_arr:10:init|
-         (= next.|valof_arr:10| 0.0)
-         (= next.|valof_arr:10| next.|valof_pre_CNTRL__e:1|))
-      (= next.|valof_arr:10:init| false)
+         state.|init_pre_CNTRL__e:1:init|
+         (= next.|init_pre_CNTRL__e:1| 0.0)
+         (= next.|init_pre_CNTRL__e:1| next.|pre_CNTRL__e:1|))
+      (= next.|init_pre_CNTRL__e:1:init| false)
       (=
          next.|CNTRL__e_dot|
-         (- next.|valof_arr:10| next.|CNTRL__e|))
-      (= next.|valof_pre_CNTRL__e| state.|CNTRL__e|)
+         (- next.|init_pre_CNTRL__e:1| next.|CNTRL__e|))
+      (= next.|pre_CNTRL__e| state.|CNTRL__e|)
       (ite
-         state.|valof_arr:9:init|
-         (= next.|valof_arr:9| 0.0)
-         (= next.|valof_arr:9| next.|valof_pre_CNTRL__e|))
-      (= next.|valof_arr:9:init| false)
+         state.|init_pre_CNTRL__e:init|
+         (= next.|init_pre_CNTRL__e| 0.0)
+         (= next.|init_pre_CNTRL__e| next.|pre_CNTRL__e|))
+      (= next.|init_pre_CNTRL__e:init| false)
       (=
          next.|CNTRL__e_int|
-         (+ next.|valof_arr:9| next.|CNTRL__e|))
+         (+ next.|init_pre_CNTRL__e| next.|CNTRL__e|))
       (=
          next.|CNTRL__u|
          (+
@@ -253,71 +390,71 @@ Sally Model
       (= next.|Actual_Speed__val| next.|THROT__Actual__val|)
       (= next.|AXL__inp:11| next.|AXL__Target_Tire_Direction__val|)
       (=
-         next.|__no_static:12|
+         next.|AXL__abs:11|
          (ite
             (< next.|AXL__inp:11| 0.0)
             (- next.|AXL__inp:11|)
             next.|AXL__inp:11|))
       (= next.|AXL__inp:10| next.|AXL__Target_Tire_Direction__val|)
       (=
-         next.|__no_static:11|
+         next.|AXL__abs:10|
          (ite
             (< next.|AXL__inp:10| 0.0)
             (- next.|AXL__inp:10|)
             next.|AXL__inp:10|))
       (= next.|AXL__inp:9| next.|AXL__Target_Tire_Direction__val|)
       (=
-         next.|__no_static:10|
+         next.|AXL__abs:9|
          (ite
             (< next.|AXL__inp:9| 0.0)
             (- next.|AXL__inp:9|)
             next.|AXL__inp:9|))
       (= next.|AXL__inp:8| next.|AXL__Target_Tire_Direction__val|)
       (=
-         next.|__no_static:9|
+         next.|AXL__abs:8|
          (ite
             (< next.|AXL__inp:8| 0.0)
             (- next.|AXL__inp:8|)
             next.|AXL__inp:8|))
       (= next.|AXL__inp:7| next.|AXL__Target_Tire_Direction__val|)
       (=
-         next.|__no_static:8|
+         next.|AXL__abs:7|
          (ite
             (< next.|AXL__inp:7| 0.0)
             (- next.|AXL__inp:7|)
             next.|AXL__inp:7|))
       (= next.|AXL__inp:6| next.|AXL__Target_Tire_Direction__val|)
       (=
-         next.|__no_static:7|
+         next.|AXL__abs:6|
          (ite
             (< next.|AXL__inp:6| 0.0)
             (- next.|AXL__inp:6|)
             next.|AXL__inp:6|))
-      (= next.|valof_pre_THROT__Actual__val:7| state.|THROT__Actual__val|)
+      (= next.|pre_THROT__Actual__val:7| state.|THROT__Actual__val|)
       (ite
-         state.|valof_arr:8:init|
-         (= next.|valof_arr:8| 0.0)
-         (= next.|valof_arr:8| next.|valof_pre_THROT__Actual__val:7|))
-      (= next.|valof_arr:8:init| false)
-      (= next.|valof_pre_THROT__Actual__val:6| state.|THROT__Actual__val|)
+         state.|init_pre_THROT__Actual__val:7:init|
+         (= next.|init_pre_THROT__Actual__val:7| 0.0)
+         (= next.|init_pre_THROT__Actual__val:7| next.|pre_THROT__Actual__val:7|))
+      (= next.|init_pre_THROT__Actual__val:7:init| false)
+      (= next.|pre_THROT__Actual__val:6| state.|THROT__Actual__val|)
       (ite
-         state.|valof_arr:7:init|
-         (= next.|valof_arr:7| 0.0)
-         (= next.|valof_arr:7| next.|valof_pre_THROT__Actual__val:6|))
-      (= next.|valof_arr:7:init| false)
-      (= next.|valof_pre_THROT__Actual__val:5| state.|THROT__Actual__val|)
+         state.|init_pre_THROT__Actual__val:6:init|
+         (= next.|init_pre_THROT__Actual__val:6| 0.0)
+         (= next.|init_pre_THROT__Actual__val:6| next.|pre_THROT__Actual__val:6|))
+      (= next.|init_pre_THROT__Actual__val:6:init| false)
+      (= next.|pre_THROT__Actual__val:5| state.|THROT__Actual__val|)
       (ite
-         state.|valof_arr:6:init|
-         (= next.|valof_arr:6| 0.0)
-         (= next.|valof_arr:6| next.|valof_pre_THROT__Actual__val:5|))
-      (= next.|valof_arr:6:init| false)
-      (= next.|valof_pre_THROT__Actual__val:4| state.|THROT__Actual__val|)
+         state.|init_pre_THROT__Actual__val:5:init|
+         (= next.|init_pre_THROT__Actual__val:5| 0.0)
+         (= next.|init_pre_THROT__Actual__val:5| next.|pre_THROT__Actual__val:5|))
+      (= next.|init_pre_THROT__Actual__val:5:init| false)
+      (= next.|pre_THROT__Actual__val:4| state.|THROT__Actual__val|)
       (ite
-         state.|valof_arr:5:init|
-         (= next.|valof_arr:5| 0.0)
-         (= next.|valof_arr:5| next.|valof_pre_THROT__Actual__val:4|))
-      (= next.|valof_arr:5:init| false)
-      (= next.|valof_pre__TOTAL_COMP_HIST| state.|_TOTAL_COMP_HIST|)
+         state.|init_pre_THROT__Actual__val:4:init|
+         (= next.|init_pre_THROT__Actual__val:4| 0.0)
+         (= next.|init_pre_THROT__Actual__val:4| next.|pre_THROT__Actual__val:4|))
+      (= next.|init_pre_THROT__Actual__val:4:init| false)
+      (= next.|pre__TOTAL_COMP_HIST| state.|_TOTAL_COMP_HIST|)
       (ite
          state.|_TOTAL_COMP_HIST:init|
          (=
@@ -325,13 +462,13 @@ Sally Model
             (and
                true
                (<=
-                  next.|__no_static:12|
+                  next.|AXL__abs:11|
                   (/ 9 20))
                (ite
                   (and
                      (<
                         (/ 1 5)
-                        next.|__no_static:11|)
+                        next.|AXL__abs:10|)
                      (< 45.0 next.|AXL__Speed__val|))
                   (=
                      next.|AXL__Actual_Tire_Direction__val|
@@ -341,7 +478,7 @@ Sally Model
                   (and
                      (<
                         (/ 1 5)
-                        next.|__no_static:10|)
+                        next.|AXL__abs:9|)
                      (< 45.0 next.|AXL__Speed__val|))
                   (=
                      next.|AXL__Actual_Tire_Direction__val|
@@ -354,14 +491,14 @@ Sally Model
                (=
                   next.|THROT__Actual__val|
                   (+
-                     next.|valof_arr:8|
+                     next.|init_pre_THROT__Actual__val:7|
                      (*
                         (/ 1 10)
                         next.|THROT__Actuator_Input__val|)))
                (=
                   next.|THROT__Actual__val|
                   (+
-                     next.|valof_arr:7|
+                     next.|init_pre_THROT__Actual__val:6|
                      (*
                         (/ 1 10)
                         next.|THROT__Actuator_Input__val|)))))
@@ -370,13 +507,13 @@ Sally Model
             (and
                true
                (<=
-                  next.|__no_static:9|
+                  next.|AXL__abs:8|
                   (/ 9 20))
                (ite
                   (and
                      (<
                         (/ 1 5)
-                        next.|__no_static:8|)
+                        next.|AXL__abs:7|)
                      (< 45.0 next.|AXL__Speed__val|))
                   (=
                      next.|AXL__Actual_Tire_Direction__val|
@@ -386,7 +523,7 @@ Sally Model
                   (and
                      (<
                         (/ 1 5)
-                        next.|__no_static:7|)
+                        next.|AXL__abs:6|)
                      (< 45.0 next.|AXL__Speed__val|))
                   (=
                      next.|AXL__Actual_Tire_Direction__val|
@@ -399,20 +536,20 @@ Sally Model
                (=
                   next.|THROT__Actual__val|
                   (+
-                     next.|valof_arr:6|
+                     next.|init_pre_THROT__Actual__val:5|
                      (*
                         (/ 1 10)
                         next.|THROT__Actuator_Input__val|)))
                (=
                   next.|THROT__Actual__val|
                   (+
-                     next.|valof_arr:5|
+                     next.|init_pre_THROT__Actual__val:4|
                      (*
                         (/ 1 10)
                         next.|THROT__Actuator_Input__val|)))
-               next.|valof_pre__TOTAL_COMP_HIST|)))
+               next.|pre__TOTAL_COMP_HIST|)))
       (= next.|_TOTAL_COMP_HIST:init| false)
-      (= next.|valof_pre__SYSTEM_ASSUMP_HIST| state.|_SYSTEM_ASSUMP_HIST|)
+      (= next.|pre__SYSTEM_ASSUMP_HIST| state.|_SYSTEM_ASSUMP_HIST|)
       (ite
          state.|_SYSTEM_ASSUMP_HIST:init|
          (=
@@ -427,64 +564,64 @@ Sally Model
                (<= 0.0 next.|Target_Speed__val|)
                (< next.|Target_Speed__val| 150.0)
                true
-               next.|valof_pre__SYSTEM_ASSUMP_HIST|)))
+               next.|pre__SYSTEM_ASSUMP_HIST|)))
       (= next.|_SYSTEM_ASSUMP_HIST:init| false)
       (= next.|AXL__inp:5| next.|AXL__Target_Tire_Direction__val|)
       (=
-         next.|__no_static:6|
+         next.|AXL__abs:5|
          (ite
             (< next.|AXL__inp:5| 0.0)
             (- next.|AXL__inp:5|)
             next.|AXL__inp:5|))
       (= next.|AXL__inp:4| next.|AXL__Target_Tire_Direction__val|)
       (=
-         next.|__no_static:5|
+         next.|AXL__abs:4|
          (ite
             (< next.|AXL__inp:4| 0.0)
             (- next.|AXL__inp:4|)
             next.|AXL__inp:4|))
       (= next.|AXL__inp:3| next.|AXL__Target_Tire_Direction__val|)
       (=
-         next.|__no_static:4|
+         next.|AXL__abs:3|
          (ite
             (< next.|AXL__inp:3| 0.0)
             (- next.|AXL__inp:3|)
             next.|AXL__inp:3|))
       (= next.|AXL__inp:2| next.|AXL__Target_Tire_Direction__val|)
       (=
-         next.|__no_static:3|
+         next.|AXL__abs:2|
          (ite
             (< next.|AXL__inp:2| 0.0)
             (- next.|AXL__inp:2|)
             next.|AXL__inp:2|))
       (= next.|AXL__inp:1| next.|AXL__Target_Tire_Direction__val|)
       (=
-         next.|__no_static:2|
+         next.|AXL__abs:1|
          (ite
             (< next.|AXL__inp:1| 0.0)
             (- next.|AXL__inp:1|)
             next.|AXL__inp:1|))
       (= next.|AXL__inp| next.|AXL__Target_Tire_Direction__val|)
       (=
-         next.|__no_static:1|
+         next.|AXL__abs|
          (ite
             (< next.|AXL__inp| 0.0)
             (- next.|AXL__inp|)
             next.|AXL__inp|))
-      (= next.|valof_pre__CONTR_HIST_AXL| state.|_CONTR_HIST_AXL|)
+      (= next.|pre__CONTR_HIST_AXL| state.|_CONTR_HIST_AXL|)
       (ite
          state.|_CONTR_HIST_AXL:init|
          (=
             next.|_CONTR_HIST_AXL|
             (and
                (<=
-                  next.|__no_static:6|
+                  next.|AXL__abs:5|
                   (/ 9 20))
                (ite
                   (and
                      (<
                         (/ 1 5)
-                        next.|__no_static:5|)
+                        next.|AXL__abs:4|)
                      (< 45.0 next.|AXL__Speed__val|))
                   (=
                      next.|AXL__Actual_Tire_Direction__val|
@@ -494,7 +631,7 @@ Sally Model
                   (and
                      (<
                         (/ 1 5)
-                        next.|__no_static:4|)
+                        next.|AXL__abs:3|)
                      (< 45.0 next.|AXL__Speed__val|))
                   (=
                      next.|AXL__Actual_Tire_Direction__val|
@@ -504,13 +641,13 @@ Sally Model
             next.|_CONTR_HIST_AXL|
             (and
                (<=
-                  next.|__no_static:3|
+                  next.|AXL__abs:2|
                   (/ 9 20))
                (ite
                   (and
                      (<
                         (/ 1 5)
-                        next.|__no_static:2|)
+                        next.|AXL__abs:1|)
                      (< 45.0 next.|AXL__Speed__val|))
                   (=
                      next.|AXL__Actual_Tire_Direction__val|
@@ -520,15 +657,15 @@ Sally Model
                   (and
                      (<
                         (/ 1 5)
-                        next.|__no_static:1|)
+                        next.|AXL__abs|)
                      (< 45.0 next.|AXL__Speed__val|))
                   (=
                      next.|AXL__Actual_Tire_Direction__val|
                      (/ 1 5))
                   (= next.|AXL__Actual_Tire_Direction__val| next.|AXL__Target_Tire_Direction__val|))
-               next.|valof_pre__CONTR_HIST_AXL|)))
+               next.|pre__CONTR_HIST_AXL|)))
       (= next.|_CONTR_HIST_AXL:init| false)
-      (= next.|valof_pre__CONTR_HIST_CNTRL| state.|_CONTR_HIST_CNTRL|)
+      (= next.|pre__CONTR_HIST_CNTRL| state.|_CONTR_HIST_CNTRL|)
       (ite
          state.|_CONTR_HIST_CNTRL:init|
          (=
@@ -543,33 +680,33 @@ Sally Model
                true
                (= next.|CNTRL__Actuator_Input__val| next.|CNTRL__u|)
                (= next.|CNTRL__Actuator_Input__val| next.|CNTRL__u|)
-               next.|valof_pre__CONTR_HIST_CNTRL|)))
+               next.|pre__CONTR_HIST_CNTRL|)))
       (= next.|_CONTR_HIST_CNTRL:init| false)
-      (= next.|valof_pre_THROT__Actual__val:3| state.|THROT__Actual__val|)
+      (= next.|pre_THROT__Actual__val:3| state.|THROT__Actual__val|)
       (ite
-         state.|valof_arr:4:init|
-         (= next.|valof_arr:4| 0.0)
-         (= next.|valof_arr:4| next.|valof_pre_THROT__Actual__val:3|))
-      (= next.|valof_arr:4:init| false)
-      (= next.|valof_pre_THROT__Actual__val:2| state.|THROT__Actual__val|)
+         state.|init_pre_THROT__Actual__val:3:init|
+         (= next.|init_pre_THROT__Actual__val:3| 0.0)
+         (= next.|init_pre_THROT__Actual__val:3| next.|pre_THROT__Actual__val:3|))
+      (= next.|init_pre_THROT__Actual__val:3:init| false)
+      (= next.|pre_THROT__Actual__val:2| state.|THROT__Actual__val|)
       (ite
-         state.|valof_arr:3:init|
-         (= next.|valof_arr:3| 0.0)
-         (= next.|valof_arr:3| next.|valof_pre_THROT__Actual__val:2|))
-      (= next.|valof_arr:3:init| false)
-      (= next.|valof_pre_THROT__Actual__val:1| state.|THROT__Actual__val|)
+         state.|init_pre_THROT__Actual__val:2:init|
+         (= next.|init_pre_THROT__Actual__val:2| 0.0)
+         (= next.|init_pre_THROT__Actual__val:2| next.|pre_THROT__Actual__val:2|))
+      (= next.|init_pre_THROT__Actual__val:2:init| false)
+      (= next.|pre_THROT__Actual__val:1| state.|THROT__Actual__val|)
       (ite
-         state.|valof_arr:2:init|
-         (= next.|valof_arr:2| 0.0)
-         (= next.|valof_arr:2| next.|valof_pre_THROT__Actual__val:1|))
-      (= next.|valof_arr:2:init| false)
-      (= next.|valof_pre_THROT__Actual__val| state.|THROT__Actual__val|)
+         state.|init_pre_THROT__Actual__val:1:init|
+         (= next.|init_pre_THROT__Actual__val:1| 0.0)
+         (= next.|init_pre_THROT__Actual__val:1| next.|pre_THROT__Actual__val:1|))
+      (= next.|init_pre_THROT__Actual__val:1:init| false)
+      (= next.|pre_THROT__Actual__val| state.|THROT__Actual__val|)
       (ite
-         state.|valof_arr:1:init|
-         (= next.|valof_arr:1| 0.0)
-         (= next.|valof_arr:1| next.|valof_pre_THROT__Actual__val|))
-      (= next.|valof_arr:1:init| false)
-      (= next.|valof_pre__CONTR_HIST_THROT| state.|_CONTR_HIST_THROT|)
+         state.|init_pre_THROT__Actual__val:init|
+         (= next.|init_pre_THROT__Actual__val| 0.0)
+         (= next.|init_pre_THROT__Actual__val| next.|pre_THROT__Actual__val|))
+      (= next.|init_pre_THROT__Actual__val:init| false)
+      (= next.|pre__CONTR_HIST_THROT| state.|_CONTR_HIST_THROT|)
       (ite
          state.|_CONTR_HIST_THROT:init|
          (=
@@ -579,14 +716,14 @@ Sally Model
                (=
                   next.|THROT__Actual__val|
                   (+
-                     next.|valof_arr:4|
+                     next.|init_pre_THROT__Actual__val:3|
                      (*
                         (/ 1 10)
                         next.|THROT__Actuator_Input__val|)))
                (=
                   next.|THROT__Actual__val|
                   (+
-                     next.|valof_arr:3|
+                     next.|init_pre_THROT__Actual__val:2|
                      (*
                         (/ 1 10)
                         next.|THROT__Actuator_Input__val|)))))
@@ -597,30 +734,30 @@ Sally Model
                (=
                   next.|THROT__Actual__val|
                   (+
-                     next.|valof_arr:2|
+                     next.|init_pre_THROT__Actual__val:1|
                      (*
                         (/ 1 10)
                         next.|THROT__Actuator_Input__val|)))
                (=
                   next.|THROT__Actual__val|
                   (+
-                     next.|valof_arr:1|
+                     next.|init_pre_THROT__Actual__val|
                      (*
                         (/ 1 10)
                         next.|THROT__Actuator_Input__val|)))
-               next.|valof_pre__CONTR_HIST_THROT|)))
+               next.|pre__CONTR_HIST_THROT|)))
       (= next.|_CONTR_HIST_THROT:init| false)
-      (= next.|valof_pre_Actual_Speed__val| state.|Actual_Speed__val|)
+      (= next.|pre_Actual_Speed__val| state.|Actual_Speed__val|)
       (ite
-         state.|valof_arr:init|
-         (= next.|valof_arr| 0.0)
-         (= next.|valof_arr| next.|valof_pre_Actual_Speed__val|))
-      (= next.|valof_arr:init| false)
+         state.|init_pre_Actual_Speed__val:init|
+         (= next.|init_pre_Actual_Speed__val| 0.0)
+         (= next.|init_pre_Actual_Speed__val| next.|pre_Actual_Speed__val|))
+      (= next.|init_pre_Actual_Speed__val:init| false)
       (=
          next.inp
-         (- next.|Actual_Speed__val| next.|valof_arr|))
+         (- next.|Actual_Speed__val| next.|init_pre_Actual_Speed__val|))
       (=
-         next.|__no_static|
+         next.abs
          (ite
             (< next.inp 0.0)
             (- next.inp)
@@ -629,7 +766,7 @@ Sally Model
          next.|_SYS_GUARANTEE_1|
          (=>
             (and next.|_SYSTEM_ASSUMP_HIST| next.|_TOTAL_COMP_HIST|)
-            (< next.|__no_static| next.|max_accel|)))))
+            (< next.abs next.|max_accel|)))))
 
 (query
    TS

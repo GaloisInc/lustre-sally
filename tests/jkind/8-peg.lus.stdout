@@ -7,285 +7,842 @@ node (in$8 : int)
   assumes ()
   shows (prop)
 let
-  init$7 = 1
-  valof_pre_in$7 = pre in$7
-  valof_pre_b1$9 = pre b1
-  valof_pre_p1$7 = pre p1$7
-  valof_pre_b1$8 = pre b1
-  valof_pre_p2$7 = pre p2$7
-  valof_pre_b1$7 = pre b1
-  valof_pre_p3$7 = pre p3$7
-  valof_pre_b1$6 = pre b1
-  valof_pre_p4$7 = pre p4$7
-  valof_pre_b1$5 = pre b1
-  valof_pre_p5$7 = pre p5$7
-  valof_pre_b1$4 = pre b1
-  valof_pre_p6$7 = pre p6$7
-  valof_pre_b1$3 = pre b1
-  valof_pre_p7$7 = pre p7$7
-  valof_pre_b1$2 = pre b1
-  valof_pre_b1$1 = pre b1
-  valof_pre_b1 = pre b1
-  b1 = init$7 -> ITE(Eq(valof_pre_in$7, init$7), ITE(And(And(And(And(And(And(Neq(Add(valof_pre_b1$9, 1), valof_pre_p1$7), Neq(Add(valof_pre_b1$8, 1), valof_pre_p2$7)), Neq(Add(valof_pre_b1$7, 1), valof_pre_p3$7)), Neq(Add(valof_pre_b1$6, 1), valof_pre_p4$7)), Neq(Add(valof_pre_b1$5, 1), valof_pre_p5$7)), Neq(Add(valof_pre_b1$4, 1), valof_pre_p6$7)), Neq(Add(valof_pre_b1$3, 1), valof_pre_p7$7)), Add(valof_pre_b1$2, 1), Add(valof_pre_b1$1, 2)), valof_pre_b1)
-  init$6 = 2
-  valof_pre_in$6 = pre in$6
-  valof_pre_b2$9 = pre b2
-  valof_pre_p1$6 = pre p1$6
-  valof_pre_b2$8 = pre b2
-  valof_pre_p2$6 = pre p2$6
-  valof_pre_b2$7 = pre b2
-  valof_pre_p3$6 = pre p3$6
-  valof_pre_b2$6 = pre b2
-  valof_pre_p4$6 = pre p4$6
-  valof_pre_b2$5 = pre b2
-  valof_pre_p5$6 = pre p5$6
-  valof_pre_b2$4 = pre b2
-  valof_pre_p6$6 = pre p6$6
-  valof_pre_b2$3 = pre b2
-  valof_pre_p7$6 = pre p7$6
-  valof_pre_b2$2 = pre b2
-  valof_pre_b2$1 = pre b2
-  valof_pre_b2 = pre b2
-  b2 = init$6 -> ITE(Eq(valof_pre_in$6, init$6), ITE(And(And(And(And(And(And(Neq(Add(valof_pre_b2$9, 1), valof_pre_p1$6), Neq(Add(valof_pre_b2$8, 1), valof_pre_p2$6)), Neq(Add(valof_pre_b2$7, 1), valof_pre_p3$6)), Neq(Add(valof_pre_b2$6, 1), valof_pre_p4$6)), Neq(Add(valof_pre_b2$5, 1), valof_pre_p5$6)), Neq(Add(valof_pre_b2$4, 1), valof_pre_p6$6)), Neq(Add(valof_pre_b2$3, 1), valof_pre_p7$6)), Add(valof_pre_b2$2, 1), Add(valof_pre_b2$1, 2)), valof_pre_b2)
-  init$5 = 3
-  valof_pre_in$5 = pre in$5
-  valof_pre_b3$9 = pre b3
-  valof_pre_p1$5 = pre p1$5
-  valof_pre_b3$8 = pre b3
-  valof_pre_p2$5 = pre p2$5
-  valof_pre_b3$7 = pre b3
-  valof_pre_p3$5 = pre p3$5
-  valof_pre_b3$6 = pre b3
-  valof_pre_p4$5 = pre p4$5
-  valof_pre_b3$5 = pre b3
-  valof_pre_p5$5 = pre p5$5
-  valof_pre_b3$4 = pre b3
-  valof_pre_p6$5 = pre p6$5
-  valof_pre_b3$3 = pre b3
-  valof_pre_p7$5 = pre p7$5
-  valof_pre_b3$2 = pre b3
-  valof_pre_b3$1 = pre b3
-  valof_pre_b3 = pre b3
-  b3 = init$5 -> ITE(Eq(valof_pre_in$5, init$5), ITE(And(And(And(And(And(And(Neq(Add(valof_pre_b3$9, 1), valof_pre_p1$5), Neq(Add(valof_pre_b3$8, 1), valof_pre_p2$5)), Neq(Add(valof_pre_b3$7, 1), valof_pre_p3$5)), Neq(Add(valof_pre_b3$6, 1), valof_pre_p4$5)), Neq(Add(valof_pre_b3$5, 1), valof_pre_p5$5)), Neq(Add(valof_pre_b3$4, 1), valof_pre_p6$5)), Neq(Add(valof_pre_b3$3, 1), valof_pre_p7$5)), Add(valof_pre_b3$2, 1), Add(valof_pre_b3$1, 2)), valof_pre_b3)
-  init$4 = 4
-  valof_pre_in$4 = pre in$4
-  valof_pre_b4$9 = pre b4
-  valof_pre_p1$4 = pre p1$4
-  valof_pre_b4$8 = pre b4
-  valof_pre_p2$4 = pre p2$4
-  valof_pre_b4$7 = pre b4
-  valof_pre_p3$4 = pre p3$4
-  valof_pre_b4$6 = pre b4
-  valof_pre_p4$4 = pre p4$4
-  valof_pre_b4$5 = pre b4
-  valof_pre_p5$4 = pre p5$4
-  valof_pre_b4$4 = pre b4
-  valof_pre_p6$4 = pre p6$4
-  valof_pre_b4$3 = pre b4
-  valof_pre_p7$4 = pre p7$4
-  valof_pre_b4$2 = pre b4
-  valof_pre_b4$1 = pre b4
-  valof_pre_b4 = pre b4
-  b4 = init$4 -> ITE(Eq(valof_pre_in$4, init$4), ITE(And(And(And(And(And(And(Neq(Add(valof_pre_b4$9, 1), valof_pre_p1$4), Neq(Add(valof_pre_b4$8, 1), valof_pre_p2$4)), Neq(Add(valof_pre_b4$7, 1), valof_pre_p3$4)), Neq(Add(valof_pre_b4$6, 1), valof_pre_p4$4)), Neq(Add(valof_pre_b4$5, 1), valof_pre_p5$4)), Neq(Add(valof_pre_b4$4, 1), valof_pre_p6$4)), Neq(Add(valof_pre_b4$3, 1), valof_pre_p7$4)), Add(valof_pre_b4$2, 1), Add(valof_pre_b4$1, 2)), valof_pre_b4)
-  init$3 = 6
-  valof_pre_in$3 = pre in$3
-  valof_pre_r6$9 = pre r6
-  valof_pre_p1$3 = pre p1$3
-  valof_pre_r6$8 = pre r6
-  valof_pre_p2$3 = pre p2$3
-  valof_pre_r6$7 = pre r6
-  valof_pre_p3$3 = pre p3$3
-  valof_pre_r6$6 = pre r6
-  valof_pre_p4$3 = pre p4$3
-  valof_pre_r6$5 = pre r6
-  valof_pre_p5$3 = pre p5$3
-  valof_pre_r6$4 = pre r6
-  valof_pre_p6$3 = pre p6$3
-  valof_pre_r6$3 = pre r6
-  valof_pre_p7$3 = pre p7$3
-  valof_pre_r6$2 = pre r6
-  valof_pre_r6$1 = pre r6
-  valof_pre_r6 = pre r6
-  r6 = init$3 -> ITE(Eq(valof_pre_in$3, init$3), ITE(And(And(And(And(And(And(Neq(Sub(valof_pre_r6$9, 1), valof_pre_p1$3), Neq(Sub(valof_pre_r6$8, 1), valof_pre_p2$3)), Neq(Sub(valof_pre_r6$7, 1), valof_pre_p3$3)), Neq(Sub(valof_pre_r6$6, 1), valof_pre_p4$3)), Neq(Sub(valof_pre_r6$5, 1), valof_pre_p5$3)), Neq(Sub(valof_pre_r6$4, 1), valof_pre_p6$3)), Neq(Sub(valof_pre_r6$3, 1), valof_pre_p7$3)), Sub(valof_pre_r6$2, 1), Sub(valof_pre_r6$1, 2)), valof_pre_r6)
-  init$2 = 7
-  valof_pre_in$2 = pre in$2
-  valof_pre_r7$9 = pre r7
-  valof_pre_p1$2 = pre p1$2
-  valof_pre_r7$8 = pre r7
-  valof_pre_p2$2 = pre p2$2
-  valof_pre_r7$7 = pre r7
-  valof_pre_p3$2 = pre p3$2
-  valof_pre_r7$6 = pre r7
-  valof_pre_p4$2 = pre p4$2
-  valof_pre_r7$5 = pre r7
-  valof_pre_p5$2 = pre p5$2
-  valof_pre_r7$4 = pre r7
-  valof_pre_p6$2 = pre p6$2
-  valof_pre_r7$3 = pre r7
-  valof_pre_p7$2 = pre p7$2
-  valof_pre_r7$2 = pre r7
-  valof_pre_r7$1 = pre r7
-  valof_pre_r7 = pre r7
-  r7 = init$2 -> ITE(Eq(valof_pre_in$2, init$2), ITE(And(And(And(And(And(And(Neq(Sub(valof_pre_r7$9, 1), valof_pre_p1$2), Neq(Sub(valof_pre_r7$8, 1), valof_pre_p2$2)), Neq(Sub(valof_pre_r7$7, 1), valof_pre_p3$2)), Neq(Sub(valof_pre_r7$6, 1), valof_pre_p4$2)), Neq(Sub(valof_pre_r7$5, 1), valof_pre_p5$2)), Neq(Sub(valof_pre_r7$4, 1), valof_pre_p6$2)), Neq(Sub(valof_pre_r7$3, 1), valof_pre_p7$2)), Sub(valof_pre_r7$2, 1), Sub(valof_pre_r7$1, 2)), valof_pre_r7)
-  init$1 = 8
-  valof_pre_in$1 = pre in$1
-  valof_pre_r8$9 = pre r8
-  valof_pre_p1$1 = pre p1$1
-  valof_pre_r8$8 = pre r8
-  valof_pre_p2$1 = pre p2$1
-  valof_pre_r8$7 = pre r8
-  valof_pre_p3$1 = pre p3$1
-  valof_pre_r8$6 = pre r8
-  valof_pre_p4$1 = pre p4$1
-  valof_pre_r8$5 = pre r8
-  valof_pre_p5$1 = pre p5$1
-  valof_pre_r8$4 = pre r8
-  valof_pre_p6$1 = pre p6$1
-  valof_pre_r8$3 = pre r8
-  valof_pre_p7$1 = pre p7$1
-  valof_pre_r8$2 = pre r8
-  valof_pre_r8$1 = pre r8
-  valof_pre_r8 = pre r8
-  r8 = init$1 -> ITE(Eq(valof_pre_in$1, init$1), ITE(And(And(And(And(And(And(Neq(Sub(valof_pre_r8$9, 1), valof_pre_p1$1), Neq(Sub(valof_pre_r8$8, 1), valof_pre_p2$1)), Neq(Sub(valof_pre_r8$7, 1), valof_pre_p3$1)), Neq(Sub(valof_pre_r8$6, 1), valof_pre_p4$1)), Neq(Sub(valof_pre_r8$5, 1), valof_pre_p5$1)), Neq(Sub(valof_pre_r8$4, 1), valof_pre_p6$1)), Neq(Sub(valof_pre_r8$3, 1), valof_pre_p7$1)), Sub(valof_pre_r8$2, 1), Sub(valof_pre_r8$1, 2)), valof_pre_r8)
-  init = 9
-  valof_pre_in = pre in
-  valof_pre_r9$9 = pre r9
-  valof_pre_p1 = pre p1
-  valof_pre_r9$8 = pre r9
-  valof_pre_p2 = pre p2
-  valof_pre_r9$7 = pre r9
-  valof_pre_p3 = pre p3
-  valof_pre_r9$6 = pre r9
-  valof_pre_p4 = pre p4
-  valof_pre_r9$5 = pre r9
-  valof_pre_p5 = pre p5
-  valof_pre_r9$4 = pre r9
-  valof_pre_p6 = pre p6
-  valof_pre_r9$3 = pre r9
-  valof_pre_p7 = pre p7
-  valof_pre_r9$2 = pre r9
-  valof_pre_r9$1 = pre r9
-  valof_pre_r9 = pre r9
-  r9 = init -> ITE(Eq(valof_pre_in, init), ITE(And(And(And(And(And(And(Neq(Sub(valof_pre_r9$9, 1), valof_pre_p1), Neq(Sub(valof_pre_r9$8, 1), valof_pre_p2)), Neq(Sub(valof_pre_r9$7, 1), valof_pre_p3)), Neq(Sub(valof_pre_r9$6, 1), valof_pre_p4)), Neq(Sub(valof_pre_r9$5, 1), valof_pre_p5)), Neq(Sub(valof_pre_r9$4, 1), valof_pre_p6)), Neq(Sub(valof_pre_r9$3, 1), valof_pre_p7)), Sub(valof_pre_r9$2, 1), Sub(valof_pre_r9$1, 2)), valof_pre_r9)
-  p$9 = b1
-  __no_static$16 = Or(Or(Or(Eq(p$9, 6), Eq(p$9, 7)), Eq(p$9, 8)), Eq(p$9, 9))
-  p$8 = b2
-  __no_static$15 = Or(Or(Or(Eq(p$8, 6), Eq(p$8, 7)), Eq(p$8, 8)), Eq(p$8, 9))
-  p$7 = b3
-  __no_static$14 = Or(Or(Or(Eq(p$7, 6), Eq(p$7, 7)), Eq(p$7, 8)), Eq(p$7, 9))
-  p$6 = b4
-  __no_static$13 = Or(Or(Or(Eq(p$6, 6), Eq(p$6, 7)), Eq(p$6, 8)), Eq(p$6, 9))
-  p$5 = r6
-  __no_static$12 = Or(Or(Or(Eq(p$5, 1), Eq(p$5, 2)), Eq(p$5, 3)), Eq(p$5, 4))
-  p$4 = r7
-  __no_static$11 = Or(Or(Or(Eq(p$4, 1), Eq(p$4, 2)), Eq(p$4, 3)), Eq(p$4, 4))
-  p$3 = r8
-  __no_static$10 = Or(Or(Or(Eq(p$3, 1), Eq(p$3, 2)), Eq(p$3, 3)), Eq(p$3, 4))
-  p$2 = r9
-  __no_static$9 = Or(Or(Or(Eq(p$2, 1), Eq(p$2, 2)), Eq(p$2, 3)), Eq(p$2, 4))
-  solved = And(And(And(And(And(And(And(__no_static$16, __no_static$15), __no_static$14), __no_static$13), __no_static$12), __no_static$11), __no_static$10), __no_static$9)
-  p1$8 = b1
-  p2$8 = b2
-  p3$8 = b3
-  p4$8 = b4
-  p5$8 = r6
-  p6$8 = r7
-  p7$8 = r8
-  p8 = r9
-  distinct = And(And(And(And(And(And(And(And(And(And(And(And(And(And(And(And(And(And(And(And(And(And(And(And(And(And(And(Neq(p1$8, p2$8), Neq(p1$8, p3$8)), Neq(p1$8, p4$8)), Neq(p1$8, p5$8)), Neq(p1$8, p6$8)), Neq(p1$8, p7$8)), Neq(p1$8, p8)), Neq(p2$8, p3$8)), Neq(p2$8, p4$8)), Neq(p2$8, p5$8)), Neq(p2$8, p6$8)), Neq(p2$8, p7$8)), Neq(p2$8, p8)), Neq(p3$8, p4$8)), Neq(p3$8, p5$8)), Neq(p3$8, p6$8)), Neq(p3$8, p7$8)), Neq(p3$8, p8)), Neq(p4$8, p5$8)), Neq(p4$8, p6$8)), Neq(p4$8, p7$8)), Neq(p4$8, p8)), Neq(p5$8, p6$8)), Neq(p5$8, p7$8)), Neq(p5$8, p8)), Neq(p6$8, p7$8)), Neq(p6$8, p8)), Neq(p7$8, p8))
-  loc$7 = b1
-  __no_static$8 = And(Leq(1, loc$7), Leq(loc$7, 9))
-  loc$6 = b2
-  __no_static$7 = And(Leq(1, loc$6), Leq(loc$6, 9))
-  loc$5 = b3
-  __no_static$6 = And(Leq(1, loc$5), Leq(loc$5, 9))
-  loc$4 = b4
-  __no_static$5 = And(Leq(1, loc$4), Leq(loc$4, 9))
-  loc$3 = r6
-  __no_static$4 = And(Leq(1, loc$3), Leq(loc$3, 9))
-  loc$2 = r7
-  __no_static$3 = And(Leq(1, loc$2), Leq(loc$2, 9))
-  loc$1 = r8
-  __no_static$2 = And(Leq(1, loc$1), Leq(loc$1, 9))
-  loc = r9
-  __no_static$1 = And(Leq(1, loc), Leq(loc, 9))
-  bounded = And(And(And(And(And(And(And(__no_static$8, __no_static$7), __no_static$6), __no_static$5), __no_static$4), __no_static$3), __no_static$2), __no_static$1)
-  p$1 = in$8
-  blue_turn = Or(Or(Or(Eq(p$1, 1), Eq(p$1, 2)), Eq(p$1, 3)), Eq(p$1, 4))
-  p = in$8
-  red_turn = Or(Or(Or(Eq(p, 6), Eq(p, 7)), Eq(p, 8)), Eq(p, 9))
-  some_turn = Or(blue_turn, red_turn)
-  blue_start = blue_turn -> true
-  wellformed = And(And(And(distinct, bounded), blue_start), some_turn)
-  x = wellformed
-  valof_pre___no_static = pre __no_static
-  valof_arr = true -> valof_pre___no_static
-  __no_static = And(x, valof_arr)
-  prop = Not(And(__no_static, solved))
-  in$7 = in$8
-  p1$7 = b2
-  p2$7 = b3
-  p3$7 = b4
-  p4$7 = r6
-  p5$7 = r7
-  p6$7 = r8
-  p7$7 = r9
-  in$6 = in$8
-  p1$6 = b1
-  p2$6 = b3
-  p3$6 = b4
-  p4$6 = r6
-  p5$6 = r7
-  p6$6 = r8
-  p7$6 = r9
-  in$5 = in$8
-  p1$5 = b1
-  p2$5 = b2
-  p3$5 = b4
-  p4$5 = r6
-  p5$5 = r7
-  p6$5 = r8
-  p7$5 = r9
-  in$4 = in$8
-  p1$4 = b1
-  p2$4 = b2
-  p3$4 = b3
-  p4$4 = r6
-  p5$4 = r7
-  p6$4 = r8
-  p7$4 = r9
-  in$3 = in$8
-  p1$3 = b1
-  p2$3 = b2
-  p3$3 = b3
-  p4$3 = b4
-  p5$3 = r7
-  p6$3 = r8
-  p7$3 = r9
-  in$2 = in$8
-  p1$2 = b1
-  p2$2 = b2
-  p3$2 = b3
-  p4$2 = b4
-  p5$2 = r6
-  p6$2 = r8
-  p7$2 = r9
-  in$1 = in$8
-  p1$1 = b1
-  p2$1 = b2
-  p3$1 = b3
-  p4$1 = b4
-  p5$1 = r6
-  p6$1 = r7
-  p7$1 = r9
-  in = in$8
-  p1 = b1
-  p2 = b2
-  p3 = b3
-  p4 = b4
-  p5 = r6
-  p6 = r7
-  p7 = r8
+  init$7 : int
+    = 1
+   
+  pre_in$7 : int
+    = pre in$7
+   
+  pre_b1$9 : int
+    = pre b1
+   
+  pre_p1$7 : int
+    = pre p1$7
+   
+  pre_b1$8 : int
+    = pre b1
+   
+  pre_p2$7 : int
+    = pre p2$7
+   
+  pre_b1$7 : int
+    = pre b1
+   
+  pre_p3$7 : int
+    = pre p3$7
+   
+  pre_b1$6 : int
+    = pre b1
+   
+  pre_p4$7 : int
+    = pre p4$7
+   
+  pre_b1$5 : int
+    = pre b1
+   
+  pre_p5$7 : int
+    = pre p5$7
+   
+  pre_b1$4 : int
+    = pre b1
+   
+  pre_p6$7 : int
+    = pre p6$7
+   
+  pre_b1$3 : int
+    = pre b1
+   
+  pre_p7$7 : int
+    = pre p7$7
+   
+  pre_b1$2 : int
+    = pre b1
+   
+  pre_b1$1 : int
+    = pre b1
+   
+  pre_b1 : int
+    = pre b1
+   
+  b1 : int
+    = init$7 -> ITE(Eq(pre_in$7, init$7), ITE(And(And(And(And(And(And(Neq(Add(pre_b1$9, 1), pre_p1$7), Neq(Add(pre_b1$8, 1), pre_p2$7)), Neq(Add(pre_b1$7, 1), pre_p3$7)), Neq(Add(pre_b1$6, 1), pre_p4$7)), Neq(Add(pre_b1$5, 1), pre_p5$7)), Neq(Add(pre_b1$4, 1), pre_p6$7)), Neq(Add(pre_b1$3, 1), pre_p7$7)), Add(pre_b1$2, 1), Add(pre_b1$1, 2)), pre_b1)
+   
+  init$6 : int
+    = 2
+   
+  pre_in$6 : int
+    = pre in$6
+   
+  pre_b2$9 : int
+    = pre b2
+   
+  pre_p1$6 : int
+    = pre p1$6
+   
+  pre_b2$8 : int
+    = pre b2
+   
+  pre_p2$6 : int
+    = pre p2$6
+   
+  pre_b2$7 : int
+    = pre b2
+   
+  pre_p3$6 : int
+    = pre p3$6
+   
+  pre_b2$6 : int
+    = pre b2
+   
+  pre_p4$6 : int
+    = pre p4$6
+   
+  pre_b2$5 : int
+    = pre b2
+   
+  pre_p5$6 : int
+    = pre p5$6
+   
+  pre_b2$4 : int
+    = pre b2
+   
+  pre_p6$6 : int
+    = pre p6$6
+   
+  pre_b2$3 : int
+    = pre b2
+   
+  pre_p7$6 : int
+    = pre p7$6
+   
+  pre_b2$2 : int
+    = pre b2
+   
+  pre_b2$1 : int
+    = pre b2
+   
+  pre_b2 : int
+    = pre b2
+   
+  b2 : int
+    = init$6 -> ITE(Eq(pre_in$6, init$6), ITE(And(And(And(And(And(And(Neq(Add(pre_b2$9, 1), pre_p1$6), Neq(Add(pre_b2$8, 1), pre_p2$6)), Neq(Add(pre_b2$7, 1), pre_p3$6)), Neq(Add(pre_b2$6, 1), pre_p4$6)), Neq(Add(pre_b2$5, 1), pre_p5$6)), Neq(Add(pre_b2$4, 1), pre_p6$6)), Neq(Add(pre_b2$3, 1), pre_p7$6)), Add(pre_b2$2, 1), Add(pre_b2$1, 2)), pre_b2)
+   
+  init$5 : int
+    = 3
+   
+  pre_in$5 : int
+    = pre in$5
+   
+  pre_b3$9 : int
+    = pre b3
+   
+  pre_p1$5 : int
+    = pre p1$5
+   
+  pre_b3$8 : int
+    = pre b3
+   
+  pre_p2$5 : int
+    = pre p2$5
+   
+  pre_b3$7 : int
+    = pre b3
+   
+  pre_p3$5 : int
+    = pre p3$5
+   
+  pre_b3$6 : int
+    = pre b3
+   
+  pre_p4$5 : int
+    = pre p4$5
+   
+  pre_b3$5 : int
+    = pre b3
+   
+  pre_p5$5 : int
+    = pre p5$5
+   
+  pre_b3$4 : int
+    = pre b3
+   
+  pre_p6$5 : int
+    = pre p6$5
+   
+  pre_b3$3 : int
+    = pre b3
+   
+  pre_p7$5 : int
+    = pre p7$5
+   
+  pre_b3$2 : int
+    = pre b3
+   
+  pre_b3$1 : int
+    = pre b3
+   
+  pre_b3 : int
+    = pre b3
+   
+  b3 : int
+    = init$5 -> ITE(Eq(pre_in$5, init$5), ITE(And(And(And(And(And(And(Neq(Add(pre_b3$9, 1), pre_p1$5), Neq(Add(pre_b3$8, 1), pre_p2$5)), Neq(Add(pre_b3$7, 1), pre_p3$5)), Neq(Add(pre_b3$6, 1), pre_p4$5)), Neq(Add(pre_b3$5, 1), pre_p5$5)), Neq(Add(pre_b3$4, 1), pre_p6$5)), Neq(Add(pre_b3$3, 1), pre_p7$5)), Add(pre_b3$2, 1), Add(pre_b3$1, 2)), pre_b3)
+   
+  init$4 : int
+    = 4
+   
+  pre_in$4 : int
+    = pre in$4
+   
+  pre_b4$9 : int
+    = pre b4
+   
+  pre_p1$4 : int
+    = pre p1$4
+   
+  pre_b4$8 : int
+    = pre b4
+   
+  pre_p2$4 : int
+    = pre p2$4
+   
+  pre_b4$7 : int
+    = pre b4
+   
+  pre_p3$4 : int
+    = pre p3$4
+   
+  pre_b4$6 : int
+    = pre b4
+   
+  pre_p4$4 : int
+    = pre p4$4
+   
+  pre_b4$5 : int
+    = pre b4
+   
+  pre_p5$4 : int
+    = pre p5$4
+   
+  pre_b4$4 : int
+    = pre b4
+   
+  pre_p6$4 : int
+    = pre p6$4
+   
+  pre_b4$3 : int
+    = pre b4
+   
+  pre_p7$4 : int
+    = pre p7$4
+   
+  pre_b4$2 : int
+    = pre b4
+   
+  pre_b4$1 : int
+    = pre b4
+   
+  pre_b4 : int
+    = pre b4
+   
+  b4 : int
+    = init$4 -> ITE(Eq(pre_in$4, init$4), ITE(And(And(And(And(And(And(Neq(Add(pre_b4$9, 1), pre_p1$4), Neq(Add(pre_b4$8, 1), pre_p2$4)), Neq(Add(pre_b4$7, 1), pre_p3$4)), Neq(Add(pre_b4$6, 1), pre_p4$4)), Neq(Add(pre_b4$5, 1), pre_p5$4)), Neq(Add(pre_b4$4, 1), pre_p6$4)), Neq(Add(pre_b4$3, 1), pre_p7$4)), Add(pre_b4$2, 1), Add(pre_b4$1, 2)), pre_b4)
+   
+  init$3 : int
+    = 6
+   
+  pre_in$3 : int
+    = pre in$3
+   
+  pre_r6$9 : int
+    = pre r6
+   
+  pre_p1$3 : int
+    = pre p1$3
+   
+  pre_r6$8 : int
+    = pre r6
+   
+  pre_p2$3 : int
+    = pre p2$3
+   
+  pre_r6$7 : int
+    = pre r6
+   
+  pre_p3$3 : int
+    = pre p3$3
+   
+  pre_r6$6 : int
+    = pre r6
+   
+  pre_p4$3 : int
+    = pre p4$3
+   
+  pre_r6$5 : int
+    = pre r6
+   
+  pre_p5$3 : int
+    = pre p5$3
+   
+  pre_r6$4 : int
+    = pre r6
+   
+  pre_p6$3 : int
+    = pre p6$3
+   
+  pre_r6$3 : int
+    = pre r6
+   
+  pre_p7$3 : int
+    = pre p7$3
+   
+  pre_r6$2 : int
+    = pre r6
+   
+  pre_r6$1 : int
+    = pre r6
+   
+  pre_r6 : int
+    = pre r6
+   
+  r6 : int
+    = init$3 -> ITE(Eq(pre_in$3, init$3), ITE(And(And(And(And(And(And(Neq(Sub(pre_r6$9, 1), pre_p1$3), Neq(Sub(pre_r6$8, 1), pre_p2$3)), Neq(Sub(pre_r6$7, 1), pre_p3$3)), Neq(Sub(pre_r6$6, 1), pre_p4$3)), Neq(Sub(pre_r6$5, 1), pre_p5$3)), Neq(Sub(pre_r6$4, 1), pre_p6$3)), Neq(Sub(pre_r6$3, 1), pre_p7$3)), Sub(pre_r6$2, 1), Sub(pre_r6$1, 2)), pre_r6)
+   
+  init$2 : int
+    = 7
+   
+  pre_in$2 : int
+    = pre in$2
+   
+  pre_r7$9 : int
+    = pre r7
+   
+  pre_p1$2 : int
+    = pre p1$2
+   
+  pre_r7$8 : int
+    = pre r7
+   
+  pre_p2$2 : int
+    = pre p2$2
+   
+  pre_r7$7 : int
+    = pre r7
+   
+  pre_p3$2 : int
+    = pre p3$2
+   
+  pre_r7$6 : int
+    = pre r7
+   
+  pre_p4$2 : int
+    = pre p4$2
+   
+  pre_r7$5 : int
+    = pre r7
+   
+  pre_p5$2 : int
+    = pre p5$2
+   
+  pre_r7$4 : int
+    = pre r7
+   
+  pre_p6$2 : int
+    = pre p6$2
+   
+  pre_r7$3 : int
+    = pre r7
+   
+  pre_p7$2 : int
+    = pre p7$2
+   
+  pre_r7$2 : int
+    = pre r7
+   
+  pre_r7$1 : int
+    = pre r7
+   
+  pre_r7 : int
+    = pre r7
+   
+  r7 : int
+    = init$2 -> ITE(Eq(pre_in$2, init$2), ITE(And(And(And(And(And(And(Neq(Sub(pre_r7$9, 1), pre_p1$2), Neq(Sub(pre_r7$8, 1), pre_p2$2)), Neq(Sub(pre_r7$7, 1), pre_p3$2)), Neq(Sub(pre_r7$6, 1), pre_p4$2)), Neq(Sub(pre_r7$5, 1), pre_p5$2)), Neq(Sub(pre_r7$4, 1), pre_p6$2)), Neq(Sub(pre_r7$3, 1), pre_p7$2)), Sub(pre_r7$2, 1), Sub(pre_r7$1, 2)), pre_r7)
+   
+  init$1 : int
+    = 8
+   
+  pre_in$1 : int
+    = pre in$1
+   
+  pre_r8$9 : int
+    = pre r8
+   
+  pre_p1$1 : int
+    = pre p1$1
+   
+  pre_r8$8 : int
+    = pre r8
+   
+  pre_p2$1 : int
+    = pre p2$1
+   
+  pre_r8$7 : int
+    = pre r8
+   
+  pre_p3$1 : int
+    = pre p3$1
+   
+  pre_r8$6 : int
+    = pre r8
+   
+  pre_p4$1 : int
+    = pre p4$1
+   
+  pre_r8$5 : int
+    = pre r8
+   
+  pre_p5$1 : int
+    = pre p5$1
+   
+  pre_r8$4 : int
+    = pre r8
+   
+  pre_p6$1 : int
+    = pre p6$1
+   
+  pre_r8$3 : int
+    = pre r8
+   
+  pre_p7$1 : int
+    = pre p7$1
+   
+  pre_r8$2 : int
+    = pre r8
+   
+  pre_r8$1 : int
+    = pre r8
+   
+  pre_r8 : int
+    = pre r8
+   
+  r8 : int
+    = init$1 -> ITE(Eq(pre_in$1, init$1), ITE(And(And(And(And(And(And(Neq(Sub(pre_r8$9, 1), pre_p1$1), Neq(Sub(pre_r8$8, 1), pre_p2$1)), Neq(Sub(pre_r8$7, 1), pre_p3$1)), Neq(Sub(pre_r8$6, 1), pre_p4$1)), Neq(Sub(pre_r8$5, 1), pre_p5$1)), Neq(Sub(pre_r8$4, 1), pre_p6$1)), Neq(Sub(pre_r8$3, 1), pre_p7$1)), Sub(pre_r8$2, 1), Sub(pre_r8$1, 2)), pre_r8)
+   
+  init : int
+    = 9
+   
+  pre_in : int
+    = pre in
+   
+  pre_r9$9 : int
+    = pre r9
+   
+  pre_p1 : int
+    = pre p1
+   
+  pre_r9$8 : int
+    = pre r9
+   
+  pre_p2 : int
+    = pre p2
+   
+  pre_r9$7 : int
+    = pre r9
+   
+  pre_p3 : int
+    = pre p3
+   
+  pre_r9$6 : int
+    = pre r9
+   
+  pre_p4 : int
+    = pre p4
+   
+  pre_r9$5 : int
+    = pre r9
+   
+  pre_p5 : int
+    = pre p5
+   
+  pre_r9$4 : int
+    = pre r9
+   
+  pre_p6 : int
+    = pre p6
+   
+  pre_r9$3 : int
+    = pre r9
+   
+  pre_p7 : int
+    = pre p7
+   
+  pre_r9$2 : int
+    = pre r9
+   
+  pre_r9$1 : int
+    = pre r9
+   
+  pre_r9 : int
+    = pre r9
+   
+  r9 : int
+    = init -> ITE(Eq(pre_in, init), ITE(And(And(And(And(And(And(Neq(Sub(pre_r9$9, 1), pre_p1), Neq(Sub(pre_r9$8, 1), pre_p2)), Neq(Sub(pre_r9$7, 1), pre_p3)), Neq(Sub(pre_r9$6, 1), pre_p4)), Neq(Sub(pre_r9$5, 1), pre_p5)), Neq(Sub(pre_r9$4, 1), pre_p6)), Neq(Sub(pre_r9$3, 1), pre_p7)), Sub(pre_r9$2, 1), Sub(pre_r9$1, 2)), pre_r9)
+   
+  p$9 : int
+    = b1
+   
+  red_start_position$3 : bool
+    = Or(Or(Or(Eq(p$9, 6), Eq(p$9, 7)), Eq(p$9, 8)), Eq(p$9, 9))
+   
+  p$8 : int
+    = b2
+   
+  red_start_position$2 : bool
+    = Or(Or(Or(Eq(p$8, 6), Eq(p$8, 7)), Eq(p$8, 8)), Eq(p$8, 9))
+   
+  p$7 : int
+    = b3
+   
+  red_start_position$1 : bool
+    = Or(Or(Or(Eq(p$7, 6), Eq(p$7, 7)), Eq(p$7, 8)), Eq(p$7, 9))
+   
+  p$6 : int
+    = b4
+   
+  red_start_position : bool
+    = Or(Or(Or(Eq(p$6, 6), Eq(p$6, 7)), Eq(p$6, 8)), Eq(p$6, 9))
+   
+  p$5 : int
+    = r6
+   
+  blue_start_position$3 : bool
+    = Or(Or(Or(Eq(p$5, 1), Eq(p$5, 2)), Eq(p$5, 3)), Eq(p$5, 4))
+   
+  p$4 : int
+    = r7
+   
+  blue_start_position$2 : bool
+    = Or(Or(Or(Eq(p$4, 1), Eq(p$4, 2)), Eq(p$4, 3)), Eq(p$4, 4))
+   
+  p$3 : int
+    = r8
+   
+  blue_start_position$1 : bool
+    = Or(Or(Or(Eq(p$3, 1), Eq(p$3, 2)), Eq(p$3, 3)), Eq(p$3, 4))
+   
+  p$2 : int
+    = r9
+   
+  blue_start_position : bool
+    = Or(Or(Or(Eq(p$2, 1), Eq(p$2, 2)), Eq(p$2, 3)), Eq(p$2, 4))
+   
+  solved : bool
+    = And(And(And(And(And(And(And(red_start_position$3, red_start_position$2), red_start_position$1), red_start_position), blue_start_position$3), blue_start_position$2), blue_start_position$1), blue_start_position)
+   
+  p1$8 : int
+    = b1
+   
+  p2$8 : int
+    = b2
+   
+  p3$8 : int
+    = b3
+   
+  p4$8 : int
+    = b4
+   
+  p5$8 : int
+    = r6
+   
+  p6$8 : int
+    = r7
+   
+  p7$8 : int
+    = r8
+   
+  p8 : int
+    = r9
+   
+  distinct : bool
+    = And(And(And(And(And(And(And(And(And(And(And(And(And(And(And(And(And(And(And(And(And(And(And(And(And(And(And(Neq(p1$8, p2$8), Neq(p1$8, p3$8)), Neq(p1$8, p4$8)), Neq(p1$8, p5$8)), Neq(p1$8, p6$8)), Neq(p1$8, p7$8)), Neq(p1$8, p8)), Neq(p2$8, p3$8)), Neq(p2$8, p4$8)), Neq(p2$8, p5$8)), Neq(p2$8, p6$8)), Neq(p2$8, p7$8)), Neq(p2$8, p8)), Neq(p3$8, p4$8)), Neq(p3$8, p5$8)), Neq(p3$8, p6$8)), Neq(p3$8, p7$8)), Neq(p3$8, p8)), Neq(p4$8, p5$8)), Neq(p4$8, p6$8)), Neq(p4$8, p7$8)), Neq(p4$8, p8)), Neq(p5$8, p6$8)), Neq(p5$8, p7$8)), Neq(p5$8, p8)), Neq(p6$8, p7$8)), Neq(p6$8, p8)), Neq(p7$8, p8))
+   
+  loc$7 : int
+    = b1
+   
+  valid$7 : bool
+    = And(Leq(1, loc$7), Leq(loc$7, 9))
+   
+  loc$6 : int
+    = b2
+   
+  valid$6 : bool
+    = And(Leq(1, loc$6), Leq(loc$6, 9))
+   
+  loc$5 : int
+    = b3
+   
+  valid$5 : bool
+    = And(Leq(1, loc$5), Leq(loc$5, 9))
+   
+  loc$4 : int
+    = b4
+   
+  valid$4 : bool
+    = And(Leq(1, loc$4), Leq(loc$4, 9))
+   
+  loc$3 : int
+    = r6
+   
+  valid$3 : bool
+    = And(Leq(1, loc$3), Leq(loc$3, 9))
+   
+  loc$2 : int
+    = r7
+   
+  valid$2 : bool
+    = And(Leq(1, loc$2), Leq(loc$2, 9))
+   
+  loc$1 : int
+    = r8
+   
+  valid$1 : bool
+    = And(Leq(1, loc$1), Leq(loc$1, 9))
+   
+  loc : int
+    = r9
+   
+  valid : bool
+    = And(Leq(1, loc), Leq(loc, 9))
+   
+  bounded : bool
+    = And(And(And(And(And(And(And(valid$7, valid$6), valid$5), valid$4), valid$3), valid$2), valid$1), valid)
+   
+  p$1 : int
+    = in$8
+   
+  blue_turn : bool
+    = Or(Or(Or(Eq(p$1, 1), Eq(p$1, 2)), Eq(p$1, 3)), Eq(p$1, 4))
+   
+  p : int
+    = in$8
+   
+  red_turn : bool
+    = Or(Or(Or(Eq(p, 6), Eq(p, 7)), Eq(p, 8)), Eq(p, 9))
+   
+  some_turn : bool
+    = Or(blue_turn, red_turn)
+   
+  blue_start : bool
+    = blue_turn -> true
+   
+  wellformed : bool
+    = And(And(And(distinct, bounded), blue_start), some_turn)
+   
+  x : bool
+    = wellformed
+   
+  pre_historically : bool
+    = pre historically
+   
+  init_pre_historically : bool
+    = true -> pre_historically
+   
+  historically : bool
+    = And(x, init_pre_historically)
+   
+  prop : bool
+    = Not(And(historically, solved))
+   
+  in$7 : int
+    = in$8
+   
+  p1$7 : int
+    = b2
+   
+  p2$7 : int
+    = b3
+   
+  p3$7 : int
+    = b4
+   
+  p4$7 : int
+    = r6
+   
+  p5$7 : int
+    = r7
+   
+  p6$7 : int
+    = r8
+   
+  p7$7 : int
+    = r9
+   
+  in$6 : int
+    = in$8
+   
+  p1$6 : int
+    = b1
+   
+  p2$6 : int
+    = b3
+   
+  p3$6 : int
+    = b4
+   
+  p4$6 : int
+    = r6
+   
+  p5$6 : int
+    = r7
+   
+  p6$6 : int
+    = r8
+   
+  p7$6 : int
+    = r9
+   
+  in$5 : int
+    = in$8
+   
+  p1$5 : int
+    = b1
+   
+  p2$5 : int
+    = b2
+   
+  p3$5 : int
+    = b4
+   
+  p4$5 : int
+    = r6
+   
+  p5$5 : int
+    = r7
+   
+  p6$5 : int
+    = r8
+   
+  p7$5 : int
+    = r9
+   
+  in$4 : int
+    = in$8
+   
+  p1$4 : int
+    = b1
+   
+  p2$4 : int
+    = b2
+   
+  p3$4 : int
+    = b3
+   
+  p4$4 : int
+    = r6
+   
+  p5$4 : int
+    = r7
+   
+  p6$4 : int
+    = r8
+   
+  p7$4 : int
+    = r9
+   
+  in$3 : int
+    = in$8
+   
+  p1$3 : int
+    = b1
+   
+  p2$3 : int
+    = b2
+   
+  p3$3 : int
+    = b3
+   
+  p4$3 : int
+    = b4
+   
+  p5$3 : int
+    = r7
+   
+  p6$3 : int
+    = r8
+   
+  p7$3 : int
+    = r9
+   
+  in$2 : int
+    = in$8
+   
+  p1$2 : int
+    = b1
+   
+  p2$2 : int
+    = b2
+   
+  p3$2 : int
+    = b3
+   
+  p4$2 : int
+    = b4
+   
+  p5$2 : int
+    = r6
+   
+  p6$2 : int
+    = r8
+   
+  p7$2 : int
+    = r9
+   
+  in$1 : int
+    = in$8
+   
+  p1$1 : int
+    = b1
+   
+  p2$1 : int
+    = b2
+   
+  p3$1 : int
+    = b3
+   
+  p4$1 : int
+    = b4
+   
+  p5$1 : int
+    = r6
+   
+  p6$1 : int
+    = r7
+   
+  p7$1 : int
+    = r9
+   
+  in : int
+    = in$8
+   
+  p1 : int
+    = b1
+   
+  p2 : int
+    = b2
+   
+  p3 : int
+    = b3
+   
+  p4 : int
+    = b4
+   
+  p5 : int
+    = r6
+   
+  p6 : int
+    = r7
+   
+  p7 : int
+    = r8
 tel
 Sally Model
 ===========
@@ -299,6 +856,7 @@ Sally Model
      (b4 Int)
      (bounded Bool)
      (distinct Bool)
+     (historically Bool)
      (in Int)
      (init Int)
      (loc Int)
@@ -317,30 +875,18 @@ Sally Model
      (r8 Int)
      (r9 Int)
      (solved Bool)
+     (valid Bool)
      (wellformed Bool)
      (x Bool)
-     (|__no_static:10| Bool)
-     (|__no_static:11| Bool)
-     (|__no_static:12| Bool)
-     (|__no_static:13| Bool)
-     (|__no_static:14| Bool)
-     (|__no_static:15| Bool)
-     (|__no_static:16| Bool)
-     (|__no_static:1| Bool)
-     (|__no_static:2| Bool)
-     (|__no_static:3| Bool)
-     (|__no_static:4| Bool)
-     (|__no_static:5| Bool)
-     (|__no_static:6| Bool)
-     (|__no_static:7| Bool)
-     (|__no_static:8| Bool)
-     (|__no_static:9| Bool)
-     (|__no_static| Bool)
      (|b1:init| Bool)
      (|b2:init| Bool)
      (|b3:init| Bool)
      (|b4:init| Bool)
      (|blue_start:init| Bool)
+     (|blue_start_position:1| Bool)
+     (|blue_start_position:2| Bool)
+     (|blue_start_position:3| Bool)
+     (|blue_start_position| Bool)
      (|blue_start| Bool)
      (|blue_turn| Bool)
      (|gal-initializing| Bool)
@@ -359,6 +905,8 @@ Sally Model
      (|init:5| Int)
      (|init:6| Int)
      (|init:7| Int)
+     (|init_pre_historically:init| Bool)
+     (|init_pre_historically| Bool)
      (|loc:1| Int)
      (|loc:2| Int)
      (|loc:3| Int)
@@ -431,159 +979,168 @@ Sally Model
      (|p:7| Int)
      (|p:8| Int)
      (|p:9| Int)
+     (|pre_b1:1| Int)
+     (|pre_b1:2| Int)
+     (|pre_b1:3| Int)
+     (|pre_b1:4| Int)
+     (|pre_b1:5| Int)
+     (|pre_b1:6| Int)
+     (|pre_b1:7| Int)
+     (|pre_b1:8| Int)
+     (|pre_b1:9| Int)
+     (|pre_b1| Int)
+     (|pre_b2:1| Int)
+     (|pre_b2:2| Int)
+     (|pre_b2:3| Int)
+     (|pre_b2:4| Int)
+     (|pre_b2:5| Int)
+     (|pre_b2:6| Int)
+     (|pre_b2:7| Int)
+     (|pre_b2:8| Int)
+     (|pre_b2:9| Int)
+     (|pre_b2| Int)
+     (|pre_b3:1| Int)
+     (|pre_b3:2| Int)
+     (|pre_b3:3| Int)
+     (|pre_b3:4| Int)
+     (|pre_b3:5| Int)
+     (|pre_b3:6| Int)
+     (|pre_b3:7| Int)
+     (|pre_b3:8| Int)
+     (|pre_b3:9| Int)
+     (|pre_b3| Int)
+     (|pre_b4:1| Int)
+     (|pre_b4:2| Int)
+     (|pre_b4:3| Int)
+     (|pre_b4:4| Int)
+     (|pre_b4:5| Int)
+     (|pre_b4:6| Int)
+     (|pre_b4:7| Int)
+     (|pre_b4:8| Int)
+     (|pre_b4:9| Int)
+     (|pre_b4| Int)
+     (|pre_historically| Bool)
+     (|pre_in:1| Int)
+     (|pre_in:2| Int)
+     (|pre_in:3| Int)
+     (|pre_in:4| Int)
+     (|pre_in:5| Int)
+     (|pre_in:6| Int)
+     (|pre_in:7| Int)
+     (|pre_in| Int)
+     (|pre_p1:1| Int)
+     (|pre_p1:2| Int)
+     (|pre_p1:3| Int)
+     (|pre_p1:4| Int)
+     (|pre_p1:5| Int)
+     (|pre_p1:6| Int)
+     (|pre_p1:7| Int)
+     (|pre_p1| Int)
+     (|pre_p2:1| Int)
+     (|pre_p2:2| Int)
+     (|pre_p2:3| Int)
+     (|pre_p2:4| Int)
+     (|pre_p2:5| Int)
+     (|pre_p2:6| Int)
+     (|pre_p2:7| Int)
+     (|pre_p2| Int)
+     (|pre_p3:1| Int)
+     (|pre_p3:2| Int)
+     (|pre_p3:3| Int)
+     (|pre_p3:4| Int)
+     (|pre_p3:5| Int)
+     (|pre_p3:6| Int)
+     (|pre_p3:7| Int)
+     (|pre_p3| Int)
+     (|pre_p4:1| Int)
+     (|pre_p4:2| Int)
+     (|pre_p4:3| Int)
+     (|pre_p4:4| Int)
+     (|pre_p4:5| Int)
+     (|pre_p4:6| Int)
+     (|pre_p4:7| Int)
+     (|pre_p4| Int)
+     (|pre_p5:1| Int)
+     (|pre_p5:2| Int)
+     (|pre_p5:3| Int)
+     (|pre_p5:4| Int)
+     (|pre_p5:5| Int)
+     (|pre_p5:6| Int)
+     (|pre_p5:7| Int)
+     (|pre_p5| Int)
+     (|pre_p6:1| Int)
+     (|pre_p6:2| Int)
+     (|pre_p6:3| Int)
+     (|pre_p6:4| Int)
+     (|pre_p6:5| Int)
+     (|pre_p6:6| Int)
+     (|pre_p6:7| Int)
+     (|pre_p6| Int)
+     (|pre_p7:1| Int)
+     (|pre_p7:2| Int)
+     (|pre_p7:3| Int)
+     (|pre_p7:4| Int)
+     (|pre_p7:5| Int)
+     (|pre_p7:6| Int)
+     (|pre_p7:7| Int)
+     (|pre_p7| Int)
+     (|pre_r6:1| Int)
+     (|pre_r6:2| Int)
+     (|pre_r6:3| Int)
+     (|pre_r6:4| Int)
+     (|pre_r6:5| Int)
+     (|pre_r6:6| Int)
+     (|pre_r6:7| Int)
+     (|pre_r6:8| Int)
+     (|pre_r6:9| Int)
+     (|pre_r6| Int)
+     (|pre_r7:1| Int)
+     (|pre_r7:2| Int)
+     (|pre_r7:3| Int)
+     (|pre_r7:4| Int)
+     (|pre_r7:5| Int)
+     (|pre_r7:6| Int)
+     (|pre_r7:7| Int)
+     (|pre_r7:8| Int)
+     (|pre_r7:9| Int)
+     (|pre_r7| Int)
+     (|pre_r8:1| Int)
+     (|pre_r8:2| Int)
+     (|pre_r8:3| Int)
+     (|pre_r8:4| Int)
+     (|pre_r8:5| Int)
+     (|pre_r8:6| Int)
+     (|pre_r8:7| Int)
+     (|pre_r8:8| Int)
+     (|pre_r8:9| Int)
+     (|pre_r8| Int)
+     (|pre_r9:1| Int)
+     (|pre_r9:2| Int)
+     (|pre_r9:3| Int)
+     (|pre_r9:4| Int)
+     (|pre_r9:5| Int)
+     (|pre_r9:6| Int)
+     (|pre_r9:7| Int)
+     (|pre_r9:8| Int)
+     (|pre_r9:9| Int)
+     (|pre_r9| Int)
      (|r6:init| Bool)
      (|r7:init| Bool)
      (|r8:init| Bool)
      (|r9:init| Bool)
+     (|red_start_position:1| Bool)
+     (|red_start_position:2| Bool)
+     (|red_start_position:3| Bool)
+     (|red_start_position| Bool)
      (|red_turn| Bool)
      (|some_turn| Bool)
-     (|valof_arr:init| Bool)
-     (|valof_arr| Bool)
-     (|valof_pre___no_static| Bool)
-     (|valof_pre_b1:1| Int)
-     (|valof_pre_b1:2| Int)
-     (|valof_pre_b1:3| Int)
-     (|valof_pre_b1:4| Int)
-     (|valof_pre_b1:5| Int)
-     (|valof_pre_b1:6| Int)
-     (|valof_pre_b1:7| Int)
-     (|valof_pre_b1:8| Int)
-     (|valof_pre_b1:9| Int)
-     (|valof_pre_b1| Int)
-     (|valof_pre_b2:1| Int)
-     (|valof_pre_b2:2| Int)
-     (|valof_pre_b2:3| Int)
-     (|valof_pre_b2:4| Int)
-     (|valof_pre_b2:5| Int)
-     (|valof_pre_b2:6| Int)
-     (|valof_pre_b2:7| Int)
-     (|valof_pre_b2:8| Int)
-     (|valof_pre_b2:9| Int)
-     (|valof_pre_b2| Int)
-     (|valof_pre_b3:1| Int)
-     (|valof_pre_b3:2| Int)
-     (|valof_pre_b3:3| Int)
-     (|valof_pre_b3:4| Int)
-     (|valof_pre_b3:5| Int)
-     (|valof_pre_b3:6| Int)
-     (|valof_pre_b3:7| Int)
-     (|valof_pre_b3:8| Int)
-     (|valof_pre_b3:9| Int)
-     (|valof_pre_b3| Int)
-     (|valof_pre_b4:1| Int)
-     (|valof_pre_b4:2| Int)
-     (|valof_pre_b4:3| Int)
-     (|valof_pre_b4:4| Int)
-     (|valof_pre_b4:5| Int)
-     (|valof_pre_b4:6| Int)
-     (|valof_pre_b4:7| Int)
-     (|valof_pre_b4:8| Int)
-     (|valof_pre_b4:9| Int)
-     (|valof_pre_b4| Int)
-     (|valof_pre_in:1| Int)
-     (|valof_pre_in:2| Int)
-     (|valof_pre_in:3| Int)
-     (|valof_pre_in:4| Int)
-     (|valof_pre_in:5| Int)
-     (|valof_pre_in:6| Int)
-     (|valof_pre_in:7| Int)
-     (|valof_pre_in| Int)
-     (|valof_pre_p1:1| Int)
-     (|valof_pre_p1:2| Int)
-     (|valof_pre_p1:3| Int)
-     (|valof_pre_p1:4| Int)
-     (|valof_pre_p1:5| Int)
-     (|valof_pre_p1:6| Int)
-     (|valof_pre_p1:7| Int)
-     (|valof_pre_p1| Int)
-     (|valof_pre_p2:1| Int)
-     (|valof_pre_p2:2| Int)
-     (|valof_pre_p2:3| Int)
-     (|valof_pre_p2:4| Int)
-     (|valof_pre_p2:5| Int)
-     (|valof_pre_p2:6| Int)
-     (|valof_pre_p2:7| Int)
-     (|valof_pre_p2| Int)
-     (|valof_pre_p3:1| Int)
-     (|valof_pre_p3:2| Int)
-     (|valof_pre_p3:3| Int)
-     (|valof_pre_p3:4| Int)
-     (|valof_pre_p3:5| Int)
-     (|valof_pre_p3:6| Int)
-     (|valof_pre_p3:7| Int)
-     (|valof_pre_p3| Int)
-     (|valof_pre_p4:1| Int)
-     (|valof_pre_p4:2| Int)
-     (|valof_pre_p4:3| Int)
-     (|valof_pre_p4:4| Int)
-     (|valof_pre_p4:5| Int)
-     (|valof_pre_p4:6| Int)
-     (|valof_pre_p4:7| Int)
-     (|valof_pre_p4| Int)
-     (|valof_pre_p5:1| Int)
-     (|valof_pre_p5:2| Int)
-     (|valof_pre_p5:3| Int)
-     (|valof_pre_p5:4| Int)
-     (|valof_pre_p5:5| Int)
-     (|valof_pre_p5:6| Int)
-     (|valof_pre_p5:7| Int)
-     (|valof_pre_p5| Int)
-     (|valof_pre_p6:1| Int)
-     (|valof_pre_p6:2| Int)
-     (|valof_pre_p6:3| Int)
-     (|valof_pre_p6:4| Int)
-     (|valof_pre_p6:5| Int)
-     (|valof_pre_p6:6| Int)
-     (|valof_pre_p6:7| Int)
-     (|valof_pre_p6| Int)
-     (|valof_pre_p7:1| Int)
-     (|valof_pre_p7:2| Int)
-     (|valof_pre_p7:3| Int)
-     (|valof_pre_p7:4| Int)
-     (|valof_pre_p7:5| Int)
-     (|valof_pre_p7:6| Int)
-     (|valof_pre_p7:7| Int)
-     (|valof_pre_p7| Int)
-     (|valof_pre_r6:1| Int)
-     (|valof_pre_r6:2| Int)
-     (|valof_pre_r6:3| Int)
-     (|valof_pre_r6:4| Int)
-     (|valof_pre_r6:5| Int)
-     (|valof_pre_r6:6| Int)
-     (|valof_pre_r6:7| Int)
-     (|valof_pre_r6:8| Int)
-     (|valof_pre_r6:9| Int)
-     (|valof_pre_r6| Int)
-     (|valof_pre_r7:1| Int)
-     (|valof_pre_r7:2| Int)
-     (|valof_pre_r7:3| Int)
-     (|valof_pre_r7:4| Int)
-     (|valof_pre_r7:5| Int)
-     (|valof_pre_r7:6| Int)
-     (|valof_pre_r7:7| Int)
-     (|valof_pre_r7:8| Int)
-     (|valof_pre_r7:9| Int)
-     (|valof_pre_r7| Int)
-     (|valof_pre_r8:1| Int)
-     (|valof_pre_r8:2| Int)
-     (|valof_pre_r8:3| Int)
-     (|valof_pre_r8:4| Int)
-     (|valof_pre_r8:5| Int)
-     (|valof_pre_r8:6| Int)
-     (|valof_pre_r8:7| Int)
-     (|valof_pre_r8:8| Int)
-     (|valof_pre_r8:9| Int)
-     (|valof_pre_r8| Int)
-     (|valof_pre_r9:1| Int)
-     (|valof_pre_r9:2| Int)
-     (|valof_pre_r9:3| Int)
-     (|valof_pre_r9:4| Int)
-     (|valof_pre_r9:5| Int)
-     (|valof_pre_r9:6| Int)
-     (|valof_pre_r9:7| Int)
-     (|valof_pre_r9:8| Int)
-     (|valof_pre_r9:9| Int)
-     (|valof_pre_r9| Int))
+     (|valid:1| Bool)
+     (|valid:2| Bool)
+     (|valid:3| Bool)
+     (|valid:4| Bool)
+     (|valid:5| Bool)
+     (|valid:6| Bool)
+     (|valid:7| Bool))
    (
      (|in:8| Int)))
 (define-transition-system
@@ -600,493 +1157,493 @@ Sally Model
       (= |r8:init| true)
       (= |r9:init| true)
       (= |blue_start:init| true)
-      (= |valof_arr:init| true))
+      (= |init_pre_historically:init| true))
    (and
       (= next.|gal-initializing| false)
       (= next.|in:8| input.|in:8|)
       (= next.|init:7| 1)
-      (= next.|valof_pre_in:7| state.|in:7|)
-      (= next.|valof_pre_b1:9| state.b1)
-      (= next.|valof_pre_p1:7| state.|p1:7|)
-      (= next.|valof_pre_b1:8| state.b1)
-      (= next.|valof_pre_p2:7| state.|p2:7|)
-      (= next.|valof_pre_b1:7| state.b1)
-      (= next.|valof_pre_p3:7| state.|p3:7|)
-      (= next.|valof_pre_b1:6| state.b1)
-      (= next.|valof_pre_p4:7| state.|p4:7|)
-      (= next.|valof_pre_b1:5| state.b1)
-      (= next.|valof_pre_p5:7| state.|p5:7|)
-      (= next.|valof_pre_b1:4| state.b1)
-      (= next.|valof_pre_p6:7| state.|p6:7|)
-      (= next.|valof_pre_b1:3| state.b1)
-      (= next.|valof_pre_p7:7| state.|p7:7|)
-      (= next.|valof_pre_b1:2| state.b1)
-      (= next.|valof_pre_b1:1| state.b1)
-      (= next.|valof_pre_b1| state.b1)
+      (= next.|pre_in:7| state.|in:7|)
+      (= next.|pre_b1:9| state.b1)
+      (= next.|pre_p1:7| state.|p1:7|)
+      (= next.|pre_b1:8| state.b1)
+      (= next.|pre_p2:7| state.|p2:7|)
+      (= next.|pre_b1:7| state.b1)
+      (= next.|pre_p3:7| state.|p3:7|)
+      (= next.|pre_b1:6| state.b1)
+      (= next.|pre_p4:7| state.|p4:7|)
+      (= next.|pre_b1:5| state.b1)
+      (= next.|pre_p5:7| state.|p5:7|)
+      (= next.|pre_b1:4| state.b1)
+      (= next.|pre_p6:7| state.|p6:7|)
+      (= next.|pre_b1:3| state.b1)
+      (= next.|pre_p7:7| state.|p7:7|)
+      (= next.|pre_b1:2| state.b1)
+      (= next.|pre_b1:1| state.b1)
+      (= next.|pre_b1| state.b1)
       (ite
          state.|b1:init|
          (= next.b1 next.|init:7|)
          (=
             next.b1
             (ite
-               (= next.|valof_pre_in:7| next.|init:7|)
+               (= next.|pre_in:7| next.|init:7|)
                (ite
                   (and
                      (not
                         (=
-                           (+ next.|valof_pre_b1:9| 1)
-                           next.|valof_pre_p1:7|))
+                           (+ next.|pre_b1:9| 1)
+                           next.|pre_p1:7|))
                      (not
                         (=
-                           (+ next.|valof_pre_b1:8| 1)
-                           next.|valof_pre_p2:7|))
+                           (+ next.|pre_b1:8| 1)
+                           next.|pre_p2:7|))
                      (not
                         (=
-                           (+ next.|valof_pre_b1:7| 1)
-                           next.|valof_pre_p3:7|))
+                           (+ next.|pre_b1:7| 1)
+                           next.|pre_p3:7|))
                      (not
                         (=
-                           (+ next.|valof_pre_b1:6| 1)
-                           next.|valof_pre_p4:7|))
+                           (+ next.|pre_b1:6| 1)
+                           next.|pre_p4:7|))
                      (not
                         (=
-                           (+ next.|valof_pre_b1:5| 1)
-                           next.|valof_pre_p5:7|))
+                           (+ next.|pre_b1:5| 1)
+                           next.|pre_p5:7|))
                      (not
                         (=
-                           (+ next.|valof_pre_b1:4| 1)
-                           next.|valof_pre_p6:7|))
+                           (+ next.|pre_b1:4| 1)
+                           next.|pre_p6:7|))
                      (not
                         (=
-                           (+ next.|valof_pre_b1:3| 1)
-                           next.|valof_pre_p7:7|)))
-                  (+ next.|valof_pre_b1:2| 1)
-                  (+ next.|valof_pre_b1:1| 2))
-               next.|valof_pre_b1|)))
+                           (+ next.|pre_b1:3| 1)
+                           next.|pre_p7:7|)))
+                  (+ next.|pre_b1:2| 1)
+                  (+ next.|pre_b1:1| 2))
+               next.|pre_b1|)))
       (= next.|b1:init| false)
       (= next.|init:6| 2)
-      (= next.|valof_pre_in:6| state.|in:6|)
-      (= next.|valof_pre_b2:9| state.b2)
-      (= next.|valof_pre_p1:6| state.|p1:6|)
-      (= next.|valof_pre_b2:8| state.b2)
-      (= next.|valof_pre_p2:6| state.|p2:6|)
-      (= next.|valof_pre_b2:7| state.b2)
-      (= next.|valof_pre_p3:6| state.|p3:6|)
-      (= next.|valof_pre_b2:6| state.b2)
-      (= next.|valof_pre_p4:6| state.|p4:6|)
-      (= next.|valof_pre_b2:5| state.b2)
-      (= next.|valof_pre_p5:6| state.|p5:6|)
-      (= next.|valof_pre_b2:4| state.b2)
-      (= next.|valof_pre_p6:6| state.|p6:6|)
-      (= next.|valof_pre_b2:3| state.b2)
-      (= next.|valof_pre_p7:6| state.|p7:6|)
-      (= next.|valof_pre_b2:2| state.b2)
-      (= next.|valof_pre_b2:1| state.b2)
-      (= next.|valof_pre_b2| state.b2)
+      (= next.|pre_in:6| state.|in:6|)
+      (= next.|pre_b2:9| state.b2)
+      (= next.|pre_p1:6| state.|p1:6|)
+      (= next.|pre_b2:8| state.b2)
+      (= next.|pre_p2:6| state.|p2:6|)
+      (= next.|pre_b2:7| state.b2)
+      (= next.|pre_p3:6| state.|p3:6|)
+      (= next.|pre_b2:6| state.b2)
+      (= next.|pre_p4:6| state.|p4:6|)
+      (= next.|pre_b2:5| state.b2)
+      (= next.|pre_p5:6| state.|p5:6|)
+      (= next.|pre_b2:4| state.b2)
+      (= next.|pre_p6:6| state.|p6:6|)
+      (= next.|pre_b2:3| state.b2)
+      (= next.|pre_p7:6| state.|p7:6|)
+      (= next.|pre_b2:2| state.b2)
+      (= next.|pre_b2:1| state.b2)
+      (= next.|pre_b2| state.b2)
       (ite
          state.|b2:init|
          (= next.b2 next.|init:6|)
          (=
             next.b2
             (ite
-               (= next.|valof_pre_in:6| next.|init:6|)
+               (= next.|pre_in:6| next.|init:6|)
                (ite
                   (and
                      (not
                         (=
-                           (+ next.|valof_pre_b2:9| 1)
-                           next.|valof_pre_p1:6|))
+                           (+ next.|pre_b2:9| 1)
+                           next.|pre_p1:6|))
                      (not
                         (=
-                           (+ next.|valof_pre_b2:8| 1)
-                           next.|valof_pre_p2:6|))
+                           (+ next.|pre_b2:8| 1)
+                           next.|pre_p2:6|))
                      (not
                         (=
-                           (+ next.|valof_pre_b2:7| 1)
-                           next.|valof_pre_p3:6|))
+                           (+ next.|pre_b2:7| 1)
+                           next.|pre_p3:6|))
                      (not
                         (=
-                           (+ next.|valof_pre_b2:6| 1)
-                           next.|valof_pre_p4:6|))
+                           (+ next.|pre_b2:6| 1)
+                           next.|pre_p4:6|))
                      (not
                         (=
-                           (+ next.|valof_pre_b2:5| 1)
-                           next.|valof_pre_p5:6|))
+                           (+ next.|pre_b2:5| 1)
+                           next.|pre_p5:6|))
                      (not
                         (=
-                           (+ next.|valof_pre_b2:4| 1)
-                           next.|valof_pre_p6:6|))
+                           (+ next.|pre_b2:4| 1)
+                           next.|pre_p6:6|))
                      (not
                         (=
-                           (+ next.|valof_pre_b2:3| 1)
-                           next.|valof_pre_p7:6|)))
-                  (+ next.|valof_pre_b2:2| 1)
-                  (+ next.|valof_pre_b2:1| 2))
-               next.|valof_pre_b2|)))
+                           (+ next.|pre_b2:3| 1)
+                           next.|pre_p7:6|)))
+                  (+ next.|pre_b2:2| 1)
+                  (+ next.|pre_b2:1| 2))
+               next.|pre_b2|)))
       (= next.|b2:init| false)
       (= next.|init:5| 3)
-      (= next.|valof_pre_in:5| state.|in:5|)
-      (= next.|valof_pre_b3:9| state.b3)
-      (= next.|valof_pre_p1:5| state.|p1:5|)
-      (= next.|valof_pre_b3:8| state.b3)
-      (= next.|valof_pre_p2:5| state.|p2:5|)
-      (= next.|valof_pre_b3:7| state.b3)
-      (= next.|valof_pre_p3:5| state.|p3:5|)
-      (= next.|valof_pre_b3:6| state.b3)
-      (= next.|valof_pre_p4:5| state.|p4:5|)
-      (= next.|valof_pre_b3:5| state.b3)
-      (= next.|valof_pre_p5:5| state.|p5:5|)
-      (= next.|valof_pre_b3:4| state.b3)
-      (= next.|valof_pre_p6:5| state.|p6:5|)
-      (= next.|valof_pre_b3:3| state.b3)
-      (= next.|valof_pre_p7:5| state.|p7:5|)
-      (= next.|valof_pre_b3:2| state.b3)
-      (= next.|valof_pre_b3:1| state.b3)
-      (= next.|valof_pre_b3| state.b3)
+      (= next.|pre_in:5| state.|in:5|)
+      (= next.|pre_b3:9| state.b3)
+      (= next.|pre_p1:5| state.|p1:5|)
+      (= next.|pre_b3:8| state.b3)
+      (= next.|pre_p2:5| state.|p2:5|)
+      (= next.|pre_b3:7| state.b3)
+      (= next.|pre_p3:5| state.|p3:5|)
+      (= next.|pre_b3:6| state.b3)
+      (= next.|pre_p4:5| state.|p4:5|)
+      (= next.|pre_b3:5| state.b3)
+      (= next.|pre_p5:5| state.|p5:5|)
+      (= next.|pre_b3:4| state.b3)
+      (= next.|pre_p6:5| state.|p6:5|)
+      (= next.|pre_b3:3| state.b3)
+      (= next.|pre_p7:5| state.|p7:5|)
+      (= next.|pre_b3:2| state.b3)
+      (= next.|pre_b3:1| state.b3)
+      (= next.|pre_b3| state.b3)
       (ite
          state.|b3:init|
          (= next.b3 next.|init:5|)
          (=
             next.b3
             (ite
-               (= next.|valof_pre_in:5| next.|init:5|)
+               (= next.|pre_in:5| next.|init:5|)
                (ite
                   (and
                      (not
                         (=
-                           (+ next.|valof_pre_b3:9| 1)
-                           next.|valof_pre_p1:5|))
+                           (+ next.|pre_b3:9| 1)
+                           next.|pre_p1:5|))
                      (not
                         (=
-                           (+ next.|valof_pre_b3:8| 1)
-                           next.|valof_pre_p2:5|))
+                           (+ next.|pre_b3:8| 1)
+                           next.|pre_p2:5|))
                      (not
                         (=
-                           (+ next.|valof_pre_b3:7| 1)
-                           next.|valof_pre_p3:5|))
+                           (+ next.|pre_b3:7| 1)
+                           next.|pre_p3:5|))
                      (not
                         (=
-                           (+ next.|valof_pre_b3:6| 1)
-                           next.|valof_pre_p4:5|))
+                           (+ next.|pre_b3:6| 1)
+                           next.|pre_p4:5|))
                      (not
                         (=
-                           (+ next.|valof_pre_b3:5| 1)
-                           next.|valof_pre_p5:5|))
+                           (+ next.|pre_b3:5| 1)
+                           next.|pre_p5:5|))
                      (not
                         (=
-                           (+ next.|valof_pre_b3:4| 1)
-                           next.|valof_pre_p6:5|))
+                           (+ next.|pre_b3:4| 1)
+                           next.|pre_p6:5|))
                      (not
                         (=
-                           (+ next.|valof_pre_b3:3| 1)
-                           next.|valof_pre_p7:5|)))
-                  (+ next.|valof_pre_b3:2| 1)
-                  (+ next.|valof_pre_b3:1| 2))
-               next.|valof_pre_b3|)))
+                           (+ next.|pre_b3:3| 1)
+                           next.|pre_p7:5|)))
+                  (+ next.|pre_b3:2| 1)
+                  (+ next.|pre_b3:1| 2))
+               next.|pre_b3|)))
       (= next.|b3:init| false)
       (= next.|init:4| 4)
-      (= next.|valof_pre_in:4| state.|in:4|)
-      (= next.|valof_pre_b4:9| state.b4)
-      (= next.|valof_pre_p1:4| state.|p1:4|)
-      (= next.|valof_pre_b4:8| state.b4)
-      (= next.|valof_pre_p2:4| state.|p2:4|)
-      (= next.|valof_pre_b4:7| state.b4)
-      (= next.|valof_pre_p3:4| state.|p3:4|)
-      (= next.|valof_pre_b4:6| state.b4)
-      (= next.|valof_pre_p4:4| state.|p4:4|)
-      (= next.|valof_pre_b4:5| state.b4)
-      (= next.|valof_pre_p5:4| state.|p5:4|)
-      (= next.|valof_pre_b4:4| state.b4)
-      (= next.|valof_pre_p6:4| state.|p6:4|)
-      (= next.|valof_pre_b4:3| state.b4)
-      (= next.|valof_pre_p7:4| state.|p7:4|)
-      (= next.|valof_pre_b4:2| state.b4)
-      (= next.|valof_pre_b4:1| state.b4)
-      (= next.|valof_pre_b4| state.b4)
+      (= next.|pre_in:4| state.|in:4|)
+      (= next.|pre_b4:9| state.b4)
+      (= next.|pre_p1:4| state.|p1:4|)
+      (= next.|pre_b4:8| state.b4)
+      (= next.|pre_p2:4| state.|p2:4|)
+      (= next.|pre_b4:7| state.b4)
+      (= next.|pre_p3:4| state.|p3:4|)
+      (= next.|pre_b4:6| state.b4)
+      (= next.|pre_p4:4| state.|p4:4|)
+      (= next.|pre_b4:5| state.b4)
+      (= next.|pre_p5:4| state.|p5:4|)
+      (= next.|pre_b4:4| state.b4)
+      (= next.|pre_p6:4| state.|p6:4|)
+      (= next.|pre_b4:3| state.b4)
+      (= next.|pre_p7:4| state.|p7:4|)
+      (= next.|pre_b4:2| state.b4)
+      (= next.|pre_b4:1| state.b4)
+      (= next.|pre_b4| state.b4)
       (ite
          state.|b4:init|
          (= next.b4 next.|init:4|)
          (=
             next.b4
             (ite
-               (= next.|valof_pre_in:4| next.|init:4|)
+               (= next.|pre_in:4| next.|init:4|)
                (ite
                   (and
                      (not
                         (=
-                           (+ next.|valof_pre_b4:9| 1)
-                           next.|valof_pre_p1:4|))
+                           (+ next.|pre_b4:9| 1)
+                           next.|pre_p1:4|))
                      (not
                         (=
-                           (+ next.|valof_pre_b4:8| 1)
-                           next.|valof_pre_p2:4|))
+                           (+ next.|pre_b4:8| 1)
+                           next.|pre_p2:4|))
                      (not
                         (=
-                           (+ next.|valof_pre_b4:7| 1)
-                           next.|valof_pre_p3:4|))
+                           (+ next.|pre_b4:7| 1)
+                           next.|pre_p3:4|))
                      (not
                         (=
-                           (+ next.|valof_pre_b4:6| 1)
-                           next.|valof_pre_p4:4|))
+                           (+ next.|pre_b4:6| 1)
+                           next.|pre_p4:4|))
                      (not
                         (=
-                           (+ next.|valof_pre_b4:5| 1)
-                           next.|valof_pre_p5:4|))
+                           (+ next.|pre_b4:5| 1)
+                           next.|pre_p5:4|))
                      (not
                         (=
-                           (+ next.|valof_pre_b4:4| 1)
-                           next.|valof_pre_p6:4|))
+                           (+ next.|pre_b4:4| 1)
+                           next.|pre_p6:4|))
                      (not
                         (=
-                           (+ next.|valof_pre_b4:3| 1)
-                           next.|valof_pre_p7:4|)))
-                  (+ next.|valof_pre_b4:2| 1)
-                  (+ next.|valof_pre_b4:1| 2))
-               next.|valof_pre_b4|)))
+                           (+ next.|pre_b4:3| 1)
+                           next.|pre_p7:4|)))
+                  (+ next.|pre_b4:2| 1)
+                  (+ next.|pre_b4:1| 2))
+               next.|pre_b4|)))
       (= next.|b4:init| false)
       (= next.|init:3| 6)
-      (= next.|valof_pre_in:3| state.|in:3|)
-      (= next.|valof_pre_r6:9| state.r6)
-      (= next.|valof_pre_p1:3| state.|p1:3|)
-      (= next.|valof_pre_r6:8| state.r6)
-      (= next.|valof_pre_p2:3| state.|p2:3|)
-      (= next.|valof_pre_r6:7| state.r6)
-      (= next.|valof_pre_p3:3| state.|p3:3|)
-      (= next.|valof_pre_r6:6| state.r6)
-      (= next.|valof_pre_p4:3| state.|p4:3|)
-      (= next.|valof_pre_r6:5| state.r6)
-      (= next.|valof_pre_p5:3| state.|p5:3|)
-      (= next.|valof_pre_r6:4| state.r6)
-      (= next.|valof_pre_p6:3| state.|p6:3|)
-      (= next.|valof_pre_r6:3| state.r6)
-      (= next.|valof_pre_p7:3| state.|p7:3|)
-      (= next.|valof_pre_r6:2| state.r6)
-      (= next.|valof_pre_r6:1| state.r6)
-      (= next.|valof_pre_r6| state.r6)
+      (= next.|pre_in:3| state.|in:3|)
+      (= next.|pre_r6:9| state.r6)
+      (= next.|pre_p1:3| state.|p1:3|)
+      (= next.|pre_r6:8| state.r6)
+      (= next.|pre_p2:3| state.|p2:3|)
+      (= next.|pre_r6:7| state.r6)
+      (= next.|pre_p3:3| state.|p3:3|)
+      (= next.|pre_r6:6| state.r6)
+      (= next.|pre_p4:3| state.|p4:3|)
+      (= next.|pre_r6:5| state.r6)
+      (= next.|pre_p5:3| state.|p5:3|)
+      (= next.|pre_r6:4| state.r6)
+      (= next.|pre_p6:3| state.|p6:3|)
+      (= next.|pre_r6:3| state.r6)
+      (= next.|pre_p7:3| state.|p7:3|)
+      (= next.|pre_r6:2| state.r6)
+      (= next.|pre_r6:1| state.r6)
+      (= next.|pre_r6| state.r6)
       (ite
          state.|r6:init|
          (= next.r6 next.|init:3|)
          (=
             next.r6
             (ite
-               (= next.|valof_pre_in:3| next.|init:3|)
+               (= next.|pre_in:3| next.|init:3|)
                (ite
                   (and
                      (not
                         (=
-                           (- next.|valof_pre_r6:9| 1)
-                           next.|valof_pre_p1:3|))
+                           (- next.|pre_r6:9| 1)
+                           next.|pre_p1:3|))
                      (not
                         (=
-                           (- next.|valof_pre_r6:8| 1)
-                           next.|valof_pre_p2:3|))
+                           (- next.|pre_r6:8| 1)
+                           next.|pre_p2:3|))
                      (not
                         (=
-                           (- next.|valof_pre_r6:7| 1)
-                           next.|valof_pre_p3:3|))
+                           (- next.|pre_r6:7| 1)
+                           next.|pre_p3:3|))
                      (not
                         (=
-                           (- next.|valof_pre_r6:6| 1)
-                           next.|valof_pre_p4:3|))
+                           (- next.|pre_r6:6| 1)
+                           next.|pre_p4:3|))
                      (not
                         (=
-                           (- next.|valof_pre_r6:5| 1)
-                           next.|valof_pre_p5:3|))
+                           (- next.|pre_r6:5| 1)
+                           next.|pre_p5:3|))
                      (not
                         (=
-                           (- next.|valof_pre_r6:4| 1)
-                           next.|valof_pre_p6:3|))
+                           (- next.|pre_r6:4| 1)
+                           next.|pre_p6:3|))
                      (not
                         (=
-                           (- next.|valof_pre_r6:3| 1)
-                           next.|valof_pre_p7:3|)))
-                  (- next.|valof_pre_r6:2| 1)
-                  (- next.|valof_pre_r6:1| 2))
-               next.|valof_pre_r6|)))
+                           (- next.|pre_r6:3| 1)
+                           next.|pre_p7:3|)))
+                  (- next.|pre_r6:2| 1)
+                  (- next.|pre_r6:1| 2))
+               next.|pre_r6|)))
       (= next.|r6:init| false)
       (= next.|init:2| 7)
-      (= next.|valof_pre_in:2| state.|in:2|)
-      (= next.|valof_pre_r7:9| state.r7)
-      (= next.|valof_pre_p1:2| state.|p1:2|)
-      (= next.|valof_pre_r7:8| state.r7)
-      (= next.|valof_pre_p2:2| state.|p2:2|)
-      (= next.|valof_pre_r7:7| state.r7)
-      (= next.|valof_pre_p3:2| state.|p3:2|)
-      (= next.|valof_pre_r7:6| state.r7)
-      (= next.|valof_pre_p4:2| state.|p4:2|)
-      (= next.|valof_pre_r7:5| state.r7)
-      (= next.|valof_pre_p5:2| state.|p5:2|)
-      (= next.|valof_pre_r7:4| state.r7)
-      (= next.|valof_pre_p6:2| state.|p6:2|)
-      (= next.|valof_pre_r7:3| state.r7)
-      (= next.|valof_pre_p7:2| state.|p7:2|)
-      (= next.|valof_pre_r7:2| state.r7)
-      (= next.|valof_pre_r7:1| state.r7)
-      (= next.|valof_pre_r7| state.r7)
+      (= next.|pre_in:2| state.|in:2|)
+      (= next.|pre_r7:9| state.r7)
+      (= next.|pre_p1:2| state.|p1:2|)
+      (= next.|pre_r7:8| state.r7)
+      (= next.|pre_p2:2| state.|p2:2|)
+      (= next.|pre_r7:7| state.r7)
+      (= next.|pre_p3:2| state.|p3:2|)
+      (= next.|pre_r7:6| state.r7)
+      (= next.|pre_p4:2| state.|p4:2|)
+      (= next.|pre_r7:5| state.r7)
+      (= next.|pre_p5:2| state.|p5:2|)
+      (= next.|pre_r7:4| state.r7)
+      (= next.|pre_p6:2| state.|p6:2|)
+      (= next.|pre_r7:3| state.r7)
+      (= next.|pre_p7:2| state.|p7:2|)
+      (= next.|pre_r7:2| state.r7)
+      (= next.|pre_r7:1| state.r7)
+      (= next.|pre_r7| state.r7)
       (ite
          state.|r7:init|
          (= next.r7 next.|init:2|)
          (=
             next.r7
             (ite
-               (= next.|valof_pre_in:2| next.|init:2|)
+               (= next.|pre_in:2| next.|init:2|)
                (ite
                   (and
                      (not
                         (=
-                           (- next.|valof_pre_r7:9| 1)
-                           next.|valof_pre_p1:2|))
+                           (- next.|pre_r7:9| 1)
+                           next.|pre_p1:2|))
                      (not
                         (=
-                           (- next.|valof_pre_r7:8| 1)
-                           next.|valof_pre_p2:2|))
+                           (- next.|pre_r7:8| 1)
+                           next.|pre_p2:2|))
                      (not
                         (=
-                           (- next.|valof_pre_r7:7| 1)
-                           next.|valof_pre_p3:2|))
+                           (- next.|pre_r7:7| 1)
+                           next.|pre_p3:2|))
                      (not
                         (=
-                           (- next.|valof_pre_r7:6| 1)
-                           next.|valof_pre_p4:2|))
+                           (- next.|pre_r7:6| 1)
+                           next.|pre_p4:2|))
                      (not
                         (=
-                           (- next.|valof_pre_r7:5| 1)
-                           next.|valof_pre_p5:2|))
+                           (- next.|pre_r7:5| 1)
+                           next.|pre_p5:2|))
                      (not
                         (=
-                           (- next.|valof_pre_r7:4| 1)
-                           next.|valof_pre_p6:2|))
+                           (- next.|pre_r7:4| 1)
+                           next.|pre_p6:2|))
                      (not
                         (=
-                           (- next.|valof_pre_r7:3| 1)
-                           next.|valof_pre_p7:2|)))
-                  (- next.|valof_pre_r7:2| 1)
-                  (- next.|valof_pre_r7:1| 2))
-               next.|valof_pre_r7|)))
+                           (- next.|pre_r7:3| 1)
+                           next.|pre_p7:2|)))
+                  (- next.|pre_r7:2| 1)
+                  (- next.|pre_r7:1| 2))
+               next.|pre_r7|)))
       (= next.|r7:init| false)
       (= next.|init:1| 8)
-      (= next.|valof_pre_in:1| state.|in:1|)
-      (= next.|valof_pre_r8:9| state.r8)
-      (= next.|valof_pre_p1:1| state.|p1:1|)
-      (= next.|valof_pre_r8:8| state.r8)
-      (= next.|valof_pre_p2:1| state.|p2:1|)
-      (= next.|valof_pre_r8:7| state.r8)
-      (= next.|valof_pre_p3:1| state.|p3:1|)
-      (= next.|valof_pre_r8:6| state.r8)
-      (= next.|valof_pre_p4:1| state.|p4:1|)
-      (= next.|valof_pre_r8:5| state.r8)
-      (= next.|valof_pre_p5:1| state.|p5:1|)
-      (= next.|valof_pre_r8:4| state.r8)
-      (= next.|valof_pre_p6:1| state.|p6:1|)
-      (= next.|valof_pre_r8:3| state.r8)
-      (= next.|valof_pre_p7:1| state.|p7:1|)
-      (= next.|valof_pre_r8:2| state.r8)
-      (= next.|valof_pre_r8:1| state.r8)
-      (= next.|valof_pre_r8| state.r8)
+      (= next.|pre_in:1| state.|in:1|)
+      (= next.|pre_r8:9| state.r8)
+      (= next.|pre_p1:1| state.|p1:1|)
+      (= next.|pre_r8:8| state.r8)
+      (= next.|pre_p2:1| state.|p2:1|)
+      (= next.|pre_r8:7| state.r8)
+      (= next.|pre_p3:1| state.|p3:1|)
+      (= next.|pre_r8:6| state.r8)
+      (= next.|pre_p4:1| state.|p4:1|)
+      (= next.|pre_r8:5| state.r8)
+      (= next.|pre_p5:1| state.|p5:1|)
+      (= next.|pre_r8:4| state.r8)
+      (= next.|pre_p6:1| state.|p6:1|)
+      (= next.|pre_r8:3| state.r8)
+      (= next.|pre_p7:1| state.|p7:1|)
+      (= next.|pre_r8:2| state.r8)
+      (= next.|pre_r8:1| state.r8)
+      (= next.|pre_r8| state.r8)
       (ite
          state.|r8:init|
          (= next.r8 next.|init:1|)
          (=
             next.r8
             (ite
-               (= next.|valof_pre_in:1| next.|init:1|)
+               (= next.|pre_in:1| next.|init:1|)
                (ite
                   (and
                      (not
                         (=
-                           (- next.|valof_pre_r8:9| 1)
-                           next.|valof_pre_p1:1|))
+                           (- next.|pre_r8:9| 1)
+                           next.|pre_p1:1|))
                      (not
                         (=
-                           (- next.|valof_pre_r8:8| 1)
-                           next.|valof_pre_p2:1|))
+                           (- next.|pre_r8:8| 1)
+                           next.|pre_p2:1|))
                      (not
                         (=
-                           (- next.|valof_pre_r8:7| 1)
-                           next.|valof_pre_p3:1|))
+                           (- next.|pre_r8:7| 1)
+                           next.|pre_p3:1|))
                      (not
                         (=
-                           (- next.|valof_pre_r8:6| 1)
-                           next.|valof_pre_p4:1|))
+                           (- next.|pre_r8:6| 1)
+                           next.|pre_p4:1|))
                      (not
                         (=
-                           (- next.|valof_pre_r8:5| 1)
-                           next.|valof_pre_p5:1|))
+                           (- next.|pre_r8:5| 1)
+                           next.|pre_p5:1|))
                      (not
                         (=
-                           (- next.|valof_pre_r8:4| 1)
-                           next.|valof_pre_p6:1|))
+                           (- next.|pre_r8:4| 1)
+                           next.|pre_p6:1|))
                      (not
                         (=
-                           (- next.|valof_pre_r8:3| 1)
-                           next.|valof_pre_p7:1|)))
-                  (- next.|valof_pre_r8:2| 1)
-                  (- next.|valof_pre_r8:1| 2))
-               next.|valof_pre_r8|)))
+                           (- next.|pre_r8:3| 1)
+                           next.|pre_p7:1|)))
+                  (- next.|pre_r8:2| 1)
+                  (- next.|pre_r8:1| 2))
+               next.|pre_r8|)))
       (= next.|r8:init| false)
       (= next.init 9)
-      (= next.|valof_pre_in| state.in)
-      (= next.|valof_pre_r9:9| state.r9)
-      (= next.|valof_pre_p1| state.p1)
-      (= next.|valof_pre_r9:8| state.r9)
-      (= next.|valof_pre_p2| state.p2)
-      (= next.|valof_pre_r9:7| state.r9)
-      (= next.|valof_pre_p3| state.p3)
-      (= next.|valof_pre_r9:6| state.r9)
-      (= next.|valof_pre_p4| state.p4)
-      (= next.|valof_pre_r9:5| state.r9)
-      (= next.|valof_pre_p5| state.p5)
-      (= next.|valof_pre_r9:4| state.r9)
-      (= next.|valof_pre_p6| state.p6)
-      (= next.|valof_pre_r9:3| state.r9)
-      (= next.|valof_pre_p7| state.p7)
-      (= next.|valof_pre_r9:2| state.r9)
-      (= next.|valof_pre_r9:1| state.r9)
-      (= next.|valof_pre_r9| state.r9)
+      (= next.|pre_in| state.in)
+      (= next.|pre_r9:9| state.r9)
+      (= next.|pre_p1| state.p1)
+      (= next.|pre_r9:8| state.r9)
+      (= next.|pre_p2| state.p2)
+      (= next.|pre_r9:7| state.r9)
+      (= next.|pre_p3| state.p3)
+      (= next.|pre_r9:6| state.r9)
+      (= next.|pre_p4| state.p4)
+      (= next.|pre_r9:5| state.r9)
+      (= next.|pre_p5| state.p5)
+      (= next.|pre_r9:4| state.r9)
+      (= next.|pre_p6| state.p6)
+      (= next.|pre_r9:3| state.r9)
+      (= next.|pre_p7| state.p7)
+      (= next.|pre_r9:2| state.r9)
+      (= next.|pre_r9:1| state.r9)
+      (= next.|pre_r9| state.r9)
       (ite
          state.|r9:init|
          (= next.r9 next.init)
          (=
             next.r9
             (ite
-               (= next.|valof_pre_in| next.init)
+               (= next.|pre_in| next.init)
                (ite
                   (and
                      (not
                         (=
-                           (- next.|valof_pre_r9:9| 1)
-                           next.|valof_pre_p1|))
+                           (- next.|pre_r9:9| 1)
+                           next.|pre_p1|))
                      (not
                         (=
-                           (- next.|valof_pre_r9:8| 1)
-                           next.|valof_pre_p2|))
+                           (- next.|pre_r9:8| 1)
+                           next.|pre_p2|))
                      (not
                         (=
-                           (- next.|valof_pre_r9:7| 1)
-                           next.|valof_pre_p3|))
+                           (- next.|pre_r9:7| 1)
+                           next.|pre_p3|))
                      (not
                         (=
-                           (- next.|valof_pre_r9:6| 1)
-                           next.|valof_pre_p4|))
+                           (- next.|pre_r9:6| 1)
+                           next.|pre_p4|))
                      (not
                         (=
-                           (- next.|valof_pre_r9:5| 1)
-                           next.|valof_pre_p5|))
+                           (- next.|pre_r9:5| 1)
+                           next.|pre_p5|))
                      (not
                         (=
-                           (- next.|valof_pre_r9:4| 1)
-                           next.|valof_pre_p6|))
+                           (- next.|pre_r9:4| 1)
+                           next.|pre_p6|))
                      (not
                         (=
-                           (- next.|valof_pre_r9:3| 1)
-                           next.|valof_pre_p7|)))
-                  (- next.|valof_pre_r9:2| 1)
-                  (- next.|valof_pre_r9:1| 2))
-               next.|valof_pre_r9|)))
+                           (- next.|pre_r9:3| 1)
+                           next.|pre_p7|)))
+                  (- next.|pre_r9:2| 1)
+                  (- next.|pre_r9:1| 2))
+               next.|pre_r9|)))
       (= next.|r9:init| false)
       (= next.|p:9| next.b1)
       (=
-         next.|__no_static:16|
+         next.|red_start_position:3|
          (or
             (= next.|p:9| 6)
             (= next.|p:9| 7)
@@ -1094,7 +1651,7 @@ Sally Model
             (= next.|p:9| 9)))
       (= next.|p:8| next.b2)
       (=
-         next.|__no_static:15|
+         next.|red_start_position:2|
          (or
             (= next.|p:8| 6)
             (= next.|p:8| 7)
@@ -1102,7 +1659,7 @@ Sally Model
             (= next.|p:8| 9)))
       (= next.|p:7| next.b3)
       (=
-         next.|__no_static:14|
+         next.|red_start_position:1|
          (or
             (= next.|p:7| 6)
             (= next.|p:7| 7)
@@ -1110,7 +1667,7 @@ Sally Model
             (= next.|p:7| 9)))
       (= next.|p:6| next.b4)
       (=
-         next.|__no_static:13|
+         next.|red_start_position|
          (or
             (= next.|p:6| 6)
             (= next.|p:6| 7)
@@ -1118,7 +1675,7 @@ Sally Model
             (= next.|p:6| 9)))
       (= next.|p:5| next.r6)
       (=
-         next.|__no_static:12|
+         next.|blue_start_position:3|
          (or
             (= next.|p:5| 1)
             (= next.|p:5| 2)
@@ -1126,7 +1683,7 @@ Sally Model
             (= next.|p:5| 4)))
       (= next.|p:4| next.r7)
       (=
-         next.|__no_static:11|
+         next.|blue_start_position:2|
          (or
             (= next.|p:4| 1)
             (= next.|p:4| 2)
@@ -1134,7 +1691,7 @@ Sally Model
             (= next.|p:4| 4)))
       (= next.|p:3| next.r8)
       (=
-         next.|__no_static:10|
+         next.|blue_start_position:1|
          (or
             (= next.|p:3| 1)
             (= next.|p:3| 2)
@@ -1142,7 +1699,7 @@ Sally Model
             (= next.|p:3| 4)))
       (= next.|p:2| next.r9)
       (=
-         next.|__no_static:9|
+         next.|blue_start_position|
          (or
             (= next.|p:2| 1)
             (= next.|p:2| 2)
@@ -1151,14 +1708,14 @@ Sally Model
       (=
          next.solved
          (and
-            next.|__no_static:16|
-            next.|__no_static:15|
-            next.|__no_static:14|
-            next.|__no_static:13|
-            next.|__no_static:12|
-            next.|__no_static:11|
-            next.|__no_static:10|
-            next.|__no_static:9|))
+            next.|red_start_position:3|
+            next.|red_start_position:2|
+            next.|red_start_position:1|
+            next.|red_start_position|
+            next.|blue_start_position:3|
+            next.|blue_start_position:2|
+            next.|blue_start_position:1|
+            next.|blue_start_position|))
       (= next.|p1:8| next.b1)
       (= next.|p2:8| next.b2)
       (= next.|p3:8| next.b3)
@@ -1228,63 +1785,63 @@ Sally Model
                (= next.|p7:8| next.p8))))
       (= next.|loc:7| next.b1)
       (=
-         next.|__no_static:8|
+         next.|valid:7|
          (and
             (<= 1 next.|loc:7|)
             (<= next.|loc:7| 9)))
       (= next.|loc:6| next.b2)
       (=
-         next.|__no_static:7|
+         next.|valid:6|
          (and
             (<= 1 next.|loc:6|)
             (<= next.|loc:6| 9)))
       (= next.|loc:5| next.b3)
       (=
-         next.|__no_static:6|
+         next.|valid:5|
          (and
             (<= 1 next.|loc:5|)
             (<= next.|loc:5| 9)))
       (= next.|loc:4| next.b4)
       (=
-         next.|__no_static:5|
+         next.|valid:4|
          (and
             (<= 1 next.|loc:4|)
             (<= next.|loc:4| 9)))
       (= next.|loc:3| next.r6)
       (=
-         next.|__no_static:4|
+         next.|valid:3|
          (and
             (<= 1 next.|loc:3|)
             (<= next.|loc:3| 9)))
       (= next.|loc:2| next.r7)
       (=
-         next.|__no_static:3|
+         next.|valid:2|
          (and
             (<= 1 next.|loc:2|)
             (<= next.|loc:2| 9)))
       (= next.|loc:1| next.r8)
       (=
-         next.|__no_static:2|
+         next.|valid:1|
          (and
             (<= 1 next.|loc:1|)
             (<= next.|loc:1| 9)))
       (= next.loc next.r9)
       (=
-         next.|__no_static:1|
+         next.valid
          (and
             (<= 1 next.loc)
             (<= next.loc 9)))
       (=
          next.bounded
          (and
-            next.|__no_static:8|
-            next.|__no_static:7|
-            next.|__no_static:6|
-            next.|__no_static:5|
-            next.|__no_static:4|
-            next.|__no_static:3|
-            next.|__no_static:2|
-            next.|__no_static:1|))
+            next.|valid:7|
+            next.|valid:6|
+            next.|valid:5|
+            next.|valid:4|
+            next.|valid:3|
+            next.|valid:2|
+            next.|valid:1|
+            next.valid))
       (= next.|p:1| next.|in:8|)
       (=
          next.|blue_turn|
@@ -1313,19 +1870,19 @@ Sally Model
          next.wellformed
          (and next.distinct next.bounded next.|blue_start| next.|some_turn|))
       (= next.x next.wellformed)
-      (= next.|valof_pre___no_static| state.|__no_static|)
+      (= next.|pre_historically| state.historically)
       (ite
-         state.|valof_arr:init|
-         (= next.|valof_arr| true)
-         (= next.|valof_arr| next.|valof_pre___no_static|))
-      (= next.|valof_arr:init| false)
+         state.|init_pre_historically:init|
+         (= next.|init_pre_historically| true)
+         (= next.|init_pre_historically| next.|pre_historically|))
+      (= next.|init_pre_historically:init| false)
       (=
-         next.|__no_static|
-         (and next.x next.|valof_arr|))
+         next.historically
+         (and next.x next.|init_pre_historically|))
       (=
          next.prop
          (not
-            (and next.|__no_static| next.solved)))
+            (and next.historically next.solved)))
       (= next.|in:7| next.|in:8|)
       (= next.|p1:7| next.b2)
       (= next.|p2:7| next.b3)

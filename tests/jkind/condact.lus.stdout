@@ -1,2 +1,1215 @@
-Github #3
+Core Lustre
+===========
 
+node (x$9 : int, y : int)
+  returns ()
+  assumes ()
+  shows (ok, ok7, ok6, ok5, ok4, ok3, ok2, ok1)
+let
+  pre_toggle$2 : bool
+    = pre toggle$2
+   
+  toggle$2 : bool
+    = true -> Not(pre_toggle$2)
+   
+  x$8 : bool
+    = Implies(toggle$2, Geq(x$9, 0))
+   
+  pre_historically : bool
+    = pre historically
+   
+  init_pre_historically : bool
+    = true -> pre_historically
+   
+  historically : bool
+    = And(x$8, init_pre_historically)
+   
+  x$7 : int when toggle$2
+    = x$9 when toggle$2
+   
+  pre_integ$6 : int when toggle$2
+    = pre integ$6
+   
+  init_pre_integ$6 : int when toggle$2
+    = 0 /* when toggle$2 */ -> pre_integ$6
+   
+  integ$6 : int when toggle$2
+    = Add(x$7, init_pre_integ$6)
+   
+  current_integ$5 : int
+    = current integ$6
+   
+  pre_curW$9 : int
+    = pre curW$9
+   
+  init_pre_curW$9 : int
+    = 0 -> pre_curW$9
+   
+  curW$9 : int
+    = ITE(toggle$2, current_integ$5, init_pre_curW$9)
+   
+  ok1 : bool
+    = Implies(historically, Geq(curW$9, 0))
+   
+  x$6 : int when toggle$2
+    = x$9 when toggle$2
+   
+  pre_integ$5 : int when toggle$2
+    = pre integ$5
+   
+  init_pre_integ$5 : int when toggle$2
+    = 0 /* when toggle$2 */ -> pre_integ$5
+   
+  integ$5 : int when toggle$2
+    = Add(x$6, init_pre_integ$5)
+   
+  current_integ$4 : int
+    = current integ$5
+   
+  pre_curW$8 : int
+    = pre curW$8
+   
+  init_pre_curW$8 : int
+    = 0 -> pre_curW$8
+   
+  curW$8 : int
+    = ITE(toggle$2, current_integ$4, init_pre_curW$8)
+   
+  x$5 : int when toggle$2
+    = y when toggle$2
+   
+  pre_integ$4 : int when toggle$2
+    = pre integ$4
+   
+  init_pre_integ$4 : int when toggle$2
+    = 0 /* when toggle$2 */ -> pre_integ$4
+   
+  integ$4 : int when toggle$2
+    = Add(x$5, init_pre_integ$4)
+   
+  current_integ$3 : int
+    = current integ$4
+   
+  pre_curW$7 : int
+    = pre curW$7
+   
+  init_pre_curW$7 : int
+    = 0 -> pre_curW$7
+   
+  curW$7 : int
+    = ITE(toggle$2, current_integ$3, init_pre_curW$7)
+   
+  x$4 : int when toggle$2
+    = Add(x$9, y) when toggle$2
+   
+  pre_integ$3 : int when toggle$2
+    = pre integ$3
+   
+  init_pre_integ$3 : int when toggle$2
+    = 0 /* when toggle$2 */ -> pre_integ$3
+   
+  integ$3 : int when toggle$2
+    = Add(x$4, init_pre_integ$3)
+   
+  current_integ$2 : int
+    = current integ$3
+   
+  pre_curW$6 : int
+    = pre curW$6
+   
+  init_pre_curW$6 : int
+    = 0 -> pre_curW$6
+   
+  curW$6 : int
+    = ITE(toggle$2, current_integ$2, init_pre_curW$6)
+   
+  ok2 : bool
+    = Eq(Add(curW$8, curW$7), curW$6)
+   
+  pre_counter$9 : int
+    = pre counter$9
+   
+  counter$9 : int
+    = 0 -> Add(1, pre_counter$9)
+   
+  pre_counter$8 : int when toggle$2
+    = pre counter$8
+   
+  counter$8 : int when toggle$2
+    = 0 /* when toggle$2 */ -> Add(1 /* when toggle$2 */, pre_counter$8)
+   
+  pre_counter$7 : int when toggle$2
+    = pre counter$7
+   
+  counter$7 : int when toggle$2
+    = 0 /* when toggle$2 */ -> Add(1 /* when toggle$2 */, pre_counter$7)
+   
+  double_counter$1 : int when toggle$2
+    = Add(counter$7, counter$8)
+   
+  current_double_counter$1 : int
+    = current double_counter$1
+   
+  pre_curW$5 : int
+    = pre curW$5
+   
+  init_pre_curW$5 : int
+    = 0 -> pre_curW$5
+   
+  curW$5 : int
+    = ITE(toggle$2, current_double_counter$1, init_pre_curW$5)
+   
+  ok3 : bool
+    = Leq(curW$5, counter$9)
+   
+  pre_counter$6 : int
+    = pre counter$6
+   
+  counter$6 : int
+    = 0 -> Add(1, pre_counter$6)
+   
+  pre_counter$5 : int when toggle$2
+    = pre counter$5
+   
+  counter$5 : int when toggle$2
+    = 0 /* when toggle$2 */ -> Add(1 /* when toggle$2 */, pre_counter$5)
+   
+  pre_counter$4 : int when toggle$2
+    = pre counter$4
+   
+  counter$4 : int when toggle$2
+    = 0 /* when toggle$2 */ -> Add(1 /* when toggle$2 */, pre_counter$4)
+   
+  double_counter : int when toggle$2
+    = Add(counter$4, counter$5)
+   
+  current_double_counter : int
+    = current double_counter
+   
+  pre_curW$4 : int
+    = pre curW$4
+   
+  init_pre_curW$4 : int
+    = 0 -> pre_curW$4
+   
+  curW$4 : int
+    = ITE(toggle$2, current_double_counter, init_pre_curW$4)
+   
+  ok4 : bool
+    = Leq(counter$6, Add(1, curW$4))
+   
+  pre_counter$3 : int
+    = pre counter$3
+   
+  counter$3 : int
+    = 0 -> Add(1, pre_counter$3)
+   
+  pre_toggle$1 : bool when toggle$2
+    = pre toggle$1
+   
+  toggle$1 : bool when toggle$2
+    = true /* when toggle$2 */ -> Not(pre_toggle$1)
+   
+  pre_counter$2 : int when toggle$1
+    = pre counter$2
+   
+  counter$2 : int when toggle$1
+    = 0 /* when toggle$1 */ -> Add(1 /* when toggle$1 */, pre_counter$2)
+   
+  current_counter$1 : int when toggle$2
+    = current counter$2
+   
+  pre_slow_counter$1 : int when toggle$2
+    = pre slow_counter$1
+   
+  init_pre_slow_counter$1 : int when toggle$2
+    = 0 /* when toggle$2 */ -> pre_slow_counter$1
+   
+  slow_counter$1 : int when toggle$2
+    = ITE(toggle$1, current_counter$1, init_pre_slow_counter$1)
+   
+  current_slow_counter$1 : int
+    = current slow_counter$1
+   
+  pre_curW$3 : int
+    = pre curW$3
+   
+  init_pre_curW$3 : int
+    = 0 -> pre_curW$3
+   
+  curW$3 : int
+    = ITE(toggle$2, current_slow_counter$1, init_pre_curW$3)
+   
+  ok5 : bool
+    = Leq(Mul(4, curW$3), counter$3)
+   
+  pre_counter$1 : int
+    = pre counter$1
+   
+  counter$1 : int
+    = 0 -> Add(1, pre_counter$1)
+   
+  pre_toggle : bool when toggle$2
+    = pre toggle
+   
+  toggle : bool when toggle$2
+    = true /* when toggle$2 */ -> Not(pre_toggle)
+   
+  pre_counter : int when toggle
+    = pre counter
+   
+  counter : int when toggle
+    = 0 /* when toggle */ -> Add(1 /* when toggle */, pre_counter)
+   
+  current_counter : int when toggle$2
+    = current counter
+   
+  pre_slow_counter : int when toggle$2
+    = pre slow_counter
+   
+  init_pre_slow_counter : int when toggle$2
+    = 0 /* when toggle$2 */ -> pre_slow_counter
+   
+  slow_counter : int when toggle$2
+    = ITE(toggle, current_counter, init_pre_slow_counter)
+   
+  current_slow_counter : int
+    = current slow_counter
+   
+  pre_curW$2 : int
+    = pre curW$2
+   
+  init_pre_curW$2 : int
+    = 0 -> pre_curW$2
+   
+  curW$2 : int
+    = ITE(toggle$2, current_slow_counter, init_pre_curW$2)
+   
+  ok6 : bool
+    = Leq(counter$1, Mul(4, Add(1, curW$2)))
+   
+  x$3 : int
+    = x$9
+   
+  pre_integ$2 : int
+    = pre integ$2
+   
+  init_pre_integ$2 : int
+    = 0 -> pre_integ$2
+   
+  integ$2 : int
+    = Add(x$3, init_pre_integ$2)
+   
+  x$2 : int when toggle$2
+    = x$9 when toggle$2
+   
+  pre_integ$1 : int when toggle$2
+    = pre integ$1
+   
+  init_pre_integ$1 : int when toggle$2
+    = 0 /* when toggle$2 */ -> pre_integ$1
+   
+  integ$1 : int when toggle$2
+    = Add(x$2, init_pre_integ$1)
+   
+  current_integ$1 : int
+    = current integ$1
+   
+  pre_curW$1 : int
+    = pre curW$1
+   
+  init_pre_curW$1 : int
+    = 0 -> pre_curW$1
+   
+  curW$1 : int
+    = ITE(toggle$2, current_integ$1, init_pre_curW$1)
+   
+  x$1 : int when Eq(false, toggle$2)
+    = x$9 when Eq(false, toggle$2)
+   
+  pre_integ : int when Eq(false, toggle$2)
+    = pre integ
+   
+  init_pre_integ : int when Eq(false, toggle$2)
+    = 0 /* when Eq(false, toggle$2) */ -> pre_integ
+   
+  integ : int when Eq(false, toggle$2)
+    = Add(x$1, init_pre_integ)
+   
+  current_integ : int
+    = current integ
+   
+  pre_curW : int
+    = pre curW
+   
+  init_pre_curW : int
+    = 0 -> pre_curW
+   
+  curW : int
+    = ITE(Eq(false, toggle$2), current_integ, init_pre_curW)
+   
+  ok7 : bool
+    = Eq(Add(curW$1, curW), integ$2)
+   
+  x : bool when toggle$2
+    = toggle$2 when toggle$2
+   
+  ok : bool when toggle$2
+    = x
+tel
+Sally Model
+===========
+
+(define-state-type
+   S
+   (
+     (counter Int)
+     (curW Int)
+     (historically Bool)
+     (integ Int)
+     (ok Bool)
+     (ok1 Bool)
+     (ok2 Bool)
+     (ok3 Bool)
+     (ok4 Bool)
+     (ok5 Bool)
+     (ok6 Bool)
+     (ok7 Bool)
+     (toggle Bool)
+     (x Bool)
+     (y Int)
+     (|counter:1:init| Bool)
+     (|counter:1| Int)
+     (|counter:2:init| Bool)
+     (|counter:2| Int)
+     (|counter:3:init| Bool)
+     (|counter:3| Int)
+     (|counter:4:init| Bool)
+     (|counter:4| Int)
+     (|counter:5:init| Bool)
+     (|counter:5| Int)
+     (|counter:6:init| Bool)
+     (|counter:6| Int)
+     (|counter:7:init| Bool)
+     (|counter:7| Int)
+     (|counter:8:init| Bool)
+     (|counter:8| Int)
+     (|counter:9:init| Bool)
+     (|counter:9| Int)
+     (|counter:init| Bool)
+     (|curW:1| Int)
+     (|curW:2| Int)
+     (|curW:3| Int)
+     (|curW:4| Int)
+     (|curW:5| Int)
+     (|curW:6| Int)
+     (|curW:7| Int)
+     (|curW:8| Int)
+     (|curW:9| Int)
+     (|current_counter:1| Int)
+     (|current_counter| Int)
+     (|current_double_counter:1| Int)
+     (|current_double_counter| Int)
+     (|current_integ:1| Int)
+     (|current_integ:2| Int)
+     (|current_integ:3| Int)
+     (|current_integ:4| Int)
+     (|current_integ:5| Int)
+     (|current_integ| Int)
+     (|current_slow_counter:1| Int)
+     (|current_slow_counter| Int)
+     (|double_counter:1| Int)
+     (|double_counter| Int)
+     (|gal-initializing| Bool)
+     (|init_pre_curW:1:init| Bool)
+     (|init_pre_curW:1| Int)
+     (|init_pre_curW:2:init| Bool)
+     (|init_pre_curW:2| Int)
+     (|init_pre_curW:3:init| Bool)
+     (|init_pre_curW:3| Int)
+     (|init_pre_curW:4:init| Bool)
+     (|init_pre_curW:4| Int)
+     (|init_pre_curW:5:init| Bool)
+     (|init_pre_curW:5| Int)
+     (|init_pre_curW:6:init| Bool)
+     (|init_pre_curW:6| Int)
+     (|init_pre_curW:7:init| Bool)
+     (|init_pre_curW:7| Int)
+     (|init_pre_curW:8:init| Bool)
+     (|init_pre_curW:8| Int)
+     (|init_pre_curW:9:init| Bool)
+     (|init_pre_curW:9| Int)
+     (|init_pre_curW:init| Bool)
+     (|init_pre_curW| Int)
+     (|init_pre_historically:init| Bool)
+     (|init_pre_historically| Bool)
+     (|init_pre_integ:1:init| Bool)
+     (|init_pre_integ:1| Int)
+     (|init_pre_integ:2:init| Bool)
+     (|init_pre_integ:2| Int)
+     (|init_pre_integ:3:init| Bool)
+     (|init_pre_integ:3| Int)
+     (|init_pre_integ:4:init| Bool)
+     (|init_pre_integ:4| Int)
+     (|init_pre_integ:5:init| Bool)
+     (|init_pre_integ:5| Int)
+     (|init_pre_integ:6:init| Bool)
+     (|init_pre_integ:6| Int)
+     (|init_pre_integ:init| Bool)
+     (|init_pre_integ| Int)
+     (|init_pre_slow_counter:1:init| Bool)
+     (|init_pre_slow_counter:1| Int)
+     (|init_pre_slow_counter:init| Bool)
+     (|init_pre_slow_counter| Int)
+     (|integ:1| Int)
+     (|integ:2| Int)
+     (|integ:3| Int)
+     (|integ:4| Int)
+     (|integ:5| Int)
+     (|integ:6| Int)
+     (|pre_counter:1| Int)
+     (|pre_counter:2| Int)
+     (|pre_counter:3| Int)
+     (|pre_counter:4| Int)
+     (|pre_counter:5| Int)
+     (|pre_counter:6| Int)
+     (|pre_counter:7| Int)
+     (|pre_counter:8| Int)
+     (|pre_counter:9| Int)
+     (|pre_counter| Int)
+     (|pre_curW:1| Int)
+     (|pre_curW:2| Int)
+     (|pre_curW:3| Int)
+     (|pre_curW:4| Int)
+     (|pre_curW:5| Int)
+     (|pre_curW:6| Int)
+     (|pre_curW:7| Int)
+     (|pre_curW:8| Int)
+     (|pre_curW:9| Int)
+     (|pre_curW| Int)
+     (|pre_historically| Bool)
+     (|pre_integ:1| Int)
+     (|pre_integ:2| Int)
+     (|pre_integ:3| Int)
+     (|pre_integ:4| Int)
+     (|pre_integ:5| Int)
+     (|pre_integ:6| Int)
+     (|pre_integ| Int)
+     (|pre_slow_counter:1| Int)
+     (|pre_slow_counter| Int)
+     (|pre_toggle:1| Bool)
+     (|pre_toggle:2| Bool)
+     (|pre_toggle| Bool)
+     (|slow_counter:1| Int)
+     (|slow_counter| Int)
+     (|toggle:1:init| Bool)
+     (|toggle:1| Bool)
+     (|toggle:2:init| Bool)
+     (|toggle:2| Bool)
+     (|toggle:init| Bool)
+     (|x:1| Int)
+     (|x:2| Int)
+     (|x:3| Int)
+     (|x:4| Int)
+     (|x:5| Int)
+     (|x:6| Int)
+     (|x:7| Int)
+     (|x:8| Bool)
+     (|x:9| Int))
+   (
+     (y Int)
+     (|x:9| Int)))
+(define-transition-system
+   TS
+   S
+   (and
+      (= |gal-initializing| true)
+      (= |toggle:2:init| true)
+      (= |init_pre_historically:init| true)
+      (= |init_pre_integ:6:init| true)
+      (= |init_pre_curW:9:init| true)
+      (= |init_pre_integ:5:init| true)
+      (= |init_pre_curW:8:init| true)
+      (= |init_pre_integ:4:init| true)
+      (= |init_pre_curW:7:init| true)
+      (= |init_pre_integ:3:init| true)
+      (= |init_pre_curW:6:init| true)
+      (= |counter:9:init| true)
+      (= |counter:8:init| true)
+      (= |counter:7:init| true)
+      (= |init_pre_curW:5:init| true)
+      (= |counter:6:init| true)
+      (= |counter:5:init| true)
+      (= |counter:4:init| true)
+      (= |init_pre_curW:4:init| true)
+      (= |counter:3:init| true)
+      (= |toggle:1:init| true)
+      (= |counter:2:init| true)
+      (= |init_pre_slow_counter:1:init| true)
+      (= |init_pre_curW:3:init| true)
+      (= |counter:1:init| true)
+      (= |toggle:init| true)
+      (= |counter:init| true)
+      (= |init_pre_slow_counter:init| true)
+      (= |init_pre_curW:2:init| true)
+      (= |init_pre_integ:2:init| true)
+      (= |init_pre_integ:1:init| true)
+      (= |init_pre_curW:1:init| true)
+      (= |init_pre_integ:init| true)
+      (= |init_pre_curW:init| true))
+   (and
+      (= next.|gal-initializing| false)
+      (= next.|x:9| input.|x:9|)
+      (= next.y input.y)
+      (= next.|pre_toggle:2| state.|toggle:2|)
+      (ite
+         state.|toggle:2:init|
+         (= next.|toggle:2| true)
+         (=
+            next.|toggle:2|
+            (not next.|pre_toggle:2|)))
+      (= next.|toggle:2:init| false)
+      (=
+         next.|x:8|
+         (=>
+            next.|toggle:2|
+            (<= 0 next.|x:9|)))
+      (= next.|pre_historically| state.historically)
+      (ite
+         state.|init_pre_historically:init|
+         (= next.|init_pre_historically| true)
+         (= next.|init_pre_historically| next.|pre_historically|))
+      (= next.|init_pre_historically:init| false)
+      (=
+         next.historically
+         (and next.|x:8| next.|init_pre_historically|))
+      (ite
+         next.|toggle:2|
+         (= next.|x:7| next.|x:9|)
+         (= next.|x:7| state.|x:7|))
+      (ite
+         next.|toggle:2|
+         (= next.|pre_integ:6| state.|integ:6|)
+         (= next.|pre_integ:6| state.|pre_integ:6|))
+      (ite
+         next.|toggle:2|
+         (and
+            (ite
+               state.|init_pre_integ:6:init|
+               (= next.|init_pre_integ:6| 0)
+               (= next.|init_pre_integ:6| next.|pre_integ:6|))
+            (= next.|init_pre_integ:6:init| false))
+         (and
+            (= next.|init_pre_integ:6| state.|init_pre_integ:6|)
+            (= next.|init_pre_integ:6:init| state.|init_pre_integ:6:init|)))
+      (ite
+         next.|toggle:2|
+         (=
+            next.|integ:6|
+            (+ next.|x:7| next.|init_pre_integ:6|))
+         (= next.|integ:6| state.|integ:6|))
+      (= next.|current_integ:5| next.|integ:6|)
+      (= next.|pre_curW:9| state.|curW:9|)
+      (ite
+         state.|init_pre_curW:9:init|
+         (= next.|init_pre_curW:9| 0)
+         (= next.|init_pre_curW:9| next.|pre_curW:9|))
+      (= next.|init_pre_curW:9:init| false)
+      (=
+         next.|curW:9|
+         (ite next.|toggle:2| next.|current_integ:5| next.|init_pre_curW:9|))
+      (=
+         next.ok1
+         (=>
+            next.historically
+            (<= 0 next.|curW:9|)))
+      (ite
+         next.|toggle:2|
+         (= next.|x:6| next.|x:9|)
+         (= next.|x:6| state.|x:6|))
+      (ite
+         next.|toggle:2|
+         (= next.|pre_integ:5| state.|integ:5|)
+         (= next.|pre_integ:5| state.|pre_integ:5|))
+      (ite
+         next.|toggle:2|
+         (and
+            (ite
+               state.|init_pre_integ:5:init|
+               (= next.|init_pre_integ:5| 0)
+               (= next.|init_pre_integ:5| next.|pre_integ:5|))
+            (= next.|init_pre_integ:5:init| false))
+         (and
+            (= next.|init_pre_integ:5| state.|init_pre_integ:5|)
+            (= next.|init_pre_integ:5:init| state.|init_pre_integ:5:init|)))
+      (ite
+         next.|toggle:2|
+         (=
+            next.|integ:5|
+            (+ next.|x:6| next.|init_pre_integ:5|))
+         (= next.|integ:5| state.|integ:5|))
+      (= next.|current_integ:4| next.|integ:5|)
+      (= next.|pre_curW:8| state.|curW:8|)
+      (ite
+         state.|init_pre_curW:8:init|
+         (= next.|init_pre_curW:8| 0)
+         (= next.|init_pre_curW:8| next.|pre_curW:8|))
+      (= next.|init_pre_curW:8:init| false)
+      (=
+         next.|curW:8|
+         (ite next.|toggle:2| next.|current_integ:4| next.|init_pre_curW:8|))
+      (ite
+         next.|toggle:2|
+         (= next.|x:5| next.y)
+         (= next.|x:5| state.|x:5|))
+      (ite
+         next.|toggle:2|
+         (= next.|pre_integ:4| state.|integ:4|)
+         (= next.|pre_integ:4| state.|pre_integ:4|))
+      (ite
+         next.|toggle:2|
+         (and
+            (ite
+               state.|init_pre_integ:4:init|
+               (= next.|init_pre_integ:4| 0)
+               (= next.|init_pre_integ:4| next.|pre_integ:4|))
+            (= next.|init_pre_integ:4:init| false))
+         (and
+            (= next.|init_pre_integ:4| state.|init_pre_integ:4|)
+            (= next.|init_pre_integ:4:init| state.|init_pre_integ:4:init|)))
+      (ite
+         next.|toggle:2|
+         (=
+            next.|integ:4|
+            (+ next.|x:5| next.|init_pre_integ:4|))
+         (= next.|integ:4| state.|integ:4|))
+      (= next.|current_integ:3| next.|integ:4|)
+      (= next.|pre_curW:7| state.|curW:7|)
+      (ite
+         state.|init_pre_curW:7:init|
+         (= next.|init_pre_curW:7| 0)
+         (= next.|init_pre_curW:7| next.|pre_curW:7|))
+      (= next.|init_pre_curW:7:init| false)
+      (=
+         next.|curW:7|
+         (ite next.|toggle:2| next.|current_integ:3| next.|init_pre_curW:7|))
+      (ite
+         next.|toggle:2|
+         (=
+            next.|x:4|
+            (+ next.|x:9| next.y))
+         (= next.|x:4| state.|x:4|))
+      (ite
+         next.|toggle:2|
+         (= next.|pre_integ:3| state.|integ:3|)
+         (= next.|pre_integ:3| state.|pre_integ:3|))
+      (ite
+         next.|toggle:2|
+         (and
+            (ite
+               state.|init_pre_integ:3:init|
+               (= next.|init_pre_integ:3| 0)
+               (= next.|init_pre_integ:3| next.|pre_integ:3|))
+            (= next.|init_pre_integ:3:init| false))
+         (and
+            (= next.|init_pre_integ:3| state.|init_pre_integ:3|)
+            (= next.|init_pre_integ:3:init| state.|init_pre_integ:3:init|)))
+      (ite
+         next.|toggle:2|
+         (=
+            next.|integ:3|
+            (+ next.|x:4| next.|init_pre_integ:3|))
+         (= next.|integ:3| state.|integ:3|))
+      (= next.|current_integ:2| next.|integ:3|)
+      (= next.|pre_curW:6| state.|curW:6|)
+      (ite
+         state.|init_pre_curW:6:init|
+         (= next.|init_pre_curW:6| 0)
+         (= next.|init_pre_curW:6| next.|pre_curW:6|))
+      (= next.|init_pre_curW:6:init| false)
+      (=
+         next.|curW:6|
+         (ite next.|toggle:2| next.|current_integ:2| next.|init_pre_curW:6|))
+      (=
+         next.ok2
+         (=
+            (+ next.|curW:8| next.|curW:7|)
+            next.|curW:6|))
+      (= next.|pre_counter:9| state.|counter:9|)
+      (ite
+         state.|counter:9:init|
+         (= next.|counter:9| 0)
+         (=
+            next.|counter:9|
+            (+ 1 next.|pre_counter:9|)))
+      (= next.|counter:9:init| false)
+      (ite
+         next.|toggle:2|
+         (= next.|pre_counter:8| state.|counter:8|)
+         (= next.|pre_counter:8| state.|pre_counter:8|))
+      (ite
+         next.|toggle:2|
+         (and
+            (ite
+               state.|counter:8:init|
+               (= next.|counter:8| 0)
+               (=
+                  next.|counter:8|
+                  (+ 1 next.|pre_counter:8|)))
+            (= next.|counter:8:init| false))
+         (and
+            (= next.|counter:8| state.|counter:8|)
+            (= next.|counter:8:init| state.|counter:8:init|)))
+      (ite
+         next.|toggle:2|
+         (= next.|pre_counter:7| state.|counter:7|)
+         (= next.|pre_counter:7| state.|pre_counter:7|))
+      (ite
+         next.|toggle:2|
+         (and
+            (ite
+               state.|counter:7:init|
+               (= next.|counter:7| 0)
+               (=
+                  next.|counter:7|
+                  (+ 1 next.|pre_counter:7|)))
+            (= next.|counter:7:init| false))
+         (and
+            (= next.|counter:7| state.|counter:7|)
+            (= next.|counter:7:init| state.|counter:7:init|)))
+      (ite
+         next.|toggle:2|
+         (=
+            next.|double_counter:1|
+            (+ next.|counter:7| next.|counter:8|))
+         (= next.|double_counter:1| state.|double_counter:1|))
+      (= next.|current_double_counter:1| next.|double_counter:1|)
+      (= next.|pre_curW:5| state.|curW:5|)
+      (ite
+         state.|init_pre_curW:5:init|
+         (= next.|init_pre_curW:5| 0)
+         (= next.|init_pre_curW:5| next.|pre_curW:5|))
+      (= next.|init_pre_curW:5:init| false)
+      (=
+         next.|curW:5|
+         (ite next.|toggle:2| next.|current_double_counter:1| next.|init_pre_curW:5|))
+      (=
+         next.ok3
+         (<= next.|curW:5| next.|counter:9|))
+      (= next.|pre_counter:6| state.|counter:6|)
+      (ite
+         state.|counter:6:init|
+         (= next.|counter:6| 0)
+         (=
+            next.|counter:6|
+            (+ 1 next.|pre_counter:6|)))
+      (= next.|counter:6:init| false)
+      (ite
+         next.|toggle:2|
+         (= next.|pre_counter:5| state.|counter:5|)
+         (= next.|pre_counter:5| state.|pre_counter:5|))
+      (ite
+         next.|toggle:2|
+         (and
+            (ite
+               state.|counter:5:init|
+               (= next.|counter:5| 0)
+               (=
+                  next.|counter:5|
+                  (+ 1 next.|pre_counter:5|)))
+            (= next.|counter:5:init| false))
+         (and
+            (= next.|counter:5| state.|counter:5|)
+            (= next.|counter:5:init| state.|counter:5:init|)))
+      (ite
+         next.|toggle:2|
+         (= next.|pre_counter:4| state.|counter:4|)
+         (= next.|pre_counter:4| state.|pre_counter:4|))
+      (ite
+         next.|toggle:2|
+         (and
+            (ite
+               state.|counter:4:init|
+               (= next.|counter:4| 0)
+               (=
+                  next.|counter:4|
+                  (+ 1 next.|pre_counter:4|)))
+            (= next.|counter:4:init| false))
+         (and
+            (= next.|counter:4| state.|counter:4|)
+            (= next.|counter:4:init| state.|counter:4:init|)))
+      (ite
+         next.|toggle:2|
+         (=
+            next.|double_counter|
+            (+ next.|counter:4| next.|counter:5|))
+         (= next.|double_counter| state.|double_counter|))
+      (= next.|current_double_counter| next.|double_counter|)
+      (= next.|pre_curW:4| state.|curW:4|)
+      (ite
+         state.|init_pre_curW:4:init|
+         (= next.|init_pre_curW:4| 0)
+         (= next.|init_pre_curW:4| next.|pre_curW:4|))
+      (= next.|init_pre_curW:4:init| false)
+      (=
+         next.|curW:4|
+         (ite next.|toggle:2| next.|current_double_counter| next.|init_pre_curW:4|))
+      (=
+         next.ok4
+         (<=
+            next.|counter:6|
+            (+ 1 next.|curW:4|)))
+      (= next.|pre_counter:3| state.|counter:3|)
+      (ite
+         state.|counter:3:init|
+         (= next.|counter:3| 0)
+         (=
+            next.|counter:3|
+            (+ 1 next.|pre_counter:3|)))
+      (= next.|counter:3:init| false)
+      (ite
+         next.|toggle:2|
+         (= next.|pre_toggle:1| state.|toggle:1|)
+         (= next.|pre_toggle:1| state.|pre_toggle:1|))
+      (ite
+         next.|toggle:2|
+         (and
+            (ite
+               state.|toggle:1:init|
+               (= next.|toggle:1| true)
+               (=
+                  next.|toggle:1|
+                  (not next.|pre_toggle:1|)))
+            (= next.|toggle:1:init| false))
+         (and
+            (= next.|toggle:1| state.|toggle:1|)
+            (= next.|toggle:1:init| state.|toggle:1:init|)))
+      (ite
+         (and next.|toggle:1| next.|toggle:2|)
+         (= next.|pre_counter:2| state.|counter:2|)
+         (= next.|pre_counter:2| state.|pre_counter:2|))
+      (ite
+         (and next.|toggle:1| next.|toggle:2|)
+         (and
+            (ite
+               state.|counter:2:init|
+               (= next.|counter:2| 0)
+               (=
+                  next.|counter:2|
+                  (+ 1 next.|pre_counter:2|)))
+            (= next.|counter:2:init| false))
+         (and
+            (= next.|counter:2| state.|counter:2|)
+            (= next.|counter:2:init| state.|counter:2:init|)))
+      (= next.|current_counter:1| next.|counter:2|)
+      (ite
+         next.|toggle:2|
+         (= next.|pre_slow_counter:1| state.|slow_counter:1|)
+         (= next.|pre_slow_counter:1| state.|pre_slow_counter:1|))
+      (ite
+         next.|toggle:2|
+         (and
+            (ite
+               state.|init_pre_slow_counter:1:init|
+               (= next.|init_pre_slow_counter:1| 0)
+               (= next.|init_pre_slow_counter:1| next.|pre_slow_counter:1|))
+            (= next.|init_pre_slow_counter:1:init| false))
+         (and
+            (= next.|init_pre_slow_counter:1| state.|init_pre_slow_counter:1|)
+            (= next.|init_pre_slow_counter:1:init| state.|init_pre_slow_counter:1:init|)))
+      (ite
+         next.|toggle:2|
+         (=
+            next.|slow_counter:1|
+            (ite next.|toggle:1| next.|current_counter:1| next.|init_pre_slow_counter:1|))
+         (= next.|slow_counter:1| state.|slow_counter:1|))
+      (= next.|current_slow_counter:1| next.|slow_counter:1|)
+      (= next.|pre_curW:3| state.|curW:3|)
+      (ite
+         state.|init_pre_curW:3:init|
+         (= next.|init_pre_curW:3| 0)
+         (= next.|init_pre_curW:3| next.|pre_curW:3|))
+      (= next.|init_pre_curW:3:init| false)
+      (=
+         next.|curW:3|
+         (ite next.|toggle:2| next.|current_slow_counter:1| next.|init_pre_curW:3|))
+      (=
+         next.ok5
+         (<=
+            (* 4 next.|curW:3|)
+            next.|counter:3|))
+      (= next.|pre_counter:1| state.|counter:1|)
+      (ite
+         state.|counter:1:init|
+         (= next.|counter:1| 0)
+         (=
+            next.|counter:1|
+            (+ 1 next.|pre_counter:1|)))
+      (= next.|counter:1:init| false)
+      (ite
+         next.|toggle:2|
+         (= next.|pre_toggle| state.toggle)
+         (= next.|pre_toggle| state.|pre_toggle|))
+      (ite
+         next.|toggle:2|
+         (and
+            (ite
+               state.|toggle:init|
+               (= next.toggle true)
+               (=
+                  next.toggle
+                  (not next.|pre_toggle|)))
+            (= next.|toggle:init| false))
+         (and
+            (= next.toggle state.toggle)
+            (= next.|toggle:init| state.|toggle:init|)))
+      (ite
+         (and next.toggle next.|toggle:2|)
+         (= next.|pre_counter| state.counter)
+         (= next.|pre_counter| state.|pre_counter|))
+      (ite
+         (and next.toggle next.|toggle:2|)
+         (and
+            (ite
+               state.|counter:init|
+               (= next.counter 0)
+               (=
+                  next.counter
+                  (+ 1 next.|pre_counter|)))
+            (= next.|counter:init| false))
+         (and
+            (= next.counter state.counter)
+            (= next.|counter:init| state.|counter:init|)))
+      (= next.|current_counter| next.counter)
+      (ite
+         next.|toggle:2|
+         (= next.|pre_slow_counter| state.|slow_counter|)
+         (= next.|pre_slow_counter| state.|pre_slow_counter|))
+      (ite
+         next.|toggle:2|
+         (and
+            (ite
+               state.|init_pre_slow_counter:init|
+               (= next.|init_pre_slow_counter| 0)
+               (= next.|init_pre_slow_counter| next.|pre_slow_counter|))
+            (= next.|init_pre_slow_counter:init| false))
+         (and
+            (= next.|init_pre_slow_counter| state.|init_pre_slow_counter|)
+            (= next.|init_pre_slow_counter:init| state.|init_pre_slow_counter:init|)))
+      (ite
+         next.|toggle:2|
+         (=
+            next.|slow_counter|
+            (ite next.toggle next.|current_counter| next.|init_pre_slow_counter|))
+         (= next.|slow_counter| state.|slow_counter|))
+      (= next.|current_slow_counter| next.|slow_counter|)
+      (= next.|pre_curW:2| state.|curW:2|)
+      (ite
+         state.|init_pre_curW:2:init|
+         (= next.|init_pre_curW:2| 0)
+         (= next.|init_pre_curW:2| next.|pre_curW:2|))
+      (= next.|init_pre_curW:2:init| false)
+      (=
+         next.|curW:2|
+         (ite next.|toggle:2| next.|current_slow_counter| next.|init_pre_curW:2|))
+      (=
+         next.ok6
+         (<=
+            next.|counter:1|
+            (*
+               4
+               (+ 1 next.|curW:2|))))
+      (= next.|x:3| next.|x:9|)
+      (= next.|pre_integ:2| state.|integ:2|)
+      (ite
+         state.|init_pre_integ:2:init|
+         (= next.|init_pre_integ:2| 0)
+         (= next.|init_pre_integ:2| next.|pre_integ:2|))
+      (= next.|init_pre_integ:2:init| false)
+      (=
+         next.|integ:2|
+         (+ next.|x:3| next.|init_pre_integ:2|))
+      (ite
+         next.|toggle:2|
+         (= next.|x:2| next.|x:9|)
+         (= next.|x:2| state.|x:2|))
+      (ite
+         next.|toggle:2|
+         (= next.|pre_integ:1| state.|integ:1|)
+         (= next.|pre_integ:1| state.|pre_integ:1|))
+      (ite
+         next.|toggle:2|
+         (and
+            (ite
+               state.|init_pre_integ:1:init|
+               (= next.|init_pre_integ:1| 0)
+               (= next.|init_pre_integ:1| next.|pre_integ:1|))
+            (= next.|init_pre_integ:1:init| false))
+         (and
+            (= next.|init_pre_integ:1| state.|init_pre_integ:1|)
+            (= next.|init_pre_integ:1:init| state.|init_pre_integ:1:init|)))
+      (ite
+         next.|toggle:2|
+         (=
+            next.|integ:1|
+            (+ next.|x:2| next.|init_pre_integ:1|))
+         (= next.|integ:1| state.|integ:1|))
+      (= next.|current_integ:1| next.|integ:1|)
+      (= next.|pre_curW:1| state.|curW:1|)
+      (ite
+         state.|init_pre_curW:1:init|
+         (= next.|init_pre_curW:1| 0)
+         (= next.|init_pre_curW:1| next.|pre_curW:1|))
+      (= next.|init_pre_curW:1:init| false)
+      (=
+         next.|curW:1|
+         (ite next.|toggle:2| next.|current_integ:1| next.|init_pre_curW:1|))
+      (ite
+         (= false next.|toggle:2|)
+         (= next.|x:1| next.|x:9|)
+         (= next.|x:1| state.|x:1|))
+      (ite
+         (= false next.|toggle:2|)
+         (= next.|pre_integ| state.integ)
+         (= next.|pre_integ| state.|pre_integ|))
+      (ite
+         (= false next.|toggle:2|)
+         (and
+            (ite
+               state.|init_pre_integ:init|
+               (= next.|init_pre_integ| 0)
+               (= next.|init_pre_integ| next.|pre_integ|))
+            (= next.|init_pre_integ:init| false))
+         (and
+            (= next.|init_pre_integ| state.|init_pre_integ|)
+            (= next.|init_pre_integ:init| state.|init_pre_integ:init|)))
+      (ite
+         (= false next.|toggle:2|)
+         (=
+            next.integ
+            (+ next.|x:1| next.|init_pre_integ|))
+         (= next.integ state.integ))
+      (= next.|current_integ| next.integ)
+      (= next.|pre_curW| state.curW)
+      (ite
+         state.|init_pre_curW:init|
+         (= next.|init_pre_curW| 0)
+         (= next.|init_pre_curW| next.|pre_curW|))
+      (= next.|init_pre_curW:init| false)
+      (=
+         next.curW
+         (ite
+            (= false next.|toggle:2|)
+            next.|current_integ|
+            next.|init_pre_curW|))
+      (=
+         next.ok7
+         (=
+            (+ next.|curW:1| next.curW)
+            next.|integ:2|))
+      (ite
+         next.|toggle:2|
+         (= next.x next.|toggle:2|)
+         (= next.x state.x))
+      (ite
+         next.|toggle:2|
+         (= next.ok next.x)
+         (= next.ok state.ok))))
+
+(query
+   TS
+   (or |gal-initializing| ok))
+(query
+   TS
+   (or |gal-initializing| ok7))
+(query
+   TS
+   (or |gal-initializing| ok6))
+(query
+   TS
+   (or |gal-initializing| ok5))
+(query
+   TS
+   (or |gal-initializing| ok4))
+(query
+   TS
+   (or |gal-initializing| ok3))
+(query
+   TS
+   (or |gal-initializing| ok2))
+(query
+   TS
+   (or |gal-initializing| ok1))
+
+[Lustre] Validating properties:
+[Lustre] Property ok... considering simultaneous states to depth 0
+considering simultaneous states to depth 0
+considering simultaneous states to depth 1
+considering simultaneous states to depth 1
+[[1;92mValid[0m] considering simultaneous states to depth 1
+[Lustre] Property ok7... considering simultaneous states to depth 0
+considering simultaneous states to depth 0
+considering simultaneous states to depth 1
+considering simultaneous states to depth 1
+considering simultaneous states to depth 2
+considering simultaneous states to depth 2
+[[1;92mValid[0m] considering simultaneous states to depth 2
+[Lustre] Property ok6... considering simultaneous states to depth 0
+considering simultaneous states to depth 0
+considering simultaneous states to depth 1
+considering simultaneous states to depth 1
+considering simultaneous states to depth 2
+considering simultaneous states to depth 2
+considering simultaneous states to depth 3
+considering simultaneous states to depth 3
+considering simultaneous states to depth 4
+considering simultaneous states to depth 4
+considering simultaneous states to depth 5
+considering simultaneous states to depth 5
+considering simultaneous states to depth 6
+considering simultaneous states to depth 6
+considering simultaneous states to depth 7
+considering simultaneous states to depth 7
+[[1;92mValid[0m] considering simultaneous states to depth 7
+[Lustre] Property ok5... considering simultaneous states to depth 0
+considering simultaneous states to depth 0
+considering simultaneous states to depth 1
+considering simultaneous states to depth 1
+considering simultaneous states to depth 2
+considering simultaneous states to depth 2
+considering simultaneous states to depth 3
+considering simultaneous states to depth 3
+considering simultaneous states to depth 4
+considering simultaneous states to depth 4
+[[1;92mValid[0m] considering simultaneous states to depth 4
+[Lustre] Property ok4... considering simultaneous states to depth 0
+considering simultaneous states to depth 0
+considering simultaneous states to depth 1
+considering simultaneous states to depth 1
+considering simultaneous states to depth 2
+considering simultaneous states to depth 2
+considering simultaneous states to depth 3
+considering simultaneous states to depth 3
+[[1;92mValid[0m] considering simultaneous states to depth 3
+[Lustre] Property ok3... considering simultaneous states to depth 0
+considering simultaneous states to depth 0
+considering simultaneous states to depth 1
+considering simultaneous states to depth 1
+considering simultaneous states to depth 2
+considering simultaneous states to depth 2
+[[1;92mValid[0m] considering simultaneous states to depth 2
+[Lustre] Property ok2... considering simultaneous states to depth 0
+considering simultaneous states to depth 0
+considering simultaneous states to depth 1
+considering simultaneous states to depth 1
+considering simultaneous states to depth 2
+considering simultaneous states to depth 2
+[[1;92mValid[0m] considering simultaneous states to depth 2
+[Lustre] Property ok1... considering simultaneous states to depth 0
+considering simultaneous states to depth 0
+considering simultaneous states to depth 1
+considering simultaneous states to depth 1
+considering simultaneous states to depth 2
+considering simultaneous states to depth 2
+[[1;92mValid[0m] considering simultaneous states to depth 2
+[Lustre] Model status: [[1;92mValid[0m] 

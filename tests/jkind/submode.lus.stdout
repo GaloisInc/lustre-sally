@@ -6,76 +6,215 @@ node (APPR_Switch : bool, LAPPR_Capture_Cond_Met : bool, New_Lateral_Mode_Activa
   assumes ()
   shows (APPR_Switch_Pressed_Clears_LAPPR, LAPPR_Active_When_Capture_Cond_Met, APPR_Switch_Pressed_Selects_LAPPR, LAPPR_Selected_If_LAPPR_Active)
 let
-  valof_pre_LAPPR_main_simp_rlt_node_state31_rlt_chart_data_states_LAPPR = pre LAPPR_main_simp_rlt_node_state31_rlt_chart_data_states_LAPPR
-  LAPPR_main_rlt_state_in_rlt_chart_data_states_LAPPR = 0 -> valof_pre_LAPPR_main_simp_rlt_node_state31_rlt_chart_data_states_LAPPR
-  LAPPR_main_rlt__ARROW = true -> false
-  LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR = ITE(LAPPR_main_rlt__ARROW, 0, LAPPR_main_rlt_state_in_rlt_chart_data_states_LAPPR)
-  valof_pre_LAPPR_main_simp_rlt_node_state31_rlt_chart_data_outports_LAPPR_Selected = pre LAPPR_main_simp_rlt_node_state31_rlt_chart_data_outports_LAPPR_Selected
-  LAPPR_main_rlt_state_in_rlt_chart_data_outports_LAPPR_Selected = false -> valof_pre_LAPPR_main_simp_rlt_node_state31_rlt_chart_data_outports_LAPPR_Selected
-  LAPPR_main_simp_rlt_node_state1_rlt_chart_data_outports_LAPPR_Selected = And(Not(LAPPR_main_rlt__ARROW), LAPPR_main_rlt_state_in_rlt_chart_data_outports_LAPPR_Selected)
-  valof_pre_LAPPR_main_simp_rlt_node_state31_rlt_chart_data_states_LAPPR_LAPPR = pre LAPPR_main_simp_rlt_node_state31_rlt_chart_data_states_LAPPR_LAPPR
-  LAPPR_main_rlt_state_in_rlt_chart_data_states_LAPPR_LAPPR = 0 -> valof_pre_LAPPR_main_simp_rlt_node_state31_rlt_chart_data_states_LAPPR_LAPPR
-  LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR_LAPPR = ITE(LAPPR_main_rlt__ARROW, 0, LAPPR_main_rlt_state_in_rlt_chart_data_states_LAPPR_LAPPR)
-  valof_pre_APPR_Switch$1 = pre APPR_Switch
-  SubmodeExample_RISING_Unit_Delay = false -> valof_pre_APPR_Switch$1
-  SubmodeExample_RISING_Logical_Operator2 = Not(SubmodeExample_RISING_Unit_Delay)
-  SubmodeExample_RISING_Logical_Operator1 = And(SubmodeExample_RISING_Logical_Operator2, APPR_Switch)
-  LAPPR_main_simp_rlt_node_state25_rlt_chart_data_outports_LAPPR_Selected = Or(SubmodeExample_RISING_Logical_Operator1, LAPPR_main_simp_rlt_node_state1_rlt_chart_data_outports_LAPPR_Selected)
-  LAPPR_main_simp_rlt_node_state26_rlt_chart_data_outports_LAPPR_Selected = ITE(Eq(LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR_LAPPR, 2), LAPPR_main_simp_rlt_node_state25_rlt_chart_data_outports_LAPPR_Selected, LAPPR_main_simp_rlt_node_state1_rlt_chart_data_outports_LAPPR_Selected)
-  valof_pre_LAPPR_main_simp_rlt_node_state31_rlt_chart_data_states_LAPPR_LAPPR_SELECTED = pre LAPPR_main_simp_rlt_node_state31_rlt_chart_data_states_LAPPR_LAPPR_SELECTED
-  LAPPR_main_rlt_state_in_rlt_chart_data_states_LAPPR_LAPPR_SELECTED = 0 -> valof_pre_LAPPR_main_simp_rlt_node_state31_rlt_chart_data_states_LAPPR_LAPPR_SELECTED
-  LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR_LAPPR_SELECTED = ITE(LAPPR_main_rlt__ARROW, 0, LAPPR_main_rlt_state_in_rlt_chart_data_states_LAPPR_LAPPR_SELECTED)
-  LAPPR_main_simp_rlt_node_state15_rlt_chart_data_outports_LAPPR_Selected = And(Not(New_Lateral_Mode_Activated), LAPPR_main_simp_rlt_node_state1_rlt_chart_data_outports_LAPPR_Selected)
-  LAPPR_main_simp_rlt_node_state20_rlt_chart_data_outports_LAPPR_Selected = ITE(Eq(LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR_LAPPR_SELECTED, 1), LAPPR_main_simp_rlt_node_state15_rlt_chart_data_outports_LAPPR_Selected, LAPPR_main_simp_rlt_node_state1_rlt_chart_data_outports_LAPPR_Selected)
-  LAPPR_main_simp_rlt_node_state21_rlt_chart_data_outports_LAPPR_Selected = And(Not(SubmodeExample_RISING_Logical_Operator1), LAPPR_main_simp_rlt_node_state20_rlt_chart_data_outports_LAPPR_Selected)
-  LAPPR_main_simp_rlt_node_state27_rlt_chart_data_outports_LAPPR_Selected = ITE(Eq(LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR_LAPPR, 1), LAPPR_main_simp_rlt_node_state21_rlt_chart_data_outports_LAPPR_Selected, LAPPR_main_simp_rlt_node_state26_rlt_chart_data_outports_LAPPR_Selected)
-  LAPPR_main_simp_rlt_node_state28_rlt_chart_data_outports_LAPPR_Selected = ITE(Eq(LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR, 1), LAPPR_main_simp_rlt_node_state27_rlt_chart_data_outports_LAPPR_Selected, LAPPR_main_simp_rlt_node_state1_rlt_chart_data_outports_LAPPR_Selected)
-  LAPPR_main_simp_rlt_node_state31_rlt_chart_data_outports_LAPPR_Selected = ITE(Not(Eq(LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR, 0)), LAPPR_main_simp_rlt_node_state28_rlt_chart_data_outports_LAPPR_Selected, LAPPR_main_simp_rlt_node_state1_rlt_chart_data_outports_LAPPR_Selected)
-  LAPPR_Selected = LAPPR_main_simp_rlt_node_state31_rlt_chart_data_outports_LAPPR_Selected
-  valof_pre_LAPPR_main_simp_rlt_node_state31_rlt_chart_data_outports_LAPPR_Active = pre LAPPR_main_simp_rlt_node_state31_rlt_chart_data_outports_LAPPR_Active
-  LAPPR_main_rlt_state_in_rlt_chart_data_outports_LAPPR_Active = false -> valof_pre_LAPPR_main_simp_rlt_node_state31_rlt_chart_data_outports_LAPPR_Active
-  LAPPR_main_simp_rlt_node_state1_rlt_chart_data_outports_LAPPR_Active = And(Not(LAPPR_main_rlt__ARROW), LAPPR_main_rlt_state_in_rlt_chart_data_outports_LAPPR_Active)
-  LAPPR_main_simp_rlt_node_state18_rlt_chart_data_outports_LAPPR_Active = Or(LAPPR_Capture_Cond_Met, LAPPR_main_simp_rlt_node_state1_rlt_chart_data_outports_LAPPR_Active)
-  LAPPR_main_simp_rlt_node_state19_rlt_chart_data_outports_LAPPR_Active = ITE(Eq(LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR_LAPPR_SELECTED, 2), LAPPR_main_simp_rlt_node_state18_rlt_chart_data_outports_LAPPR_Active, LAPPR_main_simp_rlt_node_state1_rlt_chart_data_outports_LAPPR_Active)
-  LAPPR_main_simp_rlt_node_state15_rlt_chart_data_outports_LAPPR_Active = And(Not(New_Lateral_Mode_Activated), LAPPR_main_simp_rlt_node_state1_rlt_chart_data_outports_LAPPR_Active)
-  LAPPR_main_simp_rlt_node_state20_rlt_chart_data_outports_LAPPR_Active = ITE(Eq(LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR_LAPPR_SELECTED, 1), LAPPR_main_simp_rlt_node_state15_rlt_chart_data_outports_LAPPR_Active, LAPPR_main_simp_rlt_node_state19_rlt_chart_data_outports_LAPPR_Active)
-  LAPPR_main_simp_rlt_node_state4_rlt_chart_data_outports_LAPPR_Active = And(Not(Eq(LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR_LAPPR_SELECTED, 1)), LAPPR_main_simp_rlt_node_state1_rlt_chart_data_outports_LAPPR_Active)
-  LAPPR_main_simp_rlt_node_state21_rlt_chart_data_outports_LAPPR_Active = ITE(SubmodeExample_RISING_Logical_Operator1, LAPPR_main_simp_rlt_node_state4_rlt_chart_data_outports_LAPPR_Active, LAPPR_main_simp_rlt_node_state20_rlt_chart_data_outports_LAPPR_Active)
-  LAPPR_main_simp_rlt_node_state27_rlt_chart_data_outports_LAPPR_Active = ITE(Eq(LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR_LAPPR, 1), LAPPR_main_simp_rlt_node_state21_rlt_chart_data_outports_LAPPR_Active, LAPPR_main_simp_rlt_node_state1_rlt_chart_data_outports_LAPPR_Active)
-  LAPPR_main_simp_rlt_node_state28_rlt_chart_data_outports_LAPPR_Active = ITE(Eq(LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR, 1), LAPPR_main_simp_rlt_node_state27_rlt_chart_data_outports_LAPPR_Active, LAPPR_main_simp_rlt_node_state1_rlt_chart_data_outports_LAPPR_Active)
-  LAPPR_main_simp_rlt_node_state31_rlt_chart_data_outports_LAPPR_Active = ITE(Not(Eq(LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR, 0)), LAPPR_main_simp_rlt_node_state28_rlt_chart_data_outports_LAPPR_Active, LAPPR_main_simp_rlt_node_state1_rlt_chart_data_outports_LAPPR_Active)
-  LAPPR_Active = LAPPR_main_simp_rlt_node_state31_rlt_chart_data_outports_LAPPR_Active
-  valof_pre_APPR_Switch = pre APPR_Switch
-  RISING_p2 = false -> And(Not(valof_pre_APPR_Switch), APPR_Switch)
-  LAPPR_main_simp_rlt_node_state25_rlt_chart_data_states_LAPPR_LAPPR = ITE(SubmodeExample_RISING_Logical_Operator1, 1, LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR_LAPPR)
-  LAPPR_main_simp_rlt_node_state26_rlt_chart_data_states_LAPPR_LAPPR = ITE(Eq(LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR_LAPPR, 2), LAPPR_main_simp_rlt_node_state25_rlt_chart_data_states_LAPPR_LAPPR, LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR_LAPPR)
-  LAPPR_main_simp_rlt_node_state15_rlt_chart_data_states_LAPPR_LAPPR = ITE(New_Lateral_Mode_Activated, 2, LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR_LAPPR)
-  LAPPR_main_simp_rlt_node_state20_rlt_chart_data_states_LAPPR_LAPPR = ITE(Eq(LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR_LAPPR_SELECTED, 1), LAPPR_main_simp_rlt_node_state15_rlt_chart_data_states_LAPPR_LAPPR, LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR_LAPPR)
-  LAPPR_main_simp_rlt_node_state21_rlt_chart_data_states_LAPPR_LAPPR = ITE(SubmodeExample_RISING_Logical_Operator1, 2, LAPPR_main_simp_rlt_node_state20_rlt_chart_data_states_LAPPR_LAPPR)
-  LAPPR_main_simp_rlt_node_state27_rlt_chart_data_states_LAPPR_LAPPR = ITE(Eq(LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR_LAPPR, 1), LAPPR_main_simp_rlt_node_state21_rlt_chart_data_states_LAPPR_LAPPR, LAPPR_main_simp_rlt_node_state26_rlt_chart_data_states_LAPPR_LAPPR)
-  LAPPR_main_simp_rlt_node_state28_rlt_chart_data_states_LAPPR_LAPPR = ITE(Eq(LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR, 1), LAPPR_main_simp_rlt_node_state27_rlt_chart_data_states_LAPPR_LAPPR, LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR_LAPPR)
-  LAPPR_main_simp_rlt_node_state25_rlt_chart_data_states_LAPPR_LAPPR_SELECTED = ITE(SubmodeExample_RISING_Logical_Operator1, 2, LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR_LAPPR_SELECTED)
-  LAPPR_main_simp_rlt_node_state26_rlt_chart_data_states_LAPPR_LAPPR_SELECTED = ITE(Eq(LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR_LAPPR, 2), LAPPR_main_simp_rlt_node_state25_rlt_chart_data_states_LAPPR_LAPPR_SELECTED, LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR_LAPPR_SELECTED)
-  LAPPR_main_simp_rlt_node_state18_rlt_chart_data_states_LAPPR_LAPPR_SELECTED = ITE(LAPPR_Capture_Cond_Met, 1, LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR_LAPPR_SELECTED)
-  LAPPR_main_simp_rlt_node_state19_rlt_chart_data_states_LAPPR_LAPPR_SELECTED = ITE(Eq(LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR_LAPPR_SELECTED, 2), LAPPR_main_simp_rlt_node_state18_rlt_chart_data_states_LAPPR_LAPPR_SELECTED, LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR_LAPPR_SELECTED)
-  LAPPR_main_simp_rlt_node_state15_rlt_chart_data_states_LAPPR_LAPPR_SELECTED = ITE(New_Lateral_Mode_Activated, 0, LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR_LAPPR_SELECTED)
-  LAPPR_main_simp_rlt_node_state20_rlt_chart_data_states_LAPPR_LAPPR_SELECTED = ITE(Eq(LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR_LAPPR_SELECTED, 1), LAPPR_main_simp_rlt_node_state15_rlt_chart_data_states_LAPPR_LAPPR_SELECTED, LAPPR_main_simp_rlt_node_state19_rlt_chart_data_states_LAPPR_LAPPR_SELECTED)
-  LAPPR_main_simp_rlt_node_state4_rlt_chart_data_states_LAPPR_LAPPR_SELECTED = ITE(Eq(LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR_LAPPR_SELECTED, 1), 0, LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR_LAPPR_SELECTED)
-  LAPPR_main_simp_rlt_node_state6_rlt_chart_data_states_LAPPR_LAPPR_SELECTED = ITE(Eq(LAPPR_main_simp_rlt_node_state4_rlt_chart_data_states_LAPPR_LAPPR_SELECTED, 2), 0, LAPPR_main_simp_rlt_node_state4_rlt_chart_data_states_LAPPR_LAPPR_SELECTED)
-  LAPPR_main_simp_rlt_node_state21_rlt_chart_data_states_LAPPR_LAPPR_SELECTED = ITE(SubmodeExample_RISING_Logical_Operator1, LAPPR_main_simp_rlt_node_state6_rlt_chart_data_states_LAPPR_LAPPR_SELECTED, LAPPR_main_simp_rlt_node_state20_rlt_chart_data_states_LAPPR_LAPPR_SELECTED)
-  LAPPR_main_simp_rlt_node_state27_rlt_chart_data_states_LAPPR_LAPPR_SELECTED = ITE(Eq(LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR_LAPPR, 1), LAPPR_main_simp_rlt_node_state21_rlt_chart_data_states_LAPPR_LAPPR_SELECTED, LAPPR_main_simp_rlt_node_state26_rlt_chart_data_states_LAPPR_LAPPR_SELECTED)
-  LAPPR_main_simp_rlt_node_state28_rlt_chart_data_states_LAPPR_LAPPR_SELECTED = ITE(Eq(LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR, 1), LAPPR_main_simp_rlt_node_state27_rlt_chart_data_states_LAPPR_LAPPR_SELECTED, LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR_LAPPR_SELECTED)
-  LAPPR_main_simp_rlt_node_state31_rlt_chart_data_states_LAPPR_LAPPR = ITE(Not(Eq(LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR, 0)), LAPPR_main_simp_rlt_node_state28_rlt_chart_data_states_LAPPR_LAPPR, 2)
-  LAPPR_main_simp_rlt_node_state31_rlt_chart_data_states_LAPPR = ITE(Not(Eq(LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR, 0)), LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR, 1)
-  LAPPR_main_simp_rlt_node_state31_rlt_chart_data_states_LAPPR_LAPPR_SELECTED = ITE(Not(Eq(LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR, 0)), LAPPR_main_simp_rlt_node_state28_rlt_chart_data_states_LAPPR_LAPPR_SELECTED, LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR_LAPPR_SELECTED)
-  LAPPR_Selected_If_LAPPR_Active = Or(Not(LAPPR_Active), LAPPR_Selected)
-  valof_pre_LAPPR_Selected$2 = pre LAPPR_Selected
-  APPR_Switch_Pressed_Selects_LAPPR = Or(Not(And(Not(valof_pre_LAPPR_Selected$2), RISING_p2)), LAPPR_Selected)
-  valof_pre_LAPPR_Selected$1 = pre LAPPR_Selected
-  valof_pre_LAPPR_Active = pre LAPPR_Active
-  LAPPR_Active_When_Capture_Cond_Met = true -> Or(Not(And(And(And(valof_pre_LAPPR_Selected$1, Not(valof_pre_LAPPR_Active)), Not(RISING_p2)), LAPPR_Capture_Cond_Met)), LAPPR_Active)
-  valof_pre_LAPPR_Selected = pre LAPPR_Selected
-  APPR_Switch_Pressed_Clears_LAPPR = Or(Not(And(valof_pre_LAPPR_Selected, RISING_p2)), Not(LAPPR_Selected))
+  pre_LAPPR_main_simp_rlt_node_state31_rlt_chart_data_states_LAPPR : int
+    = pre LAPPR_main_simp_rlt_node_state31_rlt_chart_data_states_LAPPR
+   
+  LAPPR_main_rlt_state_in_rlt_chart_data_states_LAPPR : int
+    = 0 -> pre_LAPPR_main_simp_rlt_node_state31_rlt_chart_data_states_LAPPR
+   
+  LAPPR_main_rlt__ARROW : bool
+    = true -> false
+   
+  LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR : int
+    = ITE(LAPPR_main_rlt__ARROW, 0, LAPPR_main_rlt_state_in_rlt_chart_data_states_LAPPR)
+   
+  pre_LAPPR_main_simp_rlt_node_state31_rlt_chart_data_outports_LAPPR_Selected : bool
+    = pre LAPPR_main_simp_rlt_node_state31_rlt_chart_data_outports_LAPPR_Selected
+   
+  LAPPR_main_rlt_state_in_rlt_chart_data_outports_LAPPR_Selected : bool
+    = false -> pre_LAPPR_main_simp_rlt_node_state31_rlt_chart_data_outports_LAPPR_Selected
+   
+  LAPPR_main_simp_rlt_node_state1_rlt_chart_data_outports_LAPPR_Selected : bool
+    = And(Not(LAPPR_main_rlt__ARROW), LAPPR_main_rlt_state_in_rlt_chart_data_outports_LAPPR_Selected)
+   
+  pre_LAPPR_main_simp_rlt_node_state31_rlt_chart_data_states_LAPPR_LAPPR : int
+    = pre LAPPR_main_simp_rlt_node_state31_rlt_chart_data_states_LAPPR_LAPPR
+   
+  LAPPR_main_rlt_state_in_rlt_chart_data_states_LAPPR_LAPPR : int
+    = 0 -> pre_LAPPR_main_simp_rlt_node_state31_rlt_chart_data_states_LAPPR_LAPPR
+   
+  LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR_LAPPR : int
+    = ITE(LAPPR_main_rlt__ARROW, 0, LAPPR_main_rlt_state_in_rlt_chart_data_states_LAPPR_LAPPR)
+   
+  pre_APPR_Switch$1 : bool
+    = pre APPR_Switch
+   
+  SubmodeExample_RISING_Unit_Delay : bool
+    = false -> pre_APPR_Switch$1
+   
+  SubmodeExample_RISING_Logical_Operator2 : bool
+    = Not(SubmodeExample_RISING_Unit_Delay)
+   
+  SubmodeExample_RISING_Logical_Operator1 : bool
+    = And(SubmodeExample_RISING_Logical_Operator2, APPR_Switch)
+   
+  LAPPR_main_simp_rlt_node_state25_rlt_chart_data_outports_LAPPR_Selected : bool
+    = Or(SubmodeExample_RISING_Logical_Operator1, LAPPR_main_simp_rlt_node_state1_rlt_chart_data_outports_LAPPR_Selected)
+   
+  LAPPR_main_simp_rlt_node_state26_rlt_chart_data_outports_LAPPR_Selected : bool
+    = ITE(Eq(LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR_LAPPR, 2), LAPPR_main_simp_rlt_node_state25_rlt_chart_data_outports_LAPPR_Selected, LAPPR_main_simp_rlt_node_state1_rlt_chart_data_outports_LAPPR_Selected)
+   
+  pre_LAPPR_main_simp_rlt_node_state31_rlt_chart_data_states_LAPPR_LAPPR_SELECTED : int
+    = pre LAPPR_main_simp_rlt_node_state31_rlt_chart_data_states_LAPPR_LAPPR_SELECTED
+   
+  LAPPR_main_rlt_state_in_rlt_chart_data_states_LAPPR_LAPPR_SELECTED : int
+    = 0 -> pre_LAPPR_main_simp_rlt_node_state31_rlt_chart_data_states_LAPPR_LAPPR_SELECTED
+   
+  LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR_LAPPR_SELECTED : int
+    = ITE(LAPPR_main_rlt__ARROW, 0, LAPPR_main_rlt_state_in_rlt_chart_data_states_LAPPR_LAPPR_SELECTED)
+   
+  LAPPR_main_simp_rlt_node_state15_rlt_chart_data_outports_LAPPR_Selected : bool
+    = And(Not(New_Lateral_Mode_Activated), LAPPR_main_simp_rlt_node_state1_rlt_chart_data_outports_LAPPR_Selected)
+   
+  LAPPR_main_simp_rlt_node_state20_rlt_chart_data_outports_LAPPR_Selected : bool
+    = ITE(Eq(LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR_LAPPR_SELECTED, 1), LAPPR_main_simp_rlt_node_state15_rlt_chart_data_outports_LAPPR_Selected, LAPPR_main_simp_rlt_node_state1_rlt_chart_data_outports_LAPPR_Selected)
+   
+  LAPPR_main_simp_rlt_node_state21_rlt_chart_data_outports_LAPPR_Selected : bool
+    = And(Not(SubmodeExample_RISING_Logical_Operator1), LAPPR_main_simp_rlt_node_state20_rlt_chart_data_outports_LAPPR_Selected)
+   
+  LAPPR_main_simp_rlt_node_state27_rlt_chart_data_outports_LAPPR_Selected : bool
+    = ITE(Eq(LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR_LAPPR, 1), LAPPR_main_simp_rlt_node_state21_rlt_chart_data_outports_LAPPR_Selected, LAPPR_main_simp_rlt_node_state26_rlt_chart_data_outports_LAPPR_Selected)
+   
+  LAPPR_main_simp_rlt_node_state28_rlt_chart_data_outports_LAPPR_Selected : bool
+    = ITE(Eq(LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR, 1), LAPPR_main_simp_rlt_node_state27_rlt_chart_data_outports_LAPPR_Selected, LAPPR_main_simp_rlt_node_state1_rlt_chart_data_outports_LAPPR_Selected)
+   
+  LAPPR_main_simp_rlt_node_state31_rlt_chart_data_outports_LAPPR_Selected : bool
+    = ITE(Not(Eq(LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR, 0)), LAPPR_main_simp_rlt_node_state28_rlt_chart_data_outports_LAPPR_Selected, LAPPR_main_simp_rlt_node_state1_rlt_chart_data_outports_LAPPR_Selected)
+   
+  LAPPR_Selected : bool
+    = LAPPR_main_simp_rlt_node_state31_rlt_chart_data_outports_LAPPR_Selected
+   
+  pre_LAPPR_main_simp_rlt_node_state31_rlt_chart_data_outports_LAPPR_Active : bool
+    = pre LAPPR_main_simp_rlt_node_state31_rlt_chart_data_outports_LAPPR_Active
+   
+  LAPPR_main_rlt_state_in_rlt_chart_data_outports_LAPPR_Active : bool
+    = false -> pre_LAPPR_main_simp_rlt_node_state31_rlt_chart_data_outports_LAPPR_Active
+   
+  LAPPR_main_simp_rlt_node_state1_rlt_chart_data_outports_LAPPR_Active : bool
+    = And(Not(LAPPR_main_rlt__ARROW), LAPPR_main_rlt_state_in_rlt_chart_data_outports_LAPPR_Active)
+   
+  LAPPR_main_simp_rlt_node_state18_rlt_chart_data_outports_LAPPR_Active : bool
+    = Or(LAPPR_Capture_Cond_Met, LAPPR_main_simp_rlt_node_state1_rlt_chart_data_outports_LAPPR_Active)
+   
+  LAPPR_main_simp_rlt_node_state19_rlt_chart_data_outports_LAPPR_Active : bool
+    = ITE(Eq(LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR_LAPPR_SELECTED, 2), LAPPR_main_simp_rlt_node_state18_rlt_chart_data_outports_LAPPR_Active, LAPPR_main_simp_rlt_node_state1_rlt_chart_data_outports_LAPPR_Active)
+   
+  LAPPR_main_simp_rlt_node_state15_rlt_chart_data_outports_LAPPR_Active : bool
+    = And(Not(New_Lateral_Mode_Activated), LAPPR_main_simp_rlt_node_state1_rlt_chart_data_outports_LAPPR_Active)
+   
+  LAPPR_main_simp_rlt_node_state20_rlt_chart_data_outports_LAPPR_Active : bool
+    = ITE(Eq(LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR_LAPPR_SELECTED, 1), LAPPR_main_simp_rlt_node_state15_rlt_chart_data_outports_LAPPR_Active, LAPPR_main_simp_rlt_node_state19_rlt_chart_data_outports_LAPPR_Active)
+   
+  LAPPR_main_simp_rlt_node_state4_rlt_chart_data_outports_LAPPR_Active : bool
+    = And(Not(Eq(LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR_LAPPR_SELECTED, 1)), LAPPR_main_simp_rlt_node_state1_rlt_chart_data_outports_LAPPR_Active)
+   
+  LAPPR_main_simp_rlt_node_state21_rlt_chart_data_outports_LAPPR_Active : bool
+    = ITE(SubmodeExample_RISING_Logical_Operator1, LAPPR_main_simp_rlt_node_state4_rlt_chart_data_outports_LAPPR_Active, LAPPR_main_simp_rlt_node_state20_rlt_chart_data_outports_LAPPR_Active)
+   
+  LAPPR_main_simp_rlt_node_state27_rlt_chart_data_outports_LAPPR_Active : bool
+    = ITE(Eq(LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR_LAPPR, 1), LAPPR_main_simp_rlt_node_state21_rlt_chart_data_outports_LAPPR_Active, LAPPR_main_simp_rlt_node_state1_rlt_chart_data_outports_LAPPR_Active)
+   
+  LAPPR_main_simp_rlt_node_state28_rlt_chart_data_outports_LAPPR_Active : bool
+    = ITE(Eq(LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR, 1), LAPPR_main_simp_rlt_node_state27_rlt_chart_data_outports_LAPPR_Active, LAPPR_main_simp_rlt_node_state1_rlt_chart_data_outports_LAPPR_Active)
+   
+  LAPPR_main_simp_rlt_node_state31_rlt_chart_data_outports_LAPPR_Active : bool
+    = ITE(Not(Eq(LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR, 0)), LAPPR_main_simp_rlt_node_state28_rlt_chart_data_outports_LAPPR_Active, LAPPR_main_simp_rlt_node_state1_rlt_chart_data_outports_LAPPR_Active)
+   
+  LAPPR_Active : bool
+    = LAPPR_main_simp_rlt_node_state31_rlt_chart_data_outports_LAPPR_Active
+   
+  pre_APPR_Switch : bool
+    = pre APPR_Switch
+   
+  RISING_p2 : bool
+    = false -> And(Not(pre_APPR_Switch), APPR_Switch)
+   
+  LAPPR_main_simp_rlt_node_state25_rlt_chart_data_states_LAPPR_LAPPR : int
+    = ITE(SubmodeExample_RISING_Logical_Operator1, 1, LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR_LAPPR)
+   
+  LAPPR_main_simp_rlt_node_state26_rlt_chart_data_states_LAPPR_LAPPR : int
+    = ITE(Eq(LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR_LAPPR, 2), LAPPR_main_simp_rlt_node_state25_rlt_chart_data_states_LAPPR_LAPPR, LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR_LAPPR)
+   
+  LAPPR_main_simp_rlt_node_state15_rlt_chart_data_states_LAPPR_LAPPR : int
+    = ITE(New_Lateral_Mode_Activated, 2, LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR_LAPPR)
+   
+  LAPPR_main_simp_rlt_node_state20_rlt_chart_data_states_LAPPR_LAPPR : int
+    = ITE(Eq(LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR_LAPPR_SELECTED, 1), LAPPR_main_simp_rlt_node_state15_rlt_chart_data_states_LAPPR_LAPPR, LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR_LAPPR)
+   
+  LAPPR_main_simp_rlt_node_state21_rlt_chart_data_states_LAPPR_LAPPR : int
+    = ITE(SubmodeExample_RISING_Logical_Operator1, 2, LAPPR_main_simp_rlt_node_state20_rlt_chart_data_states_LAPPR_LAPPR)
+   
+  LAPPR_main_simp_rlt_node_state27_rlt_chart_data_states_LAPPR_LAPPR : int
+    = ITE(Eq(LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR_LAPPR, 1), LAPPR_main_simp_rlt_node_state21_rlt_chart_data_states_LAPPR_LAPPR, LAPPR_main_simp_rlt_node_state26_rlt_chart_data_states_LAPPR_LAPPR)
+   
+  LAPPR_main_simp_rlt_node_state28_rlt_chart_data_states_LAPPR_LAPPR : int
+    = ITE(Eq(LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR, 1), LAPPR_main_simp_rlt_node_state27_rlt_chart_data_states_LAPPR_LAPPR, LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR_LAPPR)
+   
+  LAPPR_main_simp_rlt_node_state25_rlt_chart_data_states_LAPPR_LAPPR_SELECTED : int
+    = ITE(SubmodeExample_RISING_Logical_Operator1, 2, LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR_LAPPR_SELECTED)
+   
+  LAPPR_main_simp_rlt_node_state26_rlt_chart_data_states_LAPPR_LAPPR_SELECTED : int
+    = ITE(Eq(LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR_LAPPR, 2), LAPPR_main_simp_rlt_node_state25_rlt_chart_data_states_LAPPR_LAPPR_SELECTED, LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR_LAPPR_SELECTED)
+   
+  LAPPR_main_simp_rlt_node_state18_rlt_chart_data_states_LAPPR_LAPPR_SELECTED : int
+    = ITE(LAPPR_Capture_Cond_Met, 1, LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR_LAPPR_SELECTED)
+   
+  LAPPR_main_simp_rlt_node_state19_rlt_chart_data_states_LAPPR_LAPPR_SELECTED : int
+    = ITE(Eq(LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR_LAPPR_SELECTED, 2), LAPPR_main_simp_rlt_node_state18_rlt_chart_data_states_LAPPR_LAPPR_SELECTED, LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR_LAPPR_SELECTED)
+   
+  LAPPR_main_simp_rlt_node_state15_rlt_chart_data_states_LAPPR_LAPPR_SELECTED : int
+    = ITE(New_Lateral_Mode_Activated, 0, LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR_LAPPR_SELECTED)
+   
+  LAPPR_main_simp_rlt_node_state20_rlt_chart_data_states_LAPPR_LAPPR_SELECTED : int
+    = ITE(Eq(LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR_LAPPR_SELECTED, 1), LAPPR_main_simp_rlt_node_state15_rlt_chart_data_states_LAPPR_LAPPR_SELECTED, LAPPR_main_simp_rlt_node_state19_rlt_chart_data_states_LAPPR_LAPPR_SELECTED)
+   
+  LAPPR_main_simp_rlt_node_state4_rlt_chart_data_states_LAPPR_LAPPR_SELECTED : int
+    = ITE(Eq(LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR_LAPPR_SELECTED, 1), 0, LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR_LAPPR_SELECTED)
+   
+  LAPPR_main_simp_rlt_node_state6_rlt_chart_data_states_LAPPR_LAPPR_SELECTED : int
+    = ITE(Eq(LAPPR_main_simp_rlt_node_state4_rlt_chart_data_states_LAPPR_LAPPR_SELECTED, 2), 0, LAPPR_main_simp_rlt_node_state4_rlt_chart_data_states_LAPPR_LAPPR_SELECTED)
+   
+  LAPPR_main_simp_rlt_node_state21_rlt_chart_data_states_LAPPR_LAPPR_SELECTED : int
+    = ITE(SubmodeExample_RISING_Logical_Operator1, LAPPR_main_simp_rlt_node_state6_rlt_chart_data_states_LAPPR_LAPPR_SELECTED, LAPPR_main_simp_rlt_node_state20_rlt_chart_data_states_LAPPR_LAPPR_SELECTED)
+   
+  LAPPR_main_simp_rlt_node_state27_rlt_chart_data_states_LAPPR_LAPPR_SELECTED : int
+    = ITE(Eq(LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR_LAPPR, 1), LAPPR_main_simp_rlt_node_state21_rlt_chart_data_states_LAPPR_LAPPR_SELECTED, LAPPR_main_simp_rlt_node_state26_rlt_chart_data_states_LAPPR_LAPPR_SELECTED)
+   
+  LAPPR_main_simp_rlt_node_state28_rlt_chart_data_states_LAPPR_LAPPR_SELECTED : int
+    = ITE(Eq(LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR, 1), LAPPR_main_simp_rlt_node_state27_rlt_chart_data_states_LAPPR_LAPPR_SELECTED, LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR_LAPPR_SELECTED)
+   
+  LAPPR_main_simp_rlt_node_state31_rlt_chart_data_states_LAPPR_LAPPR : int
+    = ITE(Not(Eq(LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR, 0)), LAPPR_main_simp_rlt_node_state28_rlt_chart_data_states_LAPPR_LAPPR, 2)
+   
+  LAPPR_main_simp_rlt_node_state31_rlt_chart_data_states_LAPPR : int
+    = ITE(Not(Eq(LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR, 0)), LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR, 1)
+   
+  LAPPR_main_simp_rlt_node_state31_rlt_chart_data_states_LAPPR_LAPPR_SELECTED : int
+    = ITE(Not(Eq(LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR, 0)), LAPPR_main_simp_rlt_node_state28_rlt_chart_data_states_LAPPR_LAPPR_SELECTED, LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR_LAPPR_SELECTED)
+   
+  LAPPR_Selected_If_LAPPR_Active : bool
+    = Or(Not(LAPPR_Active), LAPPR_Selected)
+   
+  pre_LAPPR_Selected$2 : bool
+    = pre LAPPR_Selected
+   
+  APPR_Switch_Pressed_Selects_LAPPR : bool
+    = Or(Not(And(Not(pre_LAPPR_Selected$2), RISING_p2)), LAPPR_Selected)
+   
+  pre_LAPPR_Selected$1 : bool
+    = pre LAPPR_Selected
+   
+  pre_LAPPR_Active : bool
+    = pre LAPPR_Active
+   
+  LAPPR_Active_When_Capture_Cond_Met : bool
+    = true -> Or(Not(And(And(And(pre_LAPPR_Selected$1, Not(pre_LAPPR_Active)), Not(RISING_p2)), LAPPR_Capture_Cond_Met)), LAPPR_Active)
+   
+  pre_LAPPR_Selected : bool
+    = pre LAPPR_Selected
+   
+  APPR_Switch_Pressed_Clears_LAPPR : bool
+    = Or(Not(And(pre_LAPPR_Selected, RISING_p2)), Not(LAPPR_Selected))
 tel
 Sally Model
 ===========
@@ -155,17 +294,17 @@ Sally Model
      (|SubmodeExample_RISING_Unit_Delay:init| Bool)
      (|SubmodeExample_RISING_Unit_Delay| Bool)
      (|gal-initializing| Bool)
-     (|valof_pre_APPR_Switch:1| Bool)
-     (|valof_pre_APPR_Switch| Bool)
-     (|valof_pre_LAPPR_Active| Bool)
-     (|valof_pre_LAPPR_Selected:1| Bool)
-     (|valof_pre_LAPPR_Selected:2| Bool)
-     (|valof_pre_LAPPR_Selected| Bool)
-     (|valof_pre_LAPPR_main_simp_rlt_node_state31_rlt_chart_data_outports_LAPPR_Active| Bool)
-     (|valof_pre_LAPPR_main_simp_rlt_node_state31_rlt_chart_data_outports_LAPPR_Selected| Bool)
-     (|valof_pre_LAPPR_main_simp_rlt_node_state31_rlt_chart_data_states_LAPPR_LAPPR_SELECTED| Int)
-     (|valof_pre_LAPPR_main_simp_rlt_node_state31_rlt_chart_data_states_LAPPR_LAPPR| Int)
-     (|valof_pre_LAPPR_main_simp_rlt_node_state31_rlt_chart_data_states_LAPPR| Int))
+     (|pre_APPR_Switch:1| Bool)
+     (|pre_APPR_Switch| Bool)
+     (|pre_LAPPR_Active| Bool)
+     (|pre_LAPPR_Selected:1| Bool)
+     (|pre_LAPPR_Selected:2| Bool)
+     (|pre_LAPPR_Selected| Bool)
+     (|pre_LAPPR_main_simp_rlt_node_state31_rlt_chart_data_outports_LAPPR_Active| Bool)
+     (|pre_LAPPR_main_simp_rlt_node_state31_rlt_chart_data_outports_LAPPR_Selected| Bool)
+     (|pre_LAPPR_main_simp_rlt_node_state31_rlt_chart_data_states_LAPPR_LAPPR_SELECTED| Int)
+     (|pre_LAPPR_main_simp_rlt_node_state31_rlt_chart_data_states_LAPPR_LAPPR| Int)
+     (|pre_LAPPR_main_simp_rlt_node_state31_rlt_chart_data_states_LAPPR| Int))
    (
      (|APPR_Switch| Bool)
      (|LAPPR_Capture_Cond_Met| Bool)
@@ -189,11 +328,11 @@ Sally Model
       (= next.|APPR_Switch| input.|APPR_Switch|)
       (= next.|LAPPR_Capture_Cond_Met| input.|LAPPR_Capture_Cond_Met|)
       (= next.|New_Lateral_Mode_Activated| input.|New_Lateral_Mode_Activated|)
-      (= next.|valof_pre_LAPPR_main_simp_rlt_node_state31_rlt_chart_data_states_LAPPR| state.|LAPPR_main_simp_rlt_node_state31_rlt_chart_data_states_LAPPR|)
+      (= next.|pre_LAPPR_main_simp_rlt_node_state31_rlt_chart_data_states_LAPPR| state.|LAPPR_main_simp_rlt_node_state31_rlt_chart_data_states_LAPPR|)
       (ite
          state.|LAPPR_main_rlt_state_in_rlt_chart_data_states_LAPPR:init|
          (= next.|LAPPR_main_rlt_state_in_rlt_chart_data_states_LAPPR| 0)
-         (= next.|LAPPR_main_rlt_state_in_rlt_chart_data_states_LAPPR| next.|valof_pre_LAPPR_main_simp_rlt_node_state31_rlt_chart_data_states_LAPPR|))
+         (= next.|LAPPR_main_rlt_state_in_rlt_chart_data_states_LAPPR| next.|pre_LAPPR_main_simp_rlt_node_state31_rlt_chart_data_states_LAPPR|))
       (= next.|LAPPR_main_rlt_state_in_rlt_chart_data_states_LAPPR:init| false)
       (ite
          state.|LAPPR_main_rlt__ARROW:init|
@@ -203,31 +342,31 @@ Sally Model
       (=
          next.|LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR|
          (ite next.|LAPPR_main_rlt__ARROW| 0 next.|LAPPR_main_rlt_state_in_rlt_chart_data_states_LAPPR|))
-      (= next.|valof_pre_LAPPR_main_simp_rlt_node_state31_rlt_chart_data_outports_LAPPR_Selected| state.|LAPPR_main_simp_rlt_node_state31_rlt_chart_data_outports_LAPPR_Selected|)
+      (= next.|pre_LAPPR_main_simp_rlt_node_state31_rlt_chart_data_outports_LAPPR_Selected| state.|LAPPR_main_simp_rlt_node_state31_rlt_chart_data_outports_LAPPR_Selected|)
       (ite
          state.|LAPPR_main_rlt_state_in_rlt_chart_data_outports_LAPPR_Selected:init|
          (= next.|LAPPR_main_rlt_state_in_rlt_chart_data_outports_LAPPR_Selected| false)
-         (= next.|LAPPR_main_rlt_state_in_rlt_chart_data_outports_LAPPR_Selected| next.|valof_pre_LAPPR_main_simp_rlt_node_state31_rlt_chart_data_outports_LAPPR_Selected|))
+         (= next.|LAPPR_main_rlt_state_in_rlt_chart_data_outports_LAPPR_Selected| next.|pre_LAPPR_main_simp_rlt_node_state31_rlt_chart_data_outports_LAPPR_Selected|))
       (= next.|LAPPR_main_rlt_state_in_rlt_chart_data_outports_LAPPR_Selected:init| false)
       (=
          next.|LAPPR_main_simp_rlt_node_state1_rlt_chart_data_outports_LAPPR_Selected|
          (and
             (not next.|LAPPR_main_rlt__ARROW|)
             next.|LAPPR_main_rlt_state_in_rlt_chart_data_outports_LAPPR_Selected|))
-      (= next.|valof_pre_LAPPR_main_simp_rlt_node_state31_rlt_chart_data_states_LAPPR_LAPPR| state.|LAPPR_main_simp_rlt_node_state31_rlt_chart_data_states_LAPPR_LAPPR|)
+      (= next.|pre_LAPPR_main_simp_rlt_node_state31_rlt_chart_data_states_LAPPR_LAPPR| state.|LAPPR_main_simp_rlt_node_state31_rlt_chart_data_states_LAPPR_LAPPR|)
       (ite
          state.|LAPPR_main_rlt_state_in_rlt_chart_data_states_LAPPR_LAPPR:init|
          (= next.|LAPPR_main_rlt_state_in_rlt_chart_data_states_LAPPR_LAPPR| 0)
-         (= next.|LAPPR_main_rlt_state_in_rlt_chart_data_states_LAPPR_LAPPR| next.|valof_pre_LAPPR_main_simp_rlt_node_state31_rlt_chart_data_states_LAPPR_LAPPR|))
+         (= next.|LAPPR_main_rlt_state_in_rlt_chart_data_states_LAPPR_LAPPR| next.|pre_LAPPR_main_simp_rlt_node_state31_rlt_chart_data_states_LAPPR_LAPPR|))
       (= next.|LAPPR_main_rlt_state_in_rlt_chart_data_states_LAPPR_LAPPR:init| false)
       (=
          next.|LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR_LAPPR|
          (ite next.|LAPPR_main_rlt__ARROW| 0 next.|LAPPR_main_rlt_state_in_rlt_chart_data_states_LAPPR_LAPPR|))
-      (= next.|valof_pre_APPR_Switch:1| state.|APPR_Switch|)
+      (= next.|pre_APPR_Switch:1| state.|APPR_Switch|)
       (ite
          state.|SubmodeExample_RISING_Unit_Delay:init|
          (= next.|SubmodeExample_RISING_Unit_Delay| false)
-         (= next.|SubmodeExample_RISING_Unit_Delay| next.|valof_pre_APPR_Switch:1|))
+         (= next.|SubmodeExample_RISING_Unit_Delay| next.|pre_APPR_Switch:1|))
       (= next.|SubmodeExample_RISING_Unit_Delay:init| false)
       (=
          next.|SubmodeExample_RISING_Logical_Operator2|
@@ -244,11 +383,11 @@ Sally Model
             (= next.|LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR_LAPPR| 2)
             next.|LAPPR_main_simp_rlt_node_state25_rlt_chart_data_outports_LAPPR_Selected|
             next.|LAPPR_main_simp_rlt_node_state1_rlt_chart_data_outports_LAPPR_Selected|))
-      (= next.|valof_pre_LAPPR_main_simp_rlt_node_state31_rlt_chart_data_states_LAPPR_LAPPR_SELECTED| state.|LAPPR_main_simp_rlt_node_state31_rlt_chart_data_states_LAPPR_LAPPR_SELECTED|)
+      (= next.|pre_LAPPR_main_simp_rlt_node_state31_rlt_chart_data_states_LAPPR_LAPPR_SELECTED| state.|LAPPR_main_simp_rlt_node_state31_rlt_chart_data_states_LAPPR_LAPPR_SELECTED|)
       (ite
          state.|LAPPR_main_rlt_state_in_rlt_chart_data_states_LAPPR_LAPPR_SELECTED:init|
          (= next.|LAPPR_main_rlt_state_in_rlt_chart_data_states_LAPPR_LAPPR_SELECTED| 0)
-         (= next.|LAPPR_main_rlt_state_in_rlt_chart_data_states_LAPPR_LAPPR_SELECTED| next.|valof_pre_LAPPR_main_simp_rlt_node_state31_rlt_chart_data_states_LAPPR_LAPPR_SELECTED|))
+         (= next.|LAPPR_main_rlt_state_in_rlt_chart_data_states_LAPPR_LAPPR_SELECTED| next.|pre_LAPPR_main_simp_rlt_node_state31_rlt_chart_data_states_LAPPR_LAPPR_SELECTED|))
       (= next.|LAPPR_main_rlt_state_in_rlt_chart_data_states_LAPPR_LAPPR_SELECTED:init| false)
       (=
          next.|LAPPR_main_simp_rlt_node_state1_rlt_chart_data_states_LAPPR_LAPPR_SELECTED|
@@ -289,11 +428,11 @@ Sally Model
             next.|LAPPR_main_simp_rlt_node_state28_rlt_chart_data_outports_LAPPR_Selected|
             next.|LAPPR_main_simp_rlt_node_state1_rlt_chart_data_outports_LAPPR_Selected|))
       (= next.|LAPPR_Selected| next.|LAPPR_main_simp_rlt_node_state31_rlt_chart_data_outports_LAPPR_Selected|)
-      (= next.|valof_pre_LAPPR_main_simp_rlt_node_state31_rlt_chart_data_outports_LAPPR_Active| state.|LAPPR_main_simp_rlt_node_state31_rlt_chart_data_outports_LAPPR_Active|)
+      (= next.|pre_LAPPR_main_simp_rlt_node_state31_rlt_chart_data_outports_LAPPR_Active| state.|LAPPR_main_simp_rlt_node_state31_rlt_chart_data_outports_LAPPR_Active|)
       (ite
          state.|LAPPR_main_rlt_state_in_rlt_chart_data_outports_LAPPR_Active:init|
          (= next.|LAPPR_main_rlt_state_in_rlt_chart_data_outports_LAPPR_Active| false)
-         (= next.|LAPPR_main_rlt_state_in_rlt_chart_data_outports_LAPPR_Active| next.|valof_pre_LAPPR_main_simp_rlt_node_state31_rlt_chart_data_outports_LAPPR_Active|))
+         (= next.|LAPPR_main_rlt_state_in_rlt_chart_data_outports_LAPPR_Active| next.|pre_LAPPR_main_simp_rlt_node_state31_rlt_chart_data_outports_LAPPR_Active|))
       (= next.|LAPPR_main_rlt_state_in_rlt_chart_data_outports_LAPPR_Active:init| false)
       (=
          next.|LAPPR_main_simp_rlt_node_state1_rlt_chart_data_outports_LAPPR_Active|
@@ -349,14 +488,14 @@ Sally Model
             next.|LAPPR_main_simp_rlt_node_state28_rlt_chart_data_outports_LAPPR_Active|
             next.|LAPPR_main_simp_rlt_node_state1_rlt_chart_data_outports_LAPPR_Active|))
       (= next.|LAPPR_Active| next.|LAPPR_main_simp_rlt_node_state31_rlt_chart_data_outports_LAPPR_Active|)
-      (= next.|valof_pre_APPR_Switch| state.|APPR_Switch|)
+      (= next.|pre_APPR_Switch| state.|APPR_Switch|)
       (ite
          state.|RISING_p2:init|
          (= next.|RISING_p2| false)
          (=
             next.|RISING_p2|
             (and
-               (not next.|valof_pre_APPR_Switch|)
+               (not next.|pre_APPR_Switch|)
                next.|APPR_Switch|)))
       (= next.|RISING_p2:init| false)
       (=
@@ -472,17 +611,17 @@ Sally Model
          (or
             (not next.|LAPPR_Active|)
             next.|LAPPR_Selected|))
-      (= next.|valof_pre_LAPPR_Selected:2| state.|LAPPR_Selected|)
+      (= next.|pre_LAPPR_Selected:2| state.|LAPPR_Selected|)
       (=
          next.|APPR_Switch_Pressed_Selects_LAPPR|
          (or
             (not
                (and
-                  (not next.|valof_pre_LAPPR_Selected:2|)
+                  (not next.|pre_LAPPR_Selected:2|)
                   next.|RISING_p2|))
             next.|LAPPR_Selected|))
-      (= next.|valof_pre_LAPPR_Selected:1| state.|LAPPR_Selected|)
-      (= next.|valof_pre_LAPPR_Active| state.|LAPPR_Active|)
+      (= next.|pre_LAPPR_Selected:1| state.|LAPPR_Selected|)
+      (= next.|pre_LAPPR_Active| state.|LAPPR_Active|)
       (ite
          state.|LAPPR_Active_When_Capture_Cond_Met:init|
          (= next.|LAPPR_Active_When_Capture_Cond_Met| true)
@@ -491,18 +630,18 @@ Sally Model
             (or
                (not
                   (and
-                     next.|valof_pre_LAPPR_Selected:1|
-                     (not next.|valof_pre_LAPPR_Active|)
+                     next.|pre_LAPPR_Selected:1|
+                     (not next.|pre_LAPPR_Active|)
                      (not next.|RISING_p2|)
                      next.|LAPPR_Capture_Cond_Met|))
                next.|LAPPR_Active|)))
       (= next.|LAPPR_Active_When_Capture_Cond_Met:init| false)
-      (= next.|valof_pre_LAPPR_Selected| state.|LAPPR_Selected|)
+      (= next.|pre_LAPPR_Selected| state.|LAPPR_Selected|)
       (=
          next.|APPR_Switch_Pressed_Clears_LAPPR|
          (or
             (not
-               (and next.|valof_pre_LAPPR_Selected| next.|RISING_p2|))
+               (and next.|pre_LAPPR_Selected| next.|RISING_p2|))
             (not next.|LAPPR_Selected|)))))
 
 (query

@@ -6,17 +6,38 @@ node (rand$3 : bool)
   assumes ()
   shows (prop, lemma, lemma$1)
 let
-  rand$2 = rand$3
-  valof_pre___no_static$1 = pre __no_static$2
-  __no_static$2 = ITE(rand$2, Neg(1), Neg(1)) -> Add(1, valof_pre___no_static$1)
-  rand$1 = rand$3
-  rand = rand$1
-  valof_pre___no_static = pre __no_static$1
-  __no_static$1 = ITE(rand, Neg(1), Neg(1)) -> Add(1, valof_pre___no_static)
-  __no_static = Geq(__no_static$1, 10)
-  prop = Or(Lt(__no_static$2, 10), __no_static)
-  lemma$1 = Geq(__no_static$2, Neg(1))
-  lemma = Geq(__no_static$1, Neg(1))
+  rand$2 : bool
+    = rand$3
+   
+  pre_counter2 : int
+    = pre counter2
+   
+  counter2 : int
+    = ITE(rand$2, Neg(1), Neg(1)) -> Add(1, pre_counter2)
+   
+  rand$1 : bool
+    = rand$3
+   
+  rand : bool
+    = rand$1
+   
+  pre_counter : int
+    = pre counter
+   
+  counter : int
+    = ITE(rand, Neg(1), Neg(1)) -> Add(1, pre_counter)
+   
+  ten : bool
+    = Geq(counter, 10)
+   
+  prop : bool
+    = Or(Lt(counter2, 10), ten)
+   
+  lemma$1 : bool
+    = Geq(counter2, Neg(1))
+   
+  lemma : bool
+    = Geq(counter, Neg(1))
 tel
 Sally Model
 ===========
@@ -24,21 +45,21 @@ Sally Model
 (define-state-type
    S
    (
+     (counter Int)
+     (counter2 Int)
      (lemma Bool)
      (prop Bool)
      (rand Bool)
-     (|__no_static:1:init| Bool)
-     (|__no_static:1| Int)
-     (|__no_static:2:init| Bool)
-     (|__no_static:2| Int)
-     (|__no_static| Bool)
+     (ten Bool)
+     (|counter2:init| Bool)
+     (|counter:init| Bool)
      (|gal-initializing| Bool)
      (|lemma:1| Bool)
+     (|pre_counter2| Int)
+     (|pre_counter| Int)
      (|rand:1| Bool)
      (|rand:2| Bool)
-     (|rand:3| Bool)
-     (|valof_pre___no_static:1| Int)
-     (|valof_pre___no_static| Int))
+     (|rand:3| Bool))
    (
      (|rand:3| Bool)))
 (define-transition-system
@@ -46,58 +67,58 @@ Sally Model
    S
    (and
       (= |gal-initializing| true)
-      (= |__no_static:2:init| true)
-      (= |__no_static:1:init| true))
+      (= |counter2:init| true)
+      (= |counter:init| true))
    (and
       (= next.|gal-initializing| false)
       (= next.|rand:3| input.|rand:3|)
       (= next.|rand:2| next.|rand:3|)
-      (= next.|valof_pre___no_static:1| state.|__no_static:2|)
+      (= next.|pre_counter2| state.counter2)
       (ite
-         state.|__no_static:2:init|
+         state.|counter2:init|
          (=
-            next.|__no_static:2|
+            next.counter2
             (ite
                next.|rand:2|
                (- 1)
                (- 1)))
          (=
-            next.|__no_static:2|
-            (+ 1 next.|valof_pre___no_static:1|)))
-      (= next.|__no_static:2:init| false)
+            next.counter2
+            (+ 1 next.|pre_counter2|)))
+      (= next.|counter2:init| false)
       (= next.|rand:1| next.|rand:3|)
       (= next.rand next.|rand:1|)
-      (= next.|valof_pre___no_static| state.|__no_static:1|)
+      (= next.|pre_counter| state.counter)
       (ite
-         state.|__no_static:1:init|
+         state.|counter:init|
          (=
-            next.|__no_static:1|
+            next.counter
             (ite
                next.rand
                (- 1)
                (- 1)))
          (=
-            next.|__no_static:1|
-            (+ 1 next.|valof_pre___no_static|)))
-      (= next.|__no_static:1:init| false)
+            next.counter
+            (+ 1 next.|pre_counter|)))
+      (= next.|counter:init| false)
       (=
-         next.|__no_static|
-         (<= 10 next.|__no_static:1|))
+         next.ten
+         (<= 10 next.counter))
       (=
          next.prop
          (or
-            (< next.|__no_static:2| 10)
-            next.|__no_static|))
+            (< next.counter2 10)
+            next.ten))
       (=
          next.|lemma:1|
          (<=
             (- 1)
-            next.|__no_static:2|))
+            next.counter2))
       (=
          next.lemma
          (<=
             (- 1)
-            next.|__no_static:1|))))
+            next.counter))))
 
 (query
    TS

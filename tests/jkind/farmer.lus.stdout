@@ -6,42 +6,113 @@ node (choice$3 : int)
   assumes ()
   shows (prop)
 let
-  object$2 = 1
-  valof_pre_choice$2 = pre choice$2
-  valof_pre___no_static$4 = pre __no_static$2
-  valof_pre_wolf = pre wolf
-  wolf = 0 -> ITE(Eq(valof_pre_choice$2, object$2), valof_pre___no_static$4, valof_pre_wolf)
-  object$1 = 2
-  valof_pre_choice$1 = pre choice$1
-  valof_pre___no_static$3 = pre __no_static$1
-  valof_pre_goat = pre goat
-  goat = 0 -> ITE(Eq(valof_pre_choice$1, object$1), valof_pre___no_static$3, valof_pre_goat)
-  object = 3
-  valof_pre_choice = pre choice
-  valof_pre___no_static$2 = pre __no_static
-  valof_pre_cabbage = pre cabbage
-  cabbage = 0 -> ITE(Eq(valof_pre_choice, object), valof_pre___no_static$2, valof_pre_cabbage)
-  valof_pre___no_static$1 = pre __no_static$3
-  farmer = 0 -> valof_pre___no_static$1
-  solved = And(And(And(Eq(wolf, 1), Eq(goat, 1)), Eq(cabbage, 1)), Eq(farmer, 1))
-  nothing_eaten = And(Implies(Eq(wolf, goat), Eq(farmer, goat)), Implies(Eq(goat, cabbage), Eq(farmer, cabbage)))
-  wellformed = And(And(Implies(Eq(choice$3, 1), Eq(farmer, wolf)), Implies(Eq(choice$3, 2), Eq(farmer, goat))), Implies(Eq(choice$3, 3), Eq(farmer, cabbage)))
-  x = And(nothing_eaten, wellformed)
-  valof_pre___no_static = pre __no_static$4
-  valof_arr = true -> valof_pre___no_static
-  __no_static$4 = And(x, valof_arr)
-  prop = Not(And(__no_static$4, solved))
-  side$3 = farmer
-  __no_static$3 = ITE(Eq(side$3, 0), 1, 0)
-  choice$2 = choice$3
-  side$2 = wolf
-  __no_static$2 = ITE(Eq(side$2, 0), 1, 0)
-  choice$1 = choice$3
-  side$1 = goat
-  __no_static$1 = ITE(Eq(side$1, 0), 1, 0)
-  choice = choice$3
-  side = cabbage
-  __no_static = ITE(Eq(side, 0), 1, 0)
+  object$2 : int
+    = 1
+   
+  pre_choice$2 : int
+    = pre choice$2
+   
+  pre_swap$3 : int
+    = pre swap$2
+   
+  pre_wolf : int
+    = pre wolf
+   
+  wolf : int
+    = 0 -> ITE(Eq(pre_choice$2, object$2), pre_swap$3, pre_wolf)
+   
+  object$1 : int
+    = 2
+   
+  pre_choice$1 : int
+    = pre choice$1
+   
+  pre_swap$2 : int
+    = pre swap$1
+   
+  pre_goat : int
+    = pre goat
+   
+  goat : int
+    = 0 -> ITE(Eq(pre_choice$1, object$1), pre_swap$2, pre_goat)
+   
+  object : int
+    = 3
+   
+  pre_choice : int
+    = pre choice
+   
+  pre_swap$1 : int
+    = pre swap
+   
+  pre_cabbage : int
+    = pre cabbage
+   
+  cabbage : int
+    = 0 -> ITE(Eq(pre_choice, object), pre_swap$1, pre_cabbage)
+   
+  pre_swap : int
+    = pre swap$3
+   
+  farmer : int
+    = 0 -> pre_swap
+   
+  solved : bool
+    = And(And(And(Eq(wolf, 1), Eq(goat, 1)), Eq(cabbage, 1)), Eq(farmer, 1))
+   
+  nothing_eaten : bool
+    = And(Implies(Eq(wolf, goat), Eq(farmer, goat)), Implies(Eq(goat, cabbage), Eq(farmer, cabbage)))
+   
+  wellformed : bool
+    = And(And(Implies(Eq(choice$3, 1), Eq(farmer, wolf)), Implies(Eq(choice$3, 2), Eq(farmer, goat))), Implies(Eq(choice$3, 3), Eq(farmer, cabbage)))
+   
+  x : bool
+    = And(nothing_eaten, wellformed)
+   
+  pre_historically : bool
+    = pre historically
+   
+  init_pre_historically : bool
+    = true -> pre_historically
+   
+  historically : bool
+    = And(x, init_pre_historically)
+   
+  prop : bool
+    = Not(And(historically, solved))
+   
+  side$3 : int
+    = farmer
+   
+  swap$3 : int
+    = ITE(Eq(side$3, 0), 1, 0)
+   
+  choice$2 : int
+    = choice$3
+   
+  side$2 : int
+    = wolf
+   
+  swap$2 : int
+    = ITE(Eq(side$2, 0), 1, 0)
+   
+  choice$1 : int
+    = choice$3
+   
+  side$1 : int
+    = goat
+   
+  swap$1 : int
+    = ITE(Eq(side$1, 0), 1, 0)
+   
+  choice : int
+    = choice$3
+   
+  side : int
+    = cabbage
+   
+  swap : int
+    = ITE(Eq(side, 0), 1, 0)
 tel
 Sally Model
 ===========
@@ -53,18 +124,15 @@ Sally Model
      (choice Int)
      (farmer Int)
      (goat Int)
+     (historically Bool)
      (object Int)
      (prop Bool)
      (side Int)
      (solved Bool)
+     (swap Int)
      (wellformed Bool)
      (wolf Int)
      (x Bool)
-     (|__no_static:1| Int)
-     (|__no_static:2| Int)
-     (|__no_static:3| Int)
-     (|__no_static:4| Bool)
-     (|__no_static| Int)
      (|cabbage:init| Bool)
      (|choice:1| Int)
      (|choice:2| Int)
@@ -72,25 +140,28 @@ Sally Model
      (|farmer:init| Bool)
      (|gal-initializing| Bool)
      (|goat:init| Bool)
+     (|init_pre_historically:init| Bool)
+     (|init_pre_historically| Bool)
      (|nothing_eaten| Bool)
      (|object:1| Int)
      (|object:2| Int)
+     (|pre_cabbage| Int)
+     (|pre_choice:1| Int)
+     (|pre_choice:2| Int)
+     (|pre_choice| Int)
+     (|pre_goat| Int)
+     (|pre_historically| Bool)
+     (|pre_swap:1| Int)
+     (|pre_swap:2| Int)
+     (|pre_swap:3| Int)
+     (|pre_swap| Int)
+     (|pre_wolf| Int)
      (|side:1| Int)
      (|side:2| Int)
      (|side:3| Int)
-     (|valof_arr:init| Bool)
-     (|valof_arr| Bool)
-     (|valof_pre___no_static:1| Int)
-     (|valof_pre___no_static:2| Int)
-     (|valof_pre___no_static:3| Int)
-     (|valof_pre___no_static:4| Int)
-     (|valof_pre___no_static| Bool)
-     (|valof_pre_cabbage| Int)
-     (|valof_pre_choice:1| Int)
-     (|valof_pre_choice:2| Int)
-     (|valof_pre_choice| Int)
-     (|valof_pre_goat| Int)
-     (|valof_pre_wolf| Int)
+     (|swap:1| Int)
+     (|swap:2| Int)
+     (|swap:3| Int)
      (|wolf:init| Bool))
    (
      (|choice:3| Int)))
@@ -103,57 +174,57 @@ Sally Model
       (= |goat:init| true)
       (= |cabbage:init| true)
       (= |farmer:init| true)
-      (= |valof_arr:init| true))
+      (= |init_pre_historically:init| true))
    (and
       (= next.|gal-initializing| false)
       (= next.|choice:3| input.|choice:3|)
       (= next.|object:2| 1)
-      (= next.|valof_pre_choice:2| state.|choice:2|)
-      (= next.|valof_pre___no_static:4| state.|__no_static:2|)
-      (= next.|valof_pre_wolf| state.wolf)
+      (= next.|pre_choice:2| state.|choice:2|)
+      (= next.|pre_swap:3| state.|swap:2|)
+      (= next.|pre_wolf| state.wolf)
       (ite
          state.|wolf:init|
          (= next.wolf 0)
          (=
             next.wolf
             (ite
-               (= next.|valof_pre_choice:2| next.|object:2|)
-               next.|valof_pre___no_static:4|
-               next.|valof_pre_wolf|)))
+               (= next.|pre_choice:2| next.|object:2|)
+               next.|pre_swap:3|
+               next.|pre_wolf|)))
       (= next.|wolf:init| false)
       (= next.|object:1| 2)
-      (= next.|valof_pre_choice:1| state.|choice:1|)
-      (= next.|valof_pre___no_static:3| state.|__no_static:1|)
-      (= next.|valof_pre_goat| state.goat)
+      (= next.|pre_choice:1| state.|choice:1|)
+      (= next.|pre_swap:2| state.|swap:1|)
+      (= next.|pre_goat| state.goat)
       (ite
          state.|goat:init|
          (= next.goat 0)
          (=
             next.goat
             (ite
-               (= next.|valof_pre_choice:1| next.|object:1|)
-               next.|valof_pre___no_static:3|
-               next.|valof_pre_goat|)))
+               (= next.|pre_choice:1| next.|object:1|)
+               next.|pre_swap:2|
+               next.|pre_goat|)))
       (= next.|goat:init| false)
       (= next.object 3)
-      (= next.|valof_pre_choice| state.choice)
-      (= next.|valof_pre___no_static:2| state.|__no_static|)
-      (= next.|valof_pre_cabbage| state.cabbage)
+      (= next.|pre_choice| state.choice)
+      (= next.|pre_swap:1| state.swap)
+      (= next.|pre_cabbage| state.cabbage)
       (ite
          state.|cabbage:init|
          (= next.cabbage 0)
          (=
             next.cabbage
             (ite
-               (= next.|valof_pre_choice| next.object)
-               next.|valof_pre___no_static:2|
-               next.|valof_pre_cabbage|)))
+               (= next.|pre_choice| next.object)
+               next.|pre_swap:1|
+               next.|pre_cabbage|)))
       (= next.|cabbage:init| false)
-      (= next.|valof_pre___no_static:1| state.|__no_static:3|)
+      (= next.|pre_swap| state.|swap:3|)
       (ite
          state.|farmer:init|
          (= next.farmer 0)
-         (= next.farmer next.|valof_pre___no_static:1|))
+         (= next.farmer next.|pre_swap|))
       (= next.|farmer:init| false)
       (=
          next.solved
@@ -186,22 +257,22 @@ Sally Model
       (=
          next.x
          (and next.|nothing_eaten| next.wellformed))
-      (= next.|valof_pre___no_static| state.|__no_static:4|)
+      (= next.|pre_historically| state.historically)
       (ite
-         state.|valof_arr:init|
-         (= next.|valof_arr| true)
-         (= next.|valof_arr| next.|valof_pre___no_static|))
-      (= next.|valof_arr:init| false)
+         state.|init_pre_historically:init|
+         (= next.|init_pre_historically| true)
+         (= next.|init_pre_historically| next.|pre_historically|))
+      (= next.|init_pre_historically:init| false)
       (=
-         next.|__no_static:4|
-         (and next.x next.|valof_arr|))
+         next.historically
+         (and next.x next.|init_pre_historically|))
       (=
          next.prop
          (not
-            (and next.|__no_static:4| next.solved)))
+            (and next.historically next.solved)))
       (= next.|side:3| next.farmer)
       (=
-         next.|__no_static:3|
+         next.|swap:3|
          (ite
             (= next.|side:3| 0)
             1
@@ -209,7 +280,7 @@ Sally Model
       (= next.|choice:2| next.|choice:3|)
       (= next.|side:2| next.wolf)
       (=
-         next.|__no_static:2|
+         next.|swap:2|
          (ite
             (= next.|side:2| 0)
             1
@@ -217,7 +288,7 @@ Sally Model
       (= next.|choice:1| next.|choice:3|)
       (= next.|side:1| next.goat)
       (=
-         next.|__no_static:1|
+         next.|swap:1|
          (ite
             (= next.|side:1| 0)
             1
@@ -225,7 +296,7 @@ Sally Model
       (= next.choice next.|choice:3|)
       (= next.side next.cabbage)
       (=
-         next.|__no_static|
+         next.swap
          (ite
             (= next.side 0)
             1

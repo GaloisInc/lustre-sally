@@ -84,7 +84,7 @@ initName qs i = TS.Name ("|" <> idText qs i <> ":init|")
 valAtom :: QNames -> Env -> TS.VarNameSpace -> Atom -> Val
 valAtom qs env ns atom =
   case atom of
-    Lit l     -> valLit l
+    Lit l _   -> valLit l
     Var a     -> ns TS.::: valName qs a
     Prim f as -> primFun f (map evT as)
       where evT a = (valAtom qs env ns a, typeOfCType (typeOf env a))
@@ -210,9 +210,8 @@ stepEqn qns env (x ::: _ `On` c := expr) =
 
     a :-> b     ->
       case clockTowerOf c of
-        Nothing -> hold
-        Just [] -> clockYes
-        Just g  -> TS.ITE (ands g) clockYes hold
+        [] -> clockYes
+        g  -> TS.ITE (ands g) clockYes hold
       where
       hold = old (Var x) TS.:&&: ivar TS.InNextState TS.:==: ivar TS.InCurState
       ivar n = n TS.::: initName qns x
@@ -231,19 +230,13 @@ stepEqn qns env (x ::: _ `On` c := expr) =
 
   clockTowerOf cl =
     case cl of
-      Lit b ->
-        case b of
-          Bool True  -> Just []   -- base
-          Bool False -> Nothing   -- never clock
-          _ -> panic "guardedOn" [ "Non-boolean clock" ]
-      _ -> do cs <- clockTowerOf (clockOfCType (typeOf env cl))
-              pure (atom c : cs)
+      BaseClock -> []
+      WhenTrue a -> atom a : clockTowerOf (clockOfCType (typeOf env a))
 
 
   guarded e = case clockTowerOf c of
-                Nothing -> old (Var x)    -- always false clock?
-                Just [] -> e              -- base clock
-                Just g  -> TS.ITE (ands g) e (old (Var x))
+                [] -> e              -- base clock
+                g  -> TS.ITE (ands g) e (old (Var x))
 
 
 -- | Translation of primitive functions.

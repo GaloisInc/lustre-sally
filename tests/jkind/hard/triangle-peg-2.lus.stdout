@@ -6,268 +6,791 @@ node (a$16 : int, b$16 : int)
   assumes ()
   shows (prop)
 let
-  a$15 = a$16
-  a$14 = a$16
-  b$15 = b$16
-  mid$15 = ITE(And(Eq(a$14, 1), Eq(b$15, 4)), 2, ITE(And(Eq(a$14, 1), Eq(b$15, 6)), 3, ITE(And(Eq(a$14, 2), Eq(b$15, 7)), 4, ITE(And(Eq(a$14, 2), Eq(b$15, 9)), 5, ITE(And(Eq(a$14, 3), Eq(b$15, 8)), 5, ITE(And(Eq(a$14, 3), Eq(b$15, 10)), 6, ITE(And(Eq(a$14, 4), Eq(b$15, 1)), 2, ITE(And(Eq(a$14, 4), Eq(b$15, 6)), 5, ITE(And(Eq(a$14, 4), Eq(b$15, 11)), 7, ITE(And(Eq(a$14, 4), Eq(b$15, 13)), 8, ITE(And(Eq(a$14, 5), Eq(b$15, 12)), 8, ITE(And(Eq(a$14, 5), Eq(b$15, 14)), 9, ITE(And(Eq(a$14, 6), Eq(b$15, 1)), 3, ITE(And(Eq(a$14, 6), Eq(b$15, 4)), 5, ITE(And(Eq(a$14, 6), Eq(b$15, 13)), 9, ITE(And(Eq(a$14, 6), Eq(b$15, 15)), 10, ITE(And(Eq(a$14, 7), Eq(b$15, 2)), 4, ITE(And(Eq(a$14, 7), Eq(b$15, 9)), 8, ITE(And(Eq(a$14, 8), Eq(b$15, 3)), 5, ITE(And(Eq(a$14, 8), Eq(b$15, 10)), 9, ITE(And(Eq(a$14, 9), Eq(b$15, 2)), 5, ITE(And(Eq(a$14, 9), Eq(b$15, 7)), 8, ITE(And(Eq(a$14, 10), Eq(b$15, 3)), 6, ITE(And(Eq(a$14, 10), Eq(b$15, 8)), 9, ITE(And(Eq(a$14, 11), Eq(b$15, 4)), 7, ITE(And(Eq(a$14, 11), Eq(b$15, 13)), 12, ITE(And(Eq(a$14, 12), Eq(b$15, 5)), 8, ITE(And(Eq(a$14, 12), Eq(b$15, 14)), 13, ITE(And(Eq(a$14, 13), Eq(b$15, 4)), 8, ITE(And(Eq(a$14, 13), Eq(b$15, 6)), 9, ITE(And(Eq(a$14, 13), Eq(b$15, 11)), 12, ITE(And(Eq(a$14, 13), Eq(b$15, 15)), 14, ITE(And(Eq(a$14, 14), Eq(b$15, 5)), 9, ITE(And(Eq(a$14, 14), Eq(b$15, 12)), 13, ITE(And(Eq(a$14, 15), Eq(b$15, 6)), 10, ITE(And(Eq(a$14, 15), Eq(b$15, 13)), 14, 0))))))))))))))))))))))))))))))))))))
-  mid$14 = mid$15
-  b$14 = b$16
-  curr$14 = 1
-  prev$14 = pre p1$7
-  __no_static$36 = Or(And(And(prev$14, Neq(a$15, curr$14)), Neq(mid$14, curr$14)), Eq(curr$14, b$14))
-  p1$7 = false -> __no_static$36
-  a$13 = a$16
-  mid$13 = mid$15
-  b$13 = b$16
-  curr$13 = 2
-  prev$13 = pre p2$7
-  __no_static$35 = Or(And(And(prev$13, Neq(a$13, curr$13)), Neq(mid$13, curr$13)), Eq(curr$13, b$13))
-  p2$7 = true -> __no_static$35
-  a$12 = a$16
-  mid$12 = mid$15
-  b$12 = b$16
-  curr$12 = 3
-  prev$12 = pre p3$7
-  __no_static$34 = Or(And(And(prev$12, Neq(a$12, curr$12)), Neq(mid$12, curr$12)), Eq(curr$12, b$12))
-  p3$7 = true -> __no_static$34
-  a$11 = a$16
-  mid$11 = mid$15
-  b$11 = b$16
-  curr$11 = 4
-  prev$11 = pre p4$7
-  __no_static$33 = Or(And(And(prev$11, Neq(a$11, curr$11)), Neq(mid$11, curr$11)), Eq(curr$11, b$11))
-  p4$7 = true -> __no_static$33
-  a$10 = a$16
-  mid$10 = mid$15
-  b$10 = b$16
-  curr$10 = 5
-  prev$10 = pre p5$7
-  __no_static$32 = Or(And(And(prev$10, Neq(a$10, curr$10)), Neq(mid$10, curr$10)), Eq(curr$10, b$10))
-  p5$7 = true -> __no_static$32
-  a$9 = a$16
-  mid$9 = mid$15
-  b$9 = b$16
-  curr$9 = 6
-  prev$9 = pre p6$7
-  __no_static$31 = Or(And(And(prev$9, Neq(a$9, curr$9)), Neq(mid$9, curr$9)), Eq(curr$9, b$9))
-  p6$7 = true -> __no_static$31
-  a$8 = a$16
-  mid$8 = mid$15
-  b$8 = b$16
-  curr$8 = 7
-  prev$8 = pre p7$7
-  __no_static$30 = Or(And(And(prev$8, Neq(a$8, curr$8)), Neq(mid$8, curr$8)), Eq(curr$8, b$8))
-  p7$7 = true -> __no_static$30
-  a$7 = a$16
-  mid$7 = mid$15
-  b$7 = b$16
-  curr$7 = 8
-  prev$7 = pre p8$7
-  __no_static$29 = Or(And(And(prev$7, Neq(a$7, curr$7)), Neq(mid$7, curr$7)), Eq(curr$7, b$7))
-  p8$7 = true -> __no_static$29
-  a$6 = a$16
-  mid$6 = mid$15
-  b$6 = b$16
-  curr$6 = 9
-  prev$6 = pre p9$7
-  __no_static$28 = Or(And(And(prev$6, Neq(a$6, curr$6)), Neq(mid$6, curr$6)), Eq(curr$6, b$6))
-  p9$7 = true -> __no_static$28
-  a$5 = a$16
-  mid$5 = mid$15
-  b$5 = b$16
-  curr$5 = 10
-  prev$5 = pre p10$7
-  __no_static$27 = Or(And(And(prev$5, Neq(a$5, curr$5)), Neq(mid$5, curr$5)), Eq(curr$5, b$5))
-  p10$7 = true -> __no_static$27
-  a$4 = a$16
-  mid$4 = mid$15
-  b$4 = b$16
-  curr$4 = 11
-  prev$4 = pre p11$7
-  __no_static$26 = Or(And(And(prev$4, Neq(a$4, curr$4)), Neq(mid$4, curr$4)), Eq(curr$4, b$4))
-  p11$7 = true -> __no_static$26
-  a$3 = a$16
-  mid$3 = mid$15
-  b$3 = b$16
-  curr$3 = 12
-  prev$3 = pre p12$7
-  __no_static$25 = Or(And(And(prev$3, Neq(a$3, curr$3)), Neq(mid$3, curr$3)), Eq(curr$3, b$3))
-  p12$7 = true -> __no_static$25
-  a$2 = a$16
-  mid$2 = mid$15
-  b$2 = b$16
-  curr$2 = 13
-  prev$2 = pre p13$7
-  __no_static$24 = Or(And(And(prev$2, Neq(a$2, curr$2)), Neq(mid$2, curr$2)), Eq(curr$2, b$2))
-  p13$7 = true -> __no_static$24
-  a$1 = a$16
-  mid$1 = mid$15
-  b$1 = b$16
-  curr$1 = 14
-  prev$1 = pre p14$7
-  __no_static$23 = Or(And(And(prev$1, Neq(a$1, curr$1)), Neq(mid$1, curr$1)), Eq(curr$1, b$1))
-  p14$7 = true -> __no_static$23
-  a = a$16
-  mid = mid$15
-  b = b$16
-  curr = 15
-  prev = pre p15$7
-  __no_static$22 = Or(And(And(prev, Neq(a, curr)), Neq(mid, curr)), Eq(curr, b))
-  p15$7 = true -> __no_static$22
-  loc$5 = a$16
-  p1$6 = pre p1$7
-  p2$6 = pre p2$7
-  p3$6 = pre p3$7
-  p4$6 = pre p4$7
-  p5$6 = pre p5$7
-  p6$6 = pre p6$7
-  p7$6 = pre p7$7
-  p8$6 = pre p8$7
-  p9$6 = pre p9$7
-  p10$6 = pre p10$7
-  p11$6 = pre p11$7
-  p12$6 = pre p12$7
-  p13$6 = pre p13$7
-  p14$6 = pre p14$7
-  p15$6 = pre p15$7
-  __no_static$21 = ITE(Eq(loc$5, 1), p1$6, ITE(Eq(loc$5, 2), p2$6, ITE(Eq(loc$5, 3), p3$6, ITE(Eq(loc$5, 4), p4$6, ITE(Eq(loc$5, 5), p5$6, ITE(Eq(loc$5, 6), p6$6, ITE(Eq(loc$5, 7), p7$6, ITE(Eq(loc$5, 8), p8$6, ITE(Eq(loc$5, 9), p9$6, ITE(Eq(loc$5, 10), p10$6, ITE(Eq(loc$5, 11), p11$6, ITE(Eq(loc$5, 12), p12$6, ITE(Eq(loc$5, 13), p13$6, ITE(Eq(loc$5, 14), p14$6, ITE(Eq(loc$5, 15), p15$6, false)))))))))))))))
-  loc$4 = mid$15
-  p1$5 = pre p1$7
-  p2$5 = pre p2$7
-  p3$5 = pre p3$7
-  p4$5 = pre p4$7
-  p5$5 = pre p5$7
-  p6$5 = pre p6$7
-  p7$5 = pre p7$7
-  p8$5 = pre p8$7
-  p9$5 = pre p9$7
-  p10$5 = pre p10$7
-  p11$5 = pre p11$7
-  p12$5 = pre p12$7
-  p13$5 = pre p13$7
-  p14$5 = pre p14$7
-  p15$5 = pre p15$7
-  __no_static$20 = ITE(Eq(loc$4, 1), p1$5, ITE(Eq(loc$4, 2), p2$5, ITE(Eq(loc$4, 3), p3$5, ITE(Eq(loc$4, 4), p4$5, ITE(Eq(loc$4, 5), p5$5, ITE(Eq(loc$4, 6), p6$5, ITE(Eq(loc$4, 7), p7$5, ITE(Eq(loc$4, 8), p8$5, ITE(Eq(loc$4, 9), p9$5, ITE(Eq(loc$4, 10), p10$5, ITE(Eq(loc$4, 11), p11$5, ITE(Eq(loc$4, 12), p12$5, ITE(Eq(loc$4, 13), p13$5, ITE(Eq(loc$4, 14), p14$5, ITE(Eq(loc$4, 15), p15$5, false)))))))))))))))
-  loc$3 = b$16
-  p1$4 = pre p1$7
-  p2$4 = pre p2$7
-  p3$4 = pre p3$7
-  p4$4 = pre p4$7
-  p5$4 = pre p5$7
-  p6$4 = pre p6$7
-  p7$4 = pre p7$7
-  p8$4 = pre p8$7
-  p9$4 = pre p9$7
-  p10$4 = pre p10$7
-  p11$4 = pre p11$7
-  p12$4 = pre p12$7
-  p13$4 = pre p13$7
-  p14$4 = pre p14$7
-  p15$4 = pre p15$7
-  __no_static$19 = ITE(Eq(loc$3, 1), p1$4, ITE(Eq(loc$3, 2), p2$4, ITE(Eq(loc$3, 3), p3$4, ITE(Eq(loc$3, 4), p4$4, ITE(Eq(loc$3, 5), p5$4, ITE(Eq(loc$3, 6), p6$4, ITE(Eq(loc$3, 7), p7$4, ITE(Eq(loc$3, 8), p8$4, ITE(Eq(loc$3, 9), p9$4, ITE(Eq(loc$3, 10), p10$4, ITE(Eq(loc$3, 11), p11$4, ITE(Eq(loc$3, 12), p12$4, ITE(Eq(loc$3, 13), p13$4, ITE(Eq(loc$3, 14), p14$4, ITE(Eq(loc$3, 15), p15$4, false)))))))))))))))
-  loc$2 = a$16
-  p1$3 = p1$7
-  p2$3 = p2$7
-  p3$3 = p3$7
-  p4$3 = p4$7
-  p5$3 = p5$7
-  p6$3 = p6$7
-  p7$3 = p7$7
-  p8$3 = p8$7
-  p9$3 = p9$7
-  p10$3 = p10$7
-  p11$3 = p11$7
-  p12$3 = p12$7
-  p13$3 = p13$7
-  p14$3 = p14$7
-  p15$3 = p15$7
-  __no_static$18 = ITE(Eq(loc$2, 1), p1$3, ITE(Eq(loc$2, 2), p2$3, ITE(Eq(loc$2, 3), p3$3, ITE(Eq(loc$2, 4), p4$3, ITE(Eq(loc$2, 5), p5$3, ITE(Eq(loc$2, 6), p6$3, ITE(Eq(loc$2, 7), p7$3, ITE(Eq(loc$2, 8), p8$3, ITE(Eq(loc$2, 9), p9$3, ITE(Eq(loc$2, 10), p10$3, ITE(Eq(loc$2, 11), p11$3, ITE(Eq(loc$2, 12), p12$3, ITE(Eq(loc$2, 13), p13$3, ITE(Eq(loc$2, 14), p14$3, ITE(Eq(loc$2, 15), p15$3, false)))))))))))))))
-  loc$1 = mid$15
-  p1$2 = p1$7
-  p2$2 = p2$7
-  p3$2 = p3$7
-  p4$2 = p4$7
-  p5$2 = p5$7
-  p6$2 = p6$7
-  p7$2 = p7$7
-  p8$2 = p8$7
-  p9$2 = p9$7
-  p10$2 = p10$7
-  p11$2 = p11$7
-  p12$2 = p12$7
-  p13$2 = p13$7
-  p14$2 = p14$7
-  p15$2 = p15$7
-  __no_static$17 = ITE(Eq(loc$1, 1), p1$2, ITE(Eq(loc$1, 2), p2$2, ITE(Eq(loc$1, 3), p3$2, ITE(Eq(loc$1, 4), p4$2, ITE(Eq(loc$1, 5), p5$2, ITE(Eq(loc$1, 6), p6$2, ITE(Eq(loc$1, 7), p7$2, ITE(Eq(loc$1, 8), p8$2, ITE(Eq(loc$1, 9), p9$2, ITE(Eq(loc$1, 10), p10$2, ITE(Eq(loc$1, 11), p11$2, ITE(Eq(loc$1, 12), p12$2, ITE(Eq(loc$1, 13), p13$2, ITE(Eq(loc$1, 14), p14$2, ITE(Eq(loc$1, 15), p15$2, false)))))))))))))))
-  loc = b$16
-  p1$1 = p1$7
-  p2$1 = p2$7
-  p3$1 = p3$7
-  p4$1 = p4$7
-  p5$1 = p5$7
-  p6$1 = p6$7
-  p7$1 = p7$7
-  p8$1 = p8$7
-  p9$1 = p9$7
-  p10$1 = p10$7
-  p11$1 = p11$7
-  p12$1 = p12$7
-  p13$1 = p13$7
-  p14$1 = p14$7
-  p15$1 = p15$7
-  __no_static$16 = ITE(Eq(loc, 1), p1$1, ITE(Eq(loc, 2), p2$1, ITE(Eq(loc, 3), p3$1, ITE(Eq(loc, 4), p4$1, ITE(Eq(loc, 5), p5$1, ITE(Eq(loc, 6), p6$1, ITE(Eq(loc, 7), p7$1, ITE(Eq(loc, 8), p8$1, ITE(Eq(loc, 9), p9$1, ITE(Eq(loc, 10), p10$1, ITE(Eq(loc, 11), p11$1, ITE(Eq(loc, 12), p12$1, ITE(Eq(loc, 13), p13$1, ITE(Eq(loc, 14), p14$1, ITE(Eq(loc, 15), p15$1, false)))))))))))))))
-  valid_move = true -> And(And(And(And(And(__no_static$21, __no_static$20), Not(__no_static$19)), Not(__no_static$18)), Not(__no_static$17)), __no_static$16)
-  p15 = p15$7
-  x$15 = p15
-  __no_static$15 = ITE(x$15, 1, 0)
-  p14 = p14$7
-  x$14 = p14
-  __no_static$14 = ITE(x$14, 1, 0)
-  p13 = p13$7
-  x$13 = p13
-  __no_static$13 = ITE(x$13, 1, 0)
-  p12 = p12$7
-  x$12 = p12
-  __no_static$12 = ITE(x$12, 1, 0)
-  p11 = p11$7
-  x$11 = p11
-  __no_static$11 = ITE(x$11, 1, 0)
-  p10 = p10$7
-  x$10 = p10
-  __no_static$10 = ITE(x$10, 1, 0)
-  p9 = p9$7
-  x$9 = p9
-  __no_static$9 = ITE(x$9, 1, 0)
-  p8 = p8$7
-  x$8 = p8
-  __no_static$8 = ITE(x$8, 1, 0)
-  p7 = p7$7
-  x$7 = p7
-  __no_static$7 = ITE(x$7, 1, 0)
-  p6 = p6$7
-  x$6 = p6
-  __no_static$6 = ITE(x$6, 1, 0)
-  p5 = p5$7
-  x$5 = p5
-  __no_static$5 = ITE(x$5, 1, 0)
-  p4 = p4$7
-  x$4 = p4
-  __no_static$4 = ITE(x$4, 1, 0)
-  p3 = p3$7
-  x$3 = p3
-  __no_static$3 = ITE(x$3, 1, 0)
-  p2 = p2$7
-  x$2 = p2
-  __no_static$2 = ITE(x$2, 1, 0)
-  p1 = p1$7
-  x$1 = p1
-  __no_static$1 = ITE(x$1, 1, 0)
-  solved = Eq(Add(Add(Add(Add(Add(Add(Add(Add(Add(Add(Add(Add(Add(Add(__no_static$1, __no_static$2), __no_static$3), __no_static$4), __no_static$5), __no_static$6), __no_static$7), __no_static$8), __no_static$9), __no_static$10), __no_static$11), __no_static$12), __no_static$13), __no_static$14), __no_static$15), 1)
-  x = valid_move
-  valof_pre___no_static = pre __no_static
-  valof_arr = true -> valof_pre___no_static
-  __no_static = And(x, valof_arr)
-  prop = Not(And(__no_static, solved))
+  a$15 : int
+    = a$16
+   
+  a$14 : int
+    = a$16
+   
+  b$15 : int
+    = b$16
+   
+  mid$15 : int
+    = ITE(And(Eq(a$14, 1), Eq(b$15, 4)), 2, ITE(And(Eq(a$14, 1), Eq(b$15, 6)), 3, ITE(And(Eq(a$14, 2), Eq(b$15, 7)), 4, ITE(And(Eq(a$14, 2), Eq(b$15, 9)), 5, ITE(And(Eq(a$14, 3), Eq(b$15, 8)), 5, ITE(And(Eq(a$14, 3), Eq(b$15, 10)), 6, ITE(And(Eq(a$14, 4), Eq(b$15, 1)), 2, ITE(And(Eq(a$14, 4), Eq(b$15, 6)), 5, ITE(And(Eq(a$14, 4), Eq(b$15, 11)), 7, ITE(And(Eq(a$14, 4), Eq(b$15, 13)), 8, ITE(And(Eq(a$14, 5), Eq(b$15, 12)), 8, ITE(And(Eq(a$14, 5), Eq(b$15, 14)), 9, ITE(And(Eq(a$14, 6), Eq(b$15, 1)), 3, ITE(And(Eq(a$14, 6), Eq(b$15, 4)), 5, ITE(And(Eq(a$14, 6), Eq(b$15, 13)), 9, ITE(And(Eq(a$14, 6), Eq(b$15, 15)), 10, ITE(And(Eq(a$14, 7), Eq(b$15, 2)), 4, ITE(And(Eq(a$14, 7), Eq(b$15, 9)), 8, ITE(And(Eq(a$14, 8), Eq(b$15, 3)), 5, ITE(And(Eq(a$14, 8), Eq(b$15, 10)), 9, ITE(And(Eq(a$14, 9), Eq(b$15, 2)), 5, ITE(And(Eq(a$14, 9), Eq(b$15, 7)), 8, ITE(And(Eq(a$14, 10), Eq(b$15, 3)), 6, ITE(And(Eq(a$14, 10), Eq(b$15, 8)), 9, ITE(And(Eq(a$14, 11), Eq(b$15, 4)), 7, ITE(And(Eq(a$14, 11), Eq(b$15, 13)), 12, ITE(And(Eq(a$14, 12), Eq(b$15, 5)), 8, ITE(And(Eq(a$14, 12), Eq(b$15, 14)), 13, ITE(And(Eq(a$14, 13), Eq(b$15, 4)), 8, ITE(And(Eq(a$14, 13), Eq(b$15, 6)), 9, ITE(And(Eq(a$14, 13), Eq(b$15, 11)), 12, ITE(And(Eq(a$14, 13), Eq(b$15, 15)), 14, ITE(And(Eq(a$14, 14), Eq(b$15, 5)), 9, ITE(And(Eq(a$14, 14), Eq(b$15, 12)), 13, ITE(And(Eq(a$14, 15), Eq(b$15, 6)), 10, ITE(And(Eq(a$14, 15), Eq(b$15, 13)), 14, 0))))))))))))))))))))))))))))))))))))
+   
+  mid$14 : int
+    = mid$15
+   
+  b$14 : int
+    = b$16
+   
+  curr$14 : int
+    = 1
+   
+  prev$14 : bool
+    = pre p1$7
+   
+  rule$14 : bool
+    = Or(And(And(prev$14, Neq(a$15, curr$14)), Neq(mid$14, curr$14)), Eq(curr$14, b$14))
+   
+  p1$7 : bool
+    = false -> rule$14
+   
+  a$13 : int
+    = a$16
+   
+  mid$13 : int
+    = mid$15
+   
+  b$13 : int
+    = b$16
+   
+  curr$13 : int
+    = 2
+   
+  prev$13 : bool
+    = pre p2$7
+   
+  rule$13 : bool
+    = Or(And(And(prev$13, Neq(a$13, curr$13)), Neq(mid$13, curr$13)), Eq(curr$13, b$13))
+   
+  p2$7 : bool
+    = true -> rule$13
+   
+  a$12 : int
+    = a$16
+   
+  mid$12 : int
+    = mid$15
+   
+  b$12 : int
+    = b$16
+   
+  curr$12 : int
+    = 3
+   
+  prev$12 : bool
+    = pre p3$7
+   
+  rule$12 : bool
+    = Or(And(And(prev$12, Neq(a$12, curr$12)), Neq(mid$12, curr$12)), Eq(curr$12, b$12))
+   
+  p3$7 : bool
+    = true -> rule$12
+   
+  a$11 : int
+    = a$16
+   
+  mid$11 : int
+    = mid$15
+   
+  b$11 : int
+    = b$16
+   
+  curr$11 : int
+    = 4
+   
+  prev$11 : bool
+    = pre p4$7
+   
+  rule$11 : bool
+    = Or(And(And(prev$11, Neq(a$11, curr$11)), Neq(mid$11, curr$11)), Eq(curr$11, b$11))
+   
+  p4$7 : bool
+    = true -> rule$11
+   
+  a$10 : int
+    = a$16
+   
+  mid$10 : int
+    = mid$15
+   
+  b$10 : int
+    = b$16
+   
+  curr$10 : int
+    = 5
+   
+  prev$10 : bool
+    = pre p5$7
+   
+  rule$10 : bool
+    = Or(And(And(prev$10, Neq(a$10, curr$10)), Neq(mid$10, curr$10)), Eq(curr$10, b$10))
+   
+  p5$7 : bool
+    = true -> rule$10
+   
+  a$9 : int
+    = a$16
+   
+  mid$9 : int
+    = mid$15
+   
+  b$9 : int
+    = b$16
+   
+  curr$9 : int
+    = 6
+   
+  prev$9 : bool
+    = pre p6$7
+   
+  rule$9 : bool
+    = Or(And(And(prev$9, Neq(a$9, curr$9)), Neq(mid$9, curr$9)), Eq(curr$9, b$9))
+   
+  p6$7 : bool
+    = true -> rule$9
+   
+  a$8 : int
+    = a$16
+   
+  mid$8 : int
+    = mid$15
+   
+  b$8 : int
+    = b$16
+   
+  curr$8 : int
+    = 7
+   
+  prev$8 : bool
+    = pre p7$7
+   
+  rule$8 : bool
+    = Or(And(And(prev$8, Neq(a$8, curr$8)), Neq(mid$8, curr$8)), Eq(curr$8, b$8))
+   
+  p7$7 : bool
+    = true -> rule$8
+   
+  a$7 : int
+    = a$16
+   
+  mid$7 : int
+    = mid$15
+   
+  b$7 : int
+    = b$16
+   
+  curr$7 : int
+    = 8
+   
+  prev$7 : bool
+    = pre p8$7
+   
+  rule$7 : bool
+    = Or(And(And(prev$7, Neq(a$7, curr$7)), Neq(mid$7, curr$7)), Eq(curr$7, b$7))
+   
+  p8$7 : bool
+    = true -> rule$7
+   
+  a$6 : int
+    = a$16
+   
+  mid$6 : int
+    = mid$15
+   
+  b$6 : int
+    = b$16
+   
+  curr$6 : int
+    = 9
+   
+  prev$6 : bool
+    = pre p9$7
+   
+  rule$6 : bool
+    = Or(And(And(prev$6, Neq(a$6, curr$6)), Neq(mid$6, curr$6)), Eq(curr$6, b$6))
+   
+  p9$7 : bool
+    = true -> rule$6
+   
+  a$5 : int
+    = a$16
+   
+  mid$5 : int
+    = mid$15
+   
+  b$5 : int
+    = b$16
+   
+  curr$5 : int
+    = 10
+   
+  prev$5 : bool
+    = pre p10$7
+   
+  rule$5 : bool
+    = Or(And(And(prev$5, Neq(a$5, curr$5)), Neq(mid$5, curr$5)), Eq(curr$5, b$5))
+   
+  p10$7 : bool
+    = true -> rule$5
+   
+  a$4 : int
+    = a$16
+   
+  mid$4 : int
+    = mid$15
+   
+  b$4 : int
+    = b$16
+   
+  curr$4 : int
+    = 11
+   
+  prev$4 : bool
+    = pre p11$7
+   
+  rule$4 : bool
+    = Or(And(And(prev$4, Neq(a$4, curr$4)), Neq(mid$4, curr$4)), Eq(curr$4, b$4))
+   
+  p11$7 : bool
+    = true -> rule$4
+   
+  a$3 : int
+    = a$16
+   
+  mid$3 : int
+    = mid$15
+   
+  b$3 : int
+    = b$16
+   
+  curr$3 : int
+    = 12
+   
+  prev$3 : bool
+    = pre p12$7
+   
+  rule$3 : bool
+    = Or(And(And(prev$3, Neq(a$3, curr$3)), Neq(mid$3, curr$3)), Eq(curr$3, b$3))
+   
+  p12$7 : bool
+    = true -> rule$3
+   
+  a$2 : int
+    = a$16
+   
+  mid$2 : int
+    = mid$15
+   
+  b$2 : int
+    = b$16
+   
+  curr$2 : int
+    = 13
+   
+  prev$2 : bool
+    = pre p13$7
+   
+  rule$2 : bool
+    = Or(And(And(prev$2, Neq(a$2, curr$2)), Neq(mid$2, curr$2)), Eq(curr$2, b$2))
+   
+  p13$7 : bool
+    = true -> rule$2
+   
+  a$1 : int
+    = a$16
+   
+  mid$1 : int
+    = mid$15
+   
+  b$1 : int
+    = b$16
+   
+  curr$1 : int
+    = 14
+   
+  prev$1 : bool
+    = pre p14$7
+   
+  rule$1 : bool
+    = Or(And(And(prev$1, Neq(a$1, curr$1)), Neq(mid$1, curr$1)), Eq(curr$1, b$1))
+   
+  p14$7 : bool
+    = true -> rule$1
+   
+  a : int
+    = a$16
+   
+  mid : int
+    = mid$15
+   
+  b : int
+    = b$16
+   
+  curr : int
+    = 15
+   
+  prev : bool
+    = pre p15$7
+   
+  rule : bool
+    = Or(And(And(prev, Neq(a, curr)), Neq(mid, curr)), Eq(curr, b))
+   
+  p15$7 : bool
+    = true -> rule
+   
+  loc$5 : int
+    = a$16
+   
+  p1$6 : bool
+    = pre p1$7
+   
+  p2$6 : bool
+    = pre p2$7
+   
+  p3$6 : bool
+    = pre p3$7
+   
+  p4$6 : bool
+    = pre p4$7
+   
+  p5$6 : bool
+    = pre p5$7
+   
+  p6$6 : bool
+    = pre p6$7
+   
+  p7$6 : bool
+    = pre p7$7
+   
+  p8$6 : bool
+    = pre p8$7
+   
+  p9$6 : bool
+    = pre p9$7
+   
+  p10$6 : bool
+    = pre p10$7
+   
+  p11$6 : bool
+    = pre p11$7
+   
+  p12$6 : bool
+    = pre p12$7
+   
+  p13$6 : bool
+    = pre p13$7
+   
+  p14$6 : bool
+    = pre p14$7
+   
+  p15$6 : bool
+    = pre p15$7
+   
+  peg$5 : bool
+    = ITE(Eq(loc$5, 1), p1$6, ITE(Eq(loc$5, 2), p2$6, ITE(Eq(loc$5, 3), p3$6, ITE(Eq(loc$5, 4), p4$6, ITE(Eq(loc$5, 5), p5$6, ITE(Eq(loc$5, 6), p6$6, ITE(Eq(loc$5, 7), p7$6, ITE(Eq(loc$5, 8), p8$6, ITE(Eq(loc$5, 9), p9$6, ITE(Eq(loc$5, 10), p10$6, ITE(Eq(loc$5, 11), p11$6, ITE(Eq(loc$5, 12), p12$6, ITE(Eq(loc$5, 13), p13$6, ITE(Eq(loc$5, 14), p14$6, ITE(Eq(loc$5, 15), p15$6, false)))))))))))))))
+   
+  loc$4 : int
+    = mid$15
+   
+  p1$5 : bool
+    = pre p1$7
+   
+  p2$5 : bool
+    = pre p2$7
+   
+  p3$5 : bool
+    = pre p3$7
+   
+  p4$5 : bool
+    = pre p4$7
+   
+  p5$5 : bool
+    = pre p5$7
+   
+  p6$5 : bool
+    = pre p6$7
+   
+  p7$5 : bool
+    = pre p7$7
+   
+  p8$5 : bool
+    = pre p8$7
+   
+  p9$5 : bool
+    = pre p9$7
+   
+  p10$5 : bool
+    = pre p10$7
+   
+  p11$5 : bool
+    = pre p11$7
+   
+  p12$5 : bool
+    = pre p12$7
+   
+  p13$5 : bool
+    = pre p13$7
+   
+  p14$5 : bool
+    = pre p14$7
+   
+  p15$5 : bool
+    = pre p15$7
+   
+  peg$4 : bool
+    = ITE(Eq(loc$4, 1), p1$5, ITE(Eq(loc$4, 2), p2$5, ITE(Eq(loc$4, 3), p3$5, ITE(Eq(loc$4, 4), p4$5, ITE(Eq(loc$4, 5), p5$5, ITE(Eq(loc$4, 6), p6$5, ITE(Eq(loc$4, 7), p7$5, ITE(Eq(loc$4, 8), p8$5, ITE(Eq(loc$4, 9), p9$5, ITE(Eq(loc$4, 10), p10$5, ITE(Eq(loc$4, 11), p11$5, ITE(Eq(loc$4, 12), p12$5, ITE(Eq(loc$4, 13), p13$5, ITE(Eq(loc$4, 14), p14$5, ITE(Eq(loc$4, 15), p15$5, false)))))))))))))))
+   
+  loc$3 : int
+    = b$16
+   
+  p1$4 : bool
+    = pre p1$7
+   
+  p2$4 : bool
+    = pre p2$7
+   
+  p3$4 : bool
+    = pre p3$7
+   
+  p4$4 : bool
+    = pre p4$7
+   
+  p5$4 : bool
+    = pre p5$7
+   
+  p6$4 : bool
+    = pre p6$7
+   
+  p7$4 : bool
+    = pre p7$7
+   
+  p8$4 : bool
+    = pre p8$7
+   
+  p9$4 : bool
+    = pre p9$7
+   
+  p10$4 : bool
+    = pre p10$7
+   
+  p11$4 : bool
+    = pre p11$7
+   
+  p12$4 : bool
+    = pre p12$7
+   
+  p13$4 : bool
+    = pre p13$7
+   
+  p14$4 : bool
+    = pre p14$7
+   
+  p15$4 : bool
+    = pre p15$7
+   
+  peg$3 : bool
+    = ITE(Eq(loc$3, 1), p1$4, ITE(Eq(loc$3, 2), p2$4, ITE(Eq(loc$3, 3), p3$4, ITE(Eq(loc$3, 4), p4$4, ITE(Eq(loc$3, 5), p5$4, ITE(Eq(loc$3, 6), p6$4, ITE(Eq(loc$3, 7), p7$4, ITE(Eq(loc$3, 8), p8$4, ITE(Eq(loc$3, 9), p9$4, ITE(Eq(loc$3, 10), p10$4, ITE(Eq(loc$3, 11), p11$4, ITE(Eq(loc$3, 12), p12$4, ITE(Eq(loc$3, 13), p13$4, ITE(Eq(loc$3, 14), p14$4, ITE(Eq(loc$3, 15), p15$4, false)))))))))))))))
+   
+  loc$2 : int
+    = a$16
+   
+  p1$3 : bool
+    = p1$7
+   
+  p2$3 : bool
+    = p2$7
+   
+  p3$3 : bool
+    = p3$7
+   
+  p4$3 : bool
+    = p4$7
+   
+  p5$3 : bool
+    = p5$7
+   
+  p6$3 : bool
+    = p6$7
+   
+  p7$3 : bool
+    = p7$7
+   
+  p8$3 : bool
+    = p8$7
+   
+  p9$3 : bool
+    = p9$7
+   
+  p10$3 : bool
+    = p10$7
+   
+  p11$3 : bool
+    = p11$7
+   
+  p12$3 : bool
+    = p12$7
+   
+  p13$3 : bool
+    = p13$7
+   
+  p14$3 : bool
+    = p14$7
+   
+  p15$3 : bool
+    = p15$7
+   
+  peg$2 : bool
+    = ITE(Eq(loc$2, 1), p1$3, ITE(Eq(loc$2, 2), p2$3, ITE(Eq(loc$2, 3), p3$3, ITE(Eq(loc$2, 4), p4$3, ITE(Eq(loc$2, 5), p5$3, ITE(Eq(loc$2, 6), p6$3, ITE(Eq(loc$2, 7), p7$3, ITE(Eq(loc$2, 8), p8$3, ITE(Eq(loc$2, 9), p9$3, ITE(Eq(loc$2, 10), p10$3, ITE(Eq(loc$2, 11), p11$3, ITE(Eq(loc$2, 12), p12$3, ITE(Eq(loc$2, 13), p13$3, ITE(Eq(loc$2, 14), p14$3, ITE(Eq(loc$2, 15), p15$3, false)))))))))))))))
+   
+  loc$1 : int
+    = mid$15
+   
+  p1$2 : bool
+    = p1$7
+   
+  p2$2 : bool
+    = p2$7
+   
+  p3$2 : bool
+    = p3$7
+   
+  p4$2 : bool
+    = p4$7
+   
+  p5$2 : bool
+    = p5$7
+   
+  p6$2 : bool
+    = p6$7
+   
+  p7$2 : bool
+    = p7$7
+   
+  p8$2 : bool
+    = p8$7
+   
+  p9$2 : bool
+    = p9$7
+   
+  p10$2 : bool
+    = p10$7
+   
+  p11$2 : bool
+    = p11$7
+   
+  p12$2 : bool
+    = p12$7
+   
+  p13$2 : bool
+    = p13$7
+   
+  p14$2 : bool
+    = p14$7
+   
+  p15$2 : bool
+    = p15$7
+   
+  peg$1 : bool
+    = ITE(Eq(loc$1, 1), p1$2, ITE(Eq(loc$1, 2), p2$2, ITE(Eq(loc$1, 3), p3$2, ITE(Eq(loc$1, 4), p4$2, ITE(Eq(loc$1, 5), p5$2, ITE(Eq(loc$1, 6), p6$2, ITE(Eq(loc$1, 7), p7$2, ITE(Eq(loc$1, 8), p8$2, ITE(Eq(loc$1, 9), p9$2, ITE(Eq(loc$1, 10), p10$2, ITE(Eq(loc$1, 11), p11$2, ITE(Eq(loc$1, 12), p12$2, ITE(Eq(loc$1, 13), p13$2, ITE(Eq(loc$1, 14), p14$2, ITE(Eq(loc$1, 15), p15$2, false)))))))))))))))
+   
+  loc : int
+    = b$16
+   
+  p1$1 : bool
+    = p1$7
+   
+  p2$1 : bool
+    = p2$7
+   
+  p3$1 : bool
+    = p3$7
+   
+  p4$1 : bool
+    = p4$7
+   
+  p5$1 : bool
+    = p5$7
+   
+  p6$1 : bool
+    = p6$7
+   
+  p7$1 : bool
+    = p7$7
+   
+  p8$1 : bool
+    = p8$7
+   
+  p9$1 : bool
+    = p9$7
+   
+  p10$1 : bool
+    = p10$7
+   
+  p11$1 : bool
+    = p11$7
+   
+  p12$1 : bool
+    = p12$7
+   
+  p13$1 : bool
+    = p13$7
+   
+  p14$1 : bool
+    = p14$7
+   
+  p15$1 : bool
+    = p15$7
+   
+  peg : bool
+    = ITE(Eq(loc, 1), p1$1, ITE(Eq(loc, 2), p2$1, ITE(Eq(loc, 3), p3$1, ITE(Eq(loc, 4), p4$1, ITE(Eq(loc, 5), p5$1, ITE(Eq(loc, 6), p6$1, ITE(Eq(loc, 7), p7$1, ITE(Eq(loc, 8), p8$1, ITE(Eq(loc, 9), p9$1, ITE(Eq(loc, 10), p10$1, ITE(Eq(loc, 11), p11$1, ITE(Eq(loc, 12), p12$1, ITE(Eq(loc, 13), p13$1, ITE(Eq(loc, 14), p14$1, ITE(Eq(loc, 15), p15$1, false)))))))))))))))
+   
+  valid_move : bool
+    = true -> And(And(And(And(And(peg$5, peg$4), Not(peg$3)), Not(peg$2)), Not(peg$1)), peg)
+   
+  p15 : bool
+    = p15$7
+   
+  x$15 : bool
+    = p15
+   
+  b2i$14 : int
+    = ITE(x$15, 1, 0)
+   
+  p14 : bool
+    = p14$7
+   
+  x$14 : bool
+    = p14
+   
+  b2i$13 : int
+    = ITE(x$14, 1, 0)
+   
+  p13 : bool
+    = p13$7
+   
+  x$13 : bool
+    = p13
+   
+  b2i$12 : int
+    = ITE(x$13, 1, 0)
+   
+  p12 : bool
+    = p12$7
+   
+  x$12 : bool
+    = p12
+   
+  b2i$11 : int
+    = ITE(x$12, 1, 0)
+   
+  p11 : bool
+    = p11$7
+   
+  x$11 : bool
+    = p11
+   
+  b2i$10 : int
+    = ITE(x$11, 1, 0)
+   
+  p10 : bool
+    = p10$7
+   
+  x$10 : bool
+    = p10
+   
+  b2i$9 : int
+    = ITE(x$10, 1, 0)
+   
+  p9 : bool
+    = p9$7
+   
+  x$9 : bool
+    = p9
+   
+  b2i$8 : int
+    = ITE(x$9, 1, 0)
+   
+  p8 : bool
+    = p8$7
+   
+  x$8 : bool
+    = p8
+   
+  b2i$7 : int
+    = ITE(x$8, 1, 0)
+   
+  p7 : bool
+    = p7$7
+   
+  x$7 : bool
+    = p7
+   
+  b2i$6 : int
+    = ITE(x$7, 1, 0)
+   
+  p6 : bool
+    = p6$7
+   
+  x$6 : bool
+    = p6
+   
+  b2i$5 : int
+    = ITE(x$6, 1, 0)
+   
+  p5 : bool
+    = p5$7
+   
+  x$5 : bool
+    = p5
+   
+  b2i$4 : int
+    = ITE(x$5, 1, 0)
+   
+  p4 : bool
+    = p4$7
+   
+  x$4 : bool
+    = p4
+   
+  b2i$3 : int
+    = ITE(x$4, 1, 0)
+   
+  p3 : bool
+    = p3$7
+   
+  x$3 : bool
+    = p3
+   
+  b2i$2 : int
+    = ITE(x$3, 1, 0)
+   
+  p2 : bool
+    = p2$7
+   
+  x$2 : bool
+    = p2
+   
+  b2i$1 : int
+    = ITE(x$2, 1, 0)
+   
+  p1 : bool
+    = p1$7
+   
+  x$1 : bool
+    = p1
+   
+  b2i : int
+    = ITE(x$1, 1, 0)
+   
+  solved : bool
+    = Eq(Add(Add(Add(Add(Add(Add(Add(Add(Add(Add(Add(Add(Add(Add(b2i, b2i$1), b2i$2), b2i$3), b2i$4), b2i$5), b2i$6), b2i$7), b2i$8), b2i$9), b2i$10), b2i$11), b2i$12), b2i$13), b2i$14), 1)
+   
+  x : bool
+    = valid_move
+   
+  pre_historically : bool
+    = pre historically
+   
+  init_pre_historically : bool
+    = true -> pre_historically
+   
+  historically : bool
+    = And(x, init_pre_historically)
+   
+  prop : bool
+    = Not(And(historically, solved))
 tel
 Sally Model
 ===========
@@ -277,7 +800,9 @@ Sally Model
    (
      (a Int)
      (b Int)
+     (b2i Int)
      (curr Int)
+     (historically Bool)
      (loc Int)
      (mid Int)
      (p1 Bool)
@@ -295,47 +820,12 @@ Sally Model
      (p7 Bool)
      (p8 Bool)
      (p9 Bool)
+     (peg Bool)
      (prev Bool)
      (prop Bool)
+     (rule Bool)
      (solved Bool)
      (x Bool)
-     (|__no_static:10| Int)
-     (|__no_static:11| Int)
-     (|__no_static:12| Int)
-     (|__no_static:13| Int)
-     (|__no_static:14| Int)
-     (|__no_static:15| Int)
-     (|__no_static:16| Bool)
-     (|__no_static:17| Bool)
-     (|__no_static:18| Bool)
-     (|__no_static:19| Bool)
-     (|__no_static:1| Int)
-     (|__no_static:20| Bool)
-     (|__no_static:21| Bool)
-     (|__no_static:22| Bool)
-     (|__no_static:23| Bool)
-     (|__no_static:24| Bool)
-     (|__no_static:25| Bool)
-     (|__no_static:26| Bool)
-     (|__no_static:27| Bool)
-     (|__no_static:28| Bool)
-     (|__no_static:29| Bool)
-     (|__no_static:2| Int)
-     (|__no_static:30| Bool)
-     (|__no_static:31| Bool)
-     (|__no_static:32| Bool)
-     (|__no_static:33| Bool)
-     (|__no_static:34| Bool)
-     (|__no_static:35| Bool)
-     (|__no_static:36| Bool)
-     (|__no_static:3| Int)
-     (|__no_static:4| Int)
-     (|__no_static:5| Int)
-     (|__no_static:6| Int)
-     (|__no_static:7| Int)
-     (|__no_static:8| Int)
-     (|__no_static:9| Int)
-     (|__no_static| Bool)
      (|a:10| Int)
      (|a:11| Int)
      (|a:12| Int)
@@ -352,6 +842,20 @@ Sally Model
      (|a:7| Int)
      (|a:8| Int)
      (|a:9| Int)
+     (|b2i:10| Int)
+     (|b2i:11| Int)
+     (|b2i:12| Int)
+     (|b2i:13| Int)
+     (|b2i:14| Int)
+     (|b2i:1| Int)
+     (|b2i:2| Int)
+     (|b2i:3| Int)
+     (|b2i:4| Int)
+     (|b2i:5| Int)
+     (|b2i:6| Int)
+     (|b2i:7| Int)
+     (|b2i:8| Int)
+     (|b2i:9| Int)
      (|b:10| Int)
      (|b:11| Int)
      (|b:12| Int)
@@ -383,6 +887,8 @@ Sally Model
      (|curr:8| Int)
      (|curr:9| Int)
      (|gal-initializing| Bool)
+     (|init_pre_historically:init| Bool)
+     (|init_pre_historically| Bool)
      (|loc:1| Int)
      (|loc:2| Int)
      (|loc:3| Int)
@@ -523,6 +1029,12 @@ Sally Model
      (|p9:6| Bool)
      (|p9:7:init| Bool)
      (|p9:7| Bool)
+     (|peg:1| Bool)
+     (|peg:2| Bool)
+     (|peg:3| Bool)
+     (|peg:4| Bool)
+     (|peg:5| Bool)
+     (|pre_historically| Bool)
      (|prev:10| Bool)
      (|prev:11| Bool)
      (|prev:12| Bool)
@@ -537,11 +1049,22 @@ Sally Model
      (|prev:7| Bool)
      (|prev:8| Bool)
      (|prev:9| Bool)
+     (|rule:10| Bool)
+     (|rule:11| Bool)
+     (|rule:12| Bool)
+     (|rule:13| Bool)
+     (|rule:14| Bool)
+     (|rule:1| Bool)
+     (|rule:2| Bool)
+     (|rule:3| Bool)
+     (|rule:4| Bool)
+     (|rule:5| Bool)
+     (|rule:6| Bool)
+     (|rule:7| Bool)
+     (|rule:8| Bool)
+     (|rule:9| Bool)
      (|valid_move:init| Bool)
      (|valid_move| Bool)
-     (|valof_arr:init| Bool)
-     (|valof_arr| Bool)
-     (|valof_pre___no_static| Bool)
      (|x:10| Bool)
      (|x:11| Bool)
      (|x:12| Bool)
@@ -581,7 +1104,7 @@ Sally Model
       (= |p14:7:init| true)
       (= |p15:7:init| true)
       (= |valid_move:init| true)
-      (= |valof_arr:init| true))
+      (= |init_pre_historically:init| true))
    (and
       (= next.|gal-initializing| false)
       (= next.|a:16| input.|a:16|)
@@ -777,7 +1300,7 @@ Sally Model
       (= next.|curr:14| 1)
       (= next.|prev:14| state.|p1:7|)
       (=
-         next.|__no_static:36|
+         next.|rule:14|
          (or
             (and
                next.|prev:14|
@@ -789,7 +1312,7 @@ Sally Model
       (ite
          state.|p1:7:init|
          (= next.|p1:7| false)
-         (= next.|p1:7| next.|__no_static:36|))
+         (= next.|p1:7| next.|rule:14|))
       (= next.|p1:7:init| false)
       (= next.|a:13| next.|a:16|)
       (= next.|mid:13| next.|mid:15|)
@@ -797,7 +1320,7 @@ Sally Model
       (= next.|curr:13| 2)
       (= next.|prev:13| state.|p2:7|)
       (=
-         next.|__no_static:35|
+         next.|rule:13|
          (or
             (and
                next.|prev:13|
@@ -809,7 +1332,7 @@ Sally Model
       (ite
          state.|p2:7:init|
          (= next.|p2:7| true)
-         (= next.|p2:7| next.|__no_static:35|))
+         (= next.|p2:7| next.|rule:13|))
       (= next.|p2:7:init| false)
       (= next.|a:12| next.|a:16|)
       (= next.|mid:12| next.|mid:15|)
@@ -817,7 +1340,7 @@ Sally Model
       (= next.|curr:12| 3)
       (= next.|prev:12| state.|p3:7|)
       (=
-         next.|__no_static:34|
+         next.|rule:12|
          (or
             (and
                next.|prev:12|
@@ -829,7 +1352,7 @@ Sally Model
       (ite
          state.|p3:7:init|
          (= next.|p3:7| true)
-         (= next.|p3:7| next.|__no_static:34|))
+         (= next.|p3:7| next.|rule:12|))
       (= next.|p3:7:init| false)
       (= next.|a:11| next.|a:16|)
       (= next.|mid:11| next.|mid:15|)
@@ -837,7 +1360,7 @@ Sally Model
       (= next.|curr:11| 4)
       (= next.|prev:11| state.|p4:7|)
       (=
-         next.|__no_static:33|
+         next.|rule:11|
          (or
             (and
                next.|prev:11|
@@ -849,7 +1372,7 @@ Sally Model
       (ite
          state.|p4:7:init|
          (= next.|p4:7| true)
-         (= next.|p4:7| next.|__no_static:33|))
+         (= next.|p4:7| next.|rule:11|))
       (= next.|p4:7:init| false)
       (= next.|a:10| next.|a:16|)
       (= next.|mid:10| next.|mid:15|)
@@ -857,7 +1380,7 @@ Sally Model
       (= next.|curr:10| 5)
       (= next.|prev:10| state.|p5:7|)
       (=
-         next.|__no_static:32|
+         next.|rule:10|
          (or
             (and
                next.|prev:10|
@@ -869,7 +1392,7 @@ Sally Model
       (ite
          state.|p5:7:init|
          (= next.|p5:7| true)
-         (= next.|p5:7| next.|__no_static:32|))
+         (= next.|p5:7| next.|rule:10|))
       (= next.|p5:7:init| false)
       (= next.|a:9| next.|a:16|)
       (= next.|mid:9| next.|mid:15|)
@@ -877,7 +1400,7 @@ Sally Model
       (= next.|curr:9| 6)
       (= next.|prev:9| state.|p6:7|)
       (=
-         next.|__no_static:31|
+         next.|rule:9|
          (or
             (and
                next.|prev:9|
@@ -889,7 +1412,7 @@ Sally Model
       (ite
          state.|p6:7:init|
          (= next.|p6:7| true)
-         (= next.|p6:7| next.|__no_static:31|))
+         (= next.|p6:7| next.|rule:9|))
       (= next.|p6:7:init| false)
       (= next.|a:8| next.|a:16|)
       (= next.|mid:8| next.|mid:15|)
@@ -897,7 +1420,7 @@ Sally Model
       (= next.|curr:8| 7)
       (= next.|prev:8| state.|p7:7|)
       (=
-         next.|__no_static:30|
+         next.|rule:8|
          (or
             (and
                next.|prev:8|
@@ -909,7 +1432,7 @@ Sally Model
       (ite
          state.|p7:7:init|
          (= next.|p7:7| true)
-         (= next.|p7:7| next.|__no_static:30|))
+         (= next.|p7:7| next.|rule:8|))
       (= next.|p7:7:init| false)
       (= next.|a:7| next.|a:16|)
       (= next.|mid:7| next.|mid:15|)
@@ -917,7 +1440,7 @@ Sally Model
       (= next.|curr:7| 8)
       (= next.|prev:7| state.|p8:7|)
       (=
-         next.|__no_static:29|
+         next.|rule:7|
          (or
             (and
                next.|prev:7|
@@ -929,7 +1452,7 @@ Sally Model
       (ite
          state.|p8:7:init|
          (= next.|p8:7| true)
-         (= next.|p8:7| next.|__no_static:29|))
+         (= next.|p8:7| next.|rule:7|))
       (= next.|p8:7:init| false)
       (= next.|a:6| next.|a:16|)
       (= next.|mid:6| next.|mid:15|)
@@ -937,7 +1460,7 @@ Sally Model
       (= next.|curr:6| 9)
       (= next.|prev:6| state.|p9:7|)
       (=
-         next.|__no_static:28|
+         next.|rule:6|
          (or
             (and
                next.|prev:6|
@@ -949,7 +1472,7 @@ Sally Model
       (ite
          state.|p9:7:init|
          (= next.|p9:7| true)
-         (= next.|p9:7| next.|__no_static:28|))
+         (= next.|p9:7| next.|rule:6|))
       (= next.|p9:7:init| false)
       (= next.|a:5| next.|a:16|)
       (= next.|mid:5| next.|mid:15|)
@@ -957,7 +1480,7 @@ Sally Model
       (= next.|curr:5| 10)
       (= next.|prev:5| state.|p10:7|)
       (=
-         next.|__no_static:27|
+         next.|rule:5|
          (or
             (and
                next.|prev:5|
@@ -969,7 +1492,7 @@ Sally Model
       (ite
          state.|p10:7:init|
          (= next.|p10:7| true)
-         (= next.|p10:7| next.|__no_static:27|))
+         (= next.|p10:7| next.|rule:5|))
       (= next.|p10:7:init| false)
       (= next.|a:4| next.|a:16|)
       (= next.|mid:4| next.|mid:15|)
@@ -977,7 +1500,7 @@ Sally Model
       (= next.|curr:4| 11)
       (= next.|prev:4| state.|p11:7|)
       (=
-         next.|__no_static:26|
+         next.|rule:4|
          (or
             (and
                next.|prev:4|
@@ -989,7 +1512,7 @@ Sally Model
       (ite
          state.|p11:7:init|
          (= next.|p11:7| true)
-         (= next.|p11:7| next.|__no_static:26|))
+         (= next.|p11:7| next.|rule:4|))
       (= next.|p11:7:init| false)
       (= next.|a:3| next.|a:16|)
       (= next.|mid:3| next.|mid:15|)
@@ -997,7 +1520,7 @@ Sally Model
       (= next.|curr:3| 12)
       (= next.|prev:3| state.|p12:7|)
       (=
-         next.|__no_static:25|
+         next.|rule:3|
          (or
             (and
                next.|prev:3|
@@ -1009,7 +1532,7 @@ Sally Model
       (ite
          state.|p12:7:init|
          (= next.|p12:7| true)
-         (= next.|p12:7| next.|__no_static:25|))
+         (= next.|p12:7| next.|rule:3|))
       (= next.|p12:7:init| false)
       (= next.|a:2| next.|a:16|)
       (= next.|mid:2| next.|mid:15|)
@@ -1017,7 +1540,7 @@ Sally Model
       (= next.|curr:2| 13)
       (= next.|prev:2| state.|p13:7|)
       (=
-         next.|__no_static:24|
+         next.|rule:2|
          (or
             (and
                next.|prev:2|
@@ -1029,7 +1552,7 @@ Sally Model
       (ite
          state.|p13:7:init|
          (= next.|p13:7| true)
-         (= next.|p13:7| next.|__no_static:24|))
+         (= next.|p13:7| next.|rule:2|))
       (= next.|p13:7:init| false)
       (= next.|a:1| next.|a:16|)
       (= next.|mid:1| next.|mid:15|)
@@ -1037,7 +1560,7 @@ Sally Model
       (= next.|curr:1| 14)
       (= next.|prev:1| state.|p14:7|)
       (=
-         next.|__no_static:23|
+         next.|rule:1|
          (or
             (and
                next.|prev:1|
@@ -1049,7 +1572,7 @@ Sally Model
       (ite
          state.|p14:7:init|
          (= next.|p14:7| true)
-         (= next.|p14:7| next.|__no_static:23|))
+         (= next.|p14:7| next.|rule:1|))
       (= next.|p14:7:init| false)
       (= next.a next.|a:16|)
       (= next.mid next.|mid:15|)
@@ -1057,7 +1580,7 @@ Sally Model
       (= next.curr 15)
       (= next.prev state.|p15:7|)
       (=
-         next.|__no_static:22|
+         next.rule
          (or
             (and
                next.prev
@@ -1069,7 +1592,7 @@ Sally Model
       (ite
          state.|p15:7:init|
          (= next.|p15:7| true)
-         (= next.|p15:7| next.|__no_static:22|))
+         (= next.|p15:7| next.rule))
       (= next.|p15:7:init| false)
       (= next.|loc:5| next.|a:16|)
       (= next.|p1:6| state.|p1:7|)
@@ -1088,7 +1611,7 @@ Sally Model
       (= next.|p14:6| state.|p14:7|)
       (= next.|p15:6| state.|p15:7|)
       (=
-         next.|__no_static:21|
+         next.|peg:5|
          (ite
             (= next.|loc:5| 1)
             next.|p1:6|
@@ -1152,7 +1675,7 @@ Sally Model
       (= next.|p14:5| state.|p14:7|)
       (= next.|p15:5| state.|p15:7|)
       (=
-         next.|__no_static:20|
+         next.|peg:4|
          (ite
             (= next.|loc:4| 1)
             next.|p1:5|
@@ -1216,7 +1739,7 @@ Sally Model
       (= next.|p14:4| state.|p14:7|)
       (= next.|p15:4| state.|p15:7|)
       (=
-         next.|__no_static:19|
+         next.|peg:3|
          (ite
             (= next.|loc:3| 1)
             next.|p1:4|
@@ -1280,7 +1803,7 @@ Sally Model
       (= next.|p14:3| next.|p14:7|)
       (= next.|p15:3| next.|p15:7|)
       (=
-         next.|__no_static:18|
+         next.|peg:2|
          (ite
             (= next.|loc:2| 1)
             next.|p1:3|
@@ -1344,7 +1867,7 @@ Sally Model
       (= next.|p14:2| next.|p14:7|)
       (= next.|p15:2| next.|p15:7|)
       (=
-         next.|__no_static:17|
+         next.|peg:1|
          (ite
             (= next.|loc:1| 1)
             next.|p1:2|
@@ -1408,7 +1931,7 @@ Sally Model
       (= next.|p14:1| next.|p14:7|)
       (= next.|p15:1| next.|p15:7|)
       (=
-         next.|__no_static:16|
+         next.peg
          (ite
             (= next.loc 1)
             next.|p1:1|
@@ -1461,87 +1984,87 @@ Sally Model
          (=
             next.|valid_move|
             (and
-               next.|__no_static:21|
-               next.|__no_static:20|
-               (not next.|__no_static:19|)
-               (not next.|__no_static:18|)
-               (not next.|__no_static:17|)
-               next.|__no_static:16|)))
+               next.|peg:5|
+               next.|peg:4|
+               (not next.|peg:3|)
+               (not next.|peg:2|)
+               (not next.|peg:1|)
+               next.peg)))
       (= next.|valid_move:init| false)
       (= next.p15 next.|p15:7|)
       (= next.|x:15| next.p15)
       (=
-         next.|__no_static:15|
+         next.|b2i:14|
          (ite next.|x:15| 1 0))
       (= next.p14 next.|p14:7|)
       (= next.|x:14| next.p14)
       (=
-         next.|__no_static:14|
+         next.|b2i:13|
          (ite next.|x:14| 1 0))
       (= next.p13 next.|p13:7|)
       (= next.|x:13| next.p13)
       (=
-         next.|__no_static:13|
+         next.|b2i:12|
          (ite next.|x:13| 1 0))
       (= next.p12 next.|p12:7|)
       (= next.|x:12| next.p12)
       (=
-         next.|__no_static:12|
+         next.|b2i:11|
          (ite next.|x:12| 1 0))
       (= next.p11 next.|p11:7|)
       (= next.|x:11| next.p11)
       (=
-         next.|__no_static:11|
+         next.|b2i:10|
          (ite next.|x:11| 1 0))
       (= next.p10 next.|p10:7|)
       (= next.|x:10| next.p10)
       (=
-         next.|__no_static:10|
+         next.|b2i:9|
          (ite next.|x:10| 1 0))
       (= next.p9 next.|p9:7|)
       (= next.|x:9| next.p9)
       (=
-         next.|__no_static:9|
+         next.|b2i:8|
          (ite next.|x:9| 1 0))
       (= next.p8 next.|p8:7|)
       (= next.|x:8| next.p8)
       (=
-         next.|__no_static:8|
+         next.|b2i:7|
          (ite next.|x:8| 1 0))
       (= next.p7 next.|p7:7|)
       (= next.|x:7| next.p7)
       (=
-         next.|__no_static:7|
+         next.|b2i:6|
          (ite next.|x:7| 1 0))
       (= next.p6 next.|p6:7|)
       (= next.|x:6| next.p6)
       (=
-         next.|__no_static:6|
+         next.|b2i:5|
          (ite next.|x:6| 1 0))
       (= next.p5 next.|p5:7|)
       (= next.|x:5| next.p5)
       (=
-         next.|__no_static:5|
+         next.|b2i:4|
          (ite next.|x:5| 1 0))
       (= next.p4 next.|p4:7|)
       (= next.|x:4| next.p4)
       (=
-         next.|__no_static:4|
+         next.|b2i:3|
          (ite next.|x:4| 1 0))
       (= next.p3 next.|p3:7|)
       (= next.|x:3| next.p3)
       (=
-         next.|__no_static:3|
+         next.|b2i:2|
          (ite next.|x:3| 1 0))
       (= next.p2 next.|p2:7|)
       (= next.|x:2| next.p2)
       (=
-         next.|__no_static:2|
+         next.|b2i:1|
          (ite next.|x:2| 1 0))
       (= next.p1 next.|p1:7|)
       (= next.|x:1| next.p1)
       (=
-         next.|__no_static:1|
+         next.b2i
          (ite next.|x:1| 1 0))
       (=
          next.solved
@@ -1559,35 +2082,35 @@ Sally Model
                                           (+
                                              (+
                                                 (+
-                                                   (+ next.|__no_static:1| next.|__no_static:2|)
-                                                   next.|__no_static:3|)
-                                                next.|__no_static:4|)
-                                             next.|__no_static:5|)
-                                          next.|__no_static:6|)
-                                       next.|__no_static:7|)
-                                    next.|__no_static:8|)
-                                 next.|__no_static:9|)
-                              next.|__no_static:10|)
-                           next.|__no_static:11|)
-                        next.|__no_static:12|)
-                     next.|__no_static:13|)
-                  next.|__no_static:14|)
-               next.|__no_static:15|)
+                                                   (+ next.b2i next.|b2i:1|)
+                                                   next.|b2i:2|)
+                                                next.|b2i:3|)
+                                             next.|b2i:4|)
+                                          next.|b2i:5|)
+                                       next.|b2i:6|)
+                                    next.|b2i:7|)
+                                 next.|b2i:8|)
+                              next.|b2i:9|)
+                           next.|b2i:10|)
+                        next.|b2i:11|)
+                     next.|b2i:12|)
+                  next.|b2i:13|)
+               next.|b2i:14|)
             1))
       (= next.x next.|valid_move|)
-      (= next.|valof_pre___no_static| state.|__no_static|)
+      (= next.|pre_historically| state.historically)
       (ite
-         state.|valof_arr:init|
-         (= next.|valof_arr| true)
-         (= next.|valof_arr| next.|valof_pre___no_static|))
-      (= next.|valof_arr:init| false)
+         state.|init_pre_historically:init|
+         (= next.|init_pre_historically| true)
+         (= next.|init_pre_historically| next.|pre_historically|))
+      (= next.|init_pre_historically:init| false)
       (=
-         next.|__no_static|
-         (and next.x next.|valof_arr|))
+         next.historically
+         (and next.x next.|init_pre_historically|))
       (=
          next.prop
          (not
-            (and next.|__no_static| next.solved)))))
+            (and next.historically next.solved)))))
 
 (query
    TS

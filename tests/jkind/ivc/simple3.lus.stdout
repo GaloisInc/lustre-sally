@@ -6,15 +6,32 @@ node (x$2 : int)
   assumes (assum)
   shows (ok)
 let
-  x$1 = x$2
-  x = x$1
-  valof_pre_y = pre y
-  valof_arr = 0 -> valof_pre_y
-  y = Add(x, valof_arr)
-  a = Geq(x, Neg(1))
-  b = Geq(x, 0)
-  assum = And(a, b)
-  ok = Geq(y, 0)
+  x$1 : int
+    = x$2
+   
+  x : int
+    = x$1
+   
+  pre_y : int
+    = pre y
+   
+  init_pre_y : int
+    = 0 -> pre_y
+   
+  y : int
+    = Add(x, init_pre_y)
+   
+  a : bool
+    = Geq(x, Neg(1))
+   
+  b : bool
+    = Geq(x, 0)
+   
+  assum : bool
+    = And(a, b)
+   
+  ok : bool
+    = Geq(y, 0)
 tel
 Sally Model
 ===========
@@ -29,9 +46,9 @@ Sally Model
      (x Int)
      (y Int)
      (|gal-initializing| Bool)
-     (|valof_arr:init| Bool)
-     (|valof_arr| Int)
-     (|valof_pre_y| Int)
+     (|init_pre_y:init| Bool)
+     (|init_pre_y| Int)
+     (|pre_y| Int)
      (|x:1| Int)
      (|x:2| Int))
    (
@@ -41,22 +58,22 @@ Sally Model
    S
    (and
       (= |gal-initializing| true)
-      (= |valof_arr:init| true))
+      (= |init_pre_y:init| true))
    (and
       (= next.|gal-initializing| false)
       (= next.|x:2| input.|x:2|)
       next.assum
       (= next.|x:1| next.|x:2|)
       (= next.x next.|x:1|)
-      (= next.|valof_pre_y| state.y)
+      (= next.|pre_y| state.y)
       (ite
-         state.|valof_arr:init|
-         (= next.|valof_arr| 0)
-         (= next.|valof_arr| next.|valof_pre_y|))
-      (= next.|valof_arr:init| false)
+         state.|init_pre_y:init|
+         (= next.|init_pre_y| 0)
+         (= next.|init_pre_y| next.|pre_y|))
+      (= next.|init_pre_y:init| false)
       (=
          next.y
-         (+ next.x next.|valof_arr|))
+         (+ next.x next.|init_pre_y|))
       (=
          next.a
          (<=

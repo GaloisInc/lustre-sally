@@ -6,305 +6,902 @@ node (TS$3 : bool, CLK1$2 : bool, CLK3$2 : bool, CLK2$2 : bool, CLK4$2 : bool)
   assumes (Or, clocks_are_quasi_synchronous)
   shows (left_side_initial_pilot_flying_side, at_least_one_pilot_flying_side, r_is_bounded, r_is_bounded$1, r_is_bounded$2, r_is_bounded$3, r_is_bounded$4, r_is_bounded$5)
 let
-  CLK4$1 = CLK4$2
-  QS_Properties_Clock_Name$5 = CLK4$1
-  QS_Properties_Init_Bool$1 = false
-  valof_pre_I$1 = pre I
-  valof_arr$71 = QS_Properties_Init_Bool$1 -> valof_pre_I$1
-  valof_pre_prev_I$1 = pre prev_I$1
-  valof_arr$70 = QS_Properties_Init_Bool$1 -> valof_pre_prev_I$1
-  prev_I$1 = ITE(QS_Properties_Clock_Name$5, valof_arr$71, valof_arr$70)
-  valof_pre_RL_O = pre RL_O
-  valof_arr$69 = QS_Properties_Init_Bool$1 -> valof_pre_RL_O
-  RL_O = ITE(QS_Properties_Clock_Name$5, prev_I$1, valof_arr$69)
-  OSPF$1 = RL_O
-  I$5 = OSPF$1
-  valof_pre_pre_I$7 = pre pre_I$2
-  riseOSPF_O$1 = false -> And(Not(valof_pre_pre_I$7), I$5)
-  riseOSPF$1 = riseOSPF_O$1
-  CLK1$1 = CLK1$2
-  QS_Properties_Clock_Name$4 = CLK1$1
-  QS_Properties_Clock_Name$3 = QS_Properties_Clock_Name$4
-  valof_pre_state$13 = pre state$1
-  valof_arr$68 = 1 -> valof_pre_state$13
-  T6$1 = And(And(QS_Properties_Clock_Name$3, Eq(valof_arr$68, 4)), riseOSPF$1)
-  TS$2 = TS$3
-  TS$1 = TS$2
-  I$4 = TS$1
-  valof_pre_pre_I$6 = pre pre_I$3
-  riseTS_O$1 = false -> And(Not(valof_pre_pre_I$6), I$4)
-  riseTS$1 = riseTS_O$1
-  valof_pre_state$12 = pre state$1
-  valof_arr$67 = 1 -> valof_pre_state$12
-  T5$1 = And(And(QS_Properties_Clock_Name$3, Eq(valof_arr$67, 3)), riseTS$1)
-  QS_Properties_Primary_Side$3 = true
-  QS_Properties_Primary_Side$2 = QS_Properties_Primary_Side$3
-  valof_pre_state$11 = pre state$1
-  valof_arr$66 = 1 -> valof_pre_state$11
-  T2$1 = And(And(QS_Properties_Clock_Name$3, Eq(valof_arr$66, 1)), Not(QS_Properties_Primary_Side$2))
-  valof_pre_state$10 = pre state$1
-  valof_arr$65 = 1 -> valof_pre_state$10
-  T1$1 = And(And(QS_Properties_Clock_Name$3, Eq(valof_arr$65, 1)), QS_Properties_Primary_Side$2)
-  valof_pre_PFSL_PFS$1 = pre PFSL_PFS$1
-  valof_arr$64 = QS_Properties_Primary_Side$2 -> valof_pre_PFSL_PFS$1
-  PFSL_PFS$1 = ITE(T5$1, true, ITE(T6$1, false, ITE(T2$1, false, ITE(T1$1, true, valof_arr$64))))
-  LS_PFS = PFSL_PFS$1
-  LPFS = LS_PFS
-  CLK2$1 = CLK2$2
-  QS_Properties_Clock_Name$2 = CLK2$1
-  QS_Properties_Init_Bool = true
-  valof_pre_I = pre I$1
-  valof_arr$63 = QS_Properties_Init_Bool -> valof_pre_I
-  valof_pre_prev_I = pre prev_I
-  valof_arr$62 = QS_Properties_Init_Bool -> valof_pre_prev_I
-  prev_I = ITE(QS_Properties_Clock_Name$2, valof_arr$63, valof_arr$62)
-  valof_pre_LR_O = pre LR_O
-  valof_arr$61 = QS_Properties_Init_Bool -> valof_pre_LR_O
-  LR_O = ITE(QS_Properties_Clock_Name$2, prev_I, valof_arr$61)
-  OSPF = LR_O
-  I$3 = OSPF
-  valof_pre_pre_I$5 = pre pre_I
-  riseOSPF_O = false -> And(Not(valof_pre_pre_I$5), I$3)
-  riseOSPF = riseOSPF_O
-  CLK3$1 = CLK3$2
-  QS_Properties_Clock_Name$1 = CLK3$1
-  QS_Properties_Clock_Name = QS_Properties_Clock_Name$1
-  valof_pre_state$9 = pre state
-  valof_arr$60 = 1 -> valof_pre_state$9
-  T6 = And(And(QS_Properties_Clock_Name, Eq(valof_arr$60, 4)), riseOSPF)
-  TS = TS$2
-  I$2 = TS
-  valof_pre_pre_I$4 = pre pre_I$1
-  riseTS_O = false -> And(Not(valof_pre_pre_I$4), I$2)
-  riseTS = riseTS_O
-  valof_pre_state$8 = pre state
-  valof_arr$59 = 1 -> valof_pre_state$8
-  T5 = And(And(QS_Properties_Clock_Name, Eq(valof_arr$59, 3)), riseTS)
-  QS_Properties_Primary_Side$1 = false
-  QS_Properties_Primary_Side = QS_Properties_Primary_Side$1
-  valof_pre_state$7 = pre state
-  valof_arr$58 = 1 -> valof_pre_state$7
-  T2 = And(And(QS_Properties_Clock_Name, Eq(valof_arr$58, 1)), Not(QS_Properties_Primary_Side))
-  valof_pre_state$6 = pre state
-  valof_arr$57 = 1 -> valof_pre_state$6
-  T1 = And(And(QS_Properties_Clock_Name, Eq(valof_arr$57, 1)), QS_Properties_Primary_Side)
-  valof_pre_PFSL_PFS = pre PFSL_PFS
-  valof_arr$56 = QS_Properties_Primary_Side -> valof_pre_PFSL_PFS
-  PFSL_PFS = ITE(T5, true, ITE(T6, false, ITE(T2, false, ITE(T1, true, valof_arr$56))))
-  RS_PFS = PFSL_PFS
-  RPFS = RS_PFS
-  CLK3 = CLK2$2
-  p$12 = CLK3
-  CLK4 = CLK4$2
-  q$5 = CLK4
-  valof_pre_r$41 = pre r
-  valof_arr$55 = 0 -> valof_pre_r$41
-  valof_pre_r$40 = pre r
-  valof_arr$54 = 0 -> valof_pre_r$40
-  __no_static$16 = Not(Or(And(Eq(valof_arr$55, 2), p$12), And(Eq(valof_arr$54, Neg(2)), q$5)))
-  CLK2 = CLK3$2
-  p$11 = CLK2
-  q$4 = CLK4
-  valof_pre_r$39 = pre r$1
-  valof_arr$53 = 0 -> valof_pre_r$39
-  valof_pre_r$38 = pre r$1
-  valof_arr$52 = 0 -> valof_pre_r$38
-  __no_static$15 = Not(Or(And(Eq(valof_arr$53, 2), p$11), And(Eq(valof_arr$52, Neg(2)), q$4)))
-  p$10 = CLK2
-  q$3 = CLK3
-  valof_pre_r$37 = pre r$2
-  valof_arr$51 = 0 -> valof_pre_r$37
-  valof_pre_r$36 = pre r$2
-  valof_arr$50 = 0 -> valof_pre_r$36
-  __no_static$14 = Not(Or(And(Eq(valof_arr$51, 2), p$10), And(Eq(valof_arr$50, Neg(2)), q$3)))
-  CLK1 = CLK1$2
-  p$9 = CLK1
-  q$2 = CLK4
-  valof_pre_r$35 = pre r$3
-  valof_arr$49 = 0 -> valof_pre_r$35
-  valof_pre_r$34 = pre r$3
-  valof_arr$48 = 0 -> valof_pre_r$34
-  __no_static$13 = Not(Or(And(Eq(valof_arr$49, 2), p$9), And(Eq(valof_arr$48, Neg(2)), q$2)))
-  p$8 = CLK1
-  q$1 = CLK3
-  valof_pre_r$33 = pre r$4
-  valof_arr$47 = 0 -> valof_pre_r$33
-  valof_pre_r$32 = pre r$4
-  valof_arr$46 = 0 -> valof_pre_r$32
-  __no_static$12 = Not(Or(And(Eq(valof_arr$47, 2), p$8), And(Eq(valof_arr$46, Neg(2)), q$1)))
-  p$7 = CLK1
-  q = CLK2
-  valof_pre_r$31 = pre r$5
-  valof_arr$45 = 0 -> valof_pre_r$31
-  valof_pre_r$30 = pre r$5
-  valof_arr$44 = 0 -> valof_pre_r$30
-  __no_static$11 = Not(Or(And(Eq(valof_arr$45, 2), p$7), And(Eq(valof_arr$44, Neg(2)), q)))
-  clocks_are_quasi_synchronous = And(And(And(And(And(__no_static$11, __no_static$12), __no_static$13), __no_static$14), __no_static$15), __no_static$16)
-  p$6 = pre TS$3
-  valof_pre_p$6 = pre p$6
-  __no_static$10 = false -> And(Not(valof_pre_p$6), p$6)
-  stable_state = Not(__no_static$10)
-  c$3 = CLK1$2
-  valof_pre___no_static$3 = pre __no_static$9
-  valof_arr$43 = false -> valof_pre___no_static$3
-  __no_static$9 = Or(valof_arr$43, c$3)
-  c$2 = CLK2$2
-  valof_pre___no_static$2 = pre __no_static$8
-  valof_arr$42 = false -> valof_pre___no_static$2
-  __no_static$8 = Or(valof_arr$42, c$2)
-  c$1 = CLK3$2
-  valof_pre___no_static$1 = pre __no_static$7
-  valof_arr$41 = false -> valof_pre___no_static$1
-  __no_static$7 = Or(valof_arr$41, c$1)
-  c = CLK4$2
-  valof_pre___no_static = pre __no_static$6
-  valof_arr$40 = false -> valof_pre___no_static
-  __no_static$6 = Or(valof_arr$40, c)
-  all_clocks_ticked_once = And(And(And(__no_static$9, __no_static$8), __no_static$7), __no_static$6)
-  at_least_one_pilot_flying_side = Implies(And(clocks_are_quasi_synchronous, all_clocks_ticked_once), Or(LPFS, RPFS))
-  p$5 = TS$3
-  valof_pre_p$5 = pre p$5
-  __no_static$5 = false -> And(Not(valof_pre_p$5), p$5)
-  agree_on_pilot_flying_side = And(Or(clocks_are_quasi_synchronous, Not(clocks_are_quasi_synchronous)), Implies(Not(__no_static$5), Eq(LPFS, Not(RPFS))))
-  p$4 = TS$3
-  valof_pre_p$4 = pre p$4
-  __no_static$4 = false -> And(Not(valof_pre_p$4), p$4)
-  p$3 = TS$3
-  valof_pre_p$3 = pre p$3
-  __no_static$3 = false -> And(Not(valof_pre_p$3), p$3)
-  transfer_switch_changes_sides = And(And(Or(clocks_are_quasi_synchronous, Not(clocks_are_quasi_synchronous)), Implies(And(Not(LPFS), __no_static$4), LPFS)), Implies(And(Not(RPFS), __no_static$3), RPFS))
-  left_side_initial_pilot_flying_side = And(Or(clocks_are_quasi_synchronous, Not(clocks_are_quasi_synchronous)), LPFS) -> true
-  p$2 = TS$3
-  valof_pre_p$2 = pre p$2
-  __no_static$2 = false -> And(Not(valof_pre_p$2), p$2)
-  p$1 = RPFS
-  valof_pre_p$1 = pre p$1
-  __no_static$1 = false -> Not(Eq(p$1, valof_pre_p$1))
-  p = LPFS
-  valof_pre_p = pre p
-  __no_static = false -> Not(Eq(p, valof_pre_p))
-  pilot_flying_side_unchanged_unless_transfer_switch_pressed = Implies(And(Or(clocks_are_quasi_synchronous, Not(clocks_are_quasi_synchronous)), stable_state), Implies(Not(__no_static$2), Not(Or(__no_static$1, __no_static))))
-  valof_pre_r$29 = pre r$5
-  valof_arr$39 = 0 -> valof_pre_r$29
-  valof_pre_r$28 = pre r$5
-  valof_arr$38 = 0 -> valof_pre_r$28
-  valof_pre_r$27 = pre r$5
-  valof_arr$37 = 0 -> valof_pre_r$27
-  valof_pre_r$26 = pre r$5
-  valof_arr$36 = 0 -> valof_pre_r$26
-  valof_pre_r$25 = pre r$5
-  valof_arr$35 = 0 -> valof_pre_r$25
-  r$5 = ITE(And(p$7, q), 0, ITE(p$7, ITE(Lt(valof_arr$39, 0), 1, Add(valof_arr$38, 1)), ITE(q, ITE(Gt(valof_arr$37, 0), Neg(1), Sub(valof_arr$36, 1)), valof_arr$35)))
-  r_is_bounded$5 = And(Leq(r$5, 2), Geq(r$5, Neg(2)))
-  valof_pre_r$24 = pre r$4
-  valof_arr$34 = 0 -> valof_pre_r$24
-  valof_pre_r$23 = pre r$4
-  valof_arr$33 = 0 -> valof_pre_r$23
-  valof_pre_r$22 = pre r$4
-  valof_arr$32 = 0 -> valof_pre_r$22
-  valof_pre_r$21 = pre r$4
-  valof_arr$31 = 0 -> valof_pre_r$21
-  valof_pre_r$20 = pre r$4
-  valof_arr$30 = 0 -> valof_pre_r$20
-  r$4 = ITE(And(p$8, q$1), 0, ITE(p$8, ITE(Lt(valof_arr$34, 0), 1, Add(valof_arr$33, 1)), ITE(q$1, ITE(Gt(valof_arr$32, 0), Neg(1), Sub(valof_arr$31, 1)), valof_arr$30)))
-  r_is_bounded$4 = And(Leq(r$4, 2), Geq(r$4, Neg(2)))
-  valof_pre_r$19 = pre r$3
-  valof_arr$29 = 0 -> valof_pre_r$19
-  valof_pre_r$18 = pre r$3
-  valof_arr$28 = 0 -> valof_pre_r$18
-  valof_pre_r$17 = pre r$3
-  valof_arr$27 = 0 -> valof_pre_r$17
-  valof_pre_r$16 = pre r$3
-  valof_arr$26 = 0 -> valof_pre_r$16
-  valof_pre_r$15 = pre r$3
-  valof_arr$25 = 0 -> valof_pre_r$15
-  r$3 = ITE(And(p$9, q$2), 0, ITE(p$9, ITE(Lt(valof_arr$29, 0), 1, Add(valof_arr$28, 1)), ITE(q$2, ITE(Gt(valof_arr$27, 0), Neg(1), Sub(valof_arr$26, 1)), valof_arr$25)))
-  r_is_bounded$3 = And(Leq(r$3, 2), Geq(r$3, Neg(2)))
-  valof_pre_r$14 = pre r$2
-  valof_arr$24 = 0 -> valof_pre_r$14
-  valof_pre_r$13 = pre r$2
-  valof_arr$23 = 0 -> valof_pre_r$13
-  valof_pre_r$12 = pre r$2
-  valof_arr$22 = 0 -> valof_pre_r$12
-  valof_pre_r$11 = pre r$2
-  valof_arr$21 = 0 -> valof_pre_r$11
-  valof_pre_r$10 = pre r$2
-  valof_arr$20 = 0 -> valof_pre_r$10
-  r$2 = ITE(And(p$10, q$3), 0, ITE(p$10, ITE(Lt(valof_arr$24, 0), 1, Add(valof_arr$23, 1)), ITE(q$3, ITE(Gt(valof_arr$22, 0), Neg(1), Sub(valof_arr$21, 1)), valof_arr$20)))
-  r_is_bounded$2 = And(Leq(r$2, 2), Geq(r$2, Neg(2)))
-  valof_pre_r$9 = pre r$1
-  valof_arr$19 = 0 -> valof_pre_r$9
-  valof_pre_r$8 = pre r$1
-  valof_arr$18 = 0 -> valof_pre_r$8
-  valof_pre_r$7 = pre r$1
-  valof_arr$17 = 0 -> valof_pre_r$7
-  valof_pre_r$6 = pre r$1
-  valof_arr$16 = 0 -> valof_pre_r$6
-  valof_pre_r$5 = pre r$1
-  valof_arr$15 = 0 -> valof_pre_r$5
-  r$1 = ITE(And(p$11, q$4), 0, ITE(p$11, ITE(Lt(valof_arr$19, 0), 1, Add(valof_arr$18, 1)), ITE(q$4, ITE(Gt(valof_arr$17, 0), Neg(1), Sub(valof_arr$16, 1)), valof_arr$15)))
-  r_is_bounded$1 = And(Leq(r$1, 2), Geq(r$1, Neg(2)))
-  valof_pre_r$4 = pre r
-  valof_arr$14 = 0 -> valof_pre_r$4
-  valof_pre_r$3 = pre r
-  valof_arr$13 = 0 -> valof_pre_r$3
-  valof_pre_r$2 = pre r
-  valof_arr$12 = 0 -> valof_pre_r$2
-  valof_pre_r$1 = pre r
-  valof_arr$11 = 0 -> valof_pre_r$1
-  valof_pre_r = pre r
-  valof_arr$10 = 0 -> valof_pre_r
-  r = ITE(And(p$12, q$5), 0, ITE(p$12, ITE(Lt(valof_arr$14, 0), 1, Add(valof_arr$13, 1)), ITE(q$5, ITE(Gt(valof_arr$12, 0), Neg(1), Sub(valof_arr$11, 1)), valof_arr$10)))
-  r_is_bounded = And(Leq(r, 2), Geq(r, Neg(2)))
-  St_Start$1 = 1
-  St_Wait$1 = 5
-  St_Stop$1 = 6
-  St_Pilot_Flying$1 = 4
-  valof_pre_state$5 = pre state$1
-  valof_arr$9 = 1 -> valof_pre_state$5
-  T4$1 = And(QS_Properties_Clock_Name$3, Eq(valof_arr$9, 2))
-  valof_pre_state$4 = pre state$1
-  valof_arr$8 = 1 -> valof_pre_state$4
-  T3$1 = And(QS_Properties_Clock_Name$3, Eq(valof_arr$8, 5))
-  St_Not_Pilot_Flying$1 = 3
-  St_Inhibit$1 = 2
-  valof_pre_state$3 = pre state$1
-  valof_arr$7 = 1 -> valof_pre_state$3
-  state$1 = ITE(Or(T6$1, T2$1), 2, ITE(T4$1, 3, ITE(T3$1, 4, ITE(Or(T5$1, T1$1), 5, valof_arr$7))))
-  clk$3 = QS_Properties_Clock_Name$4
-  valof_pre_pre_I$3 = pre pre_I$3
-  valof_arr$6 = false -> valof_pre_pre_I$3
-  pre_I$3 = And(Implies(clk$3, I$4), Implies(Not(clk$3), valof_arr$6))
-  clk$2 = QS_Properties_Clock_Name$4
-  valof_pre_pre_I$2 = pre pre_I$2
-  valof_arr$5 = false -> valof_pre_pre_I$2
-  pre_I$2 = And(Implies(clk$2, I$5), Implies(Not(clk$2), valof_arr$5))
-  St_Start = 1
-  St_Wait = 5
-  St_Stop = 6
-  St_Pilot_Flying = 4
-  valof_pre_state$2 = pre state
-  valof_arr$4 = 1 -> valof_pre_state$2
-  T4 = And(QS_Properties_Clock_Name, Eq(valof_arr$4, 2))
-  valof_pre_state$1 = pre state
-  valof_arr$3 = 1 -> valof_pre_state$1
-  T3 = And(QS_Properties_Clock_Name, Eq(valof_arr$3, 5))
-  St_Not_Pilot_Flying = 3
-  St_Inhibit = 2
-  valof_pre_state = pre state
-  valof_arr$2 = 1 -> valof_pre_state
-  state = ITE(Or(T6, T2), 2, ITE(T4, 3, ITE(T3, 4, ITE(Or(T5, T1), 5, valof_arr$2))))
-  clk$1 = QS_Properties_Clock_Name$1
-  valof_pre_pre_I$1 = pre pre_I$1
-  valof_arr$1 = false -> valof_pre_pre_I$1
-  pre_I$1 = And(Implies(clk$1, I$2), Implies(Not(clk$1), valof_arr$1))
-  clk = QS_Properties_Clock_Name$1
-  valof_pre_pre_I = pre pre_I
-  valof_arr = false -> valof_pre_pre_I
-  pre_I = And(Implies(clk, I$3), Implies(Not(clk), valof_arr))
-  I$1 = LS_PFS
-  I = RS_PFS
-  Or = Or(Or(Or(CLK1$2, CLK3$2), CLK2$2), CLK4$2)
+  CLK4$1 : bool
+    = CLK4$2
+   
+  QS_Properties_Clock_Name$5 : bool
+    = CLK4$1
+   
+  QS_Properties_Init_Bool$1 : bool
+    = false
+   
+  pre_I$5 : bool
+    = pre I
+   
+  init_pre_I$1 : bool
+    = QS_Properties_Init_Bool$1 -> pre_I$5
+   
+  pre_prev_I$1 : bool
+    = pre prev_I$1
+   
+  init_pre_prev_I$1 : bool
+    = QS_Properties_Init_Bool$1 -> pre_prev_I$1
+   
+  prev_I$1 : bool
+    = ITE(QS_Properties_Clock_Name$5, init_pre_I$1, init_pre_prev_I$1)
+   
+  pre_RL_O : bool
+    = pre RL_O
+   
+  init_pre_RL_O : bool
+    = QS_Properties_Init_Bool$1 -> pre_RL_O
+   
+  RL_O : bool
+    = ITE(QS_Properties_Clock_Name$5, prev_I$1, init_pre_RL_O)
+   
+  OSPF$1 : bool
+    = RL_O
+   
+  I$5 : bool
+    = OSPF$1
+   
+  pre_pre_I$7 : bool
+    = pre pre_I$2
+   
+  riseOSPF_O$1 : bool
+    = false -> And(Not(pre_pre_I$7), I$5)
+   
+  riseOSPF$1 : bool
+    = riseOSPF_O$1
+   
+  CLK1$1 : bool
+    = CLK1$2
+   
+  QS_Properties_Clock_Name$4 : bool
+    = CLK1$1
+   
+  QS_Properties_Clock_Name$3 : bool
+    = QS_Properties_Clock_Name$4
+   
+  pre_state$13 : int
+    = pre state$1
+   
+  init_pre_state$13 : int
+    = 1 -> pre_state$13
+   
+  T6$1 : bool
+    = And(And(QS_Properties_Clock_Name$3, Eq(init_pre_state$13, 4)), riseOSPF$1)
+   
+  TS$2 : bool
+    = TS$3
+   
+  TS$1 : bool
+    = TS$2
+   
+  I$4 : bool
+    = TS$1
+   
+  pre_pre_I$6 : bool
+    = pre pre_I$3
+   
+  riseTS_O$1 : bool
+    = false -> And(Not(pre_pre_I$6), I$4)
+   
+  riseTS$1 : bool
+    = riseTS_O$1
+   
+  pre_state$12 : int
+    = pre state$1
+   
+  init_pre_state$12 : int
+    = 1 -> pre_state$12
+   
+  T5$1 : bool
+    = And(And(QS_Properties_Clock_Name$3, Eq(init_pre_state$12, 3)), riseTS$1)
+   
+  QS_Properties_Primary_Side$3 : bool
+    = true
+   
+  QS_Properties_Primary_Side$2 : bool
+    = QS_Properties_Primary_Side$3
+   
+  pre_state$11 : int
+    = pre state$1
+   
+  init_pre_state$11 : int
+    = 1 -> pre_state$11
+   
+  T2$1 : bool
+    = And(And(QS_Properties_Clock_Name$3, Eq(init_pre_state$11, 1)), Not(QS_Properties_Primary_Side$2))
+   
+  pre_state$10 : int
+    = pre state$1
+   
+  init_pre_state$10 : int
+    = 1 -> pre_state$10
+   
+  T1$1 : bool
+    = And(And(QS_Properties_Clock_Name$3, Eq(init_pre_state$10, 1)), QS_Properties_Primary_Side$2)
+   
+  pre_PFSL_PFS$1 : bool
+    = pre PFSL_PFS$1
+   
+  init_pre_PFSL_PFS$1 : bool
+    = QS_Properties_Primary_Side$2 -> pre_PFSL_PFS$1
+   
+  PFSL_PFS$1 : bool
+    = ITE(T5$1, true, ITE(T6$1, false, ITE(T2$1, false, ITE(T1$1, true, init_pre_PFSL_PFS$1))))
+   
+  LS_PFS : bool
+    = PFSL_PFS$1
+   
+  LPFS : bool
+    = LS_PFS
+   
+  CLK2$1 : bool
+    = CLK2$2
+   
+  QS_Properties_Clock_Name$2 : bool
+    = CLK2$1
+   
+  QS_Properties_Init_Bool : bool
+    = true
+   
+  pre_I$4 : bool
+    = pre I$1
+   
+  init_pre_I : bool
+    = QS_Properties_Init_Bool -> pre_I$4
+   
+  pre_prev_I : bool
+    = pre prev_I
+   
+  init_pre_prev_I : bool
+    = QS_Properties_Init_Bool -> pre_prev_I
+   
+  prev_I : bool
+    = ITE(QS_Properties_Clock_Name$2, init_pre_I, init_pre_prev_I)
+   
+  pre_LR_O : bool
+    = pre LR_O
+   
+  init_pre_LR_O : bool
+    = QS_Properties_Init_Bool -> pre_LR_O
+   
+  LR_O : bool
+    = ITE(QS_Properties_Clock_Name$2, prev_I, init_pre_LR_O)
+   
+  OSPF : bool
+    = LR_O
+   
+  I$3 : bool
+    = OSPF
+   
+  pre_pre_I$5 : bool
+    = pre pre_I
+   
+  riseOSPF_O : bool
+    = false -> And(Not(pre_pre_I$5), I$3)
+   
+  riseOSPF : bool
+    = riseOSPF_O
+   
+  CLK3$1 : bool
+    = CLK3$2
+   
+  QS_Properties_Clock_Name$1 : bool
+    = CLK3$1
+   
+  QS_Properties_Clock_Name : bool
+    = QS_Properties_Clock_Name$1
+   
+  pre_state$9 : int
+    = pre state
+   
+  init_pre_state$9 : int
+    = 1 -> pre_state$9
+   
+  T6 : bool
+    = And(And(QS_Properties_Clock_Name, Eq(init_pre_state$9, 4)), riseOSPF)
+   
+  TS : bool
+    = TS$2
+   
+  I$2 : bool
+    = TS
+   
+  pre_pre_I$4 : bool
+    = pre pre_I$1
+   
+  riseTS_O : bool
+    = false -> And(Not(pre_pre_I$4), I$2)
+   
+  riseTS : bool
+    = riseTS_O
+   
+  pre_state$8 : int
+    = pre state
+   
+  init_pre_state$8 : int
+    = 1 -> pre_state$8
+   
+  T5 : bool
+    = And(And(QS_Properties_Clock_Name, Eq(init_pre_state$8, 3)), riseTS)
+   
+  QS_Properties_Primary_Side$1 : bool
+    = false
+   
+  QS_Properties_Primary_Side : bool
+    = QS_Properties_Primary_Side$1
+   
+  pre_state$7 : int
+    = pre state
+   
+  init_pre_state$7 : int
+    = 1 -> pre_state$7
+   
+  T2 : bool
+    = And(And(QS_Properties_Clock_Name, Eq(init_pre_state$7, 1)), Not(QS_Properties_Primary_Side))
+   
+  pre_state$6 : int
+    = pre state
+   
+  init_pre_state$6 : int
+    = 1 -> pre_state$6
+   
+  T1 : bool
+    = And(And(QS_Properties_Clock_Name, Eq(init_pre_state$6, 1)), QS_Properties_Primary_Side)
+   
+  pre_PFSL_PFS : bool
+    = pre PFSL_PFS
+   
+  init_pre_PFSL_PFS : bool
+    = QS_Properties_Primary_Side -> pre_PFSL_PFS
+   
+  PFSL_PFS : bool
+    = ITE(T5, true, ITE(T6, false, ITE(T2, false, ITE(T1, true, init_pre_PFSL_PFS))))
+   
+  RS_PFS : bool
+    = PFSL_PFS
+   
+  RPFS : bool
+    = RS_PFS
+   
+  CLK3 : bool
+    = CLK2$2
+   
+  p$12 : bool
+    = CLK3
+   
+  CLK4 : bool
+    = CLK4$2
+   
+  q$5 : bool
+    = CLK4
+   
+  pre_r$41 : int
+    = pre r
+   
+  init_pre_r$41 : int
+    = 0 -> pre_r$41
+   
+  pre_r$40 : int
+    = pre r
+   
+  init_pre_r$40 : int
+    = 0 -> pre_r$40
+   
+  qs_dfa$5 : bool
+    = Not(Or(And(Eq(init_pre_r$41, 2), p$12), And(Eq(init_pre_r$40, Neg(2)), q$5)))
+   
+  CLK2 : bool
+    = CLK3$2
+   
+  p$11 : bool
+    = CLK2
+   
+  q$4 : bool
+    = CLK4
+   
+  pre_r$39 : int
+    = pre r$1
+   
+  init_pre_r$39 : int
+    = 0 -> pre_r$39
+   
+  pre_r$38 : int
+    = pre r$1
+   
+  init_pre_r$38 : int
+    = 0 -> pre_r$38
+   
+  qs_dfa$4 : bool
+    = Not(Or(And(Eq(init_pre_r$39, 2), p$11), And(Eq(init_pre_r$38, Neg(2)), q$4)))
+   
+  p$10 : bool
+    = CLK2
+   
+  q$3 : bool
+    = CLK3
+   
+  pre_r$37 : int
+    = pre r$2
+   
+  init_pre_r$37 : int
+    = 0 -> pre_r$37
+   
+  pre_r$36 : int
+    = pre r$2
+   
+  init_pre_r$36 : int
+    = 0 -> pre_r$36
+   
+  qs_dfa$3 : bool
+    = Not(Or(And(Eq(init_pre_r$37, 2), p$10), And(Eq(init_pre_r$36, Neg(2)), q$3)))
+   
+  CLK1 : bool
+    = CLK1$2
+   
+  p$9 : bool
+    = CLK1
+   
+  q$2 : bool
+    = CLK4
+   
+  pre_r$35 : int
+    = pre r$3
+   
+  init_pre_r$35 : int
+    = 0 -> pre_r$35
+   
+  pre_r$34 : int
+    = pre r$3
+   
+  init_pre_r$34 : int
+    = 0 -> pre_r$34
+   
+  qs_dfa$2 : bool
+    = Not(Or(And(Eq(init_pre_r$35, 2), p$9), And(Eq(init_pre_r$34, Neg(2)), q$2)))
+   
+  p$8 : bool
+    = CLK1
+   
+  q$1 : bool
+    = CLK3
+   
+  pre_r$33 : int
+    = pre r$4
+   
+  init_pre_r$33 : int
+    = 0 -> pre_r$33
+   
+  pre_r$32 : int
+    = pre r$4
+   
+  init_pre_r$32 : int
+    = 0 -> pre_r$32
+   
+  qs_dfa$1 : bool
+    = Not(Or(And(Eq(init_pre_r$33, 2), p$8), And(Eq(init_pre_r$32, Neg(2)), q$1)))
+   
+  p$7 : bool
+    = CLK1
+   
+  q : bool
+    = CLK2
+   
+  pre_r$31 : int
+    = pre r$5
+   
+  init_pre_r$31 : int
+    = 0 -> pre_r$31
+   
+  pre_r$30 : int
+    = pre r$5
+   
+  init_pre_r$30 : int
+    = 0 -> pre_r$30
+   
+  qs_dfa : bool
+    = Not(Or(And(Eq(init_pre_r$31, 2), p$7), And(Eq(init_pre_r$30, Neg(2)), q)))
+   
+  clocks_are_quasi_synchronous : bool
+    = And(And(And(And(And(qs_dfa, qs_dfa$1), qs_dfa$2), qs_dfa$3), qs_dfa$4), qs_dfa$5)
+   
+  p$6 : bool
+    = pre TS$3
+   
+  pre_p$6 : bool
+    = pre p$6
+   
+  PRESSED$4 : bool
+    = false -> And(Not(pre_p$6), p$6)
+   
+  stable_state : bool
+    = Not(PRESSED$4)
+   
+  c$3 : bool
+    = CLK1$2
+   
+  pre_ticked$3 : bool
+    = pre ticked$3
+   
+  init_pre_ticked$3 : bool
+    = false -> pre_ticked$3
+   
+  ticked$3 : bool
+    = Or(init_pre_ticked$3, c$3)
+   
+  c$2 : bool
+    = CLK2$2
+   
+  pre_ticked$2 : bool
+    = pre ticked$2
+   
+  init_pre_ticked$2 : bool
+    = false -> pre_ticked$2
+   
+  ticked$2 : bool
+    = Or(init_pre_ticked$2, c$2)
+   
+  c$1 : bool
+    = CLK3$2
+   
+  pre_ticked$1 : bool
+    = pre ticked$1
+   
+  init_pre_ticked$1 : bool
+    = false -> pre_ticked$1
+   
+  ticked$1 : bool
+    = Or(init_pre_ticked$1, c$1)
+   
+  c : bool
+    = CLK4$2
+   
+  pre_ticked : bool
+    = pre ticked
+   
+  init_pre_ticked : bool
+    = false -> pre_ticked
+   
+  ticked : bool
+    = Or(init_pre_ticked, c)
+   
+  all_clocks_ticked_once : bool
+    = And(And(And(ticked$3, ticked$2), ticked$1), ticked)
+   
+  at_least_one_pilot_flying_side : bool
+    = Implies(And(clocks_are_quasi_synchronous, all_clocks_ticked_once), Or(LPFS, RPFS))
+   
+  p$5 : bool
+    = TS$3
+   
+  pre_p$5 : bool
+    = pre p$5
+   
+  PRESSED$3 : bool
+    = false -> And(Not(pre_p$5), p$5)
+   
+  agree_on_pilot_flying_side : bool
+    = And(Or(clocks_are_quasi_synchronous, Not(clocks_are_quasi_synchronous)), Implies(Not(PRESSED$3), Eq(LPFS, Not(RPFS))))
+   
+  p$4 : bool
+    = TS$3
+   
+  pre_p$4 : bool
+    = pre p$4
+   
+  PRESSED$2 : bool
+    = false -> And(Not(pre_p$4), p$4)
+   
+  p$3 : bool
+    = TS$3
+   
+  pre_p$3 : bool
+    = pre p$3
+   
+  PRESSED$1 : bool
+    = false -> And(Not(pre_p$3), p$3)
+   
+  transfer_switch_changes_sides : bool
+    = And(And(Or(clocks_are_quasi_synchronous, Not(clocks_are_quasi_synchronous)), Implies(And(Not(LPFS), PRESSED$2), LPFS)), Implies(And(Not(RPFS), PRESSED$1), RPFS))
+   
+  left_side_initial_pilot_flying_side : bool
+    = And(Or(clocks_are_quasi_synchronous, Not(clocks_are_quasi_synchronous)), LPFS) -> true
+   
+  p$2 : bool
+    = TS$3
+   
+  pre_p$2 : bool
+    = pre p$2
+   
+  PRESSED : bool
+    = false -> And(Not(pre_p$2), p$2)
+   
+  p$1 : bool
+    = RPFS
+   
+  pre_p$1 : bool
+    = pre p$1
+   
+  CHANGED$1 : bool
+    = false -> Not(Eq(p$1, pre_p$1))
+   
+  p : bool
+    = LPFS
+   
+  pre_p : bool
+    = pre p
+   
+  CHANGED : bool
+    = false -> Not(Eq(p, pre_p))
+   
+  pilot_flying_side_unchanged_unless_transfer_switch_pressed : bool
+    = Implies(And(Or(clocks_are_quasi_synchronous, Not(clocks_are_quasi_synchronous)), stable_state), Implies(Not(PRESSED), Not(Or(CHANGED$1, CHANGED))))
+   
+  pre_r$29 : int
+    = pre r$5
+   
+  init_pre_r$29 : int
+    = 0 -> pre_r$29
+   
+  pre_r$28 : int
+    = pre r$5
+   
+  init_pre_r$28 : int
+    = 0 -> pre_r$28
+   
+  pre_r$27 : int
+    = pre r$5
+   
+  init_pre_r$27 : int
+    = 0 -> pre_r$27
+   
+  pre_r$26 : int
+    = pre r$5
+   
+  init_pre_r$26 : int
+    = 0 -> pre_r$26
+   
+  pre_r$25 : int
+    = pre r$5
+   
+  init_pre_r$25 : int
+    = 0 -> pre_r$25
+   
+  r$5 : int
+    = ITE(And(p$7, q), 0, ITE(p$7, ITE(Lt(init_pre_r$29, 0), 1, Add(init_pre_r$28, 1)), ITE(q, ITE(Gt(init_pre_r$27, 0), Neg(1), Sub(init_pre_r$26, 1)), init_pre_r$25)))
+   
+  r_is_bounded$5 : bool
+    = And(Leq(r$5, 2), Geq(r$5, Neg(2)))
+   
+  pre_r$24 : int
+    = pre r$4
+   
+  init_pre_r$24 : int
+    = 0 -> pre_r$24
+   
+  pre_r$23 : int
+    = pre r$4
+   
+  init_pre_r$23 : int
+    = 0 -> pre_r$23
+   
+  pre_r$22 : int
+    = pre r$4
+   
+  init_pre_r$22 : int
+    = 0 -> pre_r$22
+   
+  pre_r$21 : int
+    = pre r$4
+   
+  init_pre_r$21 : int
+    = 0 -> pre_r$21
+   
+  pre_r$20 : int
+    = pre r$4
+   
+  init_pre_r$20 : int
+    = 0 -> pre_r$20
+   
+  r$4 : int
+    = ITE(And(p$8, q$1), 0, ITE(p$8, ITE(Lt(init_pre_r$24, 0), 1, Add(init_pre_r$23, 1)), ITE(q$1, ITE(Gt(init_pre_r$22, 0), Neg(1), Sub(init_pre_r$21, 1)), init_pre_r$20)))
+   
+  r_is_bounded$4 : bool
+    = And(Leq(r$4, 2), Geq(r$4, Neg(2)))
+   
+  pre_r$19 : int
+    = pre r$3
+   
+  init_pre_r$19 : int
+    = 0 -> pre_r$19
+   
+  pre_r$18 : int
+    = pre r$3
+   
+  init_pre_r$18 : int
+    = 0 -> pre_r$18
+   
+  pre_r$17 : int
+    = pre r$3
+   
+  init_pre_r$17 : int
+    = 0 -> pre_r$17
+   
+  pre_r$16 : int
+    = pre r$3
+   
+  init_pre_r$16 : int
+    = 0 -> pre_r$16
+   
+  pre_r$15 : int
+    = pre r$3
+   
+  init_pre_r$15 : int
+    = 0 -> pre_r$15
+   
+  r$3 : int
+    = ITE(And(p$9, q$2), 0, ITE(p$9, ITE(Lt(init_pre_r$19, 0), 1, Add(init_pre_r$18, 1)), ITE(q$2, ITE(Gt(init_pre_r$17, 0), Neg(1), Sub(init_pre_r$16, 1)), init_pre_r$15)))
+   
+  r_is_bounded$3 : bool
+    = And(Leq(r$3, 2), Geq(r$3, Neg(2)))
+   
+  pre_r$14 : int
+    = pre r$2
+   
+  init_pre_r$14 : int
+    = 0 -> pre_r$14
+   
+  pre_r$13 : int
+    = pre r$2
+   
+  init_pre_r$13 : int
+    = 0 -> pre_r$13
+   
+  pre_r$12 : int
+    = pre r$2
+   
+  init_pre_r$12 : int
+    = 0 -> pre_r$12
+   
+  pre_r$11 : int
+    = pre r$2
+   
+  init_pre_r$11 : int
+    = 0 -> pre_r$11
+   
+  pre_r$10 : int
+    = pre r$2
+   
+  init_pre_r$10 : int
+    = 0 -> pre_r$10
+   
+  r$2 : int
+    = ITE(And(p$10, q$3), 0, ITE(p$10, ITE(Lt(init_pre_r$14, 0), 1, Add(init_pre_r$13, 1)), ITE(q$3, ITE(Gt(init_pre_r$12, 0), Neg(1), Sub(init_pre_r$11, 1)), init_pre_r$10)))
+   
+  r_is_bounded$2 : bool
+    = And(Leq(r$2, 2), Geq(r$2, Neg(2)))
+   
+  pre_r$9 : int
+    = pre r$1
+   
+  init_pre_r$9 : int
+    = 0 -> pre_r$9
+   
+  pre_r$8 : int
+    = pre r$1
+   
+  init_pre_r$8 : int
+    = 0 -> pre_r$8
+   
+  pre_r$7 : int
+    = pre r$1
+   
+  init_pre_r$7 : int
+    = 0 -> pre_r$7
+   
+  pre_r$6 : int
+    = pre r$1
+   
+  init_pre_r$6 : int
+    = 0 -> pre_r$6
+   
+  pre_r$5 : int
+    = pre r$1
+   
+  init_pre_r$5 : int
+    = 0 -> pre_r$5
+   
+  r$1 : int
+    = ITE(And(p$11, q$4), 0, ITE(p$11, ITE(Lt(init_pre_r$9, 0), 1, Add(init_pre_r$8, 1)), ITE(q$4, ITE(Gt(init_pre_r$7, 0), Neg(1), Sub(init_pre_r$6, 1)), init_pre_r$5)))
+   
+  r_is_bounded$1 : bool
+    = And(Leq(r$1, 2), Geq(r$1, Neg(2)))
+   
+  pre_r$4 : int
+    = pre r
+   
+  init_pre_r$4 : int
+    = 0 -> pre_r$4
+   
+  pre_r$3 : int
+    = pre r
+   
+  init_pre_r$3 : int
+    = 0 -> pre_r$3
+   
+  pre_r$2 : int
+    = pre r
+   
+  init_pre_r$2 : int
+    = 0 -> pre_r$2
+   
+  pre_r$1 : int
+    = pre r
+   
+  init_pre_r$1 : int
+    = 0 -> pre_r$1
+   
+  pre_r : int
+    = pre r
+   
+  init_pre_r : int
+    = 0 -> pre_r
+   
+  r : int
+    = ITE(And(p$12, q$5), 0, ITE(p$12, ITE(Lt(init_pre_r$4, 0), 1, Add(init_pre_r$3, 1)), ITE(q$5, ITE(Gt(init_pre_r$2, 0), Neg(1), Sub(init_pre_r$1, 1)), init_pre_r)))
+   
+  r_is_bounded : bool
+    = And(Leq(r, 2), Geq(r, Neg(2)))
+   
+  St_Start$1 : int
+    = 1
+   
+  St_Wait$1 : int
+    = 5
+   
+  St_Stop$1 : int
+    = 6
+   
+  St_Pilot_Flying$1 : int
+    = 4
+   
+  pre_state$5 : int
+    = pre state$1
+   
+  init_pre_state$5 : int
+    = 1 -> pre_state$5
+   
+  T4$1 : bool
+    = And(QS_Properties_Clock_Name$3, Eq(init_pre_state$5, 2))
+   
+  pre_state$4 : int
+    = pre state$1
+   
+  init_pre_state$4 : int
+    = 1 -> pre_state$4
+   
+  T3$1 : bool
+    = And(QS_Properties_Clock_Name$3, Eq(init_pre_state$4, 5))
+   
+  St_Not_Pilot_Flying$1 : int
+    = 3
+   
+  St_Inhibit$1 : int
+    = 2
+   
+  pre_state$3 : int
+    = pre state$1
+   
+  init_pre_state$3 : int
+    = 1 -> pre_state$3
+   
+  state$1 : int
+    = ITE(Or(T6$1, T2$1), 2, ITE(T4$1, 3, ITE(T3$1, 4, ITE(Or(T5$1, T1$1), 5, init_pre_state$3))))
+   
+  clk$3 : bool
+    = QS_Properties_Clock_Name$4
+   
+  pre_pre_I$3 : bool
+    = pre pre_I$3
+   
+  init_pre_pre_I$3 : bool
+    = false -> pre_pre_I$3
+   
+  pre_I$3 : bool
+    = And(Implies(clk$3, I$4), Implies(Not(clk$3), init_pre_pre_I$3))
+   
+  clk$2 : bool
+    = QS_Properties_Clock_Name$4
+   
+  pre_pre_I$2 : bool
+    = pre pre_I$2
+   
+  init_pre_pre_I$2 : bool
+    = false -> pre_pre_I$2
+   
+  pre_I$2 : bool
+    = And(Implies(clk$2, I$5), Implies(Not(clk$2), init_pre_pre_I$2))
+   
+  St_Start : int
+    = 1
+   
+  St_Wait : int
+    = 5
+   
+  St_Stop : int
+    = 6
+   
+  St_Pilot_Flying : int
+    = 4
+   
+  pre_state$2 : int
+    = pre state
+   
+  init_pre_state$2 : int
+    = 1 -> pre_state$2
+   
+  T4 : bool
+    = And(QS_Properties_Clock_Name, Eq(init_pre_state$2, 2))
+   
+  pre_state$1 : int
+    = pre state
+   
+  init_pre_state$1 : int
+    = 1 -> pre_state$1
+   
+  T3 : bool
+    = And(QS_Properties_Clock_Name, Eq(init_pre_state$1, 5))
+   
+  St_Not_Pilot_Flying : int
+    = 3
+   
+  St_Inhibit : int
+    = 2
+   
+  pre_state : int
+    = pre state
+   
+  init_pre_state : int
+    = 1 -> pre_state
+   
+  state : int
+    = ITE(Or(T6, T2), 2, ITE(T4, 3, ITE(T3, 4, ITE(Or(T5, T1), 5, init_pre_state))))
+   
+  clk$1 : bool
+    = QS_Properties_Clock_Name$1
+   
+  pre_pre_I$1 : bool
+    = pre pre_I$1
+   
+  init_pre_pre_I$1 : bool
+    = false -> pre_pre_I$1
+   
+  pre_I$1 : bool
+    = And(Implies(clk$1, I$2), Implies(Not(clk$1), init_pre_pre_I$1))
+   
+  clk : bool
+    = QS_Properties_Clock_Name$1
+   
+  pre_pre_I : bool
+    = pre pre_I
+   
+  init_pre_pre_I : bool
+    = false -> pre_pre_I
+   
+  pre_I : bool
+    = And(Implies(clk, I$3), Implies(Not(clk), init_pre_pre_I))
+   
+  I$1 : bool
+    = LS_PFS
+   
+  I : bool
+    = RS_PFS
+   
+  Or : bool
+    = Or(Or(Or(CLK1$2, CLK3$2), CLK2$2), CLK4$2)
 tel
 Sally Model
 ===========
@@ -312,6 +909,7 @@ Sally Model
 (define-state-type
    S
    (
+     (CHANGED Bool)
      (CLK1 Bool)
      (CLK2 Bool)
      (CLK3 Bool)
@@ -320,6 +918,7 @@ Sally Model
      (LPFS Bool)
      (OSPF Bool)
      (Or Bool)
+     (PRESSED Bool)
      (RPFS Bool)
      (T1 Bool)
      (T2 Bool)
@@ -336,6 +935,10 @@ Sally Model
      (riseOSPF Bool)
      (riseTS Bool)
      (state Int)
+     (ticked Bool)
+     (|CHANGED:1:init| Bool)
+     (|CHANGED:1| Bool)
+     (|CHANGED:init| Bool)
      (|CLK1:1| Bool)
      (|CLK1:2| Bool)
      (|CLK2:1| Bool)
@@ -354,6 +957,15 @@ Sally Model
      (|OSPF:1| Bool)
      (|PFSL_PFS:1| Bool)
      (|PFSL_PFS| Bool)
+     (|PRESSED:1:init| Bool)
+     (|PRESSED:1| Bool)
+     (|PRESSED:2:init| Bool)
+     (|PRESSED:2| Bool)
+     (|PRESSED:3:init| Bool)
+     (|PRESSED:3| Bool)
+     (|PRESSED:4:init| Bool)
+     (|PRESSED:4| Bool)
+     (|PRESSED:init| Bool)
      (|QS_Properties_Clock_Name:1| Bool)
      (|QS_Properties_Clock_Name:2| Bool)
      (|QS_Properties_Clock_Name:3| Bool)
@@ -389,30 +1001,6 @@ Sally Model
      (|TS:1| Bool)
      (|TS:2| Bool)
      (|TS:3| Bool)
-     (|__no_static:10:init| Bool)
-     (|__no_static:10| Bool)
-     (|__no_static:11| Bool)
-     (|__no_static:12| Bool)
-     (|__no_static:13| Bool)
-     (|__no_static:14| Bool)
-     (|__no_static:15| Bool)
-     (|__no_static:16| Bool)
-     (|__no_static:1:init| Bool)
-     (|__no_static:1| Bool)
-     (|__no_static:2:init| Bool)
-     (|__no_static:2| Bool)
-     (|__no_static:3:init| Bool)
-     (|__no_static:3| Bool)
-     (|__no_static:4:init| Bool)
-     (|__no_static:4| Bool)
-     (|__no_static:5:init| Bool)
-     (|__no_static:5| Bool)
-     (|__no_static:6| Bool)
-     (|__no_static:7| Bool)
-     (|__no_static:8| Bool)
-     (|__no_static:9| Bool)
-     (|__no_static:init| Bool)
-     (|__no_static| Bool)
      (|agree_on_pilot_flying_side| Bool)
      (|all_clocks_ticked_once| Bool)
      (|at_least_one_pilot_flying_side| Bool)
@@ -424,6 +1012,150 @@ Sally Model
      (|clk:3| Bool)
      (|clocks_are_quasi_synchronous| Bool)
      (|gal-initializing| Bool)
+     (|init_pre_I:1:init| Bool)
+     (|init_pre_I:1| Bool)
+     (|init_pre_I:init| Bool)
+     (|init_pre_I| Bool)
+     (|init_pre_LR_O:init| Bool)
+     (|init_pre_LR_O| Bool)
+     (|init_pre_PFSL_PFS:1:init| Bool)
+     (|init_pre_PFSL_PFS:1| Bool)
+     (|init_pre_PFSL_PFS:init| Bool)
+     (|init_pre_PFSL_PFS| Bool)
+     (|init_pre_RL_O:init| Bool)
+     (|init_pre_RL_O| Bool)
+     (|init_pre_pre_I:1:init| Bool)
+     (|init_pre_pre_I:1| Bool)
+     (|init_pre_pre_I:2:init| Bool)
+     (|init_pre_pre_I:2| Bool)
+     (|init_pre_pre_I:3:init| Bool)
+     (|init_pre_pre_I:3| Bool)
+     (|init_pre_pre_I:init| Bool)
+     (|init_pre_pre_I| Bool)
+     (|init_pre_prev_I:1:init| Bool)
+     (|init_pre_prev_I:1| Bool)
+     (|init_pre_prev_I:init| Bool)
+     (|init_pre_prev_I| Bool)
+     (|init_pre_r:10:init| Bool)
+     (|init_pre_r:10| Int)
+     (|init_pre_r:11:init| Bool)
+     (|init_pre_r:11| Int)
+     (|init_pre_r:12:init| Bool)
+     (|init_pre_r:12| Int)
+     (|init_pre_r:13:init| Bool)
+     (|init_pre_r:13| Int)
+     (|init_pre_r:14:init| Bool)
+     (|init_pre_r:14| Int)
+     (|init_pre_r:15:init| Bool)
+     (|init_pre_r:15| Int)
+     (|init_pre_r:16:init| Bool)
+     (|init_pre_r:16| Int)
+     (|init_pre_r:17:init| Bool)
+     (|init_pre_r:17| Int)
+     (|init_pre_r:18:init| Bool)
+     (|init_pre_r:18| Int)
+     (|init_pre_r:19:init| Bool)
+     (|init_pre_r:19| Int)
+     (|init_pre_r:1:init| Bool)
+     (|init_pre_r:1| Int)
+     (|init_pre_r:20:init| Bool)
+     (|init_pre_r:20| Int)
+     (|init_pre_r:21:init| Bool)
+     (|init_pre_r:21| Int)
+     (|init_pre_r:22:init| Bool)
+     (|init_pre_r:22| Int)
+     (|init_pre_r:23:init| Bool)
+     (|init_pre_r:23| Int)
+     (|init_pre_r:24:init| Bool)
+     (|init_pre_r:24| Int)
+     (|init_pre_r:25:init| Bool)
+     (|init_pre_r:25| Int)
+     (|init_pre_r:26:init| Bool)
+     (|init_pre_r:26| Int)
+     (|init_pre_r:27:init| Bool)
+     (|init_pre_r:27| Int)
+     (|init_pre_r:28:init| Bool)
+     (|init_pre_r:28| Int)
+     (|init_pre_r:29:init| Bool)
+     (|init_pre_r:29| Int)
+     (|init_pre_r:2:init| Bool)
+     (|init_pre_r:2| Int)
+     (|init_pre_r:30:init| Bool)
+     (|init_pre_r:30| Int)
+     (|init_pre_r:31:init| Bool)
+     (|init_pre_r:31| Int)
+     (|init_pre_r:32:init| Bool)
+     (|init_pre_r:32| Int)
+     (|init_pre_r:33:init| Bool)
+     (|init_pre_r:33| Int)
+     (|init_pre_r:34:init| Bool)
+     (|init_pre_r:34| Int)
+     (|init_pre_r:35:init| Bool)
+     (|init_pre_r:35| Int)
+     (|init_pre_r:36:init| Bool)
+     (|init_pre_r:36| Int)
+     (|init_pre_r:37:init| Bool)
+     (|init_pre_r:37| Int)
+     (|init_pre_r:38:init| Bool)
+     (|init_pre_r:38| Int)
+     (|init_pre_r:39:init| Bool)
+     (|init_pre_r:39| Int)
+     (|init_pre_r:3:init| Bool)
+     (|init_pre_r:3| Int)
+     (|init_pre_r:40:init| Bool)
+     (|init_pre_r:40| Int)
+     (|init_pre_r:41:init| Bool)
+     (|init_pre_r:41| Int)
+     (|init_pre_r:4:init| Bool)
+     (|init_pre_r:4| Int)
+     (|init_pre_r:5:init| Bool)
+     (|init_pre_r:5| Int)
+     (|init_pre_r:6:init| Bool)
+     (|init_pre_r:6| Int)
+     (|init_pre_r:7:init| Bool)
+     (|init_pre_r:7| Int)
+     (|init_pre_r:8:init| Bool)
+     (|init_pre_r:8| Int)
+     (|init_pre_r:9:init| Bool)
+     (|init_pre_r:9| Int)
+     (|init_pre_r:init| Bool)
+     (|init_pre_r| Int)
+     (|init_pre_state:10:init| Bool)
+     (|init_pre_state:10| Int)
+     (|init_pre_state:11:init| Bool)
+     (|init_pre_state:11| Int)
+     (|init_pre_state:12:init| Bool)
+     (|init_pre_state:12| Int)
+     (|init_pre_state:13:init| Bool)
+     (|init_pre_state:13| Int)
+     (|init_pre_state:1:init| Bool)
+     (|init_pre_state:1| Int)
+     (|init_pre_state:2:init| Bool)
+     (|init_pre_state:2| Int)
+     (|init_pre_state:3:init| Bool)
+     (|init_pre_state:3| Int)
+     (|init_pre_state:4:init| Bool)
+     (|init_pre_state:4| Int)
+     (|init_pre_state:5:init| Bool)
+     (|init_pre_state:5| Int)
+     (|init_pre_state:6:init| Bool)
+     (|init_pre_state:6| Int)
+     (|init_pre_state:7:init| Bool)
+     (|init_pre_state:7| Int)
+     (|init_pre_state:8:init| Bool)
+     (|init_pre_state:8| Int)
+     (|init_pre_state:9:init| Bool)
+     (|init_pre_state:9| Int)
+     (|init_pre_state:init| Bool)
+     (|init_pre_state| Int)
+     (|init_pre_ticked:1:init| Bool)
+     (|init_pre_ticked:1| Bool)
+     (|init_pre_ticked:2:init| Bool)
+     (|init_pre_ticked:2| Bool)
+     (|init_pre_ticked:3:init| Bool)
+     (|init_pre_ticked:3| Bool)
+     (|init_pre_ticked:init| Bool)
+     (|init_pre_ticked| Bool)
      (|left_side_initial_pilot_flying_side:init| Bool)
      (|left_side_initial_pilot_flying_side| Bool)
      (|p:10| Bool)
@@ -442,7 +1174,90 @@ Sally Model
      (|pre_I:1| Bool)
      (|pre_I:2| Bool)
      (|pre_I:3| Bool)
+     (|pre_I:4| Bool)
+     (|pre_I:5| Bool)
      (|pre_I| Bool)
+     (|pre_LR_O| Bool)
+     (|pre_PFSL_PFS:1| Bool)
+     (|pre_PFSL_PFS| Bool)
+     (|pre_RL_O| Bool)
+     (|pre_p:1| Bool)
+     (|pre_p:2| Bool)
+     (|pre_p:3| Bool)
+     (|pre_p:4| Bool)
+     (|pre_p:5| Bool)
+     (|pre_p:6| Bool)
+     (|pre_pre_I:1| Bool)
+     (|pre_pre_I:2| Bool)
+     (|pre_pre_I:3| Bool)
+     (|pre_pre_I:4| Bool)
+     (|pre_pre_I:5| Bool)
+     (|pre_pre_I:6| Bool)
+     (|pre_pre_I:7| Bool)
+     (|pre_pre_I| Bool)
+     (|pre_prev_I:1| Bool)
+     (|pre_prev_I| Bool)
+     (|pre_p| Bool)
+     (|pre_r:10| Int)
+     (|pre_r:11| Int)
+     (|pre_r:12| Int)
+     (|pre_r:13| Int)
+     (|pre_r:14| Int)
+     (|pre_r:15| Int)
+     (|pre_r:16| Int)
+     (|pre_r:17| Int)
+     (|pre_r:18| Int)
+     (|pre_r:19| Int)
+     (|pre_r:1| Int)
+     (|pre_r:20| Int)
+     (|pre_r:21| Int)
+     (|pre_r:22| Int)
+     (|pre_r:23| Int)
+     (|pre_r:24| Int)
+     (|pre_r:25| Int)
+     (|pre_r:26| Int)
+     (|pre_r:27| Int)
+     (|pre_r:28| Int)
+     (|pre_r:29| Int)
+     (|pre_r:2| Int)
+     (|pre_r:30| Int)
+     (|pre_r:31| Int)
+     (|pre_r:32| Int)
+     (|pre_r:33| Int)
+     (|pre_r:34| Int)
+     (|pre_r:35| Int)
+     (|pre_r:36| Int)
+     (|pre_r:37| Int)
+     (|pre_r:38| Int)
+     (|pre_r:39| Int)
+     (|pre_r:3| Int)
+     (|pre_r:40| Int)
+     (|pre_r:41| Int)
+     (|pre_r:4| Int)
+     (|pre_r:5| Int)
+     (|pre_r:6| Int)
+     (|pre_r:7| Int)
+     (|pre_r:8| Int)
+     (|pre_r:9| Int)
+     (|pre_r| Int)
+     (|pre_state:10| Int)
+     (|pre_state:11| Int)
+     (|pre_state:12| Int)
+     (|pre_state:13| Int)
+     (|pre_state:1| Int)
+     (|pre_state:2| Int)
+     (|pre_state:3| Int)
+     (|pre_state:4| Int)
+     (|pre_state:5| Int)
+     (|pre_state:6| Int)
+     (|pre_state:7| Int)
+     (|pre_state:8| Int)
+     (|pre_state:9| Int)
+     (|pre_state| Int)
+     (|pre_ticked:1| Bool)
+     (|pre_ticked:2| Bool)
+     (|pre_ticked:3| Bool)
+     (|pre_ticked| Bool)
      (|prev_I:1| Bool)
      (|prev_I| Bool)
      (|q:1| Bool)
@@ -450,6 +1265,12 @@ Sally Model
      (|q:3| Bool)
      (|q:4| Bool)
      (|q:5| Bool)
+     (|qs_dfa:1| Bool)
+     (|qs_dfa:2| Bool)
+     (|qs_dfa:3| Bool)
+     (|qs_dfa:4| Bool)
+     (|qs_dfa:5| Bool)
+     (|qs_dfa| Bool)
      (|r:1| Int)
      (|r:2| Int)
      (|r:3| Int)
@@ -473,234 +1294,10 @@ Sally Model
      (|riseTS_O| Bool)
      (|stable_state| Bool)
      (|state:1| Int)
-     (|transfer_switch_changes_sides| Bool)
-     (|valof_arr:10:init| Bool)
-     (|valof_arr:10| Int)
-     (|valof_arr:11:init| Bool)
-     (|valof_arr:11| Int)
-     (|valof_arr:12:init| Bool)
-     (|valof_arr:12| Int)
-     (|valof_arr:13:init| Bool)
-     (|valof_arr:13| Int)
-     (|valof_arr:14:init| Bool)
-     (|valof_arr:14| Int)
-     (|valof_arr:15:init| Bool)
-     (|valof_arr:15| Int)
-     (|valof_arr:16:init| Bool)
-     (|valof_arr:16| Int)
-     (|valof_arr:17:init| Bool)
-     (|valof_arr:17| Int)
-     (|valof_arr:18:init| Bool)
-     (|valof_arr:18| Int)
-     (|valof_arr:19:init| Bool)
-     (|valof_arr:19| Int)
-     (|valof_arr:1:init| Bool)
-     (|valof_arr:1| Bool)
-     (|valof_arr:20:init| Bool)
-     (|valof_arr:20| Int)
-     (|valof_arr:21:init| Bool)
-     (|valof_arr:21| Int)
-     (|valof_arr:22:init| Bool)
-     (|valof_arr:22| Int)
-     (|valof_arr:23:init| Bool)
-     (|valof_arr:23| Int)
-     (|valof_arr:24:init| Bool)
-     (|valof_arr:24| Int)
-     (|valof_arr:25:init| Bool)
-     (|valof_arr:25| Int)
-     (|valof_arr:26:init| Bool)
-     (|valof_arr:26| Int)
-     (|valof_arr:27:init| Bool)
-     (|valof_arr:27| Int)
-     (|valof_arr:28:init| Bool)
-     (|valof_arr:28| Int)
-     (|valof_arr:29:init| Bool)
-     (|valof_arr:29| Int)
-     (|valof_arr:2:init| Bool)
-     (|valof_arr:2| Int)
-     (|valof_arr:30:init| Bool)
-     (|valof_arr:30| Int)
-     (|valof_arr:31:init| Bool)
-     (|valof_arr:31| Int)
-     (|valof_arr:32:init| Bool)
-     (|valof_arr:32| Int)
-     (|valof_arr:33:init| Bool)
-     (|valof_arr:33| Int)
-     (|valof_arr:34:init| Bool)
-     (|valof_arr:34| Int)
-     (|valof_arr:35:init| Bool)
-     (|valof_arr:35| Int)
-     (|valof_arr:36:init| Bool)
-     (|valof_arr:36| Int)
-     (|valof_arr:37:init| Bool)
-     (|valof_arr:37| Int)
-     (|valof_arr:38:init| Bool)
-     (|valof_arr:38| Int)
-     (|valof_arr:39:init| Bool)
-     (|valof_arr:39| Int)
-     (|valof_arr:3:init| Bool)
-     (|valof_arr:3| Int)
-     (|valof_arr:40:init| Bool)
-     (|valof_arr:40| Bool)
-     (|valof_arr:41:init| Bool)
-     (|valof_arr:41| Bool)
-     (|valof_arr:42:init| Bool)
-     (|valof_arr:42| Bool)
-     (|valof_arr:43:init| Bool)
-     (|valof_arr:43| Bool)
-     (|valof_arr:44:init| Bool)
-     (|valof_arr:44| Int)
-     (|valof_arr:45:init| Bool)
-     (|valof_arr:45| Int)
-     (|valof_arr:46:init| Bool)
-     (|valof_arr:46| Int)
-     (|valof_arr:47:init| Bool)
-     (|valof_arr:47| Int)
-     (|valof_arr:48:init| Bool)
-     (|valof_arr:48| Int)
-     (|valof_arr:49:init| Bool)
-     (|valof_arr:49| Int)
-     (|valof_arr:4:init| Bool)
-     (|valof_arr:4| Int)
-     (|valof_arr:50:init| Bool)
-     (|valof_arr:50| Int)
-     (|valof_arr:51:init| Bool)
-     (|valof_arr:51| Int)
-     (|valof_arr:52:init| Bool)
-     (|valof_arr:52| Int)
-     (|valof_arr:53:init| Bool)
-     (|valof_arr:53| Int)
-     (|valof_arr:54:init| Bool)
-     (|valof_arr:54| Int)
-     (|valof_arr:55:init| Bool)
-     (|valof_arr:55| Int)
-     (|valof_arr:56:init| Bool)
-     (|valof_arr:56| Bool)
-     (|valof_arr:57:init| Bool)
-     (|valof_arr:57| Int)
-     (|valof_arr:58:init| Bool)
-     (|valof_arr:58| Int)
-     (|valof_arr:59:init| Bool)
-     (|valof_arr:59| Int)
-     (|valof_arr:5:init| Bool)
-     (|valof_arr:5| Bool)
-     (|valof_arr:60:init| Bool)
-     (|valof_arr:60| Int)
-     (|valof_arr:61:init| Bool)
-     (|valof_arr:61| Bool)
-     (|valof_arr:62:init| Bool)
-     (|valof_arr:62| Bool)
-     (|valof_arr:63:init| Bool)
-     (|valof_arr:63| Bool)
-     (|valof_arr:64:init| Bool)
-     (|valof_arr:64| Bool)
-     (|valof_arr:65:init| Bool)
-     (|valof_arr:65| Int)
-     (|valof_arr:66:init| Bool)
-     (|valof_arr:66| Int)
-     (|valof_arr:67:init| Bool)
-     (|valof_arr:67| Int)
-     (|valof_arr:68:init| Bool)
-     (|valof_arr:68| Int)
-     (|valof_arr:69:init| Bool)
-     (|valof_arr:69| Bool)
-     (|valof_arr:6:init| Bool)
-     (|valof_arr:6| Bool)
-     (|valof_arr:70:init| Bool)
-     (|valof_arr:70| Bool)
-     (|valof_arr:71:init| Bool)
-     (|valof_arr:71| Bool)
-     (|valof_arr:7:init| Bool)
-     (|valof_arr:7| Int)
-     (|valof_arr:8:init| Bool)
-     (|valof_arr:8| Int)
-     (|valof_arr:9:init| Bool)
-     (|valof_arr:9| Int)
-     (|valof_arr:init| Bool)
-     (|valof_arr| Bool)
-     (|valof_pre_I:1| Bool)
-     (|valof_pre_I| Bool)
-     (|valof_pre_LR_O| Bool)
-     (|valof_pre_PFSL_PFS:1| Bool)
-     (|valof_pre_PFSL_PFS| Bool)
-     (|valof_pre_RL_O| Bool)
-     (|valof_pre___no_static:1| Bool)
-     (|valof_pre___no_static:2| Bool)
-     (|valof_pre___no_static:3| Bool)
-     (|valof_pre___no_static| Bool)
-     (|valof_pre_p:1| Bool)
-     (|valof_pre_p:2| Bool)
-     (|valof_pre_p:3| Bool)
-     (|valof_pre_p:4| Bool)
-     (|valof_pre_p:5| Bool)
-     (|valof_pre_p:6| Bool)
-     (|valof_pre_pre_I:1| Bool)
-     (|valof_pre_pre_I:2| Bool)
-     (|valof_pre_pre_I:3| Bool)
-     (|valof_pre_pre_I:4| Bool)
-     (|valof_pre_pre_I:5| Bool)
-     (|valof_pre_pre_I:6| Bool)
-     (|valof_pre_pre_I:7| Bool)
-     (|valof_pre_pre_I| Bool)
-     (|valof_pre_prev_I:1| Bool)
-     (|valof_pre_prev_I| Bool)
-     (|valof_pre_p| Bool)
-     (|valof_pre_r:10| Int)
-     (|valof_pre_r:11| Int)
-     (|valof_pre_r:12| Int)
-     (|valof_pre_r:13| Int)
-     (|valof_pre_r:14| Int)
-     (|valof_pre_r:15| Int)
-     (|valof_pre_r:16| Int)
-     (|valof_pre_r:17| Int)
-     (|valof_pre_r:18| Int)
-     (|valof_pre_r:19| Int)
-     (|valof_pre_r:1| Int)
-     (|valof_pre_r:20| Int)
-     (|valof_pre_r:21| Int)
-     (|valof_pre_r:22| Int)
-     (|valof_pre_r:23| Int)
-     (|valof_pre_r:24| Int)
-     (|valof_pre_r:25| Int)
-     (|valof_pre_r:26| Int)
-     (|valof_pre_r:27| Int)
-     (|valof_pre_r:28| Int)
-     (|valof_pre_r:29| Int)
-     (|valof_pre_r:2| Int)
-     (|valof_pre_r:30| Int)
-     (|valof_pre_r:31| Int)
-     (|valof_pre_r:32| Int)
-     (|valof_pre_r:33| Int)
-     (|valof_pre_r:34| Int)
-     (|valof_pre_r:35| Int)
-     (|valof_pre_r:36| Int)
-     (|valof_pre_r:37| Int)
-     (|valof_pre_r:38| Int)
-     (|valof_pre_r:39| Int)
-     (|valof_pre_r:3| Int)
-     (|valof_pre_r:40| Int)
-     (|valof_pre_r:41| Int)
-     (|valof_pre_r:4| Int)
-     (|valof_pre_r:5| Int)
-     (|valof_pre_r:6| Int)
-     (|valof_pre_r:7| Int)
-     (|valof_pre_r:8| Int)
-     (|valof_pre_r:9| Int)
-     (|valof_pre_r| Int)
-     (|valof_pre_state:10| Int)
-     (|valof_pre_state:11| Int)
-     (|valof_pre_state:12| Int)
-     (|valof_pre_state:13| Int)
-     (|valof_pre_state:1| Int)
-     (|valof_pre_state:2| Int)
-     (|valof_pre_state:3| Int)
-     (|valof_pre_state:4| Int)
-     (|valof_pre_state:5| Int)
-     (|valof_pre_state:6| Int)
-     (|valof_pre_state:7| Int)
-     (|valof_pre_state:8| Int)
-     (|valof_pre_state:9| Int)
-     (|valof_pre_state| Int))
+     (|ticked:1| Bool)
+     (|ticked:2| Bool)
+     (|ticked:3| Bool)
+     (|transfer_switch_changes_sides| Bool))
    (
      (|CLK1:2| Bool)
      (|CLK2:2| Bool)
@@ -712,90 +1309,90 @@ Sally Model
    S
    (and
       (= |gal-initializing| true)
-      (= |valof_arr:71:init| true)
-      (= |valof_arr:70:init| true)
-      (= |valof_arr:69:init| true)
+      (= |init_pre_I:1:init| true)
+      (= |init_pre_prev_I:1:init| true)
+      (= |init_pre_RL_O:init| true)
       (= |riseOSPF_O:1:init| true)
-      (= |valof_arr:68:init| true)
+      (= |init_pre_state:13:init| true)
       (= |riseTS_O:1:init| true)
-      (= |valof_arr:67:init| true)
-      (= |valof_arr:66:init| true)
-      (= |valof_arr:65:init| true)
-      (= |valof_arr:64:init| true)
-      (= |valof_arr:63:init| true)
-      (= |valof_arr:62:init| true)
-      (= |valof_arr:61:init| true)
+      (= |init_pre_state:12:init| true)
+      (= |init_pre_state:11:init| true)
+      (= |init_pre_state:10:init| true)
+      (= |init_pre_PFSL_PFS:1:init| true)
+      (= |init_pre_I:init| true)
+      (= |init_pre_prev_I:init| true)
+      (= |init_pre_LR_O:init| true)
       (= |riseOSPF_O:init| true)
-      (= |valof_arr:60:init| true)
+      (= |init_pre_state:9:init| true)
       (= |riseTS_O:init| true)
-      (= |valof_arr:59:init| true)
-      (= |valof_arr:58:init| true)
-      (= |valof_arr:57:init| true)
-      (= |valof_arr:56:init| true)
-      (= |valof_arr:55:init| true)
-      (= |valof_arr:54:init| true)
-      (= |valof_arr:53:init| true)
-      (= |valof_arr:52:init| true)
-      (= |valof_arr:51:init| true)
-      (= |valof_arr:50:init| true)
-      (= |valof_arr:49:init| true)
-      (= |valof_arr:48:init| true)
-      (= |valof_arr:47:init| true)
-      (= |valof_arr:46:init| true)
-      (= |valof_arr:45:init| true)
-      (= |valof_arr:44:init| true)
-      (= |__no_static:10:init| true)
-      (= |valof_arr:43:init| true)
-      (= |valof_arr:42:init| true)
-      (= |valof_arr:41:init| true)
-      (= |valof_arr:40:init| true)
-      (= |__no_static:5:init| true)
-      (= |__no_static:4:init| true)
-      (= |__no_static:3:init| true)
+      (= |init_pre_state:8:init| true)
+      (= |init_pre_state:7:init| true)
+      (= |init_pre_state:6:init| true)
+      (= |init_pre_PFSL_PFS:init| true)
+      (= |init_pre_r:41:init| true)
+      (= |init_pre_r:40:init| true)
+      (= |init_pre_r:39:init| true)
+      (= |init_pre_r:38:init| true)
+      (= |init_pre_r:37:init| true)
+      (= |init_pre_r:36:init| true)
+      (= |init_pre_r:35:init| true)
+      (= |init_pre_r:34:init| true)
+      (= |init_pre_r:33:init| true)
+      (= |init_pre_r:32:init| true)
+      (= |init_pre_r:31:init| true)
+      (= |init_pre_r:30:init| true)
+      (= |PRESSED:4:init| true)
+      (= |init_pre_ticked:3:init| true)
+      (= |init_pre_ticked:2:init| true)
+      (= |init_pre_ticked:1:init| true)
+      (= |init_pre_ticked:init| true)
+      (= |PRESSED:3:init| true)
+      (= |PRESSED:2:init| true)
+      (= |PRESSED:1:init| true)
       (= |left_side_initial_pilot_flying_side:init| true)
-      (= |__no_static:2:init| true)
-      (= |__no_static:1:init| true)
-      (= |__no_static:init| true)
-      (= |valof_arr:39:init| true)
-      (= |valof_arr:38:init| true)
-      (= |valof_arr:37:init| true)
-      (= |valof_arr:36:init| true)
-      (= |valof_arr:35:init| true)
-      (= |valof_arr:34:init| true)
-      (= |valof_arr:33:init| true)
-      (= |valof_arr:32:init| true)
-      (= |valof_arr:31:init| true)
-      (= |valof_arr:30:init| true)
-      (= |valof_arr:29:init| true)
-      (= |valof_arr:28:init| true)
-      (= |valof_arr:27:init| true)
-      (= |valof_arr:26:init| true)
-      (= |valof_arr:25:init| true)
-      (= |valof_arr:24:init| true)
-      (= |valof_arr:23:init| true)
-      (= |valof_arr:22:init| true)
-      (= |valof_arr:21:init| true)
-      (= |valof_arr:20:init| true)
-      (= |valof_arr:19:init| true)
-      (= |valof_arr:18:init| true)
-      (= |valof_arr:17:init| true)
-      (= |valof_arr:16:init| true)
-      (= |valof_arr:15:init| true)
-      (= |valof_arr:14:init| true)
-      (= |valof_arr:13:init| true)
-      (= |valof_arr:12:init| true)
-      (= |valof_arr:11:init| true)
-      (= |valof_arr:10:init| true)
-      (= |valof_arr:9:init| true)
-      (= |valof_arr:8:init| true)
-      (= |valof_arr:7:init| true)
-      (= |valof_arr:6:init| true)
-      (= |valof_arr:5:init| true)
-      (= |valof_arr:4:init| true)
-      (= |valof_arr:3:init| true)
-      (= |valof_arr:2:init| true)
-      (= |valof_arr:1:init| true)
-      (= |valof_arr:init| true))
+      (= |PRESSED:init| true)
+      (= |CHANGED:1:init| true)
+      (= |CHANGED:init| true)
+      (= |init_pre_r:29:init| true)
+      (= |init_pre_r:28:init| true)
+      (= |init_pre_r:27:init| true)
+      (= |init_pre_r:26:init| true)
+      (= |init_pre_r:25:init| true)
+      (= |init_pre_r:24:init| true)
+      (= |init_pre_r:23:init| true)
+      (= |init_pre_r:22:init| true)
+      (= |init_pre_r:21:init| true)
+      (= |init_pre_r:20:init| true)
+      (= |init_pre_r:19:init| true)
+      (= |init_pre_r:18:init| true)
+      (= |init_pre_r:17:init| true)
+      (= |init_pre_r:16:init| true)
+      (= |init_pre_r:15:init| true)
+      (= |init_pre_r:14:init| true)
+      (= |init_pre_r:13:init| true)
+      (= |init_pre_r:12:init| true)
+      (= |init_pre_r:11:init| true)
+      (= |init_pre_r:10:init| true)
+      (= |init_pre_r:9:init| true)
+      (= |init_pre_r:8:init| true)
+      (= |init_pre_r:7:init| true)
+      (= |init_pre_r:6:init| true)
+      (= |init_pre_r:5:init| true)
+      (= |init_pre_r:4:init| true)
+      (= |init_pre_r:3:init| true)
+      (= |init_pre_r:2:init| true)
+      (= |init_pre_r:1:init| true)
+      (= |init_pre_r:init| true)
+      (= |init_pre_state:5:init| true)
+      (= |init_pre_state:4:init| true)
+      (= |init_pre_state:3:init| true)
+      (= |init_pre_pre_I:3:init| true)
+      (= |init_pre_pre_I:2:init| true)
+      (= |init_pre_state:2:init| true)
+      (= |init_pre_state:1:init| true)
+      (= |init_pre_state:init| true)
+      (= |init_pre_pre_I:1:init| true)
+      (= |init_pre_pre_I:init| true))
    (and
       (= next.|gal-initializing| false)
       (= next.|TS:3| input.|TS:3|)
@@ -808,116 +1405,116 @@ Sally Model
       (= next.|CLK4:1| next.|CLK4:2|)
       (= next.|QS_Properties_Clock_Name:5| next.|CLK4:1|)
       (= next.|QS_Properties_Init_Bool:1| false)
-      (= next.|valof_pre_I:1| state.I)
+      (= next.|pre_I:5| state.I)
       (ite
-         state.|valof_arr:71:init|
-         (= next.|valof_arr:71| next.|QS_Properties_Init_Bool:1|)
-         (= next.|valof_arr:71| next.|valof_pre_I:1|))
-      (= next.|valof_arr:71:init| false)
-      (= next.|valof_pre_prev_I:1| state.|prev_I:1|)
+         state.|init_pre_I:1:init|
+         (= next.|init_pre_I:1| next.|QS_Properties_Init_Bool:1|)
+         (= next.|init_pre_I:1| next.|pre_I:5|))
+      (= next.|init_pre_I:1:init| false)
+      (= next.|pre_prev_I:1| state.|prev_I:1|)
       (ite
-         state.|valof_arr:70:init|
-         (= next.|valof_arr:70| next.|QS_Properties_Init_Bool:1|)
-         (= next.|valof_arr:70| next.|valof_pre_prev_I:1|))
-      (= next.|valof_arr:70:init| false)
+         state.|init_pre_prev_I:1:init|
+         (= next.|init_pre_prev_I:1| next.|QS_Properties_Init_Bool:1|)
+         (= next.|init_pre_prev_I:1| next.|pre_prev_I:1|))
+      (= next.|init_pre_prev_I:1:init| false)
       (=
          next.|prev_I:1|
-         (ite next.|QS_Properties_Clock_Name:5| next.|valof_arr:71| next.|valof_arr:70|))
-      (= next.|valof_pre_RL_O| state.|RL_O|)
+         (ite next.|QS_Properties_Clock_Name:5| next.|init_pre_I:1| next.|init_pre_prev_I:1|))
+      (= next.|pre_RL_O| state.|RL_O|)
       (ite
-         state.|valof_arr:69:init|
-         (= next.|valof_arr:69| next.|QS_Properties_Init_Bool:1|)
-         (= next.|valof_arr:69| next.|valof_pre_RL_O|))
-      (= next.|valof_arr:69:init| false)
+         state.|init_pre_RL_O:init|
+         (= next.|init_pre_RL_O| next.|QS_Properties_Init_Bool:1|)
+         (= next.|init_pre_RL_O| next.|pre_RL_O|))
+      (= next.|init_pre_RL_O:init| false)
       (=
          next.|RL_O|
-         (ite next.|QS_Properties_Clock_Name:5| next.|prev_I:1| next.|valof_arr:69|))
+         (ite next.|QS_Properties_Clock_Name:5| next.|prev_I:1| next.|init_pre_RL_O|))
       (= next.|OSPF:1| next.|RL_O|)
       (= next.|I:5| next.|OSPF:1|)
-      (= next.|valof_pre_pre_I:7| state.|pre_I:2|)
+      (= next.|pre_pre_I:7| state.|pre_I:2|)
       (ite
          state.|riseOSPF_O:1:init|
          (= next.|riseOSPF_O:1| false)
          (=
             next.|riseOSPF_O:1|
             (and
-               (not next.|valof_pre_pre_I:7|)
+               (not next.|pre_pre_I:7|)
                next.|I:5|)))
       (= next.|riseOSPF_O:1:init| false)
       (= next.|riseOSPF:1| next.|riseOSPF_O:1|)
       (= next.|CLK1:1| next.|CLK1:2|)
       (= next.|QS_Properties_Clock_Name:4| next.|CLK1:1|)
       (= next.|QS_Properties_Clock_Name:3| next.|QS_Properties_Clock_Name:4|)
-      (= next.|valof_pre_state:13| state.|state:1|)
+      (= next.|pre_state:13| state.|state:1|)
       (ite
-         state.|valof_arr:68:init|
-         (= next.|valof_arr:68| 1)
-         (= next.|valof_arr:68| next.|valof_pre_state:13|))
-      (= next.|valof_arr:68:init| false)
+         state.|init_pre_state:13:init|
+         (= next.|init_pre_state:13| 1)
+         (= next.|init_pre_state:13| next.|pre_state:13|))
+      (= next.|init_pre_state:13:init| false)
       (=
          next.|T6:1|
          (and
             next.|QS_Properties_Clock_Name:3|
-            (= next.|valof_arr:68| 4)
+            (= next.|init_pre_state:13| 4)
             next.|riseOSPF:1|))
       (= next.|TS:2| next.|TS:3|)
       (= next.|TS:1| next.|TS:2|)
       (= next.|I:4| next.|TS:1|)
-      (= next.|valof_pre_pre_I:6| state.|pre_I:3|)
+      (= next.|pre_pre_I:6| state.|pre_I:3|)
       (ite
          state.|riseTS_O:1:init|
          (= next.|riseTS_O:1| false)
          (=
             next.|riseTS_O:1|
             (and
-               (not next.|valof_pre_pre_I:6|)
+               (not next.|pre_pre_I:6|)
                next.|I:4|)))
       (= next.|riseTS_O:1:init| false)
       (= next.|riseTS:1| next.|riseTS_O:1|)
-      (= next.|valof_pre_state:12| state.|state:1|)
+      (= next.|pre_state:12| state.|state:1|)
       (ite
-         state.|valof_arr:67:init|
-         (= next.|valof_arr:67| 1)
-         (= next.|valof_arr:67| next.|valof_pre_state:12|))
-      (= next.|valof_arr:67:init| false)
+         state.|init_pre_state:12:init|
+         (= next.|init_pre_state:12| 1)
+         (= next.|init_pre_state:12| next.|pre_state:12|))
+      (= next.|init_pre_state:12:init| false)
       (=
          next.|T5:1|
          (and
             next.|QS_Properties_Clock_Name:3|
-            (= next.|valof_arr:67| 3)
+            (= next.|init_pre_state:12| 3)
             next.|riseTS:1|))
       (= next.|QS_Properties_Primary_Side:3| true)
       (= next.|QS_Properties_Primary_Side:2| next.|QS_Properties_Primary_Side:3|)
-      (= next.|valof_pre_state:11| state.|state:1|)
+      (= next.|pre_state:11| state.|state:1|)
       (ite
-         state.|valof_arr:66:init|
-         (= next.|valof_arr:66| 1)
-         (= next.|valof_arr:66| next.|valof_pre_state:11|))
-      (= next.|valof_arr:66:init| false)
+         state.|init_pre_state:11:init|
+         (= next.|init_pre_state:11| 1)
+         (= next.|init_pre_state:11| next.|pre_state:11|))
+      (= next.|init_pre_state:11:init| false)
       (=
          next.|T2:1|
          (and
             next.|QS_Properties_Clock_Name:3|
-            (= next.|valof_arr:66| 1)
+            (= next.|init_pre_state:11| 1)
             (not next.|QS_Properties_Primary_Side:2|)))
-      (= next.|valof_pre_state:10| state.|state:1|)
+      (= next.|pre_state:10| state.|state:1|)
       (ite
-         state.|valof_arr:65:init|
-         (= next.|valof_arr:65| 1)
-         (= next.|valof_arr:65| next.|valof_pre_state:10|))
-      (= next.|valof_arr:65:init| false)
+         state.|init_pre_state:10:init|
+         (= next.|init_pre_state:10| 1)
+         (= next.|init_pre_state:10| next.|pre_state:10|))
+      (= next.|init_pre_state:10:init| false)
       (=
          next.|T1:1|
          (and
             next.|QS_Properties_Clock_Name:3|
-            (= next.|valof_arr:65| 1)
+            (= next.|init_pre_state:10| 1)
             next.|QS_Properties_Primary_Side:2|))
-      (= next.|valof_pre_PFSL_PFS:1| state.|PFSL_PFS:1|)
+      (= next.|pre_PFSL_PFS:1| state.|PFSL_PFS:1|)
       (ite
-         state.|valof_arr:64:init|
-         (= next.|valof_arr:64| next.|QS_Properties_Primary_Side:2|)
-         (= next.|valof_arr:64| next.|valof_pre_PFSL_PFS:1|))
-      (= next.|valof_arr:64:init| false)
+         state.|init_pre_PFSL_PFS:1:init|
+         (= next.|init_pre_PFSL_PFS:1| next.|QS_Properties_Primary_Side:2|)
+         (= next.|init_pre_PFSL_PFS:1| next.|pre_PFSL_PFS:1|))
+      (= next.|init_pre_PFSL_PFS:1:init| false)
       (=
          next.|PFSL_PFS:1|
          (ite
@@ -929,121 +1526,121 @@ Sally Model
                (ite
                   next.|T2:1|
                   false
-                  (ite next.|T1:1| true next.|valof_arr:64|)))))
+                  (ite next.|T1:1| true next.|init_pre_PFSL_PFS:1|)))))
       (= next.|LS_PFS| next.|PFSL_PFS:1|)
       (= next.LPFS next.|LS_PFS|)
       (= next.|CLK2:1| next.|CLK2:2|)
       (= next.|QS_Properties_Clock_Name:2| next.|CLK2:1|)
       (= next.|QS_Properties_Init_Bool| true)
-      (= next.|valof_pre_I| state.|I:1|)
+      (= next.|pre_I:4| state.|I:1|)
       (ite
-         state.|valof_arr:63:init|
-         (= next.|valof_arr:63| next.|QS_Properties_Init_Bool|)
-         (= next.|valof_arr:63| next.|valof_pre_I|))
-      (= next.|valof_arr:63:init| false)
-      (= next.|valof_pre_prev_I| state.|prev_I|)
+         state.|init_pre_I:init|
+         (= next.|init_pre_I| next.|QS_Properties_Init_Bool|)
+         (= next.|init_pre_I| next.|pre_I:4|))
+      (= next.|init_pre_I:init| false)
+      (= next.|pre_prev_I| state.|prev_I|)
       (ite
-         state.|valof_arr:62:init|
-         (= next.|valof_arr:62| next.|QS_Properties_Init_Bool|)
-         (= next.|valof_arr:62| next.|valof_pre_prev_I|))
-      (= next.|valof_arr:62:init| false)
+         state.|init_pre_prev_I:init|
+         (= next.|init_pre_prev_I| next.|QS_Properties_Init_Bool|)
+         (= next.|init_pre_prev_I| next.|pre_prev_I|))
+      (= next.|init_pre_prev_I:init| false)
       (=
          next.|prev_I|
-         (ite next.|QS_Properties_Clock_Name:2| next.|valof_arr:63| next.|valof_arr:62|))
-      (= next.|valof_pre_LR_O| state.|LR_O|)
+         (ite next.|QS_Properties_Clock_Name:2| next.|init_pre_I| next.|init_pre_prev_I|))
+      (= next.|pre_LR_O| state.|LR_O|)
       (ite
-         state.|valof_arr:61:init|
-         (= next.|valof_arr:61| next.|QS_Properties_Init_Bool|)
-         (= next.|valof_arr:61| next.|valof_pre_LR_O|))
-      (= next.|valof_arr:61:init| false)
+         state.|init_pre_LR_O:init|
+         (= next.|init_pre_LR_O| next.|QS_Properties_Init_Bool|)
+         (= next.|init_pre_LR_O| next.|pre_LR_O|))
+      (= next.|init_pre_LR_O:init| false)
       (=
          next.|LR_O|
-         (ite next.|QS_Properties_Clock_Name:2| next.|prev_I| next.|valof_arr:61|))
+         (ite next.|QS_Properties_Clock_Name:2| next.|prev_I| next.|init_pre_LR_O|))
       (= next.OSPF next.|LR_O|)
       (= next.|I:3| next.OSPF)
-      (= next.|valof_pre_pre_I:5| state.|pre_I|)
+      (= next.|pre_pre_I:5| state.|pre_I|)
       (ite
          state.|riseOSPF_O:init|
          (= next.|riseOSPF_O| false)
          (=
             next.|riseOSPF_O|
             (and
-               (not next.|valof_pre_pre_I:5|)
+               (not next.|pre_pre_I:5|)
                next.|I:3|)))
       (= next.|riseOSPF_O:init| false)
       (= next.riseOSPF next.|riseOSPF_O|)
       (= next.|CLK3:1| next.|CLK3:2|)
       (= next.|QS_Properties_Clock_Name:1| next.|CLK3:1|)
       (= next.|QS_Properties_Clock_Name| next.|QS_Properties_Clock_Name:1|)
-      (= next.|valof_pre_state:9| state.state)
+      (= next.|pre_state:9| state.state)
       (ite
-         state.|valof_arr:60:init|
-         (= next.|valof_arr:60| 1)
-         (= next.|valof_arr:60| next.|valof_pre_state:9|))
-      (= next.|valof_arr:60:init| false)
+         state.|init_pre_state:9:init|
+         (= next.|init_pre_state:9| 1)
+         (= next.|init_pre_state:9| next.|pre_state:9|))
+      (= next.|init_pre_state:9:init| false)
       (=
          next.T6
          (and
             next.|QS_Properties_Clock_Name|
-            (= next.|valof_arr:60| 4)
+            (= next.|init_pre_state:9| 4)
             next.riseOSPF))
       (= next.TS next.|TS:2|)
       (= next.|I:2| next.TS)
-      (= next.|valof_pre_pre_I:4| state.|pre_I:1|)
+      (= next.|pre_pre_I:4| state.|pre_I:1|)
       (ite
          state.|riseTS_O:init|
          (= next.|riseTS_O| false)
          (=
             next.|riseTS_O|
             (and
-               (not next.|valof_pre_pre_I:4|)
+               (not next.|pre_pre_I:4|)
                next.|I:2|)))
       (= next.|riseTS_O:init| false)
       (= next.riseTS next.|riseTS_O|)
-      (= next.|valof_pre_state:8| state.state)
+      (= next.|pre_state:8| state.state)
       (ite
-         state.|valof_arr:59:init|
-         (= next.|valof_arr:59| 1)
-         (= next.|valof_arr:59| next.|valof_pre_state:8|))
-      (= next.|valof_arr:59:init| false)
+         state.|init_pre_state:8:init|
+         (= next.|init_pre_state:8| 1)
+         (= next.|init_pre_state:8| next.|pre_state:8|))
+      (= next.|init_pre_state:8:init| false)
       (=
          next.T5
          (and
             next.|QS_Properties_Clock_Name|
-            (= next.|valof_arr:59| 3)
+            (= next.|init_pre_state:8| 3)
             next.riseTS))
       (= next.|QS_Properties_Primary_Side:1| false)
       (= next.|QS_Properties_Primary_Side| next.|QS_Properties_Primary_Side:1|)
-      (= next.|valof_pre_state:7| state.state)
+      (= next.|pre_state:7| state.state)
       (ite
-         state.|valof_arr:58:init|
-         (= next.|valof_arr:58| 1)
-         (= next.|valof_arr:58| next.|valof_pre_state:7|))
-      (= next.|valof_arr:58:init| false)
+         state.|init_pre_state:7:init|
+         (= next.|init_pre_state:7| 1)
+         (= next.|init_pre_state:7| next.|pre_state:7|))
+      (= next.|init_pre_state:7:init| false)
       (=
          next.T2
          (and
             next.|QS_Properties_Clock_Name|
-            (= next.|valof_arr:58| 1)
+            (= next.|init_pre_state:7| 1)
             (not next.|QS_Properties_Primary_Side|)))
-      (= next.|valof_pre_state:6| state.state)
+      (= next.|pre_state:6| state.state)
       (ite
-         state.|valof_arr:57:init|
-         (= next.|valof_arr:57| 1)
-         (= next.|valof_arr:57| next.|valof_pre_state:6|))
-      (= next.|valof_arr:57:init| false)
+         state.|init_pre_state:6:init|
+         (= next.|init_pre_state:6| 1)
+         (= next.|init_pre_state:6| next.|pre_state:6|))
+      (= next.|init_pre_state:6:init| false)
       (=
          next.T1
          (and
             next.|QS_Properties_Clock_Name|
-            (= next.|valof_arr:57| 1)
+            (= next.|init_pre_state:6| 1)
             next.|QS_Properties_Primary_Side|))
-      (= next.|valof_pre_PFSL_PFS| state.|PFSL_PFS|)
+      (= next.|pre_PFSL_PFS| state.|PFSL_PFS|)
       (ite
-         state.|valof_arr:56:init|
-         (= next.|valof_arr:56| next.|QS_Properties_Primary_Side|)
-         (= next.|valof_arr:56| next.|valof_pre_PFSL_PFS|))
-      (= next.|valof_arr:56:init| false)
+         state.|init_pre_PFSL_PFS:init|
+         (= next.|init_pre_PFSL_PFS| next.|QS_Properties_Primary_Side|)
+         (= next.|init_pre_PFSL_PFS| next.|pre_PFSL_PFS|))
+      (= next.|init_pre_PFSL_PFS:init| false)
       (=
          next.|PFSL_PFS|
          (ite
@@ -1055,251 +1652,251 @@ Sally Model
                (ite
                   next.T2
                   false
-                  (ite next.T1 true next.|valof_arr:56|)))))
+                  (ite next.T1 true next.|init_pre_PFSL_PFS|)))))
       (= next.|RS_PFS| next.|PFSL_PFS|)
       (= next.RPFS next.|RS_PFS|)
       (= next.CLK3 next.|CLK2:2|)
       (= next.|p:12| next.CLK3)
       (= next.CLK4 next.|CLK4:2|)
       (= next.|q:5| next.CLK4)
-      (= next.|valof_pre_r:41| state.r)
+      (= next.|pre_r:41| state.r)
       (ite
-         state.|valof_arr:55:init|
-         (= next.|valof_arr:55| 0)
-         (= next.|valof_arr:55| next.|valof_pre_r:41|))
-      (= next.|valof_arr:55:init| false)
-      (= next.|valof_pre_r:40| state.r)
+         state.|init_pre_r:41:init|
+         (= next.|init_pre_r:41| 0)
+         (= next.|init_pre_r:41| next.|pre_r:41|))
+      (= next.|init_pre_r:41:init| false)
+      (= next.|pre_r:40| state.r)
       (ite
-         state.|valof_arr:54:init|
-         (= next.|valof_arr:54| 0)
-         (= next.|valof_arr:54| next.|valof_pre_r:40|))
-      (= next.|valof_arr:54:init| false)
+         state.|init_pre_r:40:init|
+         (= next.|init_pre_r:40| 0)
+         (= next.|init_pre_r:40| next.|pre_r:40|))
+      (= next.|init_pre_r:40:init| false)
       (=
-         next.|__no_static:16|
+         next.|qs_dfa:5|
          (not
             (or
                (and
-                  (= next.|valof_arr:55| 2)
+                  (= next.|init_pre_r:41| 2)
                   next.|p:12|)
                (and
                   (=
-                     next.|valof_arr:54|
+                     next.|init_pre_r:40|
                      (- 2))
                   next.|q:5|))))
       (= next.CLK2 next.|CLK3:2|)
       (= next.|p:11| next.CLK2)
       (= next.|q:4| next.CLK4)
-      (= next.|valof_pre_r:39| state.|r:1|)
+      (= next.|pre_r:39| state.|r:1|)
       (ite
-         state.|valof_arr:53:init|
-         (= next.|valof_arr:53| 0)
-         (= next.|valof_arr:53| next.|valof_pre_r:39|))
-      (= next.|valof_arr:53:init| false)
-      (= next.|valof_pre_r:38| state.|r:1|)
+         state.|init_pre_r:39:init|
+         (= next.|init_pre_r:39| 0)
+         (= next.|init_pre_r:39| next.|pre_r:39|))
+      (= next.|init_pre_r:39:init| false)
+      (= next.|pre_r:38| state.|r:1|)
       (ite
-         state.|valof_arr:52:init|
-         (= next.|valof_arr:52| 0)
-         (= next.|valof_arr:52| next.|valof_pre_r:38|))
-      (= next.|valof_arr:52:init| false)
+         state.|init_pre_r:38:init|
+         (= next.|init_pre_r:38| 0)
+         (= next.|init_pre_r:38| next.|pre_r:38|))
+      (= next.|init_pre_r:38:init| false)
       (=
-         next.|__no_static:15|
+         next.|qs_dfa:4|
          (not
             (or
                (and
-                  (= next.|valof_arr:53| 2)
+                  (= next.|init_pre_r:39| 2)
                   next.|p:11|)
                (and
                   (=
-                     next.|valof_arr:52|
+                     next.|init_pre_r:38|
                      (- 2))
                   next.|q:4|))))
       (= next.|p:10| next.CLK2)
       (= next.|q:3| next.CLK3)
-      (= next.|valof_pre_r:37| state.|r:2|)
+      (= next.|pre_r:37| state.|r:2|)
       (ite
-         state.|valof_arr:51:init|
-         (= next.|valof_arr:51| 0)
-         (= next.|valof_arr:51| next.|valof_pre_r:37|))
-      (= next.|valof_arr:51:init| false)
-      (= next.|valof_pre_r:36| state.|r:2|)
+         state.|init_pre_r:37:init|
+         (= next.|init_pre_r:37| 0)
+         (= next.|init_pre_r:37| next.|pre_r:37|))
+      (= next.|init_pre_r:37:init| false)
+      (= next.|pre_r:36| state.|r:2|)
       (ite
-         state.|valof_arr:50:init|
-         (= next.|valof_arr:50| 0)
-         (= next.|valof_arr:50| next.|valof_pre_r:36|))
-      (= next.|valof_arr:50:init| false)
+         state.|init_pre_r:36:init|
+         (= next.|init_pre_r:36| 0)
+         (= next.|init_pre_r:36| next.|pre_r:36|))
+      (= next.|init_pre_r:36:init| false)
       (=
-         next.|__no_static:14|
+         next.|qs_dfa:3|
          (not
             (or
                (and
-                  (= next.|valof_arr:51| 2)
+                  (= next.|init_pre_r:37| 2)
                   next.|p:10|)
                (and
                   (=
-                     next.|valof_arr:50|
+                     next.|init_pre_r:36|
                      (- 2))
                   next.|q:3|))))
       (= next.CLK1 next.|CLK1:2|)
       (= next.|p:9| next.CLK1)
       (= next.|q:2| next.CLK4)
-      (= next.|valof_pre_r:35| state.|r:3|)
+      (= next.|pre_r:35| state.|r:3|)
       (ite
-         state.|valof_arr:49:init|
-         (= next.|valof_arr:49| 0)
-         (= next.|valof_arr:49| next.|valof_pre_r:35|))
-      (= next.|valof_arr:49:init| false)
-      (= next.|valof_pre_r:34| state.|r:3|)
+         state.|init_pre_r:35:init|
+         (= next.|init_pre_r:35| 0)
+         (= next.|init_pre_r:35| next.|pre_r:35|))
+      (= next.|init_pre_r:35:init| false)
+      (= next.|pre_r:34| state.|r:3|)
       (ite
-         state.|valof_arr:48:init|
-         (= next.|valof_arr:48| 0)
-         (= next.|valof_arr:48| next.|valof_pre_r:34|))
-      (= next.|valof_arr:48:init| false)
+         state.|init_pre_r:34:init|
+         (= next.|init_pre_r:34| 0)
+         (= next.|init_pre_r:34| next.|pre_r:34|))
+      (= next.|init_pre_r:34:init| false)
       (=
-         next.|__no_static:13|
+         next.|qs_dfa:2|
          (not
             (or
                (and
-                  (= next.|valof_arr:49| 2)
+                  (= next.|init_pre_r:35| 2)
                   next.|p:9|)
                (and
                   (=
-                     next.|valof_arr:48|
+                     next.|init_pre_r:34|
                      (- 2))
                   next.|q:2|))))
       (= next.|p:8| next.CLK1)
       (= next.|q:1| next.CLK3)
-      (= next.|valof_pre_r:33| state.|r:4|)
+      (= next.|pre_r:33| state.|r:4|)
       (ite
-         state.|valof_arr:47:init|
-         (= next.|valof_arr:47| 0)
-         (= next.|valof_arr:47| next.|valof_pre_r:33|))
-      (= next.|valof_arr:47:init| false)
-      (= next.|valof_pre_r:32| state.|r:4|)
+         state.|init_pre_r:33:init|
+         (= next.|init_pre_r:33| 0)
+         (= next.|init_pre_r:33| next.|pre_r:33|))
+      (= next.|init_pre_r:33:init| false)
+      (= next.|pre_r:32| state.|r:4|)
       (ite
-         state.|valof_arr:46:init|
-         (= next.|valof_arr:46| 0)
-         (= next.|valof_arr:46| next.|valof_pre_r:32|))
-      (= next.|valof_arr:46:init| false)
+         state.|init_pre_r:32:init|
+         (= next.|init_pre_r:32| 0)
+         (= next.|init_pre_r:32| next.|pre_r:32|))
+      (= next.|init_pre_r:32:init| false)
       (=
-         next.|__no_static:12|
+         next.|qs_dfa:1|
          (not
             (or
                (and
-                  (= next.|valof_arr:47| 2)
+                  (= next.|init_pre_r:33| 2)
                   next.|p:8|)
                (and
                   (=
-                     next.|valof_arr:46|
+                     next.|init_pre_r:32|
                      (- 2))
                   next.|q:1|))))
       (= next.|p:7| next.CLK1)
       (= next.q next.CLK2)
-      (= next.|valof_pre_r:31| state.|r:5|)
+      (= next.|pre_r:31| state.|r:5|)
       (ite
-         state.|valof_arr:45:init|
-         (= next.|valof_arr:45| 0)
-         (= next.|valof_arr:45| next.|valof_pre_r:31|))
-      (= next.|valof_arr:45:init| false)
-      (= next.|valof_pre_r:30| state.|r:5|)
+         state.|init_pre_r:31:init|
+         (= next.|init_pre_r:31| 0)
+         (= next.|init_pre_r:31| next.|pre_r:31|))
+      (= next.|init_pre_r:31:init| false)
+      (= next.|pre_r:30| state.|r:5|)
       (ite
-         state.|valof_arr:44:init|
-         (= next.|valof_arr:44| 0)
-         (= next.|valof_arr:44| next.|valof_pre_r:30|))
-      (= next.|valof_arr:44:init| false)
+         state.|init_pre_r:30:init|
+         (= next.|init_pre_r:30| 0)
+         (= next.|init_pre_r:30| next.|pre_r:30|))
+      (= next.|init_pre_r:30:init| false)
       (=
-         next.|__no_static:11|
+         next.|qs_dfa|
          (not
             (or
                (and
-                  (= next.|valof_arr:45| 2)
+                  (= next.|init_pre_r:31| 2)
                   next.|p:7|)
                (and
                   (=
-                     next.|valof_arr:44|
+                     next.|init_pre_r:30|
                      (- 2))
                   next.q))))
       (=
          next.|clocks_are_quasi_synchronous|
          (and
-            next.|__no_static:11|
-            next.|__no_static:12|
-            next.|__no_static:13|
-            next.|__no_static:14|
-            next.|__no_static:15|
-            next.|__no_static:16|))
+            next.|qs_dfa|
+            next.|qs_dfa:1|
+            next.|qs_dfa:2|
+            next.|qs_dfa:3|
+            next.|qs_dfa:4|
+            next.|qs_dfa:5|))
       (= next.|p:6| state.|TS:3|)
-      (= next.|valof_pre_p:6| state.|p:6|)
+      (= next.|pre_p:6| state.|p:6|)
       (ite
-         state.|__no_static:10:init|
-         (= next.|__no_static:10| false)
+         state.|PRESSED:4:init|
+         (= next.|PRESSED:4| false)
          (=
-            next.|__no_static:10|
+            next.|PRESSED:4|
             (and
-               (not next.|valof_pre_p:6|)
+               (not next.|pre_p:6|)
                next.|p:6|)))
-      (= next.|__no_static:10:init| false)
+      (= next.|PRESSED:4:init| false)
       (=
          next.|stable_state|
-         (not next.|__no_static:10|))
+         (not next.|PRESSED:4|))
       (= next.|c:3| next.|CLK1:2|)
-      (= next.|valof_pre___no_static:3| state.|__no_static:9|)
+      (= next.|pre_ticked:3| state.|ticked:3|)
       (ite
-         state.|valof_arr:43:init|
-         (= next.|valof_arr:43| false)
-         (= next.|valof_arr:43| next.|valof_pre___no_static:3|))
-      (= next.|valof_arr:43:init| false)
+         state.|init_pre_ticked:3:init|
+         (= next.|init_pre_ticked:3| false)
+         (= next.|init_pre_ticked:3| next.|pre_ticked:3|))
+      (= next.|init_pre_ticked:3:init| false)
       (=
-         next.|__no_static:9|
-         (or next.|valof_arr:43| next.|c:3|))
+         next.|ticked:3|
+         (or next.|init_pre_ticked:3| next.|c:3|))
       (= next.|c:2| next.|CLK2:2|)
-      (= next.|valof_pre___no_static:2| state.|__no_static:8|)
+      (= next.|pre_ticked:2| state.|ticked:2|)
       (ite
-         state.|valof_arr:42:init|
-         (= next.|valof_arr:42| false)
-         (= next.|valof_arr:42| next.|valof_pre___no_static:2|))
-      (= next.|valof_arr:42:init| false)
+         state.|init_pre_ticked:2:init|
+         (= next.|init_pre_ticked:2| false)
+         (= next.|init_pre_ticked:2| next.|pre_ticked:2|))
+      (= next.|init_pre_ticked:2:init| false)
       (=
-         next.|__no_static:8|
-         (or next.|valof_arr:42| next.|c:2|))
+         next.|ticked:2|
+         (or next.|init_pre_ticked:2| next.|c:2|))
       (= next.|c:1| next.|CLK3:2|)
-      (= next.|valof_pre___no_static:1| state.|__no_static:7|)
+      (= next.|pre_ticked:1| state.|ticked:1|)
       (ite
-         state.|valof_arr:41:init|
-         (= next.|valof_arr:41| false)
-         (= next.|valof_arr:41| next.|valof_pre___no_static:1|))
-      (= next.|valof_arr:41:init| false)
+         state.|init_pre_ticked:1:init|
+         (= next.|init_pre_ticked:1| false)
+         (= next.|init_pre_ticked:1| next.|pre_ticked:1|))
+      (= next.|init_pre_ticked:1:init| false)
       (=
-         next.|__no_static:7|
-         (or next.|valof_arr:41| next.|c:1|))
+         next.|ticked:1|
+         (or next.|init_pre_ticked:1| next.|c:1|))
       (= next.c next.|CLK4:2|)
-      (= next.|valof_pre___no_static| state.|__no_static:6|)
+      (= next.|pre_ticked| state.ticked)
       (ite
-         state.|valof_arr:40:init|
-         (= next.|valof_arr:40| false)
-         (= next.|valof_arr:40| next.|valof_pre___no_static|))
-      (= next.|valof_arr:40:init| false)
+         state.|init_pre_ticked:init|
+         (= next.|init_pre_ticked| false)
+         (= next.|init_pre_ticked| next.|pre_ticked|))
+      (= next.|init_pre_ticked:init| false)
       (=
-         next.|__no_static:6|
-         (or next.|valof_arr:40| next.c))
+         next.ticked
+         (or next.|init_pre_ticked| next.c))
       (=
          next.|all_clocks_ticked_once|
-         (and next.|__no_static:9| next.|__no_static:8| next.|__no_static:7| next.|__no_static:6|))
+         (and next.|ticked:3| next.|ticked:2| next.|ticked:1| next.ticked))
       (=
          next.|at_least_one_pilot_flying_side|
          (=>
             (and next.|clocks_are_quasi_synchronous| next.|all_clocks_ticked_once|)
             (or next.LPFS next.RPFS)))
       (= next.|p:5| next.|TS:3|)
-      (= next.|valof_pre_p:5| state.|p:5|)
+      (= next.|pre_p:5| state.|p:5|)
       (ite
-         state.|__no_static:5:init|
-         (= next.|__no_static:5| false)
+         state.|PRESSED:3:init|
+         (= next.|PRESSED:3| false)
          (=
-            next.|__no_static:5|
+            next.|PRESSED:3|
             (and
-               (not next.|valof_pre_p:5|)
+               (not next.|pre_p:5|)
                next.|p:5|)))
-      (= next.|__no_static:5:init| false)
+      (= next.|PRESSED:3:init| false)
       (=
          next.|agree_on_pilot_flying_side|
          (and
@@ -1307,32 +1904,32 @@ Sally Model
                next.|clocks_are_quasi_synchronous|
                (not next.|clocks_are_quasi_synchronous|))
             (=>
-               (not next.|__no_static:5|)
+               (not next.|PRESSED:3|)
                (=
                   next.LPFS
                   (not next.RPFS)))))
       (= next.|p:4| next.|TS:3|)
-      (= next.|valof_pre_p:4| state.|p:4|)
+      (= next.|pre_p:4| state.|p:4|)
       (ite
-         state.|__no_static:4:init|
-         (= next.|__no_static:4| false)
+         state.|PRESSED:2:init|
+         (= next.|PRESSED:2| false)
          (=
-            next.|__no_static:4|
+            next.|PRESSED:2|
             (and
-               (not next.|valof_pre_p:4|)
+               (not next.|pre_p:4|)
                next.|p:4|)))
-      (= next.|__no_static:4:init| false)
+      (= next.|PRESSED:2:init| false)
       (= next.|p:3| next.|TS:3|)
-      (= next.|valof_pre_p:3| state.|p:3|)
+      (= next.|pre_p:3| state.|p:3|)
       (ite
-         state.|__no_static:3:init|
-         (= next.|__no_static:3| false)
+         state.|PRESSED:1:init|
+         (= next.|PRESSED:1| false)
          (=
-            next.|__no_static:3|
+            next.|PRESSED:1|
             (and
-               (not next.|valof_pre_p:3|)
+               (not next.|pre_p:3|)
                next.|p:3|)))
-      (= next.|__no_static:3:init| false)
+      (= next.|PRESSED:1:init| false)
       (=
          next.|transfer_switch_changes_sides|
          (and
@@ -1342,12 +1939,12 @@ Sally Model
             (=>
                (and
                   (not next.LPFS)
-                  next.|__no_static:4|)
+                  next.|PRESSED:2|)
                next.LPFS)
             (=>
                (and
                   (not next.RPFS)
-                  next.|__no_static:3|)
+                  next.|PRESSED:1|)
                next.RPFS)))
       (ite
          state.|left_side_initial_pilot_flying_side:init|
@@ -1361,36 +1958,36 @@ Sally Model
          (= next.|left_side_initial_pilot_flying_side| true))
       (= next.|left_side_initial_pilot_flying_side:init| false)
       (= next.|p:2| next.|TS:3|)
-      (= next.|valof_pre_p:2| state.|p:2|)
+      (= next.|pre_p:2| state.|p:2|)
       (ite
-         state.|__no_static:2:init|
-         (= next.|__no_static:2| false)
+         state.|PRESSED:init|
+         (= next.PRESSED false)
          (=
-            next.|__no_static:2|
+            next.PRESSED
             (and
-               (not next.|valof_pre_p:2|)
+               (not next.|pre_p:2|)
                next.|p:2|)))
-      (= next.|__no_static:2:init| false)
+      (= next.|PRESSED:init| false)
       (= next.|p:1| next.RPFS)
-      (= next.|valof_pre_p:1| state.|p:1|)
+      (= next.|pre_p:1| state.|p:1|)
       (ite
-         state.|__no_static:1:init|
-         (= next.|__no_static:1| false)
+         state.|CHANGED:1:init|
+         (= next.|CHANGED:1| false)
          (=
-            next.|__no_static:1|
+            next.|CHANGED:1|
             (not
-               (= next.|p:1| next.|valof_pre_p:1|))))
-      (= next.|__no_static:1:init| false)
+               (= next.|p:1| next.|pre_p:1|))))
+      (= next.|CHANGED:1:init| false)
       (= next.p next.LPFS)
-      (= next.|valof_pre_p| state.p)
+      (= next.|pre_p| state.p)
       (ite
-         state.|__no_static:init|
-         (= next.|__no_static| false)
+         state.|CHANGED:init|
+         (= next.CHANGED false)
          (=
-            next.|__no_static|
+            next.CHANGED
             (not
-               (= next.p next.|valof_pre_p|))))
-      (= next.|__no_static:init| false)
+               (= next.p next.|pre_p|))))
+      (= next.|CHANGED:init| false)
       (=
          next.|pilot_flying_side_unchanged_unless_transfer_switch_pressed|
          (=>
@@ -1400,39 +1997,39 @@ Sally Model
                   (not next.|clocks_are_quasi_synchronous|))
                next.|stable_state|)
             (=>
-               (not next.|__no_static:2|)
+               (not next.PRESSED)
                (not
-                  (or next.|__no_static:1| next.|__no_static|)))))
-      (= next.|valof_pre_r:29| state.|r:5|)
+                  (or next.|CHANGED:1| next.CHANGED)))))
+      (= next.|pre_r:29| state.|r:5|)
       (ite
-         state.|valof_arr:39:init|
-         (= next.|valof_arr:39| 0)
-         (= next.|valof_arr:39| next.|valof_pre_r:29|))
-      (= next.|valof_arr:39:init| false)
-      (= next.|valof_pre_r:28| state.|r:5|)
+         state.|init_pre_r:29:init|
+         (= next.|init_pre_r:29| 0)
+         (= next.|init_pre_r:29| next.|pre_r:29|))
+      (= next.|init_pre_r:29:init| false)
+      (= next.|pre_r:28| state.|r:5|)
       (ite
-         state.|valof_arr:38:init|
-         (= next.|valof_arr:38| 0)
-         (= next.|valof_arr:38| next.|valof_pre_r:28|))
-      (= next.|valof_arr:38:init| false)
-      (= next.|valof_pre_r:27| state.|r:5|)
+         state.|init_pre_r:28:init|
+         (= next.|init_pre_r:28| 0)
+         (= next.|init_pre_r:28| next.|pre_r:28|))
+      (= next.|init_pre_r:28:init| false)
+      (= next.|pre_r:27| state.|r:5|)
       (ite
-         state.|valof_arr:37:init|
-         (= next.|valof_arr:37| 0)
-         (= next.|valof_arr:37| next.|valof_pre_r:27|))
-      (= next.|valof_arr:37:init| false)
-      (= next.|valof_pre_r:26| state.|r:5|)
+         state.|init_pre_r:27:init|
+         (= next.|init_pre_r:27| 0)
+         (= next.|init_pre_r:27| next.|pre_r:27|))
+      (= next.|init_pre_r:27:init| false)
+      (= next.|pre_r:26| state.|r:5|)
       (ite
-         state.|valof_arr:36:init|
-         (= next.|valof_arr:36| 0)
-         (= next.|valof_arr:36| next.|valof_pre_r:26|))
-      (= next.|valof_arr:36:init| false)
-      (= next.|valof_pre_r:25| state.|r:5|)
+         state.|init_pre_r:26:init|
+         (= next.|init_pre_r:26| 0)
+         (= next.|init_pre_r:26| next.|pre_r:26|))
+      (= next.|init_pre_r:26:init| false)
+      (= next.|pre_r:25| state.|r:5|)
       (ite
-         state.|valof_arr:35:init|
-         (= next.|valof_arr:35| 0)
-         (= next.|valof_arr:35| next.|valof_pre_r:25|))
-      (= next.|valof_arr:35:init| false)
+         state.|init_pre_r:25:init|
+         (= next.|init_pre_r:25| 0)
+         (= next.|init_pre_r:25| next.|pre_r:25|))
+      (= next.|init_pre_r:25:init| false)
       (=
          next.|r:5|
          (ite
@@ -1441,16 +2038,16 @@ Sally Model
             (ite
                next.|p:7|
                (ite
-                  (< next.|valof_arr:39| 0)
+                  (< next.|init_pre_r:29| 0)
                   1
-                  (+ next.|valof_arr:38| 1))
+                  (+ next.|init_pre_r:28| 1))
                (ite
                   next.q
                   (ite
-                     (< 0 next.|valof_arr:37|)
+                     (< 0 next.|init_pre_r:27|)
                      (- 1)
-                     (- next.|valof_arr:36| 1))
-                  next.|valof_arr:35|))))
+                     (- next.|init_pre_r:26| 1))
+                  next.|init_pre_r:25|))))
       (=
          next.|r_is_bounded:5|
          (and
@@ -1458,36 +2055,36 @@ Sally Model
             (<=
                (- 2)
                next.|r:5|)))
-      (= next.|valof_pre_r:24| state.|r:4|)
+      (= next.|pre_r:24| state.|r:4|)
       (ite
-         state.|valof_arr:34:init|
-         (= next.|valof_arr:34| 0)
-         (= next.|valof_arr:34| next.|valof_pre_r:24|))
-      (= next.|valof_arr:34:init| false)
-      (= next.|valof_pre_r:23| state.|r:4|)
+         state.|init_pre_r:24:init|
+         (= next.|init_pre_r:24| 0)
+         (= next.|init_pre_r:24| next.|pre_r:24|))
+      (= next.|init_pre_r:24:init| false)
+      (= next.|pre_r:23| state.|r:4|)
       (ite
-         state.|valof_arr:33:init|
-         (= next.|valof_arr:33| 0)
-         (= next.|valof_arr:33| next.|valof_pre_r:23|))
-      (= next.|valof_arr:33:init| false)
-      (= next.|valof_pre_r:22| state.|r:4|)
+         state.|init_pre_r:23:init|
+         (= next.|init_pre_r:23| 0)
+         (= next.|init_pre_r:23| next.|pre_r:23|))
+      (= next.|init_pre_r:23:init| false)
+      (= next.|pre_r:22| state.|r:4|)
       (ite
-         state.|valof_arr:32:init|
-         (= next.|valof_arr:32| 0)
-         (= next.|valof_arr:32| next.|valof_pre_r:22|))
-      (= next.|valof_arr:32:init| false)
-      (= next.|valof_pre_r:21| state.|r:4|)
+         state.|init_pre_r:22:init|
+         (= next.|init_pre_r:22| 0)
+         (= next.|init_pre_r:22| next.|pre_r:22|))
+      (= next.|init_pre_r:22:init| false)
+      (= next.|pre_r:21| state.|r:4|)
       (ite
-         state.|valof_arr:31:init|
-         (= next.|valof_arr:31| 0)
-         (= next.|valof_arr:31| next.|valof_pre_r:21|))
-      (= next.|valof_arr:31:init| false)
-      (= next.|valof_pre_r:20| state.|r:4|)
+         state.|init_pre_r:21:init|
+         (= next.|init_pre_r:21| 0)
+         (= next.|init_pre_r:21| next.|pre_r:21|))
+      (= next.|init_pre_r:21:init| false)
+      (= next.|pre_r:20| state.|r:4|)
       (ite
-         state.|valof_arr:30:init|
-         (= next.|valof_arr:30| 0)
-         (= next.|valof_arr:30| next.|valof_pre_r:20|))
-      (= next.|valof_arr:30:init| false)
+         state.|init_pre_r:20:init|
+         (= next.|init_pre_r:20| 0)
+         (= next.|init_pre_r:20| next.|pre_r:20|))
+      (= next.|init_pre_r:20:init| false)
       (=
          next.|r:4|
          (ite
@@ -1496,16 +2093,16 @@ Sally Model
             (ite
                next.|p:8|
                (ite
-                  (< next.|valof_arr:34| 0)
+                  (< next.|init_pre_r:24| 0)
                   1
-                  (+ next.|valof_arr:33| 1))
+                  (+ next.|init_pre_r:23| 1))
                (ite
                   next.|q:1|
                   (ite
-                     (< 0 next.|valof_arr:32|)
+                     (< 0 next.|init_pre_r:22|)
                      (- 1)
-                     (- next.|valof_arr:31| 1))
-                  next.|valof_arr:30|))))
+                     (- next.|init_pre_r:21| 1))
+                  next.|init_pre_r:20|))))
       (=
          next.|r_is_bounded:4|
          (and
@@ -1513,36 +2110,36 @@ Sally Model
             (<=
                (- 2)
                next.|r:4|)))
-      (= next.|valof_pre_r:19| state.|r:3|)
+      (= next.|pre_r:19| state.|r:3|)
       (ite
-         state.|valof_arr:29:init|
-         (= next.|valof_arr:29| 0)
-         (= next.|valof_arr:29| next.|valof_pre_r:19|))
-      (= next.|valof_arr:29:init| false)
-      (= next.|valof_pre_r:18| state.|r:3|)
+         state.|init_pre_r:19:init|
+         (= next.|init_pre_r:19| 0)
+         (= next.|init_pre_r:19| next.|pre_r:19|))
+      (= next.|init_pre_r:19:init| false)
+      (= next.|pre_r:18| state.|r:3|)
       (ite
-         state.|valof_arr:28:init|
-         (= next.|valof_arr:28| 0)
-         (= next.|valof_arr:28| next.|valof_pre_r:18|))
-      (= next.|valof_arr:28:init| false)
-      (= next.|valof_pre_r:17| state.|r:3|)
+         state.|init_pre_r:18:init|
+         (= next.|init_pre_r:18| 0)
+         (= next.|init_pre_r:18| next.|pre_r:18|))
+      (= next.|init_pre_r:18:init| false)
+      (= next.|pre_r:17| state.|r:3|)
       (ite
-         state.|valof_arr:27:init|
-         (= next.|valof_arr:27| 0)
-         (= next.|valof_arr:27| next.|valof_pre_r:17|))
-      (= next.|valof_arr:27:init| false)
-      (= next.|valof_pre_r:16| state.|r:3|)
+         state.|init_pre_r:17:init|
+         (= next.|init_pre_r:17| 0)
+         (= next.|init_pre_r:17| next.|pre_r:17|))
+      (= next.|init_pre_r:17:init| false)
+      (= next.|pre_r:16| state.|r:3|)
       (ite
-         state.|valof_arr:26:init|
-         (= next.|valof_arr:26| 0)
-         (= next.|valof_arr:26| next.|valof_pre_r:16|))
-      (= next.|valof_arr:26:init| false)
-      (= next.|valof_pre_r:15| state.|r:3|)
+         state.|init_pre_r:16:init|
+         (= next.|init_pre_r:16| 0)
+         (= next.|init_pre_r:16| next.|pre_r:16|))
+      (= next.|init_pre_r:16:init| false)
+      (= next.|pre_r:15| state.|r:3|)
       (ite
-         state.|valof_arr:25:init|
-         (= next.|valof_arr:25| 0)
-         (= next.|valof_arr:25| next.|valof_pre_r:15|))
-      (= next.|valof_arr:25:init| false)
+         state.|init_pre_r:15:init|
+         (= next.|init_pre_r:15| 0)
+         (= next.|init_pre_r:15| next.|pre_r:15|))
+      (= next.|init_pre_r:15:init| false)
       (=
          next.|r:3|
          (ite
@@ -1551,16 +2148,16 @@ Sally Model
             (ite
                next.|p:9|
                (ite
-                  (< next.|valof_arr:29| 0)
+                  (< next.|init_pre_r:19| 0)
                   1
-                  (+ next.|valof_arr:28| 1))
+                  (+ next.|init_pre_r:18| 1))
                (ite
                   next.|q:2|
                   (ite
-                     (< 0 next.|valof_arr:27|)
+                     (< 0 next.|init_pre_r:17|)
                      (- 1)
-                     (- next.|valof_arr:26| 1))
-                  next.|valof_arr:25|))))
+                     (- next.|init_pre_r:16| 1))
+                  next.|init_pre_r:15|))))
       (=
          next.|r_is_bounded:3|
          (and
@@ -1568,36 +2165,36 @@ Sally Model
             (<=
                (- 2)
                next.|r:3|)))
-      (= next.|valof_pre_r:14| state.|r:2|)
+      (= next.|pre_r:14| state.|r:2|)
       (ite
-         state.|valof_arr:24:init|
-         (= next.|valof_arr:24| 0)
-         (= next.|valof_arr:24| next.|valof_pre_r:14|))
-      (= next.|valof_arr:24:init| false)
-      (= next.|valof_pre_r:13| state.|r:2|)
+         state.|init_pre_r:14:init|
+         (= next.|init_pre_r:14| 0)
+         (= next.|init_pre_r:14| next.|pre_r:14|))
+      (= next.|init_pre_r:14:init| false)
+      (= next.|pre_r:13| state.|r:2|)
       (ite
-         state.|valof_arr:23:init|
-         (= next.|valof_arr:23| 0)
-         (= next.|valof_arr:23| next.|valof_pre_r:13|))
-      (= next.|valof_arr:23:init| false)
-      (= next.|valof_pre_r:12| state.|r:2|)
+         state.|init_pre_r:13:init|
+         (= next.|init_pre_r:13| 0)
+         (= next.|init_pre_r:13| next.|pre_r:13|))
+      (= next.|init_pre_r:13:init| false)
+      (= next.|pre_r:12| state.|r:2|)
       (ite
-         state.|valof_arr:22:init|
-         (= next.|valof_arr:22| 0)
-         (= next.|valof_arr:22| next.|valof_pre_r:12|))
-      (= next.|valof_arr:22:init| false)
-      (= next.|valof_pre_r:11| state.|r:2|)
+         state.|init_pre_r:12:init|
+         (= next.|init_pre_r:12| 0)
+         (= next.|init_pre_r:12| next.|pre_r:12|))
+      (= next.|init_pre_r:12:init| false)
+      (= next.|pre_r:11| state.|r:2|)
       (ite
-         state.|valof_arr:21:init|
-         (= next.|valof_arr:21| 0)
-         (= next.|valof_arr:21| next.|valof_pre_r:11|))
-      (= next.|valof_arr:21:init| false)
-      (= next.|valof_pre_r:10| state.|r:2|)
+         state.|init_pre_r:11:init|
+         (= next.|init_pre_r:11| 0)
+         (= next.|init_pre_r:11| next.|pre_r:11|))
+      (= next.|init_pre_r:11:init| false)
+      (= next.|pre_r:10| state.|r:2|)
       (ite
-         state.|valof_arr:20:init|
-         (= next.|valof_arr:20| 0)
-         (= next.|valof_arr:20| next.|valof_pre_r:10|))
-      (= next.|valof_arr:20:init| false)
+         state.|init_pre_r:10:init|
+         (= next.|init_pre_r:10| 0)
+         (= next.|init_pre_r:10| next.|pre_r:10|))
+      (= next.|init_pre_r:10:init| false)
       (=
          next.|r:2|
          (ite
@@ -1606,16 +2203,16 @@ Sally Model
             (ite
                next.|p:10|
                (ite
-                  (< next.|valof_arr:24| 0)
+                  (< next.|init_pre_r:14| 0)
                   1
-                  (+ next.|valof_arr:23| 1))
+                  (+ next.|init_pre_r:13| 1))
                (ite
                   next.|q:3|
                   (ite
-                     (< 0 next.|valof_arr:22|)
+                     (< 0 next.|init_pre_r:12|)
                      (- 1)
-                     (- next.|valof_arr:21| 1))
-                  next.|valof_arr:20|))))
+                     (- next.|init_pre_r:11| 1))
+                  next.|init_pre_r:10|))))
       (=
          next.|r_is_bounded:2|
          (and
@@ -1623,36 +2220,36 @@ Sally Model
             (<=
                (- 2)
                next.|r:2|)))
-      (= next.|valof_pre_r:9| state.|r:1|)
+      (= next.|pre_r:9| state.|r:1|)
       (ite
-         state.|valof_arr:19:init|
-         (= next.|valof_arr:19| 0)
-         (= next.|valof_arr:19| next.|valof_pre_r:9|))
-      (= next.|valof_arr:19:init| false)
-      (= next.|valof_pre_r:8| state.|r:1|)
+         state.|init_pre_r:9:init|
+         (= next.|init_pre_r:9| 0)
+         (= next.|init_pre_r:9| next.|pre_r:9|))
+      (= next.|init_pre_r:9:init| false)
+      (= next.|pre_r:8| state.|r:1|)
       (ite
-         state.|valof_arr:18:init|
-         (= next.|valof_arr:18| 0)
-         (= next.|valof_arr:18| next.|valof_pre_r:8|))
-      (= next.|valof_arr:18:init| false)
-      (= next.|valof_pre_r:7| state.|r:1|)
+         state.|init_pre_r:8:init|
+         (= next.|init_pre_r:8| 0)
+         (= next.|init_pre_r:8| next.|pre_r:8|))
+      (= next.|init_pre_r:8:init| false)
+      (= next.|pre_r:7| state.|r:1|)
       (ite
-         state.|valof_arr:17:init|
-         (= next.|valof_arr:17| 0)
-         (= next.|valof_arr:17| next.|valof_pre_r:7|))
-      (= next.|valof_arr:17:init| false)
-      (= next.|valof_pre_r:6| state.|r:1|)
+         state.|init_pre_r:7:init|
+         (= next.|init_pre_r:7| 0)
+         (= next.|init_pre_r:7| next.|pre_r:7|))
+      (= next.|init_pre_r:7:init| false)
+      (= next.|pre_r:6| state.|r:1|)
       (ite
-         state.|valof_arr:16:init|
-         (= next.|valof_arr:16| 0)
-         (= next.|valof_arr:16| next.|valof_pre_r:6|))
-      (= next.|valof_arr:16:init| false)
-      (= next.|valof_pre_r:5| state.|r:1|)
+         state.|init_pre_r:6:init|
+         (= next.|init_pre_r:6| 0)
+         (= next.|init_pre_r:6| next.|pre_r:6|))
+      (= next.|init_pre_r:6:init| false)
+      (= next.|pre_r:5| state.|r:1|)
       (ite
-         state.|valof_arr:15:init|
-         (= next.|valof_arr:15| 0)
-         (= next.|valof_arr:15| next.|valof_pre_r:5|))
-      (= next.|valof_arr:15:init| false)
+         state.|init_pre_r:5:init|
+         (= next.|init_pre_r:5| 0)
+         (= next.|init_pre_r:5| next.|pre_r:5|))
+      (= next.|init_pre_r:5:init| false)
       (=
          next.|r:1|
          (ite
@@ -1661,16 +2258,16 @@ Sally Model
             (ite
                next.|p:11|
                (ite
-                  (< next.|valof_arr:19| 0)
+                  (< next.|init_pre_r:9| 0)
                   1
-                  (+ next.|valof_arr:18| 1))
+                  (+ next.|init_pre_r:8| 1))
                (ite
                   next.|q:4|
                   (ite
-                     (< 0 next.|valof_arr:17|)
+                     (< 0 next.|init_pre_r:7|)
                      (- 1)
-                     (- next.|valof_arr:16| 1))
-                  next.|valof_arr:15|))))
+                     (- next.|init_pre_r:6| 1))
+                  next.|init_pre_r:5|))))
       (=
          next.|r_is_bounded:1|
          (and
@@ -1678,36 +2275,36 @@ Sally Model
             (<=
                (- 2)
                next.|r:1|)))
-      (= next.|valof_pre_r:4| state.r)
+      (= next.|pre_r:4| state.r)
       (ite
-         state.|valof_arr:14:init|
-         (= next.|valof_arr:14| 0)
-         (= next.|valof_arr:14| next.|valof_pre_r:4|))
-      (= next.|valof_arr:14:init| false)
-      (= next.|valof_pre_r:3| state.r)
+         state.|init_pre_r:4:init|
+         (= next.|init_pre_r:4| 0)
+         (= next.|init_pre_r:4| next.|pre_r:4|))
+      (= next.|init_pre_r:4:init| false)
+      (= next.|pre_r:3| state.r)
       (ite
-         state.|valof_arr:13:init|
-         (= next.|valof_arr:13| 0)
-         (= next.|valof_arr:13| next.|valof_pre_r:3|))
-      (= next.|valof_arr:13:init| false)
-      (= next.|valof_pre_r:2| state.r)
+         state.|init_pre_r:3:init|
+         (= next.|init_pre_r:3| 0)
+         (= next.|init_pre_r:3| next.|pre_r:3|))
+      (= next.|init_pre_r:3:init| false)
+      (= next.|pre_r:2| state.r)
       (ite
-         state.|valof_arr:12:init|
-         (= next.|valof_arr:12| 0)
-         (= next.|valof_arr:12| next.|valof_pre_r:2|))
-      (= next.|valof_arr:12:init| false)
-      (= next.|valof_pre_r:1| state.r)
+         state.|init_pre_r:2:init|
+         (= next.|init_pre_r:2| 0)
+         (= next.|init_pre_r:2| next.|pre_r:2|))
+      (= next.|init_pre_r:2:init| false)
+      (= next.|pre_r:1| state.r)
       (ite
-         state.|valof_arr:11:init|
-         (= next.|valof_arr:11| 0)
-         (= next.|valof_arr:11| next.|valof_pre_r:1|))
-      (= next.|valof_arr:11:init| false)
-      (= next.|valof_pre_r| state.r)
+         state.|init_pre_r:1:init|
+         (= next.|init_pre_r:1| 0)
+         (= next.|init_pre_r:1| next.|pre_r:1|))
+      (= next.|init_pre_r:1:init| false)
+      (= next.|pre_r| state.r)
       (ite
-         state.|valof_arr:10:init|
-         (= next.|valof_arr:10| 0)
-         (= next.|valof_arr:10| next.|valof_pre_r|))
-      (= next.|valof_arr:10:init| false)
+         state.|init_pre_r:init|
+         (= next.|init_pre_r| 0)
+         (= next.|init_pre_r| next.|pre_r|))
+      (= next.|init_pre_r:init| false)
       (=
          next.r
          (ite
@@ -1716,16 +2313,16 @@ Sally Model
             (ite
                next.|p:12|
                (ite
-                  (< next.|valof_arr:14| 0)
+                  (< next.|init_pre_r:4| 0)
                   1
-                  (+ next.|valof_arr:13| 1))
+                  (+ next.|init_pre_r:3| 1))
                (ite
                   next.|q:5|
                   (ite
-                     (< 0 next.|valof_arr:12|)
+                     (< 0 next.|init_pre_r:2|)
                      (- 1)
-                     (- next.|valof_arr:11| 1))
-                  next.|valof_arr:10|))))
+                     (- next.|init_pre_r:1| 1))
+                  next.|init_pre_r|))))
       (=
          next.|r_is_bounded|
          (and
@@ -1737,36 +2334,36 @@ Sally Model
       (= next.|St_Wait:1| 5)
       (= next.|St_Stop:1| 6)
       (= next.|St_Pilot_Flying:1| 4)
-      (= next.|valof_pre_state:5| state.|state:1|)
+      (= next.|pre_state:5| state.|state:1|)
       (ite
-         state.|valof_arr:9:init|
-         (= next.|valof_arr:9| 1)
-         (= next.|valof_arr:9| next.|valof_pre_state:5|))
-      (= next.|valof_arr:9:init| false)
+         state.|init_pre_state:5:init|
+         (= next.|init_pre_state:5| 1)
+         (= next.|init_pre_state:5| next.|pre_state:5|))
+      (= next.|init_pre_state:5:init| false)
       (=
          next.|T4:1|
          (and
             next.|QS_Properties_Clock_Name:3|
-            (= next.|valof_arr:9| 2)))
-      (= next.|valof_pre_state:4| state.|state:1|)
+            (= next.|init_pre_state:5| 2)))
+      (= next.|pre_state:4| state.|state:1|)
       (ite
-         state.|valof_arr:8:init|
-         (= next.|valof_arr:8| 1)
-         (= next.|valof_arr:8| next.|valof_pre_state:4|))
-      (= next.|valof_arr:8:init| false)
+         state.|init_pre_state:4:init|
+         (= next.|init_pre_state:4| 1)
+         (= next.|init_pre_state:4| next.|pre_state:4|))
+      (= next.|init_pre_state:4:init| false)
       (=
          next.|T3:1|
          (and
             next.|QS_Properties_Clock_Name:3|
-            (= next.|valof_arr:8| 5)))
+            (= next.|init_pre_state:4| 5)))
       (= next.|St_Not_Pilot_Flying:1| 3)
       (= next.|St_Inhibit:1| 2)
-      (= next.|valof_pre_state:3| state.|state:1|)
+      (= next.|pre_state:3| state.|state:1|)
       (ite
-         state.|valof_arr:7:init|
-         (= next.|valof_arr:7| 1)
-         (= next.|valof_arr:7| next.|valof_pre_state:3|))
-      (= next.|valof_arr:7:init| false)
+         state.|init_pre_state:3:init|
+         (= next.|init_pre_state:3| 1)
+         (= next.|init_pre_state:3| next.|pre_state:3|))
+      (= next.|init_pre_state:3:init| false)
       (=
          next.|state:1|
          (ite
@@ -1781,69 +2378,69 @@ Sally Model
                   (ite
                      (or next.|T5:1| next.|T1:1|)
                      5
-                     next.|valof_arr:7|)))))
+                     next.|init_pre_state:3|)))))
       (= next.|clk:3| next.|QS_Properties_Clock_Name:4|)
-      (= next.|valof_pre_pre_I:3| state.|pre_I:3|)
+      (= next.|pre_pre_I:3| state.|pre_I:3|)
       (ite
-         state.|valof_arr:6:init|
-         (= next.|valof_arr:6| false)
-         (= next.|valof_arr:6| next.|valof_pre_pre_I:3|))
-      (= next.|valof_arr:6:init| false)
+         state.|init_pre_pre_I:3:init|
+         (= next.|init_pre_pre_I:3| false)
+         (= next.|init_pre_pre_I:3| next.|pre_pre_I:3|))
+      (= next.|init_pre_pre_I:3:init| false)
       (=
          next.|pre_I:3|
          (and
             (=> next.|clk:3| next.|I:4|)
             (=>
                (not next.|clk:3|)
-               next.|valof_arr:6|)))
+               next.|init_pre_pre_I:3|)))
       (= next.|clk:2| next.|QS_Properties_Clock_Name:4|)
-      (= next.|valof_pre_pre_I:2| state.|pre_I:2|)
+      (= next.|pre_pre_I:2| state.|pre_I:2|)
       (ite
-         state.|valof_arr:5:init|
-         (= next.|valof_arr:5| false)
-         (= next.|valof_arr:5| next.|valof_pre_pre_I:2|))
-      (= next.|valof_arr:5:init| false)
+         state.|init_pre_pre_I:2:init|
+         (= next.|init_pre_pre_I:2| false)
+         (= next.|init_pre_pre_I:2| next.|pre_pre_I:2|))
+      (= next.|init_pre_pre_I:2:init| false)
       (=
          next.|pre_I:2|
          (and
             (=> next.|clk:2| next.|I:5|)
             (=>
                (not next.|clk:2|)
-               next.|valof_arr:5|)))
+               next.|init_pre_pre_I:2|)))
       (= next.|St_Start| 1)
       (= next.|St_Wait| 5)
       (= next.|St_Stop| 6)
       (= next.|St_Pilot_Flying| 4)
-      (= next.|valof_pre_state:2| state.state)
+      (= next.|pre_state:2| state.state)
       (ite
-         state.|valof_arr:4:init|
-         (= next.|valof_arr:4| 1)
-         (= next.|valof_arr:4| next.|valof_pre_state:2|))
-      (= next.|valof_arr:4:init| false)
+         state.|init_pre_state:2:init|
+         (= next.|init_pre_state:2| 1)
+         (= next.|init_pre_state:2| next.|pre_state:2|))
+      (= next.|init_pre_state:2:init| false)
       (=
          next.T4
          (and
             next.|QS_Properties_Clock_Name|
-            (= next.|valof_arr:4| 2)))
-      (= next.|valof_pre_state:1| state.state)
+            (= next.|init_pre_state:2| 2)))
+      (= next.|pre_state:1| state.state)
       (ite
-         state.|valof_arr:3:init|
-         (= next.|valof_arr:3| 1)
-         (= next.|valof_arr:3| next.|valof_pre_state:1|))
-      (= next.|valof_arr:3:init| false)
+         state.|init_pre_state:1:init|
+         (= next.|init_pre_state:1| 1)
+         (= next.|init_pre_state:1| next.|pre_state:1|))
+      (= next.|init_pre_state:1:init| false)
       (=
          next.T3
          (and
             next.|QS_Properties_Clock_Name|
-            (= next.|valof_arr:3| 5)))
+            (= next.|init_pre_state:1| 5)))
       (= next.|St_Not_Pilot_Flying| 3)
       (= next.|St_Inhibit| 2)
-      (= next.|valof_pre_state| state.state)
+      (= next.|pre_state| state.state)
       (ite
-         state.|valof_arr:2:init|
-         (= next.|valof_arr:2| 1)
-         (= next.|valof_arr:2| next.|valof_pre_state|))
-      (= next.|valof_arr:2:init| false)
+         state.|init_pre_state:init|
+         (= next.|init_pre_state| 1)
+         (= next.|init_pre_state| next.|pre_state|))
+      (= next.|init_pre_state:init| false)
       (=
          next.state
          (ite
@@ -1858,35 +2455,35 @@ Sally Model
                   (ite
                      (or next.T5 next.T1)
                      5
-                     next.|valof_arr:2|)))))
+                     next.|init_pre_state|)))))
       (= next.|clk:1| next.|QS_Properties_Clock_Name:1|)
-      (= next.|valof_pre_pre_I:1| state.|pre_I:1|)
+      (= next.|pre_pre_I:1| state.|pre_I:1|)
       (ite
-         state.|valof_arr:1:init|
-         (= next.|valof_arr:1| false)
-         (= next.|valof_arr:1| next.|valof_pre_pre_I:1|))
-      (= next.|valof_arr:1:init| false)
+         state.|init_pre_pre_I:1:init|
+         (= next.|init_pre_pre_I:1| false)
+         (= next.|init_pre_pre_I:1| next.|pre_pre_I:1|))
+      (= next.|init_pre_pre_I:1:init| false)
       (=
          next.|pre_I:1|
          (and
             (=> next.|clk:1| next.|I:2|)
             (=>
                (not next.|clk:1|)
-               next.|valof_arr:1|)))
+               next.|init_pre_pre_I:1|)))
       (= next.clk next.|QS_Properties_Clock_Name:1|)
-      (= next.|valof_pre_pre_I| state.|pre_I|)
+      (= next.|pre_pre_I| state.|pre_I|)
       (ite
-         state.|valof_arr:init|
-         (= next.|valof_arr| false)
-         (= next.|valof_arr| next.|valof_pre_pre_I|))
-      (= next.|valof_arr:init| false)
+         state.|init_pre_pre_I:init|
+         (= next.|init_pre_pre_I| false)
+         (= next.|init_pre_pre_I| next.|pre_pre_I|))
+      (= next.|init_pre_pre_I:init| false)
       (=
          next.|pre_I|
          (and
             (=> next.clk next.|I:3|)
             (=>
                (not next.clk)
-               next.|valof_arr|)))
+               next.|init_pre_pre_I|)))
       (= next.|I:1| next.|LS_PFS|)
       (= next.I next.|RS_PFS|)
       (=

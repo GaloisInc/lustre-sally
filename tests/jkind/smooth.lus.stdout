@@ -6,11 +6,20 @@ node (x : int, y : int, z : int, w : int)
   assumes ()
   shows (cex)
 let
-  signal = And(And(And(Lt(x, y), Lt(y, z)), Lt(z, w)), Lt(x, w))
-  valof_pre_counter = pre counter
-  valof_arr = 0 -> valof_pre_counter
-  counter = ITE(signal, Add(1, valof_arr), 0)
-  cex = Leq(counter, 10)
+  signal : bool
+    = And(And(And(Lt(x, y), Lt(y, z)), Lt(z, w)), Lt(x, w))
+   
+  pre_counter : int
+    = pre counter
+   
+  init_pre_counter : int
+    = 0 -> pre_counter
+   
+  counter : int
+    = ITE(signal, Add(1, init_pre_counter), 0)
+   
+  cex : bool
+    = Leq(counter, 10)
 tel
 Sally Model
 ===========
@@ -26,9 +35,9 @@ Sally Model
      (y Int)
      (z Int)
      (|gal-initializing| Bool)
-     (|valof_arr:init| Bool)
-     (|valof_arr| Int)
-     (|valof_pre_counter| Int))
+     (|init_pre_counter:init| Bool)
+     (|init_pre_counter| Int)
+     (|pre_counter| Int))
    (
      (w Int)
      (x Int)
@@ -39,7 +48,7 @@ Sally Model
    S
    (and
       (= |gal-initializing| true)
-      (= |valof_arr:init| true))
+      (= |init_pre_counter:init| true))
    (and
       (= next.|gal-initializing| false)
       (= next.x input.x)
@@ -53,17 +62,17 @@ Sally Model
             (< next.y next.z)
             (< next.z next.w)
             (< next.x next.w)))
-      (= next.|valof_pre_counter| state.counter)
+      (= next.|pre_counter| state.counter)
       (ite
-         state.|valof_arr:init|
-         (= next.|valof_arr| 0)
-         (= next.|valof_arr| next.|valof_pre_counter|))
-      (= next.|valof_arr:init| false)
+         state.|init_pre_counter:init|
+         (= next.|init_pre_counter| 0)
+         (= next.|init_pre_counter| next.|pre_counter|))
+      (= next.|init_pre_counter:init| false)
       (=
          next.counter
          (ite
             next.signal
-            (+ 1 next.|valof_arr|)
+            (+ 1 next.|init_pre_counter|)
             0))
       (=
          next.cex

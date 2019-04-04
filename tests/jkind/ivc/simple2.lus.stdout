@@ -6,10 +6,17 @@ node (a1 : int, a2 : int)
   assumes (x)
   shows (ok)
 let
-  y = Gt(a1, 0)
-  z = Gt(a2, 10)
-  x = And(y, z)
-  ok = Gt(a1, 0)
+  y : bool
+    = Gt(a1, 0)
+   
+  z : bool
+    = Gt(a2, 10)
+   
+  x : bool
+    = And(y, z)
+   
+  ok : bool
+    = Gt(a1, 0)
 tel
 Sally Model
 ===========

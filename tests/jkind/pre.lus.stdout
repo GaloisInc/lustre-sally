@@ -6,32 +6,83 @@ node (x : int, s : int)
   assumes ()
   shows (ok4, ok3, ok2, cex1, ok1)
 let
-  valof_pre_valof_arr$4 = pre valof_arr$4
-  y = 1 -> valof_pre_valof_arr$4
-  valof_pre_z2 = pre z2
-  z1 = 1 -> valof_pre_z2
-  valof_pre_x$1 = pre x
-  z2 = 2 -> valof_pre_x$1
-  valof_pre_valof_arr$3 = pre valof_arr
-  w = 1 -> valof_pre_valof_arr$3
-  ok1 = Eq(y, z1)
-  valof_pre_s$1 = pre s
-  valof_pre_s = pre s
-  ok2 = And(Leq(0, valof_pre_s$1), Leq(valof_pre_s, 1))
-  pre_s = pre s
-  ok3 = And(Leq(0, pre_s), Leq(pre_s, 1))
-  r = pre r
-  ok4 = And(Leq(0, r), Leq(r, 1))
-  cex1 = Lt(w, 6)
-  valof_pre_x = pre x
-  valof_arr$4 = 2 -> valof_pre_x
-  valof_arr$3 = 5 -> 6
-  valof_pre_valof_arr$2 = pre valof_arr$3
-  valof_arr$2 = 4 -> valof_pre_valof_arr$2
-  valof_pre_valof_arr$1 = pre valof_arr$2
-  valof_arr$1 = 3 -> valof_pre_valof_arr$1
-  valof_pre_valof_arr = pre valof_arr$1
-  valof_arr = 2 -> valof_pre_valof_arr
+  pre_init_pre_x : int
+    = pre init_pre_x
+   
+  y : int
+    = 1 -> pre_init_pre_x
+   
+  pre_z2 : int
+    = pre z2
+   
+  z1 : int
+    = 1 -> pre_z2
+   
+  pre_x$1 : int
+    = pre x
+   
+  z2 : int
+    = 2 -> pre_x$1
+   
+  pre_init_pre_init_pre_init_pre_$init : int
+    = pre init_pre_init_pre_init_pre_$init
+   
+  w : int
+    = 1 -> pre_init_pre_init_pre_init_pre_$init
+   
+  ok1 : bool
+    = Eq(y, z1)
+   
+  pre_s$2 : int
+    = pre s
+   
+  pre_s$1 : int
+    = pre s
+   
+  ok2 : bool
+    = And(Leq(0, pre_s$2), Leq(pre_s$1, 1))
+   
+  pre_s : int
+    = pre s
+   
+  ok3 : bool
+    = And(Leq(0, pre_s), Leq(pre_s, 1))
+   
+  r : int
+    = pre r
+   
+  ok4 : bool
+    = And(Leq(0, r), Leq(r, 1))
+   
+  cex1 : bool
+    = Lt(w, 6)
+   
+  pre_x : int
+    = pre x
+   
+  init_pre_x : int
+    = 2 -> pre_x
+   
+  $init : int
+    = 5 -> 6
+   
+  pre_$init : int
+    = pre $init
+   
+  init_pre_$init : int
+    = 4 -> pre_$init
+   
+  pre_init_pre_$init : int
+    = pre init_pre_$init
+   
+  init_pre_init_pre_$init : int
+    = 3 -> pre_init_pre_$init
+   
+  pre_init_pre_init_pre_$init : int
+    = pre init_pre_init_pre_$init
+   
+  init_pre_init_pre_init_pre_$init : int
+    = 2 -> pre_init_pre_init_pre_$init
 tel
 Sally Model
 ===========
@@ -51,28 +102,28 @@ Sally Model
      (y Int)
      (z1 Int)
      (z2 Int)
+     (|$init:init| Bool)
+     (|$init| Int)
      (|gal-initializing| Bool)
+     (|init_pre_$init:init| Bool)
+     (|init_pre_$init| Int)
+     (|init_pre_init_pre_$init:init| Bool)
+     (|init_pre_init_pre_$init| Int)
+     (|init_pre_init_pre_init_pre_$init:init| Bool)
+     (|init_pre_init_pre_init_pre_$init| Int)
+     (|init_pre_x:init| Bool)
+     (|init_pre_x| Int)
+     (|pre_$init| Int)
+     (|pre_init_pre_$init| Int)
+     (|pre_init_pre_init_pre_$init| Int)
+     (|pre_init_pre_init_pre_init_pre_$init| Int)
+     (|pre_init_pre_x| Int)
+     (|pre_s:1| Int)
+     (|pre_s:2| Int)
      (|pre_s| Int)
-     (|valof_arr:1:init| Bool)
-     (|valof_arr:1| Int)
-     (|valof_arr:2:init| Bool)
-     (|valof_arr:2| Int)
-     (|valof_arr:3:init| Bool)
-     (|valof_arr:3| Int)
-     (|valof_arr:4:init| Bool)
-     (|valof_arr:4| Int)
-     (|valof_arr:init| Bool)
-     (|valof_arr| Int)
-     (|valof_pre_s:1| Int)
-     (|valof_pre_s| Int)
-     (|valof_pre_valof_arr:1| Int)
-     (|valof_pre_valof_arr:2| Int)
-     (|valof_pre_valof_arr:3| Int)
-     (|valof_pre_valof_arr:4| Int)
-     (|valof_pre_valof_arr| Int)
-     (|valof_pre_x:1| Int)
-     (|valof_pre_x| Int)
-     (|valof_pre_z2| Int)
+     (|pre_x:1| Int)
+     (|pre_x| Int)
+     (|pre_z2| Int)
      (|w:init| Bool)
      (|y:init| Bool)
      (|z1:init| Bool)
@@ -89,49 +140,49 @@ Sally Model
       (= |z1:init| true)
       (= |z2:init| true)
       (= |w:init| true)
-      (= |valof_arr:4:init| true)
-      (= |valof_arr:3:init| true)
-      (= |valof_arr:2:init| true)
-      (= |valof_arr:1:init| true)
-      (= |valof_arr:init| true))
+      (= |init_pre_x:init| true)
+      (= |$init:init| true)
+      (= |init_pre_$init:init| true)
+      (= |init_pre_init_pre_$init:init| true)
+      (= |init_pre_init_pre_init_pre_$init:init| true))
    (and
       (= next.|gal-initializing| false)
       (= next.x input.x)
       (= next.s input.s)
-      (= next.|valof_pre_valof_arr:4| state.|valof_arr:4|)
+      (= next.|pre_init_pre_x| state.|init_pre_x|)
       (ite
          state.|y:init|
          (= next.y 1)
-         (= next.y next.|valof_pre_valof_arr:4|))
+         (= next.y next.|pre_init_pre_x|))
       (= next.|y:init| false)
-      (= next.|valof_pre_z2| state.z2)
+      (= next.|pre_z2| state.z2)
       (ite
          state.|z1:init|
          (= next.z1 1)
-         (= next.z1 next.|valof_pre_z2|))
+         (= next.z1 next.|pre_z2|))
       (= next.|z1:init| false)
-      (= next.|valof_pre_x:1| state.x)
+      (= next.|pre_x:1| state.x)
       (ite
          state.|z2:init|
          (= next.z2 2)
-         (= next.z2 next.|valof_pre_x:1|))
+         (= next.z2 next.|pre_x:1|))
       (= next.|z2:init| false)
-      (= next.|valof_pre_valof_arr:3| state.|valof_arr|)
+      (= next.|pre_init_pre_init_pre_init_pre_$init| state.|init_pre_init_pre_init_pre_$init|)
       (ite
          state.|w:init|
          (= next.w 1)
-         (= next.w next.|valof_pre_valof_arr:3|))
+         (= next.w next.|pre_init_pre_init_pre_init_pre_$init|))
       (= next.|w:init| false)
       (=
          next.ok1
          (= next.y next.z1))
-      (= next.|valof_pre_s:1| state.s)
-      (= next.|valof_pre_s| state.s)
+      (= next.|pre_s:2| state.s)
+      (= next.|pre_s:1| state.s)
       (=
          next.ok2
          (and
-            (<= 0 next.|valof_pre_s:1|)
-            (<= next.|valof_pre_s| 1)))
+            (<= 0 next.|pre_s:2|)
+            (<= next.|pre_s:1| 1)))
       (= next.|pre_s| state.s)
       (=
          next.ok3
@@ -147,35 +198,35 @@ Sally Model
       (=
          next.cex1
          (< next.w 6))
-      (= next.|valof_pre_x| state.x)
+      (= next.|pre_x| state.x)
       (ite
-         state.|valof_arr:4:init|
-         (= next.|valof_arr:4| 2)
-         (= next.|valof_arr:4| next.|valof_pre_x|))
-      (= next.|valof_arr:4:init| false)
+         state.|init_pre_x:init|
+         (= next.|init_pre_x| 2)
+         (= next.|init_pre_x| next.|pre_x|))
+      (= next.|init_pre_x:init| false)
       (ite
-         state.|valof_arr:3:init|
-         (= next.|valof_arr:3| 5)
-         (= next.|valof_arr:3| 6))
-      (= next.|valof_arr:3:init| false)
-      (= next.|valof_pre_valof_arr:2| state.|valof_arr:3|)
+         state.|$init:init|
+         (= next.|$init| 5)
+         (= next.|$init| 6))
+      (= next.|$init:init| false)
+      (= next.|pre_$init| state.|$init|)
       (ite
-         state.|valof_arr:2:init|
-         (= next.|valof_arr:2| 4)
-         (= next.|valof_arr:2| next.|valof_pre_valof_arr:2|))
-      (= next.|valof_arr:2:init| false)
-      (= next.|valof_pre_valof_arr:1| state.|valof_arr:2|)
+         state.|init_pre_$init:init|
+         (= next.|init_pre_$init| 4)
+         (= next.|init_pre_$init| next.|pre_$init|))
+      (= next.|init_pre_$init:init| false)
+      (= next.|pre_init_pre_$init| state.|init_pre_$init|)
       (ite
-         state.|valof_arr:1:init|
-         (= next.|valof_arr:1| 3)
-         (= next.|valof_arr:1| next.|valof_pre_valof_arr:1|))
-      (= next.|valof_arr:1:init| false)
-      (= next.|valof_pre_valof_arr| state.|valof_arr:1|)
+         state.|init_pre_init_pre_$init:init|
+         (= next.|init_pre_init_pre_$init| 3)
+         (= next.|init_pre_init_pre_$init| next.|pre_init_pre_$init|))
+      (= next.|init_pre_init_pre_$init:init| false)
+      (= next.|pre_init_pre_init_pre_$init| state.|init_pre_init_pre_$init|)
       (ite
-         state.|valof_arr:init|
-         (= next.|valof_arr| 2)
-         (= next.|valof_arr| next.|valof_pre_valof_arr|))
-      (= next.|valof_arr:init| false)))
+         state.|init_pre_init_pre_init_pre_$init:init|
+         (= next.|init_pre_init_pre_init_pre_$init| 2)
+         (= next.|init_pre_init_pre_init_pre_$init| next.|pre_init_pre_init_pre_$init|))
+      (= next.|init_pre_init_pre_init_pre_$init:init| false)))
 
 (query
    TS

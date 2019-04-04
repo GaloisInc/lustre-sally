@@ -6,12 +6,23 @@ node (x$1 : real, y : int)
   assumes ()
   shows (ok4, ok3, ok2, ok1)
 let
-  ok1 = And(Leq(RealCast(FloorCast(x$1)), x$1), Lt(x$1, Add(RealCast(FloorCast(x$1)), 1.0)))
-  x = x$1
-  __no_static = Eq(x, RealCast(FloorCast(x)))
-  ok2 = Eq(Eq(FloorCast(Neg(x$1)), Neg(FloorCast(x$1))), __no_static)
-  ok3 = Eq(Div(y, 5), FloorCast(Div(RealCast(y), 5.0)))
-  ok4 = Eq(Div(FloorCast(x$1), 5), FloorCast(Div(x$1, 5.0)))
+  ok1 : bool
+    = And(Leq(RealCast(FloorCast(x$1)), x$1), Lt(x$1, Add(RealCast(FloorCast(x$1)), 1.0)))
+   
+  x : real
+    = x$1
+   
+  is_int : bool
+    = Eq(x, RealCast(FloorCast(x)))
+   
+  ok2 : bool
+    = Eq(Eq(FloorCast(Neg(x$1)), Neg(FloorCast(x$1))), is_int)
+   
+  ok3 : bool
+    = Eq(Div(y, 5), FloorCast(Div(RealCast(y), 5.0)))
+   
+  ok4 : bool
+    = Eq(Div(FloorCast(x$1), 5), FloorCast(Div(x$1, 5.0)))
 tel
 Sally Model
 ===========
@@ -25,8 +36,8 @@ Sally Model
      (ok4 Bool)
      (x Real)
      (y Int)
-     (|__no_static| Bool)
      (|gal-initializing| Bool)
+     (|is_int| Bool)
      (|x:1| Real))
    (
      (y Int)
@@ -54,7 +65,7 @@ Sally Model
                   1.0))))
       (= next.x next.|x:1|)
       (=
-         next.|__no_static|
+         next.|is_int|
          (=
             next.x
             (to_real
@@ -67,7 +78,7 @@ Sally Model
                   (- next.|x:1|))
                (-
                   (to_int next.|x:1|)))
-            next.|__no_static|))
+            next.|is_int|))
       (=
          next.ok3
          (=

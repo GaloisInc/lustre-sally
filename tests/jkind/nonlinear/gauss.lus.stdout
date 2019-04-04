@@ -6,12 +6,23 @@ node ()
   assumes ()
   shows (ok)
 let
-  valof_pre_i = pre i
-  i = 0 -> Add(1, valof_pre_i)
-  valof_pre_sum = pre sum
-  valof_arr = 0 -> valof_pre_sum
-  sum = Add(i, valof_arr)
-  ok = Eq(sum, Div(Mul(i, Add(i, 1)), 2))
+  pre_i : int
+    = pre i
+   
+  i : int
+    = 0 -> Add(1, pre_i)
+   
+  pre_sum : int
+    = pre sum
+   
+  init_pre_sum : int
+    = 0 -> pre_sum
+   
+  sum : int
+    = Add(i, init_pre_sum)
+   
+  ok : bool
+    = Eq(sum, Div(Mul(i, Add(i, 1)), 2))
 tel
 Sally Model
 ===========
@@ -24,10 +35,10 @@ Sally Model
      (sum Int)
      (|gal-initializing| Bool)
      (|i:init| Bool)
-     (|valof_arr:init| Bool)
-     (|valof_arr| Int)
-     (|valof_pre_i| Int)
-     (|valof_pre_sum| Int))
+     (|init_pre_sum:init| Bool)
+     (|init_pre_sum| Int)
+     (|pre_i| Int)
+     (|pre_sum| Int))
    ())
 (define-transition-system
    TS
@@ -35,26 +46,26 @@ Sally Model
    (and
       (= |gal-initializing| true)
       (= |i:init| true)
-      (= |valof_arr:init| true))
+      (= |init_pre_sum:init| true))
    (and
       (= next.|gal-initializing| false)
-      (= next.|valof_pre_i| state.i)
+      (= next.|pre_i| state.i)
       (ite
          state.|i:init|
          (= next.i 0)
          (=
             next.i
-            (+ 1 next.|valof_pre_i|)))
+            (+ 1 next.|pre_i|)))
       (= next.|i:init| false)
-      (= next.|valof_pre_sum| state.sum)
+      (= next.|pre_sum| state.sum)
       (ite
-         state.|valof_arr:init|
-         (= next.|valof_arr| 0)
-         (= next.|valof_arr| next.|valof_pre_sum|))
-      (= next.|valof_arr:init| false)
+         state.|init_pre_sum:init|
+         (= next.|init_pre_sum| 0)
+         (= next.|init_pre_sum| next.|pre_sum|))
+      (= next.|init_pre_sum:init| false)
       (=
          next.sum
-         (+ next.i next.|valof_arr|))
+         (+ next.i next.|init_pre_sum|))
       (=
          next.ok
          (=

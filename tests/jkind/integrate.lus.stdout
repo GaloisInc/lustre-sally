@@ -6,27 +6,68 @@ node (x$4 : int, y : int)
   assumes ()
   shows (prop2, prop1)
 let
-  x$3 = x$4
-  valof_pre_z = pre z
-  valof_arr$4 = 0 -> valof_pre_z
-  z = Add(x$3, valof_arr$4)
-  valof_pre_history = pre history
-  valof_arr$3 = true -> valof_pre_history
-  history = And(Gt(x$4, 0), valof_arr$3)
-  prop1 = Implies(history, Gt(z, 0))
-  x$2 = x$4
-  valof_pre___no_static$2 = pre __no_static$2
-  valof_arr$2 = 0 -> valof_pre___no_static$2
-  __no_static$2 = Add(x$2, valof_arr$2)
-  x$1 = y
-  valof_pre___no_static$1 = pre __no_static$1
-  valof_arr$1 = 0 -> valof_pre___no_static$1
-  __no_static$1 = Add(x$1, valof_arr$1)
-  x = Add(x$4, y)
-  valof_pre___no_static = pre __no_static
-  valof_arr = 0 -> valof_pre___no_static
-  __no_static = Add(x, valof_arr)
-  prop2 = Eq(Add(__no_static$2, __no_static$1), __no_static)
+  x$3 : int
+    = x$4
+   
+  pre_z : int
+    = pre z
+   
+  init_pre_z : int
+    = 0 -> pre_z
+   
+  z : int
+    = Add(x$3, init_pre_z)
+   
+  pre_history : bool
+    = pre history
+   
+  init_pre_history : bool
+    = true -> pre_history
+   
+  history : bool
+    = And(Gt(x$4, 0), init_pre_history)
+   
+  prop1 : bool
+    = Implies(history, Gt(z, 0))
+   
+  x$2 : int
+    = x$4
+   
+  pre_integ$2 : int
+    = pre integ$2
+   
+  init_pre_integ$2 : int
+    = 0 -> pre_integ$2
+   
+  integ$2 : int
+    = Add(x$2, init_pre_integ$2)
+   
+  x$1 : int
+    = y
+   
+  pre_integ$1 : int
+    = pre integ$1
+   
+  init_pre_integ$1 : int
+    = 0 -> pre_integ$1
+   
+  integ$1 : int
+    = Add(x$1, init_pre_integ$1)
+   
+  x : int
+    = Add(x$4, y)
+   
+  pre_integ : int
+    = pre integ
+   
+  init_pre_integ : int
+    = 0 -> pre_integ
+   
+  integ : int
+    = Add(x, init_pre_integ)
+   
+  prop2 : bool
+    = Eq(Add(integ$2, integ$1), integ)
 tel
 Sally Model
 ===========
@@ -35,30 +76,30 @@ Sally Model
    S
    (
      (history Bool)
+     (integ Int)
      (prop1 Bool)
      (prop2 Bool)
      (x Int)
      (y Int)
      (z Int)
-     (|__no_static:1| Int)
-     (|__no_static:2| Int)
-     (|__no_static| Int)
      (|gal-initializing| Bool)
-     (|valof_arr:1:init| Bool)
-     (|valof_arr:1| Int)
-     (|valof_arr:2:init| Bool)
-     (|valof_arr:2| Int)
-     (|valof_arr:3:init| Bool)
-     (|valof_arr:3| Bool)
-     (|valof_arr:4:init| Bool)
-     (|valof_arr:4| Int)
-     (|valof_arr:init| Bool)
-     (|valof_arr| Int)
-     (|valof_pre___no_static:1| Int)
-     (|valof_pre___no_static:2| Int)
-     (|valof_pre___no_static| Int)
-     (|valof_pre_history| Bool)
-     (|valof_pre_z| Int)
+     (|init_pre_history:init| Bool)
+     (|init_pre_history| Bool)
+     (|init_pre_integ:1:init| Bool)
+     (|init_pre_integ:1| Int)
+     (|init_pre_integ:2:init| Bool)
+     (|init_pre_integ:2| Int)
+     (|init_pre_integ:init| Bool)
+     (|init_pre_integ| Int)
+     (|init_pre_z:init| Bool)
+     (|init_pre_z| Int)
+     (|integ:1| Int)
+     (|integ:2| Int)
+     (|pre_history| Bool)
+     (|pre_integ:1| Int)
+     (|pre_integ:2| Int)
+     (|pre_integ| Int)
+     (|pre_z| Int)
      (|x:1| Int)
      (|x:2| Int)
      (|x:3| Int)
@@ -71,78 +112,78 @@ Sally Model
    S
    (and
       (= |gal-initializing| true)
-      (= |valof_arr:4:init| true)
-      (= |valof_arr:3:init| true)
-      (= |valof_arr:2:init| true)
-      (= |valof_arr:1:init| true)
-      (= |valof_arr:init| true))
+      (= |init_pre_z:init| true)
+      (= |init_pre_history:init| true)
+      (= |init_pre_integ:2:init| true)
+      (= |init_pre_integ:1:init| true)
+      (= |init_pre_integ:init| true))
    (and
       (= next.|gal-initializing| false)
       (= next.|x:4| input.|x:4|)
       (= next.y input.y)
       (= next.|x:3| next.|x:4|)
-      (= next.|valof_pre_z| state.z)
+      (= next.|pre_z| state.z)
       (ite
-         state.|valof_arr:4:init|
-         (= next.|valof_arr:4| 0)
-         (= next.|valof_arr:4| next.|valof_pre_z|))
-      (= next.|valof_arr:4:init| false)
+         state.|init_pre_z:init|
+         (= next.|init_pre_z| 0)
+         (= next.|init_pre_z| next.|pre_z|))
+      (= next.|init_pre_z:init| false)
       (=
          next.z
-         (+ next.|x:3| next.|valof_arr:4|))
-      (= next.|valof_pre_history| state.history)
+         (+ next.|x:3| next.|init_pre_z|))
+      (= next.|pre_history| state.history)
       (ite
-         state.|valof_arr:3:init|
-         (= next.|valof_arr:3| true)
-         (= next.|valof_arr:3| next.|valof_pre_history|))
-      (= next.|valof_arr:3:init| false)
+         state.|init_pre_history:init|
+         (= next.|init_pre_history| true)
+         (= next.|init_pre_history| next.|pre_history|))
+      (= next.|init_pre_history:init| false)
       (=
          next.history
          (and
             (< 0 next.|x:4|)
-            next.|valof_arr:3|))
+            next.|init_pre_history|))
       (=
          next.prop1
          (=>
             next.history
             (< 0 next.z)))
       (= next.|x:2| next.|x:4|)
-      (= next.|valof_pre___no_static:2| state.|__no_static:2|)
+      (= next.|pre_integ:2| state.|integ:2|)
       (ite
-         state.|valof_arr:2:init|
-         (= next.|valof_arr:2| 0)
-         (= next.|valof_arr:2| next.|valof_pre___no_static:2|))
-      (= next.|valof_arr:2:init| false)
+         state.|init_pre_integ:2:init|
+         (= next.|init_pre_integ:2| 0)
+         (= next.|init_pre_integ:2| next.|pre_integ:2|))
+      (= next.|init_pre_integ:2:init| false)
       (=
-         next.|__no_static:2|
-         (+ next.|x:2| next.|valof_arr:2|))
+         next.|integ:2|
+         (+ next.|x:2| next.|init_pre_integ:2|))
       (= next.|x:1| next.y)
-      (= next.|valof_pre___no_static:1| state.|__no_static:1|)
+      (= next.|pre_integ:1| state.|integ:1|)
       (ite
-         state.|valof_arr:1:init|
-         (= next.|valof_arr:1| 0)
-         (= next.|valof_arr:1| next.|valof_pre___no_static:1|))
-      (= next.|valof_arr:1:init| false)
+         state.|init_pre_integ:1:init|
+         (= next.|init_pre_integ:1| 0)
+         (= next.|init_pre_integ:1| next.|pre_integ:1|))
+      (= next.|init_pre_integ:1:init| false)
       (=
-         next.|__no_static:1|
-         (+ next.|x:1| next.|valof_arr:1|))
+         next.|integ:1|
+         (+ next.|x:1| next.|init_pre_integ:1|))
       (=
          next.x
          (+ next.|x:4| next.y))
-      (= next.|valof_pre___no_static| state.|__no_static|)
+      (= next.|pre_integ| state.integ)
       (ite
-         state.|valof_arr:init|
-         (= next.|valof_arr| 0)
-         (= next.|valof_arr| next.|valof_pre___no_static|))
-      (= next.|valof_arr:init| false)
+         state.|init_pre_integ:init|
+         (= next.|init_pre_integ| 0)
+         (= next.|init_pre_integ| next.|pre_integ|))
+      (= next.|init_pre_integ:init| false)
       (=
-         next.|__no_static|
-         (+ next.x next.|valof_arr|))
+         next.integ
+         (+ next.x next.|init_pre_integ|))
       (=
          next.prop2
          (=
-            (+ next.|__no_static:2| next.|__no_static:1|)
-            next.|__no_static|))))
+            (+ next.|integ:2| next.|integ:1|)
+            next.integ))))
 
 (query
    TS

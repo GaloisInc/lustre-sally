@@ -4,91 +4,254 @@ Core Lustre
 
 node (a : bool, b : bool, c : bool, d : bool)
   returns (cost)
-  assumes (no_more_than_two_travelers, at_least_one_travelers, __no_static, __no_static$1, __no_static$2, __no_static$3)
+  assumes (no_more_than_two_travelers, at_least_one_travelers, traveler, traveler$1, traveler$2, traveler$3)
   shows (prop2, prop1)
 let
-  state$7 = a
-  value$3 = 1
-  valof_pre_state$11 = pre state$7
-  __no_static$18 = 0 -> ITE(Neq(state$7, valof_pre_state$11), value$3, 0)
-  x$11 = __no_static$18
-  x$10 = x$11
-  state$6 = b
-  value$2 = 2
-  valof_pre_state$10 = pre state$6
-  __no_static$17 = 0 -> ITE(Neq(state$6, valof_pre_state$10), value$2, 0)
-  y$3 = __no_static$17
-  x$9 = y$3
-  state$5 = c
-  value$1 = 5
-  valof_pre_state$9 = pre state$5
-  __no_static$16 = 0 -> ITE(Neq(state$5, valof_pre_state$9), value$1, 0)
-  z = __no_static$16
-  x$8 = z
-  state$4 = d
-  value = 8
-  valof_pre_state$8 = pre state$4
-  __no_static$15 = 0 -> ITE(Neq(state$4, valof_pre_state$8), value, 0)
-  w = __no_static$15
-  y$2 = w
-  __no_static$14 = ITE(Geq(x$8, y$2), x$8, y$2)
-  y$1 = __no_static$14
-  __no_static$13 = ITE(Geq(x$9, y$1), x$9, y$1)
-  y = __no_static$13
-  __no_static$12 = ITE(Geq(x$10, y), x$10, y)
-  valof_pre_cost = pre cost
-  cost = 0 -> Add(valof_pre_cost, __no_static$12)
-  valof_pre_torch = pre torch$4
-  torch$4 = true -> Not(valof_pre_torch)
-  valof_pre_a = pre a
-  valof_pre_b = pre b
-  valof_pre_c = pre c
-  valof_pre_d = pre d
-  at_least_one_travelers = true -> Or(Or(Or(Neq(a, valof_pre_a), Neq(b, valof_pre_b)), Neq(c, valof_pre_c)), Neq(d, valof_pre_d))
-  x$7 = a
-  valof_pre_x$3 = pre x$7
-  __no_static$11 = false -> Neq(x$7, valof_pre_x$3)
-  x$6 = __no_static$11
-  __no_static$10 = ITE(x$6, 1, 0)
-  x$5 = b
-  valof_pre_x$2 = pre x$5
-  __no_static$9 = false -> Neq(x$5, valof_pre_x$2)
-  x$4 = __no_static$9
-  __no_static$8 = ITE(x$4, 1, 0)
-  x$3 = c
-  valof_pre_x$1 = pre x$3
-  __no_static$7 = false -> Neq(x$3, valof_pre_x$1)
-  x$2 = __no_static$7
-  __no_static$6 = ITE(x$2, 1, 0)
-  x$1 = d
-  valof_pre_x = pre x$1
-  __no_static$5 = false -> Neq(x$1, valof_pre_x)
-  x = __no_static$5
-  __no_static$4 = ITE(x, 1, 0)
-  no_more_than_two_travelers = Leq(Add(Add(Add(__no_static$10, __no_static$8), __no_static$6), __no_static$4), 2)
-  solved = And(And(And(a, b), c), d)
-  prop1 = Not(And(solved, Lt(cost, 15)))
-  prop2 = Not(And(solved, Eq(cost, 15)))
-  state$3 = a
-  torch$3 = torch$4
-  valof_pre_state$7 = pre state$3
-  valof_pre_state$6 = pre state$3
-  __no_static$3 = Eq(state$3, false) -> Implies(Neq(state$3, valof_pre_state$7), Eq(valof_pre_state$6, torch$3))
-  state$2 = b
-  torch$2 = torch$4
-  valof_pre_state$5 = pre state$2
-  valof_pre_state$4 = pre state$2
-  __no_static$2 = Eq(state$2, false) -> Implies(Neq(state$2, valof_pre_state$5), Eq(valof_pre_state$4, torch$2))
-  state$1 = c
-  torch$1 = torch$4
-  valof_pre_state$3 = pre state$1
-  valof_pre_state$2 = pre state$1
-  __no_static$1 = Eq(state$1, false) -> Implies(Neq(state$1, valof_pre_state$3), Eq(valof_pre_state$2, torch$1))
-  state = d
-  torch = torch$4
-  valof_pre_state$1 = pre state
-  valof_pre_state = pre state
-  __no_static = Eq(state, false) -> Implies(Neq(state, valof_pre_state$1), Eq(valof_pre_state, torch))
+  state$7 : bool
+    = a
+   
+  value$3 : int
+    = 1
+   
+  pre_state$11 : bool
+    = pre state$7
+   
+  cost$4 : int
+    = 0 -> ITE(Neq(state$7, pre_state$11), value$3, 0)
+   
+  x$11 : int
+    = cost$4
+   
+  x$10 : int
+    = x$11
+   
+  state$6 : bool
+    = b
+   
+  value$2 : int
+    = 2
+   
+  pre_state$10 : bool
+    = pre state$6
+   
+  cost$3 : int
+    = 0 -> ITE(Neq(state$6, pre_state$10), value$2, 0)
+   
+  y$3 : int
+    = cost$3
+   
+  x$9 : int
+    = y$3
+   
+  state$5 : bool
+    = c
+   
+  value$1 : int
+    = 5
+   
+  pre_state$9 : bool
+    = pre state$5
+   
+  cost$2 : int
+    = 0 -> ITE(Neq(state$5, pre_state$9), value$1, 0)
+   
+  z : int
+    = cost$2
+   
+  x$8 : int
+    = z
+   
+  state$4 : bool
+    = d
+   
+  value : int
+    = 8
+   
+  pre_state$8 : bool
+    = pre state$4
+   
+  cost$1 : int
+    = 0 -> ITE(Neq(state$4, pre_state$8), value, 0)
+   
+  w : int
+    = cost$1
+   
+  y$2 : int
+    = w
+   
+  max2$1 : int
+    = ITE(Geq(x$8, y$2), x$8, y$2)
+   
+  y$1 : int
+    = max2$1
+   
+  max2 : int
+    = ITE(Geq(x$9, y$1), x$9, y$1)
+   
+  y : int
+    = max2
+   
+  max : int
+    = ITE(Geq(x$10, y), x$10, y)
+   
+  pre_cost : int
+    = pre cost
+   
+  cost : int
+    = 0 -> Add(pre_cost, max)
+   
+  pre_torch : bool
+    = pre torch$4
+   
+  torch$4 : bool
+    = true -> Not(pre_torch)
+   
+  pre_a : bool
+    = pre a
+   
+  pre_b : bool
+    = pre b
+   
+  pre_c : bool
+    = pre c
+   
+  pre_d : bool
+    = pre d
+   
+  at_least_one_travelers : bool
+    = true -> Or(Or(Or(Neq(a, pre_a), Neq(b, pre_b)), Neq(c, pre_c)), Neq(d, pre_d))
+   
+  x$7 : bool
+    = a
+   
+  pre_x$3 : bool
+    = pre x$7
+   
+  changed$3 : bool
+    = false -> Neq(x$7, pre_x$3)
+   
+  x$6 : bool
+    = changed$3
+   
+  b2i$3 : int
+    = ITE(x$6, 1, 0)
+   
+  x$5 : bool
+    = b
+   
+  pre_x$2 : bool
+    = pre x$5
+   
+  changed$2 : bool
+    = false -> Neq(x$5, pre_x$2)
+   
+  x$4 : bool
+    = changed$2
+   
+  b2i$2 : int
+    = ITE(x$4, 1, 0)
+   
+  x$3 : bool
+    = c
+   
+  pre_x$1 : bool
+    = pre x$3
+   
+  changed$1 : bool
+    = false -> Neq(x$3, pre_x$1)
+   
+  x$2 : bool
+    = changed$1
+   
+  b2i$1 : int
+    = ITE(x$2, 1, 0)
+   
+  x$1 : bool
+    = d
+   
+  pre_x : bool
+    = pre x$1
+   
+  changed : bool
+    = false -> Neq(x$1, pre_x)
+   
+  x : bool
+    = changed
+   
+  b2i : int
+    = ITE(x, 1, 0)
+   
+  no_more_than_two_travelers : bool
+    = Leq(Add(Add(Add(b2i$3, b2i$2), b2i$1), b2i), 2)
+   
+  solved : bool
+    = And(And(And(a, b), c), d)
+   
+  prop1 : bool
+    = Not(And(solved, Lt(cost, 15)))
+   
+  prop2 : bool
+    = Not(And(solved, Eq(cost, 15)))
+   
+  state$3 : bool
+    = a
+   
+  torch$3 : bool
+    = torch$4
+   
+  pre_state$7 : bool
+    = pre state$3
+   
+  pre_state$6 : bool
+    = pre state$3
+   
+  traveler$3 : bool
+    = Eq(state$3, false) -> Implies(Neq(state$3, pre_state$7), Eq(pre_state$6, torch$3))
+   
+  state$2 : bool
+    = b
+   
+  torch$2 : bool
+    = torch$4
+   
+  pre_state$5 : bool
+    = pre state$2
+   
+  pre_state$4 : bool
+    = pre state$2
+   
+  traveler$2 : bool
+    = Eq(state$2, false) -> Implies(Neq(state$2, pre_state$5), Eq(pre_state$4, torch$2))
+   
+  state$1 : bool
+    = c
+   
+  torch$1 : bool
+    = torch$4
+   
+  pre_state$3 : bool
+    = pre state$1
+   
+  pre_state$2 : bool
+    = pre state$1
+   
+  traveler$1 : bool
+    = Eq(state$1, false) -> Implies(Neq(state$1, pre_state$3), Eq(pre_state$2, torch$1))
+   
+  state : bool
+    = d
+   
+  torch : bool
+    = torch$4
+   
+  pre_state$1 : bool
+    = pre state
+   
+  pre_state : bool
+    = pre state
+   
+  traveler : bool
+    = Eq(state, false) -> Implies(Neq(state, pre_state$1), Eq(pre_state, torch))
 tel
 Sally Model
 ===========
@@ -98,55 +261,70 @@ Sally Model
    (
      (a Bool)
      (b Bool)
+     (b2i Int)
      (c Bool)
+     (changed Bool)
      (cost Int)
      (d Bool)
+     (max Int)
+     (max2 Int)
      (prop1 Bool)
      (prop2 Bool)
      (solved Bool)
      (state Bool)
      (torch Bool)
+     (traveler Bool)
      (value Int)
      (w Int)
      (x Bool)
      (y Int)
      (z Int)
-     (|__no_static:10| Int)
-     (|__no_static:11:init| Bool)
-     (|__no_static:11| Bool)
-     (|__no_static:12| Int)
-     (|__no_static:13| Int)
-     (|__no_static:14| Int)
-     (|__no_static:15:init| Bool)
-     (|__no_static:15| Int)
-     (|__no_static:16:init| Bool)
-     (|__no_static:16| Int)
-     (|__no_static:17:init| Bool)
-     (|__no_static:17| Int)
-     (|__no_static:18:init| Bool)
-     (|__no_static:18| Int)
-     (|__no_static:1:init| Bool)
-     (|__no_static:1| Bool)
-     (|__no_static:2:init| Bool)
-     (|__no_static:2| Bool)
-     (|__no_static:3:init| Bool)
-     (|__no_static:3| Bool)
-     (|__no_static:4| Int)
-     (|__no_static:5:init| Bool)
-     (|__no_static:5| Bool)
-     (|__no_static:6| Int)
-     (|__no_static:7:init| Bool)
-     (|__no_static:7| Bool)
-     (|__no_static:8| Int)
-     (|__no_static:9:init| Bool)
-     (|__no_static:9| Bool)
-     (|__no_static:init| Bool)
-     (|__no_static| Bool)
      (|at_least_one_travelers:init| Bool)
      (|at_least_one_travelers| Bool)
+     (|b2i:1| Int)
+     (|b2i:2| Int)
+     (|b2i:3| Int)
+     (|changed:1:init| Bool)
+     (|changed:1| Bool)
+     (|changed:2:init| Bool)
+     (|changed:2| Bool)
+     (|changed:3:init| Bool)
+     (|changed:3| Bool)
+     (|changed:init| Bool)
+     (|cost:1:init| Bool)
+     (|cost:1| Int)
+     (|cost:2:init| Bool)
+     (|cost:2| Int)
+     (|cost:3:init| Bool)
+     (|cost:3| Int)
+     (|cost:4:init| Bool)
+     (|cost:4| Int)
      (|cost:init| Bool)
      (|gal-initializing| Bool)
+     (|max2:1| Int)
      (|no_more_than_two_travelers| Bool)
+     (|pre_a| Bool)
+     (|pre_b| Bool)
+     (|pre_cost| Int)
+     (|pre_c| Bool)
+     (|pre_d| Bool)
+     (|pre_state:10| Bool)
+     (|pre_state:11| Bool)
+     (|pre_state:1| Bool)
+     (|pre_state:2| Bool)
+     (|pre_state:3| Bool)
+     (|pre_state:4| Bool)
+     (|pre_state:5| Bool)
+     (|pre_state:6| Bool)
+     (|pre_state:7| Bool)
+     (|pre_state:8| Bool)
+     (|pre_state:9| Bool)
+     (|pre_state| Bool)
+     (|pre_torch| Bool)
+     (|pre_x:1| Bool)
+     (|pre_x:2| Bool)
+     (|pre_x:3| Bool)
+     (|pre_x| Bool)
      (|state:1| Bool)
      (|state:2| Bool)
      (|state:3| Bool)
@@ -159,28 +337,13 @@ Sally Model
      (|torch:3| Bool)
      (|torch:4:init| Bool)
      (|torch:4| Bool)
-     (|valof_pre_a| Bool)
-     (|valof_pre_b| Bool)
-     (|valof_pre_cost| Int)
-     (|valof_pre_c| Bool)
-     (|valof_pre_d| Bool)
-     (|valof_pre_state:10| Bool)
-     (|valof_pre_state:11| Bool)
-     (|valof_pre_state:1| Bool)
-     (|valof_pre_state:2| Bool)
-     (|valof_pre_state:3| Bool)
-     (|valof_pre_state:4| Bool)
-     (|valof_pre_state:5| Bool)
-     (|valof_pre_state:6| Bool)
-     (|valof_pre_state:7| Bool)
-     (|valof_pre_state:8| Bool)
-     (|valof_pre_state:9| Bool)
-     (|valof_pre_state| Bool)
-     (|valof_pre_torch| Bool)
-     (|valof_pre_x:1| Bool)
-     (|valof_pre_x:2| Bool)
-     (|valof_pre_x:3| Bool)
-     (|valof_pre_x| Bool)
+     (|traveler:1:init| Bool)
+     (|traveler:1| Bool)
+     (|traveler:2:init| Bool)
+     (|traveler:2| Bool)
+     (|traveler:3:init| Bool)
+     (|traveler:3| Bool)
+     (|traveler:init| Bool)
      (|value:1| Int)
      (|value:2| Int)
      (|value:3| Int)
@@ -208,21 +371,21 @@ Sally Model
    S
    (and
       (= |gal-initializing| true)
-      (= |__no_static:18:init| true)
-      (= |__no_static:17:init| true)
-      (= |__no_static:16:init| true)
-      (= |__no_static:15:init| true)
+      (= |cost:4:init| true)
+      (= |cost:3:init| true)
+      (= |cost:2:init| true)
+      (= |cost:1:init| true)
       (= |cost:init| true)
       (= |torch:4:init| true)
       (= |at_least_one_travelers:init| true)
-      (= |__no_static:11:init| true)
-      (= |__no_static:9:init| true)
-      (= |__no_static:7:init| true)
-      (= |__no_static:5:init| true)
-      (= |__no_static:3:init| true)
-      (= |__no_static:2:init| true)
-      (= |__no_static:1:init| true)
-      (= |__no_static:init| true))
+      (= |changed:3:init| true)
+      (= |changed:2:init| true)
+      (= |changed:1:init| true)
+      (= |changed:init| true)
+      (= |traveler:3:init| true)
+      (= |traveler:2:init| true)
+      (= |traveler:1:init| true)
+      (= |traveler:init| true))
    (and
       (= next.|gal-initializing| false)
       (= next.a input.a)
@@ -231,114 +394,114 @@ Sally Model
       (= next.d input.d)
       next.|no_more_than_two_travelers|
       next.|at_least_one_travelers|
-      next.|__no_static|
-      next.|__no_static:1|
-      next.|__no_static:2|
-      next.|__no_static:3|
+      next.traveler
+      next.|traveler:1|
+      next.|traveler:2|
+      next.|traveler:3|
       (= next.|state:7| next.a)
       (= next.|value:3| 1)
-      (= next.|valof_pre_state:11| state.|state:7|)
+      (= next.|pre_state:11| state.|state:7|)
       (ite
-         state.|__no_static:18:init|
-         (= next.|__no_static:18| 0)
+         state.|cost:4:init|
+         (= next.|cost:4| 0)
          (=
-            next.|__no_static:18|
+            next.|cost:4|
             (ite
                (not
-                  (= next.|state:7| next.|valof_pre_state:11|))
+                  (= next.|state:7| next.|pre_state:11|))
                next.|value:3|
                0)))
-      (= next.|__no_static:18:init| false)
-      (= next.|x:11| next.|__no_static:18|)
+      (= next.|cost:4:init| false)
+      (= next.|x:11| next.|cost:4|)
       (= next.|x:10| next.|x:11|)
       (= next.|state:6| next.b)
       (= next.|value:2| 2)
-      (= next.|valof_pre_state:10| state.|state:6|)
+      (= next.|pre_state:10| state.|state:6|)
       (ite
-         state.|__no_static:17:init|
-         (= next.|__no_static:17| 0)
+         state.|cost:3:init|
+         (= next.|cost:3| 0)
          (=
-            next.|__no_static:17|
+            next.|cost:3|
             (ite
                (not
-                  (= next.|state:6| next.|valof_pre_state:10|))
+                  (= next.|state:6| next.|pre_state:10|))
                next.|value:2|
                0)))
-      (= next.|__no_static:17:init| false)
-      (= next.|y:3| next.|__no_static:17|)
+      (= next.|cost:3:init| false)
+      (= next.|y:3| next.|cost:3|)
       (= next.|x:9| next.|y:3|)
       (= next.|state:5| next.c)
       (= next.|value:1| 5)
-      (= next.|valof_pre_state:9| state.|state:5|)
+      (= next.|pre_state:9| state.|state:5|)
       (ite
-         state.|__no_static:16:init|
-         (= next.|__no_static:16| 0)
+         state.|cost:2:init|
+         (= next.|cost:2| 0)
          (=
-            next.|__no_static:16|
+            next.|cost:2|
             (ite
                (not
-                  (= next.|state:5| next.|valof_pre_state:9|))
+                  (= next.|state:5| next.|pre_state:9|))
                next.|value:1|
                0)))
-      (= next.|__no_static:16:init| false)
-      (= next.z next.|__no_static:16|)
+      (= next.|cost:2:init| false)
+      (= next.z next.|cost:2|)
       (= next.|x:8| next.z)
       (= next.|state:4| next.d)
       (= next.value 8)
-      (= next.|valof_pre_state:8| state.|state:4|)
+      (= next.|pre_state:8| state.|state:4|)
       (ite
-         state.|__no_static:15:init|
-         (= next.|__no_static:15| 0)
+         state.|cost:1:init|
+         (= next.|cost:1| 0)
          (=
-            next.|__no_static:15|
+            next.|cost:1|
             (ite
                (not
-                  (= next.|state:4| next.|valof_pre_state:8|))
+                  (= next.|state:4| next.|pre_state:8|))
                next.value
                0)))
-      (= next.|__no_static:15:init| false)
-      (= next.w next.|__no_static:15|)
+      (= next.|cost:1:init| false)
+      (= next.w next.|cost:1|)
       (= next.|y:2| next.w)
       (=
-         next.|__no_static:14|
+         next.|max2:1|
          (ite
             (<= next.|y:2| next.|x:8|)
             next.|x:8|
             next.|y:2|))
-      (= next.|y:1| next.|__no_static:14|)
+      (= next.|y:1| next.|max2:1|)
       (=
-         next.|__no_static:13|
+         next.max2
          (ite
             (<= next.|y:1| next.|x:9|)
             next.|x:9|
             next.|y:1|))
-      (= next.y next.|__no_static:13|)
+      (= next.y next.max2)
       (=
-         next.|__no_static:12|
+         next.max
          (ite
             (<= next.y next.|x:10|)
             next.|x:10|
             next.y))
-      (= next.|valof_pre_cost| state.cost)
+      (= next.|pre_cost| state.cost)
       (ite
          state.|cost:init|
          (= next.cost 0)
          (=
             next.cost
-            (+ next.|valof_pre_cost| next.|__no_static:12|)))
+            (+ next.|pre_cost| next.max)))
       (= next.|cost:init| false)
-      (= next.|valof_pre_torch| state.|torch:4|)
+      (= next.|pre_torch| state.|torch:4|)
       (ite
          state.|torch:4:init|
          (= next.|torch:4| true)
          (=
             next.|torch:4|
-            (not next.|valof_pre_torch|)))
+            (not next.|pre_torch|)))
       (= next.|torch:4:init| false)
-      (= next.|valof_pre_a| state.a)
-      (= next.|valof_pre_b| state.b)
-      (= next.|valof_pre_c| state.c)
-      (= next.|valof_pre_d| state.d)
+      (= next.|pre_a| state.a)
+      (= next.|pre_b| state.b)
+      (= next.|pre_c| state.c)
+      (= next.|pre_d| state.d)
       (ite
          state.|at_least_one_travelers:init|
          (= next.|at_least_one_travelers| true)
@@ -346,78 +509,78 @@ Sally Model
             next.|at_least_one_travelers|
             (or
                (not
-                  (= next.a next.|valof_pre_a|))
+                  (= next.a next.|pre_a|))
                (not
-                  (= next.b next.|valof_pre_b|))
+                  (= next.b next.|pre_b|))
                (not
-                  (= next.c next.|valof_pre_c|))
+                  (= next.c next.|pre_c|))
                (not
-                  (= next.d next.|valof_pre_d|)))))
+                  (= next.d next.|pre_d|)))))
       (= next.|at_least_one_travelers:init| false)
       (= next.|x:7| next.a)
-      (= next.|valof_pre_x:3| state.|x:7|)
+      (= next.|pre_x:3| state.|x:7|)
       (ite
-         state.|__no_static:11:init|
-         (= next.|__no_static:11| false)
+         state.|changed:3:init|
+         (= next.|changed:3| false)
          (=
-            next.|__no_static:11|
+            next.|changed:3|
             (not
-               (= next.|x:7| next.|valof_pre_x:3|))))
-      (= next.|__no_static:11:init| false)
-      (= next.|x:6| next.|__no_static:11|)
+               (= next.|x:7| next.|pre_x:3|))))
+      (= next.|changed:3:init| false)
+      (= next.|x:6| next.|changed:3|)
       (=
-         next.|__no_static:10|
+         next.|b2i:3|
          (ite next.|x:6| 1 0))
       (= next.|x:5| next.b)
-      (= next.|valof_pre_x:2| state.|x:5|)
+      (= next.|pre_x:2| state.|x:5|)
       (ite
-         state.|__no_static:9:init|
-         (= next.|__no_static:9| false)
+         state.|changed:2:init|
+         (= next.|changed:2| false)
          (=
-            next.|__no_static:9|
+            next.|changed:2|
             (not
-               (= next.|x:5| next.|valof_pre_x:2|))))
-      (= next.|__no_static:9:init| false)
-      (= next.|x:4| next.|__no_static:9|)
+               (= next.|x:5| next.|pre_x:2|))))
+      (= next.|changed:2:init| false)
+      (= next.|x:4| next.|changed:2|)
       (=
-         next.|__no_static:8|
+         next.|b2i:2|
          (ite next.|x:4| 1 0))
       (= next.|x:3| next.c)
-      (= next.|valof_pre_x:1| state.|x:3|)
+      (= next.|pre_x:1| state.|x:3|)
       (ite
-         state.|__no_static:7:init|
-         (= next.|__no_static:7| false)
+         state.|changed:1:init|
+         (= next.|changed:1| false)
          (=
-            next.|__no_static:7|
+            next.|changed:1|
             (not
-               (= next.|x:3| next.|valof_pre_x:1|))))
-      (= next.|__no_static:7:init| false)
-      (= next.|x:2| next.|__no_static:7|)
+               (= next.|x:3| next.|pre_x:1|))))
+      (= next.|changed:1:init| false)
+      (= next.|x:2| next.|changed:1|)
       (=
-         next.|__no_static:6|
+         next.|b2i:1|
          (ite next.|x:2| 1 0))
       (= next.|x:1| next.d)
-      (= next.|valof_pre_x| state.|x:1|)
+      (= next.|pre_x| state.|x:1|)
       (ite
-         state.|__no_static:5:init|
-         (= next.|__no_static:5| false)
+         state.|changed:init|
+         (= next.changed false)
          (=
-            next.|__no_static:5|
+            next.changed
             (not
-               (= next.|x:1| next.|valof_pre_x|))))
-      (= next.|__no_static:5:init| false)
-      (= next.x next.|__no_static:5|)
+               (= next.|x:1| next.|pre_x|))))
+      (= next.|changed:init| false)
+      (= next.x next.changed)
       (=
-         next.|__no_static:4|
+         next.b2i
          (ite next.x 1 0))
       (=
          next.|no_more_than_two_travelers|
          (<=
             (+
                (+
-                  (+ next.|__no_static:10| next.|__no_static:8|)
-                  next.|__no_static:6|)
-               next.|__no_static:4|)
+                  (+ next.|b2i:3| next.|b2i:2|)
+                  next.|b2i:1|)
+               next.b2i)
             2))
       (=
          next.solved
@@ -436,68 +599,68 @@ Sally Model
                (= next.cost 15))))
       (= next.|state:3| next.a)
       (= next.|torch:3| next.|torch:4|)
-      (= next.|valof_pre_state:7| state.|state:3|)
-      (= next.|valof_pre_state:6| state.|state:3|)
+      (= next.|pre_state:7| state.|state:3|)
+      (= next.|pre_state:6| state.|state:3|)
       (ite
-         state.|__no_static:3:init|
+         state.|traveler:3:init|
          (=
-            next.|__no_static:3|
+            next.|traveler:3|
             (= next.|state:3| false))
          (=
-            next.|__no_static:3|
+            next.|traveler:3|
             (=>
                (not
-                  (= next.|state:3| next.|valof_pre_state:7|))
-               (= next.|valof_pre_state:6| next.|torch:3|))))
-      (= next.|__no_static:3:init| false)
+                  (= next.|state:3| next.|pre_state:7|))
+               (= next.|pre_state:6| next.|torch:3|))))
+      (= next.|traveler:3:init| false)
       (= next.|state:2| next.b)
       (= next.|torch:2| next.|torch:4|)
-      (= next.|valof_pre_state:5| state.|state:2|)
-      (= next.|valof_pre_state:4| state.|state:2|)
+      (= next.|pre_state:5| state.|state:2|)
+      (= next.|pre_state:4| state.|state:2|)
       (ite
-         state.|__no_static:2:init|
+         state.|traveler:2:init|
          (=
-            next.|__no_static:2|
+            next.|traveler:2|
             (= next.|state:2| false))
          (=
-            next.|__no_static:2|
+            next.|traveler:2|
             (=>
                (not
-                  (= next.|state:2| next.|valof_pre_state:5|))
-               (= next.|valof_pre_state:4| next.|torch:2|))))
-      (= next.|__no_static:2:init| false)
+                  (= next.|state:2| next.|pre_state:5|))
+               (= next.|pre_state:4| next.|torch:2|))))
+      (= next.|traveler:2:init| false)
       (= next.|state:1| next.c)
       (= next.|torch:1| next.|torch:4|)
-      (= next.|valof_pre_state:3| state.|state:1|)
-      (= next.|valof_pre_state:2| state.|state:1|)
+      (= next.|pre_state:3| state.|state:1|)
+      (= next.|pre_state:2| state.|state:1|)
       (ite
-         state.|__no_static:1:init|
+         state.|traveler:1:init|
          (=
-            next.|__no_static:1|
+            next.|traveler:1|
             (= next.|state:1| false))
          (=
-            next.|__no_static:1|
+            next.|traveler:1|
             (=>
                (not
-                  (= next.|state:1| next.|valof_pre_state:3|))
-               (= next.|valof_pre_state:2| next.|torch:1|))))
-      (= next.|__no_static:1:init| false)
+                  (= next.|state:1| next.|pre_state:3|))
+               (= next.|pre_state:2| next.|torch:1|))))
+      (= next.|traveler:1:init| false)
       (= next.state next.d)
       (= next.torch next.|torch:4|)
-      (= next.|valof_pre_state:1| state.state)
-      (= next.|valof_pre_state| state.state)
+      (= next.|pre_state:1| state.state)
+      (= next.|pre_state| state.state)
       (ite
-         state.|__no_static:init|
+         state.|traveler:init|
          (=
-            next.|__no_static|
+            next.traveler
             (= next.state false))
          (=
-            next.|__no_static|
+            next.traveler
             (=>
                (not
-                  (= next.state next.|valof_pre_state:1|))
-               (= next.|valof_pre_state| next.torch))))
-      (= next.|__no_static:init| false)))
+                  (= next.state next.|pre_state:1|))
+               (= next.|pre_state| next.torch))))
+      (= next.|traveler:init| false)))
 
 (query
    TS
