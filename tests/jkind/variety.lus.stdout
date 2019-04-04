@@ -6,32 +6,83 @@ node (delta_x : int, delta_y : int)
   assumes (Leq, Leq$1)
   shows (cex1, ok1)
 let
-  valof_pre_p1.x = pre p1.x
-  valof_arr$1 = 0 -> valof_pre_p1.x
-  p1.x = Add(valof_arr$1, delta_x)
-  valof_pre_p1.y = pre p1.y
-  valof_arr = 0 -> valof_pre_p1.y
-  p1.y = Add(valof_arr, delta_y)
-  valof_pre_p2.x = pre p2.x
-  p.x = 0 -> valof_pre_p2.x
-  delta.x = delta_x
-  q.x = delta.x
-  x_coord = Add(p.x, q.x)
-  p2.x = x_coord
-  valof_pre_p2.y = pre p2.y
-  p.y = 0 -> valof_pre_p2.y
-  delta.y = delta_y
-  q.y = delta.y
-  y_coord = Add(p.y, q.y)
-  p2.y = y_coord
-  ok1 = And(Eq(p1.x, p2.x), Eq(p1.y, p2.y))
-  cex1 = Or(Neq(p1.x, 20), Neq(p1.y, 13))
-  z$1 = delta_x
-  __no_static$1 = ITE(Geq(z$1, 0), z$1, Neg(z$1))
-  z = delta_y
-  __no_static = ITE(Geq(z, 0), z, Neg(z))
-  Leq$1 = Leq(__no_static$1, 2)
-  Leq = Leq(__no_static, 2)
+  pre_p1.x : int
+    = pre p1.x
+   
+  init_pre_p1.x : int
+    = 0 -> pre_p1.x
+   
+  p1.x : int
+    = Add(init_pre_p1.x, delta_x)
+   
+  pre_p1.y : int
+    = pre p1.y
+   
+  init_pre_p1.y : int
+    = 0 -> pre_p1.y
+   
+  p1.y : int
+    = Add(init_pre_p1.y, delta_y)
+   
+  pre_p2.x : int
+    = pre p2.x
+   
+  p.x : int
+    = 0 -> pre_p2.x
+   
+  delta.x : int
+    = delta_x
+   
+  q.x : int
+    = delta.x
+   
+  x_coord : int
+    = Add(p.x, q.x)
+   
+  p2.x : int
+    = x_coord
+   
+  pre_p2.y : int
+    = pre p2.y
+   
+  p.y : int
+    = 0 -> pre_p2.y
+   
+  delta.y : int
+    = delta_y
+   
+  q.y : int
+    = delta.y
+   
+  y_coord : int
+    = Add(p.y, q.y)
+   
+  p2.y : int
+    = y_coord
+   
+  ok1 : bool
+    = And(Eq(p1.x, p2.x), Eq(p1.y, p2.y))
+   
+  cex1 : bool
+    = Or(Neq(p1.x, 20), Neq(p1.y, 13))
+   
+  z$1 : int
+    = delta_x
+   
+  abs$1 : int
+    = ITE(Geq(z$1, 0), z$1, Neg(z$1))
+   
+  z : int
+    = delta_y
+   
+  abs : int
+    = ITE(Geq(z, 0), z, Neg(z))
+   
+  Leq$1 : bool
+    = Leq(abs$1, 2)
+   
+  Leq : bool
+    = Leq(abs, 2)
 tel
 Sally Model
 ===========
@@ -40,17 +91,21 @@ Sally Model
    S
    (
      (Leq Bool)
+     (abs Int)
      (cex1 Bool)
      (ok1 Bool)
      (z Int)
      (|Leq:1| Bool)
-     (|__no_static:1| Int)
-     (|__no_static| Int)
+     (|abs:1| Int)
      (|delta.x| Int)
      (|delta.y| Int)
      (|delta_x| Int)
      (|delta_y| Int)
      (|gal-initializing| Bool)
+     (|init_pre_p1.x:init| Bool)
+     (|init_pre_p1.x| Int)
+     (|init_pre_p1.y:init| Bool)
+     (|init_pre_p1.y| Int)
      (|p.x:init| Bool)
      (|p.x| Int)
      (|p.y:init| Bool)
@@ -59,16 +114,12 @@ Sally Model
      (|p1.y| Int)
      (|p2.x| Int)
      (|p2.y| Int)
+     (|pre_p1.x| Int)
+     (|pre_p1.y| Int)
+     (|pre_p2.x| Int)
+     (|pre_p2.y| Int)
      (|q.x| Int)
      (|q.y| Int)
-     (|valof_arr:1:init| Bool)
-     (|valof_arr:1| Int)
-     (|valof_arr:init| Bool)
-     (|valof_arr| Int)
-     (|valof_pre_p1.x| Int)
-     (|valof_pre_p1.y| Int)
-     (|valof_pre_p2.x| Int)
-     (|valof_pre_p2.y| Int)
      (|x_coord| Int)
      (|y_coord| Int)
      (|z:1| Int))
@@ -80,8 +131,8 @@ Sally Model
    S
    (and
       (= |gal-initializing| true)
-      (= |valof_arr:1:init| true)
-      (= |valof_arr:init| true)
+      (= |init_pre_p1.x:init| true)
+      (= |init_pre_p1.y:init| true)
       (= |p.x:init| true)
       (= |p.y:init| true))
    (and
@@ -90,29 +141,29 @@ Sally Model
       (= next.|delta_y| input.|delta_y|)
       next.Leq
       next.|Leq:1|
-      (= next.|valof_pre_p1.x| state.|p1.x|)
+      (= next.|pre_p1.x| state.|p1.x|)
       (ite
-         state.|valof_arr:1:init|
-         (= next.|valof_arr:1| 0)
-         (= next.|valof_arr:1| next.|valof_pre_p1.x|))
-      (= next.|valof_arr:1:init| false)
+         state.|init_pre_p1.x:init|
+         (= next.|init_pre_p1.x| 0)
+         (= next.|init_pre_p1.x| next.|pre_p1.x|))
+      (= next.|init_pre_p1.x:init| false)
       (=
          next.|p1.x|
-         (+ next.|valof_arr:1| next.|delta_x|))
-      (= next.|valof_pre_p1.y| state.|p1.y|)
+         (+ next.|init_pre_p1.x| next.|delta_x|))
+      (= next.|pre_p1.y| state.|p1.y|)
       (ite
-         state.|valof_arr:init|
-         (= next.|valof_arr| 0)
-         (= next.|valof_arr| next.|valof_pre_p1.y|))
-      (= next.|valof_arr:init| false)
+         state.|init_pre_p1.y:init|
+         (= next.|init_pre_p1.y| 0)
+         (= next.|init_pre_p1.y| next.|pre_p1.y|))
+      (= next.|init_pre_p1.y:init| false)
       (=
          next.|p1.y|
-         (+ next.|valof_arr| next.|delta_y|))
-      (= next.|valof_pre_p2.x| state.|p2.x|)
+         (+ next.|init_pre_p1.y| next.|delta_y|))
+      (= next.|pre_p2.x| state.|p2.x|)
       (ite
          state.|p.x:init|
          (= next.|p.x| 0)
-         (= next.|p.x| next.|valof_pre_p2.x|))
+         (= next.|p.x| next.|pre_p2.x|))
       (= next.|p.x:init| false)
       (= next.|delta.x| next.|delta_x|)
       (= next.|q.x| next.|delta.x|)
@@ -120,11 +171,11 @@ Sally Model
          next.|x_coord|
          (+ next.|p.x| next.|q.x|))
       (= next.|p2.x| next.|x_coord|)
-      (= next.|valof_pre_p2.y| state.|p2.y|)
+      (= next.|pre_p2.y| state.|p2.y|)
       (ite
          state.|p.y:init|
          (= next.|p.y| 0)
-         (= next.|p.y| next.|valof_pre_p2.y|))
+         (= next.|p.y| next.|pre_p2.y|))
       (= next.|p.y:init| false)
       (= next.|delta.y| next.|delta_y|)
       (= next.|q.y| next.|delta.y|)
@@ -146,24 +197,24 @@ Sally Model
                (= next.|p1.y| 13))))
       (= next.|z:1| next.|delta_x|)
       (=
-         next.|__no_static:1|
+         next.|abs:1|
          (ite
             (<= 0 next.|z:1|)
             next.|z:1|
             (- next.|z:1|)))
       (= next.z next.|delta_y|)
       (=
-         next.|__no_static|
+         next.abs
          (ite
             (<= 0 next.z)
             next.z
             (- next.z)))
       (=
          next.|Leq:1|
-         (<= next.|__no_static:1| 2))
+         (<= next.|abs:1| 2))
       (=
          next.Leq
-         (<= next.|__no_static| 2))))
+         (<= next.abs 2))))
 
 (query
    TS
