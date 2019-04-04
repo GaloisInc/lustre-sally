@@ -1,2 +1,408 @@
-[[1;91mError[0m] ResolverError (UndefinedName (Unqual (Ident {identText = "condact", identRange = SourceRange {sourceFrom = SourcePos {sourceIndex = 2198, sourceLine = 106, sourceColumn = 10, sourceFile = "agree5.lus"}, sourceTo = SourcePos {sourceIndex = 2204, sourceLine = 106, sourceColumn = 16, sourceFile = "agree5.lus"}}, identPragmas = [], identResolved = Nothing})))
+Core Lustre
+===========
 
+node (COMP__in1 : int, COMP__in2 : int, COMP___CLOCK_ : bool, COMP2__i1 : int, COMP2__i2 : int, COMP2___CLOCK_ : bool, input1 : int, input2 : int, COMP__int_var1 : int, COMP__int_var2 : int, COMP__out1 : int, COMP__out2 : int, COMP2__o1 : int, COMP2__o2 : int, output1 : int, output2 : int, output3 : int, output4 : int)
+  returns ()
+  assumes (Eq, Eq$1, Eq$2, Eq$3, Eq$4, Eq$5, Eq$6, Eq$7, _TOP__COMP2, _TOP__COMP)
+  shows (__GUARANTEE1, __GUARANTEE0)
+let
+  __GUARANTEE0 : bool
+    = Eq(output1, 0)
+   
+  __GUARANTEE1 : bool
+    = Gt(output2, 10)
+   
+  __ASSUME__CONJ$1 : bool
+    = true
+   
+  pre___ASSUME__HIST$1 : bool
+    = pre __ASSUME__HIST$1
+   
+  __ASSUME__HIST$1 : bool
+    = __ASSUME__CONJ$1 -> And(pre___ASSUME__HIST$1, __ASSUME__CONJ$1)
+   
+  out1 : int
+    = COMP__out1
+   
+  __COMP__PROP__0 : bool
+    = Gt(out1, Neg(1))
+   
+  __COMP__PROP__1 : bool
+    = Lt(out1, 1)
+   
+  int_var1 : int
+    = COMP__int_var1
+   
+  int_var2 : int
+    = COMP__int_var2
+   
+  out2 : int
+    = COMP__out2
+   
+  __COMP__PROP__2 : bool
+    = Gt(out2, Add(int_var1, int_var2))
+   
+  __COMP__EXP__0 : bool
+    = Eq(int_var1, 5)
+   
+  __COMP__EXP__1 : bool
+    = Eq(int_var2, 5)
+   
+  _TOP__COMP : bool
+    = And(And(__COMP__EXP__1, And(__COMP__EXP__0, true)), Implies(__ASSUME__HIST$1, And(__COMP__PROP__2, And(__COMP__PROP__1, And(__COMP__PROP__0, true)))))
+   
+  __ASSUME__CONJ : bool
+    = true
+   
+  pre___ASSUME__HIST : bool
+    = pre __ASSUME__HIST
+   
+  __ASSUME__HIST : bool
+    = __ASSUME__CONJ -> And(pre___ASSUME__HIST, __ASSUME__CONJ)
+   
+  o1 : int
+    = COMP2__o1
+   
+  __COMP2__PROP__0 : bool
+    = Gt(o1, 5)
+   
+  o2 : int
+    = COMP2__o2
+   
+  __COMP2__PROP__1 : bool
+    = Gt(o2, 9)
+   
+  _TOP__COMP2 : bool
+    = And(true, Implies(__ASSUME__HIST, And(__COMP2__PROP__1, And(__COMP2__PROP__0, true))))
+   
+  in1 : int
+    = COMP__in1
+   
+  in2 : int
+    = COMP__in2
+   
+  i1 : int
+    = COMP2__i1
+   
+  i2 : int
+    = COMP2__i2
+   
+  Eq$7 : bool
+    = Eq(input1, COMP__in1)
+   
+  Eq$6 : bool
+    = Eq(input2, COMP__in2)
+   
+  Eq$5 : bool
+    = Eq(input1, COMP2__i1)
+   
+  Eq$4 : bool
+    = Eq(input2, COMP2__i2)
+   
+  Eq$3 : bool
+    = Eq(COMP__out1, output1)
+   
+  Eq$2 : bool
+    = Eq(COMP__out2, output2)
+   
+  Eq$1 : bool
+    = Eq(COMP2__o1, output3)
+   
+  Eq : bool
+    = Eq(COMP2__o2, output4)
+tel
+Sally Model
+===========
+
+(define-state-type
+   S
+   (
+     (Eq Bool)
+     (i1 Int)
+     (i2 Int)
+     (in1 Int)
+     (in2 Int)
+     (input1 Int)
+     (input2 Int)
+     (o1 Int)
+     (o2 Int)
+     (out1 Int)
+     (out2 Int)
+     (output1 Int)
+     (output2 Int)
+     (output3 Int)
+     (output4 Int)
+     (|COMP2___CLOCK_| Bool)
+     (|COMP2__i1| Int)
+     (|COMP2__i2| Int)
+     (|COMP2__o1| Int)
+     (|COMP2__o2| Int)
+     (|COMP___CLOCK_| Bool)
+     (|COMP__in1| Int)
+     (|COMP__in2| Int)
+     (|COMP__int_var1| Int)
+     (|COMP__int_var2| Int)
+     (|COMP__out1| Int)
+     (|COMP__out2| Int)
+     (|Eq:1| Bool)
+     (|Eq:2| Bool)
+     (|Eq:3| Bool)
+     (|Eq:4| Bool)
+     (|Eq:5| Bool)
+     (|Eq:6| Bool)
+     (|Eq:7| Bool)
+     (|_TOP__COMP2| Bool)
+     (|_TOP__COMP| Bool)
+     (|__ASSUME__CONJ:1| Bool)
+     (|__ASSUME__CONJ| Bool)
+     (|__ASSUME__HIST:1:init| Bool)
+     (|__ASSUME__HIST:1| Bool)
+     (|__ASSUME__HIST:init| Bool)
+     (|__ASSUME__HIST| Bool)
+     (|__COMP2__PROP__0| Bool)
+     (|__COMP2__PROP__1| Bool)
+     (|__COMP__EXP__0| Bool)
+     (|__COMP__EXP__1| Bool)
+     (|__COMP__PROP__0| Bool)
+     (|__COMP__PROP__1| Bool)
+     (|__COMP__PROP__2| Bool)
+     (|__GUARANTEE0| Bool)
+     (|__GUARANTEE1| Bool)
+     (|gal-initializing| Bool)
+     (|int_var1| Int)
+     (|int_var2| Int)
+     (|pre___ASSUME__HIST:1| Bool)
+     (|pre___ASSUME__HIST| Bool))
+   (
+     (input1 Int)
+     (input2 Int)
+     (output1 Int)
+     (output2 Int)
+     (output3 Int)
+     (output4 Int)
+     (|COMP2___CLOCK_| Bool)
+     (|COMP2__i1| Int)
+     (|COMP2__i2| Int)
+     (|COMP2__o1| Int)
+     (|COMP2__o2| Int)
+     (|COMP___CLOCK_| Bool)
+     (|COMP__in1| Int)
+     (|COMP__in2| Int)
+     (|COMP__int_var1| Int)
+     (|COMP__int_var2| Int)
+     (|COMP__out1| Int)
+     (|COMP__out2| Int)))
+(define-transition-system
+   TS
+   S
+   (and
+      (= |gal-initializing| true)
+      (= |__ASSUME__HIST:1:init| true)
+      (= |__ASSUME__HIST:init| true))
+   (and
+      (= next.|gal-initializing| false)
+      (= next.|COMP__in1| input.|COMP__in1|)
+      (= next.|COMP__in2| input.|COMP__in2|)
+      (= next.|COMP___CLOCK_| input.|COMP___CLOCK_|)
+      (= next.|COMP2__i1| input.|COMP2__i1|)
+      (= next.|COMP2__i2| input.|COMP2__i2|)
+      (= next.|COMP2___CLOCK_| input.|COMP2___CLOCK_|)
+      (= next.input1 input.input1)
+      (= next.input2 input.input2)
+      (= next.|COMP__int_var1| input.|COMP__int_var1|)
+      (= next.|COMP__int_var2| input.|COMP__int_var2|)
+      (= next.|COMP__out1| input.|COMP__out1|)
+      (= next.|COMP__out2| input.|COMP__out2|)
+      (= next.|COMP2__o1| input.|COMP2__o1|)
+      (= next.|COMP2__o2| input.|COMP2__o2|)
+      (= next.output1 input.output1)
+      (= next.output2 input.output2)
+      (= next.output3 input.output3)
+      (= next.output4 input.output4)
+      next.Eq
+      next.|Eq:1|
+      next.|Eq:2|
+      next.|Eq:3|
+      next.|Eq:4|
+      next.|Eq:5|
+      next.|Eq:6|
+      next.|Eq:7|
+      next.|_TOP__COMP2|
+      next.|_TOP__COMP|
+      (=
+         next.|__GUARANTEE0|
+         (= next.output1 0))
+      (=
+         next.|__GUARANTEE1|
+         (< 10 next.output2))
+      (= next.|__ASSUME__CONJ:1| true)
+      (= next.|pre___ASSUME__HIST:1| state.|__ASSUME__HIST:1|)
+      (ite
+         state.|__ASSUME__HIST:1:init|
+         (= next.|__ASSUME__HIST:1| next.|__ASSUME__CONJ:1|)
+         (=
+            next.|__ASSUME__HIST:1|
+            (and next.|pre___ASSUME__HIST:1| next.|__ASSUME__CONJ:1|)))
+      (= next.|__ASSUME__HIST:1:init| false)
+      (= next.out1 next.|COMP__out1|)
+      (=
+         next.|__COMP__PROP__0|
+         (<
+            (- 1)
+            next.out1))
+      (=
+         next.|__COMP__PROP__1|
+         (< next.out1 1))
+      (= next.|int_var1| next.|COMP__int_var1|)
+      (= next.|int_var2| next.|COMP__int_var2|)
+      (= next.out2 next.|COMP__out2|)
+      (=
+         next.|__COMP__PROP__2|
+         (<
+            (+ next.|int_var1| next.|int_var2|)
+            next.out2))
+      (=
+         next.|__COMP__EXP__0|
+         (= next.|int_var1| 5))
+      (=
+         next.|__COMP__EXP__1|
+         (= next.|int_var2| 5))
+      (=
+         next.|_TOP__COMP|
+         (and
+            next.|__COMP__EXP__1|
+            next.|__COMP__EXP__0|
+            true
+            (=>
+               next.|__ASSUME__HIST:1|
+               (and next.|__COMP__PROP__2| next.|__COMP__PROP__1| next.|__COMP__PROP__0| true))))
+      (= next.|__ASSUME__CONJ| true)
+      (= next.|pre___ASSUME__HIST| state.|__ASSUME__HIST|)
+      (ite
+         state.|__ASSUME__HIST:init|
+         (= next.|__ASSUME__HIST| next.|__ASSUME__CONJ|)
+         (=
+            next.|__ASSUME__HIST|
+            (and next.|pre___ASSUME__HIST| next.|__ASSUME__CONJ|)))
+      (= next.|__ASSUME__HIST:init| false)
+      (= next.o1 next.|COMP2__o1|)
+      (=
+         next.|__COMP2__PROP__0|
+         (< 5 next.o1))
+      (= next.o2 next.|COMP2__o2|)
+      (=
+         next.|__COMP2__PROP__1|
+         (< 9 next.o2))
+      (=
+         next.|_TOP__COMP2|
+         (and
+            true
+            (=>
+               next.|__ASSUME__HIST|
+               (and next.|__COMP2__PROP__1| next.|__COMP2__PROP__0| true))))
+      (= next.in1 next.|COMP__in1|)
+      (= next.in2 next.|COMP__in2|)
+      (= next.i1 next.|COMP2__i1|)
+      (= next.i2 next.|COMP2__i2|)
+      (=
+         next.|Eq:7|
+         (= next.input1 next.|COMP__in1|))
+      (=
+         next.|Eq:6|
+         (= next.input2 next.|COMP__in2|))
+      (=
+         next.|Eq:5|
+         (= next.input1 next.|COMP2__i1|))
+      (=
+         next.|Eq:4|
+         (= next.input2 next.|COMP2__i2|))
+      (=
+         next.|Eq:3|
+         (= next.|COMP__out1| next.output1))
+      (=
+         next.|Eq:2|
+         (= next.|COMP__out2| next.output2))
+      (=
+         next.|Eq:1|
+         (= next.|COMP2__o1| next.output3))
+      (=
+         next.Eq
+         (= next.|COMP2__o2| next.output4))))
+
+(query
+   TS
+   (or |gal-initializing| |__GUARANTEE1|))
+(query
+   TS
+   (or |gal-initializing| |__GUARANTEE0|))
+
+[Lustre] Validating properties:
+[Lustre] Property __GUARANTEE1... considering simultaneous states to depth 0
+considering simultaneous states to depth 0
+considering simultaneous states to depth 1
+considering simultaneous states to depth 1
+considering simultaneous states to depth 2
+considering simultaneous states to depth 2
+considering simultaneous states to depth 3
+considering simultaneous states to depth 3
+considering simultaneous states to depth 4
+considering simultaneous states to depth 4
+considering simultaneous states to depth 5
+considering simultaneous states to depth 5
+considering simultaneous states to depth 6
+considering simultaneous states to depth 6
+considering simultaneous states to depth 7
+considering simultaneous states to depth 7
+considering simultaneous states to depth 8
+considering simultaneous states to depth 8
+considering simultaneous states to depth 9
+considering simultaneous states to depth 9
+considering simultaneous states to depth 10
+considering simultaneous states to depth 10
+counter-example search depth 0
+counter-example search depth 1
+counter-example search depth 2
+counter-example search depth 3
+counter-example search depth 4
+counter-example search depth 5
+counter-example search depth 6
+counter-example search depth 7
+counter-example search depth 8
+counter-example search depth 9
+counter-example search depth 10
+[[1;93mUnknown[0m] Valid up to depth 10
+[Lustre] Property __GUARANTEE0... considering simultaneous states to depth 0
+considering simultaneous states to depth 0
+considering simultaneous states to depth 1
+considering simultaneous states to depth 1
+considering simultaneous states to depth 2
+considering simultaneous states to depth 2
+considering simultaneous states to depth 3
+considering simultaneous states to depth 3
+considering simultaneous states to depth 4
+considering simultaneous states to depth 4
+considering simultaneous states to depth 5
+considering simultaneous states to depth 5
+considering simultaneous states to depth 6
+considering simultaneous states to depth 6
+considering simultaneous states to depth 7
+considering simultaneous states to depth 7
+considering simultaneous states to depth 8
+considering simultaneous states to depth 8
+considering simultaneous states to depth 9
+considering simultaneous states to depth 9
+considering simultaneous states to depth 10
+considering simultaneous states to depth 10
+counter-example search depth 0
+counter-example search depth 1
+counter-example search depth 2
+counter-example search depth 3
+counter-example search depth 4
+counter-example search depth 5
+counter-example search depth 6
+counter-example search depth 7
+counter-example search depth 8
+counter-example search depth 9
+counter-example search depth 10
+[[1;93mUnknown[0m] Valid up to depth 10
+[Lustre] Model status: [[1;93mUnknown[0m] 

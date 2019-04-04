@@ -1,2 +1,1793 @@
-[[1;91mError[0m] ResolverError (UndefinedName (Unqual (Ident {identText = "condact", identRange = SourceRange {sourceFrom = SourcePos {sourceIndex = 6877, sourceLine = 224, sourceColumn = 10, sourceFile = "microwave.lus"}, sourceTo = SourcePos {sourceIndex = 6883, sourceLine = 224, sourceColumn = 16, sourceFile = "microwave.lus"}}, identPragmas = [], identResolved = Nothing})))
+Core Lustre
+===========
 
+node (MC__start : bool, MC__clear : bool, MC__seconds_to_cook : int, MC__door_closed : bool, MC___CLOCK_ : bool, DC__clear : bool, DC__kp_0 : bool, DC__kp_1 : bool, DC__kp_2 : bool, DC__kp_3 : bool, DC__kp_4 : bool, DC__kp_5 : bool, DC__kp_6 : bool, DC__kp_7 : bool, DC__kp_8 : bool, DC__kp_9 : bool, DC__cooking_mode : int, DC___CLOCK_ : bool, OP__cooking_mode : int, OP___CLOCK_ : bool, clear$2 : bool, start$1 : bool, kp_0$1 : bool, kp_1$1 : bool, kp_2$1 : bool, kp_3$1 : bool, kp_4$1 : bool, kp_5$1 : bool, kp_6$1 : bool, kp_7$1 : bool, kp_8$1 : bool, kp_9$1 : bool, door_closed$1 : bool, MC__is_cooking : bool, MC__is_setup : bool, MC__is_suspended : bool, MC__is_running : bool, MC__cooking_mode : int, MC____ASSUME0 : bool, DC__kp_0_pressed : bool, DC__kp_1_pressed : bool, DC__kp_2_pressed : bool, DC__kp_3_pressed : bool, DC__kp_4_pressed : bool, DC__kp_5_pressed : bool, DC__kp_6_pressed : bool, DC__kp_7_pressed : bool, DC__kp_8_pressed : bool, DC__kp_9_pressed : bool, DC__clear_pressed : bool, DC__keypad_enabled : bool, DC__any_digit_pressed : bool, DC__any_button_pressed : bool, DC__is_cooking : bool, DC__left_digit : int, DC__middle_digit : int, DC__right_digit : int, DC__seconds_to_cook : int, DC____ASSUME0 : bool, OP__heating_element_on : bool, seconds_to_cook$2 : int, heating_element_on$1 : bool, left_digit$1 : int, middle_digit$1 : int, right_digit$1 : int)
+  returns ()
+  assumes (Eq, Eq$1, Eq$2, Eq$3, Eq$4, Eq$5, Eq$6, Eq$7, Eq$8, Eq$9, Eq$10, Eq$11, Eq$12, Eq$13, Eq$14, Eq$15, Eq$16, Eq$17, Eq$18, Eq$19, Eq$20, Eq$21, _TOP__OP, _TOP__DC, _TOP__MC, Not)
+  shows (DC____ASSUME0, MC____ASSUME0, __GUARANTEE2, __GUARANTEE1, __GUARANTEE0)
+let
+  __GUARANTEE0 : bool
+    = Implies(heating_element_on$1, door_closed$1)
+   
+  i$3 : bool
+    = heating_element_on$1
+   
+  pre_i$1 : bool
+    = pre i$3
+   
+  std__While : bool
+    = i$3 -> And(i$3, pre_i$1)
+   
+  i$2 : int
+    = seconds_to_cook$2
+   
+  pre_i : int
+    = pre i$2
+   
+  std__DecreaseInt : bool
+    = true -> Lt(i$2, pre_i)
+   
+  __GUARANTEE1 : bool
+    = Implies(std__While, std__DecreaseInt)
+   
+  __GUARANTEE2 : bool
+    = Implies(Eq(seconds_to_cook$2, 0), Not(heating_element_on$1))
+   
+  __ASSUME0$1 : bool
+    = MC____ASSUME0
+   
+  seconds_to_cook$1 : int
+    = MC__seconds_to_cook
+   
+  door_closed : bool
+    = MC__door_closed
+   
+  is_cooking$1 : bool
+    = MC__is_cooking
+   
+  is_setup : bool
+    = MC__is_setup
+   
+  is_suspended : bool
+    = MC__is_suspended
+   
+  is_running : bool
+    = MC__is_running
+   
+  cooking_mode$2 : int
+    = MC__cooking_mode
+   
+  i$1 : bool
+    = is_setup
+   
+  std__Initiallyv$1 : bool
+    = i$1 -> true
+   
+  signal$16 : bool
+    = is_running
+   
+  pre_signal$16 : bool
+    = pre signal$16
+   
+  init_pre_signal$16 : bool
+    = false -> pre_signal$16
+   
+  defs__rising_edge$16 : bool
+    = And(signal$16, Not(init_pre_signal$16))
+   
+  signal$15 : bool
+    = is_running
+   
+  pre_signal$15 : bool
+    = pre signal$15
+   
+  init_pre_signal$15 : bool
+    = false -> pre_signal$15
+   
+  defs__rising_edge$15 : bool
+    = And(signal$15, Not(init_pre_signal$15))
+   
+  m$6 : int
+    = cooking_mode$2
+   
+  defs__is_cooking$2 : bool
+    = Eq(m$6, 3)
+   
+  m$5 : int
+    = cooking_mode$2
+   
+  defs__is_setup$1 : bool
+    = Eq(m$5, 1)
+   
+  m$4 : int
+    = cooking_mode$2
+   
+  defs__is_suspended : bool
+    = Eq(m$4, 2)
+   
+  m$3 : int
+    = cooking_mode$2
+   
+  defs__is_running : bool
+    = Or(Eq(m$3, 3), Eq(m$3, 2))
+   
+  __ASSUME__CONJ$2 : bool
+    = And(__ASSUME0$1, true)
+   
+  pre___ASSUME__HIST$2 : bool
+    = pre __ASSUME__HIST$2
+   
+  __ASSUME__HIST$2 : bool
+    = __ASSUME__CONJ$2 -> And(pre___ASSUME__HIST$2, __ASSUME__CONJ$2)
+   
+  clear$1 : bool
+    = MC__clear
+   
+  signal$14 : bool
+    = clear$1
+   
+  pre_signal$14 : bool
+    = pre signal$14
+   
+  init_pre_signal$14 : bool
+    = false -> pre_signal$14
+   
+  defs__rising_edge$14 : bool
+    = And(signal$14, Not(init_pre_signal$14))
+   
+  start : bool
+    = MC__start
+   
+  signal$13 : bool
+    = start
+   
+  pre_signal$13 : bool
+    = pre signal$13
+   
+  init_pre_signal$13 : bool
+    = false -> pre_signal$13
+   
+  defs__rising_edge$13 : bool
+    = And(signal$13, Not(init_pre_signal$13))
+   
+  pre_is_suspended$1 : bool
+    = pre is_suspended
+   
+  $init$4 : bool
+    = true -> Implies(And(And(And(And(defs__rising_edge$13, Not(defs__rising_edge$14)), pre_is_suspended$1), door_closed), Gt(seconds_to_cook$1, 0)), is_cooking$1)
+   
+  signal$12 : bool
+    = clear$1
+   
+  pre_signal$12 : bool
+    = pre signal$12
+   
+  init_pre_signal$12 : bool
+    = false -> pre_signal$12
+   
+  defs__rising_edge$12 : bool
+    = And(signal$12, Not(init_pre_signal$12))
+   
+  pre_is_suspended : bool
+    = pre is_suspended
+   
+  $init$3 : bool
+    = true -> Implies(And(defs__rising_edge$12, pre_is_suspended), is_setup)
+   
+  signal$11 : bool
+    = clear$1
+   
+  pre_signal$11 : bool
+    = pre signal$11
+   
+  init_pre_signal$11 : bool
+    = false -> pre_signal$11
+   
+  defs__rising_edge$11 : bool
+    = And(signal$11, Not(init_pre_signal$11))
+   
+  pre_is_cooking : bool
+    = pre is_cooking$1
+   
+  $init$2 : bool
+    = true -> Implies(And(defs__rising_edge$11, pre_is_cooking), Not(is_cooking$1))
+   
+  _TOP__MC : bool
+    = And(Eq(is_running, defs__is_running), And(Eq(is_suspended, defs__is_suspended), And(Eq(is_setup, defs__is_setup$1), And(Eq(is_cooking$1, defs__is_cooking$2), And(Implies(__ASSUME__HIST$2, And(Implies(Eq(seconds_to_cook$1, 0), is_setup), And($init$4, And($init$3, And($init$2, And(Implies(And(defs__rising_edge$15, Not(door_closed)), is_suspended), And(Implies(And(defs__rising_edge$16, door_closed), is_cooking$1), And(std__Initiallyv$1, And(Implies(is_cooking$1, door_closed), And(Or(Or(Eq(cooking_mode$2, 1), Eq(cooking_mode$2, 2)), Eq(cooking_mode$2, 3)), true)))))))))), And(Eq(__ASSUME0$1, Geq(seconds_to_cook$1, 0)), true))))))
+   
+  __ASSUME0 : bool
+    = DC____ASSUME0
+   
+  clear : bool
+    = DC__clear
+   
+  kp_0 : bool
+    = DC__kp_0
+   
+  kp_0_pressed : bool
+    = DC__kp_0_pressed
+   
+  kp_1_pressed : bool
+    = DC__kp_1_pressed
+   
+  kp_2_pressed : bool
+    = DC__kp_2_pressed
+   
+  kp_3_pressed : bool
+    = DC__kp_3_pressed
+   
+  kp_4_pressed : bool
+    = DC__kp_4_pressed
+   
+  kp_5_pressed : bool
+    = DC__kp_5_pressed
+   
+  kp_6_pressed : bool
+    = DC__kp_6_pressed
+   
+  kp_7_pressed : bool
+    = DC__kp_7_pressed
+   
+  kp_8_pressed : bool
+    = DC__kp_8_pressed
+   
+  kp_9_pressed : bool
+    = DC__kp_9_pressed
+   
+  clear_pressed : bool
+    = DC__clear_pressed
+   
+  keypad_enabled : bool
+    = DC__keypad_enabled
+   
+  any_digit_pressed : bool
+    = DC__any_digit_pressed
+   
+  any_button_pressed : bool
+    = DC__any_button_pressed
+   
+  is_cooking : bool
+    = DC__is_cooking
+   
+  left_digit : int
+    = DC__left_digit
+   
+  middle_digit : int
+    = DC__middle_digit
+   
+  right_digit : int
+    = DC__right_digit
+   
+  seconds_to_cook : int
+    = DC__seconds_to_cook
+   
+  i : bool
+    = Eq(seconds_to_cook, 0)
+   
+  std__Initiallyv : bool
+    = i -> true
+   
+  signal$10 : bool
+    = kp_0
+   
+  pre_signal$10 : bool
+    = pre signal$10
+   
+  init_pre_signal$10 : bool
+    = false -> pre_signal$10
+   
+  defs__rising_edge$10 : bool
+    = And(signal$10, Not(init_pre_signal$10))
+   
+  kp_1 : bool
+    = DC__kp_1
+   
+  signal$9 : bool
+    = kp_1
+   
+  pre_signal$9 : bool
+    = pre signal$9
+   
+  init_pre_signal$9 : bool
+    = false -> pre_signal$9
+   
+  defs__rising_edge$9 : bool
+    = And(signal$9, Not(init_pre_signal$9))
+   
+  kp_2 : bool
+    = DC__kp_2
+   
+  signal$8 : bool
+    = kp_2
+   
+  pre_signal$8 : bool
+    = pre signal$8
+   
+  init_pre_signal$8 : bool
+    = false -> pre_signal$8
+   
+  defs__rising_edge$8 : bool
+    = And(signal$8, Not(init_pre_signal$8))
+   
+  kp_3 : bool
+    = DC__kp_3
+   
+  signal$7 : bool
+    = kp_3
+   
+  pre_signal$7 : bool
+    = pre signal$7
+   
+  init_pre_signal$7 : bool
+    = false -> pre_signal$7
+   
+  defs__rising_edge$7 : bool
+    = And(signal$7, Not(init_pre_signal$7))
+   
+  kp_4 : bool
+    = DC__kp_4
+   
+  signal$6 : bool
+    = kp_4
+   
+  pre_signal$6 : bool
+    = pre signal$6
+   
+  init_pre_signal$6 : bool
+    = false -> pre_signal$6
+   
+  defs__rising_edge$6 : bool
+    = And(signal$6, Not(init_pre_signal$6))
+   
+  kp_5 : bool
+    = DC__kp_5
+   
+  signal$5 : bool
+    = kp_5
+   
+  pre_signal$5 : bool
+    = pre signal$5
+   
+  init_pre_signal$5 : bool
+    = false -> pre_signal$5
+   
+  defs__rising_edge$5 : bool
+    = And(signal$5, Not(init_pre_signal$5))
+   
+  kp_6 : bool
+    = DC__kp_6
+   
+  signal$4 : bool
+    = kp_6
+   
+  pre_signal$4 : bool
+    = pre signal$4
+   
+  init_pre_signal$4 : bool
+    = false -> pre_signal$4
+   
+  defs__rising_edge$4 : bool
+    = And(signal$4, Not(init_pre_signal$4))
+   
+  kp_7 : bool
+    = DC__kp_7
+   
+  signal$3 : bool
+    = kp_7
+   
+  pre_signal$3 : bool
+    = pre signal$3
+   
+  init_pre_signal$3 : bool
+    = false -> pre_signal$3
+   
+  defs__rising_edge$3 : bool
+    = And(signal$3, Not(init_pre_signal$3))
+   
+  kp_8 : bool
+    = DC__kp_8
+   
+  signal$2 : bool
+    = kp_8
+   
+  pre_signal$2 : bool
+    = pre signal$2
+   
+  init_pre_signal$2 : bool
+    = false -> pre_signal$2
+   
+  defs__rising_edge$2 : bool
+    = And(signal$2, Not(init_pre_signal$2))
+   
+  kp_9 : bool
+    = DC__kp_9
+   
+  signal$1 : bool
+    = kp_9
+   
+  pre_signal$1 : bool
+    = pre signal$1
+   
+  init_pre_signal$1 : bool
+    = false -> pre_signal$1
+   
+  defs__rising_edge$1 : bool
+    = And(signal$1, Not(init_pre_signal$1))
+   
+  signal : bool
+    = clear
+   
+  pre_signal : bool
+    = pre signal
+   
+  init_pre_signal : bool
+    = false -> pre_signal
+   
+  defs__rising_edge : bool
+    = And(signal, Not(init_pre_signal))
+   
+  cooking_mode$1 : int
+    = DC__cooking_mode
+   
+  m$2 : int
+    = cooking_mode$1
+   
+  defs__is_setup : bool
+    = Eq(m$2, 1)
+   
+  m$1 : int
+    = cooking_mode$1
+   
+  defs__is_cooking$1 : bool
+    = Eq(m$1, 3)
+   
+  __ASSUME__CONJ$1 : bool
+    = And(__ASSUME0, true)
+   
+  pre___ASSUME__HIST$1 : bool
+    = pre __ASSUME__HIST$1
+   
+  __ASSUME__HIST$1 : bool
+    = __ASSUME__CONJ$1 -> And(pre___ASSUME__HIST$1, __ASSUME__CONJ$1)
+   
+  pre_seconds_to_cook$1 : int
+    = pre seconds_to_cook
+   
+  $init$1 : bool
+    = true -> Implies(is_cooking, Or(Eq(seconds_to_cook, 0), Lt(seconds_to_cook, pre_seconds_to_cook$1)))
+   
+  pre_keypad_enabled : bool
+    = pre keypad_enabled
+   
+  pre_seconds_to_cook : int
+    = pre seconds_to_cook
+   
+  $init : bool
+    = true -> Implies(And(And(Not(any_button_pressed), keypad_enabled), pre_keypad_enabled), Eq(pre_seconds_to_cook, seconds_to_cook))
+   
+  _TOP__DC : bool
+    = And(Eq(is_cooking, defs__is_cooking$1), And(Eq(any_button_pressed, Or(any_digit_pressed, clear_pressed)), And(Eq(any_digit_pressed, Or(Or(Or(Or(Or(Or(Or(Or(Or(kp_1_pressed, kp_2_pressed), kp_3_pressed), kp_4_pressed), kp_5_pressed), kp_6_pressed), kp_7_pressed), kp_8_pressed), kp_9_pressed), kp_0_pressed)), And(Eq(keypad_enabled, defs__is_setup), And(Eq(clear_pressed, defs__rising_edge), And(Eq(kp_9_pressed, defs__rising_edge$1), And(Eq(kp_8_pressed, defs__rising_edge$2), And(Eq(kp_7_pressed, defs__rising_edge$3), And(Eq(kp_6_pressed, defs__rising_edge$4), And(Eq(kp_5_pressed, defs__rising_edge$5), And(Eq(kp_4_pressed, defs__rising_edge$6), And(Eq(kp_3_pressed, defs__rising_edge$7), And(Eq(kp_2_pressed, defs__rising_edge$8), And(Eq(kp_1_pressed, defs__rising_edge$9), And(Eq(kp_0_pressed, defs__rising_edge$10), And(Implies(__ASSUME__HIST$1, And($init$1, And(std__Initiallyv, And($init, And(Implies(And(keypad_enabled, clear_pressed), Eq(seconds_to_cook, 0)), And(Eq(seconds_to_cook, Add(Add(Mul(60, left_digit), Mul(10, middle_digit)), right_digit)), And(And(Geq(right_digit, 0), Leq(right_digit, 9)), And(And(Geq(middle_digit, 0), Leq(middle_digit, 9)), And(And(Geq(left_digit, 0), Leq(left_digit, 9)), true))))))))), And(Eq(__ASSUME0, Not(And(clear, kp_0))), true)))))))))))))))))
+   
+  heating_element_on : bool
+    = OP__heating_element_on
+   
+  cooking_mode : int
+    = OP__cooking_mode
+   
+  m : int
+    = cooking_mode
+   
+  defs__is_cooking : bool
+    = Eq(m, 3)
+   
+  __ASSUME__CONJ : bool
+    = true
+   
+  pre___ASSUME__HIST : bool
+    = pre __ASSUME__HIST
+   
+  __ASSUME__HIST : bool
+    = __ASSUME__CONJ -> And(pre___ASSUME__HIST, __ASSUME__CONJ)
+   
+  _TOP__OP : bool
+    = And(Implies(__ASSUME__HIST, And(Eq(heating_element_on, defs__is_cooking), true)), true)
+   
+  Not : bool
+    = Not(And(clear$2, kp_0$1))
+   
+  Eq$21 : bool
+    = Eq(clear$2, MC__clear)
+   
+  Eq$20 : bool
+    = Eq(clear$2, DC__clear)
+   
+  Eq$19 : bool
+    = Eq(start$1, MC__start)
+   
+  Eq$18 : bool
+    = Eq(kp_0$1, DC__kp_0)
+   
+  Eq$17 : bool
+    = Eq(kp_1$1, DC__kp_1)
+   
+  Eq$16 : bool
+    = Eq(kp_2$1, DC__kp_2)
+   
+  Eq$15 : bool
+    = Eq(kp_3$1, DC__kp_3)
+   
+  Eq$14 : bool
+    = Eq(kp_4$1, DC__kp_4)
+   
+  Eq$13 : bool
+    = Eq(kp_5$1, DC__kp_5)
+   
+  Eq$12 : bool
+    = Eq(kp_6$1, DC__kp_6)
+   
+  Eq$11 : bool
+    = Eq(kp_7$1, DC__kp_7)
+   
+  Eq$10 : bool
+    = Eq(kp_8$1, DC__kp_8)
+   
+  Eq$9 : bool
+    = Eq(kp_9$1, DC__kp_9)
+   
+  Eq$8 : bool
+    = Eq(door_closed$1, MC__door_closed)
+   
+  Eq$7 : bool
+    = Eq(DC__seconds_to_cook, MC__seconds_to_cook)
+   
+  Eq$6 : bool
+    = Eq(MC__cooking_mode, OP__cooking_mode)
+   
+  Eq$5 : bool
+    = Eq(MC__cooking_mode, DC__cooking_mode)
+   
+  Eq$4 : bool
+    = Eq(OP__heating_element_on, heating_element_on$1)
+   
+  Eq$3 : bool
+    = Eq(DC__left_digit, left_digit$1)
+   
+  Eq$2 : bool
+    = Eq(DC__middle_digit, middle_digit$1)
+   
+  Eq$1 : bool
+    = Eq(DC__right_digit, right_digit$1)
+   
+  Eq : bool
+    = Eq(seconds_to_cook$2, Add(Add(Mul(left_digit$1, 60), Mul(middle_digit$1, 10)), right_digit$1))
+tel
+Sally Model
+===========
+
+(define-state-type
+   S
+   (
+     (Eq Bool)
+     (Not Bool)
+     (clear Bool)
+     (i Bool)
+     (m Int)
+     (signal Bool)
+     (start Bool)
+     (|$init:1:init| Bool)
+     (|$init:1| Bool)
+     (|$init:2:init| Bool)
+     (|$init:2| Bool)
+     (|$init:3:init| Bool)
+     (|$init:3| Bool)
+     (|$init:4:init| Bool)
+     (|$init:4| Bool)
+     (|$init:init| Bool)
+     (|$init| Bool)
+     (|DC___CLOCK_| Bool)
+     (|DC____ASSUME0| Bool)
+     (|DC__any_button_pressed| Bool)
+     (|DC__any_digit_pressed| Bool)
+     (|DC__clear_pressed| Bool)
+     (|DC__clear| Bool)
+     (|DC__cooking_mode| Int)
+     (|DC__is_cooking| Bool)
+     (|DC__keypad_enabled| Bool)
+     (|DC__kp_0_pressed| Bool)
+     (|DC__kp_0| Bool)
+     (|DC__kp_1_pressed| Bool)
+     (|DC__kp_1| Bool)
+     (|DC__kp_2_pressed| Bool)
+     (|DC__kp_2| Bool)
+     (|DC__kp_3_pressed| Bool)
+     (|DC__kp_3| Bool)
+     (|DC__kp_4_pressed| Bool)
+     (|DC__kp_4| Bool)
+     (|DC__kp_5_pressed| Bool)
+     (|DC__kp_5| Bool)
+     (|DC__kp_6_pressed| Bool)
+     (|DC__kp_6| Bool)
+     (|DC__kp_7_pressed| Bool)
+     (|DC__kp_7| Bool)
+     (|DC__kp_8_pressed| Bool)
+     (|DC__kp_8| Bool)
+     (|DC__kp_9_pressed| Bool)
+     (|DC__kp_9| Bool)
+     (|DC__left_digit| Int)
+     (|DC__middle_digit| Int)
+     (|DC__right_digit| Int)
+     (|DC__seconds_to_cook| Int)
+     (|Eq:10| Bool)
+     (|Eq:11| Bool)
+     (|Eq:12| Bool)
+     (|Eq:13| Bool)
+     (|Eq:14| Bool)
+     (|Eq:15| Bool)
+     (|Eq:16| Bool)
+     (|Eq:17| Bool)
+     (|Eq:18| Bool)
+     (|Eq:19| Bool)
+     (|Eq:1| Bool)
+     (|Eq:20| Bool)
+     (|Eq:21| Bool)
+     (|Eq:2| Bool)
+     (|Eq:3| Bool)
+     (|Eq:4| Bool)
+     (|Eq:5| Bool)
+     (|Eq:6| Bool)
+     (|Eq:7| Bool)
+     (|Eq:8| Bool)
+     (|Eq:9| Bool)
+     (|MC___CLOCK_| Bool)
+     (|MC____ASSUME0| Bool)
+     (|MC__clear| Bool)
+     (|MC__cooking_mode| Int)
+     (|MC__door_closed| Bool)
+     (|MC__is_cooking| Bool)
+     (|MC__is_running| Bool)
+     (|MC__is_setup| Bool)
+     (|MC__is_suspended| Bool)
+     (|MC__seconds_to_cook| Int)
+     (|MC__start| Bool)
+     (|OP___CLOCK_| Bool)
+     (|OP__cooking_mode| Int)
+     (|OP__heating_element_on| Bool)
+     (|_TOP__DC| Bool)
+     (|_TOP__MC| Bool)
+     (|_TOP__OP| Bool)
+     (|__ASSUME0:1| Bool)
+     (|__ASSUME0| Bool)
+     (|__ASSUME__CONJ:1| Bool)
+     (|__ASSUME__CONJ:2| Bool)
+     (|__ASSUME__CONJ| Bool)
+     (|__ASSUME__HIST:1:init| Bool)
+     (|__ASSUME__HIST:1| Bool)
+     (|__ASSUME__HIST:2:init| Bool)
+     (|__ASSUME__HIST:2| Bool)
+     (|__ASSUME__HIST:init| Bool)
+     (|__ASSUME__HIST| Bool)
+     (|__GUARANTEE0| Bool)
+     (|__GUARANTEE1| Bool)
+     (|__GUARANTEE2| Bool)
+     (|any_button_pressed| Bool)
+     (|any_digit_pressed| Bool)
+     (|clear:1| Bool)
+     (|clear:2| Bool)
+     (|clear_pressed| Bool)
+     (|cooking_mode:1| Int)
+     (|cooking_mode:2| Int)
+     (|cooking_mode| Int)
+     (|defs__is_cooking:1| Bool)
+     (|defs__is_cooking:2| Bool)
+     (|defs__is_cooking| Bool)
+     (|defs__is_running| Bool)
+     (|defs__is_setup:1| Bool)
+     (|defs__is_setup| Bool)
+     (|defs__is_suspended| Bool)
+     (|defs__rising_edge:10| Bool)
+     (|defs__rising_edge:11| Bool)
+     (|defs__rising_edge:12| Bool)
+     (|defs__rising_edge:13| Bool)
+     (|defs__rising_edge:14| Bool)
+     (|defs__rising_edge:15| Bool)
+     (|defs__rising_edge:16| Bool)
+     (|defs__rising_edge:1| Bool)
+     (|defs__rising_edge:2| Bool)
+     (|defs__rising_edge:3| Bool)
+     (|defs__rising_edge:4| Bool)
+     (|defs__rising_edge:5| Bool)
+     (|defs__rising_edge:6| Bool)
+     (|defs__rising_edge:7| Bool)
+     (|defs__rising_edge:8| Bool)
+     (|defs__rising_edge:9| Bool)
+     (|defs__rising_edge| Bool)
+     (|door_closed:1| Bool)
+     (|door_closed| Bool)
+     (|gal-initializing| Bool)
+     (|heating_element_on:1| Bool)
+     (|heating_element_on| Bool)
+     (|i:1| Bool)
+     (|i:2| Int)
+     (|i:3| Bool)
+     (|init_pre_signal:10:init| Bool)
+     (|init_pre_signal:10| Bool)
+     (|init_pre_signal:11:init| Bool)
+     (|init_pre_signal:11| Bool)
+     (|init_pre_signal:12:init| Bool)
+     (|init_pre_signal:12| Bool)
+     (|init_pre_signal:13:init| Bool)
+     (|init_pre_signal:13| Bool)
+     (|init_pre_signal:14:init| Bool)
+     (|init_pre_signal:14| Bool)
+     (|init_pre_signal:15:init| Bool)
+     (|init_pre_signal:15| Bool)
+     (|init_pre_signal:16:init| Bool)
+     (|init_pre_signal:16| Bool)
+     (|init_pre_signal:1:init| Bool)
+     (|init_pre_signal:1| Bool)
+     (|init_pre_signal:2:init| Bool)
+     (|init_pre_signal:2| Bool)
+     (|init_pre_signal:3:init| Bool)
+     (|init_pre_signal:3| Bool)
+     (|init_pre_signal:4:init| Bool)
+     (|init_pre_signal:4| Bool)
+     (|init_pre_signal:5:init| Bool)
+     (|init_pre_signal:5| Bool)
+     (|init_pre_signal:6:init| Bool)
+     (|init_pre_signal:6| Bool)
+     (|init_pre_signal:7:init| Bool)
+     (|init_pre_signal:7| Bool)
+     (|init_pre_signal:8:init| Bool)
+     (|init_pre_signal:8| Bool)
+     (|init_pre_signal:9:init| Bool)
+     (|init_pre_signal:9| Bool)
+     (|init_pre_signal:init| Bool)
+     (|init_pre_signal| Bool)
+     (|is_cooking:1| Bool)
+     (|is_cooking| Bool)
+     (|is_running| Bool)
+     (|is_setup| Bool)
+     (|is_suspended| Bool)
+     (|keypad_enabled| Bool)
+     (|kp_0:1| Bool)
+     (|kp_0_pressed| Bool)
+     (|kp_0| Bool)
+     (|kp_1:1| Bool)
+     (|kp_1_pressed| Bool)
+     (|kp_1| Bool)
+     (|kp_2:1| Bool)
+     (|kp_2_pressed| Bool)
+     (|kp_2| Bool)
+     (|kp_3:1| Bool)
+     (|kp_3_pressed| Bool)
+     (|kp_3| Bool)
+     (|kp_4:1| Bool)
+     (|kp_4_pressed| Bool)
+     (|kp_4| Bool)
+     (|kp_5:1| Bool)
+     (|kp_5_pressed| Bool)
+     (|kp_5| Bool)
+     (|kp_6:1| Bool)
+     (|kp_6_pressed| Bool)
+     (|kp_6| Bool)
+     (|kp_7:1| Bool)
+     (|kp_7_pressed| Bool)
+     (|kp_7| Bool)
+     (|kp_8:1| Bool)
+     (|kp_8_pressed| Bool)
+     (|kp_8| Bool)
+     (|kp_9:1| Bool)
+     (|kp_9_pressed| Bool)
+     (|kp_9| Bool)
+     (|left_digit:1| Int)
+     (|left_digit| Int)
+     (|m:1| Int)
+     (|m:2| Int)
+     (|m:3| Int)
+     (|m:4| Int)
+     (|m:5| Int)
+     (|m:6| Int)
+     (|middle_digit:1| Int)
+     (|middle_digit| Int)
+     (|pre___ASSUME__HIST:1| Bool)
+     (|pre___ASSUME__HIST:2| Bool)
+     (|pre___ASSUME__HIST| Bool)
+     (|pre_i:1| Bool)
+     (|pre_is_cooking| Bool)
+     (|pre_is_suspended:1| Bool)
+     (|pre_is_suspended| Bool)
+     (|pre_i| Int)
+     (|pre_keypad_enabled| Bool)
+     (|pre_seconds_to_cook:1| Int)
+     (|pre_seconds_to_cook| Int)
+     (|pre_signal:10| Bool)
+     (|pre_signal:11| Bool)
+     (|pre_signal:12| Bool)
+     (|pre_signal:13| Bool)
+     (|pre_signal:14| Bool)
+     (|pre_signal:15| Bool)
+     (|pre_signal:16| Bool)
+     (|pre_signal:1| Bool)
+     (|pre_signal:2| Bool)
+     (|pre_signal:3| Bool)
+     (|pre_signal:4| Bool)
+     (|pre_signal:5| Bool)
+     (|pre_signal:6| Bool)
+     (|pre_signal:7| Bool)
+     (|pre_signal:8| Bool)
+     (|pre_signal:9| Bool)
+     (|pre_signal| Bool)
+     (|right_digit:1| Int)
+     (|right_digit| Int)
+     (|seconds_to_cook:1| Int)
+     (|seconds_to_cook:2| Int)
+     (|seconds_to_cook| Int)
+     (|signal:10| Bool)
+     (|signal:11| Bool)
+     (|signal:12| Bool)
+     (|signal:13| Bool)
+     (|signal:14| Bool)
+     (|signal:15| Bool)
+     (|signal:16| Bool)
+     (|signal:1| Bool)
+     (|signal:2| Bool)
+     (|signal:3| Bool)
+     (|signal:4| Bool)
+     (|signal:5| Bool)
+     (|signal:6| Bool)
+     (|signal:7| Bool)
+     (|signal:8| Bool)
+     (|signal:9| Bool)
+     (|start:1| Bool)
+     (|std__DecreaseInt:init| Bool)
+     (|std__DecreaseInt| Bool)
+     (|std__Initiallyv:1:init| Bool)
+     (|std__Initiallyv:1| Bool)
+     (|std__Initiallyv:init| Bool)
+     (|std__Initiallyv| Bool)
+     (|std__While:init| Bool)
+     (|std__While| Bool))
+   (
+     (|DC___CLOCK_| Bool)
+     (|DC____ASSUME0| Bool)
+     (|DC__any_button_pressed| Bool)
+     (|DC__any_digit_pressed| Bool)
+     (|DC__clear_pressed| Bool)
+     (|DC__clear| Bool)
+     (|DC__cooking_mode| Int)
+     (|DC__is_cooking| Bool)
+     (|DC__keypad_enabled| Bool)
+     (|DC__kp_0_pressed| Bool)
+     (|DC__kp_0| Bool)
+     (|DC__kp_1_pressed| Bool)
+     (|DC__kp_1| Bool)
+     (|DC__kp_2_pressed| Bool)
+     (|DC__kp_2| Bool)
+     (|DC__kp_3_pressed| Bool)
+     (|DC__kp_3| Bool)
+     (|DC__kp_4_pressed| Bool)
+     (|DC__kp_4| Bool)
+     (|DC__kp_5_pressed| Bool)
+     (|DC__kp_5| Bool)
+     (|DC__kp_6_pressed| Bool)
+     (|DC__kp_6| Bool)
+     (|DC__kp_7_pressed| Bool)
+     (|DC__kp_7| Bool)
+     (|DC__kp_8_pressed| Bool)
+     (|DC__kp_8| Bool)
+     (|DC__kp_9_pressed| Bool)
+     (|DC__kp_9| Bool)
+     (|DC__left_digit| Int)
+     (|DC__middle_digit| Int)
+     (|DC__right_digit| Int)
+     (|DC__seconds_to_cook| Int)
+     (|MC___CLOCK_| Bool)
+     (|MC____ASSUME0| Bool)
+     (|MC__clear| Bool)
+     (|MC__cooking_mode| Int)
+     (|MC__door_closed| Bool)
+     (|MC__is_cooking| Bool)
+     (|MC__is_running| Bool)
+     (|MC__is_setup| Bool)
+     (|MC__is_suspended| Bool)
+     (|MC__seconds_to_cook| Int)
+     (|MC__start| Bool)
+     (|OP___CLOCK_| Bool)
+     (|OP__cooking_mode| Int)
+     (|OP__heating_element_on| Bool)
+     (|clear:2| Bool)
+     (|door_closed:1| Bool)
+     (|heating_element_on:1| Bool)
+     (|kp_0:1| Bool)
+     (|kp_1:1| Bool)
+     (|kp_2:1| Bool)
+     (|kp_3:1| Bool)
+     (|kp_4:1| Bool)
+     (|kp_5:1| Bool)
+     (|kp_6:1| Bool)
+     (|kp_7:1| Bool)
+     (|kp_8:1| Bool)
+     (|kp_9:1| Bool)
+     (|left_digit:1| Int)
+     (|middle_digit:1| Int)
+     (|right_digit:1| Int)
+     (|seconds_to_cook:2| Int)
+     (|start:1| Bool)))
+(define-transition-system
+   TS
+   S
+   (and
+      (= |gal-initializing| true)
+      (= |std__While:init| true)
+      (= |std__DecreaseInt:init| true)
+      (= |std__Initiallyv:1:init| true)
+      (= |init_pre_signal:16:init| true)
+      (= |init_pre_signal:15:init| true)
+      (= |__ASSUME__HIST:2:init| true)
+      (= |init_pre_signal:14:init| true)
+      (= |init_pre_signal:13:init| true)
+      (= |$init:4:init| true)
+      (= |init_pre_signal:12:init| true)
+      (= |$init:3:init| true)
+      (= |init_pre_signal:11:init| true)
+      (= |$init:2:init| true)
+      (= |std__Initiallyv:init| true)
+      (= |init_pre_signal:10:init| true)
+      (= |init_pre_signal:9:init| true)
+      (= |init_pre_signal:8:init| true)
+      (= |init_pre_signal:7:init| true)
+      (= |init_pre_signal:6:init| true)
+      (= |init_pre_signal:5:init| true)
+      (= |init_pre_signal:4:init| true)
+      (= |init_pre_signal:3:init| true)
+      (= |init_pre_signal:2:init| true)
+      (= |init_pre_signal:1:init| true)
+      (= |init_pre_signal:init| true)
+      (= |__ASSUME__HIST:1:init| true)
+      (= |$init:1:init| true)
+      (= |$init:init| true)
+      (= |__ASSUME__HIST:init| true))
+   (and
+      (= next.|gal-initializing| false)
+      (= next.|MC__start| input.|MC__start|)
+      (= next.|MC__clear| input.|MC__clear|)
+      (= next.|MC__seconds_to_cook| input.|MC__seconds_to_cook|)
+      (= next.|MC__door_closed| input.|MC__door_closed|)
+      (= next.|MC___CLOCK_| input.|MC___CLOCK_|)
+      (= next.|DC__clear| input.|DC__clear|)
+      (= next.|DC__kp_0| input.|DC__kp_0|)
+      (= next.|DC__kp_1| input.|DC__kp_1|)
+      (= next.|DC__kp_2| input.|DC__kp_2|)
+      (= next.|DC__kp_3| input.|DC__kp_3|)
+      (= next.|DC__kp_4| input.|DC__kp_4|)
+      (= next.|DC__kp_5| input.|DC__kp_5|)
+      (= next.|DC__kp_6| input.|DC__kp_6|)
+      (= next.|DC__kp_7| input.|DC__kp_7|)
+      (= next.|DC__kp_8| input.|DC__kp_8|)
+      (= next.|DC__kp_9| input.|DC__kp_9|)
+      (= next.|DC__cooking_mode| input.|DC__cooking_mode|)
+      (= next.|DC___CLOCK_| input.|DC___CLOCK_|)
+      (= next.|OP__cooking_mode| input.|OP__cooking_mode|)
+      (= next.|OP___CLOCK_| input.|OP___CLOCK_|)
+      (= next.|clear:2| input.|clear:2|)
+      (= next.|start:1| input.|start:1|)
+      (= next.|kp_0:1| input.|kp_0:1|)
+      (= next.|kp_1:1| input.|kp_1:1|)
+      (= next.|kp_2:1| input.|kp_2:1|)
+      (= next.|kp_3:1| input.|kp_3:1|)
+      (= next.|kp_4:1| input.|kp_4:1|)
+      (= next.|kp_5:1| input.|kp_5:1|)
+      (= next.|kp_6:1| input.|kp_6:1|)
+      (= next.|kp_7:1| input.|kp_7:1|)
+      (= next.|kp_8:1| input.|kp_8:1|)
+      (= next.|kp_9:1| input.|kp_9:1|)
+      (= next.|door_closed:1| input.|door_closed:1|)
+      (= next.|MC__is_cooking| input.|MC__is_cooking|)
+      (= next.|MC__is_setup| input.|MC__is_setup|)
+      (= next.|MC__is_suspended| input.|MC__is_suspended|)
+      (= next.|MC__is_running| input.|MC__is_running|)
+      (= next.|MC__cooking_mode| input.|MC__cooking_mode|)
+      (= next.|MC____ASSUME0| input.|MC____ASSUME0|)
+      (= next.|DC__kp_0_pressed| input.|DC__kp_0_pressed|)
+      (= next.|DC__kp_1_pressed| input.|DC__kp_1_pressed|)
+      (= next.|DC__kp_2_pressed| input.|DC__kp_2_pressed|)
+      (= next.|DC__kp_3_pressed| input.|DC__kp_3_pressed|)
+      (= next.|DC__kp_4_pressed| input.|DC__kp_4_pressed|)
+      (= next.|DC__kp_5_pressed| input.|DC__kp_5_pressed|)
+      (= next.|DC__kp_6_pressed| input.|DC__kp_6_pressed|)
+      (= next.|DC__kp_7_pressed| input.|DC__kp_7_pressed|)
+      (= next.|DC__kp_8_pressed| input.|DC__kp_8_pressed|)
+      (= next.|DC__kp_9_pressed| input.|DC__kp_9_pressed|)
+      (= next.|DC__clear_pressed| input.|DC__clear_pressed|)
+      (= next.|DC__keypad_enabled| input.|DC__keypad_enabled|)
+      (= next.|DC__any_digit_pressed| input.|DC__any_digit_pressed|)
+      (= next.|DC__any_button_pressed| input.|DC__any_button_pressed|)
+      (= next.|DC__is_cooking| input.|DC__is_cooking|)
+      (= next.|DC__left_digit| input.|DC__left_digit|)
+      (= next.|DC__middle_digit| input.|DC__middle_digit|)
+      (= next.|DC__right_digit| input.|DC__right_digit|)
+      (= next.|DC__seconds_to_cook| input.|DC__seconds_to_cook|)
+      (= next.|DC____ASSUME0| input.|DC____ASSUME0|)
+      (= next.|OP__heating_element_on| input.|OP__heating_element_on|)
+      (= next.|seconds_to_cook:2| input.|seconds_to_cook:2|)
+      (= next.|heating_element_on:1| input.|heating_element_on:1|)
+      (= next.|left_digit:1| input.|left_digit:1|)
+      (= next.|middle_digit:1| input.|middle_digit:1|)
+      (= next.|right_digit:1| input.|right_digit:1|)
+      next.Eq
+      next.|Eq:1|
+      next.|Eq:2|
+      next.|Eq:3|
+      next.|Eq:4|
+      next.|Eq:5|
+      next.|Eq:6|
+      next.|Eq:7|
+      next.|Eq:8|
+      next.|Eq:9|
+      next.|Eq:10|
+      next.|Eq:11|
+      next.|Eq:12|
+      next.|Eq:13|
+      next.|Eq:14|
+      next.|Eq:15|
+      next.|Eq:16|
+      next.|Eq:17|
+      next.|Eq:18|
+      next.|Eq:19|
+      next.|Eq:20|
+      next.|Eq:21|
+      next.|_TOP__OP|
+      next.|_TOP__DC|
+      next.|_TOP__MC|
+      next.Not
+      (=
+         next.|__GUARANTEE0|
+         (=> next.|heating_element_on:1| next.|door_closed:1|))
+      (= next.|i:3| next.|heating_element_on:1|)
+      (= next.|pre_i:1| state.|i:3|)
+      (ite
+         state.|std__While:init|
+         (= next.|std__While| next.|i:3|)
+         (=
+            next.|std__While|
+            (and next.|i:3| next.|pre_i:1|)))
+      (= next.|std__While:init| false)
+      (= next.|i:2| next.|seconds_to_cook:2|)
+      (= next.|pre_i| state.|i:2|)
+      (ite
+         state.|std__DecreaseInt:init|
+         (= next.|std__DecreaseInt| true)
+         (=
+            next.|std__DecreaseInt|
+            (< next.|i:2| next.|pre_i|)))
+      (= next.|std__DecreaseInt:init| false)
+      (=
+         next.|__GUARANTEE1|
+         (=> next.|std__While| next.|std__DecreaseInt|))
+      (=
+         next.|__GUARANTEE2|
+         (=>
+            (= next.|seconds_to_cook:2| 0)
+            (not next.|heating_element_on:1|)))
+      (= next.|__ASSUME0:1| next.|MC____ASSUME0|)
+      (= next.|seconds_to_cook:1| next.|MC__seconds_to_cook|)
+      (= next.|door_closed| next.|MC__door_closed|)
+      (= next.|is_cooking:1| next.|MC__is_cooking|)
+      (= next.|is_setup| next.|MC__is_setup|)
+      (= next.|is_suspended| next.|MC__is_suspended|)
+      (= next.|is_running| next.|MC__is_running|)
+      (= next.|cooking_mode:2| next.|MC__cooking_mode|)
+      (= next.|i:1| next.|is_setup|)
+      (ite
+         state.|std__Initiallyv:1:init|
+         (= next.|std__Initiallyv:1| next.|i:1|)
+         (= next.|std__Initiallyv:1| true))
+      (= next.|std__Initiallyv:1:init| false)
+      (= next.|signal:16| next.|is_running|)
+      (= next.|pre_signal:16| state.|signal:16|)
+      (ite
+         state.|init_pre_signal:16:init|
+         (= next.|init_pre_signal:16| false)
+         (= next.|init_pre_signal:16| next.|pre_signal:16|))
+      (= next.|init_pre_signal:16:init| false)
+      (=
+         next.|defs__rising_edge:16|
+         (and
+            next.|signal:16|
+            (not next.|init_pre_signal:16|)))
+      (= next.|signal:15| next.|is_running|)
+      (= next.|pre_signal:15| state.|signal:15|)
+      (ite
+         state.|init_pre_signal:15:init|
+         (= next.|init_pre_signal:15| false)
+         (= next.|init_pre_signal:15| next.|pre_signal:15|))
+      (= next.|init_pre_signal:15:init| false)
+      (=
+         next.|defs__rising_edge:15|
+         (and
+            next.|signal:15|
+            (not next.|init_pre_signal:15|)))
+      (= next.|m:6| next.|cooking_mode:2|)
+      (=
+         next.|defs__is_cooking:2|
+         (= next.|m:6| 3))
+      (= next.|m:5| next.|cooking_mode:2|)
+      (=
+         next.|defs__is_setup:1|
+         (= next.|m:5| 1))
+      (= next.|m:4| next.|cooking_mode:2|)
+      (=
+         next.|defs__is_suspended|
+         (= next.|m:4| 2))
+      (= next.|m:3| next.|cooking_mode:2|)
+      (=
+         next.|defs__is_running|
+         (or
+            (= next.|m:3| 3)
+            (= next.|m:3| 2)))
+      (=
+         next.|__ASSUME__CONJ:2|
+         (and next.|__ASSUME0:1| true))
+      (= next.|pre___ASSUME__HIST:2| state.|__ASSUME__HIST:2|)
+      (ite
+         state.|__ASSUME__HIST:2:init|
+         (= next.|__ASSUME__HIST:2| next.|__ASSUME__CONJ:2|)
+         (=
+            next.|__ASSUME__HIST:2|
+            (and next.|pre___ASSUME__HIST:2| next.|__ASSUME__CONJ:2|)))
+      (= next.|__ASSUME__HIST:2:init| false)
+      (= next.|clear:1| next.|MC__clear|)
+      (= next.|signal:14| next.|clear:1|)
+      (= next.|pre_signal:14| state.|signal:14|)
+      (ite
+         state.|init_pre_signal:14:init|
+         (= next.|init_pre_signal:14| false)
+         (= next.|init_pre_signal:14| next.|pre_signal:14|))
+      (= next.|init_pre_signal:14:init| false)
+      (=
+         next.|defs__rising_edge:14|
+         (and
+            next.|signal:14|
+            (not next.|init_pre_signal:14|)))
+      (= next.start next.|MC__start|)
+      (= next.|signal:13| next.start)
+      (= next.|pre_signal:13| state.|signal:13|)
+      (ite
+         state.|init_pre_signal:13:init|
+         (= next.|init_pre_signal:13| false)
+         (= next.|init_pre_signal:13| next.|pre_signal:13|))
+      (= next.|init_pre_signal:13:init| false)
+      (=
+         next.|defs__rising_edge:13|
+         (and
+            next.|signal:13|
+            (not next.|init_pre_signal:13|)))
+      (= next.|pre_is_suspended:1| state.|is_suspended|)
+      (ite
+         state.|$init:4:init|
+         (= next.|$init:4| true)
+         (=
+            next.|$init:4|
+            (=>
+               (and
+                  next.|defs__rising_edge:13|
+                  (not next.|defs__rising_edge:14|)
+                  next.|pre_is_suspended:1|
+                  next.|door_closed|
+                  (< 0 next.|seconds_to_cook:1|))
+               next.|is_cooking:1|)))
+      (= next.|$init:4:init| false)
+      (= next.|signal:12| next.|clear:1|)
+      (= next.|pre_signal:12| state.|signal:12|)
+      (ite
+         state.|init_pre_signal:12:init|
+         (= next.|init_pre_signal:12| false)
+         (= next.|init_pre_signal:12| next.|pre_signal:12|))
+      (= next.|init_pre_signal:12:init| false)
+      (=
+         next.|defs__rising_edge:12|
+         (and
+            next.|signal:12|
+            (not next.|init_pre_signal:12|)))
+      (= next.|pre_is_suspended| state.|is_suspended|)
+      (ite
+         state.|$init:3:init|
+         (= next.|$init:3| true)
+         (=
+            next.|$init:3|
+            (=>
+               (and next.|defs__rising_edge:12| next.|pre_is_suspended|)
+               next.|is_setup|)))
+      (= next.|$init:3:init| false)
+      (= next.|signal:11| next.|clear:1|)
+      (= next.|pre_signal:11| state.|signal:11|)
+      (ite
+         state.|init_pre_signal:11:init|
+         (= next.|init_pre_signal:11| false)
+         (= next.|init_pre_signal:11| next.|pre_signal:11|))
+      (= next.|init_pre_signal:11:init| false)
+      (=
+         next.|defs__rising_edge:11|
+         (and
+            next.|signal:11|
+            (not next.|init_pre_signal:11|)))
+      (= next.|pre_is_cooking| state.|is_cooking:1|)
+      (ite
+         state.|$init:2:init|
+         (= next.|$init:2| true)
+         (=
+            next.|$init:2|
+            (=>
+               (and next.|defs__rising_edge:11| next.|pre_is_cooking|)
+               (not next.|is_cooking:1|))))
+      (= next.|$init:2:init| false)
+      (=
+         next.|_TOP__MC|
+         (and
+            (= next.|is_running| next.|defs__is_running|)
+            (= next.|is_suspended| next.|defs__is_suspended|)
+            (= next.|is_setup| next.|defs__is_setup:1|)
+            (= next.|is_cooking:1| next.|defs__is_cooking:2|)
+            (=>
+               next.|__ASSUME__HIST:2|
+               (and
+                  (=>
+                     (= next.|seconds_to_cook:1| 0)
+                     next.|is_setup|)
+                  next.|$init:4|
+                  next.|$init:3|
+                  next.|$init:2|
+                  (=>
+                     (and
+                        next.|defs__rising_edge:15|
+                        (not next.|door_closed|))
+                     next.|is_suspended|)
+                  (=>
+                     (and next.|defs__rising_edge:16| next.|door_closed|)
+                     next.|is_cooking:1|)
+                  next.|std__Initiallyv:1|
+                  (=> next.|is_cooking:1| next.|door_closed|)
+                  (or
+                     (= next.|cooking_mode:2| 1)
+                     (= next.|cooking_mode:2| 2)
+                     (= next.|cooking_mode:2| 3))
+                  true))
+            (=
+               next.|__ASSUME0:1|
+               (<= 0 next.|seconds_to_cook:1|))
+            true))
+      (= next.|__ASSUME0| next.|DC____ASSUME0|)
+      (= next.clear next.|DC__clear|)
+      (= next.|kp_0| next.|DC__kp_0|)
+      (= next.|kp_0_pressed| next.|DC__kp_0_pressed|)
+      (= next.|kp_1_pressed| next.|DC__kp_1_pressed|)
+      (= next.|kp_2_pressed| next.|DC__kp_2_pressed|)
+      (= next.|kp_3_pressed| next.|DC__kp_3_pressed|)
+      (= next.|kp_4_pressed| next.|DC__kp_4_pressed|)
+      (= next.|kp_5_pressed| next.|DC__kp_5_pressed|)
+      (= next.|kp_6_pressed| next.|DC__kp_6_pressed|)
+      (= next.|kp_7_pressed| next.|DC__kp_7_pressed|)
+      (= next.|kp_8_pressed| next.|DC__kp_8_pressed|)
+      (= next.|kp_9_pressed| next.|DC__kp_9_pressed|)
+      (= next.|clear_pressed| next.|DC__clear_pressed|)
+      (= next.|keypad_enabled| next.|DC__keypad_enabled|)
+      (= next.|any_digit_pressed| next.|DC__any_digit_pressed|)
+      (= next.|any_button_pressed| next.|DC__any_button_pressed|)
+      (= next.|is_cooking| next.|DC__is_cooking|)
+      (= next.|left_digit| next.|DC__left_digit|)
+      (= next.|middle_digit| next.|DC__middle_digit|)
+      (= next.|right_digit| next.|DC__right_digit|)
+      (= next.|seconds_to_cook| next.|DC__seconds_to_cook|)
+      (=
+         next.i
+         (= next.|seconds_to_cook| 0))
+      (ite
+         state.|std__Initiallyv:init|
+         (= next.|std__Initiallyv| next.i)
+         (= next.|std__Initiallyv| true))
+      (= next.|std__Initiallyv:init| false)
+      (= next.|signal:10| next.|kp_0|)
+      (= next.|pre_signal:10| state.|signal:10|)
+      (ite
+         state.|init_pre_signal:10:init|
+         (= next.|init_pre_signal:10| false)
+         (= next.|init_pre_signal:10| next.|pre_signal:10|))
+      (= next.|init_pre_signal:10:init| false)
+      (=
+         next.|defs__rising_edge:10|
+         (and
+            next.|signal:10|
+            (not next.|init_pre_signal:10|)))
+      (= next.|kp_1| next.|DC__kp_1|)
+      (= next.|signal:9| next.|kp_1|)
+      (= next.|pre_signal:9| state.|signal:9|)
+      (ite
+         state.|init_pre_signal:9:init|
+         (= next.|init_pre_signal:9| false)
+         (= next.|init_pre_signal:9| next.|pre_signal:9|))
+      (= next.|init_pre_signal:9:init| false)
+      (=
+         next.|defs__rising_edge:9|
+         (and
+            next.|signal:9|
+            (not next.|init_pre_signal:9|)))
+      (= next.|kp_2| next.|DC__kp_2|)
+      (= next.|signal:8| next.|kp_2|)
+      (= next.|pre_signal:8| state.|signal:8|)
+      (ite
+         state.|init_pre_signal:8:init|
+         (= next.|init_pre_signal:8| false)
+         (= next.|init_pre_signal:8| next.|pre_signal:8|))
+      (= next.|init_pre_signal:8:init| false)
+      (=
+         next.|defs__rising_edge:8|
+         (and
+            next.|signal:8|
+            (not next.|init_pre_signal:8|)))
+      (= next.|kp_3| next.|DC__kp_3|)
+      (= next.|signal:7| next.|kp_3|)
+      (= next.|pre_signal:7| state.|signal:7|)
+      (ite
+         state.|init_pre_signal:7:init|
+         (= next.|init_pre_signal:7| false)
+         (= next.|init_pre_signal:7| next.|pre_signal:7|))
+      (= next.|init_pre_signal:7:init| false)
+      (=
+         next.|defs__rising_edge:7|
+         (and
+            next.|signal:7|
+            (not next.|init_pre_signal:7|)))
+      (= next.|kp_4| next.|DC__kp_4|)
+      (= next.|signal:6| next.|kp_4|)
+      (= next.|pre_signal:6| state.|signal:6|)
+      (ite
+         state.|init_pre_signal:6:init|
+         (= next.|init_pre_signal:6| false)
+         (= next.|init_pre_signal:6| next.|pre_signal:6|))
+      (= next.|init_pre_signal:6:init| false)
+      (=
+         next.|defs__rising_edge:6|
+         (and
+            next.|signal:6|
+            (not next.|init_pre_signal:6|)))
+      (= next.|kp_5| next.|DC__kp_5|)
+      (= next.|signal:5| next.|kp_5|)
+      (= next.|pre_signal:5| state.|signal:5|)
+      (ite
+         state.|init_pre_signal:5:init|
+         (= next.|init_pre_signal:5| false)
+         (= next.|init_pre_signal:5| next.|pre_signal:5|))
+      (= next.|init_pre_signal:5:init| false)
+      (=
+         next.|defs__rising_edge:5|
+         (and
+            next.|signal:5|
+            (not next.|init_pre_signal:5|)))
+      (= next.|kp_6| next.|DC__kp_6|)
+      (= next.|signal:4| next.|kp_6|)
+      (= next.|pre_signal:4| state.|signal:4|)
+      (ite
+         state.|init_pre_signal:4:init|
+         (= next.|init_pre_signal:4| false)
+         (= next.|init_pre_signal:4| next.|pre_signal:4|))
+      (= next.|init_pre_signal:4:init| false)
+      (=
+         next.|defs__rising_edge:4|
+         (and
+            next.|signal:4|
+            (not next.|init_pre_signal:4|)))
+      (= next.|kp_7| next.|DC__kp_7|)
+      (= next.|signal:3| next.|kp_7|)
+      (= next.|pre_signal:3| state.|signal:3|)
+      (ite
+         state.|init_pre_signal:3:init|
+         (= next.|init_pre_signal:3| false)
+         (= next.|init_pre_signal:3| next.|pre_signal:3|))
+      (= next.|init_pre_signal:3:init| false)
+      (=
+         next.|defs__rising_edge:3|
+         (and
+            next.|signal:3|
+            (not next.|init_pre_signal:3|)))
+      (= next.|kp_8| next.|DC__kp_8|)
+      (= next.|signal:2| next.|kp_8|)
+      (= next.|pre_signal:2| state.|signal:2|)
+      (ite
+         state.|init_pre_signal:2:init|
+         (= next.|init_pre_signal:2| false)
+         (= next.|init_pre_signal:2| next.|pre_signal:2|))
+      (= next.|init_pre_signal:2:init| false)
+      (=
+         next.|defs__rising_edge:2|
+         (and
+            next.|signal:2|
+            (not next.|init_pre_signal:2|)))
+      (= next.|kp_9| next.|DC__kp_9|)
+      (= next.|signal:1| next.|kp_9|)
+      (= next.|pre_signal:1| state.|signal:1|)
+      (ite
+         state.|init_pre_signal:1:init|
+         (= next.|init_pre_signal:1| false)
+         (= next.|init_pre_signal:1| next.|pre_signal:1|))
+      (= next.|init_pre_signal:1:init| false)
+      (=
+         next.|defs__rising_edge:1|
+         (and
+            next.|signal:1|
+            (not next.|init_pre_signal:1|)))
+      (= next.signal next.clear)
+      (= next.|pre_signal| state.signal)
+      (ite
+         state.|init_pre_signal:init|
+         (= next.|init_pre_signal| false)
+         (= next.|init_pre_signal| next.|pre_signal|))
+      (= next.|init_pre_signal:init| false)
+      (=
+         next.|defs__rising_edge|
+         (and
+            next.signal
+            (not next.|init_pre_signal|)))
+      (= next.|cooking_mode:1| next.|DC__cooking_mode|)
+      (= next.|m:2| next.|cooking_mode:1|)
+      (=
+         next.|defs__is_setup|
+         (= next.|m:2| 1))
+      (= next.|m:1| next.|cooking_mode:1|)
+      (=
+         next.|defs__is_cooking:1|
+         (= next.|m:1| 3))
+      (=
+         next.|__ASSUME__CONJ:1|
+         (and next.|__ASSUME0| true))
+      (= next.|pre___ASSUME__HIST:1| state.|__ASSUME__HIST:1|)
+      (ite
+         state.|__ASSUME__HIST:1:init|
+         (= next.|__ASSUME__HIST:1| next.|__ASSUME__CONJ:1|)
+         (=
+            next.|__ASSUME__HIST:1|
+            (and next.|pre___ASSUME__HIST:1| next.|__ASSUME__CONJ:1|)))
+      (= next.|__ASSUME__HIST:1:init| false)
+      (= next.|pre_seconds_to_cook:1| state.|seconds_to_cook|)
+      (ite
+         state.|$init:1:init|
+         (= next.|$init:1| true)
+         (=
+            next.|$init:1|
+            (=>
+               next.|is_cooking|
+               (or
+                  (= next.|seconds_to_cook| 0)
+                  (< next.|seconds_to_cook| next.|pre_seconds_to_cook:1|)))))
+      (= next.|$init:1:init| false)
+      (= next.|pre_keypad_enabled| state.|keypad_enabled|)
+      (= next.|pre_seconds_to_cook| state.|seconds_to_cook|)
+      (ite
+         state.|$init:init|
+         (= next.|$init| true)
+         (=
+            next.|$init|
+            (=>
+               (and
+                  (not next.|any_button_pressed|)
+                  next.|keypad_enabled|
+                  next.|pre_keypad_enabled|)
+               (= next.|pre_seconds_to_cook| next.|seconds_to_cook|))))
+      (= next.|$init:init| false)
+      (=
+         next.|_TOP__DC|
+         (and
+            (= next.|is_cooking| next.|defs__is_cooking:1|)
+            (=
+               next.|any_button_pressed|
+               (or next.|any_digit_pressed| next.|clear_pressed|))
+            (=
+               next.|any_digit_pressed|
+               (or
+                  next.|kp_1_pressed|
+                  next.|kp_2_pressed|
+                  next.|kp_3_pressed|
+                  next.|kp_4_pressed|
+                  next.|kp_5_pressed|
+                  next.|kp_6_pressed|
+                  next.|kp_7_pressed|
+                  next.|kp_8_pressed|
+                  next.|kp_9_pressed|
+                  next.|kp_0_pressed|))
+            (= next.|keypad_enabled| next.|defs__is_setup|)
+            (= next.|clear_pressed| next.|defs__rising_edge|)
+            (= next.|kp_9_pressed| next.|defs__rising_edge:1|)
+            (= next.|kp_8_pressed| next.|defs__rising_edge:2|)
+            (= next.|kp_7_pressed| next.|defs__rising_edge:3|)
+            (= next.|kp_6_pressed| next.|defs__rising_edge:4|)
+            (= next.|kp_5_pressed| next.|defs__rising_edge:5|)
+            (= next.|kp_4_pressed| next.|defs__rising_edge:6|)
+            (= next.|kp_3_pressed| next.|defs__rising_edge:7|)
+            (= next.|kp_2_pressed| next.|defs__rising_edge:8|)
+            (= next.|kp_1_pressed| next.|defs__rising_edge:9|)
+            (= next.|kp_0_pressed| next.|defs__rising_edge:10|)
+            (=>
+               next.|__ASSUME__HIST:1|
+               (and
+                  next.|$init:1|
+                  next.|std__Initiallyv|
+                  next.|$init|
+                  (=>
+                     (and next.|keypad_enabled| next.|clear_pressed|)
+                     (= next.|seconds_to_cook| 0))
+                  (=
+                     next.|seconds_to_cook|
+                     (+
+                        (+
+                           (* 60 next.|left_digit|)
+                           (* 10 next.|middle_digit|))
+                        next.|right_digit|))
+                  (<= 0 next.|right_digit|)
+                  (<= next.|right_digit| 9)
+                  (<= 0 next.|middle_digit|)
+                  (<= next.|middle_digit| 9)
+                  (<= 0 next.|left_digit|)
+                  (<= next.|left_digit| 9)
+                  true))
+            (=
+               next.|__ASSUME0|
+               (not
+                  (and next.clear next.|kp_0|)))
+            true))
+      (= next.|heating_element_on| next.|OP__heating_element_on|)
+      (= next.|cooking_mode| next.|OP__cooking_mode|)
+      (= next.m next.|cooking_mode|)
+      (=
+         next.|defs__is_cooking|
+         (= next.m 3))
+      (= next.|__ASSUME__CONJ| true)
+      (= next.|pre___ASSUME__HIST| state.|__ASSUME__HIST|)
+      (ite
+         state.|__ASSUME__HIST:init|
+         (= next.|__ASSUME__HIST| next.|__ASSUME__CONJ|)
+         (=
+            next.|__ASSUME__HIST|
+            (and next.|pre___ASSUME__HIST| next.|__ASSUME__CONJ|)))
+      (= next.|__ASSUME__HIST:init| false)
+      (=
+         next.|_TOP__OP|
+         (and
+            (=>
+               next.|__ASSUME__HIST|
+               (and
+                  (= next.|heating_element_on| next.|defs__is_cooking|)
+                  true))
+            true))
+      (=
+         next.Not
+         (not
+            (and next.|clear:2| next.|kp_0:1|)))
+      (=
+         next.|Eq:21|
+         (= next.|clear:2| next.|MC__clear|))
+      (=
+         next.|Eq:20|
+         (= next.|clear:2| next.|DC__clear|))
+      (=
+         next.|Eq:19|
+         (= next.|start:1| next.|MC__start|))
+      (=
+         next.|Eq:18|
+         (= next.|kp_0:1| next.|DC__kp_0|))
+      (=
+         next.|Eq:17|
+         (= next.|kp_1:1| next.|DC__kp_1|))
+      (=
+         next.|Eq:16|
+         (= next.|kp_2:1| next.|DC__kp_2|))
+      (=
+         next.|Eq:15|
+         (= next.|kp_3:1| next.|DC__kp_3|))
+      (=
+         next.|Eq:14|
+         (= next.|kp_4:1| next.|DC__kp_4|))
+      (=
+         next.|Eq:13|
+         (= next.|kp_5:1| next.|DC__kp_5|))
+      (=
+         next.|Eq:12|
+         (= next.|kp_6:1| next.|DC__kp_6|))
+      (=
+         next.|Eq:11|
+         (= next.|kp_7:1| next.|DC__kp_7|))
+      (=
+         next.|Eq:10|
+         (= next.|kp_8:1| next.|DC__kp_8|))
+      (=
+         next.|Eq:9|
+         (= next.|kp_9:1| next.|DC__kp_9|))
+      (=
+         next.|Eq:8|
+         (= next.|door_closed:1| next.|MC__door_closed|))
+      (=
+         next.|Eq:7|
+         (= next.|DC__seconds_to_cook| next.|MC__seconds_to_cook|))
+      (=
+         next.|Eq:6|
+         (= next.|MC__cooking_mode| next.|OP__cooking_mode|))
+      (=
+         next.|Eq:5|
+         (= next.|MC__cooking_mode| next.|DC__cooking_mode|))
+      (=
+         next.|Eq:4|
+         (= next.|OP__heating_element_on| next.|heating_element_on:1|))
+      (=
+         next.|Eq:3|
+         (= next.|DC__left_digit| next.|left_digit:1|))
+      (=
+         next.|Eq:2|
+         (= next.|DC__middle_digit| next.|middle_digit:1|))
+      (=
+         next.|Eq:1|
+         (= next.|DC__right_digit| next.|right_digit:1|))
+      (=
+         next.Eq
+         (=
+            next.|seconds_to_cook:2|
+            (+
+               (+
+                  (* next.|left_digit:1| 60)
+                  (* next.|middle_digit:1| 10))
+               next.|right_digit:1|)))))
+
+(query
+   TS
+   (or |gal-initializing| |DC____ASSUME0|))
+(query
+   TS
+   (or |gal-initializing| |MC____ASSUME0|))
+(query
+   TS
+   (or |gal-initializing| |__GUARANTEE2|))
+(query
+   TS
+   (or |gal-initializing| |__GUARANTEE1|))
+(query
+   TS
+   (or |gal-initializing| |__GUARANTEE0|))
+
+[Lustre] Validating properties:
+[Lustre] Property DC____ASSUME0... considering simultaneous states to depth 0
+considering simultaneous states to depth 0
+[[1;92mValid[0m] considering simultaneous states to depth 0
+[Lustre] Property MC____ASSUME0... considering simultaneous states to depth 0
+considering simultaneous states to depth 0
+considering simultaneous states to depth 1
+considering simultaneous states to depth 1
+considering simultaneous states to depth 2
+considering simultaneous states to depth 2
+considering simultaneous states to depth 3
+considering simultaneous states to depth 3
+considering simultaneous states to depth 4
+considering simultaneous states to depth 4
+considering simultaneous states to depth 5
+considering simultaneous states to depth 5
+considering simultaneous states to depth 6
+considering simultaneous states to depth 6
+considering simultaneous states to depth 7
+considering simultaneous states to depth 7
+considering simultaneous states to depth 8
+considering simultaneous states to depth 8
+considering simultaneous states to depth 9
+considering simultaneous states to depth 9
+considering simultaneous states to depth 10
+considering simultaneous states to depth 10
+counter-example search depth 0
+counter-example search depth 1
+counter-example search depth 2
+counter-example search depth 3
+counter-example search depth 4
+counter-example search depth 5
+counter-example search depth 6
+counter-example search depth 7
+counter-example search depth 8
+counter-example search depth 9
+counter-example search depth 10
+[[1;93mUnknown[0m] Valid up to depth 10
+[Lustre] Property __GUARANTEE2... considering simultaneous states to depth 0
+considering simultaneous states to depth 0
+considering simultaneous states to depth 1
+considering simultaneous states to depth 1
+considering simultaneous states to depth 2
+considering simultaneous states to depth 2
+considering simultaneous states to depth 3
+considering simultaneous states to depth 3
+considering simultaneous states to depth 4
+considering simultaneous states to depth 4
+considering simultaneous states to depth 5
+considering simultaneous states to depth 5
+considering simultaneous states to depth 6
+considering simultaneous states to depth 6
+considering simultaneous states to depth 7
+considering simultaneous states to depth 7
+considering simultaneous states to depth 8
+considering simultaneous states to depth 8
+considering simultaneous states to depth 9
+considering simultaneous states to depth 9
+considering simultaneous states to depth 10
+considering simultaneous states to depth 10
+counter-example search depth 0
+counter-example search depth 1
+counter-example search depth 2
+counter-example search depth 3
+counter-example search depth 4
+counter-example search depth 5
+counter-example search depth 6
+counter-example search depth 7
+counter-example search depth 8
+counter-example search depth 9
+counter-example search depth 10
+[[1;93mUnknown[0m] Valid up to depth 10
+[Lustre] Property __GUARANTEE1... considering simultaneous states to depth 0
+considering simultaneous states to depth 0
+considering simultaneous states to depth 1
+considering simultaneous states to depth 1
+considering simultaneous states to depth 2
+considering simultaneous states to depth 2
+considering simultaneous states to depth 3
+considering simultaneous states to depth 3
+considering simultaneous states to depth 4
+considering simultaneous states to depth 4
+considering simultaneous states to depth 5
+considering simultaneous states to depth 5
+considering simultaneous states to depth 6
+considering simultaneous states to depth 6
+considering simultaneous states to depth 7
+considering simultaneous states to depth 7
+considering simultaneous states to depth 8
+considering simultaneous states to depth 8
+considering simultaneous states to depth 9
+considering simultaneous states to depth 9
+considering simultaneous states to depth 10
+considering simultaneous states to depth 10
+counter-example search depth 0
+counter-example search depth 1
+counter-example search depth 2
+counter-example search depth 3
+counter-example search depth 4
+counter-example search depth 5
+counter-example search depth 6
+counter-example search depth 7
+counter-example search depth 8
+counter-example search depth 9
+counter-example search depth 10
+[[1;93mUnknown[0m] Valid up to depth 10
+[Lustre] Property __GUARANTEE0... considering simultaneous states to depth 0
+considering simultaneous states to depth 0
+considering simultaneous states to depth 1
+considering simultaneous states to depth 1
+considering simultaneous states to depth 2
+considering simultaneous states to depth 2
+considering simultaneous states to depth 3
+considering simultaneous states to depth 3
+considering simultaneous states to depth 4
+considering simultaneous states to depth 4
+considering simultaneous states to depth 5
+considering simultaneous states to depth 5
+considering simultaneous states to depth 6
+considering simultaneous states to depth 6
+considering simultaneous states to depth 7
+considering simultaneous states to depth 7
+considering simultaneous states to depth 8
+considering simultaneous states to depth 8
+considering simultaneous states to depth 9
+considering simultaneous states to depth 9
+considering simultaneous states to depth 10
+considering simultaneous states to depth 10
+counter-example search depth 0
+counter-example search depth 1
+counter-example search depth 2
+counter-example search depth 3
+counter-example search depth 4
+counter-example search depth 5
+counter-example search depth 6
+counter-example search depth 7
+counter-example search depth 8
+counter-example search depth 9
+counter-example search depth 10
+[[1;93mUnknown[0m] Valid up to depth 10
+[Lustre] Model status: [[1;93mUnknown[0m] 
