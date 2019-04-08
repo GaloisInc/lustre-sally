@@ -1,1 +1,371 @@
-Github #4
+Core Lustre
+===========
+
+node (delta1 : int, delta2 : int)
+  returns ()
+  assumes ()
+  shows (cex2, ok1, lemma, cex1)
+let
+  pre_wp2.weight : real
+    = pre wp2.weight
+   
+  wp1.weight : real
+    = 1.0 -> pre_wp2.weight
+   
+  pre_wp1.p.x : int
+    = pre wp1.p.x
+   
+  wp1.p.x : int
+    = 0 -> Add(pre_wp1.p.x, 1)
+   
+  pre_wp1.p.y : int
+    = pre wp1.p.y
+   
+  wp1.p.y : int
+    = 0 -> Add(pre_wp1.p.y, delta1)
+   
+  pre_wp1.weight : real
+    = pre wp1.weight
+   
+  wp2.weight : real
+    = 2.0 -> pre_wp1.weight
+   
+  pre_wp2.p.x : int
+    = pre wp2.p.x
+   
+  wp2.p.x : int
+    = 0 -> Add(pre_wp2.p.x, 1)
+   
+  pre_wp2.p.y : int
+    = pre wp2.p.y
+   
+  wp2.p.y : int
+    = 20 -> Add(pre_wp2.p.y, delta2)
+   
+  ok1 : bool
+    = Or(Neq(wp1.weight, wp2.weight), Or(Neq(wp1.p.x, wp2.p.x), Neq(wp1.p.y, wp2.p.y)))
+   
+  cex1 : bool
+    = Not(And(Eq(wp1.p.x, wp2.p.x), Eq(wp1.p.y, wp2.p.y)))
+   
+  pre_lg.a : int
+    = pre lg.a
+   
+  lg.a : int
+    = 0 -> ITE(Eq(delta1, 0), 10, pre_lg.a)
+   
+  pre_lg.c : int
+    = pre lg.c
+   
+  lg.c : int
+    = 0 -> ITE(Eq(delta1, 0), pre_lg.c, 30)
+   
+  cex2 : bool
+    = Or(Eq(lg.a, 0), Eq(lg.c, 0))
+   
+  lemma : bool
+    = Neq(wp1.weight, wp2.weight)
+   
+  pre_lg.b : int
+    = pre lg.b
+   
+  lg.b : int
+    = 0 -> ITE(Eq(delta1, 0), 20, pre_lg.b)
+   
+  pre_lg.d : int
+    = pre lg.d
+   
+  lg.d : int
+    = 0 -> ITE(Eq(delta1, 0), pre_lg.d, 40)
+   
+  pre_lg.e$1 : int
+    = pre lg.e
+   
+  pre_lg.e : int
+    = pre lg.e
+   
+  lg.e : int
+    = 0 -> ITE(Eq(delta1, 0), pre_lg.e$1, pre_lg.e)
+tel
+Sally Model
+===========
+
+(define-state-type
+   S
+   (
+     (cex1 Bool)
+     (cex2 Bool)
+     (delta1 Int)
+     (delta2 Int)
+     (lemma Bool)
+     (ok1 Bool)
+     (|gal-initializing| Bool)
+     (|lg.a:init| Bool)
+     (|lg.a| Int)
+     (|lg.b:init| Bool)
+     (|lg.b| Int)
+     (|lg.c:init| Bool)
+     (|lg.c| Int)
+     (|lg.d:init| Bool)
+     (|lg.d| Int)
+     (|lg.e:init| Bool)
+     (|lg.e| Int)
+     (|pre_lg.a| Int)
+     (|pre_lg.b| Int)
+     (|pre_lg.c| Int)
+     (|pre_lg.d| Int)
+     (|pre_lg.e:1| Int)
+     (|pre_lg.e| Int)
+     (|pre_wp1.p.x| Int)
+     (|pre_wp1.p.y| Int)
+     (|pre_wp1.weight| Real)
+     (|pre_wp2.p.x| Int)
+     (|pre_wp2.p.y| Int)
+     (|pre_wp2.weight| Real)
+     (|wp1.p.x:init| Bool)
+     (|wp1.p.x| Int)
+     (|wp1.p.y:init| Bool)
+     (|wp1.p.y| Int)
+     (|wp1.weight:init| Bool)
+     (|wp1.weight| Real)
+     (|wp2.p.x:init| Bool)
+     (|wp2.p.x| Int)
+     (|wp2.p.y:init| Bool)
+     (|wp2.p.y| Int)
+     (|wp2.weight:init| Bool)
+     (|wp2.weight| Real))
+   (
+     (delta1 Int)
+     (delta2 Int)))
+(define-transition-system
+   TS
+   S
+   (and
+      (= |gal-initializing| true)
+      (= |wp1.weight:init| true)
+      (= |wp1.p.x:init| true)
+      (= |wp1.p.y:init| true)
+      (= |wp2.weight:init| true)
+      (= |wp2.p.x:init| true)
+      (= |wp2.p.y:init| true)
+      (= |lg.a:init| true)
+      (= |lg.c:init| true)
+      (= |lg.b:init| true)
+      (= |lg.d:init| true)
+      (= |lg.e:init| true))
+   (and
+      (= next.|gal-initializing| false)
+      (= next.delta1 input.delta1)
+      (= next.delta2 input.delta2)
+      (= next.|pre_wp2.weight| state.|wp2.weight|)
+      (ite
+         state.|wp1.weight:init|
+         (= next.|wp1.weight| 1.0)
+         (= next.|wp1.weight| next.|pre_wp2.weight|))
+      (= next.|wp1.weight:init| false)
+      (= next.|pre_wp1.p.x| state.|wp1.p.x|)
+      (ite
+         state.|wp1.p.x:init|
+         (= next.|wp1.p.x| 0)
+         (=
+            next.|wp1.p.x|
+            (+ next.|pre_wp1.p.x| 1)))
+      (= next.|wp1.p.x:init| false)
+      (= next.|pre_wp1.p.y| state.|wp1.p.y|)
+      (ite
+         state.|wp1.p.y:init|
+         (= next.|wp1.p.y| 0)
+         (=
+            next.|wp1.p.y|
+            (+ next.|pre_wp1.p.y| next.delta1)))
+      (= next.|wp1.p.y:init| false)
+      (= next.|pre_wp1.weight| state.|wp1.weight|)
+      (ite
+         state.|wp2.weight:init|
+         (= next.|wp2.weight| 2.0)
+         (= next.|wp2.weight| next.|pre_wp1.weight|))
+      (= next.|wp2.weight:init| false)
+      (= next.|pre_wp2.p.x| state.|wp2.p.x|)
+      (ite
+         state.|wp2.p.x:init|
+         (= next.|wp2.p.x| 0)
+         (=
+            next.|wp2.p.x|
+            (+ next.|pre_wp2.p.x| 1)))
+      (= next.|wp2.p.x:init| false)
+      (= next.|pre_wp2.p.y| state.|wp2.p.y|)
+      (ite
+         state.|wp2.p.y:init|
+         (= next.|wp2.p.y| 20)
+         (=
+            next.|wp2.p.y|
+            (+ next.|pre_wp2.p.y| next.delta2)))
+      (= next.|wp2.p.y:init| false)
+      (=
+         next.ok1
+         (or
+            (not
+               (= next.|wp1.weight| next.|wp2.weight|))
+            (not
+               (= next.|wp1.p.x| next.|wp2.p.x|))
+            (not
+               (= next.|wp1.p.y| next.|wp2.p.y|))))
+      (=
+         next.cex1
+         (not
+            (and
+               (= next.|wp1.p.x| next.|wp2.p.x|)
+               (= next.|wp1.p.y| next.|wp2.p.y|))))
+      (= next.|pre_lg.a| state.|lg.a|)
+      (ite
+         state.|lg.a:init|
+         (= next.|lg.a| 0)
+         (=
+            next.|lg.a|
+            (ite
+               (= next.delta1 0)
+               10
+               next.|pre_lg.a|)))
+      (= next.|lg.a:init| false)
+      (= next.|pre_lg.c| state.|lg.c|)
+      (ite
+         state.|lg.c:init|
+         (= next.|lg.c| 0)
+         (=
+            next.|lg.c|
+            (ite
+               (= next.delta1 0)
+               next.|pre_lg.c|
+               30)))
+      (= next.|lg.c:init| false)
+      (=
+         next.cex2
+         (or
+            (= next.|lg.a| 0)
+            (= next.|lg.c| 0)))
+      (=
+         next.lemma
+         (not
+            (= next.|wp1.weight| next.|wp2.weight|)))
+      (= next.|pre_lg.b| state.|lg.b|)
+      (ite
+         state.|lg.b:init|
+         (= next.|lg.b| 0)
+         (=
+            next.|lg.b|
+            (ite
+               (= next.delta1 0)
+               20
+               next.|pre_lg.b|)))
+      (= next.|lg.b:init| false)
+      (= next.|pre_lg.d| state.|lg.d|)
+      (ite
+         state.|lg.d:init|
+         (= next.|lg.d| 0)
+         (=
+            next.|lg.d|
+            (ite
+               (= next.delta1 0)
+               next.|pre_lg.d|
+               40)))
+      (= next.|lg.d:init| false)
+      (= next.|pre_lg.e:1| state.|lg.e|)
+      (= next.|pre_lg.e| state.|lg.e|)
+      (ite
+         state.|lg.e:init|
+         (= next.|lg.e| 0)
+         (=
+            next.|lg.e|
+            (ite
+               (= next.delta1 0)
+               next.|pre_lg.e:1|
+               next.|pre_lg.e|)))
+      (= next.|lg.e:init| false)))
+
+(query
+   TS
+   (or |gal-initializing| cex2))
+(query
+   TS
+   (or |gal-initializing| ok1))
+(query
+   TS
+   (or |gal-initializing| lemma))
+(query
+   TS
+   (or |gal-initializing| cex1))
+
+[Lustre] Validating properties:
+[Lustre] Property cex2... considering simultaneous states to depth 0
+considering simultaneous states to depth 0
+considering simultaneous states to depth 1
+considering simultaneous states to depth 1
+considering simultaneous states to depth 2
+considering simultaneous states to depth 2
+considering simultaneous states to depth 3
+[[1;91mInvalid[0m] 
+Trace
+=====
+
+cex2:
+ Step | delta1 | delta2 | |-> 
+------+--------+--------+-----
+ 1    | 0      | 0      |     
+ 2    | 0      | -20    |     
+ 3    | -1     | 0      |     
+
+[Lustre] Property ok1... considering simultaneous states to depth 0
+considering simultaneous states to depth 0
+considering simultaneous states to depth 1
+considering simultaneous states to depth 1
+considering simultaneous states to depth 2
+considering simultaneous states to depth 2
+considering simultaneous states to depth 3
+considering simultaneous states to depth 3
+considering simultaneous states to depth 4
+considering simultaneous states to depth 4
+considering simultaneous states to depth 5
+considering simultaneous states to depth 5
+considering simultaneous states to depth 6
+considering simultaneous states to depth 6
+considering simultaneous states to depth 7
+considering simultaneous states to depth 7
+considering simultaneous states to depth 8
+considering simultaneous states to depth 8
+considering simultaneous states to depth 9
+considering simultaneous states to depth 9
+considering simultaneous states to depth 10
+considering simultaneous states to depth 10
+counter-example search depth 0
+counter-example search depth 1
+counter-example search depth 2
+counter-example search depth 3
+counter-example search depth 4
+counter-example search depth 5
+counter-example search depth 6
+counter-example search depth 7
+counter-example search depth 8
+counter-example search depth 9
+counter-example search depth 10
+[[1;93mUnknown[0m] Valid up to depth 10
+[Lustre] Property lemma... considering simultaneous states to depth 0
+considering simultaneous states to depth 0
+considering simultaneous states to depth 1
+considering simultaneous states to depth 1
+[[1;92mValid[0m] considering simultaneous states to depth 1
+[Lustre] Property cex1... considering simultaneous states to depth 0
+considering simultaneous states to depth 0
+considering simultaneous states to depth 1
+considering simultaneous states to depth 1
+considering simultaneous states to depth 2
+[[1;91mInvalid[0m] 
+Trace
+=====
+
+cex1:
+ Step | delta1 | delta2 | |-> 
+------+--------+--------+-----
+ 1    | 0      | 0      |     
+ 2    | 0      | -20    |     
+
+[Lustre] Model status: [[1;91mInvalid[0m] 
