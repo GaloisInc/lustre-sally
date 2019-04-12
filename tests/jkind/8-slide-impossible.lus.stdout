@@ -1,2 +1,2976 @@
-[[1;91mError[0m] ResolverError (InvalidConstantExpression "call to a node")
+Core Lustre
+===========
+
+node (in$9 : int)
+  returns (p1$1, p2$1, p3$1, p4$1, p5$1, p6$1, p7$1, p8$1, p9$1)
+  assumes ()
+  shows (distinct, inverted, prop)
+let
+  init$8 : int
+    = 2
+   
+  init$7 : int
+    = 5
+   
+  init$6 : int
+    = 3
+   
+  right$8 : int
+    = -1
+   
+  init$5 : int
+    = 8
+   
+  right$7 : int
+    = -1
+   
+  init$4 : int
+    = 7
+   
+  right$6 : int
+    = -1
+   
+  down$8 : int
+    = -1
+   
+  init$3 : int
+    = 6
+   
+  down$7 : int
+    = -1
+   
+  init$2 : int
+    = 1
+   
+  down$6 : int
+    = -1
+   
+  left$8 : int
+    = -1
+   
+  init$1 : int
+    = 4
+   
+  init : int
+    = 0
+   
+  pre_p5$4 : int
+    = pre p5$1
+   
+  pre_in$71 : int
+    = pre in$4
+   
+  pre_right$17 : int
+    = pre right$5
+   
+  pre_p5$3 : int
+    = pre p5$1
+   
+  pre_in$70 : int
+    = pre in$4
+   
+  pre_down$17 : int
+    = pre down$2
+   
+  pre_p5$2 : int
+    = pre p5$1
+   
+  pre_in$69 : int
+    = pre in$4
+   
+  pre_left$17 : int
+    = pre left$2
+   
+  pre_p5$1 : int
+    = pre p5$1
+   
+  pre_in$68 : int
+    = pre in$4
+   
+  pre_up$17 : int
+    = pre up$1
+   
+  pre_left$16 : int
+    = pre left$2
+   
+  pre_in$67 : int
+    = pre in$4
+   
+  pre_up$16 : int
+    = pre up$1
+   
+  pre_in$66 : int
+    = pre in$4
+   
+  pre_right$16 : int
+    = pre right$5
+   
+  pre_in$65 : int
+    = pre in$4
+   
+  pre_down$16 : int
+    = pre down$2
+   
+  pre_in$64 : int
+    = pre in$4
+   
+  pre_p5 : int
+    = pre p5$1
+   
+  left$7 : int
+    = -1
+   
+  pre_p4$4 : int
+    = pre p4$1
+   
+  pre_in$63 : int
+    = pre in$5
+   
+  pre_right$15 : int
+    = pre right$4
+   
+  pre_p4$3 : int
+    = pre p4$1
+   
+  pre_in$62 : int
+    = pre in$5
+   
+  pre_down$15 : int
+    = pre down$3
+   
+  pre_p4$2 : int
+    = pre p4$1
+   
+  pre_in$61 : int
+    = pre in$5
+   
+  pre_left$15 : int
+    = pre left$7
+   
+  pre_p4$1 : int
+    = pre p4$1
+   
+  pre_in$60 : int
+    = pre in$5
+   
+  pre_up$15 : int
+    = pre up$2
+   
+  pre_left$14 : int
+    = pre left$7
+   
+  pre_in$59 : int
+    = pre in$5
+   
+  pre_up$14 : int
+    = pre up$2
+   
+  pre_in$58 : int
+    = pre in$5
+   
+  pre_right$14 : int
+    = pre right$4
+   
+  pre_in$57 : int
+    = pre in$5
+   
+  pre_down$14 : int
+    = pre down$3
+   
+  pre_in$56 : int
+    = pre in$5
+   
+  pre_p4 : int
+    = pre p4$1
+   
+  pre_p7$4 : int
+    = pre p7$1
+   
+  pre_in$55 : int
+    = pre in$2
+   
+  pre_right$13 : int
+    = pre right$3
+   
+  pre_p7$3 : int
+    = pre p7$1
+   
+  pre_in$54 : int
+    = pre in$2
+   
+  pre_down$13 : int
+    = pre down$6
+   
+  pre_p7$2 : int
+    = pre p7$1
+   
+  pre_in$53 : int
+    = pre in$2
+   
+  pre_left$13 : int
+    = pre left$8
+   
+  pre_p7$1 : int
+    = pre p7$1
+   
+  pre_in$52 : int
+    = pre in$2
+   
+  pre_up$13 : int
+    = pre up
+   
+  pre_left$12 : int
+    = pre left$8
+   
+  pre_in$51 : int
+    = pre in$2
+   
+  pre_up$12 : int
+    = pre up
+   
+  pre_in$50 : int
+    = pre in$2
+   
+  pre_right$12 : int
+    = pre right$3
+   
+  pre_in$49 : int
+    = pre in$2
+   
+  pre_down$12 : int
+    = pre down$6
+   
+  pre_in$48 : int
+    = pre in$2
+   
+  pre_p7 : int
+    = pre p7$1
+   
+  pre_p8$4 : int
+    = pre p8$1
+   
+  pre_in$47 : int
+    = pre in$1
+   
+  pre_right$11 : int
+    = pre right$2
+   
+  pre_p8$3 : int
+    = pre p8$1
+   
+  pre_in$46 : int
+    = pre in$1
+   
+  pre_down$11 : int
+    = pre down$7
+   
+  pre_p8$2 : int
+    = pre p8$1
+   
+  pre_in$45 : int
+    = pre in$1
+   
+  pre_left$11 : int
+    = pre left$1
+   
+  pre_p8$1 : int
+    = pre p8$1
+   
+  pre_in$44 : int
+    = pre in$1
+   
+  pre_up$11 : int
+    = pre up$3
+   
+  pre_left$10 : int
+    = pre left$1
+   
+  pre_in$43 : int
+    = pre in$1
+   
+  pre_up$10 : int
+    = pre up$3
+   
+  pre_in$42 : int
+    = pre in$1
+   
+  pre_right$10 : int
+    = pre right$2
+   
+  pre_in$41 : int
+    = pre in$1
+   
+  pre_down$10 : int
+    = pre down$7
+   
+  pre_in$40 : int
+    = pre in$1
+   
+  pre_p8 : int
+    = pre p8$1
+   
+  pre_p9$4 : int
+    = pre p9$1
+   
+  pre_in$39 : int
+    = pre in
+   
+  pre_right$9 : int
+    = pre right$6
+   
+  pre_p9$3 : int
+    = pre p9$1
+   
+  pre_in$38 : int
+    = pre in
+   
+  pre_down$9 : int
+    = pre down$8
+   
+  pre_p9$2 : int
+    = pre p9$1
+   
+  pre_in$37 : int
+    = pre in
+   
+  pre_left$9 : int
+    = pre left
+   
+  pre_p9$1 : int
+    = pre p9$1
+   
+  pre_in$36 : int
+    = pre in
+   
+  pre_up$9 : int
+    = pre up$4
+   
+  pre_left$8 : int
+    = pre left
+   
+  pre_in$35 : int
+    = pre in
+   
+  pre_up$8 : int
+    = pre up$4
+   
+  pre_in$34 : int
+    = pre in
+   
+  pre_right$8 : int
+    = pre right$6
+   
+  pre_in$33 : int
+    = pre in
+   
+  pre_down$8 : int
+    = pre down$8
+   
+  pre_in$32 : int
+    = pre in
+   
+  pre_p9 : int
+    = pre p9$1
+   
+  pre_p6$4 : int
+    = pre p6$1
+   
+  pre_in$31 : int
+    = pre in$3
+   
+  pre_right$7 : int
+    = pre right$7
+   
+  pre_p6$3 : int
+    = pre p6$1
+   
+  pre_in$30 : int
+    = pre in$3
+   
+  pre_down$7 : int
+    = pre down$1
+   
+  pre_p6$2 : int
+    = pre p6$1
+   
+  pre_in$29 : int
+    = pre in$3
+   
+  pre_left$7 : int
+    = pre left$3
+   
+  pre_p6$1 : int
+    = pre p6$1
+   
+  pre_in$28 : int
+    = pre in$3
+   
+  pre_up$7 : int
+    = pre up$5
+   
+  pre_left$6 : int
+    = pre left$3
+   
+  pre_in$27 : int
+    = pre in$3
+   
+  pre_up$6 : int
+    = pre up$5
+   
+  pre_in$26 : int
+    = pre in$3
+   
+  pre_right$6 : int
+    = pre right$7
+   
+  pre_in$25 : int
+    = pre in$3
+   
+  pre_down$6 : int
+    = pre down$1
+   
+  pre_in$24 : int
+    = pre in$3
+   
+  pre_p6 : int
+    = pre p6$1
+   
+  up$8 : int
+    = -1
+   
+  pre_p3$4 : int
+    = pre p3$1
+   
+  pre_in$23 : int
+    = pre in$6
+   
+  pre_right$5 : int
+    = pre right$8
+   
+  pre_p3$3 : int
+    = pre p3$1
+   
+  pre_in$22 : int
+    = pre in$6
+   
+  pre_down$5 : int
+    = pre down
+   
+  pre_p3$2 : int
+    = pre p3$1
+   
+  pre_in$21 : int
+    = pre in$6
+   
+  pre_left$5 : int
+    = pre left$4
+   
+  pre_p3$1 : int
+    = pre p3$1
+   
+  pre_in$20 : int
+    = pre in$6
+   
+  pre_up$5 : int
+    = pre up$8
+   
+  pre_left$4 : int
+    = pre left$4
+   
+  pre_in$19 : int
+    = pre in$6
+   
+  pre_up$4 : int
+    = pre up$8
+   
+  pre_in$18 : int
+    = pre in$6
+   
+  pre_right$4 : int
+    = pre right$8
+   
+  pre_in$17 : int
+    = pre in$6
+   
+  pre_down$4 : int
+    = pre down
+   
+  pre_in$16 : int
+    = pre in$6
+   
+  pre_p3 : int
+    = pre p3$1
+   
+  up$7 : int
+    = -1
+   
+  pre_p2$4 : int
+    = pre p2$1
+   
+  pre_in$15 : int
+    = pre in$7
+   
+  pre_right$3 : int
+    = pre right$1
+   
+  pre_p2$3 : int
+    = pre p2$1
+   
+  pre_in$14 : int
+    = pre in$7
+   
+  pre_down$3 : int
+    = pre down$4
+   
+  pre_p2$2 : int
+    = pre p2$1
+   
+  pre_in$13 : int
+    = pre in$7
+   
+  pre_left$3 : int
+    = pre left$5
+   
+  pre_p2$1 : int
+    = pre p2$1
+   
+  pre_in$12 : int
+    = pre in$7
+   
+  pre_up$3 : int
+    = pre up$7
+   
+  pre_left$2 : int
+    = pre left$5
+   
+  pre_in$11 : int
+    = pre in$7
+   
+  pre_up$2 : int
+    = pre up$7
+   
+  pre_in$10 : int
+    = pre in$7
+   
+  pre_right$2 : int
+    = pre right$1
+   
+  pre_in$9 : int
+    = pre in$7
+   
+  pre_down$2 : int
+    = pre down$4
+   
+  pre_in$8 : int
+    = pre in$7
+   
+  pre_p2 : int
+    = pre p2$1
+   
+  left$6 : int
+    = -1
+   
+  up$6 : int
+    = -1
+   
+  pre_p1$4 : int
+    = pre p1$1
+   
+  pre_in$7 : int
+    = pre in$8
+   
+  pre_right$1 : int
+    = pre right
+   
+  pre_p1$3 : int
+    = pre p1$1
+   
+  pre_in$6 : int
+    = pre in$8
+   
+  pre_down$1 : int
+    = pre down$5
+   
+  pre_p1$2 : int
+    = pre p1$1
+   
+  pre_in$5 : int
+    = pre in$8
+   
+  pre_left$1 : int
+    = pre left$6
+   
+  pre_p1$1 : int
+    = pre p1$1
+   
+  pre_in$4 : int
+    = pre in$8
+   
+  pre_up$1 : int
+    = pre up$6
+   
+  pre_left : int
+    = pre left$6
+   
+  pre_in$3 : int
+    = pre in$8
+   
+  pre_up : int
+    = pre up$6
+   
+  pre_in$2 : int
+    = pre in$8
+   
+  pre_right : int
+    = pre right
+   
+  pre_in$1 : int
+    = pre in$8
+   
+  pre_down : int
+    = pre down$5
+   
+  pre_in : int
+    = pre in$8
+   
+  pre_p1 : int
+    = pre p1$1
+   
+  rec
+    p1$1 : int
+      = init$8 -> ITE(And(And(Eq(pre_p1$4, 0), Eq(pre_in$7, 0)), Neq(right, -1)), pre_right$1, ITE(And(And(Eq(pre_p1$3, 0), Eq(pre_in$6, 1)), Neq(down$5, -1)), pre_down$1, ITE(And(And(Eq(pre_p1$2, 0), Eq(pre_in$5, 2)), Neq(left$6, -1)), pre_left$1, ITE(And(And(Eq(pre_p1$1, 0), Eq(pre_in$4, 3)), Neq(up$6, -1)), pre_up$1, ITE(And(Eq(pre_left, 0), Eq(pre_in$3, 0)), 0, ITE(And(Eq(pre_up, 0), Eq(pre_in$2, 1)), 0, ITE(And(Eq(pre_right, 0), Eq(pre_in$1, 2)), 0, ITE(And(Eq(pre_down, 0), Eq(pre_in, 3)), 0, pre_p1))))))))
+     
+    down$5 : int
+      = p4$1
+     
+    left$5 : int
+      = p1$1
+     
+    down$4 : int
+      = p5$1
+     
+    left$4 : int
+      = p2$1
+     
+    up$5 : int
+      = p3$1
+     
+    left$3 : int
+      = p5$1
+     
+    up$4 : int
+      = p6$1
+     
+    up$3 : int
+      = p5$1
+     
+    up$2 : int
+      = p1$1
+     
+    down$3 : int
+      = p7$1
+     
+    up$1 : int
+      = p2$1
+     
+    left$2 : int
+      = p4$1
+     
+    down$2 : int
+      = p8$1
+     
+    right$5 : int
+      = p6$1
+     
+    p5$1 : int
+      = init -> ITE(And(And(Eq(pre_p5$4, 0), Eq(pre_in$71, 0)), Neq(right$5, -1)), pre_right$17, ITE(And(And(Eq(pre_p5$3, 0), Eq(pre_in$70, 1)), Neq(down$2, -1)), pre_down$17, ITE(And(And(Eq(pre_p5$2, 0), Eq(pre_in$69, 2)), Neq(left$2, -1)), pre_left$17, ITE(And(And(Eq(pre_p5$1, 0), Eq(pre_in$68, 3)), Neq(up$1, -1)), pre_up$17, ITE(And(Eq(pre_left$16, 0), Eq(pre_in$67, 0)), 0, ITE(And(Eq(pre_up$16, 0), Eq(pre_in$66, 1)), 0, ITE(And(Eq(pre_right$16, 0), Eq(pre_in$65, 2)), 0, ITE(And(Eq(pre_down$16, 0), Eq(pre_in$64, 3)), 0, pre_p5))))))))
+     
+    right$4 : int
+      = p5$1
+     
+    p4$1 : int
+      = init$1 -> ITE(And(And(Eq(pre_p4$4, 0), Eq(pre_in$63, 0)), Neq(right$4, -1)), pre_right$15, ITE(And(And(Eq(pre_p4$3, 0), Eq(pre_in$62, 1)), Neq(down$3, -1)), pre_down$15, ITE(And(And(Eq(pre_p4$2, 0), Eq(pre_in$61, 2)), Neq(left$7, -1)), pre_left$15, ITE(And(And(Eq(pre_p4$1, 0), Eq(pre_in$60, 3)), Neq(up$2, -1)), pre_up$15, ITE(And(Eq(pre_left$14, 0), Eq(pre_in$59, 0)), 0, ITE(And(Eq(pre_up$14, 0), Eq(pre_in$58, 1)), 0, ITE(And(Eq(pre_right$14, 0), Eq(pre_in$57, 2)), 0, ITE(And(Eq(pre_down$14, 0), Eq(pre_in$56, 3)), 0, pre_p4))))))))
+     
+    up : int
+      = p4$1
+     
+    right$3 : int
+      = p8$1
+     
+    p7$1 : int
+      = init$2 -> ITE(And(And(Eq(pre_p7$4, 0), Eq(pre_in$55, 0)), Neq(right$3, -1)), pre_right$13, ITE(And(And(Eq(pre_p7$3, 0), Eq(pre_in$54, 1)), Neq(down$6, -1)), pre_down$13, ITE(And(And(Eq(pre_p7$2, 0), Eq(pre_in$53, 2)), Neq(left$8, -1)), pre_left$13, ITE(And(And(Eq(pre_p7$1, 0), Eq(pre_in$52, 3)), Neq(up, -1)), pre_up$13, ITE(And(Eq(pre_left$12, 0), Eq(pre_in$51, 0)), 0, ITE(And(Eq(pre_up$12, 0), Eq(pre_in$50, 1)), 0, ITE(And(Eq(pre_right$12, 0), Eq(pre_in$49, 2)), 0, ITE(And(Eq(pre_down$12, 0), Eq(pre_in$48, 3)), 0, pre_p7))))))))
+     
+    left$1 : int
+      = p7$1
+     
+    right$2 : int
+      = p9$1
+     
+    p8$1 : int
+      = init$3 -> ITE(And(And(Eq(pre_p8$4, 0), Eq(pre_in$47, 0)), Neq(right$2, -1)), pre_right$11, ITE(And(And(Eq(pre_p8$3, 0), Eq(pre_in$46, 1)), Neq(down$7, -1)), pre_down$11, ITE(And(And(Eq(pre_p8$2, 0), Eq(pre_in$45, 2)), Neq(left$1, -1)), pre_left$11, ITE(And(And(Eq(pre_p8$1, 0), Eq(pre_in$44, 3)), Neq(up$3, -1)), pre_up$11, ITE(And(Eq(pre_left$10, 0), Eq(pre_in$43, 0)), 0, ITE(And(Eq(pre_up$10, 0), Eq(pre_in$42, 1)), 0, ITE(And(Eq(pre_right$10, 0), Eq(pre_in$41, 2)), 0, ITE(And(Eq(pre_down$10, 0), Eq(pre_in$40, 3)), 0, pre_p8))))))))
+     
+    left : int
+      = p8$1
+     
+    p9$1 : int
+      = init$4 -> ITE(And(And(Eq(pre_p9$4, 0), Eq(pre_in$39, 0)), Neq(right$6, -1)), pre_right$9, ITE(And(And(Eq(pre_p9$3, 0), Eq(pre_in$38, 1)), Neq(down$8, -1)), pre_down$9, ITE(And(And(Eq(pre_p9$2, 0), Eq(pre_in$37, 2)), Neq(left, -1)), pre_left$9, ITE(And(And(Eq(pre_p9$1, 0), Eq(pre_in$36, 3)), Neq(up$4, -1)), pre_up$9, ITE(And(Eq(pre_left$8, 0), Eq(pre_in$35, 0)), 0, ITE(And(Eq(pre_up$8, 0), Eq(pre_in$34, 1)), 0, ITE(And(Eq(pre_right$8, 0), Eq(pre_in$33, 2)), 0, ITE(And(Eq(pre_down$8, 0), Eq(pre_in$32, 3)), 0, pre_p9))))))))
+     
+    down$1 : int
+      = p9$1
+     
+    p6$1 : int
+      = init$5 -> ITE(And(And(Eq(pre_p6$4, 0), Eq(pre_in$31, 0)), Neq(right$7, -1)), pre_right$7, ITE(And(And(Eq(pre_p6$3, 0), Eq(pre_in$30, 1)), Neq(down$1, -1)), pre_down$7, ITE(And(And(Eq(pre_p6$2, 0), Eq(pre_in$29, 2)), Neq(left$3, -1)), pre_left$7, ITE(And(And(Eq(pre_p6$1, 0), Eq(pre_in$28, 3)), Neq(up$5, -1)), pre_up$7, ITE(And(Eq(pre_left$6, 0), Eq(pre_in$27, 0)), 0, ITE(And(Eq(pre_up$6, 0), Eq(pre_in$26, 1)), 0, ITE(And(Eq(pre_right$6, 0), Eq(pre_in$25, 2)), 0, ITE(And(Eq(pre_down$6, 0), Eq(pre_in$24, 3)), 0, pre_p6))))))))
+     
+    down : int
+      = p6$1
+     
+    p3$1 : int
+      = init$6 -> ITE(And(And(Eq(pre_p3$4, 0), Eq(pre_in$23, 0)), Neq(right$8, -1)), pre_right$5, ITE(And(And(Eq(pre_p3$3, 0), Eq(pre_in$22, 1)), Neq(down, -1)), pre_down$5, ITE(And(And(Eq(pre_p3$2, 0), Eq(pre_in$21, 2)), Neq(left$4, -1)), pre_left$5, ITE(And(And(Eq(pre_p3$1, 0), Eq(pre_in$20, 3)), Neq(up$8, -1)), pre_up$5, ITE(And(Eq(pre_left$4, 0), Eq(pre_in$19, 0)), 0, ITE(And(Eq(pre_up$4, 0), Eq(pre_in$18, 1)), 0, ITE(And(Eq(pre_right$4, 0), Eq(pre_in$17, 2)), 0, ITE(And(Eq(pre_down$4, 0), Eq(pre_in$16, 3)), 0, pre_p3))))))))
+     
+    right$1 : int
+      = p3$1
+     
+    p2$1 : int
+      = init$7 -> ITE(And(And(Eq(pre_p2$4, 0), Eq(pre_in$15, 0)), Neq(right$1, -1)), pre_right$3, ITE(And(And(Eq(pre_p2$3, 0), Eq(pre_in$14, 1)), Neq(down$4, -1)), pre_down$3, ITE(And(And(Eq(pre_p2$2, 0), Eq(pre_in$13, 2)), Neq(left$5, -1)), pre_left$3, ITE(And(And(Eq(pre_p2$1, 0), Eq(pre_in$12, 3)), Neq(up$7, -1)), pre_up$3, ITE(And(Eq(pre_left$2, 0), Eq(pre_in$11, 0)), 0, ITE(And(Eq(pre_up$2, 0), Eq(pre_in$10, 1)), 0, ITE(And(Eq(pre_right$2, 0), Eq(pre_in$9, 2)), 0, ITE(And(Eq(pre_down$2, 0), Eq(pre_in$8, 3)), 0, pre_p2))))))))
+     
+    right : int
+      = p2$1
+   
+  solved : bool
+    = And(And(And(And(And(And(And(And(Eq(p1$1, 1), Eq(p2$1, 2)), Eq(p3$1, 3)), Eq(p4$1, 4)), Eq(p5$1, 5)), Eq(p6$1, 6)), Eq(p7$1, 7)), Eq(p8$1, 8)), Eq(p9$1, 0))
+   
+  prop : bool
+    = Not(solved)
+   
+  p8 : int
+    = p8$1
+   
+  p$35 : int
+    = p8
+   
+  p9 : int
+    = p9$1
+   
+  q$35 : int
+    = p9
+   
+  inv$35 : bool
+    = And(And(Neq(p$35, 0), Neq(q$35, 0)), Gt(p$35, q$35))
+   
+  p7 : int
+    = p7$1
+   
+  p$34 : int
+    = p7
+   
+  q$34 : int
+    = p9
+   
+  inv$34 : bool
+    = And(And(Neq(p$34, 0), Neq(q$34, 0)), Gt(p$34, q$34))
+   
+  p$33 : int
+    = p7
+   
+  q$33 : int
+    = p8
+   
+  inv$33 : bool
+    = And(And(Neq(p$33, 0), Neq(q$33, 0)), Gt(p$33, q$33))
+   
+  p6 : int
+    = p6$1
+   
+  p$32 : int
+    = p6
+   
+  q$32 : int
+    = p9
+   
+  inv$32 : bool
+    = And(And(Neq(p$32, 0), Neq(q$32, 0)), Gt(p$32, q$32))
+   
+  p$31 : int
+    = p6
+   
+  q$31 : int
+    = p8
+   
+  inv$31 : bool
+    = And(And(Neq(p$31, 0), Neq(q$31, 0)), Gt(p$31, q$31))
+   
+  p$30 : int
+    = p6
+   
+  q$30 : int
+    = p7
+   
+  inv$30 : bool
+    = And(And(Neq(p$30, 0), Neq(q$30, 0)), Gt(p$30, q$30))
+   
+  p5 : int
+    = p5$1
+   
+  p$29 : int
+    = p5
+   
+  q$29 : int
+    = p9
+   
+  inv$29 : bool
+    = And(And(Neq(p$29, 0), Neq(q$29, 0)), Gt(p$29, q$29))
+   
+  p$28 : int
+    = p5
+   
+  q$28 : int
+    = p8
+   
+  inv$28 : bool
+    = And(And(Neq(p$28, 0), Neq(q$28, 0)), Gt(p$28, q$28))
+   
+  p$27 : int
+    = p5
+   
+  q$27 : int
+    = p7
+   
+  inv$27 : bool
+    = And(And(Neq(p$27, 0), Neq(q$27, 0)), Gt(p$27, q$27))
+   
+  p$26 : int
+    = p5
+   
+  q$26 : int
+    = p6
+   
+  inv$26 : bool
+    = And(And(Neq(p$26, 0), Neq(q$26, 0)), Gt(p$26, q$26))
+   
+  p4 : int
+    = p4$1
+   
+  p$25 : int
+    = p4
+   
+  q$25 : int
+    = p9
+   
+  inv$25 : bool
+    = And(And(Neq(p$25, 0), Neq(q$25, 0)), Gt(p$25, q$25))
+   
+  p$24 : int
+    = p4
+   
+  q$24 : int
+    = p8
+   
+  inv$24 : bool
+    = And(And(Neq(p$24, 0), Neq(q$24, 0)), Gt(p$24, q$24))
+   
+  p$23 : int
+    = p4
+   
+  q$23 : int
+    = p7
+   
+  inv$23 : bool
+    = And(And(Neq(p$23, 0), Neq(q$23, 0)), Gt(p$23, q$23))
+   
+  p$22 : int
+    = p4
+   
+  q$22 : int
+    = p6
+   
+  inv$22 : bool
+    = And(And(Neq(p$22, 0), Neq(q$22, 0)), Gt(p$22, q$22))
+   
+  p$21 : int
+    = p4
+   
+  q$21 : int
+    = p5
+   
+  inv$21 : bool
+    = And(And(Neq(p$21, 0), Neq(q$21, 0)), Gt(p$21, q$21))
+   
+  p3 : int
+    = p3$1
+   
+  p$20 : int
+    = p3
+   
+  q$20 : int
+    = p9
+   
+  inv$20 : bool
+    = And(And(Neq(p$20, 0), Neq(q$20, 0)), Gt(p$20, q$20))
+   
+  p$19 : int
+    = p3
+   
+  q$19 : int
+    = p8
+   
+  inv$19 : bool
+    = And(And(Neq(p$19, 0), Neq(q$19, 0)), Gt(p$19, q$19))
+   
+  p$18 : int
+    = p3
+   
+  q$18 : int
+    = p7
+   
+  inv$18 : bool
+    = And(And(Neq(p$18, 0), Neq(q$18, 0)), Gt(p$18, q$18))
+   
+  p$17 : int
+    = p3
+   
+  q$17 : int
+    = p6
+   
+  inv$17 : bool
+    = And(And(Neq(p$17, 0), Neq(q$17, 0)), Gt(p$17, q$17))
+   
+  p$16 : int
+    = p3
+   
+  q$16 : int
+    = p5
+   
+  inv$16 : bool
+    = And(And(Neq(p$16, 0), Neq(q$16, 0)), Gt(p$16, q$16))
+   
+  p$15 : int
+    = p3
+   
+  q$15 : int
+    = p4
+   
+  inv$15 : bool
+    = And(And(Neq(p$15, 0), Neq(q$15, 0)), Gt(p$15, q$15))
+   
+  p2 : int
+    = p2$1
+   
+  p$14 : int
+    = p2
+   
+  q$14 : int
+    = p9
+   
+  inv$14 : bool
+    = And(And(Neq(p$14, 0), Neq(q$14, 0)), Gt(p$14, q$14))
+   
+  p$13 : int
+    = p2
+   
+  q$13 : int
+    = p8
+   
+  inv$13 : bool
+    = And(And(Neq(p$13, 0), Neq(q$13, 0)), Gt(p$13, q$13))
+   
+  p$12 : int
+    = p2
+   
+  q$12 : int
+    = p7
+   
+  inv$12 : bool
+    = And(And(Neq(p$12, 0), Neq(q$12, 0)), Gt(p$12, q$12))
+   
+  p$11 : int
+    = p2
+   
+  q$11 : int
+    = p6
+   
+  inv$11 : bool
+    = And(And(Neq(p$11, 0), Neq(q$11, 0)), Gt(p$11, q$11))
+   
+  p$10 : int
+    = p2
+   
+  q$10 : int
+    = p5
+   
+  inv$10 : bool
+    = And(And(Neq(p$10, 0), Neq(q$10, 0)), Gt(p$10, q$10))
+   
+  p$9 : int
+    = p2
+   
+  q$9 : int
+    = p4
+   
+  inv$9 : bool
+    = And(And(Neq(p$9, 0), Neq(q$9, 0)), Gt(p$9, q$9))
+   
+  p$8 : int
+    = p2
+   
+  q$8 : int
+    = p3
+   
+  inv$8 : bool
+    = And(And(Neq(p$8, 0), Neq(q$8, 0)), Gt(p$8, q$8))
+   
+  p1 : int
+    = p1$1
+   
+  p$7 : int
+    = p1
+   
+  q$7 : int
+    = p9
+   
+  inv$7 : bool
+    = And(And(Neq(p$7, 0), Neq(q$7, 0)), Gt(p$7, q$7))
+   
+  p$6 : int
+    = p1
+   
+  q$6 : int
+    = p8
+   
+  inv$6 : bool
+    = And(And(Neq(p$6, 0), Neq(q$6, 0)), Gt(p$6, q$6))
+   
+  p$5 : int
+    = p1
+   
+  q$5 : int
+    = p7
+   
+  inv$5 : bool
+    = And(And(Neq(p$5, 0), Neq(q$5, 0)), Gt(p$5, q$5))
+   
+  p$4 : int
+    = p1
+   
+  q$4 : int
+    = p6
+   
+  inv$4 : bool
+    = And(And(Neq(p$4, 0), Neq(q$4, 0)), Gt(p$4, q$4))
+   
+  p$3 : int
+    = p1
+   
+  q$3 : int
+    = p5
+   
+  inv$3 : bool
+    = And(And(Neq(p$3, 0), Neq(q$3, 0)), Gt(p$3, q$3))
+   
+  p$2 : int
+    = p1
+   
+  q$2 : int
+    = p4
+   
+  inv$2 : bool
+    = And(And(Neq(p$2, 0), Neq(q$2, 0)), Gt(p$2, q$2))
+   
+  p$1 : int
+    = p1
+   
+  q$1 : int
+    = p3
+   
+  inv$1 : bool
+    = And(And(Neq(p$1, 0), Neq(q$1, 0)), Gt(p$1, q$1))
+   
+  p : int
+    = p1
+   
+  q : int
+    = p2
+   
+  inv : bool
+    = And(And(Neq(p, 0), Neq(q, 0)), Gt(p, q))
+   
+  inverted : bool
+    = Xor(Xor(Xor(Xor(Xor(Xor(Xor(Xor(Xor(Xor(Xor(Xor(Xor(Xor(Xor(Xor(Xor(Xor(Xor(Xor(Xor(Xor(Xor(Xor(Xor(Xor(Xor(Xor(Xor(Xor(Xor(Xor(Xor(Xor(Xor(inv, inv$1), inv$2), inv$3), inv$4), inv$5), inv$6), inv$7), inv$8), inv$9), inv$10), inv$11), inv$12), inv$13), inv$14), inv$15), inv$16), inv$17), inv$18), inv$19), inv$20), inv$21), inv$22), inv$23), inv$24), inv$25), inv$26), inv$27), inv$28), inv$29), inv$30), inv$31), inv$32), inv$33), inv$34), inv$35)
+   
+  distinct : bool
+    = And(And(And(And(And(And(And(And(And(And(And(And(And(And(And(And(And(And(And(And(And(And(And(And(And(And(And(And(And(And(And(And(And(And(And(Neq(p1$1, p2$1), Neq(p1$1, p3$1)), Neq(p1$1, p4$1)), Neq(p1$1, p5$1)), Neq(p1$1, p6$1)), Neq(p1$1, p7$1)), Neq(p1$1, p8$1)), Neq(p1$1, p9$1)), Neq(p2$1, p3$1)), Neq(p2$1, p4$1)), Neq(p2$1, p5$1)), Neq(p2$1, p6$1)), Neq(p2$1, p7$1)), Neq(p2$1, p8$1)), Neq(p2$1, p9$1)), Neq(p3$1, p4$1)), Neq(p3$1, p5$1)), Neq(p3$1, p6$1)), Neq(p3$1, p7$1)), Neq(p3$1, p8$1)), Neq(p3$1, p9$1)), Neq(p4$1, p5$1)), Neq(p4$1, p6$1)), Neq(p4$1, p7$1)), Neq(p4$1, p8$1)), Neq(p4$1, p9$1)), Neq(p5$1, p6$1)), Neq(p5$1, p7$1)), Neq(p5$1, p8$1)), Neq(p5$1, p9$1)), Neq(p6$1, p7$1)), Neq(p6$1, p8$1)), Neq(p6$1, p9$1)), Neq(p7$1, p8$1)), Neq(p7$1, p9$1)), Neq(p8$1, p9$1))
+   
+  in$8 : int
+    = in$9
+   
+  in$7 : int
+    = in$9
+   
+  in$6 : int
+    = in$9
+   
+  in$5 : int
+    = in$9
+   
+  in$4 : int
+    = in$9
+   
+  in$3 : int
+    = in$9
+   
+  in$2 : int
+    = in$9
+   
+  in$1 : int
+    = in$9
+   
+  in : int
+    = in$9
+tel
+Sally Model
+===========
+
+(define-state-type
+   S
+   (
+     (distinct Bool)
+     (down Int)
+     (in Int)
+     (init Int)
+     (inv Bool)
+     (inverted Bool)
+     (left Int)
+     (p Int)
+     (p1 Int)
+     (p2 Int)
+     (p3 Int)
+     (p4 Int)
+     (p5 Int)
+     (p6 Int)
+     (p7 Int)
+     (p8 Int)
+     (p9 Int)
+     (prop Bool)
+     (q Int)
+     (right Int)
+     (solved Bool)
+     (up Int)
+     (|down:1| Int)
+     (|down:2| Int)
+     (|down:3| Int)
+     (|down:4| Int)
+     (|down:5| Int)
+     (|down:6| Int)
+     (|down:7| Int)
+     (|down:8| Int)
+     (|gal-initializing| Bool)
+     (|in:1| Int)
+     (|in:2| Int)
+     (|in:3| Int)
+     (|in:4| Int)
+     (|in:5| Int)
+     (|in:6| Int)
+     (|in:7| Int)
+     (|in:8| Int)
+     (|in:9| Int)
+     (|init:1| Int)
+     (|init:2| Int)
+     (|init:3| Int)
+     (|init:4| Int)
+     (|init:5| Int)
+     (|init:6| Int)
+     (|init:7| Int)
+     (|init:8| Int)
+     (|inv:10| Bool)
+     (|inv:11| Bool)
+     (|inv:12| Bool)
+     (|inv:13| Bool)
+     (|inv:14| Bool)
+     (|inv:15| Bool)
+     (|inv:16| Bool)
+     (|inv:17| Bool)
+     (|inv:18| Bool)
+     (|inv:19| Bool)
+     (|inv:1| Bool)
+     (|inv:20| Bool)
+     (|inv:21| Bool)
+     (|inv:22| Bool)
+     (|inv:23| Bool)
+     (|inv:24| Bool)
+     (|inv:25| Bool)
+     (|inv:26| Bool)
+     (|inv:27| Bool)
+     (|inv:28| Bool)
+     (|inv:29| Bool)
+     (|inv:2| Bool)
+     (|inv:30| Bool)
+     (|inv:31| Bool)
+     (|inv:32| Bool)
+     (|inv:33| Bool)
+     (|inv:34| Bool)
+     (|inv:35| Bool)
+     (|inv:3| Bool)
+     (|inv:4| Bool)
+     (|inv:5| Bool)
+     (|inv:6| Bool)
+     (|inv:7| Bool)
+     (|inv:8| Bool)
+     (|inv:9| Bool)
+     (|left:1| Int)
+     (|left:2| Int)
+     (|left:3| Int)
+     (|left:4| Int)
+     (|left:5| Int)
+     (|left:6| Int)
+     (|left:7| Int)
+     (|left:8| Int)
+     (|p1:1:init| Bool)
+     (|p1:1| Int)
+     (|p2:1:init| Bool)
+     (|p2:1| Int)
+     (|p3:1:init| Bool)
+     (|p3:1| Int)
+     (|p4:1:init| Bool)
+     (|p4:1| Int)
+     (|p5:1:init| Bool)
+     (|p5:1| Int)
+     (|p6:1:init| Bool)
+     (|p6:1| Int)
+     (|p7:1:init| Bool)
+     (|p7:1| Int)
+     (|p8:1:init| Bool)
+     (|p8:1| Int)
+     (|p9:1:init| Bool)
+     (|p9:1| Int)
+     (|p:10| Int)
+     (|p:11| Int)
+     (|p:12| Int)
+     (|p:13| Int)
+     (|p:14| Int)
+     (|p:15| Int)
+     (|p:16| Int)
+     (|p:17| Int)
+     (|p:18| Int)
+     (|p:19| Int)
+     (|p:1| Int)
+     (|p:20| Int)
+     (|p:21| Int)
+     (|p:22| Int)
+     (|p:23| Int)
+     (|p:24| Int)
+     (|p:25| Int)
+     (|p:26| Int)
+     (|p:27| Int)
+     (|p:28| Int)
+     (|p:29| Int)
+     (|p:2| Int)
+     (|p:30| Int)
+     (|p:31| Int)
+     (|p:32| Int)
+     (|p:33| Int)
+     (|p:34| Int)
+     (|p:35| Int)
+     (|p:3| Int)
+     (|p:4| Int)
+     (|p:5| Int)
+     (|p:6| Int)
+     (|p:7| Int)
+     (|p:8| Int)
+     (|p:9| Int)
+     (|pre_down:10| Int)
+     (|pre_down:11| Int)
+     (|pre_down:12| Int)
+     (|pre_down:13| Int)
+     (|pre_down:14| Int)
+     (|pre_down:15| Int)
+     (|pre_down:16| Int)
+     (|pre_down:17| Int)
+     (|pre_down:1| Int)
+     (|pre_down:2| Int)
+     (|pre_down:3| Int)
+     (|pre_down:4| Int)
+     (|pre_down:5| Int)
+     (|pre_down:6| Int)
+     (|pre_down:7| Int)
+     (|pre_down:8| Int)
+     (|pre_down:9| Int)
+     (|pre_down| Int)
+     (|pre_in:10| Int)
+     (|pre_in:11| Int)
+     (|pre_in:12| Int)
+     (|pre_in:13| Int)
+     (|pre_in:14| Int)
+     (|pre_in:15| Int)
+     (|pre_in:16| Int)
+     (|pre_in:17| Int)
+     (|pre_in:18| Int)
+     (|pre_in:19| Int)
+     (|pre_in:1| Int)
+     (|pre_in:20| Int)
+     (|pre_in:21| Int)
+     (|pre_in:22| Int)
+     (|pre_in:23| Int)
+     (|pre_in:24| Int)
+     (|pre_in:25| Int)
+     (|pre_in:26| Int)
+     (|pre_in:27| Int)
+     (|pre_in:28| Int)
+     (|pre_in:29| Int)
+     (|pre_in:2| Int)
+     (|pre_in:30| Int)
+     (|pre_in:31| Int)
+     (|pre_in:32| Int)
+     (|pre_in:33| Int)
+     (|pre_in:34| Int)
+     (|pre_in:35| Int)
+     (|pre_in:36| Int)
+     (|pre_in:37| Int)
+     (|pre_in:38| Int)
+     (|pre_in:39| Int)
+     (|pre_in:3| Int)
+     (|pre_in:40| Int)
+     (|pre_in:41| Int)
+     (|pre_in:42| Int)
+     (|pre_in:43| Int)
+     (|pre_in:44| Int)
+     (|pre_in:45| Int)
+     (|pre_in:46| Int)
+     (|pre_in:47| Int)
+     (|pre_in:48| Int)
+     (|pre_in:49| Int)
+     (|pre_in:4| Int)
+     (|pre_in:50| Int)
+     (|pre_in:51| Int)
+     (|pre_in:52| Int)
+     (|pre_in:53| Int)
+     (|pre_in:54| Int)
+     (|pre_in:55| Int)
+     (|pre_in:56| Int)
+     (|pre_in:57| Int)
+     (|pre_in:58| Int)
+     (|pre_in:59| Int)
+     (|pre_in:5| Int)
+     (|pre_in:60| Int)
+     (|pre_in:61| Int)
+     (|pre_in:62| Int)
+     (|pre_in:63| Int)
+     (|pre_in:64| Int)
+     (|pre_in:65| Int)
+     (|pre_in:66| Int)
+     (|pre_in:67| Int)
+     (|pre_in:68| Int)
+     (|pre_in:69| Int)
+     (|pre_in:6| Int)
+     (|pre_in:70| Int)
+     (|pre_in:71| Int)
+     (|pre_in:7| Int)
+     (|pre_in:8| Int)
+     (|pre_in:9| Int)
+     (|pre_in| Int)
+     (|pre_left:10| Int)
+     (|pre_left:11| Int)
+     (|pre_left:12| Int)
+     (|pre_left:13| Int)
+     (|pre_left:14| Int)
+     (|pre_left:15| Int)
+     (|pre_left:16| Int)
+     (|pre_left:17| Int)
+     (|pre_left:1| Int)
+     (|pre_left:2| Int)
+     (|pre_left:3| Int)
+     (|pre_left:4| Int)
+     (|pre_left:5| Int)
+     (|pre_left:6| Int)
+     (|pre_left:7| Int)
+     (|pre_left:8| Int)
+     (|pre_left:9| Int)
+     (|pre_left| Int)
+     (|pre_p1:1| Int)
+     (|pre_p1:2| Int)
+     (|pre_p1:3| Int)
+     (|pre_p1:4| Int)
+     (|pre_p1| Int)
+     (|pre_p2:1| Int)
+     (|pre_p2:2| Int)
+     (|pre_p2:3| Int)
+     (|pre_p2:4| Int)
+     (|pre_p2| Int)
+     (|pre_p3:1| Int)
+     (|pre_p3:2| Int)
+     (|pre_p3:3| Int)
+     (|pre_p3:4| Int)
+     (|pre_p3| Int)
+     (|pre_p4:1| Int)
+     (|pre_p4:2| Int)
+     (|pre_p4:3| Int)
+     (|pre_p4:4| Int)
+     (|pre_p4| Int)
+     (|pre_p5:1| Int)
+     (|pre_p5:2| Int)
+     (|pre_p5:3| Int)
+     (|pre_p5:4| Int)
+     (|pre_p5| Int)
+     (|pre_p6:1| Int)
+     (|pre_p6:2| Int)
+     (|pre_p6:3| Int)
+     (|pre_p6:4| Int)
+     (|pre_p6| Int)
+     (|pre_p7:1| Int)
+     (|pre_p7:2| Int)
+     (|pre_p7:3| Int)
+     (|pre_p7:4| Int)
+     (|pre_p7| Int)
+     (|pre_p8:1| Int)
+     (|pre_p8:2| Int)
+     (|pre_p8:3| Int)
+     (|pre_p8:4| Int)
+     (|pre_p8| Int)
+     (|pre_p9:1| Int)
+     (|pre_p9:2| Int)
+     (|pre_p9:3| Int)
+     (|pre_p9:4| Int)
+     (|pre_p9| Int)
+     (|pre_right:10| Int)
+     (|pre_right:11| Int)
+     (|pre_right:12| Int)
+     (|pre_right:13| Int)
+     (|pre_right:14| Int)
+     (|pre_right:15| Int)
+     (|pre_right:16| Int)
+     (|pre_right:17| Int)
+     (|pre_right:1| Int)
+     (|pre_right:2| Int)
+     (|pre_right:3| Int)
+     (|pre_right:4| Int)
+     (|pre_right:5| Int)
+     (|pre_right:6| Int)
+     (|pre_right:7| Int)
+     (|pre_right:8| Int)
+     (|pre_right:9| Int)
+     (|pre_right| Int)
+     (|pre_up:10| Int)
+     (|pre_up:11| Int)
+     (|pre_up:12| Int)
+     (|pre_up:13| Int)
+     (|pre_up:14| Int)
+     (|pre_up:15| Int)
+     (|pre_up:16| Int)
+     (|pre_up:17| Int)
+     (|pre_up:1| Int)
+     (|pre_up:2| Int)
+     (|pre_up:3| Int)
+     (|pre_up:4| Int)
+     (|pre_up:5| Int)
+     (|pre_up:6| Int)
+     (|pre_up:7| Int)
+     (|pre_up:8| Int)
+     (|pre_up:9| Int)
+     (|pre_up| Int)
+     (|q:10| Int)
+     (|q:11| Int)
+     (|q:12| Int)
+     (|q:13| Int)
+     (|q:14| Int)
+     (|q:15| Int)
+     (|q:16| Int)
+     (|q:17| Int)
+     (|q:18| Int)
+     (|q:19| Int)
+     (|q:1| Int)
+     (|q:20| Int)
+     (|q:21| Int)
+     (|q:22| Int)
+     (|q:23| Int)
+     (|q:24| Int)
+     (|q:25| Int)
+     (|q:26| Int)
+     (|q:27| Int)
+     (|q:28| Int)
+     (|q:29| Int)
+     (|q:2| Int)
+     (|q:30| Int)
+     (|q:31| Int)
+     (|q:32| Int)
+     (|q:33| Int)
+     (|q:34| Int)
+     (|q:35| Int)
+     (|q:3| Int)
+     (|q:4| Int)
+     (|q:5| Int)
+     (|q:6| Int)
+     (|q:7| Int)
+     (|q:8| Int)
+     (|q:9| Int)
+     (|right:1| Int)
+     (|right:2| Int)
+     (|right:3| Int)
+     (|right:4| Int)
+     (|right:5| Int)
+     (|right:6| Int)
+     (|right:7| Int)
+     (|right:8| Int)
+     (|up:1| Int)
+     (|up:2| Int)
+     (|up:3| Int)
+     (|up:4| Int)
+     (|up:5| Int)
+     (|up:6| Int)
+     (|up:7| Int)
+     (|up:8| Int))
+   (
+     (|in:9| Int)))
+(define-transition-system
+   TS
+   S
+   (and
+      (= |gal-initializing| true)
+      (= |p1:1:init| true)
+      (= |p5:1:init| true)
+      (= |p4:1:init| true)
+      (= |p7:1:init| true)
+      (= |p8:1:init| true)
+      (= |p9:1:init| true)
+      (= |p6:1:init| true)
+      (= |p3:1:init| true)
+      (= |p2:1:init| true))
+   (and
+      (= next.|gal-initializing| false)
+      (= next.|in:9| input.|in:9|)
+      (= next.|init:8| 2)
+      (= next.|init:7| 5)
+      (= next.|init:6| 3)
+      (=
+         next.|right:8|
+         (- 1))
+      (= next.|init:5| 8)
+      (=
+         next.|right:7|
+         (- 1))
+      (= next.|init:4| 7)
+      (=
+         next.|right:6|
+         (- 1))
+      (=
+         next.|down:8|
+         (- 1))
+      (= next.|init:3| 6)
+      (=
+         next.|down:7|
+         (- 1))
+      (= next.|init:2| 1)
+      (=
+         next.|down:6|
+         (- 1))
+      (=
+         next.|left:8|
+         (- 1))
+      (= next.|init:1| 4)
+      (= next.init 0)
+      (= next.|pre_p5:4| state.|p5:1|)
+      (= next.|pre_in:71| state.|in:4|)
+      (= next.|pre_right:17| state.|right:5|)
+      (= next.|pre_p5:3| state.|p5:1|)
+      (= next.|pre_in:70| state.|in:4|)
+      (= next.|pre_down:17| state.|down:2|)
+      (= next.|pre_p5:2| state.|p5:1|)
+      (= next.|pre_in:69| state.|in:4|)
+      (= next.|pre_left:17| state.|left:2|)
+      (= next.|pre_p5:1| state.|p5:1|)
+      (= next.|pre_in:68| state.|in:4|)
+      (= next.|pre_up:17| state.|up:1|)
+      (= next.|pre_left:16| state.|left:2|)
+      (= next.|pre_in:67| state.|in:4|)
+      (= next.|pre_up:16| state.|up:1|)
+      (= next.|pre_in:66| state.|in:4|)
+      (= next.|pre_right:16| state.|right:5|)
+      (= next.|pre_in:65| state.|in:4|)
+      (= next.|pre_down:16| state.|down:2|)
+      (= next.|pre_in:64| state.|in:4|)
+      (= next.|pre_p5| state.|p5:1|)
+      (=
+         next.|left:7|
+         (- 1))
+      (= next.|pre_p4:4| state.|p4:1|)
+      (= next.|pre_in:63| state.|in:5|)
+      (= next.|pre_right:15| state.|right:4|)
+      (= next.|pre_p4:3| state.|p4:1|)
+      (= next.|pre_in:62| state.|in:5|)
+      (= next.|pre_down:15| state.|down:3|)
+      (= next.|pre_p4:2| state.|p4:1|)
+      (= next.|pre_in:61| state.|in:5|)
+      (= next.|pre_left:15| state.|left:7|)
+      (= next.|pre_p4:1| state.|p4:1|)
+      (= next.|pre_in:60| state.|in:5|)
+      (= next.|pre_up:15| state.|up:2|)
+      (= next.|pre_left:14| state.|left:7|)
+      (= next.|pre_in:59| state.|in:5|)
+      (= next.|pre_up:14| state.|up:2|)
+      (= next.|pre_in:58| state.|in:5|)
+      (= next.|pre_right:14| state.|right:4|)
+      (= next.|pre_in:57| state.|in:5|)
+      (= next.|pre_down:14| state.|down:3|)
+      (= next.|pre_in:56| state.|in:5|)
+      (= next.|pre_p4| state.|p4:1|)
+      (= next.|pre_p7:4| state.|p7:1|)
+      (= next.|pre_in:55| state.|in:2|)
+      (= next.|pre_right:13| state.|right:3|)
+      (= next.|pre_p7:3| state.|p7:1|)
+      (= next.|pre_in:54| state.|in:2|)
+      (= next.|pre_down:13| state.|down:6|)
+      (= next.|pre_p7:2| state.|p7:1|)
+      (= next.|pre_in:53| state.|in:2|)
+      (= next.|pre_left:13| state.|left:8|)
+      (= next.|pre_p7:1| state.|p7:1|)
+      (= next.|pre_in:52| state.|in:2|)
+      (= next.|pre_up:13| state.up)
+      (= next.|pre_left:12| state.|left:8|)
+      (= next.|pre_in:51| state.|in:2|)
+      (= next.|pre_up:12| state.up)
+      (= next.|pre_in:50| state.|in:2|)
+      (= next.|pre_right:12| state.|right:3|)
+      (= next.|pre_in:49| state.|in:2|)
+      (= next.|pre_down:12| state.|down:6|)
+      (= next.|pre_in:48| state.|in:2|)
+      (= next.|pre_p7| state.|p7:1|)
+      (= next.|pre_p8:4| state.|p8:1|)
+      (= next.|pre_in:47| state.|in:1|)
+      (= next.|pre_right:11| state.|right:2|)
+      (= next.|pre_p8:3| state.|p8:1|)
+      (= next.|pre_in:46| state.|in:1|)
+      (= next.|pre_down:11| state.|down:7|)
+      (= next.|pre_p8:2| state.|p8:1|)
+      (= next.|pre_in:45| state.|in:1|)
+      (= next.|pre_left:11| state.|left:1|)
+      (= next.|pre_p8:1| state.|p8:1|)
+      (= next.|pre_in:44| state.|in:1|)
+      (= next.|pre_up:11| state.|up:3|)
+      (= next.|pre_left:10| state.|left:1|)
+      (= next.|pre_in:43| state.|in:1|)
+      (= next.|pre_up:10| state.|up:3|)
+      (= next.|pre_in:42| state.|in:1|)
+      (= next.|pre_right:10| state.|right:2|)
+      (= next.|pre_in:41| state.|in:1|)
+      (= next.|pre_down:10| state.|down:7|)
+      (= next.|pre_in:40| state.|in:1|)
+      (= next.|pre_p8| state.|p8:1|)
+      (= next.|pre_p9:4| state.|p9:1|)
+      (= next.|pre_in:39| state.in)
+      (= next.|pre_right:9| state.|right:6|)
+      (= next.|pre_p9:3| state.|p9:1|)
+      (= next.|pre_in:38| state.in)
+      (= next.|pre_down:9| state.|down:8|)
+      (= next.|pre_p9:2| state.|p9:1|)
+      (= next.|pre_in:37| state.in)
+      (= next.|pre_left:9| state.left)
+      (= next.|pre_p9:1| state.|p9:1|)
+      (= next.|pre_in:36| state.in)
+      (= next.|pre_up:9| state.|up:4|)
+      (= next.|pre_left:8| state.left)
+      (= next.|pre_in:35| state.in)
+      (= next.|pre_up:8| state.|up:4|)
+      (= next.|pre_in:34| state.in)
+      (= next.|pre_right:8| state.|right:6|)
+      (= next.|pre_in:33| state.in)
+      (= next.|pre_down:8| state.|down:8|)
+      (= next.|pre_in:32| state.in)
+      (= next.|pre_p9| state.|p9:1|)
+      (= next.|pre_p6:4| state.|p6:1|)
+      (= next.|pre_in:31| state.|in:3|)
+      (= next.|pre_right:7| state.|right:7|)
+      (= next.|pre_p6:3| state.|p6:1|)
+      (= next.|pre_in:30| state.|in:3|)
+      (= next.|pre_down:7| state.|down:1|)
+      (= next.|pre_p6:2| state.|p6:1|)
+      (= next.|pre_in:29| state.|in:3|)
+      (= next.|pre_left:7| state.|left:3|)
+      (= next.|pre_p6:1| state.|p6:1|)
+      (= next.|pre_in:28| state.|in:3|)
+      (= next.|pre_up:7| state.|up:5|)
+      (= next.|pre_left:6| state.|left:3|)
+      (= next.|pre_in:27| state.|in:3|)
+      (= next.|pre_up:6| state.|up:5|)
+      (= next.|pre_in:26| state.|in:3|)
+      (= next.|pre_right:6| state.|right:7|)
+      (= next.|pre_in:25| state.|in:3|)
+      (= next.|pre_down:6| state.|down:1|)
+      (= next.|pre_in:24| state.|in:3|)
+      (= next.|pre_p6| state.|p6:1|)
+      (=
+         next.|up:8|
+         (- 1))
+      (= next.|pre_p3:4| state.|p3:1|)
+      (= next.|pre_in:23| state.|in:6|)
+      (= next.|pre_right:5| state.|right:8|)
+      (= next.|pre_p3:3| state.|p3:1|)
+      (= next.|pre_in:22| state.|in:6|)
+      (= next.|pre_down:5| state.down)
+      (= next.|pre_p3:2| state.|p3:1|)
+      (= next.|pre_in:21| state.|in:6|)
+      (= next.|pre_left:5| state.|left:4|)
+      (= next.|pre_p3:1| state.|p3:1|)
+      (= next.|pre_in:20| state.|in:6|)
+      (= next.|pre_up:5| state.|up:8|)
+      (= next.|pre_left:4| state.|left:4|)
+      (= next.|pre_in:19| state.|in:6|)
+      (= next.|pre_up:4| state.|up:8|)
+      (= next.|pre_in:18| state.|in:6|)
+      (= next.|pre_right:4| state.|right:8|)
+      (= next.|pre_in:17| state.|in:6|)
+      (= next.|pre_down:4| state.down)
+      (= next.|pre_in:16| state.|in:6|)
+      (= next.|pre_p3| state.|p3:1|)
+      (=
+         next.|up:7|
+         (- 1))
+      (= next.|pre_p2:4| state.|p2:1|)
+      (= next.|pre_in:15| state.|in:7|)
+      (= next.|pre_right:3| state.|right:1|)
+      (= next.|pre_p2:3| state.|p2:1|)
+      (= next.|pre_in:14| state.|in:7|)
+      (= next.|pre_down:3| state.|down:4|)
+      (= next.|pre_p2:2| state.|p2:1|)
+      (= next.|pre_in:13| state.|in:7|)
+      (= next.|pre_left:3| state.|left:5|)
+      (= next.|pre_p2:1| state.|p2:1|)
+      (= next.|pre_in:12| state.|in:7|)
+      (= next.|pre_up:3| state.|up:7|)
+      (= next.|pre_left:2| state.|left:5|)
+      (= next.|pre_in:11| state.|in:7|)
+      (= next.|pre_up:2| state.|up:7|)
+      (= next.|pre_in:10| state.|in:7|)
+      (= next.|pre_right:2| state.|right:1|)
+      (= next.|pre_in:9| state.|in:7|)
+      (= next.|pre_down:2| state.|down:4|)
+      (= next.|pre_in:8| state.|in:7|)
+      (= next.|pre_p2| state.|p2:1|)
+      (=
+         next.|left:6|
+         (- 1))
+      (=
+         next.|up:6|
+         (- 1))
+      (= next.|pre_p1:4| state.|p1:1|)
+      (= next.|pre_in:7| state.|in:8|)
+      (= next.|pre_right:1| state.right)
+      (= next.|pre_p1:3| state.|p1:1|)
+      (= next.|pre_in:6| state.|in:8|)
+      (= next.|pre_down:1| state.|down:5|)
+      (= next.|pre_p1:2| state.|p1:1|)
+      (= next.|pre_in:5| state.|in:8|)
+      (= next.|pre_left:1| state.|left:6|)
+      (= next.|pre_p1:1| state.|p1:1|)
+      (= next.|pre_in:4| state.|in:8|)
+      (= next.|pre_up:1| state.|up:6|)
+      (= next.|pre_left| state.|left:6|)
+      (= next.|pre_in:3| state.|in:8|)
+      (= next.|pre_up| state.|up:6|)
+      (= next.|pre_in:2| state.|in:8|)
+      (= next.|pre_right| state.right)
+      (= next.|pre_in:1| state.|in:8|)
+      (= next.|pre_down| state.|down:5|)
+      (= next.|pre_in| state.|in:8|)
+      (= next.|pre_p1| state.|p1:1|)
+      (ite
+         state.|p1:1:init|
+         (= next.|p1:1| next.|init:8|)
+         (=
+            next.|p1:1|
+            (ite
+               (and
+                  (= next.|pre_p1:4| 0)
+                  (= next.|pre_in:7| 0)
+                  (not
+                     (=
+                        next.right
+                        (- 1))))
+               next.|pre_right:1|
+               (ite
+                  (and
+                     (= next.|pre_p1:3| 0)
+                     (= next.|pre_in:6| 1)
+                     (not
+                        (=
+                           next.|down:5|
+                           (- 1))))
+                  next.|pre_down:1|
+                  (ite
+                     (and
+                        (= next.|pre_p1:2| 0)
+                        (= next.|pre_in:5| 2)
+                        (not
+                           (=
+                              next.|left:6|
+                              (- 1))))
+                     next.|pre_left:1|
+                     (ite
+                        (and
+                           (= next.|pre_p1:1| 0)
+                           (= next.|pre_in:4| 3)
+                           (not
+                              (=
+                                 next.|up:6|
+                                 (- 1))))
+                        next.|pre_up:1|
+                        (ite
+                           (and
+                              (= next.|pre_left| 0)
+                              (= next.|pre_in:3| 0))
+                           0
+                           (ite
+                              (and
+                                 (= next.|pre_up| 0)
+                                 (= next.|pre_in:2| 1))
+                              0
+                              (ite
+                                 (and
+                                    (= next.|pre_right| 0)
+                                    (= next.|pre_in:1| 2))
+                                 0
+                                 (ite
+                                    (and
+                                       (= next.|pre_down| 0)
+                                       (= next.|pre_in| 3))
+                                    0
+                                    next.|pre_p1|))))))))))
+      (= next.|p1:1:init| false)
+      (= next.|down:5| next.|p4:1|)
+      (= next.|left:5| next.|p1:1|)
+      (= next.|down:4| next.|p5:1|)
+      (= next.|left:4| next.|p2:1|)
+      (= next.|up:5| next.|p3:1|)
+      (= next.|left:3| next.|p5:1|)
+      (= next.|up:4| next.|p6:1|)
+      (= next.|up:3| next.|p5:1|)
+      (= next.|up:2| next.|p1:1|)
+      (= next.|down:3| next.|p7:1|)
+      (= next.|up:1| next.|p2:1|)
+      (= next.|left:2| next.|p4:1|)
+      (= next.|down:2| next.|p8:1|)
+      (= next.|right:5| next.|p6:1|)
+      (ite
+         state.|p5:1:init|
+         (= next.|p5:1| next.init)
+         (=
+            next.|p5:1|
+            (ite
+               (and
+                  (= next.|pre_p5:4| 0)
+                  (= next.|pre_in:71| 0)
+                  (not
+                     (=
+                        next.|right:5|
+                        (- 1))))
+               next.|pre_right:17|
+               (ite
+                  (and
+                     (= next.|pre_p5:3| 0)
+                     (= next.|pre_in:70| 1)
+                     (not
+                        (=
+                           next.|down:2|
+                           (- 1))))
+                  next.|pre_down:17|
+                  (ite
+                     (and
+                        (= next.|pre_p5:2| 0)
+                        (= next.|pre_in:69| 2)
+                        (not
+                           (=
+                              next.|left:2|
+                              (- 1))))
+                     next.|pre_left:17|
+                     (ite
+                        (and
+                           (= next.|pre_p5:1| 0)
+                           (= next.|pre_in:68| 3)
+                           (not
+                              (=
+                                 next.|up:1|
+                                 (- 1))))
+                        next.|pre_up:17|
+                        (ite
+                           (and
+                              (= next.|pre_left:16| 0)
+                              (= next.|pre_in:67| 0))
+                           0
+                           (ite
+                              (and
+                                 (= next.|pre_up:16| 0)
+                                 (= next.|pre_in:66| 1))
+                              0
+                              (ite
+                                 (and
+                                    (= next.|pre_right:16| 0)
+                                    (= next.|pre_in:65| 2))
+                                 0
+                                 (ite
+                                    (and
+                                       (= next.|pre_down:16| 0)
+                                       (= next.|pre_in:64| 3))
+                                    0
+                                    next.|pre_p5|))))))))))
+      (= next.|p5:1:init| false)
+      (= next.|right:4| next.|p5:1|)
+      (ite
+         state.|p4:1:init|
+         (= next.|p4:1| next.|init:1|)
+         (=
+            next.|p4:1|
+            (ite
+               (and
+                  (= next.|pre_p4:4| 0)
+                  (= next.|pre_in:63| 0)
+                  (not
+                     (=
+                        next.|right:4|
+                        (- 1))))
+               next.|pre_right:15|
+               (ite
+                  (and
+                     (= next.|pre_p4:3| 0)
+                     (= next.|pre_in:62| 1)
+                     (not
+                        (=
+                           next.|down:3|
+                           (- 1))))
+                  next.|pre_down:15|
+                  (ite
+                     (and
+                        (= next.|pre_p4:2| 0)
+                        (= next.|pre_in:61| 2)
+                        (not
+                           (=
+                              next.|left:7|
+                              (- 1))))
+                     next.|pre_left:15|
+                     (ite
+                        (and
+                           (= next.|pre_p4:1| 0)
+                           (= next.|pre_in:60| 3)
+                           (not
+                              (=
+                                 next.|up:2|
+                                 (- 1))))
+                        next.|pre_up:15|
+                        (ite
+                           (and
+                              (= next.|pre_left:14| 0)
+                              (= next.|pre_in:59| 0))
+                           0
+                           (ite
+                              (and
+                                 (= next.|pre_up:14| 0)
+                                 (= next.|pre_in:58| 1))
+                              0
+                              (ite
+                                 (and
+                                    (= next.|pre_right:14| 0)
+                                    (= next.|pre_in:57| 2))
+                                 0
+                                 (ite
+                                    (and
+                                       (= next.|pre_down:14| 0)
+                                       (= next.|pre_in:56| 3))
+                                    0
+                                    next.|pre_p4|))))))))))
+      (= next.|p4:1:init| false)
+      (= next.up next.|p4:1|)
+      (= next.|right:3| next.|p8:1|)
+      (ite
+         state.|p7:1:init|
+         (= next.|p7:1| next.|init:2|)
+         (=
+            next.|p7:1|
+            (ite
+               (and
+                  (= next.|pre_p7:4| 0)
+                  (= next.|pre_in:55| 0)
+                  (not
+                     (=
+                        next.|right:3|
+                        (- 1))))
+               next.|pre_right:13|
+               (ite
+                  (and
+                     (= next.|pre_p7:3| 0)
+                     (= next.|pre_in:54| 1)
+                     (not
+                        (=
+                           next.|down:6|
+                           (- 1))))
+                  next.|pre_down:13|
+                  (ite
+                     (and
+                        (= next.|pre_p7:2| 0)
+                        (= next.|pre_in:53| 2)
+                        (not
+                           (=
+                              next.|left:8|
+                              (- 1))))
+                     next.|pre_left:13|
+                     (ite
+                        (and
+                           (= next.|pre_p7:1| 0)
+                           (= next.|pre_in:52| 3)
+                           (not
+                              (=
+                                 next.up
+                                 (- 1))))
+                        next.|pre_up:13|
+                        (ite
+                           (and
+                              (= next.|pre_left:12| 0)
+                              (= next.|pre_in:51| 0))
+                           0
+                           (ite
+                              (and
+                                 (= next.|pre_up:12| 0)
+                                 (= next.|pre_in:50| 1))
+                              0
+                              (ite
+                                 (and
+                                    (= next.|pre_right:12| 0)
+                                    (= next.|pre_in:49| 2))
+                                 0
+                                 (ite
+                                    (and
+                                       (= next.|pre_down:12| 0)
+                                       (= next.|pre_in:48| 3))
+                                    0
+                                    next.|pre_p7|))))))))))
+      (= next.|p7:1:init| false)
+      (= next.|left:1| next.|p7:1|)
+      (= next.|right:2| next.|p9:1|)
+      (ite
+         state.|p8:1:init|
+         (= next.|p8:1| next.|init:3|)
+         (=
+            next.|p8:1|
+            (ite
+               (and
+                  (= next.|pre_p8:4| 0)
+                  (= next.|pre_in:47| 0)
+                  (not
+                     (=
+                        next.|right:2|
+                        (- 1))))
+               next.|pre_right:11|
+               (ite
+                  (and
+                     (= next.|pre_p8:3| 0)
+                     (= next.|pre_in:46| 1)
+                     (not
+                        (=
+                           next.|down:7|
+                           (- 1))))
+                  next.|pre_down:11|
+                  (ite
+                     (and
+                        (= next.|pre_p8:2| 0)
+                        (= next.|pre_in:45| 2)
+                        (not
+                           (=
+                              next.|left:1|
+                              (- 1))))
+                     next.|pre_left:11|
+                     (ite
+                        (and
+                           (= next.|pre_p8:1| 0)
+                           (= next.|pre_in:44| 3)
+                           (not
+                              (=
+                                 next.|up:3|
+                                 (- 1))))
+                        next.|pre_up:11|
+                        (ite
+                           (and
+                              (= next.|pre_left:10| 0)
+                              (= next.|pre_in:43| 0))
+                           0
+                           (ite
+                              (and
+                                 (= next.|pre_up:10| 0)
+                                 (= next.|pre_in:42| 1))
+                              0
+                              (ite
+                                 (and
+                                    (= next.|pre_right:10| 0)
+                                    (= next.|pre_in:41| 2))
+                                 0
+                                 (ite
+                                    (and
+                                       (= next.|pre_down:10| 0)
+                                       (= next.|pre_in:40| 3))
+                                    0
+                                    next.|pre_p8|))))))))))
+      (= next.|p8:1:init| false)
+      (= next.left next.|p8:1|)
+      (ite
+         state.|p9:1:init|
+         (= next.|p9:1| next.|init:4|)
+         (=
+            next.|p9:1|
+            (ite
+               (and
+                  (= next.|pre_p9:4| 0)
+                  (= next.|pre_in:39| 0)
+                  (not
+                     (=
+                        next.|right:6|
+                        (- 1))))
+               next.|pre_right:9|
+               (ite
+                  (and
+                     (= next.|pre_p9:3| 0)
+                     (= next.|pre_in:38| 1)
+                     (not
+                        (=
+                           next.|down:8|
+                           (- 1))))
+                  next.|pre_down:9|
+                  (ite
+                     (and
+                        (= next.|pre_p9:2| 0)
+                        (= next.|pre_in:37| 2)
+                        (not
+                           (=
+                              next.left
+                              (- 1))))
+                     next.|pre_left:9|
+                     (ite
+                        (and
+                           (= next.|pre_p9:1| 0)
+                           (= next.|pre_in:36| 3)
+                           (not
+                              (=
+                                 next.|up:4|
+                                 (- 1))))
+                        next.|pre_up:9|
+                        (ite
+                           (and
+                              (= next.|pre_left:8| 0)
+                              (= next.|pre_in:35| 0))
+                           0
+                           (ite
+                              (and
+                                 (= next.|pre_up:8| 0)
+                                 (= next.|pre_in:34| 1))
+                              0
+                              (ite
+                                 (and
+                                    (= next.|pre_right:8| 0)
+                                    (= next.|pre_in:33| 2))
+                                 0
+                                 (ite
+                                    (and
+                                       (= next.|pre_down:8| 0)
+                                       (= next.|pre_in:32| 3))
+                                    0
+                                    next.|pre_p9|))))))))))
+      (= next.|p9:1:init| false)
+      (= next.|down:1| next.|p9:1|)
+      (ite
+         state.|p6:1:init|
+         (= next.|p6:1| next.|init:5|)
+         (=
+            next.|p6:1|
+            (ite
+               (and
+                  (= next.|pre_p6:4| 0)
+                  (= next.|pre_in:31| 0)
+                  (not
+                     (=
+                        next.|right:7|
+                        (- 1))))
+               next.|pre_right:7|
+               (ite
+                  (and
+                     (= next.|pre_p6:3| 0)
+                     (= next.|pre_in:30| 1)
+                     (not
+                        (=
+                           next.|down:1|
+                           (- 1))))
+                  next.|pre_down:7|
+                  (ite
+                     (and
+                        (= next.|pre_p6:2| 0)
+                        (= next.|pre_in:29| 2)
+                        (not
+                           (=
+                              next.|left:3|
+                              (- 1))))
+                     next.|pre_left:7|
+                     (ite
+                        (and
+                           (= next.|pre_p6:1| 0)
+                           (= next.|pre_in:28| 3)
+                           (not
+                              (=
+                                 next.|up:5|
+                                 (- 1))))
+                        next.|pre_up:7|
+                        (ite
+                           (and
+                              (= next.|pre_left:6| 0)
+                              (= next.|pre_in:27| 0))
+                           0
+                           (ite
+                              (and
+                                 (= next.|pre_up:6| 0)
+                                 (= next.|pre_in:26| 1))
+                              0
+                              (ite
+                                 (and
+                                    (= next.|pre_right:6| 0)
+                                    (= next.|pre_in:25| 2))
+                                 0
+                                 (ite
+                                    (and
+                                       (= next.|pre_down:6| 0)
+                                       (= next.|pre_in:24| 3))
+                                    0
+                                    next.|pre_p6|))))))))))
+      (= next.|p6:1:init| false)
+      (= next.down next.|p6:1|)
+      (ite
+         state.|p3:1:init|
+         (= next.|p3:1| next.|init:6|)
+         (=
+            next.|p3:1|
+            (ite
+               (and
+                  (= next.|pre_p3:4| 0)
+                  (= next.|pre_in:23| 0)
+                  (not
+                     (=
+                        next.|right:8|
+                        (- 1))))
+               next.|pre_right:5|
+               (ite
+                  (and
+                     (= next.|pre_p3:3| 0)
+                     (= next.|pre_in:22| 1)
+                     (not
+                        (=
+                           next.down
+                           (- 1))))
+                  next.|pre_down:5|
+                  (ite
+                     (and
+                        (= next.|pre_p3:2| 0)
+                        (= next.|pre_in:21| 2)
+                        (not
+                           (=
+                              next.|left:4|
+                              (- 1))))
+                     next.|pre_left:5|
+                     (ite
+                        (and
+                           (= next.|pre_p3:1| 0)
+                           (= next.|pre_in:20| 3)
+                           (not
+                              (=
+                                 next.|up:8|
+                                 (- 1))))
+                        next.|pre_up:5|
+                        (ite
+                           (and
+                              (= next.|pre_left:4| 0)
+                              (= next.|pre_in:19| 0))
+                           0
+                           (ite
+                              (and
+                                 (= next.|pre_up:4| 0)
+                                 (= next.|pre_in:18| 1))
+                              0
+                              (ite
+                                 (and
+                                    (= next.|pre_right:4| 0)
+                                    (= next.|pre_in:17| 2))
+                                 0
+                                 (ite
+                                    (and
+                                       (= next.|pre_down:4| 0)
+                                       (= next.|pre_in:16| 3))
+                                    0
+                                    next.|pre_p3|))))))))))
+      (= next.|p3:1:init| false)
+      (= next.|right:1| next.|p3:1|)
+      (ite
+         state.|p2:1:init|
+         (= next.|p2:1| next.|init:7|)
+         (=
+            next.|p2:1|
+            (ite
+               (and
+                  (= next.|pre_p2:4| 0)
+                  (= next.|pre_in:15| 0)
+                  (not
+                     (=
+                        next.|right:1|
+                        (- 1))))
+               next.|pre_right:3|
+               (ite
+                  (and
+                     (= next.|pre_p2:3| 0)
+                     (= next.|pre_in:14| 1)
+                     (not
+                        (=
+                           next.|down:4|
+                           (- 1))))
+                  next.|pre_down:3|
+                  (ite
+                     (and
+                        (= next.|pre_p2:2| 0)
+                        (= next.|pre_in:13| 2)
+                        (not
+                           (=
+                              next.|left:5|
+                              (- 1))))
+                     next.|pre_left:3|
+                     (ite
+                        (and
+                           (= next.|pre_p2:1| 0)
+                           (= next.|pre_in:12| 3)
+                           (not
+                              (=
+                                 next.|up:7|
+                                 (- 1))))
+                        next.|pre_up:3|
+                        (ite
+                           (and
+                              (= next.|pre_left:2| 0)
+                              (= next.|pre_in:11| 0))
+                           0
+                           (ite
+                              (and
+                                 (= next.|pre_up:2| 0)
+                                 (= next.|pre_in:10| 1))
+                              0
+                              (ite
+                                 (and
+                                    (= next.|pre_right:2| 0)
+                                    (= next.|pre_in:9| 2))
+                                 0
+                                 (ite
+                                    (and
+                                       (= next.|pre_down:2| 0)
+                                       (= next.|pre_in:8| 3))
+                                    0
+                                    next.|pre_p2|))))))))))
+      (= next.|p2:1:init| false)
+      (= next.right next.|p2:1|)
+      (=
+         next.solved
+         (and
+            (= next.|p1:1| 1)
+            (= next.|p2:1| 2)
+            (= next.|p3:1| 3)
+            (= next.|p4:1| 4)
+            (= next.|p5:1| 5)
+            (= next.|p6:1| 6)
+            (= next.|p7:1| 7)
+            (= next.|p8:1| 8)
+            (= next.|p9:1| 0)))
+      (=
+         next.prop
+         (not next.solved))
+      (= next.p8 next.|p8:1|)
+      (= next.|p:35| next.p8)
+      (= next.p9 next.|p9:1|)
+      (= next.|q:35| next.p9)
+      (=
+         next.|inv:35|
+         (and
+            (not
+               (= next.|p:35| 0))
+            (not
+               (= next.|q:35| 0))
+            (< next.|q:35| next.|p:35|)))
+      (= next.p7 next.|p7:1|)
+      (= next.|p:34| next.p7)
+      (= next.|q:34| next.p9)
+      (=
+         next.|inv:34|
+         (and
+            (not
+               (= next.|p:34| 0))
+            (not
+               (= next.|q:34| 0))
+            (< next.|q:34| next.|p:34|)))
+      (= next.|p:33| next.p7)
+      (= next.|q:33| next.p8)
+      (=
+         next.|inv:33|
+         (and
+            (not
+               (= next.|p:33| 0))
+            (not
+               (= next.|q:33| 0))
+            (< next.|q:33| next.|p:33|)))
+      (= next.p6 next.|p6:1|)
+      (= next.|p:32| next.p6)
+      (= next.|q:32| next.p9)
+      (=
+         next.|inv:32|
+         (and
+            (not
+               (= next.|p:32| 0))
+            (not
+               (= next.|q:32| 0))
+            (< next.|q:32| next.|p:32|)))
+      (= next.|p:31| next.p6)
+      (= next.|q:31| next.p8)
+      (=
+         next.|inv:31|
+         (and
+            (not
+               (= next.|p:31| 0))
+            (not
+               (= next.|q:31| 0))
+            (< next.|q:31| next.|p:31|)))
+      (= next.|p:30| next.p6)
+      (= next.|q:30| next.p7)
+      (=
+         next.|inv:30|
+         (and
+            (not
+               (= next.|p:30| 0))
+            (not
+               (= next.|q:30| 0))
+            (< next.|q:30| next.|p:30|)))
+      (= next.p5 next.|p5:1|)
+      (= next.|p:29| next.p5)
+      (= next.|q:29| next.p9)
+      (=
+         next.|inv:29|
+         (and
+            (not
+               (= next.|p:29| 0))
+            (not
+               (= next.|q:29| 0))
+            (< next.|q:29| next.|p:29|)))
+      (= next.|p:28| next.p5)
+      (= next.|q:28| next.p8)
+      (=
+         next.|inv:28|
+         (and
+            (not
+               (= next.|p:28| 0))
+            (not
+               (= next.|q:28| 0))
+            (< next.|q:28| next.|p:28|)))
+      (= next.|p:27| next.p5)
+      (= next.|q:27| next.p7)
+      (=
+         next.|inv:27|
+         (and
+            (not
+               (= next.|p:27| 0))
+            (not
+               (= next.|q:27| 0))
+            (< next.|q:27| next.|p:27|)))
+      (= next.|p:26| next.p5)
+      (= next.|q:26| next.p6)
+      (=
+         next.|inv:26|
+         (and
+            (not
+               (= next.|p:26| 0))
+            (not
+               (= next.|q:26| 0))
+            (< next.|q:26| next.|p:26|)))
+      (= next.p4 next.|p4:1|)
+      (= next.|p:25| next.p4)
+      (= next.|q:25| next.p9)
+      (=
+         next.|inv:25|
+         (and
+            (not
+               (= next.|p:25| 0))
+            (not
+               (= next.|q:25| 0))
+            (< next.|q:25| next.|p:25|)))
+      (= next.|p:24| next.p4)
+      (= next.|q:24| next.p8)
+      (=
+         next.|inv:24|
+         (and
+            (not
+               (= next.|p:24| 0))
+            (not
+               (= next.|q:24| 0))
+            (< next.|q:24| next.|p:24|)))
+      (= next.|p:23| next.p4)
+      (= next.|q:23| next.p7)
+      (=
+         next.|inv:23|
+         (and
+            (not
+               (= next.|p:23| 0))
+            (not
+               (= next.|q:23| 0))
+            (< next.|q:23| next.|p:23|)))
+      (= next.|p:22| next.p4)
+      (= next.|q:22| next.p6)
+      (=
+         next.|inv:22|
+         (and
+            (not
+               (= next.|p:22| 0))
+            (not
+               (= next.|q:22| 0))
+            (< next.|q:22| next.|p:22|)))
+      (= next.|p:21| next.p4)
+      (= next.|q:21| next.p5)
+      (=
+         next.|inv:21|
+         (and
+            (not
+               (= next.|p:21| 0))
+            (not
+               (= next.|q:21| 0))
+            (< next.|q:21| next.|p:21|)))
+      (= next.p3 next.|p3:1|)
+      (= next.|p:20| next.p3)
+      (= next.|q:20| next.p9)
+      (=
+         next.|inv:20|
+         (and
+            (not
+               (= next.|p:20| 0))
+            (not
+               (= next.|q:20| 0))
+            (< next.|q:20| next.|p:20|)))
+      (= next.|p:19| next.p3)
+      (= next.|q:19| next.p8)
+      (=
+         next.|inv:19|
+         (and
+            (not
+               (= next.|p:19| 0))
+            (not
+               (= next.|q:19| 0))
+            (< next.|q:19| next.|p:19|)))
+      (= next.|p:18| next.p3)
+      (= next.|q:18| next.p7)
+      (=
+         next.|inv:18|
+         (and
+            (not
+               (= next.|p:18| 0))
+            (not
+               (= next.|q:18| 0))
+            (< next.|q:18| next.|p:18|)))
+      (= next.|p:17| next.p3)
+      (= next.|q:17| next.p6)
+      (=
+         next.|inv:17|
+         (and
+            (not
+               (= next.|p:17| 0))
+            (not
+               (= next.|q:17| 0))
+            (< next.|q:17| next.|p:17|)))
+      (= next.|p:16| next.p3)
+      (= next.|q:16| next.p5)
+      (=
+         next.|inv:16|
+         (and
+            (not
+               (= next.|p:16| 0))
+            (not
+               (= next.|q:16| 0))
+            (< next.|q:16| next.|p:16|)))
+      (= next.|p:15| next.p3)
+      (= next.|q:15| next.p4)
+      (=
+         next.|inv:15|
+         (and
+            (not
+               (= next.|p:15| 0))
+            (not
+               (= next.|q:15| 0))
+            (< next.|q:15| next.|p:15|)))
+      (= next.p2 next.|p2:1|)
+      (= next.|p:14| next.p2)
+      (= next.|q:14| next.p9)
+      (=
+         next.|inv:14|
+         (and
+            (not
+               (= next.|p:14| 0))
+            (not
+               (= next.|q:14| 0))
+            (< next.|q:14| next.|p:14|)))
+      (= next.|p:13| next.p2)
+      (= next.|q:13| next.p8)
+      (=
+         next.|inv:13|
+         (and
+            (not
+               (= next.|p:13| 0))
+            (not
+               (= next.|q:13| 0))
+            (< next.|q:13| next.|p:13|)))
+      (= next.|p:12| next.p2)
+      (= next.|q:12| next.p7)
+      (=
+         next.|inv:12|
+         (and
+            (not
+               (= next.|p:12| 0))
+            (not
+               (= next.|q:12| 0))
+            (< next.|q:12| next.|p:12|)))
+      (= next.|p:11| next.p2)
+      (= next.|q:11| next.p6)
+      (=
+         next.|inv:11|
+         (and
+            (not
+               (= next.|p:11| 0))
+            (not
+               (= next.|q:11| 0))
+            (< next.|q:11| next.|p:11|)))
+      (= next.|p:10| next.p2)
+      (= next.|q:10| next.p5)
+      (=
+         next.|inv:10|
+         (and
+            (not
+               (= next.|p:10| 0))
+            (not
+               (= next.|q:10| 0))
+            (< next.|q:10| next.|p:10|)))
+      (= next.|p:9| next.p2)
+      (= next.|q:9| next.p4)
+      (=
+         next.|inv:9|
+         (and
+            (not
+               (= next.|p:9| 0))
+            (not
+               (= next.|q:9| 0))
+            (< next.|q:9| next.|p:9|)))
+      (= next.|p:8| next.p2)
+      (= next.|q:8| next.p3)
+      (=
+         next.|inv:8|
+         (and
+            (not
+               (= next.|p:8| 0))
+            (not
+               (= next.|q:8| 0))
+            (< next.|q:8| next.|p:8|)))
+      (= next.p1 next.|p1:1|)
+      (= next.|p:7| next.p1)
+      (= next.|q:7| next.p9)
+      (=
+         next.|inv:7|
+         (and
+            (not
+               (= next.|p:7| 0))
+            (not
+               (= next.|q:7| 0))
+            (< next.|q:7| next.|p:7|)))
+      (= next.|p:6| next.p1)
+      (= next.|q:6| next.p8)
+      (=
+         next.|inv:6|
+         (and
+            (not
+               (= next.|p:6| 0))
+            (not
+               (= next.|q:6| 0))
+            (< next.|q:6| next.|p:6|)))
+      (= next.|p:5| next.p1)
+      (= next.|q:5| next.p7)
+      (=
+         next.|inv:5|
+         (and
+            (not
+               (= next.|p:5| 0))
+            (not
+               (= next.|q:5| 0))
+            (< next.|q:5| next.|p:5|)))
+      (= next.|p:4| next.p1)
+      (= next.|q:4| next.p6)
+      (=
+         next.|inv:4|
+         (and
+            (not
+               (= next.|p:4| 0))
+            (not
+               (= next.|q:4| 0))
+            (< next.|q:4| next.|p:4|)))
+      (= next.|p:3| next.p1)
+      (= next.|q:3| next.p5)
+      (=
+         next.|inv:3|
+         (and
+            (not
+               (= next.|p:3| 0))
+            (not
+               (= next.|q:3| 0))
+            (< next.|q:3| next.|p:3|)))
+      (= next.|p:2| next.p1)
+      (= next.|q:2| next.p4)
+      (=
+         next.|inv:2|
+         (and
+            (not
+               (= next.|p:2| 0))
+            (not
+               (= next.|q:2| 0))
+            (< next.|q:2| next.|p:2|)))
+      (= next.|p:1| next.p1)
+      (= next.|q:1| next.p3)
+      (=
+         next.|inv:1|
+         (and
+            (not
+               (= next.|p:1| 0))
+            (not
+               (= next.|q:1| 0))
+            (< next.|q:1| next.|p:1|)))
+      (= next.p next.p1)
+      (= next.q next.p2)
+      (=
+         next.inv
+         (and
+            (not
+               (= next.p 0))
+            (not
+               (= next.q 0))
+            (< next.q next.p)))
+      (=
+         next.inverted
+         (not
+            (=
+               (not
+                  (=
+                     (not
+                        (=
+                           (not
+                              (=
+                                 (not
+                                    (=
+                                       (not
+                                          (=
+                                             (not
+                                                (=
+                                                   (not
+                                                      (=
+                                                         (not
+                                                            (=
+                                                               (not
+                                                                  (=
+                                                                     (not
+                                                                        (=
+                                                                           (not
+                                                                              (=
+                                                                                 (not
+                                                                                    (=
+                                                                                       (not
+                                                                                          (=
+                                                                                             (not
+                                                                                                (=
+                                                                                                   (not
+                                                                                                      (=
+                                                                                                         (not
+                                                                                                            (=
+                                                                                                               (not
+                                                                                                                  (=
+                                                                                                                     (not
+                                                                                                                        (=
+                                                                                                                           (not
+                                                                                                                              (=
+                                                                                                                                 (not
+                                                                                                                                    (=
+                                                                                                                                       (not
+                                                                                                                                          (=
+                                                                                                                                             (not
+                                                                                                                                                (=
+                                                                                                                                                   (not
+                                                                                                                                                      (=
+                                                                                                                                                         (not
+                                                                                                                                                            (=
+                                                                                                                                                               (not
+                                                                                                                                                                  (=
+                                                                                                                                                                     (not
+                                                                                                                                                                        (=
+                                                                                                                                                                           (not
+                                                                                                                                                                              (=
+                                                                                                                                                                                 (not
+                                                                                                                                                                                    (=
+                                                                                                                                                                                       (not
+                                                                                                                                                                                          (=
+                                                                                                                                                                                             (not
+                                                                                                                                                                                                (=
+                                                                                                                                                                                                   (not
+                                                                                                                                                                                                      (=
+                                                                                                                                                                                                         (not
+                                                                                                                                                                                                            (=
+                                                                                                                                                                                                               (not
+                                                                                                                                                                                                                  (=
+                                                                                                                                                                                                                     (not
+                                                                                                                                                                                                                        (= next.inv next.|inv:1|))
+                                                                                                                                                                                                                     next.|inv:2|))
+                                                                                                                                                                                                               next.|inv:3|))
+                                                                                                                                                                                                         next.|inv:4|))
+                                                                                                                                                                                                   next.|inv:5|))
+                                                                                                                                                                                             next.|inv:6|))
+                                                                                                                                                                                       next.|inv:7|))
+                                                                                                                                                                                 next.|inv:8|))
+                                                                                                                                                                           next.|inv:9|))
+                                                                                                                                                                     next.|inv:10|))
+                                                                                                                                                               next.|inv:11|))
+                                                                                                                                                         next.|inv:12|))
+                                                                                                                                                   next.|inv:13|))
+                                                                                                                                             next.|inv:14|))
+                                                                                                                                       next.|inv:15|))
+                                                                                                                                 next.|inv:16|))
+                                                                                                                           next.|inv:17|))
+                                                                                                                     next.|inv:18|))
+                                                                                                               next.|inv:19|))
+                                                                                                         next.|inv:20|))
+                                                                                                   next.|inv:21|))
+                                                                                             next.|inv:22|))
+                                                                                       next.|inv:23|))
+                                                                                 next.|inv:24|))
+                                                                           next.|inv:25|))
+                                                                     next.|inv:26|))
+                                                               next.|inv:27|))
+                                                         next.|inv:28|))
+                                                   next.|inv:29|))
+                                             next.|inv:30|))
+                                       next.|inv:31|))
+                                 next.|inv:32|))
+                           next.|inv:33|))
+                     next.|inv:34|))
+               next.|inv:35|)))
+      (=
+         next.distinct
+         (and
+            (not
+               (= next.|p1:1| next.|p2:1|))
+            (not
+               (= next.|p1:1| next.|p3:1|))
+            (not
+               (= next.|p1:1| next.|p4:1|))
+            (not
+               (= next.|p1:1| next.|p5:1|))
+            (not
+               (= next.|p1:1| next.|p6:1|))
+            (not
+               (= next.|p1:1| next.|p7:1|))
+            (not
+               (= next.|p1:1| next.|p8:1|))
+            (not
+               (= next.|p1:1| next.|p9:1|))
+            (not
+               (= next.|p2:1| next.|p3:1|))
+            (not
+               (= next.|p2:1| next.|p4:1|))
+            (not
+               (= next.|p2:1| next.|p5:1|))
+            (not
+               (= next.|p2:1| next.|p6:1|))
+            (not
+               (= next.|p2:1| next.|p7:1|))
+            (not
+               (= next.|p2:1| next.|p8:1|))
+            (not
+               (= next.|p2:1| next.|p9:1|))
+            (not
+               (= next.|p3:1| next.|p4:1|))
+            (not
+               (= next.|p3:1| next.|p5:1|))
+            (not
+               (= next.|p3:1| next.|p6:1|))
+            (not
+               (= next.|p3:1| next.|p7:1|))
+            (not
+               (= next.|p3:1| next.|p8:1|))
+            (not
+               (= next.|p3:1| next.|p9:1|))
+            (not
+               (= next.|p4:1| next.|p5:1|))
+            (not
+               (= next.|p4:1| next.|p6:1|))
+            (not
+               (= next.|p4:1| next.|p7:1|))
+            (not
+               (= next.|p4:1| next.|p8:1|))
+            (not
+               (= next.|p4:1| next.|p9:1|))
+            (not
+               (= next.|p5:1| next.|p6:1|))
+            (not
+               (= next.|p5:1| next.|p7:1|))
+            (not
+               (= next.|p5:1| next.|p8:1|))
+            (not
+               (= next.|p5:1| next.|p9:1|))
+            (not
+               (= next.|p6:1| next.|p7:1|))
+            (not
+               (= next.|p6:1| next.|p8:1|))
+            (not
+               (= next.|p6:1| next.|p9:1|))
+            (not
+               (= next.|p7:1| next.|p8:1|))
+            (not
+               (= next.|p7:1| next.|p9:1|))
+            (not
+               (= next.|p8:1| next.|p9:1|))))
+      (= next.|in:8| next.|in:9|)
+      (= next.|in:7| next.|in:9|)
+      (= next.|in:6| next.|in:9|)
+      (= next.|in:5| next.|in:9|)
+      (= next.|in:4| next.|in:9|)
+      (= next.|in:3| next.|in:9|)
+      (= next.|in:2| next.|in:9|)
+      (= next.|in:1| next.|in:9|)
+      (= next.in next.|in:9|)))
+
+(query
+   TS
+   (or |gal-initializing| distinct))
+(query
+   TS
+   (or |gal-initializing| inverted))
+(query
+   TS
+   (or |gal-initializing| prop))
+
+[Lustre] Validating properties:
+[Lustre] Property distinct... considering simultaneous states to depth 0
+considering simultaneous states to depth 0
+considering simultaneous states to depth 1
+considering simultaneous states to depth 1
+[[1;92mValid[0m] considering simultaneous states to depth 1
+[Lustre] Property inverted... considering simultaneous states to depth 0
+considering simultaneous states to depth 0
+considering simultaneous states to depth 1
+considering simultaneous states to depth 1
+considering simultaneous states to depth 2
+considering simultaneous states to depth 2
+considering simultaneous states to depth 3
+considering simultaneous states to depth 3
+considering simultaneous states to depth 4
+considering simultaneous states to depth 4
+considering simultaneous states to depth 5
+considering simultaneous states to depth 5
+considering simultaneous states to depth 6
+considering simultaneous states to depth 6
+considering simultaneous states to depth 7
+considering simultaneous states to depth 7
+considering simultaneous states to depth 8
+considering simultaneous states to depth 8
+considering simultaneous states to depth 9
+[[1;91mError[0m] Sally error:
+Timeout
+[[1;91mError[0m] ExitFailure 1
 

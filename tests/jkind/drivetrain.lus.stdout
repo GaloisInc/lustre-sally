@@ -1,14 +1,1992 @@
-[[1;91mError[0m] You have encountered a bug in Lustre's implementation.
-*** Please create an issue at https://github.com/GaloisInc/lustre
+Core Lustre
+===========
 
-%< --------------------------------------------------- 
-  Revision:  7fe955e11b32795aed600477643f02f8f12d55c9
-  Branch:    master
-  Location:  evalNodeDecl
-  Message:   recursive eqns
-             TODO: report properly
-CallStack (from HasCallStack):
-  panic, called at ./Language/Lustre/Panic.hs:15:9 in language-lustre-0.1.0.0-inplace:Language.Lustre.Panic
-%< --------------------------------------------------- 
+node (throttle_in : real, slope_in : real)
+  returns (transmission_rotation_out, load_out, gear_out)
+  assumes ()
+  shows (sweet_spot_max_throttleB1, sweet_spot_max_throttleA1, sweet_spot_no_chatter1, no_chatter_B1, no_chatter_A1, no_stall_B1, no_stall_A1)
+let
+  load_out : real
+    = Add(500.0, Mul(10000.0, slope_in))
+   
+  rec
+    gear_out : int
+      = ITE(Lt(ITE(Gt(Sub(Mul(120.0, throttle_in), Mul((11792453.0 / 50000000.0), load_out)), 0.0), Sub(Mul(120.0, throttle_in), Mul((11792453.0 / 50000000.0), load_out)), 0.0), (2122641513.0 / 5000000.0)), 1, ITE(And(Geq(ITE(Gt(Sub(Mul(120.0, throttle_in), Mul((11792453.0 / 50000000.0), load_out)), 0.0), Sub(Mul(120.0, throttle_in), Mul((11792453.0 / 50000000.0), load_out)), 0.0), (2122641513.0 / 5000000.0)), Lt(ITE(Gt(Sub(Mul(120.0, throttle_in), Mul((11792453.0 / 50000000.0), load_out)), 0.0), Sub(Mul(120.0, throttle_in), Mul((11792453.0 / 50000000.0), load_out)), 0.0), (737704917.0 / 1250000.0))), 2, ITE(And(Geq(ITE(Gt(Sub(Mul(120.0, throttle_in), Mul((11792453.0 / 50000000.0), load_out)), 0.0), Sub(Mul(120.0, throttle_in), Mul((11792453.0 / 50000000.0), load_out)), 0.0), (737704917.0 / 1250000.0)), Lt(ITE(Gt(Sub(Mul(120.0, throttle_in), Mul((11792453.0 / 50000000.0), load_out)), 0.0), Sub(Mul(120.0, throttle_in), Mul((11792453.0 / 50000000.0), load_out)), 0.0), (3879310347.0 / 5000000.0))), 3, ITE(And(Geq(ITE(Gt(Sub(Mul(120.0, throttle_in), Mul((11792453.0 / 50000000.0), load_out)), 0.0), Sub(Mul(120.0, throttle_in), Mul((11792453.0 / 50000000.0), load_out)), 0.0), (3879310347.0 / 5000000.0)), Lt(ITE(Gt(Sub(Mul(120.0, throttle_in), Mul((11792453.0 / 50000000.0), load_out)), 0.0), Sub(Mul(120.0, throttle_in), Mul((11792453.0 / 50000000.0), load_out)), 0.0), (1077844311.0 / 1000000.0))), 4, ITE(And(Geq(ITE(Gt(Sub(Mul(120.0, throttle_in), Mul((11792453.0 / 50000000.0), load_out)), 0.0), Sub(Mul(120.0, throttle_in), Mul((11792453.0 / 50000000.0), load_out)), 0.0), (1077844311.0 / 1000000.0)), Lt(ITE(Gt(Sub(Mul(120.0, throttle_in), Mul((11792453.0 / 50000000.0), load_out)), 0.0), Sub(Mul(120.0, throttle_in), Mul((11792453.0 / 50000000.0), load_out)), 0.0), 1800.0)), 5, ITE(And(Geq(ITE(Gt(Sub(Mul(120.0, throttle_in), Mul((11792453.0 / 50000000.0), load_out)), 0.0), Sub(Mul(120.0, throttle_in), Mul((11792453.0 / 50000000.0), load_out)), 0.0), 1800.0), Lt(ITE(Gt(Sub(Mul(120.0, throttle_in), Mul((11792453.0 / 50000000.0), load_out)), 0.0), Sub(Mul(120.0, throttle_in), Mul((11792453.0 / 50000000.0), load_out)), 0.0), 99999.0)), 6, 1)))))) -> ITE(Lt(ITE(Gt(Sub(Mul(120.0, throttle_in), ITE(Eq(gear_out, 1), Mul((11792453.0 / 50000000.0), load_out), ITE(Eq(gear_out, 2), Mul((6557377.0 / 20000000.0), load_out), ITE(Eq(gear_out, 3), Mul((5387931.0 / 12500000.0), load_out), ITE(Eq(gear_out, 4), Mul((59880239.0 / 100000000.0), load_out), ITE(Eq(gear_out, 5), Mul(1.0, load_out), ITE(Eq(gear_out, 6), Mul((138888889.0 / 100000000.0), load_out), Mul(1.0, load_out)))))))), 0.0), Sub(Mul(120.0, throttle_in), ITE(Eq(gear_out, 1), Mul((11792453.0 / 50000000.0), load_out), ITE(Eq(gear_out, 2), Mul((6557377.0 / 20000000.0), load_out), ITE(Eq(gear_out, 3), Mul((5387931.0 / 12500000.0), load_out), ITE(Eq(gear_out, 4), Mul((59880239.0 / 100000000.0), load_out), ITE(Eq(gear_out, 5), Mul(1.0, load_out), ITE(Eq(gear_out, 6), Mul((138888889.0 / 100000000.0), load_out), Mul(1.0, load_out)))))))), 0.0), (2122641513.0 / 5000000.0)), 1, ITE(And(Geq(ITE(Gt(Sub(Mul(120.0, throttle_in), ITE(Eq(gear_out, 1), Mul((11792453.0 / 50000000.0), load_out), ITE(Eq(gear_out, 2), Mul((6557377.0 / 20000000.0), load_out), ITE(Eq(gear_out, 3), Mul((5387931.0 / 12500000.0), load_out), ITE(Eq(gear_out, 4), Mul((59880239.0 / 100000000.0), load_out), ITE(Eq(gear_out, 5), Mul(1.0, load_out), ITE(Eq(gear_out, 6), Mul((138888889.0 / 100000000.0), load_out), Mul(1.0, load_out)))))))), 0.0), Sub(Mul(120.0, throttle_in), ITE(Eq(gear_out, 1), Mul((11792453.0 / 50000000.0), load_out), ITE(Eq(gear_out, 2), Mul((6557377.0 / 20000000.0), load_out), ITE(Eq(gear_out, 3), Mul((5387931.0 / 12500000.0), load_out), ITE(Eq(gear_out, 4), Mul((59880239.0 / 100000000.0), load_out), ITE(Eq(gear_out, 5), Mul(1.0, load_out), ITE(Eq(gear_out, 6), Mul((138888889.0 / 100000000.0), load_out), Mul(1.0, load_out)))))))), 0.0), (2122641513.0 / 5000000.0)), Lt(ITE(Gt(Sub(Mul(120.0, throttle_in), ITE(Eq(gear_out, 1), Mul((11792453.0 / 50000000.0), load_out), ITE(Eq(gear_out, 2), Mul((6557377.0 / 20000000.0), load_out), ITE(Eq(gear_out, 3), Mul((5387931.0 / 12500000.0), load_out), ITE(Eq(gear_out, 4), Mul((59880239.0 / 100000000.0), load_out), ITE(Eq(gear_out, 5), Mul(1.0, load_out), ITE(Eq(gear_out, 6), Mul((138888889.0 / 100000000.0), load_out), Mul(1.0, load_out)))))))), 0.0), Sub(Mul(120.0, throttle_in), ITE(Eq(gear_out, 1), Mul((11792453.0 / 50000000.0), load_out), ITE(Eq(gear_out, 2), Mul((6557377.0 / 20000000.0), load_out), ITE(Eq(gear_out, 3), Mul((5387931.0 / 12500000.0), load_out), ITE(Eq(gear_out, 4), Mul((59880239.0 / 100000000.0), load_out), ITE(Eq(gear_out, 5), Mul(1.0, load_out), ITE(Eq(gear_out, 6), Mul((138888889.0 / 100000000.0), load_out), Mul(1.0, load_out)))))))), 0.0), (737704917.0 / 1250000.0))), 2, ITE(And(Geq(ITE(Gt(Sub(Mul(120.0, throttle_in), ITE(Eq(gear_out, 1), Mul((11792453.0 / 50000000.0), load_out), ITE(Eq(gear_out, 2), Mul((6557377.0 / 20000000.0), load_out), ITE(Eq(gear_out, 3), Mul((5387931.0 / 12500000.0), load_out), ITE(Eq(gear_out, 4), Mul((59880239.0 / 100000000.0), load_out), ITE(Eq(gear_out, 5), Mul(1.0, load_out), ITE(Eq(gear_out, 6), Mul((138888889.0 / 100000000.0), load_out), Mul(1.0, load_out)))))))), 0.0), Sub(Mul(120.0, throttle_in), ITE(Eq(gear_out, 1), Mul((11792453.0 / 50000000.0), load_out), ITE(Eq(gear_out, 2), Mul((6557377.0 / 20000000.0), load_out), ITE(Eq(gear_out, 3), Mul((5387931.0 / 12500000.0), load_out), ITE(Eq(gear_out, 4), Mul((59880239.0 / 100000000.0), load_out), ITE(Eq(gear_out, 5), Mul(1.0, load_out), ITE(Eq(gear_out, 6), Mul((138888889.0 / 100000000.0), load_out), Mul(1.0, load_out)))))))), 0.0), (737704917.0 / 1250000.0)), Lt(ITE(Gt(Sub(Mul(120.0, throttle_in), ITE(Eq(gear_out, 1), Mul((11792453.0 / 50000000.0), load_out), ITE(Eq(gear_out, 2), Mul((6557377.0 / 20000000.0), load_out), ITE(Eq(gear_out, 3), Mul((5387931.0 / 12500000.0), load_out), ITE(Eq(gear_out, 4), Mul((59880239.0 / 100000000.0), load_out), ITE(Eq(gear_out, 5), Mul(1.0, load_out), ITE(Eq(gear_out, 6), Mul((138888889.0 / 100000000.0), load_out), Mul(1.0, load_out)))))))), 0.0), Sub(Mul(120.0, throttle_in), ITE(Eq(gear_out, 1), Mul((11792453.0 / 50000000.0), load_out), ITE(Eq(gear_out, 2), Mul((6557377.0 / 20000000.0), load_out), ITE(Eq(gear_out, 3), Mul((5387931.0 / 12500000.0), load_out), ITE(Eq(gear_out, 4), Mul((59880239.0 / 100000000.0), load_out), ITE(Eq(gear_out, 5), Mul(1.0, load_out), ITE(Eq(gear_out, 6), Mul((138888889.0 / 100000000.0), load_out), Mul(1.0, load_out)))))))), 0.0), (3879310347.0 / 5000000.0))), 3, ITE(And(Geq(ITE(Gt(Sub(Mul(120.0, throttle_in), ITE(Eq(gear_out, 1), Mul((11792453.0 / 50000000.0), load_out), ITE(Eq(gear_out, 2), Mul((6557377.0 / 20000000.0), load_out), ITE(Eq(gear_out, 3), Mul((5387931.0 / 12500000.0), load_out), ITE(Eq(gear_out, 4), Mul((59880239.0 / 100000000.0), load_out), ITE(Eq(gear_out, 5), Mul(1.0, load_out), ITE(Eq(gear_out, 6), Mul((138888889.0 / 100000000.0), load_out), Mul(1.0, load_out)))))))), 0.0), Sub(Mul(120.0, throttle_in), ITE(Eq(gear_out, 1), Mul((11792453.0 / 50000000.0), load_out), ITE(Eq(gear_out, 2), Mul((6557377.0 / 20000000.0), load_out), ITE(Eq(gear_out, 3), Mul((5387931.0 / 12500000.0), load_out), ITE(Eq(gear_out, 4), Mul((59880239.0 / 100000000.0), load_out), ITE(Eq(gear_out, 5), Mul(1.0, load_out), ITE(Eq(gear_out, 6), Mul((138888889.0 / 100000000.0), load_out), Mul(1.0, load_out)))))))), 0.0), (3879310347.0 / 5000000.0)), Lt(ITE(Gt(Sub(Mul(120.0, throttle_in), ITE(Eq(gear_out, 1), Mul((11792453.0 / 50000000.0), load_out), ITE(Eq(gear_out, 2), Mul((6557377.0 / 20000000.0), load_out), ITE(Eq(gear_out, 3), Mul((5387931.0 / 12500000.0), load_out), ITE(Eq(gear_out, 4), Mul((59880239.0 / 100000000.0), load_out), ITE(Eq(gear_out, 5), Mul(1.0, load_out), ITE(Eq(gear_out, 6), Mul((138888889.0 / 100000000.0), load_out), Mul(1.0, load_out)))))))), 0.0), Sub(Mul(120.0, throttle_in), ITE(Eq(gear_out, 1), Mul((11792453.0 / 50000000.0), load_out), ITE(Eq(gear_out, 2), Mul((6557377.0 / 20000000.0), load_out), ITE(Eq(gear_out, 3), Mul((5387931.0 / 12500000.0), load_out), ITE(Eq(gear_out, 4), Mul((59880239.0 / 100000000.0), load_out), ITE(Eq(gear_out, 5), Mul(1.0, load_out), ITE(Eq(gear_out, 6), Mul((138888889.0 / 100000000.0), load_out), Mul(1.0, load_out)))))))), 0.0), (1077844311.0 / 1000000.0))), 4, ITE(And(Geq(ITE(Gt(Sub(Mul(120.0, throttle_in), ITE(Eq(gear_out, 1), Mul((11792453.0 / 50000000.0), load_out), ITE(Eq(gear_out, 2), Mul((6557377.0 / 20000000.0), load_out), ITE(Eq(gear_out, 3), Mul((5387931.0 / 12500000.0), load_out), ITE(Eq(gear_out, 4), Mul((59880239.0 / 100000000.0), load_out), ITE(Eq(gear_out, 5), Mul(1.0, load_out), ITE(Eq(gear_out, 6), Mul((138888889.0 / 100000000.0), load_out), Mul(1.0, load_out)))))))), 0.0), Sub(Mul(120.0, throttle_in), ITE(Eq(gear_out, 1), Mul((11792453.0 / 50000000.0), load_out), ITE(Eq(gear_out, 2), Mul((6557377.0 / 20000000.0), load_out), ITE(Eq(gear_out, 3), Mul((5387931.0 / 12500000.0), load_out), ITE(Eq(gear_out, 4), Mul((59880239.0 / 100000000.0), load_out), ITE(Eq(gear_out, 5), Mul(1.0, load_out), ITE(Eq(gear_out, 6), Mul((138888889.0 / 100000000.0), load_out), Mul(1.0, load_out)))))))), 0.0), (1077844311.0 / 1000000.0)), Lt(ITE(Gt(Sub(Mul(120.0, throttle_in), ITE(Eq(gear_out, 1), Mul((11792453.0 / 50000000.0), load_out), ITE(Eq(gear_out, 2), Mul((6557377.0 / 20000000.0), load_out), ITE(Eq(gear_out, 3), Mul((5387931.0 / 12500000.0), load_out), ITE(Eq(gear_out, 4), Mul((59880239.0 / 100000000.0), load_out), ITE(Eq(gear_out, 5), Mul(1.0, load_out), ITE(Eq(gear_out, 6), Mul((138888889.0 / 100000000.0), load_out), Mul(1.0, load_out)))))))), 0.0), Sub(Mul(120.0, throttle_in), ITE(Eq(gear_out, 1), Mul((11792453.0 / 50000000.0), load_out), ITE(Eq(gear_out, 2), Mul((6557377.0 / 20000000.0), load_out), ITE(Eq(gear_out, 3), Mul((5387931.0 / 12500000.0), load_out), ITE(Eq(gear_out, 4), Mul((59880239.0 / 100000000.0), load_out), ITE(Eq(gear_out, 5), Mul(1.0, load_out), ITE(Eq(gear_out, 6), Mul((138888889.0 / 100000000.0), load_out), Mul(1.0, load_out)))))))), 0.0), 1800.0)), 5, ITE(And(Geq(ITE(Gt(Sub(Mul(120.0, throttle_in), ITE(Eq(gear_out, 1), Mul((11792453.0 / 50000000.0), load_out), ITE(Eq(gear_out, 2), Mul((6557377.0 / 20000000.0), load_out), ITE(Eq(gear_out, 3), Mul((5387931.0 / 12500000.0), load_out), ITE(Eq(gear_out, 4), Mul((59880239.0 / 100000000.0), load_out), ITE(Eq(gear_out, 5), Mul(1.0, load_out), ITE(Eq(gear_out, 6), Mul((138888889.0 / 100000000.0), load_out), Mul(1.0, load_out)))))))), 0.0), Sub(Mul(120.0, throttle_in), ITE(Eq(gear_out, 1), Mul((11792453.0 / 50000000.0), load_out), ITE(Eq(gear_out, 2), Mul((6557377.0 / 20000000.0), load_out), ITE(Eq(gear_out, 3), Mul((5387931.0 / 12500000.0), load_out), ITE(Eq(gear_out, 4), Mul((59880239.0 / 100000000.0), load_out), ITE(Eq(gear_out, 5), Mul(1.0, load_out), ITE(Eq(gear_out, 6), Mul((138888889.0 / 100000000.0), load_out), Mul(1.0, load_out)))))))), 0.0), 1800.0), Lt(ITE(Gt(Sub(Mul(120.0, throttle_in), ITE(Eq(gear_out, 1), Mul((11792453.0 / 50000000.0), load_out), ITE(Eq(gear_out, 2), Mul((6557377.0 / 20000000.0), load_out), ITE(Eq(gear_out, 3), Mul((5387931.0 / 12500000.0), load_out), ITE(Eq(gear_out, 4), Mul((59880239.0 / 100000000.0), load_out), ITE(Eq(gear_out, 5), Mul(1.0, load_out), ITE(Eq(gear_out, 6), Mul((138888889.0 / 100000000.0), load_out), Mul(1.0, load_out)))))))), 0.0), Sub(Mul(120.0, throttle_in), ITE(Eq(gear_out, 1), Mul((11792453.0 / 50000000.0), load_out), ITE(Eq(gear_out, 2), Mul((6557377.0 / 20000000.0), load_out), ITE(Eq(gear_out, 3), Mul((5387931.0 / 12500000.0), load_out), ITE(Eq(gear_out, 4), Mul((59880239.0 / 100000000.0), load_out), ITE(Eq(gear_out, 5), Mul(1.0, load_out), ITE(Eq(gear_out, 6), Mul((138888889.0 / 100000000.0), load_out), Mul(1.0, load_out)))))))), 0.0), 99999.0)), 6, 1))))))
+   
+  transmission_rotation_out : real
+    = ITE(Gt(Sub(Mul(120.0, throttle_in), Mul((11792453.0 / 50000000.0), load_out)), 0.0), Mul(Sub(Mul(120.0, throttle_in), Mul((11792453.0 / 50000000.0), load_out)), (11792453.0 / 50000000.0)), Mul(0.0, (11792453.0 / 50000000.0))) -> ITE(Gt(Sub(Mul(120.0, throttle_in), ITE(Eq(gear_out, 1), Mul((11792453.0 / 50000000.0), load_out), ITE(Eq(gear_out, 2), Mul((6557377.0 / 20000000.0), load_out), ITE(Eq(gear_out, 3), Mul((5387931.0 / 12500000.0), load_out), ITE(Eq(gear_out, 4), Mul((59880239.0 / 100000000.0), load_out), ITE(Eq(gear_out, 5), Mul(1.0, load_out), ITE(Eq(gear_out, 6), Mul((138888889.0 / 100000000.0), load_out), Mul(1.0, load_out)))))))), 0.0), ITE(Eq(gear_out, 1), Mul(Sub(Mul(120.0, throttle_in), ITE(Eq(gear_out, 1), Mul((11792453.0 / 50000000.0), load_out), ITE(Eq(gear_out, 2), Mul((6557377.0 / 20000000.0), load_out), ITE(Eq(gear_out, 3), Mul((5387931.0 / 12500000.0), load_out), ITE(Eq(gear_out, 4), Mul((59880239.0 / 100000000.0), load_out), ITE(Eq(gear_out, 5), Mul(1.0, load_out), ITE(Eq(gear_out, 6), Mul((138888889.0 / 100000000.0), load_out), Mul(1.0, load_out)))))))), (11792453.0 / 50000000.0)), ITE(Eq(gear_out, 2), Mul(Sub(Mul(120.0, throttle_in), ITE(Eq(gear_out, 1), Mul((11792453.0 / 50000000.0), load_out), ITE(Eq(gear_out, 2), Mul((6557377.0 / 20000000.0), load_out), ITE(Eq(gear_out, 3), Mul((5387931.0 / 12500000.0), load_out), ITE(Eq(gear_out, 4), Mul((59880239.0 / 100000000.0), load_out), ITE(Eq(gear_out, 5), Mul(1.0, load_out), ITE(Eq(gear_out, 6), Mul((138888889.0 / 100000000.0), load_out), Mul(1.0, load_out)))))))), (6557377.0 / 20000000.0)), ITE(Eq(gear_out, 3), Mul(Sub(Mul(120.0, throttle_in), ITE(Eq(gear_out, 1), Mul((11792453.0 / 50000000.0), load_out), ITE(Eq(gear_out, 2), Mul((6557377.0 / 20000000.0), load_out), ITE(Eq(gear_out, 3), Mul((5387931.0 / 12500000.0), load_out), ITE(Eq(gear_out, 4), Mul((59880239.0 / 100000000.0), load_out), ITE(Eq(gear_out, 5), Mul(1.0, load_out), ITE(Eq(gear_out, 6), Mul((138888889.0 / 100000000.0), load_out), Mul(1.0, load_out)))))))), (5387931.0 / 12500000.0)), ITE(Eq(gear_out, 4), Mul(Sub(Mul(120.0, throttle_in), ITE(Eq(gear_out, 1), Mul((11792453.0 / 50000000.0), load_out), ITE(Eq(gear_out, 2), Mul((6557377.0 / 20000000.0), load_out), ITE(Eq(gear_out, 3), Mul((5387931.0 / 12500000.0), load_out), ITE(Eq(gear_out, 4), Mul((59880239.0 / 100000000.0), load_out), ITE(Eq(gear_out, 5), Mul(1.0, load_out), ITE(Eq(gear_out, 6), Mul((138888889.0 / 100000000.0), load_out), Mul(1.0, load_out)))))))), (59880239.0 / 100000000.0)), ITE(Eq(gear_out, 5), Mul(Sub(Mul(120.0, throttle_in), ITE(Eq(gear_out, 1), Mul((11792453.0 / 50000000.0), load_out), ITE(Eq(gear_out, 2), Mul((6557377.0 / 20000000.0), load_out), ITE(Eq(gear_out, 3), Mul((5387931.0 / 12500000.0), load_out), ITE(Eq(gear_out, 4), Mul((59880239.0 / 100000000.0), load_out), ITE(Eq(gear_out, 5), Mul(1.0, load_out), ITE(Eq(gear_out, 6), Mul((138888889.0 / 100000000.0), load_out), Mul(1.0, load_out)))))))), 1.0), ITE(Eq(gear_out, 6), Mul(Sub(Mul(120.0, throttle_in), ITE(Eq(gear_out, 1), Mul((11792453.0 / 50000000.0), load_out), ITE(Eq(gear_out, 2), Mul((6557377.0 / 20000000.0), load_out), ITE(Eq(gear_out, 3), Mul((5387931.0 / 12500000.0), load_out), ITE(Eq(gear_out, 4), Mul((59880239.0 / 100000000.0), load_out), ITE(Eq(gear_out, 5), Mul(1.0, load_out), ITE(Eq(gear_out, 6), Mul((138888889.0 / 100000000.0), load_out), Mul(1.0, load_out)))))))), (138888889.0 / 100000000.0)), Mul(Sub(Mul(120.0, throttle_in), ITE(Eq(gear_out, 1), Mul((11792453.0 / 50000000.0), load_out), ITE(Eq(gear_out, 2), Mul((6557377.0 / 20000000.0), load_out), ITE(Eq(gear_out, 3), Mul((5387931.0 / 12500000.0), load_out), ITE(Eq(gear_out, 4), Mul((59880239.0 / 100000000.0), load_out), ITE(Eq(gear_out, 5), Mul(1.0, load_out), ITE(Eq(gear_out, 6), Mul((138888889.0 / 100000000.0), load_out), Mul(1.0, load_out)))))))), 1.0))))))), ITE(Eq(gear_out, 1), Mul(0.0, (11792453.0 / 50000000.0)), ITE(Eq(gear_out, 2), Mul(0.0, (6557377.0 / 20000000.0)), ITE(Eq(gear_out, 3), Mul(0.0, (5387931.0 / 12500000.0)), ITE(Eq(gear_out, 4), Mul(0.0, (59880239.0 / 100000000.0)), ITE(Eq(gear_out, 5), Mul(0.0, 1.0), ITE(Eq(gear_out, 6), Mul(0.0, (138888889.0 / 100000000.0)), Mul(0.0, 1.0))))))))
+   
+  pre_always_holds6 : bool
+    = pre always_holds6
+   
+  always_holds6 : bool
+    = And(Leq(Neg((1.0 / 10.0)), slope_in), Leq(slope_in, (1.0 / 10.0))) -> And(And(And(And(Leq(1100.0, transmission_rotation_out), Leq(transmission_rotation_out, 1800.0)), Leq(Neg((1.0 / 10.0)), slope_in)), Leq(slope_in, (1.0 / 10.0))), pre_always_holds6)
+   
+  pre_always_holds5 : bool
+    = pre always_holds5
+   
+  always_holds5 : bool
+    = And(Leq(Neg((1.0 / 20.0)), slope_in), Leq(slope_in, (1.0 / 20.0))) -> And(And(And(And(Leq(1100.0, transmission_rotation_out), Leq(transmission_rotation_out, 1800.0)), Leq(Neg((1.0 / 20.0)), slope_in)), Leq(slope_in, (1.0 / 20.0))), pre_always_holds5)
+   
+  pre_gear_out : int
+    = pre gear_out
+   
+  pre_chatter_counter2 : int
+    = pre chatter_counter2
+   
+  chatter_counter2 : int
+    = 0 -> ITE(Not(Eq(gear_out, pre_gear_out)), Add(pre_chatter_counter2, 1), 0)
+   
+  pre_always_holds4 : bool
+    = pre always_holds4
+   
+  always_holds4 : bool
+    = true -> And(And(Leq(1100.0, transmission_rotation_out), Leq(transmission_rotation_out, 1800.0)), pre_always_holds4)
+   
+  pre_slope_in$3 : real
+    = pre slope_in
+   
+  pre_always_holds3 : bool
+    = pre always_holds3
+   
+  always_holds3 : bool
+    = And(And(And(Eq(throttle_in, 15.0), Leq(Neg((3.0 / 100.0)), slope_in)), Leq(slope_in, (3.0 / 100.0))), Leq(slope_in, (1.0 / 100.0))) -> And(And(And(And(Eq(throttle_in, 15.0), Leq(Neg((3.0 / 100.0)), slope_in)), Leq(slope_in, (3.0 / 100.0))), Leq(Sub(slope_in, pre_slope_in$3), (1.0 / 100.0))), pre_always_holds3)
+   
+  pre_slope_in$2 : real
+    = pre slope_in
+   
+  pre_always_holds2 : bool
+    = pre always_holds2
+   
+  always_holds2 : bool
+    = And(And(And(Eq(throttle_in, 15.0), Leq(Neg((1.0 / 5.0)), slope_in)), Leq(slope_in, (1.0 / 5.0))), Leq(slope_in, (1.0 / 20.0))) -> And(And(And(And(Eq(throttle_in, 15.0), Leq(Neg((1.0 / 5.0)), slope_in)), Leq(slope_in, (1.0 / 5.0))), Leq(Sub(slope_in, pre_slope_in$2), (1.0 / 20.0))), pre_always_holds2)
+   
+  pre_always_holds1 : bool
+    = pre always_holds1
+   
+  always_holds1 : bool
+    = Geq(throttle_in, 18.0) -> And(Geq(throttle_in, 18.0), pre_always_holds1)
+   
+  pre_always_holds : bool
+    = pre always_holds
+   
+  always_holds : bool
+    = Geq(throttle_in, 19.0) -> And(Geq(throttle_in, 19.0), pre_always_holds)
+   
+  rlt_check_2 : bool
+    = And(Leq(Neg((433.0 / 500.0)), slope_in), Leq(slope_in, (433.0 / 500.0)))
+   
+  pre_slope_in$1 : real
+    = pre slope_in
+   
+  pre_slope_in : real
+    = pre slope_in
+   
+  rlt_check_1 : bool
+    = Eq(slope_in, 0.0) -> And(Leq(Neg(0.25), Sub(slope_in, pre_slope_in$1)), Leq(Sub(slope_in, pre_slope_in), 0.25))
+   
+  rlt_check_ : bool
+    = And(Leq(0.0, throttle_in), Leq(throttle_in, 25.0))
+   
+  no_stall_A : bool
+    = Or(Not(always_holds), Gt(transmission_rotation_out, 0.0))
+   
+  no_stall_B : bool
+    = Or(Not(always_holds1), Gt(transmission_rotation_out, 0.0))
+   
+  no_chatter_A : bool
+    = Or(Not(always_holds2), Lt(chatter_counter2, 5))
+   
+  no_chatter_B : bool
+    = Or(Not(always_holds3), Lt(chatter_counter2, 5))
+   
+  sweet_spot_no_chatter : bool
+    = Or(Not(always_holds4), Lt(chatter_counter2, 5))
+   
+  sweet_spot_max_throttleA : bool
+    = true -> Or(Not(always_holds5), Lt(throttle_in, 25.0))
+   
+  sweet_spot_max_throttleB : bool
+    = true -> Or(Not(always_holds6), Lt(throttle_in, 25.0))
+   
+  pre_always : bool
+    = pre always
+   
+  init_pre_always : bool
+    = true -> pre_always
+   
+  always : bool
+    = And(rlt_check_2, init_pre_always)
+   
+  pre_always1 : bool
+    = pre always1
+   
+  init_pre_always1 : bool
+    = true -> pre_always1
+   
+  always1 : bool
+    = And(rlt_check_1, init_pre_always1)
+   
+  pre_always2 : bool
+    = pre always2
+   
+  init_pre_always2 : bool
+    = true -> pre_always2
+   
+  always2 : bool
+    = And(rlt_check_, init_pre_always2)
+   
+  no_stall_A1 : bool
+    = Or(Not(And(always, And(always1, always2))), no_stall_A)
+   
+  no_stall_B1 : bool
+    = Or(Not(And(always, And(always1, always2))), no_stall_B)
+   
+  no_chatter_A1 : bool
+    = Or(Not(And(always, And(always1, always2))), no_chatter_A)
+   
+  no_chatter_B1 : bool
+    = Or(Not(And(always, And(always1, always2))), no_chatter_B)
+   
+  sweet_spot_no_chatter1 : bool
+    = Or(Not(And(always, And(always1, always2))), sweet_spot_no_chatter)
+   
+  sweet_spot_max_throttleA1 : bool
+    = Or(Not(And(always, And(always1, always2))), sweet_spot_max_throttleA)
+   
+  sweet_spot_max_throttleB1 : bool
+    = Or(Not(And(always, And(always1, always2))), sweet_spot_max_throttleB)
+tel
+Sally Model
+===========
 
+(define-state-type
+   S
+   (
+     (always Bool)
+     (always1 Bool)
+     (always2 Bool)
+     (|always_holds1:init| Bool)
+     (|always_holds1| Bool)
+     (|always_holds2:init| Bool)
+     (|always_holds2| Bool)
+     (|always_holds3:init| Bool)
+     (|always_holds3| Bool)
+     (|always_holds4:init| Bool)
+     (|always_holds4| Bool)
+     (|always_holds5:init| Bool)
+     (|always_holds5| Bool)
+     (|always_holds6:init| Bool)
+     (|always_holds6| Bool)
+     (|always_holds:init| Bool)
+     (|always_holds| Bool)
+     (|chatter_counter2:init| Bool)
+     (|chatter_counter2| Int)
+     (|gal-initializing| Bool)
+     (|gear_out:init| Bool)
+     (|gear_out| Int)
+     (|init_pre_always1:init| Bool)
+     (|init_pre_always1| Bool)
+     (|init_pre_always2:init| Bool)
+     (|init_pre_always2| Bool)
+     (|init_pre_always:init| Bool)
+     (|init_pre_always| Bool)
+     (|load_out| Real)
+     (|no_chatter_A1| Bool)
+     (|no_chatter_A| Bool)
+     (|no_chatter_B1| Bool)
+     (|no_chatter_B| Bool)
+     (|no_stall_A1| Bool)
+     (|no_stall_A| Bool)
+     (|no_stall_B1| Bool)
+     (|no_stall_B| Bool)
+     (|pre_always1| Bool)
+     (|pre_always2| Bool)
+     (|pre_always_holds1| Bool)
+     (|pre_always_holds2| Bool)
+     (|pre_always_holds3| Bool)
+     (|pre_always_holds4| Bool)
+     (|pre_always_holds5| Bool)
+     (|pre_always_holds6| Bool)
+     (|pre_always_holds| Bool)
+     (|pre_always| Bool)
+     (|pre_chatter_counter2| Int)
+     (|pre_gear_out| Int)
+     (|pre_slope_in:1| Real)
+     (|pre_slope_in:2| Real)
+     (|pre_slope_in:3| Real)
+     (|pre_slope_in| Real)
+     (|rlt_check_1:init| Bool)
+     (|rlt_check_1| Bool)
+     (|rlt_check_2| Bool)
+     (|rlt_check_| Bool)
+     (|slope_in| Real)
+     (|sweet_spot_max_throttleA1| Bool)
+     (|sweet_spot_max_throttleA:init| Bool)
+     (|sweet_spot_max_throttleA| Bool)
+     (|sweet_spot_max_throttleB1| Bool)
+     (|sweet_spot_max_throttleB:init| Bool)
+     (|sweet_spot_max_throttleB| Bool)
+     (|sweet_spot_no_chatter1| Bool)
+     (|sweet_spot_no_chatter| Bool)
+     (|throttle_in| Real)
+     (|transmission_rotation_out:init| Bool)
+     (|transmission_rotation_out| Real))
+   (
+     (|slope_in| Real)
+     (|throttle_in| Real)))
+(define-transition-system
+   TS
+   S
+   (and
+      (= |gal-initializing| true)
+      (= |gear_out:init| true)
+      (= |transmission_rotation_out:init| true)
+      (= |always_holds6:init| true)
+      (= |always_holds5:init| true)
+      (= |chatter_counter2:init| true)
+      (= |always_holds4:init| true)
+      (= |always_holds3:init| true)
+      (= |always_holds2:init| true)
+      (= |always_holds1:init| true)
+      (= |always_holds:init| true)
+      (= |rlt_check_1:init| true)
+      (= |sweet_spot_max_throttleA:init| true)
+      (= |sweet_spot_max_throttleB:init| true)
+      (= |init_pre_always:init| true)
+      (= |init_pre_always1:init| true)
+      (= |init_pre_always2:init| true))
+   (and
+      (= next.|gal-initializing| false)
+      (= next.|throttle_in| input.|throttle_in|)
+      (= next.|slope_in| input.|slope_in|)
+      (=
+         next.|load_out|
+         (+
+            500.0
+            (* 10000.0 next.|slope_in|)))
+      (ite
+         state.|gear_out:init|
+         (=
+            next.|gear_out|
+            (ite
+               (<
+                  (ite
+                     (<
+                        0.0
+                        (-
+                           (* 120.0 next.|throttle_in|)
+                           (*
+                              (/ 11792453 50000000)
+                              next.|load_out|)))
+                     (-
+                        (* 120.0 next.|throttle_in|)
+                        (*
+                           (/ 11792453 50000000)
+                           next.|load_out|))
+                     0.0)
+                  (/ 2122641513 5000000))
+               1
+               (ite
+                  (and
+                     (<=
+                        (/ 2122641513 5000000)
+                        (ite
+                           (<
+                              0.0
+                              (-
+                                 (* 120.0 next.|throttle_in|)
+                                 (*
+                                    (/ 11792453 50000000)
+                                    next.|load_out|)))
+                           (-
+                              (* 120.0 next.|throttle_in|)
+                              (*
+                                 (/ 11792453 50000000)
+                                 next.|load_out|))
+                           0.0))
+                     (<
+                        (ite
+                           (<
+                              0.0
+                              (-
+                                 (* 120.0 next.|throttle_in|)
+                                 (*
+                                    (/ 11792453 50000000)
+                                    next.|load_out|)))
+                           (-
+                              (* 120.0 next.|throttle_in|)
+                              (*
+                                 (/ 11792453 50000000)
+                                 next.|load_out|))
+                           0.0)
+                        (/ 737704917 1250000)))
+                  2
+                  (ite
+                     (and
+                        (<=
+                           (/ 737704917 1250000)
+                           (ite
+                              (<
+                                 0.0
+                                 (-
+                                    (* 120.0 next.|throttle_in|)
+                                    (*
+                                       (/ 11792453 50000000)
+                                       next.|load_out|)))
+                              (-
+                                 (* 120.0 next.|throttle_in|)
+                                 (*
+                                    (/ 11792453 50000000)
+                                    next.|load_out|))
+                              0.0))
+                        (<
+                           (ite
+                              (<
+                                 0.0
+                                 (-
+                                    (* 120.0 next.|throttle_in|)
+                                    (*
+                                       (/ 11792453 50000000)
+                                       next.|load_out|)))
+                              (-
+                                 (* 120.0 next.|throttle_in|)
+                                 (*
+                                    (/ 11792453 50000000)
+                                    next.|load_out|))
+                              0.0)
+                           (/ 3879310347 5000000)))
+                     3
+                     (ite
+                        (and
+                           (<=
+                              (/ 3879310347 5000000)
+                              (ite
+                                 (<
+                                    0.0
+                                    (-
+                                       (* 120.0 next.|throttle_in|)
+                                       (*
+                                          (/ 11792453 50000000)
+                                          next.|load_out|)))
+                                 (-
+                                    (* 120.0 next.|throttle_in|)
+                                    (*
+                                       (/ 11792453 50000000)
+                                       next.|load_out|))
+                                 0.0))
+                           (<
+                              (ite
+                                 (<
+                                    0.0
+                                    (-
+                                       (* 120.0 next.|throttle_in|)
+                                       (*
+                                          (/ 11792453 50000000)
+                                          next.|load_out|)))
+                                 (-
+                                    (* 120.0 next.|throttle_in|)
+                                    (*
+                                       (/ 11792453 50000000)
+                                       next.|load_out|))
+                                 0.0)
+                              (/ 1077844311 1000000)))
+                        4
+                        (ite
+                           (and
+                              (<=
+                                 (/ 1077844311 1000000)
+                                 (ite
+                                    (<
+                                       0.0
+                                       (-
+                                          (* 120.0 next.|throttle_in|)
+                                          (*
+                                             (/ 11792453 50000000)
+                                             next.|load_out|)))
+                                    (-
+                                       (* 120.0 next.|throttle_in|)
+                                       (*
+                                          (/ 11792453 50000000)
+                                          next.|load_out|))
+                                    0.0))
+                              (<
+                                 (ite
+                                    (<
+                                       0.0
+                                       (-
+                                          (* 120.0 next.|throttle_in|)
+                                          (*
+                                             (/ 11792453 50000000)
+                                             next.|load_out|)))
+                                    (-
+                                       (* 120.0 next.|throttle_in|)
+                                       (*
+                                          (/ 11792453 50000000)
+                                          next.|load_out|))
+                                    0.0)
+                                 1800.0))
+                           5
+                           (ite
+                              (and
+                                 (<=
+                                    1800.0
+                                    (ite
+                                       (<
+                                          0.0
+                                          (-
+                                             (* 120.0 next.|throttle_in|)
+                                             (*
+                                                (/ 11792453 50000000)
+                                                next.|load_out|)))
+                                       (-
+                                          (* 120.0 next.|throttle_in|)
+                                          (*
+                                             (/ 11792453 50000000)
+                                             next.|load_out|))
+                                       0.0))
+                                 (<
+                                    (ite
+                                       (<
+                                          0.0
+                                          (-
+                                             (* 120.0 next.|throttle_in|)
+                                             (*
+                                                (/ 11792453 50000000)
+                                                next.|load_out|)))
+                                       (-
+                                          (* 120.0 next.|throttle_in|)
+                                          (*
+                                             (/ 11792453 50000000)
+                                             next.|load_out|))
+                                       0.0)
+                                    99999.0))
+                              6
+                              1)))))))
+         (=
+            next.|gear_out|
+            (ite
+               (<
+                  (ite
+                     (<
+                        0.0
+                        (-
+                           (* 120.0 next.|throttle_in|)
+                           (ite
+                              (= next.|gear_out| 1)
+                              (*
+                                 (/ 11792453 50000000)
+                                 next.|load_out|)
+                              (ite
+                                 (= next.|gear_out| 2)
+                                 (*
+                                    (/ 6557377 20000000)
+                                    next.|load_out|)
+                                 (ite
+                                    (= next.|gear_out| 3)
+                                    (*
+                                       (/ 5387931 12500000)
+                                       next.|load_out|)
+                                    (ite
+                                       (= next.|gear_out| 4)
+                                       (*
+                                          (/ 59880239 100000000)
+                                          next.|load_out|)
+                                       (ite
+                                          (= next.|gear_out| 5)
+                                          (* 1.0 next.|load_out|)
+                                          (ite
+                                             (= next.|gear_out| 6)
+                                             (*
+                                                (/ 138888889 100000000)
+                                                next.|load_out|)
+                                             (* 1.0 next.|load_out|)))))))))
+                     (-
+                        (* 120.0 next.|throttle_in|)
+                        (ite
+                           (= next.|gear_out| 1)
+                           (*
+                              (/ 11792453 50000000)
+                              next.|load_out|)
+                           (ite
+                              (= next.|gear_out| 2)
+                              (*
+                                 (/ 6557377 20000000)
+                                 next.|load_out|)
+                              (ite
+                                 (= next.|gear_out| 3)
+                                 (*
+                                    (/ 5387931 12500000)
+                                    next.|load_out|)
+                                 (ite
+                                    (= next.|gear_out| 4)
+                                    (*
+                                       (/ 59880239 100000000)
+                                       next.|load_out|)
+                                    (ite
+                                       (= next.|gear_out| 5)
+                                       (* 1.0 next.|load_out|)
+                                       (ite
+                                          (= next.|gear_out| 6)
+                                          (*
+                                             (/ 138888889 100000000)
+                                             next.|load_out|)
+                                          (* 1.0 next.|load_out|))))))))
+                     0.0)
+                  (/ 2122641513 5000000))
+               1
+               (ite
+                  (and
+                     (<=
+                        (/ 2122641513 5000000)
+                        (ite
+                           (<
+                              0.0
+                              (-
+                                 (* 120.0 next.|throttle_in|)
+                                 (ite
+                                    (= next.|gear_out| 1)
+                                    (*
+                                       (/ 11792453 50000000)
+                                       next.|load_out|)
+                                    (ite
+                                       (= next.|gear_out| 2)
+                                       (*
+                                          (/ 6557377 20000000)
+                                          next.|load_out|)
+                                       (ite
+                                          (= next.|gear_out| 3)
+                                          (*
+                                             (/ 5387931 12500000)
+                                             next.|load_out|)
+                                          (ite
+                                             (= next.|gear_out| 4)
+                                             (*
+                                                (/ 59880239 100000000)
+                                                next.|load_out|)
+                                             (ite
+                                                (= next.|gear_out| 5)
+                                                (* 1.0 next.|load_out|)
+                                                (ite
+                                                   (= next.|gear_out| 6)
+                                                   (*
+                                                      (/ 138888889 100000000)
+                                                      next.|load_out|)
+                                                   (* 1.0 next.|load_out|)))))))))
+                           (-
+                              (* 120.0 next.|throttle_in|)
+                              (ite
+                                 (= next.|gear_out| 1)
+                                 (*
+                                    (/ 11792453 50000000)
+                                    next.|load_out|)
+                                 (ite
+                                    (= next.|gear_out| 2)
+                                    (*
+                                       (/ 6557377 20000000)
+                                       next.|load_out|)
+                                    (ite
+                                       (= next.|gear_out| 3)
+                                       (*
+                                          (/ 5387931 12500000)
+                                          next.|load_out|)
+                                       (ite
+                                          (= next.|gear_out| 4)
+                                          (*
+                                             (/ 59880239 100000000)
+                                             next.|load_out|)
+                                          (ite
+                                             (= next.|gear_out| 5)
+                                             (* 1.0 next.|load_out|)
+                                             (ite
+                                                (= next.|gear_out| 6)
+                                                (*
+                                                   (/ 138888889 100000000)
+                                                   next.|load_out|)
+                                                (* 1.0 next.|load_out|))))))))
+                           0.0))
+                     (<
+                        (ite
+                           (<
+                              0.0
+                              (-
+                                 (* 120.0 next.|throttle_in|)
+                                 (ite
+                                    (= next.|gear_out| 1)
+                                    (*
+                                       (/ 11792453 50000000)
+                                       next.|load_out|)
+                                    (ite
+                                       (= next.|gear_out| 2)
+                                       (*
+                                          (/ 6557377 20000000)
+                                          next.|load_out|)
+                                       (ite
+                                          (= next.|gear_out| 3)
+                                          (*
+                                             (/ 5387931 12500000)
+                                             next.|load_out|)
+                                          (ite
+                                             (= next.|gear_out| 4)
+                                             (*
+                                                (/ 59880239 100000000)
+                                                next.|load_out|)
+                                             (ite
+                                                (= next.|gear_out| 5)
+                                                (* 1.0 next.|load_out|)
+                                                (ite
+                                                   (= next.|gear_out| 6)
+                                                   (*
+                                                      (/ 138888889 100000000)
+                                                      next.|load_out|)
+                                                   (* 1.0 next.|load_out|)))))))))
+                           (-
+                              (* 120.0 next.|throttle_in|)
+                              (ite
+                                 (= next.|gear_out| 1)
+                                 (*
+                                    (/ 11792453 50000000)
+                                    next.|load_out|)
+                                 (ite
+                                    (= next.|gear_out| 2)
+                                    (*
+                                       (/ 6557377 20000000)
+                                       next.|load_out|)
+                                    (ite
+                                       (= next.|gear_out| 3)
+                                       (*
+                                          (/ 5387931 12500000)
+                                          next.|load_out|)
+                                       (ite
+                                          (= next.|gear_out| 4)
+                                          (*
+                                             (/ 59880239 100000000)
+                                             next.|load_out|)
+                                          (ite
+                                             (= next.|gear_out| 5)
+                                             (* 1.0 next.|load_out|)
+                                             (ite
+                                                (= next.|gear_out| 6)
+                                                (*
+                                                   (/ 138888889 100000000)
+                                                   next.|load_out|)
+                                                (* 1.0 next.|load_out|))))))))
+                           0.0)
+                        (/ 737704917 1250000)))
+                  2
+                  (ite
+                     (and
+                        (<=
+                           (/ 737704917 1250000)
+                           (ite
+                              (<
+                                 0.0
+                                 (-
+                                    (* 120.0 next.|throttle_in|)
+                                    (ite
+                                       (= next.|gear_out| 1)
+                                       (*
+                                          (/ 11792453 50000000)
+                                          next.|load_out|)
+                                       (ite
+                                          (= next.|gear_out| 2)
+                                          (*
+                                             (/ 6557377 20000000)
+                                             next.|load_out|)
+                                          (ite
+                                             (= next.|gear_out| 3)
+                                             (*
+                                                (/ 5387931 12500000)
+                                                next.|load_out|)
+                                             (ite
+                                                (= next.|gear_out| 4)
+                                                (*
+                                                   (/ 59880239 100000000)
+                                                   next.|load_out|)
+                                                (ite
+                                                   (= next.|gear_out| 5)
+                                                   (* 1.0 next.|load_out|)
+                                                   (ite
+                                                      (= next.|gear_out| 6)
+                                                      (*
+                                                         (/ 138888889 100000000)
+                                                         next.|load_out|)
+                                                      (* 1.0 next.|load_out|)))))))))
+                              (-
+                                 (* 120.0 next.|throttle_in|)
+                                 (ite
+                                    (= next.|gear_out| 1)
+                                    (*
+                                       (/ 11792453 50000000)
+                                       next.|load_out|)
+                                    (ite
+                                       (= next.|gear_out| 2)
+                                       (*
+                                          (/ 6557377 20000000)
+                                          next.|load_out|)
+                                       (ite
+                                          (= next.|gear_out| 3)
+                                          (*
+                                             (/ 5387931 12500000)
+                                             next.|load_out|)
+                                          (ite
+                                             (= next.|gear_out| 4)
+                                             (*
+                                                (/ 59880239 100000000)
+                                                next.|load_out|)
+                                             (ite
+                                                (= next.|gear_out| 5)
+                                                (* 1.0 next.|load_out|)
+                                                (ite
+                                                   (= next.|gear_out| 6)
+                                                   (*
+                                                      (/ 138888889 100000000)
+                                                      next.|load_out|)
+                                                   (* 1.0 next.|load_out|))))))))
+                              0.0))
+                        (<
+                           (ite
+                              (<
+                                 0.0
+                                 (-
+                                    (* 120.0 next.|throttle_in|)
+                                    (ite
+                                       (= next.|gear_out| 1)
+                                       (*
+                                          (/ 11792453 50000000)
+                                          next.|load_out|)
+                                       (ite
+                                          (= next.|gear_out| 2)
+                                          (*
+                                             (/ 6557377 20000000)
+                                             next.|load_out|)
+                                          (ite
+                                             (= next.|gear_out| 3)
+                                             (*
+                                                (/ 5387931 12500000)
+                                                next.|load_out|)
+                                             (ite
+                                                (= next.|gear_out| 4)
+                                                (*
+                                                   (/ 59880239 100000000)
+                                                   next.|load_out|)
+                                                (ite
+                                                   (= next.|gear_out| 5)
+                                                   (* 1.0 next.|load_out|)
+                                                   (ite
+                                                      (= next.|gear_out| 6)
+                                                      (*
+                                                         (/ 138888889 100000000)
+                                                         next.|load_out|)
+                                                      (* 1.0 next.|load_out|)))))))))
+                              (-
+                                 (* 120.0 next.|throttle_in|)
+                                 (ite
+                                    (= next.|gear_out| 1)
+                                    (*
+                                       (/ 11792453 50000000)
+                                       next.|load_out|)
+                                    (ite
+                                       (= next.|gear_out| 2)
+                                       (*
+                                          (/ 6557377 20000000)
+                                          next.|load_out|)
+                                       (ite
+                                          (= next.|gear_out| 3)
+                                          (*
+                                             (/ 5387931 12500000)
+                                             next.|load_out|)
+                                          (ite
+                                             (= next.|gear_out| 4)
+                                             (*
+                                                (/ 59880239 100000000)
+                                                next.|load_out|)
+                                             (ite
+                                                (= next.|gear_out| 5)
+                                                (* 1.0 next.|load_out|)
+                                                (ite
+                                                   (= next.|gear_out| 6)
+                                                   (*
+                                                      (/ 138888889 100000000)
+                                                      next.|load_out|)
+                                                   (* 1.0 next.|load_out|))))))))
+                              0.0)
+                           (/ 3879310347 5000000)))
+                     3
+                     (ite
+                        (and
+                           (<=
+                              (/ 3879310347 5000000)
+                              (ite
+                                 (<
+                                    0.0
+                                    (-
+                                       (* 120.0 next.|throttle_in|)
+                                       (ite
+                                          (= next.|gear_out| 1)
+                                          (*
+                                             (/ 11792453 50000000)
+                                             next.|load_out|)
+                                          (ite
+                                             (= next.|gear_out| 2)
+                                             (*
+                                                (/ 6557377 20000000)
+                                                next.|load_out|)
+                                             (ite
+                                                (= next.|gear_out| 3)
+                                                (*
+                                                   (/ 5387931 12500000)
+                                                   next.|load_out|)
+                                                (ite
+                                                   (= next.|gear_out| 4)
+                                                   (*
+                                                      (/ 59880239 100000000)
+                                                      next.|load_out|)
+                                                   (ite
+                                                      (= next.|gear_out| 5)
+                                                      (* 1.0 next.|load_out|)
+                                                      (ite
+                                                         (= next.|gear_out| 6)
+                                                         (*
+                                                            (/ 138888889 100000000)
+                                                            next.|load_out|)
+                                                         (* 1.0 next.|load_out|)))))))))
+                                 (-
+                                    (* 120.0 next.|throttle_in|)
+                                    (ite
+                                       (= next.|gear_out| 1)
+                                       (*
+                                          (/ 11792453 50000000)
+                                          next.|load_out|)
+                                       (ite
+                                          (= next.|gear_out| 2)
+                                          (*
+                                             (/ 6557377 20000000)
+                                             next.|load_out|)
+                                          (ite
+                                             (= next.|gear_out| 3)
+                                             (*
+                                                (/ 5387931 12500000)
+                                                next.|load_out|)
+                                             (ite
+                                                (= next.|gear_out| 4)
+                                                (*
+                                                   (/ 59880239 100000000)
+                                                   next.|load_out|)
+                                                (ite
+                                                   (= next.|gear_out| 5)
+                                                   (* 1.0 next.|load_out|)
+                                                   (ite
+                                                      (= next.|gear_out| 6)
+                                                      (*
+                                                         (/ 138888889 100000000)
+                                                         next.|load_out|)
+                                                      (* 1.0 next.|load_out|))))))))
+                                 0.0))
+                           (<
+                              (ite
+                                 (<
+                                    0.0
+                                    (-
+                                       (* 120.0 next.|throttle_in|)
+                                       (ite
+                                          (= next.|gear_out| 1)
+                                          (*
+                                             (/ 11792453 50000000)
+                                             next.|load_out|)
+                                          (ite
+                                             (= next.|gear_out| 2)
+                                             (*
+                                                (/ 6557377 20000000)
+                                                next.|load_out|)
+                                             (ite
+                                                (= next.|gear_out| 3)
+                                                (*
+                                                   (/ 5387931 12500000)
+                                                   next.|load_out|)
+                                                (ite
+                                                   (= next.|gear_out| 4)
+                                                   (*
+                                                      (/ 59880239 100000000)
+                                                      next.|load_out|)
+                                                   (ite
+                                                      (= next.|gear_out| 5)
+                                                      (* 1.0 next.|load_out|)
+                                                      (ite
+                                                         (= next.|gear_out| 6)
+                                                         (*
+                                                            (/ 138888889 100000000)
+                                                            next.|load_out|)
+                                                         (* 1.0 next.|load_out|)))))))))
+                                 (-
+                                    (* 120.0 next.|throttle_in|)
+                                    (ite
+                                       (= next.|gear_out| 1)
+                                       (*
+                                          (/ 11792453 50000000)
+                                          next.|load_out|)
+                                       (ite
+                                          (= next.|gear_out| 2)
+                                          (*
+                                             (/ 6557377 20000000)
+                                             next.|load_out|)
+                                          (ite
+                                             (= next.|gear_out| 3)
+                                             (*
+                                                (/ 5387931 12500000)
+                                                next.|load_out|)
+                                             (ite
+                                                (= next.|gear_out| 4)
+                                                (*
+                                                   (/ 59880239 100000000)
+                                                   next.|load_out|)
+                                                (ite
+                                                   (= next.|gear_out| 5)
+                                                   (* 1.0 next.|load_out|)
+                                                   (ite
+                                                      (= next.|gear_out| 6)
+                                                      (*
+                                                         (/ 138888889 100000000)
+                                                         next.|load_out|)
+                                                      (* 1.0 next.|load_out|))))))))
+                                 0.0)
+                              (/ 1077844311 1000000)))
+                        4
+                        (ite
+                           (and
+                              (<=
+                                 (/ 1077844311 1000000)
+                                 (ite
+                                    (<
+                                       0.0
+                                       (-
+                                          (* 120.0 next.|throttle_in|)
+                                          (ite
+                                             (= next.|gear_out| 1)
+                                             (*
+                                                (/ 11792453 50000000)
+                                                next.|load_out|)
+                                             (ite
+                                                (= next.|gear_out| 2)
+                                                (*
+                                                   (/ 6557377 20000000)
+                                                   next.|load_out|)
+                                                (ite
+                                                   (= next.|gear_out| 3)
+                                                   (*
+                                                      (/ 5387931 12500000)
+                                                      next.|load_out|)
+                                                   (ite
+                                                      (= next.|gear_out| 4)
+                                                      (*
+                                                         (/ 59880239 100000000)
+                                                         next.|load_out|)
+                                                      (ite
+                                                         (= next.|gear_out| 5)
+                                                         (* 1.0 next.|load_out|)
+                                                         (ite
+                                                            (= next.|gear_out| 6)
+                                                            (*
+                                                               (/ 138888889 100000000)
+                                                               next.|load_out|)
+                                                            (* 1.0 next.|load_out|)))))))))
+                                    (-
+                                       (* 120.0 next.|throttle_in|)
+                                       (ite
+                                          (= next.|gear_out| 1)
+                                          (*
+                                             (/ 11792453 50000000)
+                                             next.|load_out|)
+                                          (ite
+                                             (= next.|gear_out| 2)
+                                             (*
+                                                (/ 6557377 20000000)
+                                                next.|load_out|)
+                                             (ite
+                                                (= next.|gear_out| 3)
+                                                (*
+                                                   (/ 5387931 12500000)
+                                                   next.|load_out|)
+                                                (ite
+                                                   (= next.|gear_out| 4)
+                                                   (*
+                                                      (/ 59880239 100000000)
+                                                      next.|load_out|)
+                                                   (ite
+                                                      (= next.|gear_out| 5)
+                                                      (* 1.0 next.|load_out|)
+                                                      (ite
+                                                         (= next.|gear_out| 6)
+                                                         (*
+                                                            (/ 138888889 100000000)
+                                                            next.|load_out|)
+                                                         (* 1.0 next.|load_out|))))))))
+                                    0.0))
+                              (<
+                                 (ite
+                                    (<
+                                       0.0
+                                       (-
+                                          (* 120.0 next.|throttle_in|)
+                                          (ite
+                                             (= next.|gear_out| 1)
+                                             (*
+                                                (/ 11792453 50000000)
+                                                next.|load_out|)
+                                             (ite
+                                                (= next.|gear_out| 2)
+                                                (*
+                                                   (/ 6557377 20000000)
+                                                   next.|load_out|)
+                                                (ite
+                                                   (= next.|gear_out| 3)
+                                                   (*
+                                                      (/ 5387931 12500000)
+                                                      next.|load_out|)
+                                                   (ite
+                                                      (= next.|gear_out| 4)
+                                                      (*
+                                                         (/ 59880239 100000000)
+                                                         next.|load_out|)
+                                                      (ite
+                                                         (= next.|gear_out| 5)
+                                                         (* 1.0 next.|load_out|)
+                                                         (ite
+                                                            (= next.|gear_out| 6)
+                                                            (*
+                                                               (/ 138888889 100000000)
+                                                               next.|load_out|)
+                                                            (* 1.0 next.|load_out|)))))))))
+                                    (-
+                                       (* 120.0 next.|throttle_in|)
+                                       (ite
+                                          (= next.|gear_out| 1)
+                                          (*
+                                             (/ 11792453 50000000)
+                                             next.|load_out|)
+                                          (ite
+                                             (= next.|gear_out| 2)
+                                             (*
+                                                (/ 6557377 20000000)
+                                                next.|load_out|)
+                                             (ite
+                                                (= next.|gear_out| 3)
+                                                (*
+                                                   (/ 5387931 12500000)
+                                                   next.|load_out|)
+                                                (ite
+                                                   (= next.|gear_out| 4)
+                                                   (*
+                                                      (/ 59880239 100000000)
+                                                      next.|load_out|)
+                                                   (ite
+                                                      (= next.|gear_out| 5)
+                                                      (* 1.0 next.|load_out|)
+                                                      (ite
+                                                         (= next.|gear_out| 6)
+                                                         (*
+                                                            (/ 138888889 100000000)
+                                                            next.|load_out|)
+                                                         (* 1.0 next.|load_out|))))))))
+                                    0.0)
+                                 1800.0))
+                           5
+                           (ite
+                              (and
+                                 (<=
+                                    1800.0
+                                    (ite
+                                       (<
+                                          0.0
+                                          (-
+                                             (* 120.0 next.|throttle_in|)
+                                             (ite
+                                                (= next.|gear_out| 1)
+                                                (*
+                                                   (/ 11792453 50000000)
+                                                   next.|load_out|)
+                                                (ite
+                                                   (= next.|gear_out| 2)
+                                                   (*
+                                                      (/ 6557377 20000000)
+                                                      next.|load_out|)
+                                                   (ite
+                                                      (= next.|gear_out| 3)
+                                                      (*
+                                                         (/ 5387931 12500000)
+                                                         next.|load_out|)
+                                                      (ite
+                                                         (= next.|gear_out| 4)
+                                                         (*
+                                                            (/ 59880239 100000000)
+                                                            next.|load_out|)
+                                                         (ite
+                                                            (= next.|gear_out| 5)
+                                                            (* 1.0 next.|load_out|)
+                                                            (ite
+                                                               (= next.|gear_out| 6)
+                                                               (*
+                                                                  (/ 138888889 100000000)
+                                                                  next.|load_out|)
+                                                               (* 1.0 next.|load_out|)))))))))
+                                       (-
+                                          (* 120.0 next.|throttle_in|)
+                                          (ite
+                                             (= next.|gear_out| 1)
+                                             (*
+                                                (/ 11792453 50000000)
+                                                next.|load_out|)
+                                             (ite
+                                                (= next.|gear_out| 2)
+                                                (*
+                                                   (/ 6557377 20000000)
+                                                   next.|load_out|)
+                                                (ite
+                                                   (= next.|gear_out| 3)
+                                                   (*
+                                                      (/ 5387931 12500000)
+                                                      next.|load_out|)
+                                                   (ite
+                                                      (= next.|gear_out| 4)
+                                                      (*
+                                                         (/ 59880239 100000000)
+                                                         next.|load_out|)
+                                                      (ite
+                                                         (= next.|gear_out| 5)
+                                                         (* 1.0 next.|load_out|)
+                                                         (ite
+                                                            (= next.|gear_out| 6)
+                                                            (*
+                                                               (/ 138888889 100000000)
+                                                               next.|load_out|)
+                                                            (* 1.0 next.|load_out|))))))))
+                                       0.0))
+                                 (<
+                                    (ite
+                                       (<
+                                          0.0
+                                          (-
+                                             (* 120.0 next.|throttle_in|)
+                                             (ite
+                                                (= next.|gear_out| 1)
+                                                (*
+                                                   (/ 11792453 50000000)
+                                                   next.|load_out|)
+                                                (ite
+                                                   (= next.|gear_out| 2)
+                                                   (*
+                                                      (/ 6557377 20000000)
+                                                      next.|load_out|)
+                                                   (ite
+                                                      (= next.|gear_out| 3)
+                                                      (*
+                                                         (/ 5387931 12500000)
+                                                         next.|load_out|)
+                                                      (ite
+                                                         (= next.|gear_out| 4)
+                                                         (*
+                                                            (/ 59880239 100000000)
+                                                            next.|load_out|)
+                                                         (ite
+                                                            (= next.|gear_out| 5)
+                                                            (* 1.0 next.|load_out|)
+                                                            (ite
+                                                               (= next.|gear_out| 6)
+                                                               (*
+                                                                  (/ 138888889 100000000)
+                                                                  next.|load_out|)
+                                                               (* 1.0 next.|load_out|)))))))))
+                                       (-
+                                          (* 120.0 next.|throttle_in|)
+                                          (ite
+                                             (= next.|gear_out| 1)
+                                             (*
+                                                (/ 11792453 50000000)
+                                                next.|load_out|)
+                                             (ite
+                                                (= next.|gear_out| 2)
+                                                (*
+                                                   (/ 6557377 20000000)
+                                                   next.|load_out|)
+                                                (ite
+                                                   (= next.|gear_out| 3)
+                                                   (*
+                                                      (/ 5387931 12500000)
+                                                      next.|load_out|)
+                                                   (ite
+                                                      (= next.|gear_out| 4)
+                                                      (*
+                                                         (/ 59880239 100000000)
+                                                         next.|load_out|)
+                                                      (ite
+                                                         (= next.|gear_out| 5)
+                                                         (* 1.0 next.|load_out|)
+                                                         (ite
+                                                            (= next.|gear_out| 6)
+                                                            (*
+                                                               (/ 138888889 100000000)
+                                                               next.|load_out|)
+                                                            (* 1.0 next.|load_out|))))))))
+                                       0.0)
+                                    99999.0))
+                              6
+                              1))))))))
+      (= next.|gear_out:init| false)
+      (ite
+         state.|transmission_rotation_out:init|
+         (=
+            next.|transmission_rotation_out|
+            (ite
+               (<
+                  0.0
+                  (-
+                     (* 120.0 next.|throttle_in|)
+                     (*
+                        (/ 11792453 50000000)
+                        next.|load_out|)))
+               (*
+                  (-
+                     (* 120.0 next.|throttle_in|)
+                     (*
+                        (/ 11792453 50000000)
+                        next.|load_out|))
+                  (/ 11792453 50000000))
+               (*
+                  0.0
+                  (/ 11792453 50000000))))
+         (=
+            next.|transmission_rotation_out|
+            (ite
+               (<
+                  0.0
+                  (-
+                     (* 120.0 next.|throttle_in|)
+                     (ite
+                        (= next.|gear_out| 1)
+                        (*
+                           (/ 11792453 50000000)
+                           next.|load_out|)
+                        (ite
+                           (= next.|gear_out| 2)
+                           (*
+                              (/ 6557377 20000000)
+                              next.|load_out|)
+                           (ite
+                              (= next.|gear_out| 3)
+                              (*
+                                 (/ 5387931 12500000)
+                                 next.|load_out|)
+                              (ite
+                                 (= next.|gear_out| 4)
+                                 (*
+                                    (/ 59880239 100000000)
+                                    next.|load_out|)
+                                 (ite
+                                    (= next.|gear_out| 5)
+                                    (* 1.0 next.|load_out|)
+                                    (ite
+                                       (= next.|gear_out| 6)
+                                       (*
+                                          (/ 138888889 100000000)
+                                          next.|load_out|)
+                                       (* 1.0 next.|load_out|)))))))))
+               (ite
+                  (= next.|gear_out| 1)
+                  (*
+                     (-
+                        (* 120.0 next.|throttle_in|)
+                        (ite
+                           (= next.|gear_out| 1)
+                           (*
+                              (/ 11792453 50000000)
+                              next.|load_out|)
+                           (ite
+                              (= next.|gear_out| 2)
+                              (*
+                                 (/ 6557377 20000000)
+                                 next.|load_out|)
+                              (ite
+                                 (= next.|gear_out| 3)
+                                 (*
+                                    (/ 5387931 12500000)
+                                    next.|load_out|)
+                                 (ite
+                                    (= next.|gear_out| 4)
+                                    (*
+                                       (/ 59880239 100000000)
+                                       next.|load_out|)
+                                    (ite
+                                       (= next.|gear_out| 5)
+                                       (* 1.0 next.|load_out|)
+                                       (ite
+                                          (= next.|gear_out| 6)
+                                          (*
+                                             (/ 138888889 100000000)
+                                             next.|load_out|)
+                                          (* 1.0 next.|load_out|))))))))
+                     (/ 11792453 50000000))
+                  (ite
+                     (= next.|gear_out| 2)
+                     (*
+                        (-
+                           (* 120.0 next.|throttle_in|)
+                           (ite
+                              (= next.|gear_out| 1)
+                              (*
+                                 (/ 11792453 50000000)
+                                 next.|load_out|)
+                              (ite
+                                 (= next.|gear_out| 2)
+                                 (*
+                                    (/ 6557377 20000000)
+                                    next.|load_out|)
+                                 (ite
+                                    (= next.|gear_out| 3)
+                                    (*
+                                       (/ 5387931 12500000)
+                                       next.|load_out|)
+                                    (ite
+                                       (= next.|gear_out| 4)
+                                       (*
+                                          (/ 59880239 100000000)
+                                          next.|load_out|)
+                                       (ite
+                                          (= next.|gear_out| 5)
+                                          (* 1.0 next.|load_out|)
+                                          (ite
+                                             (= next.|gear_out| 6)
+                                             (*
+                                                (/ 138888889 100000000)
+                                                next.|load_out|)
+                                             (* 1.0 next.|load_out|))))))))
+                        (/ 6557377 20000000))
+                     (ite
+                        (= next.|gear_out| 3)
+                        (*
+                           (-
+                              (* 120.0 next.|throttle_in|)
+                              (ite
+                                 (= next.|gear_out| 1)
+                                 (*
+                                    (/ 11792453 50000000)
+                                    next.|load_out|)
+                                 (ite
+                                    (= next.|gear_out| 2)
+                                    (*
+                                       (/ 6557377 20000000)
+                                       next.|load_out|)
+                                    (ite
+                                       (= next.|gear_out| 3)
+                                       (*
+                                          (/ 5387931 12500000)
+                                          next.|load_out|)
+                                       (ite
+                                          (= next.|gear_out| 4)
+                                          (*
+                                             (/ 59880239 100000000)
+                                             next.|load_out|)
+                                          (ite
+                                             (= next.|gear_out| 5)
+                                             (* 1.0 next.|load_out|)
+                                             (ite
+                                                (= next.|gear_out| 6)
+                                                (*
+                                                   (/ 138888889 100000000)
+                                                   next.|load_out|)
+                                                (* 1.0 next.|load_out|))))))))
+                           (/ 5387931 12500000))
+                        (ite
+                           (= next.|gear_out| 4)
+                           (*
+                              (-
+                                 (* 120.0 next.|throttle_in|)
+                                 (ite
+                                    (= next.|gear_out| 1)
+                                    (*
+                                       (/ 11792453 50000000)
+                                       next.|load_out|)
+                                    (ite
+                                       (= next.|gear_out| 2)
+                                       (*
+                                          (/ 6557377 20000000)
+                                          next.|load_out|)
+                                       (ite
+                                          (= next.|gear_out| 3)
+                                          (*
+                                             (/ 5387931 12500000)
+                                             next.|load_out|)
+                                          (ite
+                                             (= next.|gear_out| 4)
+                                             (*
+                                                (/ 59880239 100000000)
+                                                next.|load_out|)
+                                             (ite
+                                                (= next.|gear_out| 5)
+                                                (* 1.0 next.|load_out|)
+                                                (ite
+                                                   (= next.|gear_out| 6)
+                                                   (*
+                                                      (/ 138888889 100000000)
+                                                      next.|load_out|)
+                                                   (* 1.0 next.|load_out|))))))))
+                              (/ 59880239 100000000))
+                           (ite
+                              (= next.|gear_out| 5)
+                              (*
+                                 (-
+                                    (* 120.0 next.|throttle_in|)
+                                    (ite
+                                       (= next.|gear_out| 1)
+                                       (*
+                                          (/ 11792453 50000000)
+                                          next.|load_out|)
+                                       (ite
+                                          (= next.|gear_out| 2)
+                                          (*
+                                             (/ 6557377 20000000)
+                                             next.|load_out|)
+                                          (ite
+                                             (= next.|gear_out| 3)
+                                             (*
+                                                (/ 5387931 12500000)
+                                                next.|load_out|)
+                                             (ite
+                                                (= next.|gear_out| 4)
+                                                (*
+                                                   (/ 59880239 100000000)
+                                                   next.|load_out|)
+                                                (ite
+                                                   (= next.|gear_out| 5)
+                                                   (* 1.0 next.|load_out|)
+                                                   (ite
+                                                      (= next.|gear_out| 6)
+                                                      (*
+                                                         (/ 138888889 100000000)
+                                                         next.|load_out|)
+                                                      (* 1.0 next.|load_out|))))))))
+                                 1.0)
+                              (ite
+                                 (= next.|gear_out| 6)
+                                 (*
+                                    (-
+                                       (* 120.0 next.|throttle_in|)
+                                       (ite
+                                          (= next.|gear_out| 1)
+                                          (*
+                                             (/ 11792453 50000000)
+                                             next.|load_out|)
+                                          (ite
+                                             (= next.|gear_out| 2)
+                                             (*
+                                                (/ 6557377 20000000)
+                                                next.|load_out|)
+                                             (ite
+                                                (= next.|gear_out| 3)
+                                                (*
+                                                   (/ 5387931 12500000)
+                                                   next.|load_out|)
+                                                (ite
+                                                   (= next.|gear_out| 4)
+                                                   (*
+                                                      (/ 59880239 100000000)
+                                                      next.|load_out|)
+                                                   (ite
+                                                      (= next.|gear_out| 5)
+                                                      (* 1.0 next.|load_out|)
+                                                      (ite
+                                                         (= next.|gear_out| 6)
+                                                         (*
+                                                            (/ 138888889 100000000)
+                                                            next.|load_out|)
+                                                         (* 1.0 next.|load_out|))))))))
+                                    (/ 138888889 100000000))
+                                 (*
+                                    (-
+                                       (* 120.0 next.|throttle_in|)
+                                       (ite
+                                          (= next.|gear_out| 1)
+                                          (*
+                                             (/ 11792453 50000000)
+                                             next.|load_out|)
+                                          (ite
+                                             (= next.|gear_out| 2)
+                                             (*
+                                                (/ 6557377 20000000)
+                                                next.|load_out|)
+                                             (ite
+                                                (= next.|gear_out| 3)
+                                                (*
+                                                   (/ 5387931 12500000)
+                                                   next.|load_out|)
+                                                (ite
+                                                   (= next.|gear_out| 4)
+                                                   (*
+                                                      (/ 59880239 100000000)
+                                                      next.|load_out|)
+                                                   (ite
+                                                      (= next.|gear_out| 5)
+                                                      (* 1.0 next.|load_out|)
+                                                      (ite
+                                                         (= next.|gear_out| 6)
+                                                         (*
+                                                            (/ 138888889 100000000)
+                                                            next.|load_out|)
+                                                         (* 1.0 next.|load_out|))))))))
+                                    1.0)))))))
+               (ite
+                  (= next.|gear_out| 1)
+                  (*
+                     0.0
+                     (/ 11792453 50000000))
+                  (ite
+                     (= next.|gear_out| 2)
+                     (*
+                        0.0
+                        (/ 6557377 20000000))
+                     (ite
+                        (= next.|gear_out| 3)
+                        (*
+                           0.0
+                           (/ 5387931 12500000))
+                        (ite
+                           (= next.|gear_out| 4)
+                           (*
+                              0.0
+                              (/ 59880239 100000000))
+                           (ite
+                              (= next.|gear_out| 5)
+                              (* 0.0 1.0)
+                              (ite
+                                 (= next.|gear_out| 6)
+                                 (*
+                                    0.0
+                                    (/ 138888889 100000000))
+                                 (* 0.0 1.0))))))))))
+      (= next.|transmission_rotation_out:init| false)
+      (= next.|pre_always_holds6| state.|always_holds6|)
+      (ite
+         state.|always_holds6:init|
+         (=
+            next.|always_holds6|
+            (and
+               (<=
+                  (-
+                     (/ 1 10))
+                  next.|slope_in|)
+               (<=
+                  next.|slope_in|
+                  (/ 1 10))))
+         (=
+            next.|always_holds6|
+            (and
+               (<= 1100.0 next.|transmission_rotation_out|)
+               (<= next.|transmission_rotation_out| 1800.0)
+               (<=
+                  (-
+                     (/ 1 10))
+                  next.|slope_in|)
+               (<=
+                  next.|slope_in|
+                  (/ 1 10))
+               next.|pre_always_holds6|)))
+      (= next.|always_holds6:init| false)
+      (= next.|pre_always_holds5| state.|always_holds5|)
+      (ite
+         state.|always_holds5:init|
+         (=
+            next.|always_holds5|
+            (and
+               (<=
+                  (-
+                     (/ 1 20))
+                  next.|slope_in|)
+               (<=
+                  next.|slope_in|
+                  (/ 1 20))))
+         (=
+            next.|always_holds5|
+            (and
+               (<= 1100.0 next.|transmission_rotation_out|)
+               (<= next.|transmission_rotation_out| 1800.0)
+               (<=
+                  (-
+                     (/ 1 20))
+                  next.|slope_in|)
+               (<=
+                  next.|slope_in|
+                  (/ 1 20))
+               next.|pre_always_holds5|)))
+      (= next.|always_holds5:init| false)
+      (= next.|pre_gear_out| state.|gear_out|)
+      (= next.|pre_chatter_counter2| state.|chatter_counter2|)
+      (ite
+         state.|chatter_counter2:init|
+         (= next.|chatter_counter2| 0)
+         (=
+            next.|chatter_counter2|
+            (ite
+               (not
+                  (= next.|gear_out| next.|pre_gear_out|))
+               (+ next.|pre_chatter_counter2| 1)
+               0)))
+      (= next.|chatter_counter2:init| false)
+      (= next.|pre_always_holds4| state.|always_holds4|)
+      (ite
+         state.|always_holds4:init|
+         (= next.|always_holds4| true)
+         (=
+            next.|always_holds4|
+            (and
+               (<= 1100.0 next.|transmission_rotation_out|)
+               (<= next.|transmission_rotation_out| 1800.0)
+               next.|pre_always_holds4|)))
+      (= next.|always_holds4:init| false)
+      (= next.|pre_slope_in:3| state.|slope_in|)
+      (= next.|pre_always_holds3| state.|always_holds3|)
+      (ite
+         state.|always_holds3:init|
+         (=
+            next.|always_holds3|
+            (and
+               (= next.|throttle_in| 15.0)
+               (<=
+                  (-
+                     (/ 3 100))
+                  next.|slope_in|)
+               (<=
+                  next.|slope_in|
+                  (/ 3 100))
+               (<=
+                  next.|slope_in|
+                  (/ 1 100))))
+         (=
+            next.|always_holds3|
+            (and
+               (= next.|throttle_in| 15.0)
+               (<=
+                  (-
+                     (/ 3 100))
+                  next.|slope_in|)
+               (<=
+                  next.|slope_in|
+                  (/ 3 100))
+               (<=
+                  (- next.|slope_in| next.|pre_slope_in:3|)
+                  (/ 1 100))
+               next.|pre_always_holds3|)))
+      (= next.|always_holds3:init| false)
+      (= next.|pre_slope_in:2| state.|slope_in|)
+      (= next.|pre_always_holds2| state.|always_holds2|)
+      (ite
+         state.|always_holds2:init|
+         (=
+            next.|always_holds2|
+            (and
+               (= next.|throttle_in| 15.0)
+               (<=
+                  (-
+                     (/ 1 5))
+                  next.|slope_in|)
+               (<=
+                  next.|slope_in|
+                  (/ 1 5))
+               (<=
+                  next.|slope_in|
+                  (/ 1 20))))
+         (=
+            next.|always_holds2|
+            (and
+               (= next.|throttle_in| 15.0)
+               (<=
+                  (-
+                     (/ 1 5))
+                  next.|slope_in|)
+               (<=
+                  next.|slope_in|
+                  (/ 1 5))
+               (<=
+                  (- next.|slope_in| next.|pre_slope_in:2|)
+                  (/ 1 20))
+               next.|pre_always_holds2|)))
+      (= next.|always_holds2:init| false)
+      (= next.|pre_always_holds1| state.|always_holds1|)
+      (ite
+         state.|always_holds1:init|
+         (=
+            next.|always_holds1|
+            (<= 18.0 next.|throttle_in|))
+         (=
+            next.|always_holds1|
+            (and
+               (<= 18.0 next.|throttle_in|)
+               next.|pre_always_holds1|)))
+      (= next.|always_holds1:init| false)
+      (= next.|pre_always_holds| state.|always_holds|)
+      (ite
+         state.|always_holds:init|
+         (=
+            next.|always_holds|
+            (<= 19.0 next.|throttle_in|))
+         (=
+            next.|always_holds|
+            (and
+               (<= 19.0 next.|throttle_in|)
+               next.|pre_always_holds|)))
+      (= next.|always_holds:init| false)
+      (=
+         next.|rlt_check_2|
+         (and
+            (<=
+               (-
+                  (/ 433 500))
+               next.|slope_in|)
+            (<=
+               next.|slope_in|
+               (/ 433 500))))
+      (= next.|pre_slope_in:1| state.|slope_in|)
+      (= next.|pre_slope_in| state.|slope_in|)
+      (ite
+         state.|rlt_check_1:init|
+         (=
+            next.|rlt_check_1|
+            (= next.|slope_in| 0.0))
+         (=
+            next.|rlt_check_1|
+            (and
+               (<=
+                  (- 0.25)
+                  (- next.|slope_in| next.|pre_slope_in:1|))
+               (<=
+                  (- next.|slope_in| next.|pre_slope_in|)
+                  0.25))))
+      (= next.|rlt_check_1:init| false)
+      (=
+         next.|rlt_check_|
+         (and
+            (<= 0.0 next.|throttle_in|)
+            (<= next.|throttle_in| 25.0)))
+      (=
+         next.|no_stall_A|
+         (or
+            (not next.|always_holds|)
+            (< 0.0 next.|transmission_rotation_out|)))
+      (=
+         next.|no_stall_B|
+         (or
+            (not next.|always_holds1|)
+            (< 0.0 next.|transmission_rotation_out|)))
+      (=
+         next.|no_chatter_A|
+         (or
+            (not next.|always_holds2|)
+            (< next.|chatter_counter2| 5)))
+      (=
+         next.|no_chatter_B|
+         (or
+            (not next.|always_holds3|)
+            (< next.|chatter_counter2| 5)))
+      (=
+         next.|sweet_spot_no_chatter|
+         (or
+            (not next.|always_holds4|)
+            (< next.|chatter_counter2| 5)))
+      (ite
+         state.|sweet_spot_max_throttleA:init|
+         (= next.|sweet_spot_max_throttleA| true)
+         (=
+            next.|sweet_spot_max_throttleA|
+            (or
+               (not next.|always_holds5|)
+               (< next.|throttle_in| 25.0))))
+      (= next.|sweet_spot_max_throttleA:init| false)
+      (ite
+         state.|sweet_spot_max_throttleB:init|
+         (= next.|sweet_spot_max_throttleB| true)
+         (=
+            next.|sweet_spot_max_throttleB|
+            (or
+               (not next.|always_holds6|)
+               (< next.|throttle_in| 25.0))))
+      (= next.|sweet_spot_max_throttleB:init| false)
+      (= next.|pre_always| state.always)
+      (ite
+         state.|init_pre_always:init|
+         (= next.|init_pre_always| true)
+         (= next.|init_pre_always| next.|pre_always|))
+      (= next.|init_pre_always:init| false)
+      (=
+         next.always
+         (and next.|rlt_check_2| next.|init_pre_always|))
+      (= next.|pre_always1| state.always1)
+      (ite
+         state.|init_pre_always1:init|
+         (= next.|init_pre_always1| true)
+         (= next.|init_pre_always1| next.|pre_always1|))
+      (= next.|init_pre_always1:init| false)
+      (=
+         next.always1
+         (and next.|rlt_check_1| next.|init_pre_always1|))
+      (= next.|pre_always2| state.always2)
+      (ite
+         state.|init_pre_always2:init|
+         (= next.|init_pre_always2| true)
+         (= next.|init_pre_always2| next.|pre_always2|))
+      (= next.|init_pre_always2:init| false)
+      (=
+         next.always2
+         (and next.|rlt_check_| next.|init_pre_always2|))
+      (=
+         next.|no_stall_A1|
+         (or
+            (not
+               (and next.always next.always1 next.always2))
+            next.|no_stall_A|))
+      (=
+         next.|no_stall_B1|
+         (or
+            (not
+               (and next.always next.always1 next.always2))
+            next.|no_stall_B|))
+      (=
+         next.|no_chatter_A1|
+         (or
+            (not
+               (and next.always next.always1 next.always2))
+            next.|no_chatter_A|))
+      (=
+         next.|no_chatter_B1|
+         (or
+            (not
+               (and next.always next.always1 next.always2))
+            next.|no_chatter_B|))
+      (=
+         next.|sweet_spot_no_chatter1|
+         (or
+            (not
+               (and next.always next.always1 next.always2))
+            next.|sweet_spot_no_chatter|))
+      (=
+         next.|sweet_spot_max_throttleA1|
+         (or
+            (not
+               (and next.always next.always1 next.always2))
+            next.|sweet_spot_max_throttleA|))
+      (=
+         next.|sweet_spot_max_throttleB1|
+         (or
+            (not
+               (and next.always next.always1 next.always2))
+            next.|sweet_spot_max_throttleB|))))
 
+(query
+   TS
+   (or |gal-initializing| |sweet_spot_max_throttleB1|))
+(query
+   TS
+   (or |gal-initializing| |sweet_spot_max_throttleA1|))
+(query
+   TS
+   (or |gal-initializing| |sweet_spot_no_chatter1|))
+(query
+   TS
+   (or |gal-initializing| |no_chatter_B1|))
+(query
+   TS
+   (or |gal-initializing| |no_chatter_A1|))
+(query
+   TS
+   (or |gal-initializing| |no_stall_B1|))
+(query
+   TS
+   (or |gal-initializing| |no_stall_A1|))
+
+[Lustre] Validating properties:
+[Lustre] Property sweet_spot_max_throttleB1... considering simultaneous states to depth 0
+considering simultaneous states to depth 0
+considering simultaneous states to depth 1
+considering simultaneous states to depth 1
+considering simultaneous states to depth 2
+[[1;91mInvalid[0m] 
+Trace
+=====
+
+sweet_spot_max_throttleB1:
+ Step | throttle_in | slope_in | |-> | transmission_rotation_out | load_out | gear_out 
+------+-------------+----------+-----+---------------------------+----------+----------
+ 1    | 25.0        | 0.0      |     | 679.7347904485582         | 500.0    | 6        
+ 2    | 25.0        | 7.01e-2  |     | 1799.0                    | 1201.0   | 5        
+
+[Lustre] Property sweet_spot_max_throttleA1... considering simultaneous states to depth 0
+considering simultaneous states to depth 0
+considering simultaneous states to depth 1
+considering simultaneous states to depth 1
+[[1;92mValid[0m] considering simultaneous states to depth 1
+[Lustre] Property sweet_spot_no_chatter1... considering simultaneous states to depth 0
+considering simultaneous states to depth 0
+considering simultaneous states to depth 1
+considering simultaneous states to depth 1
+considering simultaneous states to depth 2
+considering simultaneous states to depth 2
+[[1;92mValid[0m] considering simultaneous states to depth 2
+[Lustre] Property no_chatter_B1... considering simultaneous states to depth 0
+considering simultaneous states to depth 0
+considering simultaneous states to depth 1
+considering simultaneous states to depth 1
+[[1;92mValid[0m] considering simultaneous states to depth 1
+[Lustre] Property no_chatter_A1... considering simultaneous states to depth 0
+considering simultaneous states to depth 0
+considering simultaneous states to depth 1
+considering simultaneous states to depth 1
+considering simultaneous states to depth 2
+considering simultaneous states to depth 2
+considering simultaneous states to depth 3
+considering simultaneous states to depth 3
+considering simultaneous states to depth 4
+considering simultaneous states to depth 4
+considering simultaneous states to depth 5
+considering simultaneous states to depth 5
+considering simultaneous states to depth 6
+[[1;91mInvalid[0m] 
+Trace
+=====
+
+no_chatter_A1:
+ Step | throttle_in | slope_in               | |-> | transmission_rotation_out | load_out            | gear_out 
+------+-------------+------------------------+-----+---------------------------+---------------------+----------
+ 1    | 15.0        | 0.0                    |     | 396.7159184485582         | 500.0               | 5        
+ 2    | 15.0        | -5.010439999957823e-2  |     | 2502.013890883975         | -1.0439999957822401 | 6        
+ 3    | 15.0        | -4.9742857143591834e-2 |     | 1797.4285714359185        | 2.5714285640816326  | 5        
+ 4    | 15.0        | -5.010439999957823e-2  |     | 2502.013890883975         | -1.0439999957822401 | 6        
+ 5    | 15.0        | -4.9742857143591834e-2 |     | 1797.4285714359185        | 2.5714285640816326  | 5        
+ 6    | 15.0        | -5.010439999957823e-2  |     | 2502.013890883975         | -1.0439999957822401 | 6        
+
+[Lustre] Property no_stall_B1... considering simultaneous states to depth 0
+considering simultaneous states to depth 0
+considering simultaneous states to depth 1
+considering simultaneous states to depth 1
+considering simultaneous states to depth 2
+considering simultaneous states to depth 2
+considering simultaneous states to depth 3
+considering simultaneous states to depth 3
+considering simultaneous states to depth 4
+considering simultaneous states to depth 4
+considering simultaneous states to depth 5
+[[1;91mInvalid[0m] 
+Trace
+=====
+
+no_stall_B1:
+ Step | throttle_in        | slope_in           | |-> | transmission_rotation_out | load_out           | gear_out 
+------+--------------------+--------------------+-----+---------------------------+--------------------+----------
+ 1    | 25.0               | 0.0                |     | 679.7347904485582         | 500.0              | 6        
+ 2    | 21.435576995       | 0.25               |     | 464.58806146706587        | 3000.0             | 4        
+ 3    | 21.39396495155633  | 0.3658399868119042 |     | 333.9922691555529         | 4158.3998681190415 | 3        
+ 4    | 23.102048676669515 | 0.6158399868119042 |     | 193.16850137090836        | 6658.3998681190415 | 2        
+ 5    | 18.0               | 0.8658399868119042 |     | 0.0                       | 9158.399868119042  | 1        
+
+[Lustre] Property no_stall_A1... considering simultaneous states to depth 0
+considering simultaneous states to depth 0
+considering simultaneous states to depth 1
+considering simultaneous states to depth 1
+[[1;92mValid[0m] considering simultaneous states to depth 1
+[Lustre] Model status: [[1;91mInvalid[0m] 

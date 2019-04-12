@@ -33,8 +33,9 @@ transNode n = (ts, map mkProp (nShows n))
   qns = identVariants n
 
   ts = TS.TransSystem
-         { TS.tsVars    = Map.unions (inVars : otherVars
-                                              : map (declareEqn qns) (nEqns n))
+         { TS.tsVars    = Map.unions
+                            (inVars : otherVars
+                                    : map (declareEqn qns) (nAllEqns n))
          , TS.tsInputs  = inVars
          , TS.tsInit    = initNode qns n
          , TS.tsTrans   = stepNode qns env n
@@ -42,6 +43,9 @@ transNode n = (ts, map mkProp (nShows n))
 
   inVars    = Map.unions (map (declareVar qns) (nInputs n))
   otherVars = declareVarInitializing
+
+nAllEqns :: Node -> [Eqn]
+nAllEqns = concatMap grpEqns . nEqns
 
 
 type Env = Map Ident CType
@@ -179,7 +183,7 @@ declareVarInitializing = Map.singleton varInitializing TS.TBool
 
 -- | Initial state for a node. All variable start off as indeterminate.
 initNode :: QNames -> Node -> TS.Expr
-initNode qns n = ands (setInit : mapMaybe initS (nEqns n))
+initNode qns n = ands (setInit : mapMaybe initS (nAllEqns n))
   where
   initS ((v ::: _) := e) =
     case e of
@@ -193,7 +197,7 @@ stepNode qns env n =
   ands $ ((TS.InNextState TS.::: varInitializing) TS.:==: false) :
          map (stepInput qns env) (nInputs n) ++
          map (transBool qns TS.InNextState . snd) (nAssuming n) ++
-         map (stepEqn qns env) (nEqns n)
+         map (stepEqn qns env) (nAllEqns n)
 
 -- XXX: clocks?
 stepInput :: QNames -> Env -> Binder -> TS.Expr
@@ -350,7 +354,7 @@ importState qns n =
   importVars qns $ Set.fromList
                  $ [ x | x ::: _ <- nInputs n ] ++
                    {- Inputs are shadowed in the state -}
-                   [ x | x ::: _ := _ <- nEqns n ]
+                   [ x | x ::: _ := _ <- nAllEqns n ]
 
 importInputs ::
   QNames -> Node -> TS.VarVals -> Either ImportError (Map Ident L.Value)
