@@ -41,7 +41,6 @@ data Settings = Settings
   , node      :: Maybe Text
   , saveCore  :: Bool
   , saveSally :: Bool
-  , optTC     :: Bool
   , bmcLimit  :: Int
   , kindLimit :: Int
   , useMCSat  :: Bool
@@ -75,10 +74,6 @@ options = OptSpec
       , Option [] ["save-sally"]
         "Save Sally output in this file"
         $ NoArg $ \s -> Right s { saveSally = True }
-
-      , Option [] ["no-tc"]
-        "Disable type-checker"
-        $ NoArg $ \s -> Right s { optTC = False }
 
       , Option [] ["no-mcsat"]
         "Do not use MCSAT based solver."
@@ -126,7 +121,6 @@ options = OptSpec
     , node = Nothing
     , saveSally = False
     , saveCore = False
-    , optTC = True
     , bmcLimit = 10
     , kindLimit = 10
     , useMCSat = True
@@ -209,7 +203,6 @@ mainWork :: Logger -> Settings -> [TopDecl] -> IO ()
 mainWork l settings ds =
   do let luConf = LustreConf { lustreInitialNameSeed = Nothing
                              , lustreLogHandle = stdout
-                             , lustreNoTC = not (optTC settings)
                              , lustreDumpAfter = noPhases
                              }
      (info,nd) <- runLustre luConf (quickNodeToCore (node settings) ds)
