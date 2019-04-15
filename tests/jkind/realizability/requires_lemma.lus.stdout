@@ -1,2 +1,105 @@
-[Error] Parse error at 16:17
+Core Lustre
+===========
 
+node (x : int, y : int, z : int)
+  returns (ok, lemma)
+  assumes (Implies)
+  shows (lemma, ok)
+let
+  ok : bool
+    = And(Lt(x, z), Lt(z, y))
+   
+  pre_counter : int
+    = pre counter
+   
+  counter : int
+    = 0 -> Add(1, pre_counter)
+   
+  lemma : bool
+    = Geq(counter, 0)
+   
+  Implies : bool
+    = Implies(Geq(counter, 0), Lt(x, Sub(y, 1)))
+tel
+Sally Model
+===========
+
+(define-state-type
+   S
+   (
+     (Implies Bool)
+     (counter Int)
+     (lemma Bool)
+     (ok Bool)
+     (x Int)
+     (y Int)
+     (z Int)
+     (|counter:init| Bool)
+     (|gal-initializing| Bool)
+     (|pre_counter| Int))
+   (
+     (x Int)
+     (y Int)
+     (z Int)))
+(define-transition-system
+   TS
+   S
+   (and
+      (= |gal-initializing| true)
+      (= |counter:init| true))
+   (and
+      (= next.|gal-initializing| false)
+      (= next.x input.x)
+      (= next.y input.y)
+      (= next.z input.z)
+      next.Implies
+      (=
+         next.ok
+         (and
+            (< next.x next.z)
+            (< next.z next.y)))
+      (= next.|pre_counter| state.counter)
+      (ite
+         state.|counter:init|
+         (= next.counter 0)
+         (=
+            next.counter
+            (+ 1 next.|pre_counter|)))
+      (= next.|counter:init| false)
+      (=
+         next.lemma
+         (<= 0 next.counter))
+      (=
+         next.Implies
+         (=>
+            (<= 0 next.counter)
+            (<
+               next.x
+               (- next.y 1))))))
+
+(query
+   TS
+   (or |gal-initializing| lemma))
+(query
+   TS
+   (or |gal-initializing| ok))
+
+[Lustre] Validating properties:
+[Lustre] Property lemma... considering simultaneous states to depth 0
+considering simultaneous states to depth 0
+considering simultaneous states to depth 1
+considering simultaneous states to depth 1
+[Valid] considering simultaneous states to depth 1
+[Lustre] Property ok... considering simultaneous states to depth 0
+considering simultaneous states to depth 0
+considering simultaneous states to depth 1
+[Invalid] 
+Trace
+=====
+
+ok:
+ Step | x | y | z | |-> | ok    | lemma 
+------+---+---+---+-----+-------+-------
+ 1    | 0 | 2 | 0 |     | False | True  
+
+[Lustre] Model status: [Invalid] 

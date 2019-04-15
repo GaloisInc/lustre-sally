@@ -1,2 +1,105 @@
-[Error] Parse error at 10:17
+Core Lustre
+===========
 
+node (max : int, min : int, init_max : int)
+  returns (ok)
+  assumes (Gt)
+  shows (ok)
+let
+  pre_max : int
+    = pre max
+   
+  $init$1 : int
+    = init_max -> Add(1, pre_max)
+   
+  pre_min : int
+    = pre min
+   
+  $init : int
+    = 0 -> Add(2, pre_min)
+   
+  ok : bool
+    = And(And(Eq(max, $init$1), Eq(min, $init)), Gt(max, min))
+   
+  Gt : bool
+    = Gt(init_max, 20)
+tel
+Sally Model
+===========
+
+(define-state-type
+   S
+   (
+     (Gt Bool)
+     (max Int)
+     (min Int)
+     (ok Bool)
+     (|$init:1:init| Bool)
+     (|$init:1| Int)
+     (|$init:init| Bool)
+     (|$init| Int)
+     (|gal-initializing| Bool)
+     (|init_max| Int)
+     (|pre_max| Int)
+     (|pre_min| Int))
+   (
+     (max Int)
+     (min Int)
+     (|init_max| Int)))
+(define-transition-system
+   TS
+   S
+   (and
+      (= |gal-initializing| true)
+      (= |$init:1:init| true)
+      (= |$init:init| true))
+   (and
+      (= next.|gal-initializing| false)
+      (= next.max input.max)
+      (= next.min input.min)
+      (= next.|init_max| input.|init_max|)
+      next.Gt
+      (= next.|pre_max| state.max)
+      (ite
+         state.|$init:1:init|
+         (= next.|$init:1| next.|init_max|)
+         (=
+            next.|$init:1|
+            (+ 1 next.|pre_max|)))
+      (= next.|$init:1:init| false)
+      (= next.|pre_min| state.min)
+      (ite
+         state.|$init:init|
+         (= next.|$init| 0)
+         (=
+            next.|$init|
+            (+ 2 next.|pre_min|)))
+      (= next.|$init:init| false)
+      (=
+         next.ok
+         (and
+            (= next.max next.|$init:1|)
+            (= next.min next.|$init|)
+            (< next.min next.max)))
+      (=
+         next.Gt
+         (< 20 next.|init_max|))))
+
+(query
+   TS
+   (or |gal-initializing| ok))
+
+[Lustre] Validating properties:
+[Lustre] Property ok... considering simultaneous states to depth 0
+considering simultaneous states to depth 0
+considering simultaneous states to depth 1
+[Invalid] 
+Trace
+=====
+
+ok:
+ Step | max   | min   | init_max | |-> | ok    
+------+-------+-------+----------+-----+-------
+ 1    | -2041 | -2042 | 21       |     | False 
+
+[Lustre] Model status: [Invalid] 

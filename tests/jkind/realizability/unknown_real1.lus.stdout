@@ -1,2 +1,56 @@
-[Error] Parse error at 10:19
+Core Lustre
+===========
 
+node (in : real, out : real)
+  returns ()
+  assumes ()
+  shows (prop)
+let
+  prop : bool
+    = Eq(Mul(2.0, out), in)
+tel
+Sally Model
+===========
+
+(define-state-type
+   S
+   (
+     (in Real)
+     (out Real)
+     (prop Bool)
+     (|gal-initializing| Bool))
+   (
+     (in Real)
+     (out Real)))
+(define-transition-system
+   TS
+   S
+   (= |gal-initializing| true)
+   (and
+      (= next.|gal-initializing| false)
+      (= next.in input.in)
+      (= next.out input.out)
+      (=
+         next.prop
+         (=
+            (* 2.0 next.out)
+            next.in))))
+
+(query
+   TS
+   (or |gal-initializing| prop))
+
+[Lustre] Validating properties:
+[Lustre] Property prop... considering simultaneous states to depth 0
+considering simultaneous states to depth 0
+considering simultaneous states to depth 1
+[Invalid] 
+Trace
+=====
+
+prop:
+ Step | in  | out | |-> 
+------+-----+-----+-----
+ 1    | 2.0 | 0.0 |     
+
+[Lustre] Model status: [Invalid] 

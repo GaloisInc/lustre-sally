@@ -1,2 +1,58 @@
-[Error] Parse error at 9:17
+Core Lustre
+===========
 
+node (in : int, out : int)
+  returns (ok)
+  assumes ()
+  shows (ok)
+let
+  ok : bool
+    = And(Eq(out, Mul(2, in)), Geq(out, 0))
+tel
+Sally Model
+===========
+
+(define-state-type
+   S
+   (
+     (in Int)
+     (ok Bool)
+     (out Int)
+     (|gal-initializing| Bool))
+   (
+     (in Int)
+     (out Int)))
+(define-transition-system
+   TS
+   S
+   (= |gal-initializing| true)
+   (and
+      (= next.|gal-initializing| false)
+      (= next.in input.in)
+      (= next.out input.out)
+      (=
+         next.ok
+         (and
+            (=
+               next.out
+               (* 2 next.in))
+            (<= 0 next.out)))))
+
+(query
+   TS
+   (or |gal-initializing| ok))
+
+[Lustre] Validating properties:
+[Lustre] Property ok... considering simultaneous states to depth 0
+considering simultaneous states to depth 0
+considering simultaneous states to depth 1
+[Invalid] 
+Trace
+=====
+
+ok:
+ Step | in | out | |-> | ok    
+------+----+-----+-----+-------
+ 1    | -1 | -1  |     | False 
+
+[Lustre] Model status: [Invalid] 

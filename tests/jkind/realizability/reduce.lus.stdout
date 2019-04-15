@@ -1,2 +1,157 @@
-[Error] Parse error at 18:17
+Core Lustre
+===========
 
+node (x : int, y : int, z : int, w : int)
+  returns (ok1, ok2, ok3, ok4)
+  assumes (Implies)
+  shows (ok4, ok3, ok2, ok1)
+let
+  ok1 : bool
+    = Lt(x, z)
+   
+  ok2 : bool
+    = Lt(w, 10)
+   
+  ok3 : bool
+    = Lt(z, y)
+   
+  ok4 : bool
+    = Lt(w, 20)
+   
+  pre_counter : int
+    = pre counter
+   
+  counter : int
+    = 0 -> Add(1, pre_counter)
+   
+  Implies : bool
+    = Implies(Lt(counter, 5), Lt(x, Sub(y, 1)))
+tel
+Sally Model
+===========
+
+(define-state-type
+   S
+   (
+     (Implies Bool)
+     (counter Int)
+     (ok1 Bool)
+     (ok2 Bool)
+     (ok3 Bool)
+     (ok4 Bool)
+     (w Int)
+     (x Int)
+     (y Int)
+     (z Int)
+     (|counter:init| Bool)
+     (|gal-initializing| Bool)
+     (|pre_counter| Int))
+   (
+     (w Int)
+     (x Int)
+     (y Int)
+     (z Int)))
+(define-transition-system
+   TS
+   S
+   (and
+      (= |gal-initializing| true)
+      (= |counter:init| true))
+   (and
+      (= next.|gal-initializing| false)
+      (= next.x input.x)
+      (= next.y input.y)
+      (= next.z input.z)
+      (= next.w input.w)
+      next.Implies
+      (=
+         next.ok1
+         (< next.x next.z))
+      (=
+         next.ok2
+         (< next.w 10))
+      (=
+         next.ok3
+         (< next.z next.y))
+      (=
+         next.ok4
+         (< next.w 20))
+      (= next.|pre_counter| state.counter)
+      (ite
+         state.|counter:init|
+         (= next.counter 0)
+         (=
+            next.counter
+            (+ 1 next.|pre_counter|)))
+      (= next.|counter:init| false)
+      (=
+         next.Implies
+         (=>
+            (< next.counter 5)
+            (<
+               next.x
+               (- next.y 1))))))
+
+(query
+   TS
+   (or |gal-initializing| ok4))
+(query
+   TS
+   (or |gal-initializing| ok3))
+(query
+   TS
+   (or |gal-initializing| ok2))
+(query
+   TS
+   (or |gal-initializing| ok1))
+
+[Lustre] Validating properties:
+[Lustre] Property ok4... considering simultaneous states to depth 0
+considering simultaneous states to depth 0
+considering simultaneous states to depth 1
+[Invalid] 
+Trace
+=====
+
+ok4:
+ Step | x  | y | z | w  | |-> | ok1  | ok2   | ok3   | ok4   
+------+----+---+---+----+-----+------+-------+-------+-------
+ 1    | -2 | 0 | 0 | 20 |     | True | False | False | False 
+
+[Lustre] Property ok3... considering simultaneous states to depth 0
+considering simultaneous states to depth 0
+considering simultaneous states to depth 1
+[Invalid] 
+Trace
+=====
+
+ok3:
+ Step | x  | y | z | w | |-> | ok1  | ok2  | ok3   | ok4  
+------+----+---+---+---+-----+------+------+-------+------
+ 1    | -2 | 0 | 0 | 0 |     | True | True | False | True 
+
+[Lustre] Property ok2... considering simultaneous states to depth 0
+considering simultaneous states to depth 0
+considering simultaneous states to depth 1
+[Invalid] 
+Trace
+=====
+
+ok2:
+ Step | x  | y | z | w  | |-> | ok1  | ok2   | ok3   | ok4  
+------+----+---+---+----+-----+------+-------+-------+------
+ 1    | -2 | 0 | 0 | 10 |     | True | False | False | True 
+
+[Lustre] Property ok1... considering simultaneous states to depth 0
+considering simultaneous states to depth 0
+considering simultaneous states to depth 1
+[Invalid] 
+Trace
+=====
+
+ok1:
+ Step | x | y | z | w | |-> | ok1   | ok2  | ok3  | ok4  
+------+---+---+---+---+-----+-------+------+------+------
+ 1    | 0 | 2 | 0 | 0 |     | False | True | True | True 
+
+[Lustre] Model status: [Invalid] 
