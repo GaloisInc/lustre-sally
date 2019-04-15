@@ -1906,7 +1906,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -1920,19 +1920,19 @@ sweet_spot_max_throttleB1:
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
-[[1;92mValid[0m] considering simultaneous states to depth 1
+[Valid] considering simultaneous states to depth 1
 [Lustre] Property sweet_spot_no_chatter1... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
-[[1;92mValid[0m] considering simultaneous states to depth 2
+[Valid] considering simultaneous states to depth 2
 [Lustre] Property no_chatter_B1... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
-[[1;92mValid[0m] considering simultaneous states to depth 1
+[Valid] considering simultaneous states to depth 1
 [Lustre] Property no_chatter_A1... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
@@ -1946,7 +1946,7 @@ considering simultaneous states to depth 4
 considering simultaneous states to depth 5
 considering simultaneous states to depth 5
 considering simultaneous states to depth 6
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -1971,7 +1971,7 @@ considering simultaneous states to depth 3
 considering simultaneous states to depth 4
 considering simultaneous states to depth 4
 considering simultaneous states to depth 5
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -1988,5 +1988,5 @@ no_stall_B1:
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
-[[1;92mValid[0m] considering simultaneous states to depth 1
-[Lustre] Model status: [[1;91mInvalid[0m] 
+[Valid] considering simultaneous states to depth 1
+[Lustre] Model status: [Invalid] 

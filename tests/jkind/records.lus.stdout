@@ -303,7 +303,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -347,18 +347,18 @@ counter-example search depth 7
 counter-example search depth 8
 counter-example search depth 9
 counter-example search depth 10
-[[1;93mUnknown[0m] Valid up to depth 10
+[Unknown] Valid up to depth 10
 [Lustre] Property lemma... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
-[[1;92mValid[0m] considering simultaneous states to depth 1
+[Valid] considering simultaneous states to depth 1
 [Lustre] Property cex1... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -368,4 +368,4 @@ cex1:
  1    | 0      | 0      |     
  2    | 0      | -20    |     
 
-[Lustre] Model status: [[1;91mInvalid[0m] 
+[Lustre] Model status: [Invalid] 

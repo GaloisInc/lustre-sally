@@ -1653,7 +1653,7 @@ Sally Model
 [Lustre] Validating properties:
 [Lustre] Property DC____ASSUME0... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
-[[1;92mValid[0m] considering simultaneous states to depth 0
+[Valid] considering simultaneous states to depth 0
 [Lustre] Property MC____ASSUME0... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
@@ -1687,7 +1687,7 @@ counter-example search depth 7
 counter-example search depth 8
 counter-example search depth 9
 counter-example search depth 10
-[[1;93mUnknown[0m] Valid up to depth 10
+[Unknown] Valid up to depth 10
 [Lustre] Property __GUARANTEE2... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
@@ -1721,7 +1721,7 @@ counter-example search depth 7
 counter-example search depth 8
 counter-example search depth 9
 counter-example search depth 10
-[[1;93mUnknown[0m] Valid up to depth 10
+[Unknown] Valid up to depth 10
 [Lustre] Property __GUARANTEE1... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
@@ -1755,7 +1755,7 @@ counter-example search depth 7
 counter-example search depth 8
 counter-example search depth 9
 counter-example search depth 10
-[[1;93mUnknown[0m] Valid up to depth 10
+[Unknown] Valid up to depth 10
 [Lustre] Property __GUARANTEE0... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
@@ -1789,5 +1789,5 @@ counter-example search depth 7
 counter-example search depth 8
 counter-example search depth 9
 counter-example search depth 10
-[[1;93mUnknown[0m] Valid up to depth 10
-[Lustre] Model status: [[1;93mUnknown[0m] 
+[Unknown] Valid up to depth 10
+[Lustre] Model status: [Unknown] 

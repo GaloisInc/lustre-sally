@@ -2950,7 +2950,7 @@ Sally Model
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
-[[1;92mValid[0m] considering simultaneous states to depth 1
+[Valid] considering simultaneous states to depth 1
 [Lustre] Property inverted... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
@@ -2970,7 +2970,7 @@ considering simultaneous states to depth 7
 considering simultaneous states to depth 8
 considering simultaneous states to depth 8
 considering simultaneous states to depth 9
-[[1;91mError[0m] Sally error:
+[Error] Sally error:
 Timeout
-[[1;91mError[0m] ExitFailure 1
+[Error] ExitFailure 1
 

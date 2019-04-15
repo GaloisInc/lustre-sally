@@ -303,5 +303,5 @@ Sally Model
 [Lustre] Validating properties:
 [Lustre] Property __GUARANTEE0... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
-[[1;92mValid[0m] considering simultaneous states to depth 0
-[Lustre] Model status: [[1;92mValid[0m] 
+[Valid] considering simultaneous states to depth 0
+[Lustre] Model status: [Valid] 

@@ -248,7 +248,7 @@ Sally Model
 [Lustre] Property ok4... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -260,7 +260,7 @@ ok4:
 [Lustre] Property ok3... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -272,7 +272,7 @@ ok3:
 [Lustre] Property ok2... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -294,7 +294,7 @@ considering simultaneous states to depth 4
 considering simultaneous states to depth 5
 considering simultaneous states to depth 5
 considering simultaneous states to depth 6
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -314,5 +314,5 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
-[[1;92mValid[0m] considering simultaneous states to depth 2
-[Lustre] Model status: [[1;91mInvalid[0m] 
+[Valid] considering simultaneous states to depth 2
+[Lustre] Model status: [Invalid] 

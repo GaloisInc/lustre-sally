@@ -1970,7 +1970,7 @@ counter-example search depth 9
 counter-example search depth 10
 counter-example search depth 11
 counter-example search depth 12
-[[1;91mError[0m] Sally error:
+[Error] Sally error:
 Timeout
-[[1;91mError[0m] ExitFailure 1
+[Error] ExitFailure 1
 

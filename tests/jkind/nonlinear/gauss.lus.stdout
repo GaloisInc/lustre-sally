@@ -96,8 +96,8 @@ Sally Model
 [Lustre] Validating properties:
 [Lustre] Property ok... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
-[[1;91mError[0m] Sally error:
+[Error] Sally error:
 Yices error (add): the context does not support non-linear arithmetic
 
-[[1;91mError[0m] ExitFailure 1
+[Error] ExitFailure 1
 

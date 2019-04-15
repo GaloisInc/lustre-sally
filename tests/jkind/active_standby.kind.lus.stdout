@@ -4042,7 +4042,7 @@ Sally Model
 [Lustre] Validating properties:
 [Lustre] Property rltCheckEntryStateConsistency_0... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
-[[1;92mValid[0m] considering simultaneous states to depth 0
+[Valid] considering simultaneous states to depth 0
 [Lustre] Property rltCheckEntryStateConsistency_01... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
@@ -4076,7 +4076,7 @@ counter-example search depth 7
 counter-example search depth 8
 counter-example search depth 9
 counter-example search depth 10
-[[1;93mUnknown[0m] Valid up to depth 10
+[Unknown] Valid up to depth 10
 [Lustre] Property rltCheckEntryStateConsistency_02... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
@@ -4110,7 +4110,7 @@ counter-example search depth 7
 counter-example search depth 8
 counter-example search depth 9
 counter-example search depth 10
-[[1;93mUnknown[0m] Valid up to depth 10
+[Unknown] Valid up to depth 10
 [Lustre] Property rltCheckEntryStateConsistency_03... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
@@ -4144,7 +4144,7 @@ counter-example search depth 7
 counter-example search depth 8
 counter-example search depth 9
 counter-example search depth 10
-[[1;93mUnknown[0m] Valid up to depth 10
+[Unknown] Valid up to depth 10
 [Lustre] Property rltCheckEntryStateConsistency_04... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
@@ -4178,7 +4178,7 @@ counter-example search depth 7
 counter-example search depth 8
 counter-example search depth 9
 counter-example search depth 10
-[[1;93mUnknown[0m] Valid up to depth 10
+[Unknown] Valid up to depth 10
 [Lustre] Property rltCheckEntryStateConsistency_05... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
@@ -4212,10 +4212,10 @@ counter-example search depth 7
 counter-example search depth 8
 counter-example search depth 9
 counter-example search depth 10
-[[1;93mUnknown[0m] Valid up to depth 10
+[Unknown] Valid up to depth 10
 [Lustre] Property rltCheckEntryStateConsistency_06... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
-[[1;92mValid[0m] considering simultaneous states to depth 0
+[Valid] considering simultaneous states to depth 0
 [Lustre] Property rltCheckEntryStateConsistency_07... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
@@ -4249,7 +4249,7 @@ counter-example search depth 7
 counter-example search depth 8
 counter-example search depth 9
 counter-example search depth 10
-[[1;93mUnknown[0m] Valid up to depth 10
+[Unknown] Valid up to depth 10
 [Lustre] Property rltCheckEntryStateConsistency_08... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
@@ -4283,7 +4283,7 @@ counter-example search depth 7
 counter-example search depth 8
 counter-example search depth 9
 counter-example search depth 10
-[[1;93mUnknown[0m] Valid up to depth 10
+[Unknown] Valid up to depth 10
 [Lustre] Property rltCheckEntryStateConsistency_09... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
@@ -4317,7 +4317,7 @@ counter-example search depth 7
 counter-example search depth 8
 counter-example search depth 9
 counter-example search depth 10
-[[1;93mUnknown[0m] Valid up to depth 10
+[Unknown] Valid up to depth 10
 [Lustre] Property rltCheckEntryStateConsistency_010... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
@@ -4351,7 +4351,7 @@ counter-example search depth 7
 counter-example search depth 8
 counter-example search depth 9
 counter-example search depth 10
-[[1;93mUnknown[0m] Valid up to depth 10
+[Unknown] Valid up to depth 10
 [Lustre] Property rltCheckEntryStateConsistency_011... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
@@ -4385,5 +4385,5 @@ counter-example search depth 7
 counter-example search depth 8
 counter-example search depth 9
 counter-example search depth 10
-[[1;93mUnknown[0m] Valid up to depth 10
-[Lustre] Model status: [[1;93mUnknown[0m] 
+[Unknown] Valid up to depth 10
+[Lustre] Model status: [Unknown] 

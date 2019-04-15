@@ -988,7 +988,7 @@ considering simultaneous states to depth 4
 considering simultaneous states to depth 5
 considering simultaneous states to depth 5
 considering simultaneous states to depth 6
-[[1;91mError[0m] Sally error:
+[Error] Sally error:
 Timeout
-[[1;91mError[0m] ExitFailure 1
+[Error] ExitFailure 1
 

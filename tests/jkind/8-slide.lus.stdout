@@ -2160,12 +2160,12 @@ Sally Model
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
-[[1;92mValid[0m] considering simultaneous states to depth 1
+[Valid] considering simultaneous states to depth 1
 [Lustre] Property distinct... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
-[[1;92mValid[0m] considering simultaneous states to depth 1
+[Valid] considering simultaneous states to depth 1
 [Lustre] Property prop... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
@@ -2199,5 +2199,5 @@ counter-example search depth 7
 counter-example search depth 8
 counter-example search depth 9
 counter-example search depth 10
-[[1;93mUnknown[0m] Valid up to depth 10
-[Lustre] Model status: [[1;93mUnknown[0m] 
+[Unknown] Valid up to depth 10
+[Lustre] Model status: [Unknown] 

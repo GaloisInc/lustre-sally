@@ -3,7 +3,7 @@ module Main(main) where
 
 import System.Exit(exitFailure)
 import Control.Monad(when,unless,foldM)
-import Control.Exception(catches, Handler(..), throwIO
+import Control.Exception(catches, catch, Handler(..), throwIO
                         , SomeException(..), displayException)
 import Control.Concurrent
           (newEmptyMVar,takeMVar,putMVar, forkIO, threadDelay, killThread)
@@ -138,9 +138,9 @@ options = OptSpec
 
 
 -- | Parse some settings from a file and add them to the given settings.
-settingsFromFile :: FilePath -> Settings -> IO Settings
-settingsFromFile f start =
-  do say "Lustre" ("Loading settings from: " ++ show f)
+settingsFromFile :: Logger -> FilePath -> Settings -> IO Settings
+settingsFromFile lgr f start =
+  do say lgr Nothing "Lustre" ("Loading settings from: " ++ show f)
      txt <- TextIO.readFile f
      case Config.parse txt of
        Left (Config.ParseError loc msg) ->
@@ -157,48 +157,56 @@ settingsFromFile f start =
                       Right s1 -> pure s1
 
 
-
-main :: IO ()
-main =
+getSettings :: Logger -> IO Settings
+getSettings l =
   do settings0 <- getOptsX options
      settings  <- case useConfig settings0 of
                     "" -> pure settings0
-                    f  -> settingsFromFile f settings0
+                    f  -> settingsFromFile l f settings0
 
      when (file settings == "") $
        throwIO (GetOptException ["No Lustre file was speicifed."])
+     pure settings
 
-     a <- parseProgramFromFileLatin1 (file settings)
-     case a of
-       ProgramDecls ds -> mainWork settings ds
-       _ -> bad "We don't support modules/packages for the moment." ""
+  `catch` \(GetOptException errs) ->
+      do mapM_ (sayFail l "Error") errs
+         lPutStrLn l Nothing ""
+         lPutStrLn l Nothing (usageString options)
+         exitFailure
 
-  `catches`
-      [ Handler $ \(GetOptException errs) ->
-          do mapM_ (sayFail "Error") errs
-             putStrLn ""
-             putStrLn (usageString options)
-             exitFailure
 
-      , Handler $ \(ParseError mb) ->
+
+
+
+main :: IO ()
+main =
+  do settings <- getSettings =<< newLogger
+     l <- if testMode settings then newTestLogger else newLogger
+     do a <- parseProgramFromFileLatin1 (file settings)
+        case a of
+          ProgramDecls ds -> mainWork l settings ds
+          _ -> bad l "We don't support modules/packages for the moment." ""
+
+      `catches`
+        [ Handler $ \(ParseError mb) ->
           case mb of
-            Nothing -> bad "Parse error at the end of the file." ""
-            Just p  -> bad ("Parse error at " ++ prettySourcePos p) ""
+            Nothing -> bad l "Parse error at the end of the file." ""
+            Just p  -> bad l ("Parse error at " ++ prettySourcePos p) ""
 
-      , Handler $ \(SomeException e) -> bad (displayException e) ""
-     ]
+        , Handler $ \(SomeException e) -> bad l (displayException e) ""
+        ]
 
 
-bad :: String -> String -> IO a
-bad err res =
-  do sayFail "Error" err
-     putStrLn res
+bad :: Logger -> String -> String -> IO a
+bad l err res =
+  do sayFail l "Error" err
+     lPutStrLn l Nothing res
      exitFailure
 
 
 
-mainWork :: Settings -> [TopDecl] -> IO ()
-mainWork settings ds =
+mainWork :: Logger -> Settings -> [TopDecl] -> IO ()
+mainWork l settings ds =
   do let luConf = LustreConf { lustreInitialNameSeed = Nothing
                              , lustreLogHandle = stdout
                              , lustreNoTC = not (optTC settings)
@@ -231,14 +239,14 @@ mainWork settings ds =
      when (testMode settings) $
        saveOutputTesting "Sally Model" sallyTxt
 
-     say "Lustre" "Validating properties:"
-     outs <- mapM (checkQuery settings info nd ts ts_sexp) qs_sexps
+     say l Nothing "Lustre" "Validating properties:"
+     outs <- mapM (checkQuery l settings info nd ts ts_sexp) qs_sexps
      let summary = foldr status Valid outs
-     say_ "Lustre" "Model status: "
+     say_ l Nothing "Lustre" "Model status: "
      case summary of
-       Valid     -> sayOK   "Valid" ""
-       Unknown   -> sayWarn "Unknown" ""
-       Invalid _ -> sayFail "Invalid" ""
+       Valid     -> sayOK   l "Valid" ""
+       Unknown   -> sayWarn l "Unknown" ""
+       Invalid _ -> sayFail l "Invalid" ""
 
 
   where
@@ -250,14 +258,15 @@ mainWork settings ds =
                  Valid     -> s
 
 
-checkQuery :: Settings -> ModelInfo -> Node -> TransSystem ->
+checkQuery :: Logger -> Settings -> ModelInfo -> Node -> TransSystem ->
                 String -> (PropName,String) -> IO (SallyResult ())
-checkQuery settings mi nd ts_ast ts (l',q) =
-  do say_ "Lustre" ("Property " ++ l ++ "... ")
+checkQuery lgr settings mi nd ts_ast ts (l',q) =
+  do say_ lgr Nothing "Lustre" ("Property " ++ l ++ "... ")
      hFlush stdout
      attempt "considering simultaneous states to depth" (sallyKind settings) $
        attempt "counter-example search depth" (sallyBMC settings) $
-       do sayWarn "Unknown" ("Valid up to depth " ++ show (bmcLimit settings))
+       do sayWarn lgr "Unknown"
+                        ("Valid up to depth " ++ show (bmcLimit settings))
           pure Unknown
   where
   l = Text.unpack (pName l')
@@ -266,52 +275,51 @@ checkQuery settings mi nd ts_ast ts (l',q) =
     do (maxD,res) <- runSally lab x
        case res of
          Valid ->
-            do sayOK "Valid" (lab ++ " " ++ show maxD)
+            do sayOK lgr "Valid" (lab ++ " " ++ show maxD)
                pure Valid
 
          Invalid r
           | testMode settings ->
-            do sayFail "Invalid" ""
+            do sayFail lgr "Invalid" ""
                let siTr = simpleTrace  mi l' r
                saveOutputTesting "Trace" siTr
                pure (Invalid ())
 
           | otherwise ->
             do let propDir = outPropDir settings l
-               sayFail "Invalid" ("See " ++ (propDir </> "index.html"))
+               sayFail lgr "Invalid" ("See " ++ (propDir </> "index.html"))
                saveUI propDir
                let jsTr = declareTrace mi l' r
                let siTr = simpleTrace  mi l' r
                saveOutput (outTraceFile settings l) jsTr
-               sayFail "Trace" ('\n' : siTr)
+               sayFail lgr "Trace" ('\n' : siTr)
                pure (Invalid ())
 
          Unknown   -> orElse
 
   runSally lab opts =
-    do prog <- if testMode settings then newTestProgress else newProgress
-       maxVal <- newIORef 0
-       let callback _ n = do progSay prog (lab ++ " " ++ show n)
+    do maxVal <- newIORef 0
+       let callback _ n = do lPutProg lgr (lab ++ " " ++ show n)
                              writeIORef maxVal n -- assumes monotonic increase
            doSally = sallyInteract "sally" opts callback (ts ++ q)
        mbres <- case timeout settings of
                   Nothing -> doSally
                   Just t  -> withTimeout t doSally
 
-       progClear prog
+       lClearProg lgr
        v <- readIORef maxVal
 
        res <- case mbres of
-                Left err  -> bad "Sally error:" err
+                Left err  -> bad lgr "Sally error:" err
                 Right res -> pure res
        case readSallyResult ts_ast res of
          Right (r,xs)
            | all isSpace xs  ->
               case traverse (importTrace nd) r of
                 Right a -> pure (v,a)
-                Left err -> bad "Failed to import trace" err
-           | otherwise -> bad "Leftover stuff after answer" xs
-         Left err -> bad ("Failed to parse result: " ++ err) res
+                Left err -> bad lgr "Failed to import trace" err
+           | otherwise -> bad lgr "Leftover stuff after answer" xs
+         Left err -> bad lgr ("Failed to parse result: " ++ err) res
 
 
 withTimeout :: Int -> IO (Either String b) -> IO (Either String b)

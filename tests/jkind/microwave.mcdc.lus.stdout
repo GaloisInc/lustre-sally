@@ -12106,7 +12106,7 @@ Sally Model
 [Lustre] Property rlt_check_... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -12118,7 +12118,7 @@ rlt_check_:
 [Lustre] Property rlt_check_1... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -12134,7 +12134,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -12152,7 +12152,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -12166,7 +12166,7 @@ rlt_check_3:
 [Lustre] Property rlt_check_4... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -12178,7 +12178,7 @@ rlt_check_4:
 [Lustre] Property rlt_check_5... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -12194,7 +12194,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -12208,7 +12208,7 @@ rlt_check_6:
 [Lustre] Property rlt_check_7... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -12220,7 +12220,7 @@ rlt_check_7:
 [Lustre] Property rlt_check_8... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -12234,7 +12234,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -12247,7 +12247,7 @@ rlt_check_9:
 [Lustre] Property rlt_check_10... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -12259,7 +12259,7 @@ rlt_check_10:
 [Lustre] Property rlt_check_11... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -12271,7 +12271,7 @@ rlt_check_11:
 [Lustre] Property rlt_check_12... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -12283,7 +12283,7 @@ rlt_check_12:
 [Lustre] Property rlt_check_13... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -12295,7 +12295,7 @@ rlt_check_13:
 [Lustre] Property rlt_check_14... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -12307,7 +12307,7 @@ rlt_check_14:
 [Lustre] Property rlt_check_15... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -12319,7 +12319,7 @@ rlt_check_15:
 [Lustre] Property rlt_check_16... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -12333,7 +12333,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -12348,7 +12348,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -12363,7 +12363,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -12378,7 +12378,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -12393,7 +12393,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -12408,7 +12408,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -12423,7 +12423,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -12438,7 +12438,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -12453,7 +12453,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -12467,13 +12467,13 @@ rlt_check_25:
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
-[[1;92mValid[0m] considering simultaneous states to depth 1
+[Valid] considering simultaneous states to depth 1
 [Lustre] Property rlt_check_27... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -12492,7 +12492,7 @@ considering simultaneous states to depth 2
 considering simultaneous states to depth 3
 considering simultaneous states to depth 3
 considering simultaneous states to depth 4
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -12513,7 +12513,7 @@ considering simultaneous states to depth 2
 considering simultaneous states to depth 3
 considering simultaneous states to depth 3
 considering simultaneous states to depth 4
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -12534,7 +12534,7 @@ considering simultaneous states to depth 2
 considering simultaneous states to depth 3
 considering simultaneous states to depth 3
 considering simultaneous states to depth 4
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -12553,7 +12553,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -12573,7 +12573,7 @@ considering simultaneous states to depth 2
 considering simultaneous states to depth 3
 considering simultaneous states to depth 3
 considering simultaneous states to depth 4
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -12594,7 +12594,7 @@ considering simultaneous states to depth 2
 considering simultaneous states to depth 3
 considering simultaneous states to depth 3
 considering simultaneous states to depth 4
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -12613,7 +12613,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -12633,7 +12633,7 @@ considering simultaneous states to depth 2
 considering simultaneous states to depth 3
 considering simultaneous states to depth 3
 considering simultaneous states to depth 4
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -12652,7 +12652,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -12670,7 +12670,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -12685,7 +12685,7 @@ rlt_check_37:
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
-[[1;92mValid[0m] considering simultaneous states to depth 1
+[Valid] considering simultaneous states to depth 1
 [Lustre] Property rlt_check_39... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
@@ -12693,7 +12693,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -12706,7 +12706,7 @@ rlt_check_39:
 
 [Lustre] Property rlt_check_40... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
-[[1;92mValid[0m] considering simultaneous states to depth 0
+[Valid] considering simultaneous states to depth 0
 [Lustre] Property rlt_check_41... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
@@ -12714,7 +12714,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -12732,7 +12732,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -12750,7 +12750,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -12768,7 +12768,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -12790,7 +12790,7 @@ considering simultaneous states to depth 3
 considering simultaneous states to depth 4
 considering simultaneous states to depth 4
 considering simultaneous states to depth 5
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -12810,7 +12810,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -12828,7 +12828,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -12846,7 +12846,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -12864,7 +12864,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -12882,7 +12882,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -12902,7 +12902,7 @@ considering simultaneous states to depth 2
 considering simultaneous states to depth 3
 considering simultaneous states to depth 3
 considering simultaneous states to depth 4
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -12919,7 +12919,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -12936,7 +12936,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -12951,7 +12951,7 @@ rlt_check_53:
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
-[[1;92mValid[0m] considering simultaneous states to depth 1
+[Valid] considering simultaneous states to depth 1
 [Lustre] Property rlt_check_55... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
@@ -12959,7 +12959,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -12972,13 +12972,13 @@ rlt_check_55:
 
 [Lustre] Property rlt_check_56... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
-[[1;92mValid[0m] considering simultaneous states to depth 0
+[Valid] considering simultaneous states to depth 0
 [Lustre] Property rlt_check_57... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -12991,7 +12991,7 @@ rlt_check_57:
 [Lustre] Property rlt_check_58... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -13005,7 +13005,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -13018,7 +13018,7 @@ rlt_check_59:
 [Lustre] Property rlt_check_60... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -13030,7 +13030,7 @@ rlt_check_60:
 [Lustre] Property rlt_check_61... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -13046,7 +13046,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -13064,7 +13064,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -13080,7 +13080,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -13095,7 +13095,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -13110,7 +13110,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -13129,7 +13129,7 @@ considering simultaneous states to depth 2
 considering simultaneous states to depth 3
 considering simultaneous states to depth 3
 considering simultaneous states to depth 4
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -13148,7 +13148,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -13162,7 +13162,7 @@ rlt_check_68:
 [Lustre] Property rlt_check_69... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -13178,7 +13178,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -13196,7 +13196,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -13210,7 +13210,7 @@ rlt_check_71:
 [Lustre] Property rlt_check_72... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -13222,7 +13222,7 @@ rlt_check_72:
 [Lustre] Property rlt_check_73... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -13238,7 +13238,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -13252,7 +13252,7 @@ rlt_check_74:
 [Lustre] Property rlt_check_75... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -13266,7 +13266,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -13279,7 +13279,7 @@ rlt_check_76:
 [Lustre] Property rlt_check_77... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -13295,7 +13295,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -13309,7 +13309,7 @@ rlt_check_78:
 [Lustre] Property rlt_check_79... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -13325,7 +13325,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -13343,7 +13343,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -13357,7 +13357,7 @@ rlt_check_81:
 [Lustre] Property rlt_check_82... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -13369,7 +13369,7 @@ rlt_check_82:
 [Lustre] Property rlt_check_83... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -13385,7 +13385,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -13399,7 +13399,7 @@ rlt_check_84:
 [Lustre] Property rlt_check_85... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -13411,7 +13411,7 @@ rlt_check_85:
 [Lustre] Property rlt_check_86... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -13423,7 +13423,7 @@ rlt_check_86:
 [Lustre] Property rlt_check_87... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -13435,7 +13435,7 @@ rlt_check_87:
 [Lustre] Property rlt_check_88... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -13447,7 +13447,7 @@ rlt_check_88:
 [Lustre] Property rlt_check_89... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -13459,7 +13459,7 @@ rlt_check_89:
 [Lustre] Property rlt_check_90... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -13473,7 +13473,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -13486,7 +13486,7 @@ rlt_check_91:
 [Lustre] Property rlt_check_92... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -13498,7 +13498,7 @@ rlt_check_92:
 [Lustre] Property rlt_check_93... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -13510,7 +13510,7 @@ rlt_check_93:
 [Lustre] Property rlt_check_94... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -13522,7 +13522,7 @@ rlt_check_94:
 [Lustre] Property rlt_check_95... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -13534,7 +13534,7 @@ rlt_check_95:
 [Lustre] Property rlt_check_96... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -13546,7 +13546,7 @@ rlt_check_96:
 [Lustre] Property rlt_check_97... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -13558,7 +13558,7 @@ rlt_check_97:
 [Lustre] Property rlt_check_98... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -13572,7 +13572,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -13585,7 +13585,7 @@ rlt_check_99:
 [Lustre] Property rlt_check_100... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -13597,7 +13597,7 @@ rlt_check_100:
 [Lustre] Property rlt_check_101... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -13609,7 +13609,7 @@ rlt_check_101:
 [Lustre] Property rlt_check_102... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -13623,7 +13623,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -13640,7 +13640,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -13658,7 +13658,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -13674,7 +13674,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -13689,7 +13689,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -13704,7 +13704,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -13723,7 +13723,7 @@ considering simultaneous states to depth 2
 considering simultaneous states to depth 3
 considering simultaneous states to depth 3
 considering simultaneous states to depth 4
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -13742,7 +13742,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -13756,7 +13756,7 @@ rlt_check_110:
 [Lustre] Property rlt_check_111... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -13768,7 +13768,7 @@ rlt_check_111:
 [Lustre] Property rlt_check_112... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -13782,7 +13782,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -13795,7 +13795,7 @@ rlt_check_113:
 [Lustre] Property rlt_check_114... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -13807,7 +13807,7 @@ rlt_check_114:
 [Lustre] Property rlt_check_115... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -13823,7 +13823,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -13841,7 +13841,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -13857,7 +13857,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -13872,7 +13872,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -13887,7 +13887,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -13906,7 +13906,7 @@ considering simultaneous states to depth 2
 considering simultaneous states to depth 3
 considering simultaneous states to depth 3
 considering simultaneous states to depth 4
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -13925,7 +13925,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -13939,7 +13939,7 @@ rlt_check_122:
 [Lustre] Property rlt_check_123... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -13955,7 +13955,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -13973,7 +13973,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -13987,7 +13987,7 @@ rlt_check_125:
 [Lustre] Property rlt_check_126... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -13999,7 +13999,7 @@ rlt_check_126:
 [Lustre] Property rlt_check_127... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -14015,7 +14015,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -14029,7 +14029,7 @@ rlt_check_128:
 [Lustre] Property rlt_check_129... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -14041,7 +14041,7 @@ rlt_check_129:
 [Lustre] Property rlt_check_130... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -14055,7 +14055,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -14072,7 +14072,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -14090,7 +14090,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -14106,7 +14106,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -14121,7 +14121,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -14136,7 +14136,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -14155,7 +14155,7 @@ considering simultaneous states to depth 2
 considering simultaneous states to depth 3
 considering simultaneous states to depth 3
 considering simultaneous states to depth 4
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -14174,7 +14174,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -14188,7 +14188,7 @@ rlt_check_138:
 [Lustre] Property rlt_check_139... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -14200,7 +14200,7 @@ rlt_check_139:
 [Lustre] Property rlt_check_140... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -14218,7 +14218,7 @@ considering simultaneous states to depth 2
 considering simultaneous states to depth 3
 considering simultaneous states to depth 3
 considering simultaneous states to depth 4
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -14239,7 +14239,7 @@ considering simultaneous states to depth 2
 considering simultaneous states to depth 3
 considering simultaneous states to depth 3
 considering simultaneous states to depth 4
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -14256,7 +14256,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -14273,7 +14273,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -14287,7 +14287,7 @@ rlt_check_144:
 [Lustre] Property rlt_check_145... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -14303,7 +14303,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -14321,7 +14321,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -14335,7 +14335,7 @@ rlt_check_147:
 [Lustre] Property rlt_check_148... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -14347,7 +14347,7 @@ rlt_check_148:
 [Lustre] Property rlt_check_149... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -14363,7 +14363,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -14377,7 +14377,7 @@ rlt_check_150:
 [Lustre] Property rlt_check_151... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -14389,7 +14389,7 @@ rlt_check_151:
 [Lustre] Property rlt_check_152... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -14403,7 +14403,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -14416,7 +14416,7 @@ rlt_check_153:
 [Lustre] Property rlt_check_154... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -14430,7 +14430,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -14447,7 +14447,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -14465,7 +14465,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -14481,7 +14481,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -14496,7 +14496,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -14511,7 +14511,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -14530,7 +14530,7 @@ considering simultaneous states to depth 2
 considering simultaneous states to depth 3
 considering simultaneous states to depth 3
 considering simultaneous states to depth 4
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -14549,7 +14549,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -14563,7 +14563,7 @@ rlt_check_162:
 [Lustre] Property rlt_check_163... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -14579,7 +14579,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -14593,7 +14593,7 @@ rlt_check_164:
 [Lustre] Property rlt_check_166... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -14605,7 +14605,7 @@ rlt_check_166:
 [Lustre] Property rlt_check_167... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -14621,7 +14621,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -14635,7 +14635,7 @@ rlt_check_168:
 [Lustre] Property rlt_check_169... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -14647,7 +14647,7 @@ rlt_check_169:
 [Lustre] Property rlt_check_170... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -14659,7 +14659,7 @@ rlt_check_170:
 [Lustre] Property rlt_check_171... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -14675,7 +14675,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -14693,7 +14693,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -14707,7 +14707,7 @@ rlt_check_173:
 [Lustre] Property rlt_check_174... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -14719,7 +14719,7 @@ rlt_check_174:
 [Lustre] Property rlt_check_175... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -14735,7 +14735,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -14749,7 +14749,7 @@ rlt_check_176:
 [Lustre] Property rlt_check_177... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -14765,7 +14765,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -14783,7 +14783,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -14799,7 +14799,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -14814,7 +14814,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -14829,7 +14829,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -14848,7 +14848,7 @@ considering simultaneous states to depth 2
 considering simultaneous states to depth 3
 considering simultaneous states to depth 3
 considering simultaneous states to depth 4
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -14867,7 +14867,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -14881,7 +14881,7 @@ rlt_check_184:
 [Lustre] Property rlt_check_185... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -14893,7 +14893,7 @@ rlt_check_185:
 [Lustre] Property rlt_check_186... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -14907,7 +14907,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -14920,7 +14920,7 @@ rlt_check_187:
 [Lustre] Property rlt_check_188... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -14934,7 +14934,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -14947,7 +14947,7 @@ rlt_check_189:
 [Lustre] Property rlt_check_190... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -14961,7 +14961,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -14974,7 +14974,7 @@ rlt_check_191:
 [Lustre] Property rlt_check_192... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -14986,7 +14986,7 @@ rlt_check_192:
 [Lustre] Property rlt_check_193... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -14998,7 +14998,7 @@ rlt_check_193:
 [Lustre] Property rlt_check_194... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -15012,7 +15012,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -15025,7 +15025,7 @@ rlt_check_195:
 [Lustre] Property rlt_check_196... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -15037,7 +15037,7 @@ rlt_check_196:
 [Lustre] Property rlt_check_197... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -15049,7 +15049,7 @@ rlt_check_197:
 [Lustre] Property rlt_check_198... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -15061,7 +15061,7 @@ rlt_check_198:
 [Lustre] Property rlt_check_199... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -15077,7 +15077,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -15095,7 +15095,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -15109,7 +15109,7 @@ rlt_check_201:
 [Lustre] Property rlt_check_202... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -15121,7 +15121,7 @@ rlt_check_202:
 [Lustre] Property rlt_check_203... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -15137,7 +15137,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -15151,7 +15151,7 @@ rlt_check_204:
 [Lustre] Property rlt_check_205... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -15163,7 +15163,7 @@ rlt_check_205:
 [Lustre] Property rlt_check_206... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -15175,7 +15175,7 @@ rlt_check_206:
 [Lustre] Property rlt_check_207... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -15187,7 +15187,7 @@ rlt_check_207:
 [Lustre] Property rlt_check_208... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -15199,7 +15199,7 @@ rlt_check_208:
 [Lustre] Property rlt_check_209... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -15211,7 +15211,7 @@ rlt_check_209:
 [Lustre] Property rlt_check_210... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -15225,7 +15225,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -15238,7 +15238,7 @@ rlt_check_211:
 [Lustre] Property rlt_check_212... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -15250,7 +15250,7 @@ rlt_check_212:
 [Lustre] Property rlt_check_213... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -15262,7 +15262,7 @@ rlt_check_213:
 [Lustre] Property rlt_check_214... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -15276,7 +15276,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -15291,7 +15291,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -15304,7 +15304,7 @@ rlt_check_216:
 [Lustre] Property rlt_check_217... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -15316,7 +15316,7 @@ rlt_check_217:
 [Lustre] Property rlt_check_218... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -15328,7 +15328,7 @@ rlt_check_218:
 [Lustre] Property rlt_check_219... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -15340,7 +15340,7 @@ rlt_check_219:
 [Lustre] Property rlt_check_220... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -15352,7 +15352,7 @@ rlt_check_220:
 [Lustre] Property rlt_check_221... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -15366,7 +15366,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -15379,7 +15379,7 @@ rlt_check_222:
 [Lustre] Property rlt_check_223... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -15395,7 +15395,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -15409,7 +15409,7 @@ rlt_check_224:
 [Lustre] Property rlt_check_225... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -15425,7 +15425,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -15443,7 +15443,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -15459,7 +15459,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -15474,7 +15474,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -15489,7 +15489,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -15508,7 +15508,7 @@ considering simultaneous states to depth 2
 considering simultaneous states to depth 3
 considering simultaneous states to depth 3
 considering simultaneous states to depth 4
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -15527,7 +15527,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -15541,7 +15541,7 @@ rlt_check_232:
 [Lustre] Property rlt_check_233... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -15557,7 +15557,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -15575,7 +15575,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -15591,7 +15591,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -15606,7 +15606,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -15621,7 +15621,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -15640,7 +15640,7 @@ considering simultaneous states to depth 2
 considering simultaneous states to depth 3
 considering simultaneous states to depth 3
 considering simultaneous states to depth 4
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -15659,7 +15659,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -15673,7 +15673,7 @@ rlt_check_240:
 [Lustre] Property rlt_check_241... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -15685,7 +15685,7 @@ rlt_check_241:
 [Lustre] Property rlt_check_242... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -15699,7 +15699,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -15712,7 +15712,7 @@ rlt_check_243:
 [Lustre] Property rlt_check_244... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -15724,7 +15724,7 @@ rlt_check_244:
 [Lustre] Property rlt_check_245... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -15736,7 +15736,7 @@ rlt_check_245:
 [Lustre] Property rlt_check_246... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -15748,7 +15748,7 @@ rlt_check_246:
 [Lustre] Property rlt_check_247... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -15760,7 +15760,7 @@ rlt_check_247:
 [Lustre] Property rlt_check_248... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -15772,7 +15772,7 @@ rlt_check_248:
 [Lustre] Property rlt_check_249... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -15784,7 +15784,7 @@ rlt_check_249:
 [Lustre] Property rlt_check_250... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -15796,7 +15796,7 @@ rlt_check_250:
 [Lustre] Property rlt_check_251... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -15808,7 +15808,7 @@ rlt_check_251:
 [Lustre] Property rlt_check_252... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -15822,7 +15822,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -15835,7 +15835,7 @@ rlt_check_253:
 [Lustre] Property rlt_check_254... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -15847,7 +15847,7 @@ rlt_check_254:
 [Lustre] Property rlt_check_255... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -15863,7 +15863,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -15881,7 +15881,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -15895,7 +15895,7 @@ rlt_check_257:
 [Lustre] Property rlt_check_258... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -15907,7 +15907,7 @@ rlt_check_258:
 [Lustre] Property rlt_check_259... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -15923,7 +15923,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -15937,7 +15937,7 @@ rlt_check_260:
 [Lustre] Property rlt_check_261... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -15953,7 +15953,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -15971,7 +15971,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -15985,7 +15985,7 @@ rlt_check_263:
 [Lustre] Property rlt_check_264... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -15997,7 +15997,7 @@ rlt_check_264:
 [Lustre] Property rlt_check_265... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -16013,7 +16013,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -16027,7 +16027,7 @@ rlt_check_266:
 [Lustre] Property rlt_check_267... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -16039,7 +16039,7 @@ rlt_check_267:
 [Lustre] Property rlt_check_268... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -16051,7 +16051,7 @@ rlt_check_268:
 [Lustre] Property rlt_check_269... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -16063,7 +16063,7 @@ rlt_check_269:
 [Lustre] Property rlt_check_270... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -16075,7 +16075,7 @@ rlt_check_270:
 [Lustre] Property rlt_check_271... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -16089,7 +16089,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -16102,7 +16102,7 @@ rlt_check_272:
 [Lustre] Property rlt_check_273... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -16118,7 +16118,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -16132,7 +16132,7 @@ rlt_check_274:
 [Lustre] Property rlt_check_275... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -16148,7 +16148,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -16166,7 +16166,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -16180,7 +16180,7 @@ rlt_check_277:
 [Lustre] Property rlt_check_278... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -16192,7 +16192,7 @@ rlt_check_278:
 [Lustre] Property rlt_check_279... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -16208,7 +16208,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -16222,7 +16222,7 @@ rlt_check_280:
 [Lustre] Property rlt_check_281... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -16238,7 +16238,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -16252,7 +16252,7 @@ rlt_check_282:
 [Lustre] Property rlt_check_283... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -16264,7 +16264,7 @@ rlt_check_283:
 [Lustre] Property rlt_check_284... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -16278,7 +16278,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -16295,7 +16295,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -16313,7 +16313,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -16329,7 +16329,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -16344,7 +16344,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -16359,7 +16359,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -16378,7 +16378,7 @@ considering simultaneous states to depth 2
 considering simultaneous states to depth 3
 considering simultaneous states to depth 3
 considering simultaneous states to depth 4
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -16397,7 +16397,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -16411,7 +16411,7 @@ rlt_check_292:
 [Lustre] Property rlt_check_293... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -16423,7 +16423,7 @@ rlt_check_293:
 [Lustre] Property rlt_check_294... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -16437,7 +16437,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -16450,7 +16450,7 @@ rlt_check_295:
 [Lustre] Property rlt_check_296... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -16462,7 +16462,7 @@ rlt_check_296:
 [Lustre] Property rlt_check_297... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -16478,7 +16478,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -16496,7 +16496,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -16512,7 +16512,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -16527,7 +16527,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -16542,7 +16542,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -16561,7 +16561,7 @@ considering simultaneous states to depth 2
 considering simultaneous states to depth 3
 considering simultaneous states to depth 3
 considering simultaneous states to depth 4
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -16580,7 +16580,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -16594,7 +16594,7 @@ rlt_check_304:
 [Lustre] Property rlt_check_305... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -16606,7 +16606,7 @@ rlt_check_305:
 [Lustre] Property rlt_check_306... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -16618,7 +16618,7 @@ rlt_check_306:
 [Lustre] Property rlt_check_307... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -16630,7 +16630,7 @@ rlt_check_307:
 [Lustre] Property rlt_check_308... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -16644,7 +16644,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -16658,13 +16658,13 @@ rlt_check_309:
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
-[[1;92mValid[0m] considering simultaneous states to depth 1
+[Valid] considering simultaneous states to depth 1
 [Lustre] Property rlt_check_311... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -16681,7 +16681,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -16701,7 +16701,7 @@ considering simultaneous states to depth 2
 considering simultaneous states to depth 3
 considering simultaneous states to depth 3
 considering simultaneous states to depth 4
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -16720,7 +16720,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -16738,7 +16738,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -16753,7 +16753,7 @@ rlt_check_315:
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
-[[1;92mValid[0m] considering simultaneous states to depth 1
+[Valid] considering simultaneous states to depth 1
 [Lustre] Property rlt_check_317... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
@@ -16761,7 +16761,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -16774,7 +16774,7 @@ rlt_check_317:
 
 [Lustre] Property rlt_check_318... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
-[[1;92mValid[0m] considering simultaneous states to depth 0
+[Valid] considering simultaneous states to depth 0
 [Lustre] Property rlt_check_319... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
@@ -16782,7 +16782,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -16800,7 +16800,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -16818,7 +16818,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -16836,7 +16836,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -16858,7 +16858,7 @@ considering simultaneous states to depth 3
 considering simultaneous states to depth 4
 considering simultaneous states to depth 4
 considering simultaneous states to depth 5
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -16878,7 +16878,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -16896,7 +16896,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -16914,7 +16914,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -16932,7 +16932,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -16950,7 +16950,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -16970,7 +16970,7 @@ considering simultaneous states to depth 2
 considering simultaneous states to depth 3
 considering simultaneous states to depth 3
 considering simultaneous states to depth 4
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -16987,7 +16987,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -17004,7 +17004,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -17019,7 +17019,7 @@ rlt_check_331:
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
-[[1;92mValid[0m] considering simultaneous states to depth 1
+[Valid] considering simultaneous states to depth 1
 [Lustre] Property rlt_check_333... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
@@ -17027,7 +17027,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -17040,13 +17040,13 @@ rlt_check_333:
 
 [Lustre] Property rlt_check_334... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
-[[1;92mValid[0m] considering simultaneous states to depth 0
+[Valid] considering simultaneous states to depth 0
 [Lustre] Property rlt_check_335... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -17059,7 +17059,7 @@ rlt_check_335:
 [Lustre] Property rlt_check_336... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -17073,7 +17073,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -17086,7 +17086,7 @@ rlt_check_337:
 [Lustre] Property rlt_check_338... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -17098,7 +17098,7 @@ rlt_check_338:
 [Lustre] Property rlt_check_339... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -17110,7 +17110,7 @@ rlt_check_339:
 [Lustre] Property rlt_check_340... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -17122,7 +17122,7 @@ rlt_check_340:
 [Lustre] Property rlt_check_341... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -17134,7 +17134,7 @@ rlt_check_341:
 [Lustre] Property rlt_check_342... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -17146,7 +17146,7 @@ rlt_check_342:
 [Lustre] Property rlt_check_343... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -17158,7 +17158,7 @@ rlt_check_343:
 [Lustre] Property rlt_check_344... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -17170,7 +17170,7 @@ rlt_check_344:
 [Lustre] Property rlt_check_345... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -17182,7 +17182,7 @@ rlt_check_345:
 [Lustre] Property rlt_check_346... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -17196,7 +17196,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -17209,7 +17209,7 @@ rlt_check_347:
 [Lustre] Property rlt_check_348... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -17223,7 +17223,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -17239,18 +17239,18 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
-[[1;92mValid[0m] considering simultaneous states to depth 2
+[Valid] considering simultaneous states to depth 2
 [Lustre] Property rlt_check_351... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
-[[1;92mValid[0m] considering simultaneous states to depth 1
+[Valid] considering simultaneous states to depth 1
 [Lustre] Property rlt_check_352... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -17264,13 +17264,13 @@ rlt_check_352:
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
-[[1;92mValid[0m] considering simultaneous states to depth 1
+[Valid] considering simultaneous states to depth 1
 [Lustre] Property rlt_check_354... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -17285,7 +17285,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -17300,7 +17300,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -17315,7 +17315,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -17330,7 +17330,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -17345,7 +17345,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -17360,7 +17360,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -17375,7 +17375,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -17389,13 +17389,13 @@ rlt_check_361:
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
-[[1;92mValid[0m] considering simultaneous states to depth 1
+[Valid] considering simultaneous states to depth 1
 [Lustre] Property rlt_check_363... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -17411,12 +17411,12 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
-[[1;92mValid[0m] considering simultaneous states to depth 2
+[Valid] considering simultaneous states to depth 2
 [Lustre] Property rlt_check_365... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
-[[1;92mValid[0m] considering simultaneous states to depth 1
+[Valid] considering simultaneous states to depth 1
 [Lustre] Property rlt_check_366... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
@@ -17424,7 +17424,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -17439,7 +17439,7 @@ rlt_check_366:
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
-[[1;92mValid[0m] considering simultaneous states to depth 1
+[Valid] considering simultaneous states to depth 1
 [Lustre] Property rlt_check_368... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
@@ -17449,7 +17449,7 @@ considering simultaneous states to depth 2
 considering simultaneous states to depth 3
 considering simultaneous states to depth 3
 considering simultaneous states to depth 4
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -17470,7 +17470,7 @@ considering simultaneous states to depth 2
 considering simultaneous states to depth 3
 considering simultaneous states to depth 3
 considering simultaneous states to depth 4
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -17491,7 +17491,7 @@ considering simultaneous states to depth 2
 considering simultaneous states to depth 3
 considering simultaneous states to depth 3
 considering simultaneous states to depth 4
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -17510,7 +17510,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -17530,7 +17530,7 @@ considering simultaneous states to depth 2
 considering simultaneous states to depth 3
 considering simultaneous states to depth 3
 considering simultaneous states to depth 4
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -17551,7 +17551,7 @@ considering simultaneous states to depth 2
 considering simultaneous states to depth 3
 considering simultaneous states to depth 3
 considering simultaneous states to depth 4
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -17570,7 +17570,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -17590,7 +17590,7 @@ considering simultaneous states to depth 2
 considering simultaneous states to depth 3
 considering simultaneous states to depth 3
 considering simultaneous states to depth 4
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -17609,7 +17609,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -17627,7 +17627,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -17642,7 +17642,7 @@ rlt_check_377:
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
-[[1;92mValid[0m] considering simultaneous states to depth 1
+[Valid] considering simultaneous states to depth 1
 [Lustre] Property rlt_check_379... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
@@ -17650,7 +17650,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -17663,13 +17663,13 @@ rlt_check_379:
 
 [Lustre] Property rlt_check_380... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
-[[1;92mValid[0m] considering simultaneous states to depth 0
+[Valid] considering simultaneous states to depth 0
 [Lustre] Property rlt_check_381... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
-[[1;92mValid[0m] considering simultaneous states to depth 0
+[Valid] considering simultaneous states to depth 0
 [Lustre] Property rlt_check_382... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
-[[1;92mValid[0m] considering simultaneous states to depth 0
+[Valid] considering simultaneous states to depth 0
 [Lustre] Property rlt_check_383... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
@@ -17677,7 +17677,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -17695,7 +17695,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -17713,7 +17713,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -17731,7 +17731,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -17753,7 +17753,7 @@ considering simultaneous states to depth 3
 considering simultaneous states to depth 4
 considering simultaneous states to depth 4
 considering simultaneous states to depth 5
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -17773,7 +17773,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -17791,7 +17791,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -17809,7 +17809,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -17827,7 +17827,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -17845,7 +17845,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -17865,7 +17865,7 @@ considering simultaneous states to depth 2
 considering simultaneous states to depth 3
 considering simultaneous states to depth 3
 considering simultaneous states to depth 4
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -17882,7 +17882,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -17899,7 +17899,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -17914,7 +17914,7 @@ rlt_check_395:
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
-[[1;92mValid[0m] considering simultaneous states to depth 1
+[Valid] considering simultaneous states to depth 1
 [Lustre] Property rlt_check_397... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
@@ -17922,7 +17922,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -17935,13 +17935,13 @@ rlt_check_397:
 
 [Lustre] Property rlt_check_398... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
-[[1;92mValid[0m] considering simultaneous states to depth 0
+[Valid] considering simultaneous states to depth 0
 [Lustre] Property rlt_check_399... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -17954,7 +17954,7 @@ rlt_check_399:
 [Lustre] Property rlt_check_400... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -17968,7 +17968,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -17981,7 +17981,7 @@ rlt_check_401:
 [Lustre] Property rlt_check_402... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -17993,7 +17993,7 @@ rlt_check_402:
 [Lustre] Property rlt_check_403... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -18005,7 +18005,7 @@ rlt_check_403:
 [Lustre] Property rlt_check_404... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -18019,7 +18019,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -18034,7 +18034,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -18047,7 +18047,7 @@ rlt_check_406:
 [Lustre] Property rlt_check_407... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -18061,7 +18061,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -18074,7 +18074,7 @@ rlt_check_408:
 [Lustre] Property rlt_check_409... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -18085,11 +18085,11 @@ rlt_check_409:
 
 [Lustre] Property rlt_check_410... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
-[[1;92mValid[0m] considering simultaneous states to depth 0
+[Valid] considering simultaneous states to depth 0
 [Lustre] Property rlt_check_411... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -18100,10 +18100,10 @@ rlt_check_411:
 
 [Lustre] Property rlt_check_412... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
-[[1;92mValid[0m] considering simultaneous states to depth 0
+[Valid] considering simultaneous states to depth 0
 [Lustre] Property rlt_check_413... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
-[[1;92mValid[0m] considering simultaneous states to depth 0
+[Valid] considering simultaneous states to depth 0
 [Lustre] Property rlt_check_414... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
@@ -18111,7 +18111,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -18125,7 +18125,7 @@ rlt_check_414:
 [Lustre] Property rlt_check_415... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -18137,7 +18137,7 @@ rlt_check_415:
 [Lustre] Property rlt_check_416... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -18149,7 +18149,7 @@ rlt_check_416:
 [Lustre] Property rlt_check_417... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -18161,7 +18161,7 @@ rlt_check_417:
 [Lustre] Property rlt_check_418... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -18173,7 +18173,7 @@ rlt_check_418:
 [Lustre] Property rlt_check_419... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -18185,7 +18185,7 @@ rlt_check_419:
 [Lustre] Property rlt_check_420... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -18199,7 +18199,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -18212,7 +18212,7 @@ rlt_check_421:
 [Lustre] Property rlt_check_422... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -18224,7 +18224,7 @@ rlt_check_422:
 [Lustre] Property rlt_check_423... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -18236,7 +18236,7 @@ rlt_check_423:
 [Lustre] Property rlt_check_424... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -18250,7 +18250,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -18263,7 +18263,7 @@ rlt_check_425:
 [Lustre] Property rlt_check_426... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -18275,7 +18275,7 @@ rlt_check_426:
 [Lustre] Property rlt_check_427... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -18287,7 +18287,7 @@ rlt_check_427:
 [Lustre] Property rlt_check_428... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -18301,7 +18301,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -18314,7 +18314,7 @@ rlt_check_429:
 [Lustre] Property rlt_check_430... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -18326,7 +18326,7 @@ rlt_check_430:
 [Lustre] Property rlt_check_431... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -18338,7 +18338,7 @@ rlt_check_431:
 [Lustre] Property rlt_check_432... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -18352,7 +18352,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -18365,7 +18365,7 @@ rlt_check_433:
 [Lustre] Property rlt_check_434... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -18377,7 +18377,7 @@ rlt_check_434:
 [Lustre] Property rlt_check_435... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -18389,7 +18389,7 @@ rlt_check_435:
 [Lustre] Property rlt_check_436... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -18403,7 +18403,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -18416,7 +18416,7 @@ rlt_check_437:
 [Lustre] Property rlt_check_438... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -18428,7 +18428,7 @@ rlt_check_438:
 [Lustre] Property rlt_check_439... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -18440,7 +18440,7 @@ rlt_check_439:
 [Lustre] Property rlt_check_440... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -18454,7 +18454,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -18467,7 +18467,7 @@ rlt_check_441:
 [Lustre] Property rlt_check_442... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -18479,7 +18479,7 @@ rlt_check_442:
 [Lustre] Property rlt_check_443... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -18491,7 +18491,7 @@ rlt_check_443:
 [Lustre] Property rlt_check_444... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -18505,7 +18505,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -18518,7 +18518,7 @@ rlt_check_445:
 [Lustre] Property rlt_check_446... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -18530,7 +18530,7 @@ rlt_check_446:
 [Lustre] Property rlt_check_447... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -18542,7 +18542,7 @@ rlt_check_447:
 [Lustre] Property rlt_check_448... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -18556,7 +18556,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -18569,7 +18569,7 @@ rlt_check_449:
 [Lustre] Property rlt_check_450... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -18581,7 +18581,7 @@ rlt_check_450:
 [Lustre] Property rlt_check_451... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -18593,7 +18593,7 @@ rlt_check_451:
 [Lustre] Property rlt_check_452... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -18607,7 +18607,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -18620,7 +18620,7 @@ rlt_check_453:
 [Lustre] Property rlt_check_454... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -18632,7 +18632,7 @@ rlt_check_454:
 [Lustre] Property rlt_check_455... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -18644,7 +18644,7 @@ rlt_check_455:
 [Lustre] Property rlt_check_456... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -18658,7 +18658,7 @@ considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -18671,7 +18671,7 @@ rlt_check_457:
 [Lustre] Property rlt_check_458... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -18683,7 +18683,7 @@ rlt_check_458:
 [Lustre] Property rlt_check_459... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -18695,7 +18695,7 @@ rlt_check_459:
 [Lustre] Property rlt_check_460... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -18707,7 +18707,7 @@ rlt_check_460:
 [Lustre] Property rlt_check_461... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -18719,7 +18719,7 @@ rlt_check_461:
 [Lustre] Property rlt_check_462... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -18731,7 +18731,7 @@ rlt_check_462:
 [Lustre] Property rlt_check_463... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -18743,7 +18743,7 @@ rlt_check_463:
 [Lustre] Property rlt_check_464... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -18755,7 +18755,7 @@ rlt_check_464:
 [Lustre] Property rlt_check_465... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -18767,7 +18767,7 @@ rlt_check_465:
 [Lustre] Property rlt_check_466... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -18779,7 +18779,7 @@ rlt_check_466:
 [Lustre] Property rlt_check_467... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -18788,4 +18788,4 @@ rlt_check_467:
 ------+----------+----------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------------+-----+------------+--------------+-------------+------
  1    | False    | True     | False | False | False | False | False | False | False | False | False | False | False       |     | 0          | 0            | 0           | 1    
 
-[Lustre] Model status: [[1;91mInvalid[0m] 
+[Lustre] Model status: [Invalid] 

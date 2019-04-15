@@ -285,7 +285,7 @@ Sally Model
 [Lustre] Validating properties:
 [Lustre] Property ok3... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
-[[1;92mValid[0m] considering simultaneous states to depth 0
+[Valid] considering simultaneous states to depth 0
 [Lustre] Property cex2... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
@@ -319,7 +319,7 @@ counter-example search depth 7
 counter-example search depth 8
 counter-example search depth 9
 counter-example search depth 10
-[[1;93mUnknown[0m] Valid up to depth 10
+[Unknown] Valid up to depth 10
 [Lustre] Property ok2... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
@@ -353,7 +353,7 @@ counter-example search depth 7
 counter-example search depth 8
 counter-example search depth 9
 counter-example search depth 10
-[[1;93mUnknown[0m] Valid up to depth 10
+[Unknown] Valid up to depth 10
 [Lustre] Property cex1... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
@@ -387,8 +387,8 @@ counter-example search depth 7
 counter-example search depth 8
 counter-example search depth 9
 counter-example search depth 10
-[[1;93mUnknown[0m] Valid up to depth 10
+[Unknown] Valid up to depth 10
 [Lustre] Property ok1... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
-[[1;92mValid[0m] considering simultaneous states to depth 0
-[Lustre] Model status: [[1;93mUnknown[0m] 
+[Valid] considering simultaneous states to depth 0
+[Lustre] Model status: [Unknown] 

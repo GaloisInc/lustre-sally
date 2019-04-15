@@ -683,7 +683,7 @@ considering simultaneous states to depth 4
 considering simultaneous states to depth 5
 considering simultaneous states to depth 5
 considering simultaneous states to depth 6
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -734,5 +734,5 @@ counter-example search depth 3
 counter-example search depth 4
 counter-example search depth 5
 counter-example search depth 6
-[[1;93mUnknown[0m] Valid up to depth 6
-[Lustre] Model status: [[1;91mInvalid[0m] 
+[Unknown] Valid up to depth 6
+[Lustre] Model status: [Invalid] 

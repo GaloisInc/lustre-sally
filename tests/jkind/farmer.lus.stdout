@@ -324,7 +324,7 @@ considering simultaneous states to depth 6
 considering simultaneous states to depth 7
 considering simultaneous states to depth 7
 considering simultaneous states to depth 8
-[[1;91mInvalid[0m] 
+[Invalid] 
 Trace
 =====
 
@@ -340,4 +340,4 @@ prop:
  7    | 2      |     | 1    | 0    | 1       | 0      
  8    | 1098   |     | 1    | 1    | 1       | 1      
 
-[Lustre] Model status: [[1;91mInvalid[0m] 
+[Lustre] Model status: [Invalid] 

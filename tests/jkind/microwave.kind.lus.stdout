@@ -7152,7 +7152,7 @@ considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
-[[1;92mValid[0m] considering simultaneous states to depth 2
+[Valid] considering simultaneous states to depth 2
 [Lustre] Property r11... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
@@ -7161,14 +7161,14 @@ considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
 considering simultaneous states to depth 3
-[[1;92mValid[0m] considering simultaneous states to depth 3
+[Valid] considering simultaneous states to depth 3
 [Lustre] Property r10... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
 considering simultaneous states to depth 2
 considering simultaneous states to depth 2
-[[1;92mValid[0m] considering simultaneous states to depth 2
+[Valid] considering simultaneous states to depth 2
 [Lustre] Property r6... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
@@ -7202,7 +7202,7 @@ counter-example search depth 7
 counter-example search depth 8
 counter-example search depth 9
 counter-example search depth 10
-[[1;93mUnknown[0m] Valid up to depth 10
+[Unknown] Valid up to depth 10
 [Lustre] Property r5... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
@@ -7211,7 +7211,7 @@ considering simultaneous states to depth 2
 considering simultaneous states to depth 2
 considering simultaneous states to depth 3
 considering simultaneous states to depth 3
-[[1;92mValid[0m] considering simultaneous states to depth 3
+[Valid] considering simultaneous states to depth 3
 [Lustre] Property r2... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
@@ -7245,10 +7245,10 @@ counter-example search depth 7
 counter-example search depth 8
 counter-example search depth 9
 counter-example search depth 10
-[[1;93mUnknown[0m] Valid up to depth 10
+[Unknown] Valid up to depth 10
 [Lustre] Property r8... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
-[[1;92mValid[0m] considering simultaneous states to depth 0
+[Valid] considering simultaneous states to depth 0
 [Lustre] Property r7... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
@@ -7282,7 +7282,7 @@ counter-example search depth 7
 counter-example search depth 8
 counter-example search depth 9
 counter-example search depth 10
-[[1;93mUnknown[0m] Valid up to depth 10
+[Unknown] Valid up to depth 10
 [Lustre] Property s2... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
@@ -7316,22 +7316,22 @@ counter-example search depth 7
 counter-example search depth 8
 counter-example search depth 9
 counter-example search depth 10
-[[1;93mUnknown[0m] Valid up to depth 10
+[Unknown] Valid up to depth 10
 [Lustre] Property r4... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
-[[1;92mValid[0m] considering simultaneous states to depth 1
+[Valid] considering simultaneous states to depth 1
 [Lustre] Property r3... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
-[[1;92mValid[0m] considering simultaneous states to depth 1
+[Valid] considering simultaneous states to depth 1
 [Lustre] Property r1... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
 considering simultaneous states to depth 1
-[[1;92mValid[0m] considering simultaneous states to depth 1
+[Valid] considering simultaneous states to depth 1
 [Lustre] Property s1... considering simultaneous states to depth 0
 considering simultaneous states to depth 0
 considering simultaneous states to depth 1
@@ -7365,5 +7365,5 @@ counter-example search depth 7
 counter-example search depth 8
 counter-example search depth 9
 counter-example search depth 10
-[[1;93mUnknown[0m] Valid up to depth 10
-[Lustre] Model status: [[1;93mUnknown[0m] 
+[Unknown] Valid up to depth 10
+[Lustre] Model status: [Unknown] 
