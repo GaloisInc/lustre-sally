@@ -47,6 +47,13 @@ lPutStrLn l c x = lPutStr l c (x ++ "\n")
 
 --------------------------------------------------------------------------------
 
+newTestSallyLogger :: IO Logger
+newTestSallyLogger = pure Logger
+  { lPutStr     = \_ x -> putStr x >> hFlush stdout
+  , lPutProg    = \_ -> pure ()
+  , lClearProg  = pure ()
+  }
+
 newTestLogger :: IO Logger
 newTestLogger = pure Logger
   { lPutStr     = \_ x -> putStr x >> hFlush stdout

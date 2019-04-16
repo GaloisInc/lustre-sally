@@ -2,7 +2,7 @@
 module Main(main) where
 
 import System.Exit(exitFailure)
-import Control.Monad(when,unless,foldM)
+import Control.Monad(when,foldM)
 import Control.Exception(catches, catch, Handler(..), throwIO
                         , SomeException(..), displayException)
 import Control.Concurrent
@@ -46,9 +46,11 @@ data Settings = Settings
   , useMCSat  :: Bool
   , outDir    :: FilePath
   , useConfig :: FilePath
-  , testMode  :: Bool
+  , testMode  :: TestMode
   , timeout   :: Maybe Int
   }
+
+data TestMode = NoTest | TestLustre | TestSally
 
 options :: OptSpec Settings
 options = OptSpec
@@ -106,7 +108,17 @@ options = OptSpec
 
       , Option [] ["test-mode"]
         "Run in testing-mode (prints more things on stdout)"
-        $ NoArg $ \s -> Right s { testMode = True }
+        $ NoArg $ \s -> case testMode s of
+                          NoTest -> Right s { testMode = TestLustre }
+                          TestLustre -> Right s
+                          TestSally -> Left "We only support one test mode."
+
+      , Option [] ["test-sally"]
+        "Run in testing-mode (prints proof related things)"
+        $ NoArg $ \s -> case testMode s of
+                          NoTest -> Right s { testMode = TestSally }
+                          TestSally -> Right s
+                          TestLustre -> Left "We only support one test mode."
       ]
 
   , progParamDocs = [("FILE", "Lustre file containing model (required).")]
@@ -126,7 +138,7 @@ options = OptSpec
     , useMCSat = True
     , outDir = "results"
     , useConfig = ""
-    , testMode = False
+    , testMode = NoTest
     , timeout = Nothing
     }
 
@@ -175,7 +187,10 @@ getSettings l =
 main :: IO ()
 main =
   do settings <- getSettings =<< newLogger
-     l <- if testMode settings then newTestLogger else newLogger
+     l <- case testMode settings of
+            NoTest     -> newLogger
+            TestLustre -> newTestLogger
+            TestSally  -> newTestSallyLogger
      do a <- parseProgramFromFileLatin1 (file settings)
         case a of
           ProgramDecls ds -> mainWork l settings ds
@@ -208,16 +223,18 @@ mainWork l settings ds =
      (info,nd) <- runLustre luConf (quickNodeToCore (node settings) ds)
 
      -- Save JS version of source model
-     unless (testMode settings) $
-       do txt <- readFile (file settings)
-          saveOutput (outSourceFile settings) (declareSource txt)
+     case testMode settings of
+       NoTest -> do txt <- readFile (file settings)
+                    saveOutput (outSourceFile settings) (declareSource txt)
+       _ -> pure ()
 
      -- Save Core version of model, if needed
      let prettyCore = show (pp nd)
      when (saveCore settings) $
        saveOutput (outCoreFile settings) prettyCore
-     when (testMode settings) $
-       saveOutputTesting "Core Lustre" prettyCore
+     case testMode settings of
+       TestLustre -> saveOutputTesting "Core Lustre" prettyCore
+       _ -> pure ()
 
      let (ts,qs)  = transNode nd   -- transition system and queries
 
@@ -229,8 +246,9 @@ mainWork l settings ds =
      let sallyTxt = unlines (ts_sexp : map snd qs_sexps)
      when (saveSally settings) $
        saveOutput (outSallyFile settings) sallyTxt
-     when (testMode settings) $
-       saveOutputTesting "Sally Model" sallyTxt
+     case testMode settings of
+       NoTest -> pure ()
+       _      -> saveOutputTesting "Sally Model" sallyTxt
 
      say l Nothing "Lustre" "Validating properties:"
      outs <- mapM (checkQuery l settings info nd ts ts_sexp) qs_sexps
@@ -272,13 +290,7 @@ checkQuery lgr settings mi nd ts_ast ts (l',q) =
                pure Valid
 
          Invalid r
-          | testMode settings ->
-            do sayFail lgr "Invalid" ""
-               let siTr = simpleTrace  mi l' r
-               saveOutputTesting "Trace" siTr
-               pure (Invalid ())
-
-          | otherwise ->
+          | NoTest <- testMode settings ->
             do let propDir = outPropDir settings l
                sayFail lgr "Invalid" ("See " ++ (propDir </> "index.html"))
                saveUI propDir
@@ -286,6 +298,12 @@ checkQuery lgr settings mi nd ts_ast ts (l',q) =
                let siTr = simpleTrace  mi l' r
                saveOutput (outTraceFile settings l) jsTr
                sayFail lgr "Trace" ('\n' : siTr)
+               pure (Invalid ())
+
+          | otherwise ->
+            do sayFail lgr "Invalid" ""
+               let siTr = simpleTrace  mi l' r
+               saveOutputTesting "Trace" siTr
                pure (Invalid ())
 
          Unknown   -> orElse
