@@ -1,26 +1,3 @@
-Core Lustre
-===========
-
-node (x : int, y : int, z : int)
-  returns (ok, lemma)
-  assumes (Implies)
-  shows (lemma, ok)
-let
-  ok : bool
-    = And(Lt(x, z), Lt(z, y))
-   
-  pre_counter : int
-    = pre counter
-   
-  counter : int
-    = 0 -> Add(1, pre_counter)
-   
-  lemma : bool
-    = Geq(counter, 0)
-   
-  Implies : bool
-    = Implies(Geq(counter, 0), Lt(x, Sub(y, 1)))
-tel
 Sally Model
 ===========
 
@@ -85,15 +62,8 @@ Sally Model
    (or |gal-initializing| ok))
 
 [Lustre] Validating properties:
-[Lustre] Property lemma... considering simultaneous states to depth 0
-considering simultaneous states to depth 0
-considering simultaneous states to depth 1
-considering simultaneous states to depth 1
-[Valid] considering simultaneous states to depth 1
-[Lustre] Property ok... considering simultaneous states to depth 0
-considering simultaneous states to depth 0
-considering simultaneous states to depth 1
-[Invalid] 
+[Lustre] Property lemma... [Valid] considering simultaneous states to depth 1
+[Lustre] Property ok... [Invalid] 
 Trace
 =====
 

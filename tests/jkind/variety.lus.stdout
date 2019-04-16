@@ -1,89 +1,3 @@
-Core Lustre
-===========
-
-node (delta_x : int, delta_y : int)
-  returns ()
-  assumes (Leq, Leq$1)
-  shows (cex1, ok1)
-let
-  pre_p1.x : int
-    = pre p1.x
-   
-  init_pre_p1.x : int
-    = 0 -> pre_p1.x
-   
-  p1.x : int
-    = Add(init_pre_p1.x, delta_x)
-   
-  pre_p1.y : int
-    = pre p1.y
-   
-  init_pre_p1.y : int
-    = 0 -> pre_p1.y
-   
-  p1.y : int
-    = Add(init_pre_p1.y, delta_y)
-   
-  pre_p2.x : int
-    = pre p2.x
-   
-  p.x : int
-    = 0 -> pre_p2.x
-   
-  delta.x : int
-    = delta_x
-   
-  q.x : int
-    = delta.x
-   
-  x_coord : int
-    = Add(p.x, q.x)
-   
-  p2.x : int
-    = x_coord
-   
-  pre_p2.y : int
-    = pre p2.y
-   
-  p.y : int
-    = 0 -> pre_p2.y
-   
-  delta.y : int
-    = delta_y
-   
-  q.y : int
-    = delta.y
-   
-  y_coord : int
-    = Add(p.y, q.y)
-   
-  p2.y : int
-    = y_coord
-   
-  ok1 : bool
-    = And(Eq(p1.x, p2.x), Eq(p1.y, p2.y))
-   
-  cex1 : bool
-    = Or(Neq(p1.x, 20), Neq(p1.y, 13))
-   
-  z$1 : int
-    = delta_x
-   
-  abs$1 : int
-    = ITE(Geq(z$1, 0), z$1, Neg(z$1))
-   
-  z : int
-    = delta_y
-   
-  abs : int
-    = ITE(Geq(z, 0), z, Neg(z))
-   
-  Leq$1 : bool
-    = Leq(abs$1, 2)
-   
-  Leq : bool
-    = Leq(abs, 2)
-tel
 Sally Model
 ===========
 
@@ -224,28 +138,7 @@ Sally Model
    (or |gal-initializing| ok1))
 
 [Lustre] Validating properties:
-[Lustre] Property cex1... considering simultaneous states to depth 0
-considering simultaneous states to depth 0
-considering simultaneous states to depth 1
-considering simultaneous states to depth 1
-considering simultaneous states to depth 2
-considering simultaneous states to depth 2
-considering simultaneous states to depth 3
-considering simultaneous states to depth 3
-considering simultaneous states to depth 4
-considering simultaneous states to depth 4
-considering simultaneous states to depth 5
-considering simultaneous states to depth 5
-considering simultaneous states to depth 6
-considering simultaneous states to depth 6
-considering simultaneous states to depth 7
-considering simultaneous states to depth 7
-considering simultaneous states to depth 8
-considering simultaneous states to depth 8
-considering simultaneous states to depth 9
-considering simultaneous states to depth 9
-considering simultaneous states to depth 10
-[Invalid] 
+[Lustre] Property cex1... [Invalid] 
 Trace
 =====
 
@@ -263,9 +156,5 @@ cex1:
  9    | 2       | 0       |     
  10   | 2       | 0       |     
 
-[Lustre] Property ok1... considering simultaneous states to depth 0
-considering simultaneous states to depth 0
-considering simultaneous states to depth 1
-considering simultaneous states to depth 1
-[Valid] considering simultaneous states to depth 1
+[Lustre] Property ok1... [Valid] considering simultaneous states to depth 1
 [Lustre] Model status: [Invalid] 

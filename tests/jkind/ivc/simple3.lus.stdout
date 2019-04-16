@@ -1,38 +1,3 @@
-Core Lustre
-===========
-
-node (x$2 : int)
-  returns (y)
-  assumes (assum)
-  shows (ok)
-let
-  x$1 : int
-    = x$2
-   
-  x : int
-    = x$1
-   
-  pre_y : int
-    = pre y
-   
-  init_pre_y : int
-    = 0 -> pre_y
-   
-  y : int
-    = Add(x, init_pre_y)
-   
-  a : bool
-    = Geq(x, Neg(1))
-   
-  b : bool
-    = Geq(x, 0)
-   
-  assum : bool
-    = And(a, b)
-   
-  ok : bool
-    = Geq(y, 0)
-tel
 Sally Model
 ===========
 
@@ -94,9 +59,5 @@ Sally Model
    (or |gal-initializing| ok))
 
 [Lustre] Validating properties:
-[Lustre] Property ok... considering simultaneous states to depth 0
-considering simultaneous states to depth 0
-considering simultaneous states to depth 1
-considering simultaneous states to depth 1
-[Valid] considering simultaneous states to depth 1
+[Lustre] Property ok... [Valid] considering simultaneous states to depth 1
 [Lustre] Model status: [Valid] 

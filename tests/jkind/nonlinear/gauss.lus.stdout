@@ -1,29 +1,3 @@
-Core Lustre
-===========
-
-node ()
-  returns (ok)
-  assumes ()
-  shows (ok)
-let
-  pre_i : int
-    = pre i
-   
-  i : int
-    = 0 -> Add(1, pre_i)
-   
-  pre_sum : int
-    = pre sum
-   
-  init_pre_sum : int
-    = 0 -> pre_sum
-   
-  sum : int
-    = Add(i, init_pre_sum)
-   
-  ok : bool
-    = Eq(sum, Div(Mul(i, Add(i, 1)), 2))
-tel
 Sally Model
 ===========
 
@@ -94,9 +68,7 @@ Sally Model
    (or |gal-initializing| ok))
 
 [Lustre] Validating properties:
-[Lustre] Property ok... considering simultaneous states to depth 0
-considering simultaneous states to depth 0
-[Error] Sally error:
+[Lustre] Property ok... [Error] Sally error:
 Yices error (add): the context does not support non-linear arithmetic
 
 [Error] ExitFailure 1

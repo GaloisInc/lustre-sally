@@ -1,17 +1,3 @@
-Core Lustre
-===========
-
-node (in1 : int, in2 : int, out : int)
-  returns (ok)
-  assumes (Lt)
-  shows (ok)
-let
-  ok : bool
-    = And(Lt(in1, out), Lt(out, in2))
-   
-  Lt : bool
-    = Lt(in1, in2)
-tel
 Sally Model
 ===========
 
@@ -52,10 +38,7 @@ Sally Model
    (or |gal-initializing| ok))
 
 [Lustre] Validating properties:
-[Lustre] Property ok... considering simultaneous states to depth 0
-considering simultaneous states to depth 0
-considering simultaneous states to depth 1
-[Invalid] 
+[Lustre] Property ok... [Invalid] 
 Trace
 =====
 

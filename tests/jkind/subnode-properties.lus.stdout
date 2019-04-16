@@ -1,44 +1,3 @@
-Core Lustre
-===========
-
-node (rand$3 : bool)
-  returns (prop)
-  assumes ()
-  shows (prop, lemma, lemma$1)
-let
-  rand$2 : bool
-    = rand$3
-   
-  pre_counter2 : int
-    = pre counter2
-   
-  counter2 : int
-    = ITE(rand$2, Neg(1), Neg(1)) -> Add(1, pre_counter2)
-   
-  rand$1 : bool
-    = rand$3
-   
-  rand : bool
-    = rand$1
-   
-  pre_counter : int
-    = pre counter
-   
-  counter : int
-    = ITE(rand, Neg(1), Neg(1)) -> Add(1, pre_counter)
-   
-  ten : bool
-    = Geq(counter, 10)
-   
-  prop : bool
-    = Or(Lt(counter2, 10), ten)
-   
-  lemma$1 : bool
-    = Geq(counter2, Neg(1))
-   
-  lemma : bool
-    = Geq(counter, Neg(1))
-tel
 Sally Model
 ===========
 
@@ -131,48 +90,7 @@ Sally Model
    (or |gal-initializing| |lemma:1|))
 
 [Lustre] Validating properties:
-[Lustre] Property prop... considering simultaneous states to depth 0
-considering simultaneous states to depth 0
-considering simultaneous states to depth 1
-considering simultaneous states to depth 1
-considering simultaneous states to depth 2
-considering simultaneous states to depth 2
-considering simultaneous states to depth 3
-considering simultaneous states to depth 3
-considering simultaneous states to depth 4
-considering simultaneous states to depth 4
-considering simultaneous states to depth 5
-considering simultaneous states to depth 5
-considering simultaneous states to depth 6
-considering simultaneous states to depth 6
-considering simultaneous states to depth 7
-considering simultaneous states to depth 7
-considering simultaneous states to depth 8
-considering simultaneous states to depth 8
-considering simultaneous states to depth 9
-considering simultaneous states to depth 9
-considering simultaneous states to depth 10
-considering simultaneous states to depth 10
-counter-example search depth 0
-counter-example search depth 1
-counter-example search depth 2
-counter-example search depth 3
-counter-example search depth 4
-counter-example search depth 5
-counter-example search depth 6
-counter-example search depth 7
-counter-example search depth 8
-counter-example search depth 9
-counter-example search depth 10
-[Unknown] Valid up to depth 10
-[Lustre] Property lemma... considering simultaneous states to depth 0
-considering simultaneous states to depth 0
-considering simultaneous states to depth 1
-considering simultaneous states to depth 1
-[Valid] considering simultaneous states to depth 1
-[Lustre] Property lemma... considering simultaneous states to depth 0
-considering simultaneous states to depth 0
-considering simultaneous states to depth 1
-considering simultaneous states to depth 1
-[Valid] considering simultaneous states to depth 1
+[Lustre] Property prop... [Unknown] Valid up to depth 10
+[Lustre] Property lemma... [Valid] considering simultaneous states to depth 1
+[Lustre] Property lemma... [Valid] considering simultaneous states to depth 1
 [Lustre] Model status: [Unknown] 

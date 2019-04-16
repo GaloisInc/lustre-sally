@@ -1,29 +1,3 @@
-Core Lustre
-===========
-
-node (max : int, min : int, init_max : int)
-  returns (ok)
-  assumes (Gt)
-  shows (ok)
-let
-  pre_max : int
-    = pre max
-   
-  $init$1 : int
-    = init_max -> Add(1, pre_max)
-   
-  pre_min : int
-    = pre min
-   
-  $init : int
-    = 0 -> Add(2, pre_min)
-   
-  ok : bool
-    = And(And(Eq(max, $init$1), Eq(min, $init)), Gt(max, min))
-   
-  Gt : bool
-    = Gt(init_max, 20)
-tel
 Sally Model
 ===========
 
@@ -90,10 +64,7 @@ Sally Model
    (or |gal-initializing| ok))
 
 [Lustre] Validating properties:
-[Lustre] Property ok... considering simultaneous states to depth 0
-considering simultaneous states to depth 0
-considering simultaneous states to depth 1
-[Invalid] 
+[Lustre] Property ok... [Invalid] 
 Trace
 =====
 

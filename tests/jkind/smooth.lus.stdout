@@ -1,26 +1,3 @@
-Core Lustre
-===========
-
-node (x : int, y : int, z : int, w : int)
-  returns (cex)
-  assumes ()
-  shows (cex)
-let
-  signal : bool
-    = And(And(And(Lt(x, y), Lt(y, z)), Lt(z, w)), Lt(x, w))
-   
-  pre_counter : int
-    = pre counter
-   
-  init_pre_counter : int
-    = 0 -> pre_counter
-   
-  counter : int
-    = ITE(signal, Add(1, init_pre_counter), 0)
-   
-  cex : bool
-    = Leq(counter, 10)
-tel
 Sally Model
 ===========
 
@@ -83,38 +60,5 @@ Sally Model
    (or |gal-initializing| cex))
 
 [Lustre] Validating properties:
-[Lustre] Property cex... considering simultaneous states to depth 0
-considering simultaneous states to depth 0
-considering simultaneous states to depth 1
-considering simultaneous states to depth 1
-considering simultaneous states to depth 2
-considering simultaneous states to depth 2
-considering simultaneous states to depth 3
-considering simultaneous states to depth 3
-considering simultaneous states to depth 4
-considering simultaneous states to depth 4
-considering simultaneous states to depth 5
-considering simultaneous states to depth 5
-considering simultaneous states to depth 6
-considering simultaneous states to depth 6
-considering simultaneous states to depth 7
-considering simultaneous states to depth 7
-considering simultaneous states to depth 8
-considering simultaneous states to depth 8
-considering simultaneous states to depth 9
-considering simultaneous states to depth 9
-considering simultaneous states to depth 10
-considering simultaneous states to depth 10
-counter-example search depth 0
-counter-example search depth 1
-counter-example search depth 2
-counter-example search depth 3
-counter-example search depth 4
-counter-example search depth 5
-counter-example search depth 6
-counter-example search depth 7
-counter-example search depth 8
-counter-example search depth 9
-counter-example search depth 10
-[Unknown] Valid up to depth 10
+[Lustre] Property cex... [Unknown] Valid up to depth 10
 [Lustre] Model status: [Unknown] 

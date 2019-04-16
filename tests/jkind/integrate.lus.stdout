@@ -1,74 +1,3 @@
-Core Lustre
-===========
-
-node (x$4 : int, y : int)
-  returns (z)
-  assumes ()
-  shows (prop2, prop1)
-let
-  x$3 : int
-    = x$4
-   
-  pre_z : int
-    = pre z
-   
-  init_pre_z : int
-    = 0 -> pre_z
-   
-  z : int
-    = Add(x$3, init_pre_z)
-   
-  pre_history : bool
-    = pre history
-   
-  init_pre_history : bool
-    = true -> pre_history
-   
-  history : bool
-    = And(Gt(x$4, 0), init_pre_history)
-   
-  prop1 : bool
-    = Implies(history, Gt(z, 0))
-   
-  x$2 : int
-    = x$4
-   
-  pre_integ$2 : int
-    = pre integ$2
-   
-  init_pre_integ$2 : int
-    = 0 -> pre_integ$2
-   
-  integ$2 : int
-    = Add(x$2, init_pre_integ$2)
-   
-  x$1 : int
-    = y
-   
-  pre_integ$1 : int
-    = pre integ$1
-   
-  init_pre_integ$1 : int
-    = 0 -> pre_integ$1
-   
-  integ$1 : int
-    = Add(x$1, init_pre_integ$1)
-   
-  x : int
-    = Add(x$4, y)
-   
-  pre_integ : int
-    = pre integ
-   
-  init_pre_integ : int
-    = 0 -> pre_integ
-   
-  integ : int
-    = Add(x, init_pre_integ)
-   
-  prop2 : bool
-    = Eq(Add(integ$2, integ$1), integ)
-tel
 Sally Model
 ===========
 
@@ -193,14 +122,6 @@ Sally Model
    (or |gal-initializing| prop1))
 
 [Lustre] Validating properties:
-[Lustre] Property prop2... considering simultaneous states to depth 0
-considering simultaneous states to depth 0
-considering simultaneous states to depth 1
-considering simultaneous states to depth 1
-[Valid] considering simultaneous states to depth 1
-[Lustre] Property prop1... considering simultaneous states to depth 0
-considering simultaneous states to depth 0
-considering simultaneous states to depth 1
-considering simultaneous states to depth 1
-[Valid] considering simultaneous states to depth 1
+[Lustre] Property prop2... [Valid] considering simultaneous states to depth 1
+[Lustre] Property prop1... [Valid] considering simultaneous states to depth 1
 [Lustre] Model status: [Valid] 

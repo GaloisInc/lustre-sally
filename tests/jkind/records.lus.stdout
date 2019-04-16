@@ -1,92 +1,3 @@
-Core Lustre
-===========
-
-node (delta1 : int, delta2 : int)
-  returns ()
-  assumes ()
-  shows (cex2, ok1, lemma, cex1)
-let
-  pre_wp2.weight : real
-    = pre wp2.weight
-   
-  wp1.weight : real
-    = 1.0 -> pre_wp2.weight
-   
-  pre_wp1.p.x : int
-    = pre wp1.p.x
-   
-  wp1.p.x : int
-    = 0 -> Add(pre_wp1.p.x, 1)
-   
-  pre_wp1.p.y : int
-    = pre wp1.p.y
-   
-  wp1.p.y : int
-    = 0 -> Add(pre_wp1.p.y, delta1)
-   
-  pre_wp1.weight : real
-    = pre wp1.weight
-   
-  wp2.weight : real
-    = 2.0 -> pre_wp1.weight
-   
-  pre_wp2.p.x : int
-    = pre wp2.p.x
-   
-  wp2.p.x : int
-    = 0 -> Add(pre_wp2.p.x, 1)
-   
-  pre_wp2.p.y : int
-    = pre wp2.p.y
-   
-  wp2.p.y : int
-    = 20 -> Add(pre_wp2.p.y, delta2)
-   
-  ok1 : bool
-    = Or(Neq(wp1.weight, wp2.weight), Or(Neq(wp1.p.x, wp2.p.x), Neq(wp1.p.y, wp2.p.y)))
-   
-  cex1 : bool
-    = Not(And(Eq(wp1.p.x, wp2.p.x), Eq(wp1.p.y, wp2.p.y)))
-   
-  pre_lg.a : int
-    = pre lg.a
-   
-  lg.a : int
-    = 0 -> ITE(Eq(delta1, 0), 10, pre_lg.a)
-   
-  pre_lg.c : int
-    = pre lg.c
-   
-  lg.c : int
-    = 0 -> ITE(Eq(delta1, 0), pre_lg.c, 30)
-   
-  cex2 : bool
-    = Or(Eq(lg.a, 0), Eq(lg.c, 0))
-   
-  lemma : bool
-    = Neq(wp1.weight, wp2.weight)
-   
-  pre_lg.b : int
-    = pre lg.b
-   
-  lg.b : int
-    = 0 -> ITE(Eq(delta1, 0), 20, pre_lg.b)
-   
-  pre_lg.d : int
-    = pre lg.d
-   
-  lg.d : int
-    = 0 -> ITE(Eq(delta1, 0), pre_lg.d, 40)
-   
-  pre_lg.e$1 : int
-    = pre lg.e
-   
-  pre_lg.e : int
-    = pre lg.e
-   
-  lg.e : int
-    = 0 -> ITE(Eq(delta1, 0), pre_lg.e$1, pre_lg.e)
-tel
 Sally Model
 ===========
 
@@ -296,14 +207,7 @@ Sally Model
    (or |gal-initializing| cex1))
 
 [Lustre] Validating properties:
-[Lustre] Property cex2... considering simultaneous states to depth 0
-considering simultaneous states to depth 0
-considering simultaneous states to depth 1
-considering simultaneous states to depth 1
-considering simultaneous states to depth 2
-considering simultaneous states to depth 2
-considering simultaneous states to depth 3
-[Invalid] 
+[Lustre] Property cex2... [Invalid] 
 Trace
 =====
 
@@ -314,51 +218,9 @@ cex2:
  2    | 0      | -20    |     
  3    | -1     | 0      |     
 
-[Lustre] Property ok1... considering simultaneous states to depth 0
-considering simultaneous states to depth 0
-considering simultaneous states to depth 1
-considering simultaneous states to depth 1
-considering simultaneous states to depth 2
-considering simultaneous states to depth 2
-considering simultaneous states to depth 3
-considering simultaneous states to depth 3
-considering simultaneous states to depth 4
-considering simultaneous states to depth 4
-considering simultaneous states to depth 5
-considering simultaneous states to depth 5
-considering simultaneous states to depth 6
-considering simultaneous states to depth 6
-considering simultaneous states to depth 7
-considering simultaneous states to depth 7
-considering simultaneous states to depth 8
-considering simultaneous states to depth 8
-considering simultaneous states to depth 9
-considering simultaneous states to depth 9
-considering simultaneous states to depth 10
-considering simultaneous states to depth 10
-counter-example search depth 0
-counter-example search depth 1
-counter-example search depth 2
-counter-example search depth 3
-counter-example search depth 4
-counter-example search depth 5
-counter-example search depth 6
-counter-example search depth 7
-counter-example search depth 8
-counter-example search depth 9
-counter-example search depth 10
-[Unknown] Valid up to depth 10
-[Lustre] Property lemma... considering simultaneous states to depth 0
-considering simultaneous states to depth 0
-considering simultaneous states to depth 1
-considering simultaneous states to depth 1
-[Valid] considering simultaneous states to depth 1
-[Lustre] Property cex1... considering simultaneous states to depth 0
-considering simultaneous states to depth 0
-considering simultaneous states to depth 1
-considering simultaneous states to depth 1
-considering simultaneous states to depth 2
-[Invalid] 
+[Lustre] Property ok1... [Unknown] Valid up to depth 10
+[Lustre] Property lemma... [Valid] considering simultaneous states to depth 1
+[Lustre] Property cex1... [Invalid] 
 Trace
 =====
 

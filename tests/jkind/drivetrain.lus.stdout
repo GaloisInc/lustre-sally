@@ -1,162 +1,3 @@
-Core Lustre
-===========
-
-node (throttle_in : real, slope_in : real)
-  returns (transmission_rotation_out, load_out, gear_out)
-  assumes ()
-  shows (sweet_spot_max_throttleB1, sweet_spot_max_throttleA1, sweet_spot_no_chatter1, no_chatter_B1, no_chatter_A1, no_stall_B1, no_stall_A1)
-let
-  load_out : real
-    = Add(500.0, Mul(10000.0, slope_in))
-   
-  rec
-    gear_out : int
-      = ITE(Lt(ITE(Gt(Sub(Mul(120.0, throttle_in), Mul((11792453.0 / 50000000.0), load_out)), 0.0), Sub(Mul(120.0, throttle_in), Mul((11792453.0 / 50000000.0), load_out)), 0.0), (2122641513.0 / 5000000.0)), 1, ITE(And(Geq(ITE(Gt(Sub(Mul(120.0, throttle_in), Mul((11792453.0 / 50000000.0), load_out)), 0.0), Sub(Mul(120.0, throttle_in), Mul((11792453.0 / 50000000.0), load_out)), 0.0), (2122641513.0 / 5000000.0)), Lt(ITE(Gt(Sub(Mul(120.0, throttle_in), Mul((11792453.0 / 50000000.0), load_out)), 0.0), Sub(Mul(120.0, throttle_in), Mul((11792453.0 / 50000000.0), load_out)), 0.0), (737704917.0 / 1250000.0))), 2, ITE(And(Geq(ITE(Gt(Sub(Mul(120.0, throttle_in), Mul((11792453.0 / 50000000.0), load_out)), 0.0), Sub(Mul(120.0, throttle_in), Mul((11792453.0 / 50000000.0), load_out)), 0.0), (737704917.0 / 1250000.0)), Lt(ITE(Gt(Sub(Mul(120.0, throttle_in), Mul((11792453.0 / 50000000.0), load_out)), 0.0), Sub(Mul(120.0, throttle_in), Mul((11792453.0 / 50000000.0), load_out)), 0.0), (3879310347.0 / 5000000.0))), 3, ITE(And(Geq(ITE(Gt(Sub(Mul(120.0, throttle_in), Mul((11792453.0 / 50000000.0), load_out)), 0.0), Sub(Mul(120.0, throttle_in), Mul((11792453.0 / 50000000.0), load_out)), 0.0), (3879310347.0 / 5000000.0)), Lt(ITE(Gt(Sub(Mul(120.0, throttle_in), Mul((11792453.0 / 50000000.0), load_out)), 0.0), Sub(Mul(120.0, throttle_in), Mul((11792453.0 / 50000000.0), load_out)), 0.0), (1077844311.0 / 1000000.0))), 4, ITE(And(Geq(ITE(Gt(Sub(Mul(120.0, throttle_in), Mul((11792453.0 / 50000000.0), load_out)), 0.0), Sub(Mul(120.0, throttle_in), Mul((11792453.0 / 50000000.0), load_out)), 0.0), (1077844311.0 / 1000000.0)), Lt(ITE(Gt(Sub(Mul(120.0, throttle_in), Mul((11792453.0 / 50000000.0), load_out)), 0.0), Sub(Mul(120.0, throttle_in), Mul((11792453.0 / 50000000.0), load_out)), 0.0), 1800.0)), 5, ITE(And(Geq(ITE(Gt(Sub(Mul(120.0, throttle_in), Mul((11792453.0 / 50000000.0), load_out)), 0.0), Sub(Mul(120.0, throttle_in), Mul((11792453.0 / 50000000.0), load_out)), 0.0), 1800.0), Lt(ITE(Gt(Sub(Mul(120.0, throttle_in), Mul((11792453.0 / 50000000.0), load_out)), 0.0), Sub(Mul(120.0, throttle_in), Mul((11792453.0 / 50000000.0), load_out)), 0.0), 99999.0)), 6, 1)))))) -> ITE(Lt(ITE(Gt(Sub(Mul(120.0, throttle_in), ITE(Eq(gear_out, 1), Mul((11792453.0 / 50000000.0), load_out), ITE(Eq(gear_out, 2), Mul((6557377.0 / 20000000.0), load_out), ITE(Eq(gear_out, 3), Mul((5387931.0 / 12500000.0), load_out), ITE(Eq(gear_out, 4), Mul((59880239.0 / 100000000.0), load_out), ITE(Eq(gear_out, 5), Mul(1.0, load_out), ITE(Eq(gear_out, 6), Mul((138888889.0 / 100000000.0), load_out), Mul(1.0, load_out)))))))), 0.0), Sub(Mul(120.0, throttle_in), ITE(Eq(gear_out, 1), Mul((11792453.0 / 50000000.0), load_out), ITE(Eq(gear_out, 2), Mul((6557377.0 / 20000000.0), load_out), ITE(Eq(gear_out, 3), Mul((5387931.0 / 12500000.0), load_out), ITE(Eq(gear_out, 4), Mul((59880239.0 / 100000000.0), load_out), ITE(Eq(gear_out, 5), Mul(1.0, load_out), ITE(Eq(gear_out, 6), Mul((138888889.0 / 100000000.0), load_out), Mul(1.0, load_out)))))))), 0.0), (2122641513.0 / 5000000.0)), 1, ITE(And(Geq(ITE(Gt(Sub(Mul(120.0, throttle_in), ITE(Eq(gear_out, 1), Mul((11792453.0 / 50000000.0), load_out), ITE(Eq(gear_out, 2), Mul((6557377.0 / 20000000.0), load_out), ITE(Eq(gear_out, 3), Mul((5387931.0 / 12500000.0), load_out), ITE(Eq(gear_out, 4), Mul((59880239.0 / 100000000.0), load_out), ITE(Eq(gear_out, 5), Mul(1.0, load_out), ITE(Eq(gear_out, 6), Mul((138888889.0 / 100000000.0), load_out), Mul(1.0, load_out)))))))), 0.0), Sub(Mul(120.0, throttle_in), ITE(Eq(gear_out, 1), Mul((11792453.0 / 50000000.0), load_out), ITE(Eq(gear_out, 2), Mul((6557377.0 / 20000000.0), load_out), ITE(Eq(gear_out, 3), Mul((5387931.0 / 12500000.0), load_out), ITE(Eq(gear_out, 4), Mul((59880239.0 / 100000000.0), load_out), ITE(Eq(gear_out, 5), Mul(1.0, load_out), ITE(Eq(gear_out, 6), Mul((138888889.0 / 100000000.0), load_out), Mul(1.0, load_out)))))))), 0.0), (2122641513.0 / 5000000.0)), Lt(ITE(Gt(Sub(Mul(120.0, throttle_in), ITE(Eq(gear_out, 1), Mul((11792453.0 / 50000000.0), load_out), ITE(Eq(gear_out, 2), Mul((6557377.0 / 20000000.0), load_out), ITE(Eq(gear_out, 3), Mul((5387931.0 / 12500000.0), load_out), ITE(Eq(gear_out, 4), Mul((59880239.0 / 100000000.0), load_out), ITE(Eq(gear_out, 5), Mul(1.0, load_out), ITE(Eq(gear_out, 6), Mul((138888889.0 / 100000000.0), load_out), Mul(1.0, load_out)))))))), 0.0), Sub(Mul(120.0, throttle_in), ITE(Eq(gear_out, 1), Mul((11792453.0 / 50000000.0), load_out), ITE(Eq(gear_out, 2), Mul((6557377.0 / 20000000.0), load_out), ITE(Eq(gear_out, 3), Mul((5387931.0 / 12500000.0), load_out), ITE(Eq(gear_out, 4), Mul((59880239.0 / 100000000.0), load_out), ITE(Eq(gear_out, 5), Mul(1.0, load_out), ITE(Eq(gear_out, 6), Mul((138888889.0 / 100000000.0), load_out), Mul(1.0, load_out)))))))), 0.0), (737704917.0 / 1250000.0))), 2, ITE(And(Geq(ITE(Gt(Sub(Mul(120.0, throttle_in), ITE(Eq(gear_out, 1), Mul((11792453.0 / 50000000.0), load_out), ITE(Eq(gear_out, 2), Mul((6557377.0 / 20000000.0), load_out), ITE(Eq(gear_out, 3), Mul((5387931.0 / 12500000.0), load_out), ITE(Eq(gear_out, 4), Mul((59880239.0 / 100000000.0), load_out), ITE(Eq(gear_out, 5), Mul(1.0, load_out), ITE(Eq(gear_out, 6), Mul((138888889.0 / 100000000.0), load_out), Mul(1.0, load_out)))))))), 0.0), Sub(Mul(120.0, throttle_in), ITE(Eq(gear_out, 1), Mul((11792453.0 / 50000000.0), load_out), ITE(Eq(gear_out, 2), Mul((6557377.0 / 20000000.0), load_out), ITE(Eq(gear_out, 3), Mul((5387931.0 / 12500000.0), load_out), ITE(Eq(gear_out, 4), Mul((59880239.0 / 100000000.0), load_out), ITE(Eq(gear_out, 5), Mul(1.0, load_out), ITE(Eq(gear_out, 6), Mul((138888889.0 / 100000000.0), load_out), Mul(1.0, load_out)))))))), 0.0), (737704917.0 / 1250000.0)), Lt(ITE(Gt(Sub(Mul(120.0, throttle_in), ITE(Eq(gear_out, 1), Mul((11792453.0 / 50000000.0), load_out), ITE(Eq(gear_out, 2), Mul((6557377.0 / 20000000.0), load_out), ITE(Eq(gear_out, 3), Mul((5387931.0 / 12500000.0), load_out), ITE(Eq(gear_out, 4), Mul((59880239.0 / 100000000.0), load_out), ITE(Eq(gear_out, 5), Mul(1.0, load_out), ITE(Eq(gear_out, 6), Mul((138888889.0 / 100000000.0), load_out), Mul(1.0, load_out)))))))), 0.0), Sub(Mul(120.0, throttle_in), ITE(Eq(gear_out, 1), Mul((11792453.0 / 50000000.0), load_out), ITE(Eq(gear_out, 2), Mul((6557377.0 / 20000000.0), load_out), ITE(Eq(gear_out, 3), Mul((5387931.0 / 12500000.0), load_out), ITE(Eq(gear_out, 4), Mul((59880239.0 / 100000000.0), load_out), ITE(Eq(gear_out, 5), Mul(1.0, load_out), ITE(Eq(gear_out, 6), Mul((138888889.0 / 100000000.0), load_out), Mul(1.0, load_out)))))))), 0.0), (3879310347.0 / 5000000.0))), 3, ITE(And(Geq(ITE(Gt(Sub(Mul(120.0, throttle_in), ITE(Eq(gear_out, 1), Mul((11792453.0 / 50000000.0), load_out), ITE(Eq(gear_out, 2), Mul((6557377.0 / 20000000.0), load_out), ITE(Eq(gear_out, 3), Mul((5387931.0 / 12500000.0), load_out), ITE(Eq(gear_out, 4), Mul((59880239.0 / 100000000.0), load_out), ITE(Eq(gear_out, 5), Mul(1.0, load_out), ITE(Eq(gear_out, 6), Mul((138888889.0 / 100000000.0), load_out), Mul(1.0, load_out)))))))), 0.0), Sub(Mul(120.0, throttle_in), ITE(Eq(gear_out, 1), Mul((11792453.0 / 50000000.0), load_out), ITE(Eq(gear_out, 2), Mul((6557377.0 / 20000000.0), load_out), ITE(Eq(gear_out, 3), Mul((5387931.0 / 12500000.0), load_out), ITE(Eq(gear_out, 4), Mul((59880239.0 / 100000000.0), load_out), ITE(Eq(gear_out, 5), Mul(1.0, load_out), ITE(Eq(gear_out, 6), Mul((138888889.0 / 100000000.0), load_out), Mul(1.0, load_out)))))))), 0.0), (3879310347.0 / 5000000.0)), Lt(ITE(Gt(Sub(Mul(120.0, throttle_in), ITE(Eq(gear_out, 1), Mul((11792453.0 / 50000000.0), load_out), ITE(Eq(gear_out, 2), Mul((6557377.0 / 20000000.0), load_out), ITE(Eq(gear_out, 3), Mul((5387931.0 / 12500000.0), load_out), ITE(Eq(gear_out, 4), Mul((59880239.0 / 100000000.0), load_out), ITE(Eq(gear_out, 5), Mul(1.0, load_out), ITE(Eq(gear_out, 6), Mul((138888889.0 / 100000000.0), load_out), Mul(1.0, load_out)))))))), 0.0), Sub(Mul(120.0, throttle_in), ITE(Eq(gear_out, 1), Mul((11792453.0 / 50000000.0), load_out), ITE(Eq(gear_out, 2), Mul((6557377.0 / 20000000.0), load_out), ITE(Eq(gear_out, 3), Mul((5387931.0 / 12500000.0), load_out), ITE(Eq(gear_out, 4), Mul((59880239.0 / 100000000.0), load_out), ITE(Eq(gear_out, 5), Mul(1.0, load_out), ITE(Eq(gear_out, 6), Mul((138888889.0 / 100000000.0), load_out), Mul(1.0, load_out)))))))), 0.0), (1077844311.0 / 1000000.0))), 4, ITE(And(Geq(ITE(Gt(Sub(Mul(120.0, throttle_in), ITE(Eq(gear_out, 1), Mul((11792453.0 / 50000000.0), load_out), ITE(Eq(gear_out, 2), Mul((6557377.0 / 20000000.0), load_out), ITE(Eq(gear_out, 3), Mul((5387931.0 / 12500000.0), load_out), ITE(Eq(gear_out, 4), Mul((59880239.0 / 100000000.0), load_out), ITE(Eq(gear_out, 5), Mul(1.0, load_out), ITE(Eq(gear_out, 6), Mul((138888889.0 / 100000000.0), load_out), Mul(1.0, load_out)))))))), 0.0), Sub(Mul(120.0, throttle_in), ITE(Eq(gear_out, 1), Mul((11792453.0 / 50000000.0), load_out), ITE(Eq(gear_out, 2), Mul((6557377.0 / 20000000.0), load_out), ITE(Eq(gear_out, 3), Mul((5387931.0 / 12500000.0), load_out), ITE(Eq(gear_out, 4), Mul((59880239.0 / 100000000.0), load_out), ITE(Eq(gear_out, 5), Mul(1.0, load_out), ITE(Eq(gear_out, 6), Mul((138888889.0 / 100000000.0), load_out), Mul(1.0, load_out)))))))), 0.0), (1077844311.0 / 1000000.0)), Lt(ITE(Gt(Sub(Mul(120.0, throttle_in), ITE(Eq(gear_out, 1), Mul((11792453.0 / 50000000.0), load_out), ITE(Eq(gear_out, 2), Mul((6557377.0 / 20000000.0), load_out), ITE(Eq(gear_out, 3), Mul((5387931.0 / 12500000.0), load_out), ITE(Eq(gear_out, 4), Mul((59880239.0 / 100000000.0), load_out), ITE(Eq(gear_out, 5), Mul(1.0, load_out), ITE(Eq(gear_out, 6), Mul((138888889.0 / 100000000.0), load_out), Mul(1.0, load_out)))))))), 0.0), Sub(Mul(120.0, throttle_in), ITE(Eq(gear_out, 1), Mul((11792453.0 / 50000000.0), load_out), ITE(Eq(gear_out, 2), Mul((6557377.0 / 20000000.0), load_out), ITE(Eq(gear_out, 3), Mul((5387931.0 / 12500000.0), load_out), ITE(Eq(gear_out, 4), Mul((59880239.0 / 100000000.0), load_out), ITE(Eq(gear_out, 5), Mul(1.0, load_out), ITE(Eq(gear_out, 6), Mul((138888889.0 / 100000000.0), load_out), Mul(1.0, load_out)))))))), 0.0), 1800.0)), 5, ITE(And(Geq(ITE(Gt(Sub(Mul(120.0, throttle_in), ITE(Eq(gear_out, 1), Mul((11792453.0 / 50000000.0), load_out), ITE(Eq(gear_out, 2), Mul((6557377.0 / 20000000.0), load_out), ITE(Eq(gear_out, 3), Mul((5387931.0 / 12500000.0), load_out), ITE(Eq(gear_out, 4), Mul((59880239.0 / 100000000.0), load_out), ITE(Eq(gear_out, 5), Mul(1.0, load_out), ITE(Eq(gear_out, 6), Mul((138888889.0 / 100000000.0), load_out), Mul(1.0, load_out)))))))), 0.0), Sub(Mul(120.0, throttle_in), ITE(Eq(gear_out, 1), Mul((11792453.0 / 50000000.0), load_out), ITE(Eq(gear_out, 2), Mul((6557377.0 / 20000000.0), load_out), ITE(Eq(gear_out, 3), Mul((5387931.0 / 12500000.0), load_out), ITE(Eq(gear_out, 4), Mul((59880239.0 / 100000000.0), load_out), ITE(Eq(gear_out, 5), Mul(1.0, load_out), ITE(Eq(gear_out, 6), Mul((138888889.0 / 100000000.0), load_out), Mul(1.0, load_out)))))))), 0.0), 1800.0), Lt(ITE(Gt(Sub(Mul(120.0, throttle_in), ITE(Eq(gear_out, 1), Mul((11792453.0 / 50000000.0), load_out), ITE(Eq(gear_out, 2), Mul((6557377.0 / 20000000.0), load_out), ITE(Eq(gear_out, 3), Mul((5387931.0 / 12500000.0), load_out), ITE(Eq(gear_out, 4), Mul((59880239.0 / 100000000.0), load_out), ITE(Eq(gear_out, 5), Mul(1.0, load_out), ITE(Eq(gear_out, 6), Mul((138888889.0 / 100000000.0), load_out), Mul(1.0, load_out)))))))), 0.0), Sub(Mul(120.0, throttle_in), ITE(Eq(gear_out, 1), Mul((11792453.0 / 50000000.0), load_out), ITE(Eq(gear_out, 2), Mul((6557377.0 / 20000000.0), load_out), ITE(Eq(gear_out, 3), Mul((5387931.0 / 12500000.0), load_out), ITE(Eq(gear_out, 4), Mul((59880239.0 / 100000000.0), load_out), ITE(Eq(gear_out, 5), Mul(1.0, load_out), ITE(Eq(gear_out, 6), Mul((138888889.0 / 100000000.0), load_out), Mul(1.0, load_out)))))))), 0.0), 99999.0)), 6, 1))))))
-   
-  transmission_rotation_out : real
-    = ITE(Gt(Sub(Mul(120.0, throttle_in), Mul((11792453.0 / 50000000.0), load_out)), 0.0), Mul(Sub(Mul(120.0, throttle_in), Mul((11792453.0 / 50000000.0), load_out)), (11792453.0 / 50000000.0)), Mul(0.0, (11792453.0 / 50000000.0))) -> ITE(Gt(Sub(Mul(120.0, throttle_in), ITE(Eq(gear_out, 1), Mul((11792453.0 / 50000000.0), load_out), ITE(Eq(gear_out, 2), Mul((6557377.0 / 20000000.0), load_out), ITE(Eq(gear_out, 3), Mul((5387931.0 / 12500000.0), load_out), ITE(Eq(gear_out, 4), Mul((59880239.0 / 100000000.0), load_out), ITE(Eq(gear_out, 5), Mul(1.0, load_out), ITE(Eq(gear_out, 6), Mul((138888889.0 / 100000000.0), load_out), Mul(1.0, load_out)))))))), 0.0), ITE(Eq(gear_out, 1), Mul(Sub(Mul(120.0, throttle_in), ITE(Eq(gear_out, 1), Mul((11792453.0 / 50000000.0), load_out), ITE(Eq(gear_out, 2), Mul((6557377.0 / 20000000.0), load_out), ITE(Eq(gear_out, 3), Mul((5387931.0 / 12500000.0), load_out), ITE(Eq(gear_out, 4), Mul((59880239.0 / 100000000.0), load_out), ITE(Eq(gear_out, 5), Mul(1.0, load_out), ITE(Eq(gear_out, 6), Mul((138888889.0 / 100000000.0), load_out), Mul(1.0, load_out)))))))), (11792453.0 / 50000000.0)), ITE(Eq(gear_out, 2), Mul(Sub(Mul(120.0, throttle_in), ITE(Eq(gear_out, 1), Mul((11792453.0 / 50000000.0), load_out), ITE(Eq(gear_out, 2), Mul((6557377.0 / 20000000.0), load_out), ITE(Eq(gear_out, 3), Mul((5387931.0 / 12500000.0), load_out), ITE(Eq(gear_out, 4), Mul((59880239.0 / 100000000.0), load_out), ITE(Eq(gear_out, 5), Mul(1.0, load_out), ITE(Eq(gear_out, 6), Mul((138888889.0 / 100000000.0), load_out), Mul(1.0, load_out)))))))), (6557377.0 / 20000000.0)), ITE(Eq(gear_out, 3), Mul(Sub(Mul(120.0, throttle_in), ITE(Eq(gear_out, 1), Mul((11792453.0 / 50000000.0), load_out), ITE(Eq(gear_out, 2), Mul((6557377.0 / 20000000.0), load_out), ITE(Eq(gear_out, 3), Mul((5387931.0 / 12500000.0), load_out), ITE(Eq(gear_out, 4), Mul((59880239.0 / 100000000.0), load_out), ITE(Eq(gear_out, 5), Mul(1.0, load_out), ITE(Eq(gear_out, 6), Mul((138888889.0 / 100000000.0), load_out), Mul(1.0, load_out)))))))), (5387931.0 / 12500000.0)), ITE(Eq(gear_out, 4), Mul(Sub(Mul(120.0, throttle_in), ITE(Eq(gear_out, 1), Mul((11792453.0 / 50000000.0), load_out), ITE(Eq(gear_out, 2), Mul((6557377.0 / 20000000.0), load_out), ITE(Eq(gear_out, 3), Mul((5387931.0 / 12500000.0), load_out), ITE(Eq(gear_out, 4), Mul((59880239.0 / 100000000.0), load_out), ITE(Eq(gear_out, 5), Mul(1.0, load_out), ITE(Eq(gear_out, 6), Mul((138888889.0 / 100000000.0), load_out), Mul(1.0, load_out)))))))), (59880239.0 / 100000000.0)), ITE(Eq(gear_out, 5), Mul(Sub(Mul(120.0, throttle_in), ITE(Eq(gear_out, 1), Mul((11792453.0 / 50000000.0), load_out), ITE(Eq(gear_out, 2), Mul((6557377.0 / 20000000.0), load_out), ITE(Eq(gear_out, 3), Mul((5387931.0 / 12500000.0), load_out), ITE(Eq(gear_out, 4), Mul((59880239.0 / 100000000.0), load_out), ITE(Eq(gear_out, 5), Mul(1.0, load_out), ITE(Eq(gear_out, 6), Mul((138888889.0 / 100000000.0), load_out), Mul(1.0, load_out)))))))), 1.0), ITE(Eq(gear_out, 6), Mul(Sub(Mul(120.0, throttle_in), ITE(Eq(gear_out, 1), Mul((11792453.0 / 50000000.0), load_out), ITE(Eq(gear_out, 2), Mul((6557377.0 / 20000000.0), load_out), ITE(Eq(gear_out, 3), Mul((5387931.0 / 12500000.0), load_out), ITE(Eq(gear_out, 4), Mul((59880239.0 / 100000000.0), load_out), ITE(Eq(gear_out, 5), Mul(1.0, load_out), ITE(Eq(gear_out, 6), Mul((138888889.0 / 100000000.0), load_out), Mul(1.0, load_out)))))))), (138888889.0 / 100000000.0)), Mul(Sub(Mul(120.0, throttle_in), ITE(Eq(gear_out, 1), Mul((11792453.0 / 50000000.0), load_out), ITE(Eq(gear_out, 2), Mul((6557377.0 / 20000000.0), load_out), ITE(Eq(gear_out, 3), Mul((5387931.0 / 12500000.0), load_out), ITE(Eq(gear_out, 4), Mul((59880239.0 / 100000000.0), load_out), ITE(Eq(gear_out, 5), Mul(1.0, load_out), ITE(Eq(gear_out, 6), Mul((138888889.0 / 100000000.0), load_out), Mul(1.0, load_out)))))))), 1.0))))))), ITE(Eq(gear_out, 1), Mul(0.0, (11792453.0 / 50000000.0)), ITE(Eq(gear_out, 2), Mul(0.0, (6557377.0 / 20000000.0)), ITE(Eq(gear_out, 3), Mul(0.0, (5387931.0 / 12500000.0)), ITE(Eq(gear_out, 4), Mul(0.0, (59880239.0 / 100000000.0)), ITE(Eq(gear_out, 5), Mul(0.0, 1.0), ITE(Eq(gear_out, 6), Mul(0.0, (138888889.0 / 100000000.0)), Mul(0.0, 1.0))))))))
-   
-  pre_always_holds6 : bool
-    = pre always_holds6
-   
-  always_holds6 : bool
-    = And(Leq(Neg((1.0 / 10.0)), slope_in), Leq(slope_in, (1.0 / 10.0))) -> And(And(And(And(Leq(1100.0, transmission_rotation_out), Leq(transmission_rotation_out, 1800.0)), Leq(Neg((1.0 / 10.0)), slope_in)), Leq(slope_in, (1.0 / 10.0))), pre_always_holds6)
-   
-  pre_always_holds5 : bool
-    = pre always_holds5
-   
-  always_holds5 : bool
-    = And(Leq(Neg((1.0 / 20.0)), slope_in), Leq(slope_in, (1.0 / 20.0))) -> And(And(And(And(Leq(1100.0, transmission_rotation_out), Leq(transmission_rotation_out, 1800.0)), Leq(Neg((1.0 / 20.0)), slope_in)), Leq(slope_in, (1.0 / 20.0))), pre_always_holds5)
-   
-  pre_gear_out : int
-    = pre gear_out
-   
-  pre_chatter_counter2 : int
-    = pre chatter_counter2
-   
-  chatter_counter2 : int
-    = 0 -> ITE(Not(Eq(gear_out, pre_gear_out)), Add(pre_chatter_counter2, 1), 0)
-   
-  pre_always_holds4 : bool
-    = pre always_holds4
-   
-  always_holds4 : bool
-    = true -> And(And(Leq(1100.0, transmission_rotation_out), Leq(transmission_rotation_out, 1800.0)), pre_always_holds4)
-   
-  pre_slope_in$3 : real
-    = pre slope_in
-   
-  pre_always_holds3 : bool
-    = pre always_holds3
-   
-  always_holds3 : bool
-    = And(And(And(Eq(throttle_in, 15.0), Leq(Neg((3.0 / 100.0)), slope_in)), Leq(slope_in, (3.0 / 100.0))), Leq(slope_in, (1.0 / 100.0))) -> And(And(And(And(Eq(throttle_in, 15.0), Leq(Neg((3.0 / 100.0)), slope_in)), Leq(slope_in, (3.0 / 100.0))), Leq(Sub(slope_in, pre_slope_in$3), (1.0 / 100.0))), pre_always_holds3)
-   
-  pre_slope_in$2 : real
-    = pre slope_in
-   
-  pre_always_holds2 : bool
-    = pre always_holds2
-   
-  always_holds2 : bool
-    = And(And(And(Eq(throttle_in, 15.0), Leq(Neg((1.0 / 5.0)), slope_in)), Leq(slope_in, (1.0 / 5.0))), Leq(slope_in, (1.0 / 20.0))) -> And(And(And(And(Eq(throttle_in, 15.0), Leq(Neg((1.0 / 5.0)), slope_in)), Leq(slope_in, (1.0 / 5.0))), Leq(Sub(slope_in, pre_slope_in$2), (1.0 / 20.0))), pre_always_holds2)
-   
-  pre_always_holds1 : bool
-    = pre always_holds1
-   
-  always_holds1 : bool
-    = Geq(throttle_in, 18.0) -> And(Geq(throttle_in, 18.0), pre_always_holds1)
-   
-  pre_always_holds : bool
-    = pre always_holds
-   
-  always_holds : bool
-    = Geq(throttle_in, 19.0) -> And(Geq(throttle_in, 19.0), pre_always_holds)
-   
-  rlt_check_2 : bool
-    = And(Leq(Neg((433.0 / 500.0)), slope_in), Leq(slope_in, (433.0 / 500.0)))
-   
-  pre_slope_in$1 : real
-    = pre slope_in
-   
-  pre_slope_in : real
-    = pre slope_in
-   
-  rlt_check_1 : bool
-    = Eq(slope_in, 0.0) -> And(Leq(Neg(0.25), Sub(slope_in, pre_slope_in$1)), Leq(Sub(slope_in, pre_slope_in), 0.25))
-   
-  rlt_check_ : bool
-    = And(Leq(0.0, throttle_in), Leq(throttle_in, 25.0))
-   
-  no_stall_A : bool
-    = Or(Not(always_holds), Gt(transmission_rotation_out, 0.0))
-   
-  no_stall_B : bool
-    = Or(Not(always_holds1), Gt(transmission_rotation_out, 0.0))
-   
-  no_chatter_A : bool
-    = Or(Not(always_holds2), Lt(chatter_counter2, 5))
-   
-  no_chatter_B : bool
-    = Or(Not(always_holds3), Lt(chatter_counter2, 5))
-   
-  sweet_spot_no_chatter : bool
-    = Or(Not(always_holds4), Lt(chatter_counter2, 5))
-   
-  sweet_spot_max_throttleA : bool
-    = true -> Or(Not(always_holds5), Lt(throttle_in, 25.0))
-   
-  sweet_spot_max_throttleB : bool
-    = true -> Or(Not(always_holds6), Lt(throttle_in, 25.0))
-   
-  pre_always : bool
-    = pre always
-   
-  init_pre_always : bool
-    = true -> pre_always
-   
-  always : bool
-    = And(rlt_check_2, init_pre_always)
-   
-  pre_always1 : bool
-    = pre always1
-   
-  init_pre_always1 : bool
-    = true -> pre_always1
-   
-  always1 : bool
-    = And(rlt_check_1, init_pre_always1)
-   
-  pre_always2 : bool
-    = pre always2
-   
-  init_pre_always2 : bool
-    = true -> pre_always2
-   
-  always2 : bool
-    = And(rlt_check_, init_pre_always2)
-   
-  no_stall_A1 : bool
-    = Or(Not(And(always, And(always1, always2))), no_stall_A)
-   
-  no_stall_B1 : bool
-    = Or(Not(And(always, And(always1, always2))), no_stall_B)
-   
-  no_chatter_A1 : bool
-    = Or(Not(And(always, And(always1, always2))), no_chatter_A)
-   
-  no_chatter_B1 : bool
-    = Or(Not(And(always, And(always1, always2))), no_chatter_B)
-   
-  sweet_spot_no_chatter1 : bool
-    = Or(Not(And(always, And(always1, always2))), sweet_spot_no_chatter)
-   
-  sweet_spot_max_throttleA1 : bool
-    = Or(Not(And(always, And(always1, always2))), sweet_spot_max_throttleA)
-   
-  sweet_spot_max_throttleB1 : bool
-    = Or(Not(And(always, And(always1, always2))), sweet_spot_max_throttleB)
-tel
 Sally Model
 ===========
 
@@ -1901,12 +1742,7 @@ Sally Model
    (or |gal-initializing| |no_stall_A1|))
 
 [Lustre] Validating properties:
-[Lustre] Property sweet_spot_max_throttleB1... considering simultaneous states to depth 0
-considering simultaneous states to depth 0
-considering simultaneous states to depth 1
-considering simultaneous states to depth 1
-considering simultaneous states to depth 2
-[Invalid] 
+[Lustre] Property sweet_spot_max_throttleB1... [Invalid] 
 Trace
 =====
 
@@ -1916,37 +1752,10 @@ sweet_spot_max_throttleB1:
  1    | 25.0        | 0.0      |     | 679.7347904485582         | 500.0    | 6        
  2    | 25.0        | 7.01e-2  |     | 1799.0                    | 1201.0   | 5        
 
-[Lustre] Property sweet_spot_max_throttleA1... considering simultaneous states to depth 0
-considering simultaneous states to depth 0
-considering simultaneous states to depth 1
-considering simultaneous states to depth 1
-[Valid] considering simultaneous states to depth 1
-[Lustre] Property sweet_spot_no_chatter1... considering simultaneous states to depth 0
-considering simultaneous states to depth 0
-considering simultaneous states to depth 1
-considering simultaneous states to depth 1
-considering simultaneous states to depth 2
-considering simultaneous states to depth 2
-[Valid] considering simultaneous states to depth 2
-[Lustre] Property no_chatter_B1... considering simultaneous states to depth 0
-considering simultaneous states to depth 0
-considering simultaneous states to depth 1
-considering simultaneous states to depth 1
-[Valid] considering simultaneous states to depth 1
-[Lustre] Property no_chatter_A1... considering simultaneous states to depth 0
-considering simultaneous states to depth 0
-considering simultaneous states to depth 1
-considering simultaneous states to depth 1
-considering simultaneous states to depth 2
-considering simultaneous states to depth 2
-considering simultaneous states to depth 3
-considering simultaneous states to depth 3
-considering simultaneous states to depth 4
-considering simultaneous states to depth 4
-considering simultaneous states to depth 5
-considering simultaneous states to depth 5
-considering simultaneous states to depth 6
-[Invalid] 
+[Lustre] Property sweet_spot_max_throttleA1... [Valid] considering simultaneous states to depth 1
+[Lustre] Property sweet_spot_no_chatter1... [Valid] considering simultaneous states to depth 2
+[Lustre] Property no_chatter_B1... [Valid] considering simultaneous states to depth 1
+[Lustre] Property no_chatter_A1... [Invalid] 
 Trace
 =====
 
@@ -1960,18 +1769,7 @@ no_chatter_A1:
  5    | 15.0        | -4.9742857143591834e-2 |     | 1797.4285714359185        | 2.5714285640816326  | 5        
  6    | 15.0        | -5.010439999957823e-2  |     | 2502.013890883975         | -1.0439999957822401 | 6        
 
-[Lustre] Property no_stall_B1... considering simultaneous states to depth 0
-considering simultaneous states to depth 0
-considering simultaneous states to depth 1
-considering simultaneous states to depth 1
-considering simultaneous states to depth 2
-considering simultaneous states to depth 2
-considering simultaneous states to depth 3
-considering simultaneous states to depth 3
-considering simultaneous states to depth 4
-considering simultaneous states to depth 4
-considering simultaneous states to depth 5
-[Invalid] 
+[Lustre] Property no_stall_B1... [Invalid] 
 Trace
 =====
 
@@ -1984,9 +1782,5 @@ no_stall_B1:
  4    | 23.102048676669515 | 0.6158399868119042 |     | 193.16850137090836        | 6658.3998681190415 | 2        
  5    | 18.0               | 0.8658399868119042 |     | 0.0                       | 9158.399868119042  | 1        
 
-[Lustre] Property no_stall_A1... considering simultaneous states to depth 0
-considering simultaneous states to depth 0
-considering simultaneous states to depth 1
-considering simultaneous states to depth 1
-[Valid] considering simultaneous states to depth 1
+[Lustre] Property no_stall_A1... [Valid] considering simultaneous states to depth 1
 [Lustre] Model status: [Invalid] 

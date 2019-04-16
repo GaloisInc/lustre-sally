@@ -1,35 +1,3 @@
-Core Lustre
-===========
-
-node (y1 : int, y2 : int, in1 : int, in2 : int, out1 : int, out2 : int)
-  returns (ok)
-  assumes (And, And$1, Gt)
-  shows (ok)
-let
-  pre_out1 : int
-    = pre out1
-   
-  $init$1 : int
-    = y1 -> Add(pre_out1, in1)
-   
-  pre_out2 : int
-    = pre out2
-   
-  $init : int
-    = y2 -> Add(pre_out2, in2)
-   
-  ok : bool
-    = And(And(Eq(out1, $init$1), Eq(out2, $init)), Gt(out1, out2))
-   
-  Gt : bool
-    = Gt(y1, Add(y2, 5))
-   
-  And$1 : bool
-    = And(Leq(Neg(1), in1), Leq(in1, 1))
-   
-  And : bool
-    = And(Leq(Neg(1), in2), Leq(in2, 1))
-tel
 Sally Model
 ===========
 
@@ -125,10 +93,7 @@ Sally Model
    (or |gal-initializing| ok))
 
 [Lustre] Validating properties:
-[Lustre] Property ok... considering simultaneous states to depth 0
-considering simultaneous states to depth 0
-considering simultaneous states to depth 1
-[Invalid] 
+[Lustre] Property ok... [Invalid] 
 Trace
 =====
 

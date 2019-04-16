@@ -1,29 +1,3 @@
-Core Lustre
-===========
-
-node (x$1 : real, y : int)
-  returns ()
-  assumes ()
-  shows (ok4, ok3, ok2, ok1)
-let
-  ok1 : bool
-    = And(Leq(RealCast(FloorCast(x$1)), x$1), Lt(x$1, Add(RealCast(FloorCast(x$1)), 1.0)))
-   
-  x : real
-    = x$1
-   
-  is_int : bool
-    = Eq(x, RealCast(FloorCast(x)))
-   
-  ok2 : bool
-    = Eq(Eq(FloorCast(Neg(x$1)), Neg(FloorCast(x$1))), is_int)
-   
-  ok3 : bool
-    = Eq(Div(y, 5), FloorCast(Div(RealCast(y), 5.0)))
-   
-  ok4 : bool
-    = Eq(Div(FloorCast(x$1), 5), FloorCast(Div(x$1, 5.0)))
-tel
 Sally Model
 ===========
 
@@ -132,16 +106,8 @@ Sally Model
    (or |gal-initializing| ok1))
 
 [Lustre] Validating properties:
-[Lustre] Property ok4... considering simultaneous states to depth 0
-considering simultaneous states to depth 0
-[Valid] considering simultaneous states to depth 0
-[Lustre] Property ok3... considering simultaneous states to depth 0
-considering simultaneous states to depth 0
-[Valid] considering simultaneous states to depth 0
-[Lustre] Property ok2... considering simultaneous states to depth 0
-considering simultaneous states to depth 0
-[Valid] considering simultaneous states to depth 0
-[Lustre] Property ok1... considering simultaneous states to depth 0
-considering simultaneous states to depth 0
-[Valid] considering simultaneous states to depth 0
+[Lustre] Property ok4... [Valid] considering simultaneous states to depth 0
+[Lustre] Property ok3... [Valid] considering simultaneous states to depth 0
+[Lustre] Property ok2... [Valid] considering simultaneous states to depth 0
+[Lustre] Property ok1... [Valid] considering simultaneous states to depth 0
 [Lustre] Model status: [Valid] 
