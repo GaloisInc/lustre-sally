@@ -6742,17 +6742,17 @@ Sally Model
    (or |gal-initializing| s1))
 
 [Lustre] Validating properties:
-[Lustre] Property r12... [Valid] considering simultaneous states to depth 2
-[Lustre] Property r11... [Valid] considering simultaneous states to depth 3
-[Lustre] Property r10... [Valid] considering simultaneous states to depth 2
+[Lustre] Property r12... [Valid] using 2 past states
+[Lustre] Property r11... [Valid] using 3 past states
+[Lustre] Property r10... [Valid] using 2 past states
 [Lustre] Property r6... [Unknown] Valid up to depth 10
-[Lustre] Property r5... [Valid] considering simultaneous states to depth 3
+[Lustre] Property r5... [Valid] using 3 past states
 [Lustre] Property r2... [Unknown] Valid up to depth 10
-[Lustre] Property r8... [Valid] considering simultaneous states to depth 0
+[Lustre] Property r8... [Valid] using 0 past states
 [Lustre] Property r7... [Unknown] Valid up to depth 10
 [Lustre] Property s2... [Unknown] Valid up to depth 10
-[Lustre] Property r4... [Valid] considering simultaneous states to depth 1
-[Lustre] Property r3... [Valid] considering simultaneous states to depth 1
-[Lustre] Property r1... [Valid] considering simultaneous states to depth 1
+[Lustre] Property r4... [Valid] using 1 past state
+[Lustre] Property r3... [Valid] using 1 past state
+[Lustre] Property r1... [Valid] using 1 past state
 [Lustre] Property s1... [Unknown] Valid up to depth 10
 [Lustre] Model status: [Unknown] 

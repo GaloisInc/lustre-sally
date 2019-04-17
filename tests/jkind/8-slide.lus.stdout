@@ -1325,7 +1325,7 @@ Sally Model
    (or |gal-initializing| prop))
 
 [Lustre] Validating properties:
-[Lustre] Property only_change_on_blank... [Valid] considering simultaneous states to depth 1
-[Lustre] Property distinct... [Valid] considering simultaneous states to depth 1
+[Lustre] Property only_change_on_blank... [Valid] using 1 past state
+[Lustre] Property distinct... [Valid] using 1 past state
 [Lustre] Property prop... [Unknown] Valid up to depth 10
 [Lustre] Model status: [Unknown] 

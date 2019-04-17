@@ -262,9 +262,7 @@ Sally Model
 
 [Lustre] Validating properties:
 [Lustre] Property cex... [Invalid] 
-Trace
-=====
-
+[Trace] 
 cex:
  Step | m | c | |-> 
 ------+---+---+-----
@@ -281,7 +279,7 @@ cex:
  11   | 0 | 2 |     
  12   | 0 | 1 |     
 
-[Lustre] Property safety_missionaries... [Valid] considering simultaneous states to depth 1
-[Lustre] Property conservation_cannibals... [Valid] considering simultaneous states to depth 1
-[Lustre] Property conservation_missionaries... [Valid] considering simultaneous states to depth 1
+[Lustre] Property safety_missionaries... [Valid] using 1 past state
+[Lustre] Property conservation_cannibals... [Valid] using 1 past state
+[Lustre] Property conservation_missionaries... [Valid] using 1 past state
 [Lustre] Model status: [Invalid] 

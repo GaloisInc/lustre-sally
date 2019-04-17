@@ -192,9 +192,7 @@ Sally Model
 
 [Lustre] Validating properties:
 [Lustre] Property prop... [Invalid] 
-Trace
-=====
-
+[Trace] 
 prop:
  Step | choice | |-> | wolf | goat | cabbage | farmer 
 ------+--------+-----+------+------+---------+--------

@@ -122,6 +122,6 @@ Sally Model
    (or |gal-initializing| prop1))
 
 [Lustre] Validating properties:
-[Lustre] Property prop2... [Valid] considering simultaneous states to depth 1
-[Lustre] Property prop1... [Valid] considering simultaneous states to depth 1
+[Lustre] Property prop2... [Valid] using 1 past state
+[Lustre] Property prop1... [Valid] using 1 past state
 [Lustre] Model status: [Valid] 

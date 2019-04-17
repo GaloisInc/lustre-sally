@@ -65,9 +65,7 @@ Sally Model
 
 [Lustre] Validating properties:
 [Lustre] Property ok... [Invalid] 
-Trace
-=====
-
+[Trace] 
 ok:
  Step | max   | min   | init_max | |-> | ok    
 ------+-------+-------+----------+-----+-------

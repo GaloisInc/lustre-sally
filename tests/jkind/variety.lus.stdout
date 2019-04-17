@@ -139,9 +139,7 @@ Sally Model
 
 [Lustre] Validating properties:
 [Lustre] Property cex1... [Invalid] 
-Trace
-=====
-
+[Trace] 
 cex1:
  Step | delta_x | delta_y | |-> 
 ------+---------+---------+-----
@@ -156,5 +154,5 @@ cex1:
  9    | 2       | 0       |     
  10   | 2       | 0       |     
 
-[Lustre] Property ok1... [Valid] considering simultaneous states to depth 1
+[Lustre] Property ok1... [Valid] using 1 past state
 [Lustre] Model status: [Invalid] 

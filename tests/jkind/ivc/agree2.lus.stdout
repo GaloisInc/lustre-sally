@@ -197,5 +197,5 @@ Sally Model
    (or |gal-initializing| |__GUARANTEE0|))
 
 [Lustre] Validating properties:
-[Lustre] Property __GUARANTEE0... [Valid] considering simultaneous states to depth 0
+[Lustre] Property __GUARANTEE0... [Valid] using 0 past states
 [Lustre] Model status: [Valid] 

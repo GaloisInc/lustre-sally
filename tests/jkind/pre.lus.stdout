@@ -160,36 +160,28 @@ Sally Model
 
 [Lustre] Validating properties:
 [Lustre] Property ok4... [Invalid] 
-Trace
-=====
-
+[Trace] 
 ok4:
  Step | x | s | |-> 
 ------+---+---+-----
  1    | 0 | 0 |     
 
 [Lustre] Property ok3... [Invalid] 
-Trace
-=====
-
+[Trace] 
 ok3:
  Step | x | s | |-> 
 ------+---+---+-----
  1    | 0 | 0 |     
 
 [Lustre] Property ok2... [Invalid] 
-Trace
-=====
-
+[Trace] 
 ok2:
  Step | x | s | |-> 
 ------+---+---+-----
  1    | 0 | 0 |     
 
 [Lustre] Property cex1... [Invalid] 
-Trace
-=====
-
+[Trace] 
 cex1:
  Step | x | s | |-> 
 ------+---+---+-----
@@ -200,5 +192,5 @@ cex1:
  5    | 0 | 0 |     
  6    | 0 | 0 |     
 
-[Lustre] Property ok1... [Valid] considering simultaneous states to depth 2
+[Lustre] Property ok1... [Valid] using 2 past states
 [Lustre] Model status: [Invalid] 

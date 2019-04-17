@@ -78,36 +78,28 @@ Sally Model
 
 [Lustre] Validating properties:
 [Lustre] Property ok4... [Invalid] 
-Trace
-=====
-
+[Trace] 
 ok4:
  Step | x  | y | z | w  | |-> | ok1  | ok2   | ok3   | ok4   
 ------+----+---+---+----+-----+------+-------+-------+-------
  1    | -2 | 0 | 0 | 20 |     | True | False | False | False 
 
 [Lustre] Property ok3... [Invalid] 
-Trace
-=====
-
+[Trace] 
 ok3:
  Step | x  | y | z | w | |-> | ok1  | ok2  | ok3   | ok4  
 ------+----+---+---+---+-----+------+------+-------+------
  1    | -2 | 0 | 0 | 0 |     | True | True | False | True 
 
 [Lustre] Property ok2... [Invalid] 
-Trace
-=====
-
+[Trace] 
 ok2:
  Step | x  | y | z | w  | |-> | ok1  | ok2   | ok3   | ok4  
 ------+----+---+---+----+-----+------+-------+-------+------
  1    | -2 | 0 | 0 | 10 |     | True | False | False | True 
 
 [Lustre] Property ok1... [Invalid] 
-Trace
-=====
-
+[Trace] 
 ok1:
  Step | x | y | z | w | |-> | ok1   | ok2  | ok3  | ok4  
 ------+---+---+---+---+-----+-------+------+------+------

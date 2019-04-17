@@ -417,9 +417,7 @@ Sally Model
 
 [Lustre] Validating properties:
 [Lustre] Property prop2... [Invalid] 
-Trace
-=====
-
+[Trace] 
 prop2:
  Step | a     | b     | c     | d     | |-> | cost 
 ------+-------+-------+-------+-------+-----+------

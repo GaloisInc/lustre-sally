@@ -276,8 +276,7 @@ checkQuery lgr settings mi nd ts_ast ts (l',q) =
     Lab { labProg = \n -> "considering " ++ suf n
         , labValid = \n -> "using " ++ suf n
         }
-    where suf n = show n ++
-                        (if n == 1 then " state" else " simultaneous states")
+    where suf n = show n ++ " past state" ++ (if n == 1 then "" else "s")
 
   bmcLab =
     Lab { labProg = \n -> "searching up to depth " ++ show n

@@ -791,5 +791,5 @@ Sally Model
    (or |gal-initializing| prop))
 
 [Lustre] Validating properties:
-[Lustre] Property prop... [Valid] considering simultaneous states to depth 9
+[Lustre] Property prop... [Valid] using 9 past states
 [Lustre] Model status: [Valid] 
