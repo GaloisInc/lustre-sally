@@ -1,6 +1,6 @@
 #!/bin/bash
 
-OPTS="--test-sally --timeout=10 --no-mcsat"
+OPTS="--test-mode --timeout=10 --no-mcsat"
 
 if [ -e $1.settings ]; then
   OPTS="--config=$1.settings $OPTS"

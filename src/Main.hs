@@ -2,7 +2,7 @@
 module Main(main) where
 
 import System.Exit(exitFailure)
-import Control.Monad(when,foldM)
+import Control.Monad(when,foldM,unless)
 import Control.Exception(catches, catch, Handler(..), throwIO
                         , SomeException(..), displayException)
 import Control.Concurrent
@@ -46,11 +46,10 @@ data Settings = Settings
   , useMCSat  :: Bool
   , outDir    :: FilePath
   , useConfig :: FilePath
-  , testMode  :: TestMode
+  , testMode  :: Bool
+  , noTrace   :: Bool
   , timeout   :: Maybe Int
   }
-
-data TestMode = NoTest | TestLustre | TestSally
 
 options :: OptSpec Settings
 options = OptSpec
@@ -108,17 +107,11 @@ options = OptSpec
 
       , Option [] ["test-mode"]
         "Run in testing-mode (prints more things on stdout)"
-        $ NoArg $ \s -> case testMode s of
-                          NoTest -> Right s { testMode = TestLustre }
-                          TestLustre -> Right s
-                          TestSally -> Left "We only support one test mode."
+        $ NoArg $ \s -> Right s { testMode = True }
 
-      , Option [] ["test-sally"]
-        "Run in testing-mode (prints proof related things)"
-        $ NoArg $ \s -> case testMode s of
-                          NoTest -> Right s { testMode = TestSally }
-                          TestSally -> Right s
-                          TestLustre -> Left "We only support one test mode."
+      , Option [] ["no-trace"]
+        "Do not print traces when a proof failes."
+        $ NoArg $ \s -> Right s { noTrace = True }
       ]
 
   , progParamDocs = [("FILE", "Lustre file containing model (required).")]
@@ -138,7 +131,8 @@ options = OptSpec
     , useMCSat = True
     , outDir = "results"
     , useConfig = ""
-    , testMode = NoTest
+    , testMode = False
+    , noTrace = False
     , timeout = Nothing
     }
 
@@ -187,10 +181,7 @@ getSettings l =
 main :: IO ()
 main =
   do settings <- getSettings =<< newLogger
-     l <- case testMode settings of
-            NoTest     -> newLogger
-            TestLustre -> newTestLogger
-            TestSally  -> newTestSallyLogger
+     l <- if testMode settings then newTestLogger else newLogger
      do a <- parseProgramFromFileLatin1 (file settings)
         case a of
           ProgramDecls ds -> mainWork l settings ds
@@ -223,18 +214,14 @@ mainWork l settings ds =
      (info,nd) <- runLustre luConf (quickNodeToCore (node settings) ds)
 
      -- Save JS version of source model
-     case testMode settings of
-       NoTest -> do txt <- readFile (file settings)
-                    saveOutput (outSourceFile settings) (declareSource txt)
-       _ -> pure ()
+     unless (testMode settings) $
+       do txt <- readFile (file settings)
+          saveOutput (outSourceFile settings) (declareSource txt)
 
      -- Save Core version of model, if needed
      let prettyCore = show (pp nd)
      when (saveCore settings) $
        saveOutput (outCoreFile settings) prettyCore
-     case testMode settings of
-       TestLustre -> saveOutputTesting "Core Lustre" prettyCore
-       _ -> pure ()
 
      let (ts,qs)  = transNode nd   -- transition system and queries
 
@@ -246,9 +233,7 @@ mainWork l settings ds =
      let sallyTxt = unlines (ts_sexp : map snd qs_sexps)
      when (saveSally settings) $
        saveOutput (outSallyFile settings) sallyTxt
-     case testMode settings of
-       NoTest -> pure ()
-       _      -> saveOutputTesting "Sally Model" sallyTxt
+     when (testMode settings) $ saveOutputTesting "Sally Model" sallyTxt
 
      say l Nothing "Lustre" "Validating properties:"
      outs <- mapM (checkQuery l settings info nd ts ts_sexp) qs_sexps
@@ -269,48 +254,66 @@ mainWork l settings ds =
                  Valid     -> s
 
 
+data Lab = Lab
+  { labProg   :: Int -> String
+  , labValid  :: Int -> String
+  }
+
 checkQuery :: Logger -> Settings -> ModelInfo -> Node -> TransSystem ->
                 String -> (PropName,String) -> IO (SallyResult ())
 checkQuery lgr settings mi nd ts_ast ts (l',q) =
   do say_ lgr Nothing "Lustre" ("Property " ++ l ++ "... ")
      hFlush stdout
-     attempt "considering simultaneous states to depth" (sallyKind settings) $
-       attempt "counter-example search depth" (sallyBMC settings) $
+     attempt kindLab (sallyKind settings) $
+       attempt bmcLab (sallyBMC settings) $
        do sayWarn lgr "Unknown"
                         ("Valid up to depth " ++ show (bmcLimit settings))
           pure Unknown
   where
   l = Text.unpack (pName l')
 
+  kindLab =
+    Lab { labProg = \n -> "considering " ++ suf n
+        , labValid = \n -> "using " ++ suf n
+        }
+    where suf n = show n ++
+                        (if n == 1 then " state" else " simultaneous states")
+
+  bmcLab =
+    Lab { labProg = \n -> "searching up to depth " ++ show n
+        , labValid = \n -> "after searching to depth " ++ show n
+        }
+
+
   attempt lab x orElse =
     do (maxD,res) <- runSally lab x
        case res of
          Valid ->
-            do sayOK lgr "Valid" (lab ++ " " ++ show maxD)
+            do sayOK lgr "Valid" (labValid lab maxD)
                pure Valid
 
          Invalid r
-          | NoTest <- testMode settings ->
+          | testMode settings ->
+            do sayFail lgr "Invalid" ""
+               let siTr = simpleTrace  mi l' r
+               unless (noTrace settings) $ sayFail lgr "Trace" ('\n' : siTr)
+               pure (Invalid ())
+
+          | otherwise ->
             do let propDir = outPropDir settings l
                sayFail lgr "Invalid" ("See " ++ (propDir </> "index.html"))
                saveUI propDir
                let jsTr = declareTrace mi l' r
                let siTr = simpleTrace  mi l' r
                saveOutput (outTraceFile settings l) jsTr
-               sayFail lgr "Trace" ('\n' : siTr)
-               pure (Invalid ())
-
-          | otherwise ->
-            do sayFail lgr "Invalid" ""
-               let siTr = simpleTrace  mi l' r
-               saveOutputTesting "Trace" siTr
+               unless (noTrace settings) $ sayFail lgr "Trace" ('\n' : siTr)
                pure (Invalid ())
 
          Unknown   -> orElse
 
   runSally lab opts =
     do maxVal <- newIORef 0
-       let callback _ n = do lPutProg lgr (lab ++ " " ++ show n)
+       let callback _ n = do lPutProg lgr (labProg lab n)
                              writeIORef maxVal n -- assumes monotonic increase
            doSally = sallyInteract "sally" opts callback (ts ++ q)
        mbres <- case timeout settings of

@@ -47,24 +47,17 @@ lPutStrLn l c x = lPutStr l c (x ++ "\n")
 
 --------------------------------------------------------------------------------
 
-newTestSallyLogger :: IO Logger
-newTestSallyLogger = pure Logger
-  { lPutStr     = \_ x -> putStr x >> hFlush stdout
-  , lPutProg    = \_ -> pure ()
-  , lClearProg  = pure ()
-  }
-
 newTestLogger :: IO Logger
 newTestLogger = pure Logger
   { lPutStr     = \_ x -> putStr x >> hFlush stdout
-  , lPutProg    = \x -> putStrLn x >> hFlush stdout
+  , lPutProg    = \_   -> pure ()
   , lClearProg  = pure ()
   }
 
 
 newLogger :: IO Logger
 newLogger =
-  do r <- newMVar 0
+  do r <- newMVar False
      pure Logger
        { lPutStr = \mbC x ->
            do case mbC of
@@ -73,21 +66,19 @@ newLogger =
               hFlush stdout
 
        , lPutProg = \msg ->
-           modifyMVar_ r $ \lastLen ->
-           do curBack lastLen
-              let newLen = length msg
-                  pad    = replicate (lastLen - newLen) ' '
-              putStr (msg ++ pad)
-              hFlush stdout
-              pure newLen
+           modifyMVar_ r $ \inProg ->
+             do if inProg then restoreCursor else saveCursor
+                clearFromCursorToLineEnd
+                putStr msg
+                hFlush stdout
+                pure True
 
       , lClearProg =
-          modifyMVar_ r $ \lastLen ->
-          do curBack lastLen
-             putStr (replicate lastLen ' ')
-             hFlush stdout
-             curBack lastLen
-             pure 0
+          modifyMVar_ r $ \inProg ->
+          do when inProg $
+                do restoreCursor
+                   clearFromCursorToLineEnd
+             pure False
       }
 
 -- the cursor even if the input is 0.
