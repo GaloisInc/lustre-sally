@@ -42,6 +42,7 @@ data Settings = Settings
   , saveCore  :: Bool
   , saveSally :: Bool
   , bmcLimit  :: Int
+  , bmcLowerLimit :: Int
   , kindLimit :: Int
   , useMCSat  :: Bool
   , outDir    :: FilePath
@@ -87,6 +88,16 @@ options = OptSpec
                                    Just n | n >= 0 -> Right s { bmcLimit = n }
                                    _ -> Left "Invalid counter example limit."
 
+      , Option [] ["counter-example-lower-limit"]
+        ("Smallest counter example of interest" ++
+         " (default: " ++ show (bmcLowerLimit defaults) ++ ")")
+        $ ReqArg "NUM" $ \a s ->
+            case readMaybe a of
+              Just n | n >= 0 -> Right s { bmcLowerLimit = n }
+              _ -> Left "Invalid counter example lower limit."
+
+
+
       , Option [] ["proof-depth"]
         ("Limit to number of previous states to consider" ++
          " (default: " ++ show (kindLimit defaults) ++ ")")
@@ -127,6 +138,7 @@ options = OptSpec
     , saveSally = False
     , saveCore = False
     , bmcLimit = 10
+    , bmcLowerLimit = 0
     , kindLimit = 10
     , useMCSat = True
     , outDir = "results"
@@ -379,9 +391,11 @@ sallyKind s = "--engine=kind"
 
 sallyBMC :: Settings -> [String]
 sallyBMC s = "--engine=bmc"
+           : ("--bmc-min=" ++ show low)
            : ("--bmc-max=" ++ show lim)
            : sallyRequiredOpts s
   where lim = bmcLimit s
+        low = bmcLowerLimit s
 
 
 --------------------------------------------------------------------------------

@@ -1,0 +1,4 @@
+proof-depth: 1
+counter-example-limit: 19
+counter-example-lower-limit: 19
+timeout: 20
