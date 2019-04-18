@@ -68,7 +68,8 @@ Sally Model
    (or |gal-initializing| ok))
 
 [Lustre] Validating properties:
-[Lustre] Property ok... [Error] Sally error:
+[Lustre] Property ok...
+  [Sally][Error] Sally error
 Yices error (add): the context does not support non-linear arithmetic
 
 [Error] ExitFailure 1

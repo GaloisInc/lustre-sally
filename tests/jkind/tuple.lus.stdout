@@ -197,9 +197,17 @@ Sally Model
    (or |gal-initializing| ok1))
 
 [Lustre] Validating properties:
-[Lustre] Property ok3... [Valid] using 0 past states
-[Lustre] Property cex2... [Unknown] Valid up to depth 10
-[Lustre] Property ok2... [Unknown] Valid up to depth 10
-[Lustre] Property cex1... [Unknown] Valid up to depth 10
-[Lustre] Property ok1... [Valid] using 0 past states
-[Lustre] Model status: [Unknown] 
+[Lustre] Property ok3...
+  [Sally][Valid] using 0 past states
+[Lustre] Property cex2...
+  [Sally][Unknown]
+  [Sally][Unknown]
+[Lustre] Property ok2...
+  [Sally][Unknown]
+  [Sally][Unknown]
+[Lustre] Property cex1...
+  [Sally][Unknown]
+  [Sally][Unknown]
+[Lustre] Property ok1...
+  [Sally][Valid] using 0 past states
+[Lustre] Model status: [Unknown]

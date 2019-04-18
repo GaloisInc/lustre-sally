@@ -619,7 +619,28 @@ Sally Model
    (or |gal-initializing| lemmaA))
 
 [Lustre] Validating properties:
-[Lustre] Property ok5... [Error] Sally error:
-Timeout
-[Error] ExitFailure 1
-
+[Lustre] Property ok5...
+  [Sally][Timeout]
+  [Sally][Timeout]
+[Lustre] Property ok4...
+  [Sally][Timeout]
+  [Sally][Timeout]
+[Lustre] Property ok3...
+  [Sally][Timeout]
+  [Sally][Timeout]
+[Lustre] Property ok2...
+  [Sally][Timeout]
+  [Sally][Timeout]
+[Lustre] Property ok1...
+  [Sally][Timeout]
+  [Sally][Timeout]
+[Lustre] Property lemmaC...
+  [Sally][Timeout]
+  [Sally][Timeout]
+[Lustre] Property lemmaB...
+  [Sally][Timeout]
+  [Sally][Timeout]
+[Lustre] Property lemmaA...
+  [Sally][Timeout]
+  [Sally][Timeout]
+[Lustre] Model status: [Unknown]

@@ -62,12 +62,14 @@ Sally Model
    (or |gal-initializing| ok))
 
 [Lustre] Validating properties:
-[Lustre] Property lemma... [Valid] using 1 past state
-[Lustre] Property ok... [Invalid] 
+[Lustre] Property lemma...
+  [Sally][Valid] using 1 past state
+[Lustre] Property ok...
+  [Sally][Invalid]
 [Trace] 
 ok:
  Step | x | y | z | |-> | ok    | lemma 
 ------+---+---+---+-----+-------+-------
  1    | 0 | 2 | 0 |     | False | True  
 
-[Lustre] Model status: [Invalid] 
+[Lustre] Model status: [Invalid]

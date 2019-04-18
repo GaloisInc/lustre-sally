@@ -207,7 +207,8 @@ Sally Model
    (or |gal-initializing| cex1))
 
 [Lustre] Validating properties:
-[Lustre] Property cex2... [Invalid] 
+[Lustre] Property cex2...
+  [Sally][Invalid]
 [Trace] 
 cex2:
  Step | delta1 | delta2 | |-> 
@@ -216,9 +217,13 @@ cex2:
  2    | 0      | -20    |     
  3    | -1     | 0      |     
 
-[Lustre] Property ok1... [Unknown] Valid up to depth 10
-[Lustre] Property lemma... [Valid] using 1 past state
-[Lustre] Property cex1... [Invalid] 
+[Lustre] Property ok1...
+  [Sally][Unknown]
+  [Sally][Unknown]
+[Lustre] Property lemma...
+  [Sally][Valid] using 1 past state
+[Lustre] Property cex1...
+  [Sally][Invalid]
 [Trace] 
 cex1:
  Step | delta1 | delta2 | |-> 
@@ -226,4 +231,4 @@ cex1:
  1    | 0      | 0      |     
  2    | 0      | -20    |     
 
-[Lustre] Model status: [Invalid] 
+[Lustre] Model status: [Invalid]

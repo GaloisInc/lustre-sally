@@ -26,7 +26,7 @@ say_ :: Logger -> Maybe Color -> String -> String -> IO ()
 say_ l col x y =
   do lPutStr l Nothing "["
      lPutStr l col x
-     lPutStr l Nothing ("] " ++ y)
+     lPutStr l Nothing ("]" ++ if null y then y else " "++ y)
 
 say :: Logger -> Maybe Color -> String -> String -> IO ()
 say l col x y = say_ l col x y >> lPutStr l Nothing "\n"

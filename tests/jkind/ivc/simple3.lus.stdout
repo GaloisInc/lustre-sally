@@ -59,5 +59,6 @@ Sally Model
    (or |gal-initializing| ok))
 
 [Lustre] Validating properties:
-[Lustre] Property ok... [Valid] using 1 past state
-[Lustre] Model status: [Valid] 
+[Lustre] Property ok...
+  [Sally][Valid] using 1 past state
+[Lustre] Model status: [Valid]

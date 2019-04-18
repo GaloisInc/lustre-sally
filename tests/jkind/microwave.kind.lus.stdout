@@ -6742,17 +6742,35 @@ Sally Model
    (or |gal-initializing| s1))
 
 [Lustre] Validating properties:
-[Lustre] Property r12... [Valid] using 2 past states
-[Lustre] Property r11... [Valid] using 3 past states
-[Lustre] Property r10... [Valid] using 2 past states
-[Lustre] Property r6... [Unknown] Valid up to depth 10
-[Lustre] Property r5... [Valid] using 3 past states
-[Lustre] Property r2... [Unknown] Valid up to depth 10
-[Lustre] Property r8... [Valid] using 0 past states
-[Lustre] Property r7... [Unknown] Valid up to depth 10
-[Lustre] Property s2... [Unknown] Valid up to depth 10
-[Lustre] Property r4... [Valid] using 1 past state
-[Lustre] Property r3... [Valid] using 1 past state
-[Lustre] Property r1... [Valid] using 1 past state
-[Lustre] Property s1... [Unknown] Valid up to depth 10
-[Lustre] Model status: [Unknown] 
+[Lustre] Property r12...
+  [Sally][Valid] using 2 past states
+[Lustre] Property r11...
+  [Sally][Valid] using 3 past states
+[Lustre] Property r10...
+  [Sally][Valid] using 2 past states
+[Lustre] Property r6...
+  [Sally][Unknown]
+  [Sally][Unknown]
+[Lustre] Property r5...
+  [Sally][Valid] using 3 past states
+[Lustre] Property r2...
+  [Sally][Unknown]
+  [Sally][Unknown]
+[Lustre] Property r8...
+  [Sally][Valid] using 0 past states
+[Lustre] Property r7...
+  [Sally][Unknown]
+  [Sally][Unknown]
+[Lustre] Property s2...
+  [Sally][Unknown]
+  [Sally][Unknown]
+[Lustre] Property r4...
+  [Sally][Valid] using 1 past state
+[Lustre] Property r3...
+  [Sally][Valid] using 1 past state
+[Lustre] Property r1...
+  [Sally][Valid] using 1 past state
+[Lustre] Property s1...
+  [Sally][Unknown]
+  [Sally][Unknown]
+[Lustre] Model status: [Unknown]

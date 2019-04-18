@@ -69,5 +69,7 @@ Sally Model
    (or |gal-initializing| ok))
 
 [Lustre] Validating properties:
-[Lustre] Property ok... [Unknown] Valid up to depth 10
-[Lustre] Model status: [Unknown] 
+[Lustre] Property ok...
+  [Sally][Unknown]
+  [Sally][Unknown]
+[Lustre] Model status: [Unknown]

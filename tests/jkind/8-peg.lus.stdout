@@ -1108,7 +1108,7 @@ Sally Model
    (or |gal-initializing| prop))
 
 [Lustre] Validating properties:
-[Lustre] Property prop... [Error] Sally error:
-Timeout
-[Error] ExitFailure 1
-
+[Lustre] Property prop...
+  [Sally][Unknown]
+  [Sally][Timeout]
+[Lustre] Model status: [Unknown]

@@ -262,7 +262,7 @@ data Lab = Lab
 checkQuery :: Logger -> Settings -> ModelInfo -> Node -> TransSystem ->
                 String -> (PropName,String) -> IO (SallyResult ())
 checkQuery lgr settings mi nd ts_ast ts (l',q) =
-  do say lgr Nothing "Lustre" ("Property " ++ l ++ "... ")
+  do say lgr Nothing "Lustre" ("Property " ++ l ++ "...")
      hFlush stdout
      attempt kindLab (sallyKind settings) $
        attempt bmcLab (sallyBMC settings) $

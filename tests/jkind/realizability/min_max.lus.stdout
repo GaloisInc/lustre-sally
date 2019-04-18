@@ -64,11 +64,12 @@ Sally Model
    (or |gal-initializing| ok))
 
 [Lustre] Validating properties:
-[Lustre] Property ok... [Invalid] 
+[Lustre] Property ok...
+  [Sally][Invalid]
 [Trace] 
 ok:
  Step | max   | min   | init_max | |-> | ok    
 ------+-------+-------+----------+-----+-------
  1    | -2041 | -2042 | 21       |     | False 
 
-[Lustre] Model status: [Invalid] 
+[Lustre] Model status: [Invalid]

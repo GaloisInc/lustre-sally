@@ -368,11 +368,12 @@ Sally Model
    (or |gal-initializing| cex))
 
 [Lustre] Validating properties:
-[Lustre] Property cex... [Error] Sally error:
-/tmp/sallyXXX27546-0.mcmt(292)  : error 3 : , at offset 18
-    near [Index: 1081 (Start: 926606215-Stop: 926606215) ='(', type<14> Line: 292 LinePos:18]
+[Lustre] Property cex...
+  [Sally][Error] Sally error
+/tmp/sallyXXX9927-0.mcmt(292)  : error 3 : , at offset 18
+    near [Index: 1081 (Start: -1705778297-Stop: -1705778297) ='(', type<14> Line: 292 LinePos:18]
      : cannot match to any predicted input...
-Parse error: /tmp/sallyXXX27546-0.mcmt:292:18: Parse error: /tmp/sallyXXX27546-0.mcmt:292:18: Parse error.
+Parse error: /tmp/sallyXXX9927-0.mcmt:292:18: Parse error: /tmp/sallyXXX9927-0.mcmt:292:18: Parse error.
 
 [Error] ExitFailure 1
 

@@ -222,6 +222,10 @@ Sally Model
    (or |gal-initializing| |__GUARANTEE0|))
 
 [Lustre] Validating properties:
-[Lustre] Property __GUARANTEE1... [Unknown] Valid up to depth 10
-[Lustre] Property __GUARANTEE0... [Unknown] Valid up to depth 10
-[Lustre] Model status: [Unknown] 
+[Lustre] Property __GUARANTEE1...
+  [Sally][Unknown]
+  [Sally][Unknown]
+[Lustre] Property __GUARANTEE0...
+  [Sally][Unknown]
+  [Sally][Unknown]
+[Lustre] Model status: [Unknown]

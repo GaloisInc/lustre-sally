@@ -1742,7 +1742,8 @@ Sally Model
    (or |gal-initializing| |no_stall_A1|))
 
 [Lustre] Validating properties:
-[Lustre] Property sweet_spot_max_throttleB1... [Invalid] 
+[Lustre] Property sweet_spot_max_throttleB1...
+  [Sally][Invalid]
 [Trace] 
 sweet_spot_max_throttleB1:
  Step | throttle_in | slope_in | |-> | transmission_rotation_out | load_out | gear_out 
@@ -1750,10 +1751,14 @@ sweet_spot_max_throttleB1:
  1    | 25.0        | 0.0      |     | 679.7347904485582         | 500.0    | 6        
  2    | 25.0        | 7.01e-2  |     | 1799.0                    | 1201.0   | 5        
 
-[Lustre] Property sweet_spot_max_throttleA1... [Valid] using 1 past state
-[Lustre] Property sweet_spot_no_chatter1... [Valid] using 2 past states
-[Lustre] Property no_chatter_B1... [Valid] using 1 past state
-[Lustre] Property no_chatter_A1... [Invalid] 
+[Lustre] Property sweet_spot_max_throttleA1...
+  [Sally][Valid] using 1 past state
+[Lustre] Property sweet_spot_no_chatter1...
+  [Sally][Valid] using 2 past states
+[Lustre] Property no_chatter_B1...
+  [Sally][Valid] using 1 past state
+[Lustre] Property no_chatter_A1...
+  [Sally][Invalid]
 [Trace] 
 no_chatter_A1:
  Step | throttle_in | slope_in               | |-> | transmission_rotation_out | load_out            | gear_out 
@@ -1765,7 +1770,8 @@ no_chatter_A1:
  5    | 15.0        | -4.9742857143591834e-2 |     | 1797.4285714359185        | 2.5714285640816326  | 5        
  6    | 15.0        | -5.010439999957823e-2  |     | 2502.013890883975         | -1.0439999957822401 | 6        
 
-[Lustre] Property no_stall_B1... [Invalid] 
+[Lustre] Property no_stall_B1...
+  [Sally][Invalid]
 [Trace] 
 no_stall_B1:
  Step | throttle_in        | slope_in           | |-> | transmission_rotation_out | load_out           | gear_out 
@@ -1776,5 +1782,6 @@ no_stall_B1:
  4    | 23.102048676669515 | 0.6158399868119042 |     | 193.16850137090836        | 6658.3998681190415 | 2        
  5    | 18.0               | 0.8658399868119042 |     | 0.0                       | 9158.399868119042  | 1        
 
-[Lustre] Property no_stall_A1... [Valid] using 1 past state
-[Lustre] Model status: [Invalid] 
+[Lustre] Property no_stall_A1...
+  [Sally][Valid] using 1 past state
+[Lustre] Model status: [Invalid]

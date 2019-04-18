@@ -1611,12 +1611,21 @@ Sally Model
    (or |gal-initializing| |r_is_bounded:5|))
 
 [Lustre] Validating properties:
-[Lustre] Property left_side_initial_pilot_flying_side... [Valid] using 1 past state
-[Lustre] Property at_least_one_pilot_flying_side... [Unknown] Valid up to depth 10
-[Lustre] Property r_is_bounded... [Valid] using 1 past state
-[Lustre] Property r_is_bounded... [Valid] using 1 past state
-[Lustre] Property r_is_bounded... [Valid] using 1 past state
-[Lustre] Property r_is_bounded... [Valid] using 1 past state
-[Lustre] Property r_is_bounded... [Valid] using 1 past state
-[Lustre] Property r_is_bounded... [Valid] using 1 past state
-[Lustre] Model status: [Unknown] 
+[Lustre] Property left_side_initial_pilot_flying_side...
+  [Sally][Valid] using 1 past state
+[Lustre] Property at_least_one_pilot_flying_side...
+  [Sally][Unknown]
+  [Sally][Unknown]
+[Lustre] Property r_is_bounded...
+  [Sally][Valid] using 1 past state
+[Lustre] Property r_is_bounded...
+  [Sally][Valid] using 1 past state
+[Lustre] Property r_is_bounded...
+  [Sally][Valid] using 1 past state
+[Lustre] Property r_is_bounded...
+  [Sally][Valid] using 1 past state
+[Lustre] Property r_is_bounded...
+  [Sally][Valid] using 1 past state
+[Lustre] Property r_is_bounded...
+  [Sally][Valid] using 1 past state
+[Lustre] Model status: [Unknown]

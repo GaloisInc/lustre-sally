@@ -2739,16 +2739,38 @@ Sally Model
    (or |gal-initializing| |rltCheckEntryStateConsistency_011|))
 
 [Lustre] Validating properties:
-[Lustre] Property rltCheckEntryStateConsistency_0... [Valid] using 0 past states
-[Lustre] Property rltCheckEntryStateConsistency_01... [Unknown] Valid up to depth 10
-[Lustre] Property rltCheckEntryStateConsistency_02... [Unknown] Valid up to depth 10
-[Lustre] Property rltCheckEntryStateConsistency_03... [Unknown] Valid up to depth 10
-[Lustre] Property rltCheckEntryStateConsistency_04... [Unknown] Valid up to depth 10
-[Lustre] Property rltCheckEntryStateConsistency_05... [Unknown] Valid up to depth 10
-[Lustre] Property rltCheckEntryStateConsistency_06... [Valid] using 0 past states
-[Lustre] Property rltCheckEntryStateConsistency_07... [Unknown] Valid up to depth 10
-[Lustre] Property rltCheckEntryStateConsistency_08... [Unknown] Valid up to depth 10
-[Lustre] Property rltCheckEntryStateConsistency_09... [Unknown] Valid up to depth 10
-[Lustre] Property rltCheckEntryStateConsistency_010... [Unknown] Valid up to depth 10
-[Lustre] Property rltCheckEntryStateConsistency_011... [Unknown] Valid up to depth 10
-[Lustre] Model status: [Unknown] 
+[Lustre] Property rltCheckEntryStateConsistency_0...
+  [Sally][Valid] using 0 past states
+[Lustre] Property rltCheckEntryStateConsistency_01...
+  [Sally][Unknown]
+  [Sally][Unknown]
+[Lustre] Property rltCheckEntryStateConsistency_02...
+  [Sally][Unknown]
+  [Sally][Unknown]
+[Lustre] Property rltCheckEntryStateConsistency_03...
+  [Sally][Unknown]
+  [Sally][Unknown]
+[Lustre] Property rltCheckEntryStateConsistency_04...
+  [Sally][Unknown]
+  [Sally][Unknown]
+[Lustre] Property rltCheckEntryStateConsistency_05...
+  [Sally][Unknown]
+  [Sally][Unknown]
+[Lustre] Property rltCheckEntryStateConsistency_06...
+  [Sally][Valid] using 0 past states
+[Lustre] Property rltCheckEntryStateConsistency_07...
+  [Sally][Unknown]
+  [Sally][Unknown]
+[Lustre] Property rltCheckEntryStateConsistency_08...
+  [Sally][Unknown]
+  [Sally][Unknown]
+[Lustre] Property rltCheckEntryStateConsistency_09...
+  [Sally][Unknown]
+  [Sally][Unknown]
+[Lustre] Property rltCheckEntryStateConsistency_010...
+  [Sally][Unknown]
+  [Sally][Unknown]
+[Lustre] Property rltCheckEntryStateConsistency_011...
+  [Sally][Unknown]
+  [Sally][Unknown]
+[Lustre] Model status: [Unknown]

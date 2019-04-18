@@ -191,7 +191,8 @@ Sally Model
    (or |gal-initializing| prop))
 
 [Lustre] Validating properties:
-[Lustre] Property prop... [Invalid] 
+[Lustre] Property prop...
+  [Sally][Invalid]
 [Trace] 
 prop:
  Step | choice | |-> | wolf | goat | cabbage | farmer 
@@ -205,4 +206,4 @@ prop:
  7    | 2      |     | 1    | 0    | 1       | 0      
  8    | 1098   |     | 1    | 1    | 1       | 1      
 
-[Lustre] Model status: [Invalid] 
+[Lustre] Model status: [Invalid]

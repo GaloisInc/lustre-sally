@@ -11522,8 +11522,16 @@ Sally Model
    (or |gal-initializing| |at_most_one_lateral_mode_active|))
 
 [Lustre] Validating properties:
-[Lustre] Property at_least_one_vertical_mode_active... [Unknown] Valid up to depth 10
-[Lustre] Property at_most_one_vertical_mode_active... [Unknown] Valid up to depth 10
-[Lustre] Property at_least_one_lateral_mode_active... [Unknown] Valid up to depth 10
-[Lustre] Property at_most_one_lateral_mode_active... [Unknown] Valid up to depth 10
-[Lustre] Model status: [Unknown] 
+[Lustre] Property at_least_one_vertical_mode_active...
+  [Sally][Unknown]
+  [Sally][Unknown]
+[Lustre] Property at_most_one_vertical_mode_active...
+  [Sally][Unknown]
+  [Sally][Unknown]
+[Lustre] Property at_least_one_lateral_mode_active...
+  [Sally][Unknown]
+  [Sally][Unknown]
+[Lustre] Property at_most_one_lateral_mode_active...
+  [Sally][Unknown]
+  [Sally][Unknown]
+[Lustre] Model status: [Unknown]

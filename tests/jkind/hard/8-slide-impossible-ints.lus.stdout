@@ -1913,8 +1913,12 @@ Sally Model
    (or |gal-initializing| prop))
 
 [Lustre] Validating properties:
-[Lustre] Property distinct... [Valid] using 1 past state
-[Lustre] Property odd_inversions... [Error] Sally error:
-Timeout
-[Error] ExitFailure 1
-
+[Lustre] Property distinct...
+  [Sally][Valid] using 1 past state
+[Lustre] Property odd_inversions...
+  [Sally][Timeout]
+  [Sally][Timeout]
+[Lustre] Property prop...
+  [Sally][Unknown]
+  [Sally][Unknown]
+[Lustre] Model status: [Unknown]

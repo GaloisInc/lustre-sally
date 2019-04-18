@@ -30,11 +30,12 @@ Sally Model
    (or |gal-initializing| prop))
 
 [Lustre] Validating properties:
-[Lustre] Property prop... [Invalid] 
+[Lustre] Property prop...
+  [Sally][Invalid]
 [Trace] 
 prop:
  Step | in  | out | |-> 
 ------+-----+-----+-----
  1    | 2.0 | 0.0 |     
 
-[Lustre] Model status: [Invalid] 
+[Lustre] Model status: [Invalid]

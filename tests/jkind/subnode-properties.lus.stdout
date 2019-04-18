@@ -90,7 +90,11 @@ Sally Model
    (or |gal-initializing| |lemma:1|))
 
 [Lustre] Validating properties:
-[Lustre] Property prop... [Unknown] Valid up to depth 10
-[Lustre] Property lemma... [Valid] using 1 past state
-[Lustre] Property lemma... [Valid] using 1 past state
-[Lustre] Model status: [Unknown] 
+[Lustre] Property prop...
+  [Sally][Unknown]
+  [Sally][Unknown]
+[Lustre] Property lemma...
+  [Sally][Valid] using 1 past state
+[Lustre] Property lemma...
+  [Sally][Valid] using 1 past state
+[Lustre] Model status: [Unknown]

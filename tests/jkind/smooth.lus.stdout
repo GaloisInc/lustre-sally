@@ -60,5 +60,7 @@ Sally Model
    (or |gal-initializing| cex))
 
 [Lustre] Validating properties:
-[Lustre] Property cex... [Unknown] Valid up to depth 10
-[Lustre] Model status: [Unknown] 
+[Lustre] Property cex...
+  [Sally][Unknown]
+  [Sally][Unknown]
+[Lustre] Model status: [Unknown]

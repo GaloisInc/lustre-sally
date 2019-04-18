@@ -440,8 +440,16 @@ Sally Model
    (or |gal-initializing| |LAPPR_Selected_If_LAPPR_Active|))
 
 [Lustre] Validating properties:
-[Lustre] Property APPR_Switch_Pressed_Clears_LAPPR... [Unknown] Valid up to depth 10
-[Lustre] Property LAPPR_Active_When_Capture_Cond_Met... [Unknown] Valid up to depth 10
-[Lustre] Property APPR_Switch_Pressed_Selects_LAPPR... [Unknown] Valid up to depth 10
-[Lustre] Property LAPPR_Selected_If_LAPPR_Active... [Unknown] Valid up to depth 10
-[Lustre] Model status: [Unknown] 
+[Lustre] Property APPR_Switch_Pressed_Clears_LAPPR...
+  [Sally][Unknown]
+  [Sally][Unknown]
+[Lustre] Property LAPPR_Active_When_Capture_Cond_Met...
+  [Sally][Unknown]
+  [Sally][Unknown]
+[Lustre] Property APPR_Switch_Pressed_Selects_LAPPR...
+  [Sally][Unknown]
+  [Sally][Unknown]
+[Lustre] Property LAPPR_Selected_If_LAPPR_Active...
+  [Sally][Unknown]
+  [Sally][Unknown]
+[Lustre] Model status: [Unknown]

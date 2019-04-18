@@ -416,7 +416,8 @@ Sally Model
    (or |gal-initializing| prop1))
 
 [Lustre] Validating properties:
-[Lustre] Property prop2... [Invalid] 
+[Lustre] Property prop2...
+  [Sally][Invalid]
 [Trace] 
 prop2:
  Step | a     | b     | c     | d     | |-> | cost 
@@ -428,5 +429,7 @@ prop2:
  5    | False | False | True  | True  |     | 13   
  6    | True  | True  | True  | True  |     | 15   
 
-[Lustre] Property prop1... [Unknown] Valid up to depth 6
-[Lustre] Model status: [Invalid] 
+[Lustre] Property prop1...
+  [Sally][Unknown]
+  [Sally][Unknown]
+[Lustre] Model status: [Invalid]

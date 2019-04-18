@@ -261,7 +261,8 @@ Sally Model
    (or |gal-initializing| |conservation_missionaries|))
 
 [Lustre] Validating properties:
-[Lustre] Property cex... [Invalid] 
+[Lustre] Property cex...
+  [Sally][Invalid]
 [Trace] 
 cex:
  Step | m | c | |-> 
@@ -279,7 +280,10 @@ cex:
  11   | 0 | 2 |     
  12   | 0 | 1 |     
 
-[Lustre] Property safety_missionaries... [Valid] using 1 past state
-[Lustre] Property conservation_cannibals... [Valid] using 1 past state
-[Lustre] Property conservation_missionaries... [Valid] using 1 past state
-[Lustre] Model status: [Invalid] 
+[Lustre] Property safety_missionaries...
+  [Sally][Valid] using 1 past state
+[Lustre] Property conservation_cannibals...
+  [Sally][Valid] using 1 past state
+[Lustre] Property conservation_missionaries...
+  [Sally][Valid] using 1 past state
+[Lustre] Model status: [Invalid]
