@@ -262,36 +262,37 @@ data Lab = Lab
 checkQuery :: Logger -> Settings -> ModelInfo -> Node -> TransSystem ->
                 String -> (PropName,String) -> IO (SallyResult ())
 checkQuery lgr settings mi nd ts_ast ts (l',q) =
-  do say_ lgr Nothing "Lustre" ("Property " ++ l ++ "... ")
+  do say lgr Nothing "Lustre" ("Property " ++ l ++ "... ")
      hFlush stdout
      attempt kindLab (sallyKind settings) $
        attempt bmcLab (sallyBMC settings) $
-       do sayWarn lgr "Unknown"
-                        ("Valid up to depth " ++ show (bmcLimit settings))
           pure Unknown
   where
   l = Text.unpack (pName l')
 
   kindLab =
-    Lab { labProg = \n -> "considering " ++ suf n
+    Lab { labProg = \n -> "considering " ++ suf n ++ " "
         , labValid = \n -> "using " ++ suf n
         }
     where suf n = show n ++ " past state" ++ (if n == 1 then "" else "s")
 
   bmcLab =
-    Lab { labProg = \n -> "searching up to depth " ++ show n
+    Lab { labProg = \n -> "searching up to depth " ++ show n ++ " "
         , labValid = \n -> "after searching to depth " ++ show n
         }
 
 
   attempt lab x orElse =
-    do (maxD,res) <- runSally lab x
-       case res of
-         Valid ->
+    do (maxD,mbRes) <- runSally lab x
+       case mbRes of
+         Nothing -> do sayWarn lgr "Timeout" ""
+                       orElse
+
+         Just Valid ->
             do sayOK lgr "Valid" (labValid lab maxD)
                pure Valid
 
-         Invalid r
+         Just (Invalid r)
           | testMode settings ->
             do sayFail lgr "Invalid" ""
                let siTr = simpleTrace  mi l' r
@@ -308,34 +309,40 @@ checkQuery lgr settings mi nd ts_ast ts (l',q) =
                unless (noTrace settings) $ sayFail lgr "Trace" ('\n' : siTr)
                pure (Invalid ())
 
-         Unknown   -> orElse
+         Just Unknown -> do sayWarn lgr "Unknown" ""
+                            orElse
 
   runSally lab opts =
     do maxVal <- newIORef 0
        let callback _ n = do lPutProg lgr (labProg lab n)
                              writeIORef maxVal n -- assumes monotonic increase
-           doSally = sallyInteract "sally" opts callback (ts ++ q)
+           doSally = do lPutStr lgr Nothing "  "
+                        say_ lgr Nothing "Sally" ""
+                        lNewProg lgr
+                        sallyInteract "sally" opts callback (ts ++ q)
+
        mbres <- case timeout settings of
-                  Nothing -> doSally
+                  Nothing -> Just <$> doSally
                   Just t  -> withTimeout t doSally
 
-       lClearProg lgr
        v <- readIORef maxVal
 
-       res <- case mbres of
-                Left err  -> bad lgr "Sally error:" err
-                Right res -> pure res
-       case readSallyResult ts_ast res of
-         Right (r,xs)
-           | all isSpace xs  ->
-              case traverse (importTrace nd) r of
-                Right a -> pure (v,a)
-                Left err -> bad lgr "Failed to import trace" err
-           | otherwise -> bad lgr "Leftover stuff after answer" xs
-         Left err -> bad lgr ("Failed to parse result: " ++ err) res
+       case mbres of
+         Nothing -> pure (v, Nothing)
+         Just (Left err) -> bad lgr "Sally error" err
+         Just (Right res) ->
+           case readSallyResult ts_ast res of
+             Right (r,xs)
+               | all isSpace xs  ->
+                  case traverse (importTrace nd) r of
+                    Right a -> pure (v,Just a)
+                    Left err -> bad lgr "Failed to import trace:" err
+               | otherwise -> bad lgr "Leftover stuff after answer" xs
+             Left err -> bad lgr "Failed to parse result:" err
 
 
-withTimeout :: Int -> IO (Either String b) -> IO (Either String b)
+
+withTimeout :: Int -> IO b -> IO (Maybe b)
 withTimeout t act =
   do v <- newEmptyMVar
      tidSally <- forkIO $ do r <- act
@@ -345,9 +352,9 @@ withTimeout t act =
                              putMVar v Nothing
      res <- takeMVar v
      case res of
-       Nothing -> pure (Left "Timeout")
+       Nothing -> pure Nothing
        Just r  -> do killThread tidTimer
-                     pure r
+                     pure (Just r)
 
 
 

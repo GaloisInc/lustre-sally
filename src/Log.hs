@@ -14,6 +14,9 @@ data Logger = Logger
   , lPutProg   :: String -> IO ()
     -- ^ Print a progress message.
 
+  , lNewProg :: IO ()
+    -- ^ Start a new batch of progress reporting.
+
   , lClearProg :: IO ()
     -- ^ Clear last progress message.
   }
@@ -51,6 +54,7 @@ newTestLogger :: IO Logger
 newTestLogger = pure Logger
   { lPutStr     = \_ x -> putStr x >> hFlush stdout
   , lPutProg    = \_   -> pure ()
+  , lNewProg    = pure ()
   , lClearProg  = pure ()
   }
 
@@ -72,6 +76,8 @@ newLogger =
                 putStr msg
                 hFlush stdout
                 pure True
+
+      , lNewProg = modifyMVar_ r $ \_ -> pure False
 
       , lClearProg =
           modifyMVar_ r $ \inProg ->

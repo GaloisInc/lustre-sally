@@ -307,7 +307,7 @@ parseValue ty s =
 -- This creates a temporary file, saves the input, and runs sally on it.
 sallyInteract ::
   FilePath    {- ^ Path to Sally -} ->
-  [String]    {- ^ Comman line options -} ->
+  [String]    {- ^ Command line options -} ->
   (LocalTime -> Int -> IO ()) {- ^ Callback for progress reporting -} ->
   String      {- ^ Input for Sally -} ->
   IO (Either String String) -- ^ Either an error on the left, or the answer.
