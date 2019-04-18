@@ -1,2 +1,3 @@
-counter-example-limit: 30
+counter-example-limit: 25
+counter-example-lower-limit: 25
 proof-depth: 1
