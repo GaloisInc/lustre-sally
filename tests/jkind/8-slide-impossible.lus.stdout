@@ -1,3 +1,4 @@
+[Lustre] Loading settings from: "8-slide-impossible.lus.settings"
 Sally Model
 ===========
 
@@ -1822,7 +1823,7 @@ Sally Model
   [Sally][Valid] using 1 past state
 [Lustre] Property inverted...
   [Sally][Timeout]
-  [Sally][Timeout]
+  [Sally][Unknown]
 [Lustre] Property prop...
   [Sally][Unknown]
   [Sally][Unknown]
