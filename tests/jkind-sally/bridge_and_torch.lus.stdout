@@ -1,0 +1,434 @@
+[Lustre] Loading settings from: "bridge_and_torch.lus.settings"
+Sally Model
+===========
+
+(define-state-type
+   S
+   (
+     (a Bool)
+     (b Bool)
+     (b2i Int)
+     (c Bool)
+     (changed Bool)
+     (cost Int)
+     (d Bool)
+     (max Int)
+     (max2 Int)
+     (prop1 Bool)
+     (prop2 Bool)
+     (solved Bool)
+     (state Bool)
+     (torch Bool)
+     (traveler Bool)
+     (value Int)
+     (w Int)
+     (x Bool)
+     (y Int)
+     (z Int)
+     (|at_least_one_travelers:init| Bool)
+     (|at_least_one_travelers| Bool)
+     (|b2i:1| Int)
+     (|b2i:2| Int)
+     (|b2i:3| Int)
+     (|changed:1:init| Bool)
+     (|changed:1| Bool)
+     (|changed:2:init| Bool)
+     (|changed:2| Bool)
+     (|changed:3:init| Bool)
+     (|changed:3| Bool)
+     (|changed:init| Bool)
+     (|cost:1:init| Bool)
+     (|cost:1| Int)
+     (|cost:2:init| Bool)
+     (|cost:2| Int)
+     (|cost:3:init| Bool)
+     (|cost:3| Int)
+     (|cost:4:init| Bool)
+     (|cost:4| Int)
+     (|cost:init| Bool)
+     (|gal-initializing| Bool)
+     (|max2:1| Int)
+     (|no_more_than_two_travelers| Bool)
+     (|pre_a| Bool)
+     (|pre_b| Bool)
+     (|pre_cost| Int)
+     (|pre_c| Bool)
+     (|pre_d| Bool)
+     (|pre_state:10| Bool)
+     (|pre_state:11| Bool)
+     (|pre_state:1| Bool)
+     (|pre_state:2| Bool)
+     (|pre_state:3| Bool)
+     (|pre_state:4| Bool)
+     (|pre_state:5| Bool)
+     (|pre_state:6| Bool)
+     (|pre_state:7| Bool)
+     (|pre_state:8| Bool)
+     (|pre_state:9| Bool)
+     (|pre_state| Bool)
+     (|pre_torch| Bool)
+     (|pre_x:1| Bool)
+     (|pre_x:2| Bool)
+     (|pre_x:3| Bool)
+     (|pre_x| Bool)
+     (|state:1| Bool)
+     (|state:2| Bool)
+     (|state:3| Bool)
+     (|state:4| Bool)
+     (|state:5| Bool)
+     (|state:6| Bool)
+     (|state:7| Bool)
+     (|torch:1| Bool)
+     (|torch:2| Bool)
+     (|torch:3| Bool)
+     (|torch:4:init| Bool)
+     (|torch:4| Bool)
+     (|traveler:1:init| Bool)
+     (|traveler:1| Bool)
+     (|traveler:2:init| Bool)
+     (|traveler:2| Bool)
+     (|traveler:3:init| Bool)
+     (|traveler:3| Bool)
+     (|traveler:init| Bool)
+     (|value:1| Int)
+     (|value:2| Int)
+     (|value:3| Int)
+     (|x:10| Int)
+     (|x:11| Int)
+     (|x:1| Bool)
+     (|x:2| Bool)
+     (|x:3| Bool)
+     (|x:4| Bool)
+     (|x:5| Bool)
+     (|x:6| Bool)
+     (|x:7| Bool)
+     (|x:8| Int)
+     (|x:9| Int)
+     (|y:1| Int)
+     (|y:2| Int)
+     (|y:3| Int))
+   (
+     (a Bool)
+     (b Bool)
+     (c Bool)
+     (d Bool)))
+(define-transition-system
+   TS
+   S
+   (and
+      (= |gal-initializing| true)
+      (= |cost:4:init| true)
+      (= |cost:3:init| true)
+      (= |cost:2:init| true)
+      (= |cost:1:init| true)
+      (= |cost:init| true)
+      (= |torch:4:init| true)
+      (= |at_least_one_travelers:init| true)
+      (= |changed:3:init| true)
+      (= |changed:2:init| true)
+      (= |changed:1:init| true)
+      (= |changed:init| true)
+      (= |traveler:3:init| true)
+      (= |traveler:2:init| true)
+      (= |traveler:1:init| true)
+      (= |traveler:init| true))
+   (and
+      (= next.|gal-initializing| false)
+      (= next.a input.a)
+      (= next.b input.b)
+      (= next.c input.c)
+      (= next.d input.d)
+      next.|no_more_than_two_travelers|
+      next.|at_least_one_travelers|
+      next.traveler
+      next.|traveler:1|
+      next.|traveler:2|
+      next.|traveler:3|
+      (= next.|state:7| next.a)
+      (= next.|value:3| 1)
+      (= next.|pre_state:11| state.|state:7|)
+      (ite
+         state.|cost:4:init|
+         (= next.|cost:4| 0)
+         (=
+            next.|cost:4|
+            (ite
+               (not
+                  (= next.|state:7| next.|pre_state:11|))
+               next.|value:3|
+               0)))
+      (= next.|cost:4:init| false)
+      (= next.|x:11| next.|cost:4|)
+      (= next.|x:10| next.|x:11|)
+      (= next.|state:6| next.b)
+      (= next.|value:2| 2)
+      (= next.|pre_state:10| state.|state:6|)
+      (ite
+         state.|cost:3:init|
+         (= next.|cost:3| 0)
+         (=
+            next.|cost:3|
+            (ite
+               (not
+                  (= next.|state:6| next.|pre_state:10|))
+               next.|value:2|
+               0)))
+      (= next.|cost:3:init| false)
+      (= next.|y:3| next.|cost:3|)
+      (= next.|x:9| next.|y:3|)
+      (= next.|state:5| next.c)
+      (= next.|value:1| 5)
+      (= next.|pre_state:9| state.|state:5|)
+      (ite
+         state.|cost:2:init|
+         (= next.|cost:2| 0)
+         (=
+            next.|cost:2|
+            (ite
+               (not
+                  (= next.|state:5| next.|pre_state:9|))
+               next.|value:1|
+               0)))
+      (= next.|cost:2:init| false)
+      (= next.z next.|cost:2|)
+      (= next.|x:8| next.z)
+      (= next.|state:4| next.d)
+      (= next.value 8)
+      (= next.|pre_state:8| state.|state:4|)
+      (ite
+         state.|cost:1:init|
+         (= next.|cost:1| 0)
+         (=
+            next.|cost:1|
+            (ite
+               (not
+                  (= next.|state:4| next.|pre_state:8|))
+               next.value
+               0)))
+      (= next.|cost:1:init| false)
+      (= next.w next.|cost:1|)
+      (= next.|y:2| next.w)
+      (=
+         next.|max2:1|
+         (ite
+            (<= next.|y:2| next.|x:8|)
+            next.|x:8|
+            next.|y:2|))
+      (= next.|y:1| next.|max2:1|)
+      (=
+         next.max2
+         (ite
+            (<= next.|y:1| next.|x:9|)
+            next.|x:9|
+            next.|y:1|))
+      (= next.y next.max2)
+      (=
+         next.max
+         (ite
+            (<= next.y next.|x:10|)
+            next.|x:10|
+            next.y))
+      (= next.|pre_cost| state.cost)
+      (ite
+         state.|cost:init|
+         (= next.cost 0)
+         (=
+            next.cost
+            (+ next.|pre_cost| next.max)))
+      (= next.|cost:init| false)
+      (= next.|pre_torch| state.|torch:4|)
+      (ite
+         state.|torch:4:init|
+         (= next.|torch:4| true)
+         (=
+            next.|torch:4|
+            (not next.|pre_torch|)))
+      (= next.|torch:4:init| false)
+      (= next.|pre_a| state.a)
+      (= next.|pre_b| state.b)
+      (= next.|pre_c| state.c)
+      (= next.|pre_d| state.d)
+      (ite
+         state.|at_least_one_travelers:init|
+         (= next.|at_least_one_travelers| true)
+         (=
+            next.|at_least_one_travelers|
+            (or
+               (not
+                  (= next.a next.|pre_a|))
+               (not
+                  (= next.b next.|pre_b|))
+               (not
+                  (= next.c next.|pre_c|))
+               (not
+                  (= next.d next.|pre_d|)))))
+      (= next.|at_least_one_travelers:init| false)
+      (= next.|x:7| next.a)
+      (= next.|pre_x:3| state.|x:7|)
+      (ite
+         state.|changed:3:init|
+         (= next.|changed:3| false)
+         (=
+            next.|changed:3|
+            (not
+               (= next.|x:7| next.|pre_x:3|))))
+      (= next.|changed:3:init| false)
+      (= next.|x:6| next.|changed:3|)
+      (=
+         next.|b2i:3|
+         (ite next.|x:6| 1 0))
+      (= next.|x:5| next.b)
+      (= next.|pre_x:2| state.|x:5|)
+      (ite
+         state.|changed:2:init|
+         (= next.|changed:2| false)
+         (=
+            next.|changed:2|
+            (not
+               (= next.|x:5| next.|pre_x:2|))))
+      (= next.|changed:2:init| false)
+      (= next.|x:4| next.|changed:2|)
+      (=
+         next.|b2i:2|
+         (ite next.|x:4| 1 0))
+      (= next.|x:3| next.c)
+      (= next.|pre_x:1| state.|x:3|)
+      (ite
+         state.|changed:1:init|
+         (= next.|changed:1| false)
+         (=
+            next.|changed:1|
+            (not
+               (= next.|x:3| next.|pre_x:1|))))
+      (= next.|changed:1:init| false)
+      (= next.|x:2| next.|changed:1|)
+      (=
+         next.|b2i:1|
+         (ite next.|x:2| 1 0))
+      (= next.|x:1| next.d)
+      (= next.|pre_x| state.|x:1|)
+      (ite
+         state.|changed:init|
+         (= next.changed false)
+         (=
+            next.changed
+            (not
+               (= next.|x:1| next.|pre_x|))))
+      (= next.|changed:init| false)
+      (= next.x next.changed)
+      (=
+         next.b2i
+         (ite next.x 1 0))
+      (=
+         next.|no_more_than_two_travelers|
+         (<=
+            (+
+               (+
+                  (+ next.|b2i:3| next.|b2i:2|)
+                  next.|b2i:1|)
+               next.b2i)
+            2))
+      (=
+         next.solved
+         (and next.a next.b next.c next.d))
+      (=
+         next.prop1
+         (not
+            (and
+               next.solved
+               (< next.cost 15))))
+      (=
+         next.prop2
+         (not
+            (and
+               next.solved
+               (= next.cost 15))))
+      (= next.|state:3| next.a)
+      (= next.|torch:3| next.|torch:4|)
+      (= next.|pre_state:7| state.|state:3|)
+      (= next.|pre_state:6| state.|state:3|)
+      (ite
+         state.|traveler:3:init|
+         (=
+            next.|traveler:3|
+            (= next.|state:3| false))
+         (=
+            next.|traveler:3|
+            (=>
+               (not
+                  (= next.|state:3| next.|pre_state:7|))
+               (= next.|pre_state:6| next.|torch:3|))))
+      (= next.|traveler:3:init| false)
+      (= next.|state:2| next.b)
+      (= next.|torch:2| next.|torch:4|)
+      (= next.|pre_state:5| state.|state:2|)
+      (= next.|pre_state:4| state.|state:2|)
+      (ite
+         state.|traveler:2:init|
+         (=
+            next.|traveler:2|
+            (= next.|state:2| false))
+         (=
+            next.|traveler:2|
+            (=>
+               (not
+                  (= next.|state:2| next.|pre_state:5|))
+               (= next.|pre_state:4| next.|torch:2|))))
+      (= next.|traveler:2:init| false)
+      (= next.|state:1| next.c)
+      (= next.|torch:1| next.|torch:4|)
+      (= next.|pre_state:3| state.|state:1|)
+      (= next.|pre_state:2| state.|state:1|)
+      (ite
+         state.|traveler:1:init|
+         (=
+            next.|traveler:1|
+            (= next.|state:1| false))
+         (=
+            next.|traveler:1|
+            (=>
+               (not
+                  (= next.|state:1| next.|pre_state:3|))
+               (= next.|pre_state:2| next.|torch:1|))))
+      (= next.|traveler:1:init| false)
+      (= next.state next.d)
+      (= next.torch next.|torch:4|)
+      (= next.|pre_state:1| state.state)
+      (= next.|pre_state| state.state)
+      (ite
+         state.|traveler:init|
+         (=
+            next.traveler
+            (= next.state false))
+         (=
+            next.traveler
+            (=>
+               (not
+                  (= next.state next.|pre_state:1|))
+               (= next.|pre_state| next.torch))))
+      (= next.|traveler:init| false)))
+
+(query
+   TS
+   (or |gal-initializing| prop2))
+(query
+   TS
+   (or |gal-initializing| prop1))
+
+[Lustre] Validating properties:
+[Lustre] Property prop2...
+  [Sally][Invalid]
+[Trace] 
+prop2:
+ Step | a     | b     | c     | d     | |-> | cost 
+------+-------+-------+-------+-------+-----+------
+ 1    | False | False | False | False |     | 0    
+ 2    | True  | True  | False | False |     | 2    
+ 3    | False | True  | False | False |     | 3    
+ 4    | False | True  | True  | True  |     | 11   
+ 5    | False | False | True  | True  |     | 13   
+ 6    | True  | True  | True  | True  |     | 15   
+
+[Lustre] Property prop1...
+  [Sally][Valid] using 14 past states
+[Lustre] Model status: [Invalid]
