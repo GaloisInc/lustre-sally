@@ -1,0 +1,4 @@
+#!/bin/sh
+
+find tests -name '*.stdout' -exec grep -l Unknown {} \;
+

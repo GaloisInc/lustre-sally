@@ -432,4 +432,8 @@ prop2:
 [Lustre] Property prop1...
   [Sally][Unknown]
   [Sally][Unknown]
+[Lustre] Summary:
+  [Valid] 0
+  [Unknown] 1
+  [Invalid] 1
 [Lustre] Model status: [Invalid]

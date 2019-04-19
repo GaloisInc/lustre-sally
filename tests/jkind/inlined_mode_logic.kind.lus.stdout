@@ -11534,4 +11534,8 @@ Sally Model
 [Lustre] Property at_most_one_lateral_mode_active...
   [Sally][Unknown]
   [Sally][Unknown]
+[Lustre] Summary:
+  [Valid] 0
+  [Unknown] 4
+  [Invalid] 0
 [Lustre] Model status: [Unknown]

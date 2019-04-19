@@ -126,4 +126,8 @@ Sally Model
   [Sally][Valid] using 1 past state
 [Lustre] Property prop1...
   [Sally][Valid] using 1 past state
+[Lustre] Summary:
+  [Valid] 2
+  [Unknown] 0
+  [Invalid] 0
 [Lustre] Model status: [Valid]

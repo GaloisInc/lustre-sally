@@ -1102,4 +1102,8 @@ Sally Model
 [Lustre] Property __GUARANTEE0...
   [Sally][Unknown]
   [Sally][Unknown]
+[Lustre] Summary:
+  [Valid] 1
+  [Unknown] 4
+  [Invalid] 0
 [Lustre] Model status: [Unknown]

@@ -157,4 +157,8 @@ cex1:
 
 [Lustre] Property ok1...
   [Sally][Valid] using 1 past state
+[Lustre] Summary:
+  [Valid] 1
+  [Unknown] 0
+  [Invalid] 1
 [Lustre] Model status: [Invalid]

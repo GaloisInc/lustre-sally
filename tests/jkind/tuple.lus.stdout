@@ -210,4 +210,8 @@ Sally Model
   [Sally][Unknown]
 [Lustre] Property ok1...
   [Sally][Valid] using 0 past states
+[Lustre] Summary:
+  [Valid] 2
+  [Unknown] 3
+  [Invalid] 0
 [Lustre] Model status: [Unknown]

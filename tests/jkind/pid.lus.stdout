@@ -560,4 +560,8 @@ Sally Model
 [Lustre] Validating properties:
 [Lustre] Property _SYS_GUARANTEE_1...
   [Sally][Valid] using 23 past states
+[Lustre] Summary:
+  [Valid] 1
+  [Unknown] 0
+  [Invalid] 0
 [Lustre] Model status: [Valid]

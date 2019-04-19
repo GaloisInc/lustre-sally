@@ -162,7 +162,7 @@ toSallyExpr qs expr =
 data SallyResult t  = Valid
                     | Unknown
                     | Invalid !t
-                    deriving (Eq,Show)
+                    deriving (Eq,Show,Ord)
 
 instance Functor SallyResult where
   fmap f res =

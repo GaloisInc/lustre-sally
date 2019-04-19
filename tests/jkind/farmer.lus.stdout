@@ -206,4 +206,8 @@ prop:
  7    | 2      |     | 1    | 0    | 1       | 0      
  8    | 1098   |     | 1    | 1    | 1       | 1      
 
+[Lustre] Summary:
+  [Valid] 0
+  [Unknown] 0
+  [Invalid] 1
 [Lustre] Model status: [Invalid]

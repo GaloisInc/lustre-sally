@@ -1628,4 +1628,8 @@ Sally Model
   [Sally][Valid] using 1 past state
 [Lustre] Property r_is_bounded...
   [Sally][Valid] using 1 past state
+[Lustre] Summary:
+  [Valid] 7
+  [Unknown] 1
+  [Invalid] 0
 [Lustre] Model status: [Unknown]

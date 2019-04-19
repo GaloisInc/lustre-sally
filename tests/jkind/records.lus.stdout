@@ -231,4 +231,8 @@ cex1:
  1    | 0      | 0      |     
  2    | 0      | -20    |     
 
+[Lustre] Summary:
+  [Valid] 1
+  [Unknown] 1
+  [Invalid] 2
 [Lustre] Model status: [Invalid]

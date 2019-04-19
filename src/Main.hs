@@ -11,6 +11,7 @@ import Data.Char(isSpace)
 import Data.Text(Text)
 import qualified Data.Text as Text
 import qualified Data.Text.IO as TextIO
+import qualified Data.Map as Map
 import SimpleGetOpt
 import System.IO(hFlush,stdout)
 import System.FilePath(takeFileName,dropFileName,dropExtension,(</>))
@@ -249,21 +250,29 @@ mainWork l settings ds =
 
      say l Nothing "Lustre" "Validating properties:"
      outs <- mapM (checkQuery l settings info nd ts ts_sexp) qs_sexps
-     let summary = foldr status Valid outs
+     let count x mp = Map.insertWith (+) (cvt x) (1::Int) mp
+         summary = foldr count Map.empty outs
+         getCount x = Map.findWithDefault 0 x summary
+         modelStatus = if getCount (Invalid ()) > 0 then Invalid () else
+                       if getCount Unknown      > 0 then Unknown else
+                                                         Valid
+
+     say l Nothing "Lustre" "Summary:"
+     tab l 2 >> sayOK   l "Valid"   (show (getCount Valid))
+     tab l 2 >> sayWarn l "Unknown" (show (getCount Unknown))
+     tab l 2 >> sayFail l "Invalid" (show (getCount (Invalid ())))
      say_ l Nothing "Lustre" "Model status: "
-     case summary of
+     case modelStatus of
        Valid     -> sayOK   l "Valid" ""
        Unknown   -> sayWarn l "Unknown" ""
        Invalid _ -> sayFail l "Invalid" ""
 
 
   where
-  status a s = case a of
-                 Invalid _ -> Invalid ()
-                 Unknown   -> case s of
-                                Invalid _ -> s
-                                _         -> Unknown
-                 Valid     -> s
+  cvt ans = case ans of
+              Invalid _ -> Invalid ()
+              Unknown   -> Unknown
+              Valid     -> Valid
 
 
 data Lab = Lab

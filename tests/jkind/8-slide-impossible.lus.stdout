@@ -1827,4 +1827,8 @@ Sally Model
 [Lustre] Property prop...
   [Sally][Unknown]
   [Sally][Unknown]
+[Lustre] Summary:
+  [Valid] 1
+  [Unknown] 2
+  [Invalid] 0
 [Lustre] Model status: [Unknown]

@@ -14041,4 +14041,8 @@ rlt_check_467:
 ------+----------+----------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------------+-----+------------+--------------+-------------+------
  1    | False    | True     | False | False | False | False | False | False | False | False | False | False | False       |     | 0          | 0            | 0           | 1    
 
+[Lustre] Summary:
+  [Valid] 26
+  [Unknown] 0
+  [Invalid] 441
 [Lustre] Model status: [Invalid]

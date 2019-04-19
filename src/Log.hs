@@ -21,6 +21,8 @@ data Logger = Logger
     -- ^ Clear last progress message.
   }
 
+tab :: Logger -> Int -> IO ()
+tab l n = lPutStr l Nothing (replicate n ' ')
 
 say_ :: Logger -> Maybe Color -> String -> String -> IO ()
 say_ l col x y =

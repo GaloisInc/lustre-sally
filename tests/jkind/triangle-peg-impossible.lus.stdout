@@ -793,4 +793,8 @@ Sally Model
 [Lustre] Validating properties:
 [Lustre] Property prop...
   [Sally][Valid] using 9 past states
+[Lustre] Summary:
+  [Valid] 1
+  [Unknown] 0
+  [Invalid] 0
 [Lustre] Model status: [Valid]

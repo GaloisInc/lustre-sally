@@ -46,4 +46,8 @@ ok:
 ------+-----+-----+-----+-----+-------
  1    | 0   | 1   | 0   |     | False 
 
+[Lustre] Summary:
+  [Valid] 0
+  [Unknown] 0
+  [Invalid] 1
 [Lustre] Model status: [Invalid]

@@ -1784,4 +1784,8 @@ no_stall_B1:
 
 [Lustre] Property no_stall_A1...
   [Sally][Valid] using 1 past state
+[Lustre] Summary:
+  [Valid] 4
+  [Unknown] 0
+  [Invalid] 3
 [Lustre] Model status: [Invalid]

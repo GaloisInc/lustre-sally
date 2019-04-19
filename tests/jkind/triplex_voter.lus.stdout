@@ -643,4 +643,8 @@ Sally Model
 [Lustre] Property lemmaA...
   [Sally][Timeout]
   [Sally][Timeout]
+[Lustre] Summary:
+  [Valid] 0
+  [Unknown] 8
+  [Invalid] 0
 [Lustre] Model status: [Unknown]

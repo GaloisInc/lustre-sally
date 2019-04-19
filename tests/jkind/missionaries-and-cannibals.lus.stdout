@@ -286,4 +286,8 @@ cex:
   [Sally][Valid] using 1 past state
 [Lustre] Property conservation_missionaries...
   [Sally][Valid] using 1 past state
+[Lustre] Summary:
+  [Valid] 3
+  [Unknown] 0
+  [Invalid] 1
 [Lustre] Model status: [Invalid]
