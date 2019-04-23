@@ -18,13 +18,12 @@ import qualified TransitionSystem as TS
 
 
 import Language.Lustre.Name
-import Language.Lustre.AST(PropName)
 import Language.Lustre.Core
 import qualified Language.Lustre.Semantics.Core as L
 import Language.Lustre.Pretty(showPP)
 import LSPanic
 
-transNode :: Node -> (TS.TransSystem, [(PropName,TS.Expr)])
+transNode :: Node -> (TS.TransSystem, [(Label,TS.Expr)])
 transNode n = (ts, map mkProp (nShows n))
   where
   mkProp (x,p) = (x, transProp qns TS.InCurState p)

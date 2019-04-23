@@ -8,6 +8,7 @@ import qualified Data.Text as Text
 import Data.List(intercalate,transpose)
 
 import Language.Lustre.AST
+import Language.Lustre.Name(Label(..))
 import Language.Lustre.ModelState
 import Language.Lustre.Pretty
 
@@ -18,9 +19,9 @@ import LSPanic(panic)
 
 -- | Print a shorter, text based trace.  We just display the inputs
 -- and outputs for the top node.
-simpleTrace :: ModelInfo -> PropName -> LTrace -> String
+simpleTrace :: ModelInfo -> Label -> LTrace -> String
 simpleTrace mi pn tr =
-  Text.unpack (pName pn) ++ ":\n" ++
+  Text.unpack (labText pn) ++ ":\n" ++
   (tabulate $ header : zipWith showStep [ 1 :: Integer .. ] (traceSteps tr))
   where
   Just topLoc = locTop mi
@@ -55,13 +56,13 @@ declareSource :: String -> String
 declareSource s = show ("var source =" PP.$$ PP.nest 2 js)
   where JS js = text (untab s)
 
-declareTrace :: ModelInfo -> PropName -> LTrace -> String
+declareTrace :: ModelInfo -> Label -> LTrace -> String
 declareTrace mi pn tr = show ("var trace =" PP.$$ PP.nest 2 js)
   where
   JS js = case computeCallTree mi of
             Just ct ->
-              obj [ "name" ~> text (Text.unpack (pName pn))
-                  , "line" ~> int (sourceLine (sourceFrom (pRange pn)))
+              obj [ "name" ~> text (Text.unpack (labText pn))
+                  , "line" ~> int (sourceLine (sourceFrom (labRange pn)))
                   , "trace" ~> renderTrace ct tr
                   ]
             Nothing ->

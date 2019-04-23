@@ -281,7 +281,7 @@ data Lab = Lab
   }
 
 checkQuery :: Logger -> Settings -> ModelInfo -> Node -> TransSystem ->
-                String -> (PropName,String) -> IO (SallyResult ())
+                String -> (Label,String) -> IO (SallyResult ())
 checkQuery lgr settings mi nd ts_ast ts (l',q) =
   do say lgr Nothing "Lustre" ("Property " ++ l ++ "...")
      hFlush stdout
@@ -289,7 +289,7 @@ checkQuery lgr settings mi nd ts_ast ts (l',q) =
        attempt bmcLab (sallyBMC settings) $
           pure Unknown
   where
-  l = Text.unpack (pName l')
+  l = Text.unpack (labText l')
 
   kindLab =
     Lab { labProg = \n -> "considering " ++ suf n ++ " "
