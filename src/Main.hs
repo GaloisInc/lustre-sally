@@ -4,7 +4,7 @@ module Main(main) where
 import System.Exit(exitFailure)
 import Control.Monad(when,foldM,unless)
 import Control.Exception(catches, catch, Handler(..), throwIO
-                        , SomeException(..), displayException)
+                        , SomeException(..), displayException, Exception(..))
 import Control.Concurrent
           (newEmptyMVar,takeMVar,putMVar, forkIO, threadDelay, killThread)
 import Data.Char(isSpace)
@@ -14,8 +14,10 @@ import qualified Data.Text.IO as TextIO
 import qualified Data.Map as Map
 import SimpleGetOpt
 import System.IO(hFlush,stdout)
-import System.FilePath(takeFileName,dropFileName,dropExtension,(</>))
-import System.Directory(createDirectoryIfMissing)
+import System.FilePath(takeFileName,dropFileName,takeExtension,dropExtension
+                      ,(</>))
+import System.Directory(createDirectoryIfMissing,doesFileExist,
+                        getDirectoryContents)
 import Data.IORef(newIORef,writeIORef,readIORef)
 import Text.Read(readMaybe)
 
@@ -38,7 +40,7 @@ import Report(declareSource, simpleTrace, declareTrace)
 import SaveUI(saveUI)
 
 data Settings = Settings
-  { file      :: FilePath
+  { files     :: [FilePath]
   , node      :: Maybe Text
   , saveCore  :: Bool
   , saveSally :: Bool
@@ -46,6 +48,7 @@ data Settings = Settings
   , bmcLowerLimit :: Int
   , kindLimit :: Int
   , useMCSat  :: Bool
+  , inDir     :: FilePath
   , outDir    :: FilePath
   , useConfig :: FilePath
   , testMode  :: Bool
@@ -69,6 +72,10 @@ options = OptSpec
       , Option ['d'] ["out-dir"]
         "Save output in this directory."
         $ ReqArg "DIR" $ \a s -> Right s { outDir = a }
+
+      , Option [] ["in-dir"]
+        "Read inputs from this directory."
+        $ ReqArg "DIR" $ \a s -> Right s { inDir = a }
 
       , Option [] ["save-core"]
         "Save Core lustre output in this file"
@@ -126,15 +133,13 @@ options = OptSpec
         $ NoArg $ \s -> Right s { noTrace = True }
       ]
 
-  , progParamDocs = [("FILE", "Lustre file containing model (required).")]
-  , progParams    = \a s -> case file s of
-                             "" -> Right s { file = a }
-                             _  -> Left "We only support a single file for now."
+  , progParamDocs = [("FILE", "Lustre files containing model (required, unless --in-dir).")]
+  , progParams    = \a s -> Right s { files = a : files s }
   }
 
   where
   defaults = Settings
-    { file = ""
+    { files = []
     , node = Nothing
     , saveSally = False
     , saveCore = False
@@ -143,6 +148,7 @@ options = OptSpec
     , kindLimit = 10
     , useMCSat = True
     , outDir = "results"
+    , inDir = ""
     , useConfig = ""
     , testMode = False
     , noTrace = False
@@ -170,16 +176,32 @@ settingsFromFile lgr f start =
                       Right s1 -> pure s1
 
 
+-- | If the '--in-dir' flag is provided, then we load settings and find input files
+-- in the given directory.
+settingsFromInDir :: Logger -> Settings -> IO Settings
+settingsFromInDir l s
+  | null (inDir s) = pure s
+  | otherwise =
+    do let dir = inDir s
+           settingsFile = dir </> "settings.yaml"
+       haveExtraSettings <- doesFileExist settingsFile
+       s1 <- if haveExtraSettings then settingsFromFile l settingsFile s
+                                  else pure s
+       fs <- getDirectoryContents dir
+       let lusFiles = [ dir </> f | f <- fs, takeExtension f == ".lus" ]
+       pure s1 { files = lusFiles ++ files s1 }
+
+
 getSettings :: Logger -> IO Settings
 getSettings l =
   do settings0 <- getOptsX options
-     settings  <- case useConfig settings0 of
+     settings1 <- case useConfig settings0 of
                     "" -> pure settings0
                     f  -> settingsFromFile l f settings0
-
-     when (file settings == "") $
+     settings2 <- settingsFromInDir l settings1
+     when (null (files settings2)) $
        throwIO (GetOptException ["No Lustre file was speicifed."])
-     pure settings
+     pure settings2
 
   `catch` \(GetOptException errs) ->
       do mapM_ (sayFail l "Error") errs
@@ -195,26 +217,50 @@ main :: IO ()
 main =
   do settings <- getSettings =<< newLogger
      l <- if testMode settings then newTestLogger else newLogger
-     do a <- parseProgramFromFileLatin1 (file settings)
-        case a of
-          ProgramDecls ds -> mainWork l settings ds
-          _ -> bad l "We don't support modules/packages for the moment." ""
-
-      `catches`
-        [ Handler $ \(ParseError mb) ->
-          case mb of
-            Nothing -> bad l "Parse error at the end of the file." ""
-            Just p  -> bad l ("Parse error at " ++ prettySourcePos p) ""
-
-        , Handler $ \(SomeException e) -> bad l (displayException e) ""
-        ]
+     mainWorkAllFiles l settings
 
 
-bad :: Logger -> String -> String -> IO a
-bad l err res =
+data LSError = LSError String String deriving Show
+
+instance Exception LSError
+
+bad :: String -> String -> IO a
+bad err res = throwIO (LSError err res)
+
+sayBad :: Logger -> String -> String -> IO ()
+sayBad l err res =
   do sayFail l "Error" err
      lPutStrLn l Nothing res
-     exitFailure
+
+
+mainWorkAllFiles :: Logger -> Settings -> IO ()
+mainWorkAllFiles l settings =
+  case files settings of
+     [] -> pure ()
+     f : fs ->
+       do say l Nothing "Lustre" ("Loading model from: " ++ show f)
+          oneFile f `catches` handlers
+          mainWorkAllFiles l settings { files = fs }
+  where
+  oneFile f =
+    do a <- parseProgramFromFileLatin1 f
+       case a of
+         ProgramDecls ds -> mainWork l settings ds
+         _ -> bad "We don't support modules/packages for the moment." ""
+
+  handlers =
+    [ Handler $ \(ParseError mb) ->
+        case mb of
+          Nothing -> sayBad l "Parse error at the end of the file." ""
+          Just p  -> sayBad l ("Parse error at " ++ prettySourcePos p) ""
+
+    , Handler $ \(LSError a b) -> sayBad l a b
+
+    , Handler $ \(SomeException e) -> sayBad l (displayException e) ""
+    ]
+
+
+
 
 
 
@@ -228,7 +274,7 @@ mainWork l settings ds =
 
      -- Save JS version of source model
      unless (testMode settings) $
-       do txt <- readFile (file settings)
+       do txt <- readFile (head (files settings))
           saveOutput (outSourceFile settings) (declareSource txt)
 
      -- Save Core version of model, if needed
@@ -350,16 +396,16 @@ checkQuery lgr settings mi nd ts_ast ts (l',q) =
 
        case mbres of
          Nothing -> pure (v, Nothing)
-         Just (Left err) -> bad lgr "Sally error" err
+         Just (Left err) -> bad "Sally error" err
          Just (Right res) ->
            case readSallyResult ts_ast res of
              Right (r,xs)
                | all isSpace xs  ->
                   case traverse (importTrace nd) r of
                     Right a -> pure (v,Just a)
-                    Left err -> bad lgr "Failed to import trace:" err
-               | otherwise -> bad lgr "Leftover stuff after answer" xs
-             Left err -> bad lgr "Failed to parse result:" err
+                    Left err -> bad "Failed to import trace:" err
+               | otherwise -> bad "Leftover stuff after answer" xs
+             Left err -> bad "Failed to parse result:" err
 
 
 
@@ -411,9 +457,9 @@ sallyBMC s = "--engine=bmc"
 -- Output directory structure
 
 outFileDir :: Settings -> FilePath
-outFileDir settings = outDir settings </>
-                      dropExtension (takeFileName (file settings))
--- XXX: clashes if inputs in different directories?
+outFileDir settings =
+  outDir settings </> dropExtension (takeFileName (head (files settings)))
+  -- XXX: Name clashes if same name indifferent directoryies.
 
 outPropDir :: Settings -> String -> FilePath
 outPropDir settings prop = outFileDir settings </> prop
@@ -437,6 +483,7 @@ saveOutput fi out =
      createDirectoryIfMissing True dir
      writeFile fi out
 
+-- XXX: Use logger!
 saveOutputTesting :: String -> String -> IO ()
 saveOutputTesting lab val =
   do putStrLn lab
