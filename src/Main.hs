@@ -9,6 +9,7 @@ import Control.Concurrent
           (newEmptyMVar,takeMVar,putMVar, forkIO, threadDelay, killThread)
 import Data.Char(isSpace)
 import Data.Text(Text)
+import Data.List(intercalate)
 import qualified Data.Text as Text
 import qualified Data.Text.IO as TextIO
 import qualified Data.Map as Map
@@ -47,7 +48,7 @@ data Settings = Settings
   , bmcLimit  :: Int
   , bmcLowerLimit :: Int
   , kindLimit :: Int
-  , useMCSat  :: Bool
+  , yicesMode :: String
   , inDir     :: FilePath
   , outDir    :: FilePath
   , useConfig :: FilePath
@@ -85,9 +86,14 @@ options = OptSpec
         "Save Sally output in this file"
         $ NoArg $ \s -> Right s { saveSally = True }
 
-      , Option [] ["no-mcsat"]
-        "Do not use MCSAT based solver."
-        $ NoArg $ \s -> Right s { useMCSat = False }
+      , Option [] ["yices-mode"]
+        "Specify how to use Yices"
+        $ let modes = [ "hybrid", "dpllt", "mcsat" ]
+              ty = intercalate "|" modes
+          in ReqArg ty $ \a s ->
+              if a `elem` modes
+                  then Right s { yicesMode = a }
+                  else Left ("Invalid Yices mode. Choose one of " ++ show modes)
 
       , Option [] ["counter-example-limit"]
         ("How big of a counter example to look for" ++
@@ -146,7 +152,7 @@ options = OptSpec
     , bmcLimit = 10
     , bmcLowerLimit = 0
     , kindLimit = 10
-    , useMCSat = True
+    , yicesMode = "hybrid"
     , outDir = "results"
     , inDir = ""
     , useConfig = ""
@@ -183,7 +189,7 @@ settingsFromInDir l s
   | null (inDir s) = pure s
   | otherwise =
     do let dir = inDir s
-           settingsFile = dir </> "settings.yaml"
+           settingsFile = dir </> "settings"
        haveExtraSettings <- doesFileExist settingsFile
        s1 <- if haveExtraSettings then settingsFromFile l settingsFile s
                                   else pure s
@@ -429,13 +435,13 @@ withTimeout t act =
 --------------------------------------------------------------------------------
 -- Sally flags
 sallyRequiredOpts :: Settings -> [String]
-sallyRequiredOpts s = ps ++
-  [ "--show-trace"
+sallyRequiredOpts s =
+  [ "--yices2-mode=" ++ yicesMode s
+  , "--show-trace"
   , "--no-lets"
   , "--output-language=mcmt"
   , "--verbosity=1"
   ]
-  where ps = if useMCSat s then ["--yices2-mcsat"] else []
 
 sallyKind :: Settings -> [String]
 sallyKind s = "--engine=kind"
