@@ -46,8 +46,48 @@ Several command-line options are available:
 * --save-sally
     * Save Sally output in this file. Useful mostly for debugging.
 
-* --no-tc
+* --help
+    * See all avaialable command line options.
 
-    * Disable the type-checker. It is experimental, and may sometimes
-      reject files you might still want to analyze.
+
+# Docker integration
+
+The provided Dockerfile can be used to build an image containing an up
+to date version of `lustre-sally` and `sally`.
+
+## Building a docker image
+
+The following steps can be used to build an image:
+
+    1. ./build-utils/prep-docker-build
+    2. docker build --tag lustre-sally .
+
+## Running a docker image
+
+The docker image needs two directories on the host: one for inputs
+and one for outputs.  See `build-utils/run-docker` for an example of how to
+invoke `docker`.
+
+The input directory should contain Lustre models with queries---`lustre-sally`
+will process each Lustre model, and store the results in the ouput directoyr.
+
+The input directory may also contain a file call `settings`, which can
+provide additional configuration for `lustre-sally`.  The format of this
+file is as a lit of `key: value` pairs, where the `key`s are the same
+as the long names of the command line options for `lustre-sally` and
+the values are the correcponding command line flags.  Here is an example
+of a simple `settings` file:
+
+    counter-example-limit: 25
+    counter-example-lower-limit: 25
+    proof-depth: 1
+
+
+
+
+
+
+
+
+
 

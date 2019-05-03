@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Prepare source code for building a docker image
+
+git submodule update --init
+LANGUAGE_LUSTRE_SRC=$(cd dependencies/lustre; cabal v2-sdist | tail -n 1)
+LUSTRE_SALLY_SRC=$(cabal v2-sdist | tail -n 1)
+
+mkdir -p docker-src
+cp $LANGUAGE_LUSTRE_SRC docker-src/language-lustre.tar.gz
+cp $LUSTRE_SALLY_SRC docker-src/lustre-sally.tar.gz
+cat > docker-src/cabal.project <<EOF
+packages:
+  $(basename $LANGUAGE_LUSTRE_SRC .tar.gz)
+  $(basename $LUSTRE_SALLY_SRC    .tar.gz)
+EOF
+

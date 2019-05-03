@@ -6,3 +6,4 @@ cabal.project.local
 /results
 /bin/test-runner
 /output
+/docker-src
