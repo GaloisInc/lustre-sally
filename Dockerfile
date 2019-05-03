@@ -40,7 +40,7 @@ RUN make install
 
 WORKDIR /build/sally-master/build
 RUN cmake ..
-RUN make -j
+RUN make
 RUN make install
 
 
