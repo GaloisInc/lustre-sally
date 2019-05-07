@@ -47,10 +47,10 @@ nAllEqns :: Node -> [Eqn]
 nAllEqns = concatMap grpEqns . nEqns
 
 
-type Env = Map Ident CType
+type Env = Map CoreName CType
 type Val = TS.Expr
 type TVal = (Val,Type)
-type QNames = Map Ident Int
+type QNames = Map CoreName Int
 
 -- | Literals are not nil.
 valLit :: Literal -> Val
@@ -60,17 +60,17 @@ valLit lit = case lit of
                Real r -> TS.Real r
 
 
-idText :: QNames -> Ident -> Text
+idText :: QNames -> CoreName -> Text
 idText qs i =
   case Map.lookup i qs of
     Just 0 -> txt
     Just n -> txt <> ":" <> Text.pack (show n)
     Nothing -> panic "idText" ["Missing entry for identifier:"
-                              , "*** Identifer: " ++ show i ]
-    where txt = identText i
+                              , "*** Identifier: " ++ show i ]
+    where txt = coreNameTextName i
 
 -- | The logical variable for the ordinary value.
-valName :: QNames -> Ident -> TS.Name
+valName :: QNames -> CoreName -> TS.Name
 valName qns i
   | Text.all simp x = TS.Name x
   | otherwise       = TS.Name ("|" <> x <> "|")
@@ -80,7 +80,7 @@ valName qns i
 
 -- | For variables defined by @a -> b@, keeps track if we are in the @a@
 -- (value @true@) or in the @b@ part (value @false@).
-initName :: QNames -> Ident -> TS.Name
+initName :: QNames -> CoreName -> TS.Name
 initName qs i = TS.Name ("|" <> idText qs i <> ":init|")
 
 -- | Translate an atom, by using the given name-space for variables.
@@ -129,19 +129,19 @@ ands as =
 
 
 -- | Equations asserting that a varible from some namespace has the given value.
-setVals :: QNames -> TS.VarNameSpace -> Ident -> Val -> TS.Expr
+setVals :: QNames -> TS.VarNameSpace -> CoreName -> Val -> TS.Expr
 setVals qns ns x v = ns TS.::: (valName qns x) TS.:==: v
 
 -- | Properties get translated into queries.
 -- We are not interested in validating the initial state, which is
 -- full of indetermined values.
-transProp :: QNames -> TS.VarNameSpace -> Ident -> TS.Expr
+transProp :: QNames -> TS.VarNameSpace -> CoreName -> TS.Expr
 transProp qns ns i = (ns TS.::: varInitializing) TS.:||: transBool qns ns i
 
 -- | Properties get translated into queries. @nil@ is treated as @False@.
 -- We are not interested in validating the initial state, which is
 -- full of @nil@.
-transBool :: QNames -> TS.VarNameSpace -> Ident -> TS.Expr
+transBool :: QNames -> TS.VarNameSpace -> CoreName -> TS.Expr
 transBool qns ns i = ns TS.::: valName qns i
 
 
@@ -323,7 +323,7 @@ importError = Left . unlines
 
 -- | Import a Lustre identifier from the given assignment computed by Sally.
 -- See "Translating Variables" for details of what's going on here.
-importVar :: QNames -> TS.VarVals -> Ident -> Either ImportError L.Value
+importVar :: QNames -> TS.VarVals -> CoreName -> Either ImportError L.Value
 importVar qns st i =
   case Map.lookup vaName st of
     Just v -> pure $ case v of
@@ -339,8 +339,8 @@ importVar qns st i =
                           ]
 
 -- | Import a bunch of core Lustre identifiers from a state.
-importVars :: QNames -> Set Ident -> TS.VarVals ->
-                                          Either ImportError (Map Ident L.Value)
+importVars :: QNames -> Set CoreName -> TS.VarVals ->
+                                          Either ImportError (Map CoreName L.Value)
 importVars qns vars st =
   do let is = Set.toList vars
      steps <- mapM (importVar qns st) is
@@ -348,7 +348,7 @@ importVars qns vars st =
 
 
 importState ::
-  QNames -> Node -> TS.VarVals -> Either ImportError (Map Ident L.Value)
+  QNames -> Node -> TS.VarVals -> Either ImportError (Map CoreName L.Value)
 importState qns n =
   importVars qns $ Set.fromList
                  $ [ x | x ::: _ <- nInputs n ] ++
@@ -356,11 +356,11 @@ importState qns n =
                    [ x | x ::: _ := _ <- nAllEqns n ]
 
 importInputs ::
-  QNames -> Node -> TS.VarVals -> Either ImportError (Map Ident L.Value)
+  QNames -> Node -> TS.VarVals -> Either ImportError (Map CoreName L.Value)
 importInputs qns n = importVars qns $ Set.fromList [ x | x ::: _ <- nInputs n ]
 
-type LTrace = TS.Trace {-state-} (Map Ident L.Value)
-                       {-inputs-}(Map Ident L.Value)
+type LTrace = TS.Trace {-state-} (Map CoreName L.Value)
+                       {-inputs-}(Map CoreName L.Value)
 
 importTrace :: Node -> TS.TSTrace -> Either ImportError LTrace
 importTrace n tr =

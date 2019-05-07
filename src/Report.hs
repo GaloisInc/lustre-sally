@@ -143,11 +143,11 @@ renderLoc :: (Int,String) {- ^ Step and call site identifier -} ->
              JsMap -> JsMap
 renderLoc cid l s = renderVars cid (lookupVars l s)
 
-renderVars :: (Int,String) -> Vars (SourceIdent, Maybe SourceValue) ->
+renderVars :: (Int,String) -> Vars (OrigName, Maybe SourceValue) ->
               JsMap -> JsMap
 renderVars cid vs mp = foldr (renderVar cid) mp vs
 
-renderVar :: (Int,String) -> (SourceIdent, Maybe SourceValue) -> JsMap -> JsMap
+renderVar :: (Int,String) -> (OrigName, Maybe SourceValue) -> JsMap -> JsMap
 renderVar (s,cid) (i, mbV) =
   addJS i $ obj [ "value" ~> renderMaybeValue mbV , "cid"   ~> text cid
                 , "step"  ~> int s
