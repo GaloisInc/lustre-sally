@@ -1,3 +1,4 @@
+[Lustre] Loading model from: "gauss.lus"
 Sally Model
 ===========
 
@@ -69,8 +70,10 @@ Sally Model
 
 [Lustre] Validating properties:
 [Lustre] Property ok...
-  [Sally][Error] Sally error
-Yices error (add): the context does not support non-linear arithmetic
-
-[Error] ExitFailure 1
-
+  [Sally][Timeout]
+  [Sally][Unknown]
+[Lustre] Summary:
+  [Valid] 0
+  [Unknown] 1
+  [Invalid] 0
+[Lustre] Model status: [Unknown]
