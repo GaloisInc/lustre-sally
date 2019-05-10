@@ -29,6 +29,7 @@ Sally Model
      (x Bool)
      (|a:1| Int)
      (|a:2| Int)
+     (|a_bounds| Bool)
      (|b2i:1| Int)
      (|b2i:2| Int)
      (|b2i:3| Int)
@@ -40,6 +41,7 @@ Sally Model
      (|b2i:9| Int)
      (|b:1| Int)
      (|b:2| Int)
+     (|b_bounds| Bool)
      (|gal-initializing| Bool)
      (|historically:1| Bool)
      (|init_pre_historically:1:init| Bool)
@@ -211,6 +213,8 @@ Sally Model
       (= next.|p8:9| input.|p8:9|)
       (= next.|p9:9| input.|p9:9|)
       (= next.|p10:9| input.|p10:9|)
+      next.|b_bounds|
+      next.|a_bounds|
       (= next.|p1:8| next.|p1:9|)
       (= next.|p2:8| next.|p2:9|)
       (= next.|p3:8| next.|p3:9|)
@@ -785,7 +789,17 @@ Sally Model
       (=
          next.prop
          (not
-            (and next.|historically:1| next.historically next.solved)))))
+            (and next.|historically:1| next.historically next.solved)))
+      (=
+         next.|a_bounds|
+         (and
+            (<= 0 next.|a:2|)
+            (<= next.|a:2| 10)))
+      (=
+         next.|b_bounds|
+         (and
+            (<= 0 next.|b:2|)
+            (<= next.|b:2| 10)))))
 
 (query
    TS

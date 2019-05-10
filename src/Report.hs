@@ -8,7 +8,7 @@ import qualified Data.Text as Text
 import Data.List(intercalate,transpose)
 
 import Language.Lustre.AST
-import Language.Lustre.Name(Label(..))
+import Language.Lustre.Name(Label(..),OrigName)
 import Language.Lustre.ModelState
 import Language.Lustre.Pretty
 

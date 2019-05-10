@@ -11,6 +11,8 @@ Sally Model
      (delta2 Int)
      (lemma Bool)
      (ok1 Bool)
+     (|delta1_bounds| Bool)
+     (|delta2_bounds| Bool)
      (|gal-initializing| Bool)
      (|lg.a:init| Bool)
      (|lg.a| Int)
@@ -69,6 +71,8 @@ Sally Model
       (= next.|gal-initializing| false)
       (= next.delta1 input.delta1)
       (= next.delta2 input.delta2)
+      next.|delta2_bounds|
+      next.|delta1_bounds|
       (= next.|pre_wp2.weight| state.|wp2.weight|)
       (ite
          state.|wp1.weight:init|
@@ -192,7 +196,21 @@ Sally Model
                (= next.delta1 0)
                next.|pre_lg.e:1|
                next.|pre_lg.e|)))
-      (= next.|lg.e:init| false)))
+      (= next.|lg.e:init| false)
+      (=
+         next.|delta1_bounds|
+         (and
+            (<=
+               (- 1)
+               next.delta1)
+            (<= next.delta1 1)))
+      (=
+         next.|delta2_bounds|
+         (and
+            (<=
+               (- 1)
+               next.delta2)
+            (<= next.delta2 1)))))
 
 (query
    TS
@@ -214,9 +232,9 @@ Sally Model
 cex2:
  Step | delta1 | delta2 | |-> 
 ------+--------+--------+-----
- 1    | 0      | 0      |     
- 2    | 0      | -20    |     
- 3    | -1     | 0      |     
+ 1    | 1      | 1      |     
+ 2    | 0      | 1      |     
+ 3    | -1     | 1      |     
 
 [Lustre] Property ok1...
   [Sally][Unknown]
@@ -224,16 +242,10 @@ cex2:
 [Lustre] Property lemma...
   [Sally][Valid] using 1 past state
 [Lustre] Property cex1...
-  [Sally][Invalid]
-[Trace] 
-cex1:
- Step | delta1 | delta2 | |-> 
-------+--------+--------+-----
- 1    | 0      | 0      |     
- 2    | 0      | -20    |     
-
+  [Sally][Unknown]
+  [Sally][Unknown]
 [Lustre] Summary:
   [Valid] 1
-  [Unknown] 1
-  [Invalid] 2
+  [Unknown] 2
+  [Invalid] 1
 [Lustre] Model status: [Invalid]

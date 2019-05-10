@@ -27,6 +27,7 @@ import Config.GetOpt (configValueGetOpt)
 
 import Language.Lustre.Parser
 import Language.Lustre.AST
+import Language.Lustre.Name
 import Language.Lustre.Core(Node)
 import Language.Lustre.Pretty
 import Language.Lustre.Monad(runLustre,LustreConf(..))

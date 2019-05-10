@@ -39,6 +39,7 @@ Sally Model
      (|pre_x:1| Int)
      (|pre_x| Int)
      (|pre_z2| Int)
+     (|s_bounds| Bool)
      (|w:init| Bool)
      (|y:init| Bool)
      (|z1:init| Bool)
@@ -64,6 +65,7 @@ Sally Model
       (= next.|gal-initializing| false)
       (= next.x input.x)
       (= next.s input.s)
+      next.|s_bounds|
       (= next.|pre_init_pre_x| state.|init_pre_x|)
       (ite
          state.|y:init|
@@ -113,6 +115,11 @@ Sally Model
       (=
          next.cex1
          (< next.w 6))
+      (=
+         next.|s_bounds|
+         (and
+            (<= 0 next.s)
+            (<= next.s 1)))
       (= next.|pre_x| state.x)
       (ite
          state.|init_pre_x:init|
@@ -166,7 +173,7 @@ Sally Model
 ok4:
  Step | x | s | |-> 
 ------+---+---+-----
- 1    | 0 | 0 |     
+ 1    | 0 | 1 |     
 
 [Lustre] Property ok3...
   [Sally][Invalid]
@@ -174,7 +181,7 @@ ok4:
 ok3:
  Step | x | s | |-> 
 ------+---+---+-----
- 1    | 0 | 0 |     
+ 1    | 0 | 1 |     
 
 [Lustre] Property ok2...
   [Sally][Invalid]
@@ -182,7 +189,7 @@ ok3:
 ok2:
  Step | x | s | |-> 
 ------+---+---+-----
- 1    | 0 | 0 |     
+ 1    | 0 | 1 |     
 
 [Lustre] Property cex1...
   [Sally][Invalid]
@@ -190,12 +197,12 @@ ok2:
 cex1:
  Step | x | s | |-> 
 ------+---+---+-----
- 1    | 0 | 0 |     
- 2    | 0 | 0 |     
- 3    | 0 | 0 |     
- 4    | 0 | 0 |     
- 5    | 0 | 0 |     
- 6    | 0 | 0 |     
+ 1    | 0 | 1 |     
+ 2    | 0 | 1 |     
+ 3    | 0 | 1 |     
+ 4    | 0 | 1 |     
+ 5    | 0 | 1 |     
+ 6    | 0 | 1 |     
 
 [Lustre] Property ok1...
   [Sally][Valid] using 2 past states

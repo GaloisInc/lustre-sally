@@ -46,6 +46,7 @@ Sally Model
      (|in:7| Int)
      (|in:8| Int)
      (|in:9| Int)
+     (|in_bounds| Bool)
      (|init:1| Int)
      (|init:2| Int)
      (|init:3| Int)
@@ -410,6 +411,7 @@ Sally Model
    (and
       (= next.|gal-initializing| false)
       (= next.|in:9| input.|in:9|)
+      next.|in_bounds|
       (= next.|init:8| 2)
       (= next.|init:7| 5)
       (= next.|init:6| 3)
@@ -1901,7 +1903,12 @@ Sally Model
       (= next.|in:3| next.|in:9|)
       (= next.|in:2| next.|in:9|)
       (= next.|in:1| next.|in:9|)
-      (= next.in next.|in:9|)))
+      (= next.in next.|in:9|)
+      (=
+         next.|in_bounds|
+         (and
+            (<= 0 next.|in:9|)
+            (<= next.|in:9| 3)))))
 
 (query
    TS

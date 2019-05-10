@@ -42,6 +42,7 @@ Sally Model
      (|in:7| Int)
      (|in:8| Int)
      (|in:9| Int)
+     (|in_bounds| Bool)
      (|init:1| Int)
      (|init:2| Int)
      (|init:3| Int)
@@ -312,6 +313,7 @@ Sally Model
    (and
       (= next.|gal-initializing| false)
       (= next.|in:9| input.|in:9|)
+      next.|in_bounds|
       (= next.|init:8| 5)
       (= next.|init:7| 2)
       (= next.|init:6| 3)
@@ -1314,7 +1316,12 @@ Sally Model
       (= next.|in:3| next.|in:9|)
       (= next.|in:2| next.|in:9|)
       (= next.|in:1| next.|in:9|)
-      (= next.in next.|in:9|)))
+      (= next.in next.|in:9|)
+      (=
+         next.|in_bounds|
+         (and
+            (<= 0 next.|in:9|)
+            (<= next.|in:9| 3)))))
 
 (query
    TS
@@ -1333,33 +1340,9 @@ Sally Model
   [Sally][Valid] using 1 past state
 [Lustre] Property prop...
   [Sally][Unknown]
-  [Sally][Invalid]
-[Trace] 
-prop:
- Step | in | |-> | p1 | p2 | p3 | p4 | p5 | p6 | p7 | p8 | p9 
-------+----+-----+----+----+----+----+----+----+----+----+----
- 1    | 1  |     | 5  | 2  | 3  | 4  | 0  | 8  | 1  | 6  | 7  
- 2    | 0  |     | 5  | 2  | 3  | 4  | 6  | 8  | 1  | 0  | 7  
- 3    | 3  |     | 5  | 2  | 3  | 4  | 6  | 8  | 1  | 7  | 0  
- 4    | 2  |     | 5  | 2  | 3  | 4  | 6  | 0  | 1  | 7  | 8  
- 5    | 2  |     | 5  | 2  | 3  | 4  | 0  | 6  | 1  | 7  | 8  
- 6    | 3  |     | 5  | 2  | 3  | 0  | 4  | 6  | 1  | 7  | 8  
- 7    | 0  |     | 0  | 2  | 3  | 5  | 4  | 6  | 1  | 7  | 8  
- 8    | 1  |     | 2  | 0  | 3  | 5  | 4  | 6  | 1  | 7  | 8  
- 9    | 2  |     | 2  | 4  | 3  | 5  | 0  | 6  | 1  | 7  | 8  
- 10   | 1  |     | 2  | 4  | 3  | 0  | 5  | 6  | 1  | 7  | 8  
- 11   | 0  |     | 2  | 4  | 3  | 1  | 5  | 6  | 0  | 7  | 8  
- 12   | 3  |     | 2  | 4  | 3  | 1  | 5  | 6  | 7  | 0  | 8  
- 13   | 3  |     | 2  | 4  | 3  | 1  | 0  | 6  | 7  | 5  | 8  
- 14   | 2  |     | 2  | 0  | 3  | 1  | 4  | 6  | 7  | 5  | 8  
- 15   | 1  |     | 0  | 2  | 3  | 1  | 4  | 6  | 7  | 5  | 8  
- 16   | 0  |     | 1  | 2  | 3  | 0  | 4  | 6  | 7  | 5  | 8  
- 17   | 1  |     | 1  | 2  | 3  | 4  | 0  | 6  | 7  | 5  | 8  
- 18   | 0  |     | 1  | 2  | 3  | 4  | 5  | 6  | 7  | 0  | 8  
- 19   | 0  |     | 1  | 2  | 3  | 4  | 5  | 6  | 7  | 8  | 0  
-
+  [Sally][Timeout]
 [Lustre] Summary:
   [Valid] 2
-  [Unknown] 0
-  [Invalid] 1
-[Lustre] Model status: [Invalid]
+  [Unknown] 1
+  [Invalid] 0
+[Lustre] Model status: [Unknown]
