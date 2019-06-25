@@ -70,7 +70,7 @@ RUN cabal v2-install exe:lustre-sally --symlink-bindir="/usr/local/bin"
 FROM debian:stretch-slim AS demo
 RUN apt-get update
 RUN apt-get install -y --no-install-recommends \
-      libgmp10 libffi6 \
+      libgmp10 libffi6 libreadline7 libgmpxx4ldbl \
       libboost-program-options1.62 libboost-iostreams1.62 \
       libboost-test1.62 libboost-thread1.62 libboost-system1.62
 
