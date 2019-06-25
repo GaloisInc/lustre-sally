@@ -4,16 +4,29 @@ FROM haskell:8.6 AS build
 RUN apt-get update
 RUN cabal v2-update
 RUN apt-get install -y --no-install-recommends \
-      wget \
+      wget unzip curl \
       cmake autoconf gperf patch file \
       default-jre \
       python2.7-dev python-sympy \
       libgmp-dev libffi6 \
       libboost-program-options-dev libboost-iostreams-dev \
-      libboost-test-dev libboost-thread-dev libboost-system-dev
-
+      libboost-test-dev libboost-thread-dev libboost-system-dev \
+      libreadline-dev flex bison automake libtool
 
 # Setup sources for external tools
+
+RUN wget --quiet https://github.com/Z3Prover/z3/releases/download/Z3-4.8.5/z3-4.8.5-x64-debian-8.11.zip
+RUN unzip z3*.zip
+RUN cp z3-*/bin/z3 /usr/local/bin/
+RUN cp z3-*/bin/libz3.* /usr/local/lib/
+RUN cp z3-*/include/* /usr/local/include/
+
+RUN git clone -b master https://github.com/usi-verification-and-security/opensmt.git
+RUN cd opensmt && \
+    mkdir build && \
+    cd build && \
+    cmake -DCMAKE_BUILD_TYPE=Release -DPRODUCE_PROOF=ON .. && \
+    make && make install
 
 RUN mkdir -p /build
 WORKDIR /build
@@ -24,7 +37,6 @@ RUN wget --quiet https://github.com/SRI-CSL/sally/archive/master.tar.gz -O sally
 RUN tar -xzf libpoly.tar.gz
 RUN tar -xzf yices2.tar.gz
 RUN tar -xzf sally.tar.gz
-
 
 # Build Sally
 
