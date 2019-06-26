@@ -83,6 +83,6 @@ WORKDIR /home/demo
 RUN mkdir -p inputs
 RUN mkdir -p outputs
 ENV LD_LIBRARY_PATH=/usr/local/lib
-ENTRYPOINT lustre-sally --in-dir=inputs --out-dir=outputs
+ENTRYPOINT lustre-sally --in-dir=input --out-dir=output
 
 
