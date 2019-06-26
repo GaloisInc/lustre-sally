@@ -8,4 +8,4 @@ echo $HOST_IN
 docker run \
   --mount type=bind,source="$HOST_IN",readonly,target="/home/demo/input" \
   --mount type=bind,source="$HOST_OUT",target="/home/demo/output" \
-  lustre-sally
+  lustre-sally $*
