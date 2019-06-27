@@ -80,9 +80,7 @@ COPY --from=build /usr/local/bin/lustre-sally /usr/local/bin
 COPY --from=build /usr/local/lib/* /usr/local/lib/
 USER demo
 WORKDIR /home/demo
-RUN mkdir -p inputs
-RUN mkdir -p outputs
+RUN mkdir -p input
+RUN mkdir -p output
 ENV LD_LIBRARY_PATH=/usr/local/lib
 ENTRYPOINT lustre-sally --in-dir=input --out-dir=output
-
-
