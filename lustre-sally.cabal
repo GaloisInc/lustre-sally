@@ -45,7 +45,8 @@ executable lustre-sally
                        config-value,
                        config-value-getopt,
                        raw-strings-qq,
-                       language-lustre
+                       language-lustre,
+                       xml
 
 executable generate-ui
   hs-source-dirs:     build-utils

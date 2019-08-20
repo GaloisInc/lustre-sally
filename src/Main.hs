@@ -32,14 +32,16 @@ import Language.Lustre.Name
 import Language.Lustre.Core(Node)
 import Language.Lustre.Pretty
 import Language.Lustre.Monad(runLustre,LustreConf(..))
-import Language.Lustre.Driver(quickNodeToCore)
+import Language.Lustre.Driver(quickNodeToCore, infoTop)
 import Language.Lustre.ModelState(ModelInfo)
 import Language.Lustre.Phase(noPhases)
 import TransitionSystem(TransSystem)
 import Sally
 import Log
 import Lustre
-import Report(declareSource, simpleTrace, declareTrace)
+import Report( declareSource, simpleTrace, declareTrace
+             , xmlTrace, xmlValid, xmlUnknown
+             )
 import SaveUI(saveUI)
 import Paths_lustre_sally(version)
 
@@ -58,6 +60,7 @@ data Settings = Settings
   , testMode  :: Bool
   , noTrace   :: Bool
   , timeout   :: Maybe Int
+  , produceXml :: Bool
   , printVersion :: Bool
   }
 
@@ -145,6 +148,10 @@ options = OptSpec
       , Option [] ["version"]
         "Print version and exit."
         $ NoArg $ \s -> Right s { printVersion = True }
+
+      , Option [] ["xml"]
+        "Produce XML output in the style of Kind 2."
+        $ NoArg $ \s -> Right s { produceXml = True }
       ]
 
   , progParamDocs = [("FILE", "Lustre files containing model (required, unless --in-dir).")]
@@ -167,6 +174,7 @@ options = OptSpec
     , testMode = False
     , noTrace = False
     , timeout = Nothing
+    , produceXml = False
     , printVersion = False
     }
 
@@ -174,7 +182,7 @@ options = OptSpec
 -- | Parse some settings from a file and add them to the given settings.
 settingsFromFile :: Logger -> FilePath -> Settings -> IO Settings
 settingsFromFile lgr f start =
-  do say lgr Nothing "Lustre" ("Loading settings from: " ++ show f)
+  do sayInfo lgr "Lustre" ("Loading settings from: " ++ show f)
      txt <- TextIO.readFile f
      case Config.parse txt of
        Left (Config.ParseError loc msg) ->
@@ -223,8 +231,8 @@ getSettings l =
 
   `catch` \(GetOptException errs) ->
       do mapM_ (sayFail l "Error") errs
-         lPutStrLn l Nothing ""
-         lPutStrLn l Nothing (usageString options)
+         lPutStrLn l LogInfo ""
+         lPutStrLn l LogInfo (usageString options)
          exitFailure
 
 
@@ -234,7 +242,9 @@ getSettings l =
 main :: IO ()
 main =
   do settings <- getSettings =<< newLogger
-     l <- if testMode settings then newTestLogger else newLogger
+     l <- if testMode settings then newTestLogger
+          else if produceXml settings then newXmlLogger
+          else newLogger
      mainWorkAllFiles l settings
 
 
@@ -248,7 +258,7 @@ bad err res = throwIO (LSError err res)
 sayBad :: Logger -> String -> String -> IO ()
 sayBad l err res =
   do sayFail l "Error" err
-     lPutStrLn l Nothing res
+     lPutStrLn l LogInfo res
 
 
 mainWorkAllFiles :: Logger -> Settings -> IO ()
@@ -256,7 +266,7 @@ mainWorkAllFiles l settings =
   case files settings of
      [] -> pure ()
      f : fs ->
-       do say l Nothing "Lustre" ("Loading model from: " ++ show f)
+       do sayInfo l "Lustre" ("Loading model from: " ++ show f)
           oneFile f `catches` handlers
           mainWorkAllFiles l settings { files = fs }
   where
@@ -312,7 +322,12 @@ mainWork l settings ds =
        saveOutput (outSallyFile settings) sallyTxt
      when (testMode settings) $ saveOutputTesting "Sally Model" sallyTxt
 
-     say l Nothing "Lustre" "Validating properties:"
+     when (produceXml settings) $ do
+       let top = Text.unpack (origNameTextName (infoTop info))
+       sayElement l (xmlStartElem top)
+       lPutLn l
+
+     sayInfo l "Lustre" "Validating properties:"
      outs <- mapM (checkQuery l settings info nd ts ts_sexp) qs_sexps
      let count x mp = Map.insertWith (+) (cvt x) (1::Int) mp
          summary = foldr count Map.empty outs
@@ -321,15 +336,22 @@ mainWork l settings ds =
                        if getCount Unknown      > 0 then Unknown else
                                                          Valid
 
-     say l Nothing "Lustre" "Summary:"
-     tab l 2 >> sayOK   l "Valid"   (show (getCount Valid))
-     tab l 2 >> sayWarn l "Unknown" (show (getCount Unknown))
-     tab l 2 >> sayFail l "Invalid" (show (getCount (Invalid ())))
-     say_ l Nothing "Lustre" "Model status: "
-     case modelStatus of
-       Valid     -> sayOK   l "Valid" ""
-       Unknown   -> sayWarn l "Unknown" ""
-       Invalid _ -> sayFail l "Invalid" ""
+     unless (produceXml settings) $ do
+       sayInfo l "Lustre" "Summary:"
+       tab l 2 >> sayOK   l "Valid"   (show (getCount Valid))
+       tab l 2 >> sayWarn l "Unknown" (show (getCount Unknown))
+       tab l 2 >> sayFail l "Invalid" (show (getCount (Invalid ())))
+       lSay l LogInfo "Lustre" "Model status: "
+       case modelStatus of
+         Valid     -> sayOK   l "Valid" ""
+         Unknown   -> sayWarn l "Unknown" ""
+         Invalid _ -> sayFail l "Invalid" ""
+
+     when (produceXml settings) $ do
+       sayElement l xmlStopElem
+       lPutLn l
+       lPutStrRaw l resultsEndStr
+       lPutLn l
 
 
   where
@@ -347,7 +369,7 @@ data Lab = Lab
 checkQuery :: Logger -> Settings -> ModelInfo -> Node -> TransSystem ->
                 String -> (Label,String) -> IO (SallyResult ())
 checkQuery lgr settings mi nd ts_ast ts (l',q) =
-  do say lgr Nothing "Lustre" ("Property " ++ l ++ "...")
+  do sayInfo lgr "Lustre" ("Property " ++ l ++ "...")
      hFlush stdout
      attempt kindLab (sallyKind settings) $
        attempt bmcLab (sallyBMC settings) $
@@ -370,10 +392,23 @@ checkQuery lgr settings mi nd ts_ast ts (l',q) =
   attempt lab x orElse =
     do (maxD,mbRes) <- runSally lab x
        case mbRes of
-         Nothing -> do sayWarn lgr "Timeout" ""
-                       orElse
+         Nothing
+          | produceXml settings ->
+             do sayElement lgr (xmlUnknown "true" l')
+                lPutLn lgr
+                orElse
 
-         Just Valid ->
+          | otherwise ->
+             do sayWarn lgr "Timeout" ""
+                orElse
+
+         Just Valid
+          | produceXml settings ->
+            do sayElement lgr (xmlValid l')
+               lPutLn lgr
+               pure Valid
+
+          | otherwise ->
             do sayOK lgr "Valid" (labValid lab maxD)
                pure Valid
 
@@ -384,6 +419,11 @@ checkQuery lgr settings mi nd ts_ast ts (l',q) =
                unless (noTrace settings) $ sayFail lgr "Trace" ('\n' : siTr)
                pure (Invalid ())
 
+          | produceXml settings ->
+            do sayElement lgr (xmlTrace  mi l' r)
+               lPutLn lgr
+               pure (Invalid ())
+
           | otherwise ->
             do let propDir = outPropDir settings l
                sayFail lgr "Invalid" ("See " ++ (propDir </> "index.html"))
@@ -391,18 +431,26 @@ checkQuery lgr settings mi nd ts_ast ts (l',q) =
                let jsTr = declareTrace mi l' r
                let siTr = simpleTrace  mi l' r
                saveOutput (outTraceFile settings l) jsTr
-               unless (noTrace settings) $ sayFail lgr "Trace" ('\n' : siTr)
+               unless (noTrace settings) $
+                 sayFail lgr "Trace" ('\n' : siTr)
                pure (Invalid ())
 
-         Just Unknown -> do sayWarn lgr "Unknown" ""
-                            orElse
+         Just Unknown
+           | produceXml settings ->
+             do sayElement lgr (xmlUnknown "false" l')
+                lPutLn lgr
+                orElse
+
+           | otherwise ->
+             do sayWarn lgr "Unknown" ""
+                orElse
 
   runSally lab opts =
     do maxVal <- newIORef 0
        let callback _ n = do lPutProg lgr (labProg lab n)
                              writeIORef maxVal n -- assumes monotonic increase
-           doSally = do lPutStr lgr Nothing "  "
-                        say_ lgr Nothing "Sally" ""
+           doSally = do lPutStr lgr LogInfo "  "
+                        lSay lgr LogInfo "Sally" ""
                         lNewProg lgr
                         sallyInteract "sally" opts callback (ts ++ q)
 
