@@ -1,7 +1,7 @@
 {-# Language OverloadedStrings #-}
 module Main(main) where
 
-import System.Exit(exitFailure)
+import System.Exit(exitFailure,exitSuccess)
 import Control.Monad(when,foldM,unless)
 import Control.Exception(catches, catch, Handler(..), throwIO
                         , SomeException(..), displayException, Exception(..))
@@ -20,6 +20,7 @@ import System.FilePath(takeFileName,dropFileName,takeExtension,dropExtension
 import System.Directory(createDirectoryIfMissing,doesFileExist,
                         getDirectoryContents)
 import Data.IORef(newIORef,writeIORef,readIORef)
+import Data.Version(showVersion)
 import Text.Read(readMaybe)
 
 import qualified Config
@@ -40,6 +41,7 @@ import Log
 import Lustre
 import Report(declareSource, simpleTrace, declareTrace)
 import SaveUI(saveUI)
+import Paths_lustre_sally(version)
 
 data Settings = Settings
   { files     :: [FilePath]
@@ -56,6 +58,7 @@ data Settings = Settings
   , testMode  :: Bool
   , noTrace   :: Bool
   , timeout   :: Maybe Int
+  , printVersion :: Bool
   }
 
 options :: OptSpec Settings
@@ -138,6 +141,10 @@ options = OptSpec
       , Option [] ["no-trace"]
         "Do not print traces when a proof failes."
         $ NoArg $ \s -> Right s { noTrace = True }
+
+      , Option [] ["version"]
+        "Print version and exit."
+        $ NoArg $ \s -> Right s { printVersion = True }
       ]
 
   , progParamDocs = [("FILE", "Lustre files containing model (required, unless --in-dir).")]
@@ -160,6 +167,7 @@ options = OptSpec
     , testMode = False
     , noTrace = False
     , timeout = Nothing
+    , printVersion = False
     }
 
 
@@ -202,6 +210,9 @@ settingsFromInDir l s
 getSettings :: Logger -> IO Settings
 getSettings l =
   do settings0 <- getOptsX options
+     when (printVersion settings0) $
+       do putStrLn ("lustre-sally " ++ showVersion version)
+          exitSuccess
      settings1 <- case useConfig settings0 of
                     "" -> pure settings0
                     f  -> settingsFromFile l f settings0
