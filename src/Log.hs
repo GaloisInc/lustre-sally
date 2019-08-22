@@ -144,11 +144,10 @@ xmlStartElem top =
 xmlStopElem :: Element
 xmlStopElem = unode "AnalysisStop" ()
 
--- TODO: line, column information
 xmlLogElem :: LogType -> String -> Element
 xmlLogElem typ msg =
   unode "Log" ( [ Attr (unqual "class") (logName typ)
-                , Attr (unqual "source") "parse" -- TODO
+                , Attr (unqual "source") "parse"
                 ]
               , msg
               )

@@ -268,20 +268,18 @@ valueElem :: Int -> String -> Element
 valueElem instant value =
   unode "Value" ("instant" |-> show instant, value)
 
--- TODO: runtime, answer source
 xmlValid :: Label -> Element
 xmlValid pn =
   propElem (Text.unpack (labText pn)) l c
-    [ runtimeElem "false" 0.0
+    [ runtimeElem "false" 0.0 -- TODO: real value
     , answerElem "kind" "valid" -- TODO: not always "kind"
     ]
   where (l, c) = labelLineCol pn
 
--- TODO: runtime, answer source
 xmlUnknown :: String -> Label -> Element
 xmlUnknown isTimeout pn =
   propElem (Text.unpack (labText pn)) l c
-    [ runtimeElem isTimeout 0.0
+    [ runtimeElem isTimeout 0.0 -- TODO: real value
     , answerElem "kind" "unknown" -- TODO: not always "kind"
     ]
   where (l, c) = labelLineCol pn
