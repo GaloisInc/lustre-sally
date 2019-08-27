@@ -1,7 +1,5 @@
 # Building `lustre-sally`
 
-## Using Stack
-
 If you have a recent version of Stack installed, it should be
 sufficient to clone this repository and run `stack build` within it.
 
@@ -33,61 +31,85 @@ property violation.
 
 Several command-line options are available:
 
-* -n IDENT, --node=IDENT
+* `-n IDENT`, `--node=IDENT`
     * Translate this node (instead of all nodes)
 
-* -d DIR, --out-dir=DIR
+* `-d DIR`, `--out-dir=DIR`
     * Save output in this directory (default: `results`)
 
-* --save-core
-    * Save Core lustre output in this file. This is a simplified
-      version of the original file, but still in Lustre format.
+* `--save-core`
+    * Save Core Lustre output. This is a simplified version of the
+      original file, but still in Lustre format.
 
-* --save-sally
-    * Save Sally output in this file. Useful mostly for debugging.
+* `--save-sally`
+    * Save Sally output. Useful mostly for debugging.
 
-* --help
+* `--yices-mode=hybrid|dpllt|mcsat`
+    * Specify how Sally should invoke the Yices SMT solver.
+
+* `--counter-example-limit=N`
+    * Set the size of the largest counter-example to look for.
+
+* `--counter-example-lower-limit=N`
+    * Set the size of the smallest counter-example to look for.
+
+* `--proof-depth=N`
+    * Set the number of previous states to consider during inductive
+      proof.
+
+* `--timeout=N`
+    * Terminate `sally` invocations after `N` seconds.
+
+* `-c FILE`, `--config=FILE`
+    * Read configuration from `FILE`. The format of this file is
+      described in the "Running a Docker image" section.
+
+* `--test-mode`
+    * Run in testing mode, which prints more intermediate results.
+
+* `--no-trace`
+    * Don't produce trace files when proofs fail.
+
+* `--version`
+    * Print out the version of `lustre-sally`.
+
+* `--xml`
+    * Produce output in an XML format intended to mimic the output of
+      Kind 2 with the `-xml` flag.
+
+* `--help`
     * See all avaialable command line options.
-
 
 # Docker integration
 
-The provided Dockerfile can be used to build an image containing an up
-to date version of `lustre-sally` and `sally`.
+The Dockerfile in this repository can be used to build an image
+containing an up to date version of `lustre-sally`, `sally`, and
+`yices`.
 
-## Building a docker image
+## Building a Docker image
 
 The following steps can be used to build an image:
 
     1. ./build-utils/prep-docker-build
     2. docker build --tag lustre-sally .
 
-## Running a docker image
+## Running a Docker image
 
-The docker image needs two directories on the host: one for inputs
+The Docker image needs two directories on the host: one for inputs
 and one for outputs.  See `build-utils/run-docker` for an example of how to
 invoke `docker`.
 
-The input directory should contain Lustre models with queries---`lustre-sally`
-will process each Lustre model, and store the results in the ouput directoyr.
+The input directory should contain Lustre models with
+queries---`lustre-sally` will process each Lustre model, and store the
+results in the ouput directory.
 
 The input directory may also contain a file call `settings`, which can
 provide additional configuration for `lustre-sally`.  The format of this
-file is as a lit of `key: value` pairs, where the `key`s are the same
+file is as a list of `key: value` pairs, where the `key`s are the same
 as the long names of the command line options for `lustre-sally` and
-the values are the correcponding command line flags.  Here is an example
+the values are the corresponding command line flags.  Here is an example
 of a simple `settings` file:
 
     counter-example-limit: 25
     counter-example-lower-limit: 25
     proof-depth: 1
-
-
-
-
-
-
-
-
-
-
