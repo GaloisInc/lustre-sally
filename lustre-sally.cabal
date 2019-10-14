@@ -26,9 +26,10 @@ executable lustre-sally
                        UI.Index,
                        UI.Ui,
                        UI.Style,
-                       UI.Jquery
+                       UI.Jquery,
+                       Paths_lustre_sally
 
-  build-depends:       base >=4.11 && <4.13,
+  build-depends:       base >=4.11 && <4.14,
                        containers,
                        bytestring,
                        text,
