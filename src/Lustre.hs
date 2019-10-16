@@ -34,7 +34,8 @@ transNode n = (ts, map mkProp (nShows n))
   ts = TS.TransSystem
          { TS.tsVars    = Map.unions
                             (inVars : otherVars
-                                    : map (declareEqn qns) (nAllEqns n))
+                                    : map (declareVar qns) (nAbstract n)
+                                   ++ map (declareEqn qns) (nAllEqns n))
          , TS.tsInputs  = inVars
          , TS.tsInit    = initNode qns n
          , TS.tsTrans   = stepNode qns env n
