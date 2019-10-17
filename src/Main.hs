@@ -39,9 +39,9 @@ import TransitionSystem(TransSystem)
 import Sally
 import Log
 import Lustre
-import Report( declareSource, simpleTrace, declareTrace
-             , xmlTrace, xmlValid, xmlUnknown
-             )
+import Report(simpleTrace)
+import Report.XML (xmlTrace,xmlValid,xmlUnknown)
+import Report.JSON (declareSource, declareTrace)
 import SaveUI(saveUI)
 import Paths_lustre_sally(version)
 
