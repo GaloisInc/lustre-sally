@@ -29,14 +29,14 @@ simpleTrace mi pn tr =
 
   header = "Step" : map showPP (vIns vs) ++ ("|->" : map showPP (vOuts vs))
     where
-    vs = locVars topLoc
+    vs = fst <$> locVars topLoc
 
   showStep n (_, s) = show n : map sh (vIns vs) ++ ("" : map sh (vOuts vs))
     where
     vs        = lookupVars topLoc s
-    sh (_,mb) = case mb of
-                  Nothing -> "?"
-                  Just v  -> showPP v
+    sh (_,_,mb) = case mb of
+                    Nothing -> "?"
+                    Just v  -> showPP v
 
 tabulate :: [[String]] -> String
 tabulate rows0 = unlines (h : sep : hs)
@@ -144,12 +144,12 @@ renderLoc :: (Int,String) {- ^ Step and call site identifier -} ->
              JsMap -> JsMap
 renderLoc cid l s = renderVars cid (lookupVars l s)
 
-renderVars :: (Int,String) -> Vars (OrigName, Maybe SourceValue) ->
+renderVars :: (Int,String) -> Vars (OrigName, Type, Maybe SourceValue) ->
               JsMap -> JsMap
 renderVars cid vs mp = foldr (renderVar cid) mp vs
 
-renderVar :: (Int,String) -> (OrigName, Maybe SourceValue) -> JsMap -> JsMap
-renderVar (s,cid) (i, mbV) =
+renderVar :: (Int,String) -> (OrigName, Type, Maybe SourceValue) -> JsMap -> JsMap
+renderVar (s,cid) (i, _t, mbV) =
   addJS i $ obj [ "value" ~> renderMaybeValue mbV , "cid"   ~> text cid
                 , "step"  ~> int s
                 ]
@@ -291,3 +291,7 @@ xmlTrace _ pn _ =
     , answerElem "kind" "falsifiable" -- TODO: not always "kind"
     ] -- TODO: include trace
   where (l, c) = labelLineCol pn
+
+
+
+
