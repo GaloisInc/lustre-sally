@@ -47,7 +47,7 @@ executable lustre-sally
                        time,
                        filepath,
                        config-value,
-                       config-value-getopt,
+                       config-value-getopt >= 0.1.1.1,
                        raw-strings-qq,
                        language-lustre,
                        xml
