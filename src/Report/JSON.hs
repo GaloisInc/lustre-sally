@@ -5,8 +5,6 @@ import Data.Map(Map)
 import qualified Data.Map as Map
 import qualified Text.PrettyPrint as PP
 import qualified Data.Text as Text
-import Data.List(intercalate,transpose)
-import Text.XML.Light
 
 import Language.Lustre.AST
 import Language.Lustre.Name(Label(..),OrigName)
