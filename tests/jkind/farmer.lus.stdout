@@ -203,16 +203,16 @@ Sally Model
   [Sally][Invalid]
 [Trace] 
 prop:
- Step | choice | |-> | wolf | goat | cabbage | farmer 
-------+--------+-----+------+------+---------+--------
- 1    | 2      |     | 0    | 0    | 0       | 0      
- 2    | 0      |     | 0    | 1    | 0       | 1      
- 3    | 3      |     | 0    | 1    | 0       | 0      
- 4    | 2      |     | 0    | 1    | 1       | 1      
- 5    | 1      |     | 0    | 0    | 1       | 0      
- 6    | 0      |     | 1    | 0    | 1       | 1      
- 7    | 2      |     | 1    | 0    | 1       | 0      
- 8    | 0      |     | 1    | 1    | 1       | 1      
+ Step | choice  | |-> | wolf  | goat  | cabbage | farmer 
+------+---------+-----+-------+-------+---------+--------
+ 1    | Goat    |     | Left  | Left  | Left    | Left   
+ 2    | Empty   |     | Left  | Right | Left    | Right  
+ 3    | Cabbage |     | Left  | Right | Left    | Left   
+ 4    | Goat    |     | Left  | Right | Right   | Right  
+ 5    | Wolf    |     | Left  | Left  | Right   | Left   
+ 6    | Empty   |     | Right | Left  | Right   | Right  
+ 7    | Goat    |     | Right | Left  | Right   | Left   
+ 8    | Empty   |     | Right | Right | Right   | Right  
 
 [Lustre] Summary:
   [Valid] 0
