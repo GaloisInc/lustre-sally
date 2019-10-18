@@ -1,0 +1,40 @@
+[Lustre] Loading model from: "T001.lus"
+Sally Model
+===========
+
+(define-state-type
+   S
+   (
+     (Eq Bool)
+     (x Int)
+     (|gal-initializing| Bool))
+   ())
+(define-transition-system
+   TS
+   S
+   (= |gal-initializing| true)
+   (and
+      (= next.|gal-initializing| false)
+      (= next.x 0)
+      (=
+         next.Eq
+         (= next.x 1))))
+
+(query
+   TS
+   (or |gal-initializing| Eq))
+
+[Lustre] Validating properties:
+[Lustre] Property Prop on line 8...
+  [Sally][Invalid]
+[Trace] 
+Prop on line 8:
+ Step | |-> | x 
+------+-----+---
+ 1    |     | A 
+
+[Lustre] Summary:
+  [Valid] 0
+  [Unknown] 0
+  [Invalid] 1
+[Lustre] Model status: [Invalid]
