@@ -116,7 +116,7 @@ main :: IO ()
 main =
   do settings <- getOptsX options
      when (file settings == "") $
-       throwIO (GetOptException ["No Lustre file was speicifed."])
+       throwIO (GetOptException ["No Lustre file was specified."])
 
      a <- parseProgramFromFileLatin1 (file settings)
      case a of
