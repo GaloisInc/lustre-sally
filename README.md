@@ -14,6 +14,7 @@ within it.
 
     git clone https://github.com/GaloisInc/lustre-sally
     cd lustre-sally
+    git submodule update --init
     stack build
 
 Optionally, the resulting binaries can be installed into the standard
