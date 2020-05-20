@@ -152,11 +152,11 @@ options = OptSpec
         $ NoArg $ \s -> Right s { printVersion = True }
 
       , Option [] ["xml"]
-        "Produce XML output in the style of Kind 2."
-        $ NoArg $ \s -> Right s { produceXml = True }
+        "Produce XML output in the style of Kind 2. Implies --zero-based-cex."
+        $ NoArg $ \s -> Right s { produceXml = True, zeroBasedCex = True }
 
       , Option [] ["zero-based-cex"]
-        "Numbers the first step of a counter-example 0 rather than 1"
+        "Numbers the first step of a counter-example 0 rather than 1."
         $ NoArg $ \s -> Right s { zeroBasedCex = True }
       ]
 
@@ -427,7 +427,7 @@ checkQuery lgr settings mi nd ts_ast ts (l',q) =
                pure (Invalid ())
 
           | produceXml settings ->
-            do sayElement lgr (xmlTrace  mi l' r)
+            do sayElement lgr (xmlTrace (zeroBasedCex settings) mi l' r)
                lPutLn lgr
                pure (Invalid ())
 

@@ -17,7 +17,7 @@ import TransitionSystem(Trace(..))
 simpleTrace :: Bool -> ModelInfo -> Label -> LTrace -> String
 simpleTrace zeroBased mi pn tr =
   Text.unpack (labText pn) ++ ":\n" ++
-  (tabulate $ header : zipWith showStep [ 1 :: Integer .. ] (traceSteps tr))
+  (tabulate $ header : zipWith showStep [ firstStep .. ] (traceSteps tr))
   where
   Just topLoc = locTop mi
 
@@ -25,9 +25,11 @@ simpleTrace zeroBased mi pn tr =
     where
     vs = fst <$> locVars topLoc
 
-  showStep n (_, s) = sn : map sh (vIns vs) ++ ("" : map sh (vOuts vs))
+  firstStep :: Integer
+  firstStep = if zeroBased then 0 else 1
+
+  showStep n (_, s) = show n : map sh (vIns vs) ++ ("" : map sh (vOuts vs))
     where
-    sn        = show (if zeroBased then n - 1 else n)
     vs        = lookupVars topLoc s
     sh (_,_,mb) = case mb of
                     Nothing -> "?"
