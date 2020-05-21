@@ -226,7 +226,7 @@ getSettings l =
                     f  -> settingsFromFile l f settings0
      settings2 <- settingsFromInDir l settings1
      when (null (files settings2)) $
-       throwIO (GetOptException ["No Lustre file was speicifed."])
+       throwIO (GetOptException ["No Lustre file was specified."])
      pure settings2
 
   `catch` \(GetOptException errs) ->
