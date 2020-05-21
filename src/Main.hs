@@ -62,6 +62,8 @@ data Settings = Settings
   , timeout   :: Maybe Int
   , produceXml :: Bool
   , printVersion :: Bool
+  -- whether counter-example steps should start at step 0 or 1
+  , zeroBasedCex :: Bool
   }
 
 options :: OptSpec Settings
@@ -150,8 +152,12 @@ options = OptSpec
         $ NoArg $ \s -> Right s { printVersion = True }
 
       , Option [] ["xml"]
-        "Produce XML output in the style of Kind 2."
-        $ NoArg $ \s -> Right s { produceXml = True }
+        "Produce XML output in the style of Kind 2. Implies --zero-based-cex."
+        $ NoArg $ \s -> Right s { produceXml = True, zeroBasedCex = True }
+
+      , Option [] ["zero-based-cex"]
+        "Numbers the first step of a counter-example 0 rather than 1."
+        $ NoArg $ \s -> Right s { zeroBasedCex = True }
       ]
 
   , progParamDocs = [("FILE", "Lustre files containing model (required, unless --in-dir).")]
@@ -176,6 +182,7 @@ options = OptSpec
     , timeout = Nothing
     , produceXml = False
     , printVersion = False
+    , zeroBasedCex = False
     }
 
 
@@ -415,12 +422,12 @@ checkQuery lgr settings mi nd ts_ast ts (l',q) =
          Just (Invalid r)
           | testMode settings ->
             do sayFail lgr "Invalid" ""
-               let siTr = simpleTrace  mi l' r
+               let siTr = simpleTrace (zeroBasedCex settings) mi l' r
                unless (noTrace settings) $ sayFail lgr "Trace" ('\n' : siTr)
                pure (Invalid ())
 
           | produceXml settings ->
-            do sayElement lgr (xmlTrace  mi l' r)
+            do sayElement lgr (xmlTrace (zeroBasedCex settings) mi l' r)
                lPutLn lgr
                pure (Invalid ())
 
@@ -429,7 +436,7 @@ checkQuery lgr settings mi nd ts_ast ts (l',q) =
                sayFail lgr "Invalid" ("See " ++ (propDir </> "index.html"))
                saveUI propDir
                let jsTr = declareTrace mi l' r
-               let siTr = simpleTrace  mi l' r
+               let siTr = simpleTrace  (zeroBasedCex settings) mi l' r
                saveOutput (outTraceFile settings l) jsTr
                unless (noTrace settings) $
                  sayFail lgr "Trace" ('\n' : siTr)
@@ -556,4 +563,3 @@ saveOutputTesting lab val =
      putStrLn (replicate (length lab) '=')
      putStrLn ""
      putStrLn val
-

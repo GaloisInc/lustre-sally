@@ -95,47 +95,49 @@ xmlUnknown isTimeout pn =
     ]
   where (l, c) = labelLineCol pn
 
-xmlTrace ::  ModelInfo -> Label -> LTrace -> Element
-xmlTrace mi pn tr =
+xmlTrace :: Bool -> ModelInfo -> Label -> LTrace -> Element
+xmlTrace zeroBased mi pn tr =
   propElem (Text.unpack (labText pn)) l c $
     [ runtimeElem "false" 0.0
     , answerElem "kind" "falsifiable" -- TODO: not always "kind"
     , cexElem (case computeCallTree mi of
-                 Just yes -> [ callTreeToXML yes tr ]
+                 Just yes -> [ callTreeToXML zeroBased yes tr ]
                  Nothing  -> []
               )
     ]
   where (l, c) = labelLineCol pn
 
 
-callTreeToXML :: CallTree -> LTrace -> Element
-callTreeToXML t@(Fun l _) tr =
-  topNodeElem (show (pp (locName l))) (nodeElems t tr)
+callTreeToXML :: Bool -> CallTree -> LTrace -> Element
+callTreeToXML zeroBased t@(Fun l _) tr =
+  topNodeElem (show (pp (locName l))) (nodeElems zeroBased t tr)
 
-nodeElems :: CallTree -> LTrace -> [Element]
-nodeElems (Fun l cs) tr = locVarsXML l tr ++
+nodeElems :: Bool -> CallTree -> LTrace -> [Element]
+nodeElems zeroBased (Fun l cs) tr = locVarsXML zeroBased l tr ++
   [ callNodeElem (show (pp (locName lf)))
                  (show (sourceLine pos))
                  (show (sourceColumn pos))
-                 (nodeElems tree tr)
+                 (nodeElems zeroBased tree tr)
   | (cid,tree@(Fun lf _)) <- cs
   , let pos = sourceFrom (range cid)
   ]
 
 
 
-locVarsXML :: Loc -> LTrace -> [Element]
-locVarsXML loc tr = map (varValToXML "input")  (vIns vs) ++
-                    map (varValToXML "output") (vOuts vs) ++
-                    map (varValToXML "local")  (vLocs vs)
+locVarsXML :: Bool -> Loc -> LTrace -> [Element]
+locVarsXML zeroBased loc tr = map (varValToXML zeroBased "input")  (vIns vs) ++
+                              map (varValToXML zeroBased "output") (vOuts vs) ++
+                              map (varValToXML zeroBased "local")  (vLocs vs)
   where
   vs = varVals loc tr
 
 
-varValToXML :: String -> (OrigName,Type,[Maybe Value]) -> Element
-varValToXML cls (x,t,vs) =
+varValToXML :: Bool -> String -> (OrigName,Type,[Maybe Value]) -> Element
+varValToXML zeroBased cls (x,t,vs) =
   streamElem (show (pp x)) (show (pp t)) cls
-      [ valueElem n (show (pp v)) | (n,Just v) <- zip [ 1 .. ] vs ]
+      [ valueElem n (show (pp v)) | (n,Just v) <- zip [ firstIndex .. ] vs ]
+  where
+    firstIndex = if zeroBased then 0 else 1
 
 varVals :: Loc -> LTrace -> Vars (OrigName, Type, [Maybe Value])
 varVals l tr = fmap extract
@@ -153,6 +155,3 @@ rearrange sh vs = Vars { vIns  = mk vIns vIns
                        }
   where
   mk f g = f sh `zip` transpose (map g vs)
-
-
-

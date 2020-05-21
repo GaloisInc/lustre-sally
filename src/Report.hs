@@ -14,16 +14,19 @@ import TransitionSystem(Trace(..))
 
 -- | Print a shorter, text based trace.  We just display the inputs
 -- and outputs for the top node.
-simpleTrace :: ModelInfo -> Label -> LTrace -> String
-simpleTrace mi pn tr =
+simpleTrace :: Bool -> ModelInfo -> Label -> LTrace -> String
+simpleTrace zeroBased mi pn tr =
   Text.unpack (labText pn) ++ ":\n" ++
-  (tabulate $ header : zipWith showStep [ 1 :: Integer .. ] (traceSteps tr))
+  (tabulate $ header : zipWith showStep [ firstStep .. ] (traceSteps tr))
   where
   Just topLoc = locTop mi
 
   header = "Step" : map showPP (vIns vs) ++ ("|->" : map showPP (vOuts vs))
     where
     vs = fst <$> locVars topLoc
+
+  firstStep :: Integer
+  firstStep = if zeroBased then 0 else 1
 
   showStep n (_, s) = show n : map sh (vIns vs) ++ ("" : map sh (vOuts vs))
     where
@@ -43,7 +46,3 @@ tabulate rows0 = unlines (h : sep : hs)
   colWidths  = map (maximum . map length) (transpose rows)
   padTo n xs = xs ++ replicate (n - length xs) ' '
   shRow xs   = intercalate "|" (zipWith padTo colWidths xs)
-
-
-
-
