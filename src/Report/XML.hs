@@ -79,26 +79,29 @@ valueElem :: Int -> String -> Element
 valueElem instant value =
   unode "Value" ("instant" |-> show instant, value)
 
-xmlValid :: Label -> Element
-xmlValid pn =
+xmlValid :: Label -> Int -> Element
+xmlValid pn k =
   propElem (Text.unpack (labText pn)) l c
     [ runtimeElem "false" 0.0 -- TODO: real value
+    , kElem k
     , answerElem "kind" "valid" -- TODO: not always "kind"
     ]
   where (l, c) = labelLineCol pn
 
-xmlUnknown :: String -> Label -> Element
-xmlUnknown isTimeout pn =
+xmlUnknown :: String -> Label -> Int -> Element
+xmlUnknown isTimeout pn k =
   propElem (Text.unpack (labText pn)) l c
     [ runtimeElem isTimeout 0.0 -- TODO: real value
+    , kElem k
     , answerElem "kind" "unknown" -- TODO: not always "kind"
     ]
   where (l, c) = labelLineCol pn
 
-xmlTrace :: Bool -> ModelInfo -> Label -> LTrace -> Element
-xmlTrace zeroBased mi pn tr =
+xmlTrace :: Bool -> ModelInfo -> Label -> LTrace -> Int -> Element
+xmlTrace zeroBased mi pn tr k =
   propElem (Text.unpack (labText pn)) l c $
     [ runtimeElem "false" 0.0
+    , kElem k
     , answerElem "kind" "falsifiable" -- TODO: not always "kind"
     , cexElem (case computeCallTree mi of
                  Just yes -> [ callTreeToXML zeroBased yes tr ]
