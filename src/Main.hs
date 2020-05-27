@@ -18,7 +18,7 @@ import System.IO(hFlush,stdout)
 import System.FilePath(takeFileName,dropFileName,takeExtension,dropExtension
                       ,(</>))
 import System.Directory(createDirectoryIfMissing,doesFileExist,
-                        getDirectoryContents)
+                        getCurrentDirectory,getDirectoryContents)
 import Data.IORef(newIORef,writeIORef,readIORef)
 import Data.Version(showVersion)
 import Text.Read(readMaybe)
@@ -427,13 +427,15 @@ checkQuery lgr settings mi nd ts_ast ts (l',q) =
                pure (Invalid ())
 
           | produceXml settings ->
-            do sayElement lgr (xmlTrace (zeroBasedCex settings) mi l' r maxD)
+            do propURI <- outPropFileURI settings l
+               sayElement lgr (xmlTrace propURI (zeroBasedCex settings) mi l' r maxD)
                lPutLn lgr
                pure (Invalid ())
 
           | otherwise ->
             do let propDir = outPropDir settings l
-               sayFail lgr "Invalid" ("See " ++ (propDir </> "index.html"))
+               propURI <- outPropFileURI settings l
+               sayFail lgr "Invalid" ("See " ++ propURI)
                saveUI propDir
                let jsTr = declareTrace mi l' r
                let siTr = simpleTrace  (zeroBasedCex settings) mi l' r
@@ -537,6 +539,12 @@ outFileDir settings =
 outPropDir :: Settings -> String -> FilePath
 outPropDir settings prop = outFileDir settings </> prop
 -- XXX: escape, maybe
+
+outPropFileURI :: Settings -> String -> IO String
+outPropFileURI settings prop =
+  do
+    cwd <- getCurrentDirectory
+    pure $ "file://" <> cwd </> outPropDir settings prop </> "index.html"
 
 outSallyFile :: Settings -> FilePath
 outSallyFile settings = outFileDir settings </> "problem.sally"
