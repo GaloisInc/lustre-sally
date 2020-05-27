@@ -24,12 +24,13 @@ labelLineCol l = (sourceLine startPos, sourceColumn startPos)
 (|->) :: String -> String -> Attr
 (|->) key val = Attr (unqual key) val
 
-propElem :: String -> Int -> Int -> [Element] -> Element
-propElem name line col body =
+propElem :: String -> Int -> Int -> Maybe String -> [Element] -> Element
+propElem name line col mReport body =
   unode "Property" ( [ "name"    |-> name
                      , "line"    |-> show line
                      , "column"  |-> show col
                      ]
+                     <> maybe [] (\ r -> [ "report"  |-> r ]) mReport
                    , body
                    )
 
@@ -81,7 +82,7 @@ valueElem instant value =
 
 xmlValid :: Label -> Int -> Element
 xmlValid pn k =
-  propElem (Text.unpack (labText pn)) l c
+  propElem (Text.unpack (labText pn)) l c Nothing
     [ runtimeElem "false" 0.0 -- TODO: real value
     , kElem k
     , answerElem "kind" "valid" -- TODO: not always "kind"
@@ -90,16 +91,16 @@ xmlValid pn k =
 
 xmlUnknown :: String -> Label -> Int -> Element
 xmlUnknown isTimeout pn k =
-  propElem (Text.unpack (labText pn)) l c
+  propElem (Text.unpack (labText pn)) l c Nothing
     [ runtimeElem isTimeout 0.0 -- TODO: real value
     , kElem k
     , answerElem "kind" "unknown" -- TODO: not always "kind"
     ]
   where (l, c) = labelLineCol pn
 
-xmlTrace :: Bool -> ModelInfo -> Label -> LTrace -> Int -> Element
-xmlTrace zeroBased mi pn tr k =
-  propElem (Text.unpack (labText pn)) l c $
+xmlTrace :: String -> Bool -> ModelInfo -> Label -> LTrace -> Int -> Element
+xmlTrace propURI zeroBased mi pn tr k =
+  propElem (Text.unpack (labText pn)) l c (Just propURI) $
     [ runtimeElem "false" 0.0
     , kElem k
     , answerElem "kind" "falsifiable" -- TODO: not always "kind"
