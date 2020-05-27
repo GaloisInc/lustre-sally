@@ -394,7 +394,7 @@ checkQuery lgr settings mi nd ts_ast ts (l',q) =
        case mbRes of
          Nothing
           | produceXml settings ->
-             do sayElement lgr (xmlUnknown "true" l')
+             do sayElement lgr (xmlUnknown "true" l' maxD)
                 lPutLn lgr
                 orElse
 
@@ -404,7 +404,7 @@ checkQuery lgr settings mi nd ts_ast ts (l',q) =
 
          Just Valid
           | produceXml settings ->
-            do sayElement lgr (xmlValid l')
+            do sayElement lgr (xmlValid l' maxD)
                lPutLn lgr
                pure Valid
 
@@ -420,7 +420,7 @@ checkQuery lgr settings mi nd ts_ast ts (l',q) =
                pure (Invalid ())
 
           | produceXml settings ->
-            do sayElement lgr (xmlTrace  mi l' r)
+            do sayElement lgr (xmlTrace  mi l' r maxD)
                lPutLn lgr
                pure (Invalid ())
 
@@ -437,7 +437,7 @@ checkQuery lgr settings mi nd ts_ast ts (l',q) =
 
          Just Unknown
            | produceXml settings ->
-             do sayElement lgr (xmlUnknown "false" l')
+             do sayElement lgr (xmlUnknown "false" l' maxD)
                 lPutLn lgr
                 orElse
 
@@ -556,4 +556,3 @@ saveOutputTesting lab val =
      putStrLn (replicate (length lab) '=')
      putStrLn ""
      putStrLn val
-
