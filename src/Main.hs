@@ -430,6 +430,8 @@ checkQuery lgr settings mi nd ts_ast ts (l',q) =
             do propURI <- outPropFileURI settings l
                sayElement lgr (xmlTrace propURI (zeroBasedCex settings) mi l' r maxD)
                lPutLn lgr
+               saveUI (outPropDir settings l)
+               saveOutput (outTraceFile settings l) (declareTrace mi l' r)
                pure (Invalid ())
 
           | otherwise ->
