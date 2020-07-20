@@ -11,7 +11,8 @@ RUN apt-get install -y --no-install-recommends \
       libgmp-dev libffi6 \
       libboost-program-options-dev libboost-iostreams-dev \
       libboost-test-dev libboost-thread-dev libboost-system-dev \
-      libreadline-dev flex bison automake libtool
+      libreadline-dev flex bison automake libtool \
+      libedit-dev
 
 # Setup sources for external tools
 
@@ -33,12 +34,19 @@ WORKDIR /build
 RUN wget --quiet https://github.com/SRI-CSL/libpoly/archive/master.tar.gz -O libpoly.tar.gz
 RUN wget --quiet https://github.com/SRI-CSL/yices2/archive/master.tar.gz -O yices2.tar.gz
 RUN wget --quiet https://github.com/SRI-CSL/sally/archive/master.tar.gz -O sally.tar.gz
+RUN wget --quiet https://davidkebo.com/source/cudd_versions/cudd-3.0.0.tar.gz
 
+RUN tar -xzf cudd-3.0.0.tar.gz
 RUN tar -xzf libpoly.tar.gz
 RUN tar -xzf yices2.tar.gz
 RUN tar -xzf sally.tar.gz
 
 # Build Sally
+
+WORKDIR /build/cudd-3.0.0
+RUN ./configure --enable-shared
+RUN make -j
+RUN make install
 
 WORKDIR /build/libpoly-master/build
 RUN cmake .. -DCMAKE_BUILD_TYPE=Release
