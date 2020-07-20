@@ -80,7 +80,8 @@ RUN apt-get update
 RUN apt-get install -y --no-install-recommends \
       libgmp10 libffi6 libreadline7 libgmpxx4ldbl \
       libboost-program-options1.62 libboost-iostreams1.62 \
-      libboost-test1.62 libboost-thread1.62 libboost-system1.62
+      libboost-test1.62 libboost-thread1.62 libboost-system1.62 \
+      libedit-dev
 
 RUN useradd -m demo && chown -R demo:demo /home/demo
 COPY --from=build /usr/local/bin/sally        /usr/local/bin/sally
@@ -90,5 +91,6 @@ USER demo
 WORKDIR /home/demo
 RUN mkdir -p input
 RUN mkdir -p output
-ENV LD_LIBRARY_PATH=/usr/local/lib
+ENV LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
+
 ENTRYPOINT lustre-sally --in-dir=input --out-dir=output
