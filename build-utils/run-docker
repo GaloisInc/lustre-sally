@@ -5,6 +5,11 @@ HOST_OUT="$(pwd)/output"
 
 echo $HOST_IN
 
+# Add this to the docker command bellow to start a shell in the image.
+# (useful for debugging)
+# -it --entrypoint bash \
+
+
 docker run \
   --mount type=bind,source="$HOST_IN",readonly,target="/home/demo/input" \
   --mount type=bind,source="$HOST_OUT",target="/home/demo/output" \
