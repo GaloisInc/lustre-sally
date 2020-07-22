@@ -64,6 +64,7 @@ data Settings = Settings
   , printVersion :: Bool
   -- whether counter-example steps should start at step 0 or 1
   , zeroBasedCex :: Bool
+  , sallyExe  :: FilePath
   }
 
 options :: OptSpec Settings
@@ -94,6 +95,10 @@ options = OptSpec
       , Option [] ["save-sally"]
         "Save Sally output in this file"
         $ NoArg $ \s -> Right s { saveSally = True }
+
+      , Option [] ["sally-exe"]
+        "Use this executable for `sally`"
+        $ ReqArg "EXE" $ \a s -> Right s { sallyExe = a }
 
       , Option [] ["yices-mode"]
         "Specify how to use Yices"
@@ -183,6 +188,7 @@ options = OptSpec
     , produceXml = False
     , printVersion = False
     , zeroBasedCex = False
+    , sallyExe = "sally"
     }
 
 
@@ -463,7 +469,7 @@ checkQuery lgr settings mi nd ts_ast ts (l',q) =
            doSally = do lPutStr lgr LogInfo "  "
                         lSay lgr LogInfo "Sally" ""
                         lNewProg lgr
-                        sallyInteract "sally" opts callback (ts ++ q)
+                        sallyInteract (sallyExe settings) opts callback (ts ++ q)
 
        mbres <- case timeout settings of
                   Nothing -> Just <$> doSally
