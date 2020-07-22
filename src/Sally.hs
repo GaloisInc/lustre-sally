@@ -21,7 +21,7 @@ import Control.Monad(zipWithM)
 import Control.Exception(finally,try,SomeException(..))
 import Control.Concurrent(forkIO)
 import System.IO(hPutStrLn,hClose,openTempFile,hGetContents,hGetLine)
-import System.Directory(removeFile,getTemporaryDirectory)
+import System.Directory(removeFile,getTemporaryDirectory,createDirectoryIfMissing)
 import System.Process( withCreateProcess
                      , proc, CreateProcess(..), StdStream(..)
                      , waitForProcess
@@ -306,13 +306,17 @@ parseValue ty s =
 -- | Run sally with the given options, on the given input.
 -- This creates a temporary file, saves the input, and runs sally on it.
 sallyInteract ::
+  Maybe FilePath    {- ^ Temp directory -} ->
   FilePath    {- ^ Path to Sally -} ->
   [String]    {- ^ Command line options -} ->
   (LocalTime -> Int -> IO ()) {- ^ Callback for progress reporting -} ->
   String      {- ^ Input for Sally -} ->
   IO (Either String String) -- ^ Either an error on the left, or the answer.
-sallyInteract exe opts callback inp =
-  do tmp <- getTemporaryDirectory
+sallyInteract mbTmp exe opts callback inp =
+  do tmp <- case mbTmp of
+              Nothing -> getTemporaryDirectory
+              Just dir -> pure dir
+     createDirectoryIfMissing True tmp
      (path,h) <- openTempFile tmp "sallyXXX.mcmt"
      do hPutStrLn h inp
         hClose h

@@ -65,6 +65,7 @@ data Settings = Settings
   -- whether counter-example steps should start at step 0 or 1
   , zeroBasedCex :: Bool
   , sallyExe  :: FilePath
+  , tmpDir :: Maybe FilePath -- use this as a tmp directory, or system default id nothing
   }
 
 options :: OptSpec Settings
@@ -99,6 +100,10 @@ options = OptSpec
       , Option [] ["sally-exe"]
         "Use this executable for `sally`"
         $ ReqArg "EXE" $ \a s -> Right s { sallyExe = a }
+
+      , Option [] ["tmp-dir"]
+        "Use this directory for writing tempory files."
+        $ ReqArg "DIR" $ \a s -> Right s { tmpDir = Just a }
 
       , Option [] ["yices-mode"]
         "Specify how to use Yices"
@@ -189,6 +194,7 @@ options = OptSpec
     , printVersion = False
     , zeroBasedCex = False
     , sallyExe = "sally"
+    , tmpDir = Nothing
     }
 
 
@@ -469,7 +475,9 @@ checkQuery lgr settings mi nd ts_ast ts (l',q) =
            doSally = do lPutStr lgr LogInfo "  "
                         lSay lgr LogInfo "Sally" ""
                         lNewProg lgr
-                        sallyInteract (sallyExe settings) opts callback (ts ++ q)
+                        sallyInteract (tmpDir settings)
+                                      (sallyExe settings)
+                                      opts callback (ts ++ q)
 
        mbres <- case timeout settings of
                   Nothing -> Just <$> doSally
