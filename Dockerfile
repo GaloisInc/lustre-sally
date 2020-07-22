@@ -73,7 +73,7 @@ RUN tar -xzf lustre-sally.tar.gz
 RUN cabal v2-install exe:lustre-sally --symlink-bindir="/usr/local/bin"
 
 
-# Now build the deplyment image
+# Now build the deployment image
 
 FROM debian:stretch-slim AS demo
 RUN apt-get update
