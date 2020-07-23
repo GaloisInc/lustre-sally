@@ -35,6 +35,7 @@ import Language.Lustre.Monad(runLustre,LustreConf(..))
 import Language.Lustre.Driver(quickNodeToCore, infoTop)
 import Language.Lustre.ModelState(ModelInfo)
 import Language.Lustre.Phase(noPhases)
+import qualified Language.Lustre.Error as L
 import TransitionSystem(TransSystem)
 import Sally
 import Log
@@ -299,9 +300,11 @@ mainWorkAllFiles l settings =
     [ Handler $ \(ParseError mb) ->
         case mb of
           Nothing -> sayBad l "Parse error at the end of the file." ""
-          Just p  -> sayBad l ("Parse error at " ++ prettySourcePos p) ""
+          Just p  -> prettyError l p "Parse error"
 
     , Handler $ \(LSError a b) -> sayBad l a b
+
+    , Handler $ \lerr -> prettyLustreError l lerr
 
     , Handler $ \(SomeException e) -> sayBad l (displayException e) ""
     ]
@@ -587,3 +590,70 @@ saveOutputTesting lab val =
      putStrLn (replicate (length lab) '=')
      putStrLn ""
      putStrLn val
+
+
+
+
+--------------------------------------------------------------------------------
+-- Show nice errors
+
+prettyLustreError :: Logger -> L.LustreError -> IO ()
+prettyLustreError l e =
+  case e of
+    L.ResolverError re ->
+      case re of
+        L.InvalidConstantExpression {} -> simple
+        L.UndefinedName x -> prettyNameErr x ("Undefined name " <> back x) []
+        L.AmbiguousName x a b ->
+          prettyNameErr x ("Ambiguous name " <> back x)
+            [ "It may refer to:"
+            , "  * " <> back a <> ", defined at " <> prettySourcePos (locOf a) <> ", or"
+            , "  * " <> back b <> ", defined at " <> prettySourcePos (locOf b) <> ", or"
+            ]
+
+        L.RepeatedDefinitions ~(x:xs) ->
+          do cs <- mapM (showContext . locOf) (x : xs)
+             sayBad l ("Multiple definitions for " <> back x) (concat cs)
+
+        L.BadRecursiveDefs {} -> simple
+
+    L.TCError {} -> simple
+    L.BadEntryPoint {} -> simple
+
+  where
+  simple = sayBad l (show (pp e)) ""
+  back x = "`" <> show (pp x) <> "`"
+  locOf x = sourceFrom (range x)
+  prettyNameErr x m ms =
+    do let pos = locOf x
+       ctx <- showContext pos
+       sayBad l (prettySourcePos pos <> ": " ++ m) (unlines (ms ++ [ctx]))
+
+prettyError :: Logger -> SourcePos -> String -> IO ()
+prettyError l p msg =
+  do ctxt <- showContext p
+     sayBad l (prettySourcePos p <> ": " ++ msg) ctxt
+
+showContext :: SourcePos -> IO String
+showContext loc =
+  do let file = sourceFile loc
+         line = sourceLine loc
+         col  = sourceColumn loc
+     contents <- lines <$> readFile (Text.unpack file)
+     return $
+       case getFileLine (line - 1) contents of
+         Nothing -> "no file: " <> show contents
+         Just l ->
+           let lineNum = show line
+           in unlines [ ""
+                      , " " <> lineNum <> " | " <> l
+                      , replicate (3 + length lineNum + col) ' ' <> "^"
+                      ]
+  `catch` \SomeException{} -> pure ""
+  where
+  getFileLine _ [] = Nothing
+  getFileLine n (l:ls)
+    | n <= 0 = Just l
+    | otherwise = getFileLine (n - 1) ls
+
+
