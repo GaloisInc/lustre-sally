@@ -9,7 +9,9 @@ import Control.Concurrent
           (newEmptyMVar,takeMVar,putMVar, forkIO, threadDelay, killThread)
 import Data.Char(isSpace)
 import Data.Text(Text)
-import Data.List(intercalate)
+import Data.List(intercalate,sort,groupBy)
+import Data.Maybe(listToMaybe)
+import Data.Function(on)
 import qualified Data.Text as Text
 import qualified Data.Text.IO as TextIO
 import qualified Data.Map as Map
@@ -300,7 +302,8 @@ mainWorkAllFiles l settings =
     [ Handler $ \(ParseError mb) ->
         case mb of
           Nothing -> sayBad l "Parse error at the end of the file." ""
-          Just p  -> prettyError l p "Parse error"
+          Just p  -> do ctxt <- showContexts [range p]
+                        sayBad l "Parse error" ctxt
 
     , Handler $ \(LSError a b) -> sayBad l a b
 
@@ -607,17 +610,17 @@ prettyLustreError l e =
         L.AmbiguousName x a b ->
           prettyNameErr x ("Ambiguous name " <> back x)
             [ "It may refer to:"
-            , "  * " <> back a <> ", defined at " <> prettySourcePos (locOf a) <> ", or"
-            , "  * " <> back b <> ", defined at " <> prettySourcePos (locOf b) <> ", or"
+            , "  • Constant defined at " <> prettySourcePos (locOf a) <> ", or"
+            , "  • Variable defined at " <> prettySourcePos (locOf b)
             ]
 
         L.RepeatedDefinitions ~(x:xs) ->
-          do cs <- mapM (showContext . locOf) (x : xs)
-             sayBad l ("Multiple definitions for " <> back x) (concat cs)
+          do cs <- showContexts (map range (x : xs))
+             sayBad l ("Multiple definitions for " <> back x) cs
 
         L.BadRecursiveDefs {} -> simple
 
-    L.TCError {} -> simple
+    L.TCError ls msg -> sayBad l (show msg) =<< showContexts ls
     L.BadEntryPoint {} -> simple
 
   where
@@ -625,35 +628,57 @@ prettyLustreError l e =
   back x = "`" <> show (pp x) <> "`"
   locOf x = sourceFrom (range x)
   prettyNameErr x m ms =
-    do let pos = locOf x
-       ctx <- showContext pos
-       sayBad l (prettySourcePos pos <> ": " ++ m) (unlines (ms ++ [ctx]))
+    do let r = range x
+       ctx <- showContexts [r]
+       let msg = prettySourcePos (sourceFrom r) <> ": " <> m
+       sayBad l msg (unlines (ms ++ [ctx]))
 
-prettyError :: Logger -> SourcePos -> String -> IO ()
-prettyError l p msg =
-  do ctxt <- showContext p
-     sayBad l (prettySourcePos p <> ": " ++ msg) ctxt
 
-showContext :: SourcePos -> IO String
-showContext loc =
-  do let file = sourceFile loc
-         line = sourceLine loc
-         col  = sourceColumn loc
-     contents <- lines <$> readFile (Text.unpack file)
-     return $
-       case getFileLine (line - 1) contents of
-         Nothing -> "no file: " <> show contents
-         Just l ->
-           let lineNum = show line
-           in unlines [ ""
-                      , " " <> lineNum <> " | " <> l
-                      , replicate (3 + length lineNum + col) ' ' <> "^"
-                      ]
-  `catch` \SomeException{} -> pure ""
+-- How many things to underline
+errRangeLen :: SourceRange -> Int
+errRangeLen r
+  | sourceFile x == sourceFile y &&
+    sourceLine x == sourceLine y = abs (sourceColumn x - sourceColumn y) + 1
+  | otherwise = 1
+    where x = sourceFrom r
+          y = sourceTo r
+
+showContexts :: [SourceRange] -> IO String
+showContexts cs = ("\n"++) . concat <$> mapM showContextFile byLine
   where
-  getFileLine _ [] = Nothing
-  getFileLine n (l:ls)
-    | n <= 0 = Just l
-    | otherwise = getFileLine (n - 1) ls
+  prep r = let p = sourceFrom r
+           in (sourceFile p, (sourceLine p, (sourceColumn p, errRangeLen r)))
+
+  sorted = sort (map prep cs)
+  byFile = regroup sorted
+  byLine = [ (Text.unpack f,regroup ls) | (f,ls) <- byFile ]
+
+regroup :: Eq a => [(a,b)] -> [(a,[b])]
+regroup = map cvt . groupBy ((==) `on` fst)
+  where cvt xs = (fst (head xs), map snd xs)
+
+showContextFile :: (FilePath,[(Int,[(Int,Int)])]) -> IO String
+showContextFile (file,ls) =
+  do contents <- lines <$> (readFile file
+                              `catch` \SomeException{} -> pure "")
+     pure $ unlines $ file : concatMap (showLine contents) ls
+
+  where
+  -- we could avoid duplicating lines, not sure if it's worth
+  showLine :: [String] -> (Int,[(Int,Int)]) -> [String]
+  showLine contents (lineNum,cs) = concatMap showPos cs
+    where
+    l = case listToMaybe (drop (lineNum-1) contents) of
+          Nothing -> "(missing)"
+          Just t  -> t
+
+    lineNumTxt = show lineNum
+
+    showPos :: (Int,Int) -> [String]
+    showPos (col,len) =
+      [ ""
+      , " " <> lineNumTxt <> " | " <> l
+      , replicate (3 + length lineNumTxt + col) ' ' <> replicate len '^'
+      ]
 
 
