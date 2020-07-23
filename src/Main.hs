@@ -299,11 +299,7 @@ mainWorkAllFiles l settings =
          _ -> bad "We don't support modules/packages for the moment." ""
 
   handlers =
-    [ Handler $ \(ParseError mb) ->
-        case mb of
-          Nothing -> sayBad l "Parse error at the end of the file." ""
-          Just p  -> do ctxt <- showContexts [range p]
-                        sayBad l "Parse error" ctxt
+    [ Handler $ \(ParseError p) -> sayBad l "Parse error" =<< showContexts [p]
 
     , Handler $ \(LSError a b) -> sayBad l a b
 
