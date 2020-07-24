@@ -17,23 +17,30 @@ import TransitionSystem(Trace(..))
 simpleTrace :: Bool -> ModelInfo -> Label -> LTrace -> String
 simpleTrace zeroBased mi pn tr =
   Text.unpack (labText pn) ++ ":\n" ++
-  (tabulate $ header : zipWith showStep [ firstStep .. ] (traceSteps tr))
+  (tabulate $ header : zipWith showStep [ firstStep .. ]
+                                        (isLast (traceSteps tr)))
   where
   Just topLoc = locTop mi
 
-  header = "Step" : map showPP (vIns vs) ++ ("|->" : map showPP (vOuts vs))
+  header = "Step" : map showPP (vOuts vs) ++
+          ("->"   : map showPP (vIns vs))
     where
     vs = fst <$> locVars topLoc
 
   firstStep :: Integer
   firstStep = if zeroBased then 0 else 1
 
-  showStep n (_, s) = show n : map sh (vIns vs) ++ ("" : map sh (vOuts vs))
+  showStep n ((_, s),atEnd) =
+    show n  : map sh (vOuts vs) ++
+    (""     : map (if atEnd then const "" else sh) (vIns vs))
     where
-    vs        = lookupVars topLoc s
+    vs          = lookupVars topLoc s
     sh (_,_,mb) = case mb of
                     Nothing -> "?"
                     Just v  -> showPP v
+
+  isLast = fst . foldr annot ([],True)
+    where annot x (xs,a) = ((x,a):xs,False)
 
 tabulate :: [[String]] -> String
 tabulate rows0 = unlines (h : sep : hs)
