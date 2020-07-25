@@ -1,0 +1,49 @@
+type Character  = enum { Farmer, Wolf, Goat, Cabbage };
+type Side       = enum { Left, Right };
+node action(move : Character)
+  returns (wolfLoc, goatLoc, cabbageLoc, farmerLoc : Side);
+var
+  validMove     : bool;
+  nothingEaten  : bool;
+  solved        : bool;
+let
+  validMove =
+    (move = Wolf    => farmerLoc = wolfLoc) and
+    (move = Goat    => farmerLoc = goatLoc) and
+    (move = Cabbage => farmerLoc = cabbageLoc);
+  nothingEaten =
+    (wolfLoc = goatLoc    => farmerLoc = goatLoc) and
+    (goatLoc = cabbageLoc => farmerLoc = cabbageLoc);
+  solved =
+    wolfLoc    = Right and
+    goatLoc    = Right and
+    cabbageLoc = Right and
+    farmerLoc  = Right and
+    historically(nothingEaten and validMove);
+    farmerLoc     = doMove(move, Farmer);
+    wolfLoc       = doMove(move, Wolf);
+    goatLoc       = doMove(move, Goat);
+    cabbageLoc    = doMove(move, Cabbage);
+    --%MAIN;
+    --%PROPERTY not solved;
+tel;
+node doMove(move, character: Character) returns (location : Side);
+let
+  location =
+    Left ->
+      if character = Farmer then
+        pre(otherSide(location))
+      else
+      if pre(move) = character
+         then pre(otherSide(location))
+         else pre(location);
+tel;
+
+node otherSide(side : Side) returns (other : Side);
+let
+  other = if side = Left then Right else Left;
+tel;
+node historically(x : bool) returns (holds : bool);
+let
+  holds = x and (true -> pre holds);
+tel;

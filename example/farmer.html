@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>farmer</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="farmer.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="the-wolf-goat-and-cabbage-problem">The Wolf, Goat, and Cabbage Problem</h1>
+<p>This example shows how to use <code>lustre-sally</code> to solve a simple puzzle. This example is derived from one of the tests for <code>jkind</code>, which is another model-checker that uses Lustre as its input language.</p>
+<p>We solve the “Wolf, goat, and cabage problem”, described on <a href="https://en.wikipedia.org/wiki/Wolf,_goat_and_cabbage_problem">Wikipedia</a> as follows:</p>
+<blockquote>
+<p>Once upon a time a farmer went to a market and purchased a wolf, a goat, and a cabbage. On his way home, the farmer came to the bank of a river and rented a boat. But crossing the river by boat, the farmer could carry only himself and a single one of his purchases: the wolf, the goat, or the cabbage.</p>
+<p>If left unattended together, the wolf would eat the goat, or the goat would eat the cabbage.</p>
+<p>The farmer’s challenge was to carry himself and his purchases to the far bank of the river, leaving each purchase intact. How did he do it?</p>
+</blockquote>
+<p>To solve the puzzle we model the problem as a <em>transition system</em>, described in Lustre. The transition system desribes the initial state of the world (e.g., the locations of the farmer and his purchases), and also what are valid ways for the world to change (e.g., constraints, such as “the goat and the wolf should not be left alone”, and “the farmer may only pick up things from the side of the river that he is on”).</p>
+<p>Once we have the Lustre model we can use <code>lustre-sally</code> to invoke the <code>sally</code> model-checker, to analyze the resulting system. The model checker’s job is to look for states of the world where some property holds. For the purposes of this puzzle we’ll have everyone start on the left side of the river, and look for states where everyone is on the right side of the river, without anyone getting eaten in-beetween. Here is the sample output we’d like to get:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Step</th>
+<th>wolfLoc</th>
+<th>goatLoc</th>
+<th>cabbageLoc</th>
+<th>farmerLoc</th>
+<th>-&gt;</th>
+<th>move</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Left</td>
+<td>Left</td>
+<td>Left</td>
+<td>Left</td>
+<td></td>
+<td>Goat</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Left</td>
+<td>Right</td>
+<td>Left</td>
+<td>Right</td>
+<td></td>
+<td>Farmer</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Left</td>
+<td>Right</td>
+<td>Left</td>
+<td>Left</td>
+<td></td>
+<td>Cabbage</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>Left</td>
+<td>Right</td>
+<td>Right</td>
+<td>Right</td>
+<td></td>
+<td>Goat</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>Left</td>
+<td>Left</td>
+<td>Right</td>
+<td>Left</td>
+<td></td>
+<td>Wolf</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>Right</td>
+<td>Left</td>
+<td>Right</td>
+<td>Right</td>
+<td></td>
+<td>Farmer</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>Right</td>
+<td>Left</td>
+<td>Right</td>
+<td>Left</td>
+<td></td>
+<td>Goat</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>Right</td>
+<td>Right</td>
+<td>Right</td>
+<td>Right</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="the-lustre-model">The Lustre Model</h2>
+<p>We start by declaring a couple of enumeration types:</p>
+<pre class="lustre"><code>type Character  = enum { Farmer, Wolf, Goat, Cabbage };
+type Side       = enum { Left, Right };</code></pre>
+<p>Type type <code>Character</code> represents the characters in the story, and the type <code>Side</code> models the characters’ locations. Without loss of generality, we arbitrarily choose that the characters start on the <code>Left</code> side of the river, and are trying to get to the <code>Right</code> side.</p>
+<p><strong>Signature.</strong> The central part of the model is the function <code>action</code> which models a single action of the farmer:</p>
+<pre class="lustre"><code>node action(move : Character)
+  returns (wolfLoc, goatLoc, cabbageLoc, farmerLoc : Side);</code></pre>
+<p>The function’s parameter specifies who goes with the farmer in the boat, and the outputs are the new locations of the characters. If the parameter is <code>Farmer</code>, then the farmer goes alone.</p>
+<p><strong>Local Variables.</strong> The function uses some local state to classify the current situation:</p>
+<pre class="lustre"><code>var
+  validMove     : bool;
+  nothingEaten  : bool;
+  solved        : bool;</code></pre>
+<p>The names of the variables are suggestive but next we provide precise definitions, which are needed so that the model can be analyzed.</p>
+<p><strong>Definition.</strong> We start with <code>validMove</code> which holds true when the farmer is following the rules, namely he may only pick up characters that are on the same bank of the river as he is:</p>
+<pre class="lustre"><code>let
+  validMove =
+    (move = Wolf    =&gt; farmerLoc = wolfLoc) and
+    (move = Goat    =&gt; farmerLoc = goatLoc) and
+    (move = Cabbage =&gt; farmerLoc = cabbageLoc);</code></pre>
+<p>As the name suggests, the variable <code>nothingEaten</code>, ensures that the goat and the cabbage are not eaten. We do this by insisting that if a hungry character is in the same location as their food, then the farmer is also present to ensure they behave:</p>
+<pre class="lustre"><code>  nothingEaten =
+    (wolfLoc = goatLoc    =&gt; farmerLoc = goatLoc) and
+    (goatLoc = cabbageLoc =&gt; farmerLoc = cabbageLoc);</code></pre>
+<p>The variable <code>solved</code> states precisely what we are looking for: a situation where all characters are on the <code>Right</code> river bank, and we only preformed valid moves, and no one was eaten:</p>
+<pre class="lustre"><code>  solved =
+    wolfLoc    = Right and
+    goatLoc    = Right and
+    cabbageLoc = Right and
+    farmerLoc  = Right and
+    historically(nothingEaten and validMove);</code></pre>
+<p>Intuitively, the function <code>historically</code> says that the given property holds now, and in all previous states, and we’ll see its definition shortly.</p>
+<p>Finally, we need to specify how the characters’ locations are affected by the farmer’s actions:</p>
+<pre class="lustre"><code>    farmerLoc     = doMove(move, Farmer);
+    wolfLoc       = doMove(move, Wolf);
+    goatLoc       = doMove(move, Goat);
+    cabbageLoc    = doMove(move, Cabbage);</code></pre>
+<p>The details of movement are factored into a separate function called <code>doMove</code>.</p>
+<p>The final part of the specification consists of two special comments that tell the solver what we’d like to do.</p>
+<pre class="lustre"><code>    --%MAIN;
+    --%PROPERTY not solved;
+tel;</code></pre>
+<p>The <em>pragma</em> <code>MAIN</code> specifies that this is the entry point for our problem, and we are interested in the inputs and state of this function. Only one of the functions in a specification should be marked with <code>MAIN</code>. The pragma <code>PROPERTY</code> tells the solver what property we are searching for, by telling it what states to prune out. In this case, we are telling the solver to prune out states where the problem is <em>not</em> solved, thus asking it to find a solution.</p>
+<p>While this may seems inverted, there is a good reason for it. Another way to think of <code>PROPERTY</code> is as writing an assertion: we are asking the solver to check that the property holds in all reachable states of the system. If the solver finds a state the violets the invariant, it will report it by showing a sequence of steps that lead to the problem. So, in a way, in our puzzle we are “tricking” the solver to check the “invariant” that the problem is impossible to solve, thus asking it to “prove us wrong” by finding a solution.</p>
+<p>We still need to specify how characters are affected by the farmer’s actions, which is captured in function <code>doMove</code>. It takes two characters as parameters, the first one specifies who the farmer is moving, and the second one which character’s location we are computing. As a result we return the new location of the character.</p>
+<pre class="lustre"><code>node doMove(move, character: Character) returns (location : Side);
+let
+  location =
+    Left -&gt;
+      if character = Farmer then
+        pre(otherSide(location))
+      else
+      if pre(move) = character
+         then pre(otherSide(location))
+         else pre(location);
+tel;
+
+node otherSide(side : Side) returns (other : Side);
+let
+  other = if side = Left then Right else Left;
+tel;</code></pre>
+<p>The function <code>doMove</code> illustrates some of Lustre’s temporal combinators. Expressions of the form <code>A -&gt; B</code> capture the common pattern where a value is initialized to <code>A</code> and after that behaves as <code>B</code>. In this case, all characters start on the <code>Left</code> bank of the river, and the expression after the arrow specifies how they are affected by the move. The other temporal operator, <code>pre(X)</code> refers to the value of <code>X</code> but in the <em>previous</em> state (e.g., where something <em>used</em> to be). Since the farmer always moves with the boat, its location alternates on every action, no matter who is being moved. The <code>else</code> statement deals with other characters and specifies that the character picked up by the farmer change their location while the other characters remain in place.</p>
+<p>The same temporal operators are used to define <code>historically</code>, which we present without further comment, but encourage the reader to try to understand its definition:</p>
+<pre class="lustre"><code>node historically(x : bool) returns (holds : bool);
+let
+  holds = x and (true -&gt; pre holds);
+tel;</code></pre>
+<h2 id="running-the-model">Running the Model</h2>
+<p>To run <code>lustre-sally</code> on the model, we just provide the file containing the specification as a parameter:</p>
+<pre class="shell"><code>&gt; lustre-sally example/farmer.lus</code></pre>
+<p>This results in the following output:</p>
+<pre class="shell"><code>[Lustre] Loading model from: &quot;example/farmer.lus&quot;
+[Lustre] Validating properties:
+[Lustre] Property Prop on line 28...
+  [Sally]considering 8 past states [Invalid] See (...URL...)
+[Trace] 
+Prop on line 28:
+ Step | wolfLoc | goatLoc | cabbageLoc | farmerLoc | -&gt; | move    
+------+---------+---------+------------+-----------+----+---------
+ 1    | Left    | Left    | Left       | Left      |    | Goat    
+ 2    | Left    | Right   | Left       | Right     |    | Farmer  
+ 3    | Left    | Right   | Left       | Left      |    | Cabbage 
+ 4    | Left    | Right   | Right      | Right     |    | Goat    
+ 5    | Left    | Left    | Right      | Left      |    | Wolf    
+ 6    | Right   | Left    | Right      | Right     |    | Farmer  
+ 7    | Right   | Left    | Right      | Left      |    | Goat    
+ 8    | Right   | Right   | Right      | Right     |    |         
+
+[Lustre] Summary:
+  [Valid] 0
+  [Unknown] 0
+  [Invalid] 1
+[Lustre] Model status: [Invalid]</code></pre>
+<p>While the <code>Invalid</code> markers may seem concerning, recall the discussion from the previous section: we “tricked” the solver to look for a solution by asserting that one does not exist, so the solver is simply saying that our assertion is invalid, as it was able to find a solution.</p>
+<p>You may also note the line:</p>
+<pre class="shell"><code>[Lustre] Property Prop on line 28...
+  [Sally]considering 8 past states [Invalid] See (...URL...)</code></pre>
+<p>where <code>(...URL...)</code> would be some system specific location. The web-site in this URL contains the full details about the example found by the solver, in the context of the original Lustre specification. This allows for interactive exploration of the model state at each step, including the parameters and local state of the different invocations of the same function. Here is a screen shot, demonstrating some of this, but it it best to try it out!</p>
+<figure>
+<img src="lustre.png" alt="" /><figcaption>Screenshot</figcaption>
+</figure>
+</body>
+</html>
