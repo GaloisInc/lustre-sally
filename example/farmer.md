@@ -5,7 +5,7 @@ This example shows how to use `lustre-sally` to solve a simple puzzle.
 This example is derived from one of the tests for `jkind`, which is
 another model-checker that uses Lustre as its input language.
 
-We solve the "Wolf, goat, and cabage problem", described on
+We solve the "Wolf, goat, and cabbage problem", described on
 [Wikipedia](https://en.wikipedia.org/wiki/Wolf,_goat_and_cabbage_problem)
 as follows:
 
@@ -35,16 +35,16 @@ and look for states where everyone is on the right side of the river,
 without anyone getting eaten in-beetween.  Here is the sample output
 we'd like to get:
 
- Step | wolfLoc | goatLoc | cabbageLoc | farmerLoc | -> | move    
-------+---------+---------+------------+-----------+----+---------
- 1    | Left    | Left    | Left       | Left      |    | Goat    
- 2    | Left    | Right   | Left       | Right     |    | Farmer  
- 3    | Left    | Right   | Left       | Left      |    | Cabbage 
- 4    | Left    | Right   | Right      | Right     |    | Goat    
- 5    | Left    | Left    | Right      | Left      |    | Wolf    
- 6    | Right   | Left    | Right      | Right     |    | Farmer  
- 7    | Right   | Left    | Right      | Left      |    | Goat    
- 8    | Right   | Right   | Right      | Right     |    |         
+ Step | `wolfLoc` | `goatLoc` | `cabbageLoc` | `farmerLoc` | `->` | `move` 
+------|-----------|-----------|--------------|-------------|------|---------
+ 1    | Left      | Left      | Left         | Left        |      | Goat    
+ 2    | Left      | Right     | Left         | Right       |      | Farmer  
+ 3    | Left      | Right     | Left         | Left        |      | Cabbage 
+ 4    | Left      | Right     | Right        | Right       |      | Goat    
+ 5    | Left      | Left      | Right        | Left        |      | Wolf    
+ 6    | Right     | Left      | Right        | Right       |      | Farmer  
+ 7    | Right     | Left      | Right        | Left        |      | Goat    
+ 8    | Right     | Right     | Right        | Right       |      |         
 
 
 The Lustre Model
@@ -213,7 +213,7 @@ This results in the following output:
 [Trace] 
 Prop on line 28:
  Step | wolfLoc | goatLoc | cabbageLoc | farmerLoc | -> | move    
-------+---------+---------+------------+-----------+----+---------
+------|---------|---------|------------|-----------|----|---------
  1    | Left    | Left    | Left       | Left      |    | Goat    
  2    | Left    | Right   | Left       | Right     |    | Farmer  
  3    | Left    | Right   | Left       | Left      |    | Cabbage 
