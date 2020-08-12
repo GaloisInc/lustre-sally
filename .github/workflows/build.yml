@@ -71,3 +71,11 @@ jobs:
 
       - shell: bash
         run: cabal v2-build --allow-newer
+
+      - shell: bash
+        run: ./lustre-sally package
+
+      - uses: actions/upload-artifact@v2
+        with:
+          path: lustre-sally-*.tar.gz
+          name: lustre-sally
