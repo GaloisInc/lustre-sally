@@ -1,6 +1,21 @@
 #!/bin/bash
 
 BIN=bin
+VER=`cabal info . | head -1 | grep -Eo "[0-9.]+"`
+
+function make_package {
+    PKG=lustre-sally-$VER
+    cabal v2-install --installdir="$BIN" --install-method=copy --overwrite-policy=always
+    rm -rf                   $PKG
+    mkdir                    $PKG
+    mkdir                    $PKG/bin
+    mkdir                    $PKG/doc
+    cp bin/lustre-sally      $PKG/bin
+    cp README.md             $PKG/doc
+    cp example/farmer.pdf    $PKG/doc
+    tar -czvf $PKG.tar.gz    $PKG
+    rm -rf                   $PKG
+}
 
 function setup_external_tools {
   if [ ! -f "$BIN/test-runner" ]
@@ -52,6 +67,10 @@ case $COMMAND in
   run)
     cabal v2-run exe:lustre-sally -- $@
     ;;
+
+  package)
+    make_package
+    exit 0;;
 
   help)
     show_usage
