@@ -15,22 +15,11 @@ within it.
     git clone https://github.com/GaloisInc/lustre-sally
     cd lustre-sally
     git submodule update --init
-    stack build
+    ./lustre-sally build
 
-Optionally, the resulting binaries can be installed into the standard
-Stack binary directory as follows:
+Once it has been built, `lustre-sally` can be run as follows:
 
-    stack install
-
-On most Unix-like system, this command will copy the binaries into
-`~/.local/bin`. If this directory is in your `PATH`, then you can invoke
-the tool `lustre-sally` from a shell. It is also possible to run the
-tool from the `lustre-sally` directory as follows:
-
-    stack run lustre-sally -- <further options>
-
-If you're running on a single input file, with no command-line
-options, the `--` can be omitted.
+    ./lustre-sally run
 
 # Using `lustre-sally`
 
