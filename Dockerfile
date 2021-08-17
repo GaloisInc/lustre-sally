@@ -1,4 +1,4 @@
-FROM haskell:8.6 AS build
+FROM haskell:8.10 AS build
 
 # Setup system
 RUN apt-get update
@@ -70,12 +70,12 @@ RUN make install
 COPY docker-src/* ./
 RUN tar -xzf language-lustre.tar.gz
 RUN tar -xzf lustre-sally.tar.gz
-RUN cabal v2-install exe:lustre-sally --symlink-bindir="/usr/local/bin"
+RUN cabal v2-install exe:lustre-sally --installdir="/usr/local/bin"
 
 
 # Now build the deployment image
 
-FROM debian:stretch-slim AS demo
+FROM debian:buster-slim AS demo
 RUN apt-get update
 RUN apt-get install -y --no-install-recommends \
       libgmp10 libffi6 libreadline7 libgmpxx4ldbl \
